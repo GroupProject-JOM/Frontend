@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --body-color: #ffffff;
+  --sidebar-color: #bb9056;
+  --primary-color: #000000;
+  --primary-color-light: #ffe0b6;
+  --toggle-color: #ddd;
+  --text-color: #ffffff;
+  --mode-color: #6a6a6a;
+  --shadow-color: lightgray;
+  --th-color:#e9e9e9;
+  --wtext--color:#000000;
+
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+}
+
+body.dark {
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color: #ccc;
+  --primary-color-light: #7e7e7e;
+  --toggle-color: #fff;
+  --text-color: #ccc;
+  --shadow-color: rgb(30, 30, 30);
+  --wtext--color:#ccc;
+  --th-color:#242526;
+
+
+  color: var(--text-color);
+}
+
+.home {
+  position: relative;
+  left: 325px;
+  width: calc(100% - 325px);
+  background: var(--body-color);
+  transition: var(--tran-05);
+  padding-left: 4rem;
+}
+
+.home .text {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--primary-color);
+  padding: 2.4rem 0rem;
+}
+
+.home .lng-picker {
+    background-color: var(--body-color);
+    color: #bb9056;
+    border-radius: 20px;
+    height: 2rem;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 5px 10px var(--shadow-color);
+    float: right;
+    margin-right: 1rem;
+    margin-top: 2.4rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.home .lng-picker .sin {
+  padding: 0 8px 0 20px;
+}
+
+.home .lng-picker .en {
+  padding: 0 20px 0 12px;
+}
+
+.home .lng-picker .active {
+  background-color: var(--sidebar-color);
+  border-radius: 20px;
+  height: 2rem;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 0;
+}
+
+.notification .bell {
+  position: relative;
+  color: #bb9056;
+  font-size: 35px;
+  font-weight: 500;
+  float: right;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid var(--body-color);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.notification .bell:hover {
+  border: 3px solid var(--sidebar-color);
+  transition: var(--tran-05);
+}
+
+.notification .active {
+  border: 3px solid var(--sidebar-color);
+}
+
+.notification .count {
+  z-index: 1;
+  position: relative;
+  right: 45px;
+  font-weight: 600;
+  background-color: crimson;
+  border-radius: 4px;
+  padding: 2px;
+  color: var(--body-color);
+  font-size: 12px;
+  float: right;
+  margin-top: 1.9rem;
+  font-weight: 500;
+}
+
+.notification-window {
+  display: none;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding:  10px 20px;
+  border-radius: 10px;
+  margin-top: 60px;
+  position:absolute;
+  top: 20px;
+  right: 90px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.168);
+  z-index: 1;
+  transition: var(--tran-04);
+}
+
+.close-btn {
+  display: grid;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  color: gray;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: rgb(12, 0, 0);
+  cursor: pointer;
+}
+
+#notifications {
+  padding: 10px;
+  margin-bottom: 10px;
+  /* border-bottom: 1px solid #ccc; */
+  height: 40vh;
+  overflow: auto;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 400px) {
+  .notification-window {
+    width: 90%;
+  }
+}
+.notification-window .title {
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-bottom: 0.5rem;
+  margin-top: 15px;
+  color: #3100a3;
+}
+
+.notify-msg {
+  background-color: #2268ff45;
+  font-size: 15px;
+  padding: 10px 10px;
+  /* margin-top: 10px; */
+  margin-bottom: 10px;
+  display: grid;
+  align-items:end;
+  border-radius: 10px 10px 0px 10px;
+  cursor: pointer;
+}
+.notify-msg span{
+  font-size: xx-small;  
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+  position:relative;
+  bottom: -8px;
+  right: -168px;
+}
+
+.notify-msg:hover{
+  background-color: #99f9b05e;
+  transition: var(--tran-03);
+}
