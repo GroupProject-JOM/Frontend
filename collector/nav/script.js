@@ -20,12 +20,16 @@
     body.classList.toggle("dark");
 
     if (body.classList.contains("dark")) {
+      sessionStorage.setItem("mode", "dark");
+
       if (sin.classList.contains("active")) {
         modeText.innerHTML = "ආලෝක මාදිලිය";
       } else {
         modeText.innerHTML = "Light Mode";
       }
     } else {
+      sessionStorage.setItem("mode", "light");
+
       if (sin.classList.contains("active")) {
         modeText.innerHTML = "අඳුරු මාදිලිය";
       } else {
@@ -66,4 +70,7 @@
       greeting: "Good Afternoon",
     },
   };
+
+  checkLng();
+  checkMode();
 })();
