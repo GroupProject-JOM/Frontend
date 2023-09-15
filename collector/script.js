@@ -2,6 +2,7 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    modeSwitch = body.querySelector(".toggle-switch"),
     closeBtn = body.querySelector(".close-btn"),
     bell = body.querySelector(".bell"),
     notify = body.querySelector("#notify"),
@@ -55,7 +56,17 @@
       l10: "Notifications",
     },
   };
-
+  
   checkLng();
-  loadNav();
+  checkMode();
+
+  modeSwitch.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    if (body.classList.contains("dark")) {
+      sessionStorage.setItem("mode", "dark");
+    } else {
+      sessionStorage.setItem("mode", "light");
+    }
+  });
+  
 })();
