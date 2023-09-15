@@ -10,8 +10,6 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
-
-    
   </head>
 
   <body>
@@ -20,7 +18,9 @@
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
-        <span class="bell do-not"><i class="fa-regular fa-bell do-not"></i></span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
       </div>
 
       <div class="notification-window do-not" id="notify">
@@ -48,7 +48,139 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container"></div>
+      <div class="container">
+        <div class="widgets">
+          <div class="widget-left widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-boxes-stacked"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Monthly Volume</p>
+              <p class="w-value">125 MT</p>
+            </div>
+          </div>
+          <div class="widget-right widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-gears"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Ongoing Production</p>
+              <p class="w-value">12</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="production">
+          <div class="table-heading">
+            <h2>Batch Overview</h2>
+            <p>View ongoing production status</p>
+          </div>
+          <table class="production-table overview-tables">
+            <thead class="thead">
+              <tr>
+                <th>Batch ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Processing Time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>S091</td>
+                <td>21/10/2023</td>
+                <td>200</td>
+                <td>5 Hours</td>
+                <td>
+                  <button class="processing status">Processing</button>
+                </td>
+              </tr>
+              <tr>
+                <td>S092</td>
+                <td>02/01/2023</td>
+                <td>2000</td>
+                <td>13 Hours</td>
+                <td>
+                  <button class="processing status">Processing</button>
+                </td>
+              </tr>
+              <tr>
+                <td>S093</td>
+                <td>09/04/2023</td>
+                <td>300</td>
+                <td>0</td>
+                <td>
+                  <button class="waiting status">Waiting</button>
+                </td>
+              </tr>
+              <tr>
+                <td>S094</td>
+                <td>21/02/2023</td>
+                <td>900</td>
+                <td>0</td>
+                <td>
+                  <button class="waiting status">Waiting</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="production-request">
+          <div class="table-heading">
+            <h2>Production Status</h2>
+            <p>View upcoming collections for next 2 days</p>
+          </div>
+          <table class="production-request-table overview-tables">
+            <thead class="thead">
+              <tr>
+                <th>Batch ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Yard</th>
+                <th>Block</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>S091</td>
+                <td>21/10/2023</td>
+                <td>200</td>
+                <td>2</td>
+                <td>1</td>
+                <td><button class="accepted status">Accepted</button></td>
+              </tr>
+              <tr>
+                <td>S092</td>
+                <td>21/02/2023</td>
+                <td>100</td>
+                <td>1</td>
+                <td>1</td>
+                <td><button class="accepted status">Accepted</button></td>
+              </tr>
+              <tr>
+                <td>S093</td>
+                <td>22/09/2023</td>
+                <td>40</td>
+                <td>1</td>
+                <td>1</td>
+                <td><button class="accepted status">Accepted</button></td>
+              </tr>
+              <tr>
+                <td>S094</td>
+                <td>09/10/2023</td>
+                <td>290</td>
+                <td>2</td>
+                <td>1</td>
+                <td><button class="rejected status">Rejected</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <script src="../common/func.js"></script>
     <script src="script.js"></script>

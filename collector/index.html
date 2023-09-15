@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <script
-    src="https://kit.fontawesome.com/3d9946f29b.js"
-    crossorigin="anonymous"
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
-
-  
   </head>
 
   <body>
@@ -19,7 +17,9 @@
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
-        <span class="bell do-not"><i class="fa-regular fa-bell do-not"></i></span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
       </div>
 
       <div class="notification-window do-not" id="notify">
@@ -47,7 +47,134 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container"></div>
+      <div class="container">
+        <div class="widgets">
+          <div class="widget-left widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-calendar"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Today's Collections</p>
+              <p class="w-value">70</p>
+            </div>
+          </div>
+          <div class="widget-right widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-calendar-check"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Today's Remaining</p>
+              <p class="w-value">10<span>/70</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="collections">
+          <div class="table-heading">
+            <h2>Today's Collections</h2>
+            <p>select a collection for a detailed view</p>
+          </div>
+          <table class="collection-table overview-tables">
+            <thead class="thead">
+              <tr>
+                <th>Job ID</th>
+                <th>Area</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>C091</td>
+                <td>Nugegoda</td>
+                <td>10:30 AM</td>
+                <td>200</td>
+                <td>
+                  <button class="direction status">Get Direction</button>
+                </td>
+              </tr>
+              <tr>
+                <td>C092</td>
+                <td>Kirulapone</td>
+                <td>11:00 AM</td>
+                <td>1000</td>
+                <td>
+                  <button class="direction status">Get Direction</button>
+                </td>
+              </tr>
+              <tr>
+                <td>C093</td>
+                <td>Delkanda</td>
+                <td>03:10 PM</td>
+                <td>500</td>
+                <td>
+                  <button class="direction status">Get Direction</button>
+                </td>
+              </tr>
+              <tr>
+                <td>C094</td>
+                <td>Maharagama</td>
+                <td>03:50 PM</td>
+                <td>400</td>
+                <td>
+                  <button class="direction status">Get Direction</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="upcoming-collections collections">
+          <div class="table-heading">
+            <h2>Upcoming Collections</h2>
+            <p>View upcoming collections for next 2 days</p>
+          </div>
+          <table class="upcoming-collections-table overview-tables">
+            <thead class="thead">
+              <tr>
+                <th>Job ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>C091</td>
+                <td>21/10/2023</td>
+                <td>10:30 AM</td>
+                <td>200</td>
+                <td><button class="direction status">Get Direction</button></td>
+              </tr>
+              <tr>
+                <td>C092</td>
+                <td>31/12/2023</td>
+                <td>06:00 AM</td>
+                <td>1000</td>
+                <td><button class="direction status">Get Direction</button></td>
+              </tr>
+              <tr>
+                <td>C093</td>
+                <td>02/11/2023</td>
+                <td>04:30 PM</td>
+                <td>500</td>
+                <td><button class="direction status">Get Direction</button></td>
+              </tr>
+              <tr>
+                <td>C094</td>
+                <td>09/11/2023</td>
+                <td>08:40 AM</td>
+                <td>200</td>
+                <td><button class="direction status">Get Direction</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <script src="../common/func.js"></script>
     <script src="script.js"></script>
