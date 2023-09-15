@@ -9,15 +9,13 @@ function checkLng() {
   }
 }
 
-function loadNav() {
-  const sidebar = document.querySelector(".sidebar");
-  fetch("nav/nav.html")
-    .then((res) => res.text())
-    .then((data) => {
-      sidebar.innerHTML = data;
-    });
+function checkMode() {
+  const body = document.querySelector("body"),
+    modeSwitch = body.querySelector(".toggle-switch");
 
-  const navScript = document.createElement("script");
-  navScript.setAttribute("src", "nav/script.js");
-  document.body.appendChild(navScript);
+  //reload language detecter
+  const curMode = sessionStorage.getItem("mode");
+  if (curMode == "dark") {
+    modeSwitch.click();
+  }
 }
