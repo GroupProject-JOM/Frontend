@@ -219,3 +219,7 @@ body.dark {
   background-color: #99f9b05e;
   transition: var(--tran-03);
 }
+
+header i.toggle{
+  font-size: 16px !important;
+}
