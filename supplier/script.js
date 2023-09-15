@@ -16,6 +16,7 @@
     sessionStorage.setItem("lang", "sin");
 
     l10.textContent = data["sin"]["l10"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -26,6 +27,7 @@
     sessionStorage.setItem("lang", "en");
 
     l10.textContent = data["en"]["l10"];
+    setGreeting();
   });
 
   bell.addEventListener("click", () => {

@@ -47,7 +47,6 @@
     });
 
     sin.addEventListener("click", () => {
-      greeting.textContent = data["sin"]["greeting"];
       l6.textContent = data["sin"]["l6"];
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
@@ -55,7 +54,6 @@
     });
 
     en.addEventListener("click", () => {
-      greeting.textContent = data["en"]["greeting"];
       l6.textContent = data["en"]["l6"];
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
@@ -68,17 +66,16 @@
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
         l9: "අඳුරු මාදිලිය",
-        greeting: "සුභ දහවලක්",
       },
       en: {
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
         l9: "Dark Mode",
-        greeting: "Good Afternoon",
       },
     };
 
+    setGreeting();
     checkLng();
     checkMode();
   }, 100);
