@@ -1,11 +1,14 @@
 function checkLng() {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin");
+    en = body.querySelector(".en");
 
   //reload language detecter
   const curLng = sessionStorage.getItem("lang");
   if (curLng == "sin") {
     sin.click();
+  }else{
+    en.click();
   }
 }
 

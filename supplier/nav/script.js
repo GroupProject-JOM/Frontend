@@ -79,10 +79,10 @@
 
     var data = {
       sin: {
-        l0:"පරිශීලක ක්‍රියාව",
-        l1:"නව සැපයුම",
-        l2:"ලිපිනය",
-        l3:"ගෙවීම",
+        l0:"පරිශීලක ක්‍රියා",
+        l1:"නව සැපයුම්",
+        l2:"ලිපින",
+        l3:"ගෙවීම්",
         l4:"වාර්තා",
         l5:"කතාබස් කරන්න",
         l6: "ප්‍රධාන ක්‍ර්‍රියාවන්",
@@ -91,10 +91,10 @@
         l9: "අඳුරු මාදිලිය",
       },
       en: {
-        l0:"USER ACTION",
-        l1:"New Supply",
-        l2:"Address",
-        l3:"Payment",
+        l0:"USER ACTIONS",
+        l1:"New Supplies",
+        l2:"Addresses",
+        l3:"Payments",
         l4:"Reports",
         l5:"Chat",
         l6: "MAIN ACTIONS",
