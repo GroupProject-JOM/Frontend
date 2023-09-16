@@ -90,5 +90,5 @@
     setGreeting();
     checkLng();
     checkMode();
-  }, 100);
+  }, 10);
 })();

@@ -9,7 +9,6 @@
       modeText = body.querySelector(".mode-text"),
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
-      greeting = body.querySelector(".greeting"),
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
@@ -65,5 +64,5 @@
     setGreeting();
     checkLng();
     checkMode();
-  }, 100);
+  }, 10);
 })();

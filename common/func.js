@@ -65,21 +65,21 @@ function setGreeting() {
   greeting.innerHTML = getGreetingTime(moment());
 }
 
-function modeTranslate(){
+function modeTranslate() {
   var text = null;
   const curMode = sessionStorage.getItem("mode");
   const curLng = sessionStorage.getItem("lang");
 
-  if(curMode == "dark"){
-    if(curLng == "sin"){
+  if (curMode == "dark") {
+    if (curLng == "sin") {
       text = "ආලෝක මාදිලිය";
-    }else{
+    } else {
       text = "Light Mode";
     }
-  }else{
-    if(curLng == "sin"){
+  } else {
+    if (curLng == "sin") {
       text = "අඳුරු මාදිලිය";
-    }else{
+    } else {
       text = "Dark Mode";
     }
   }

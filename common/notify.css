@@ -1,0 +1,91 @@
+.notification-window {
+  display: none;
+  width: 300px;
+  margin: 0 auto;
+  background-color: var(--body-color);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 60px;
+  position: absolute;
+  top: 20px;
+  right: 90px;
+  box-shadow: 0 0 20px 0 var(--shadow-color);
+  z-index: 1;
+  transition: var(--tran-04);
+}
+
+.close-btn {
+  display: grid;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  color: gray;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: var(--primary-color);
+  scale: 1.1;
+  cursor: pointer;
+}
+
+#notifications {
+  padding: 10px;
+  margin-bottom: 10px;
+  /* border-bottom: 1px solid #ccc; */
+  height: 40vh;
+  overflow: auto;
+}
+
+:is(#notifications)::-webkit-scrollbar {
+  width: 10px;
+}
+
+:is(#notifications)::-webkit-scrollbar-thumb {
+  background: var(--shadow-color);
+  border-radius: 10px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 400px) {
+  .notification-window {
+    width: 90%;
+  }
+}
+
+.notification-window .title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  margin-top: 15px;
+  color: var(--wtext-color);
+  font-weight: 700;
+}
+
+.notify-msg {
+  background-color: #2268ff45;
+  font-size: 15px;
+  padding: 10px 10px;
+  /* margin-top: 10px; */
+  margin-bottom: 10px;
+  display: grid;
+  align-items: end;
+  border-radius: 10px 10px 0px 10px;
+  cursor: pointer;
+}
+
+.notify-msg span {
+  font-size: xx-small;
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+  position: relative;
+  bottom: -8px;
+  right: -175px;
+}
+
+.notify-msg:hover {
+  background-color: rgba(66, 222, 81, 0.452);
+  transition: var(--tran-03);
+}

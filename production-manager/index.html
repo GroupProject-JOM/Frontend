@@ -11,6 +11,7 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/notify.css">
   </head>
 
   <body>
@@ -24,23 +25,7 @@
         ></span>
       </div>
 
-      <div class="notification-window do-not" id="notify">
-        <div class="title l10 do-not"></div>
-        <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
-        <div id="notifications" class="do-not">
-          <div class="notify-msg do-not">
-            Your pick up is on Tuesday<span>6.30 PM</span>
-          </div>
-          <div class="notify-msg do-not">Hehe<span>4.59 PM</span></div>
-          <div class="notify-msg do-not">
-            Singithi athal<span>1.00 PM</span>
-          </div>
-          <div class="notify-msg do-not">
-            Onece upon a time a rabbit...<span>12.44 PM</span>
-          </div>
-          <div class="notify-msg do-not">Here we go...<span>8.02 AM</span></div>
-        </div>
-      </div>
+      <div class="notification-window do-not" id="notify"></div>
 
       <div class="lng-picker">
         <div class="sin">සිං</div>
@@ -56,7 +41,7 @@
               <span><i class="fa-solid fa-boxes-stacked"></i></span>
             </div>
             <div class="w-text">
-              <p class="w-title">Monthly Volume</p>
+              <p class="w-title w1"></p>
               <p class="w-value">125 MT</p>
             </div>
           </div>
@@ -65,7 +50,7 @@
               <span><i class="fa-solid fa-gears"></i></span>
             </div>
             <div class="w-text">
-              <p class="w-title">Ongoing Production</p>
+              <p class="w-title w2"></p>
               <p class="w-value">12</p>
             </div>
           </div>
@@ -73,8 +58,8 @@
 
         <div class="layer">
           <div class="table-heading">
-            <h2>Batch Overview</h2>
-            <p>View ongoing production status</p>
+            <h2 class="c1"></h2>
+            <p class="c2"></p>
           </div>
           <table class="overview-tables">
             <thead>
@@ -130,8 +115,8 @@
 
         <div class="layer">
           <div class="table-heading">
-            <h2>Production Status</h2>
-            <p>View your Request status</p>
+            <h2 class="c4"></h2>
+            <p class="c5"></p>
           </div>
           <table class="overview-tables">
             <thead>
@@ -180,11 +165,7 @@
               </tr>
             </tbody>
           </table>
-          <p class="reject-note">
-            *Production ID S094 has been rejected due to the supply amount not
-            meeting the minimum required. <br />
-            This will be automatically deleted in 7 days
-          </p>
+          <p class="reject-note c3"></p>
         </div>
       </div>
     </section>
@@ -192,5 +173,6 @@
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
+    <script src="./notifications/load-notifications.js"></script>
   </body>
 </html>
