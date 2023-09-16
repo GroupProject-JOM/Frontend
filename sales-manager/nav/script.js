@@ -10,6 +10,11 @@
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
       greeting = body.querySelector(".greeting"),
+      l0 = body.querySelector(".l0"),
+      l1 = body.querySelector(".l1"),
+      l2 = body.querySelector(".l2"),
+      l3 = body.querySelector(".l3"),
+      l4 = body.querySelector(".l4"),
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
@@ -47,6 +52,11 @@
     });
 
     sin.addEventListener("click", () => {
+      l0.textContent = data["sin"]["l0"];
+      l1.textContent = data["sin"]["l1"];
+      l2.textContent = data["sin"]["l2"];
+      l3.textContent = data["sin"]["l3"];
+      l4.textContent = data["sin"]["l4"];
       l6.textContent = data["sin"]["l6"];
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
@@ -54,6 +64,11 @@
     });
 
     en.addEventListener("click", () => {
+      l0.textContent = data["en"]["l0"];
+      l1.textContent = data["en"]["l1"];
+      l2.textContent = data["en"]["l2"];
+      l3.textContent = data["en"]["l3"];
+      l4.textContent = data["en"]["l4"];
       l6.textContent = data["en"]["l6"];
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
@@ -62,12 +77,22 @@
 
     var data = {
       sin: {
-        l6: "ප්‍රධාන ක්‍ර්‍රියාවන්",
+        l0: "පරිශීලක ක්‍රියා",
+        l1: "බෙදාහරින්නන්",
+        l2: "අලෙවිසැල්",
+        l3: "නිෂ්පාදන",
+        l4: "ගෙවීම්",
+        l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
         l9: "අඳුරු මාදිලිය",
       },
       en: {
+        l0: "USER ACTIONS",
+        l1: "Distributors",
+        l2: "Outlets",
+        l3: "Productions",
+        l4: "Payouts",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
