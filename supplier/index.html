@@ -11,8 +11,6 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css">
-
-
   </head>
 
   <body>
@@ -21,7 +19,9 @@
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
-        <span class="bell do-not"><i class="fa-regular fa-bell do-not"></i></span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
       </div>
 
       <div class="notification-window do-not" id="notify">
@@ -49,7 +49,147 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container"></div>
+      <div class="container">
+        <div class="widgets">
+          <div class="widget-left widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-building-columns"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Ongoing Supplies</p>
+              <p class="w-value">4</p>
+            </div>
+          </div>
+          <div class="widget-right widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-building-columns"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Monthly Income</p>
+              <p class="w-value">70,000 LKR</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="supplies">
+          <div class="table-heading">
+            <h2>Ongoing Supplies</h2>
+            <p>Overview of ongoing supplies at your estates</p>
+          </div>
+          <table class="supply-table overview-tables">
+            <thead class="thead">
+              <tr>
+                <th>Supply ID</th>
+                <th>Collection Date</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Supply Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>S091</td>
+                <td>21/04/2023</td>
+                <td>10:30 AM</td>
+                <td>2000</td>
+                <td>
+                  <button class="pending status">Pending Approval</button>
+                </td>
+              </tr>
+              <tr>
+                <td>S092</td>
+                <td>21/04/2023</td>
+                <td>10:30 AM</td>
+                <td>100</td>
+                <td>
+                  <button class="rejected status">Rejected</button>
+                </td>
+              </tr>
+              <tr>
+                <td>S093</td>
+                <td>21/04/2023</td>
+                <td>10:30 AM</td>
+                <td>500</td>
+                <td>
+                  <button class="ready status">Ready to pick-up</button>
+                </td>
+              </tr>
+              <tr>
+                <td>S094</td>
+                <td>21/04/2023</td>
+                <td>10:30 AM</td>
+                <td>800</td>
+                <td>
+                  <button class="ready status">Ready to pick-up</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="reject-note">
+            *Supply ID S092 has been rejected due to the supply amount not
+            meeting the minimum required. <br />
+            This will be automatically deleted in 7 days
+          </p>
+        </div>
+
+        <div class="past-supplies supplies">
+          <div class="heading-button">
+            <div class="table-heading">
+              <h2>Past Supplies</h2>
+              <p>Overview of past supplies at your estates</p>
+            </div>
+            <div class="report">
+              <button class="report-button">
+                Generate report
+                <span><i class="fa-solid fa-file-arrow-down icon"></i></span>
+              </button>
+            </div>
+          </div>
+          <table class="past-supply-table overview-tables">
+            <thead class="thead">
+              <tr>
+                <th>Supply ID</th>
+                <th>Collection Date</th>
+                <th>Amount</th>
+                <th>Value</th>
+                <th>Payment Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>S090</td>
+                <td>21/04/2023</td>
+                <td>10:30 AM</td>
+                <td>2000</td>
+                <td><button class="paid status">Paid</button></td>
+              </tr>
+              <tr>
+                <td>S089</td>
+                <td>21/04/2023</td>
+                <td>10:30 AM</td>
+                <td>100</td>
+                <td><button class="paid status">Paid</button></td>
+              </tr>
+              <tr>
+                <td>S088</td>
+                <td>21/04/2023</td>
+                <td>10:30 AM</td>
+                <td>500</td>
+                <td><button class="paid status">Paid</button></td>
+              </tr>
+              <tr>
+                <td>S087</td>
+                <td>21/04/2023</td>
+                <td>10:30 AM</td>
+                <td>800</td>
+                <td><button class="paid status">Paid</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <script src="../common/func.js"></script>
     <script src="script.js"></script>

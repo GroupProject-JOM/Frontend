@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <script src="https://kit.fontawesome.com/3d9946f29b.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
 
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css">
-
-   
   </head>
 
   <body>
@@ -18,7 +19,9 @@
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
-        <span class="bell do-not"><i class="fa-regular fa-bell do-not"></i></span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
       </div>
 
       <div class="notification-window do-not" id="notify">
@@ -46,7 +49,72 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container"></div>
+      <div class="container">
+        <div class="widgets">
+          <div class="widget-left widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-building-columns"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Allocated Products</p>
+              <p class="w-value">500</p>
+            </div>
+          </div>
+          <div class="widget-right widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-building-columns"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Today's Sales</p>
+              <p class="w-value">100<span>/500</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="outlets">
+          <div class="table-heading">
+            <h2>Outlets</h2>
+            <p>View and update Outlet Information</p>
+          </div>
+          <table class="outlet-table overview-tables">
+            <thead class="thead">
+              <tr>
+                <th>Outlet ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Contact No</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>O052</td>
+                <td>Cargills</td>
+                <td>Gunasinghepura</td>
+                <td>+94 766406539</td>
+              </tr>
+              <tr>
+                <td>O053</td>
+                <td>Gunasinghe Stores</td>
+                <td>Nugegoda</td>
+                <td>+94 766406539</td>
+              </tr>
+              <tr>
+                <td>O054</td>
+                <td>JOM Factory Outlet</td>
+                <td>Kotte</td>
+                <td>+94 766406539</td>
+              </tr>
+              <tr>
+                <td>O055</td>
+                <td>ABC Stores</td>
+                <td>Boralla</td>
+                <td>+94 766406539</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <script src="../common/func.js"></script>
     <script src="script.js"></script>

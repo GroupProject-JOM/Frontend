@@ -11,7 +11,6 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css">
-
   </head>
 
   <body>
@@ -20,7 +19,9 @@
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
-        <span class="bell do-not"><i class="fa-regular fa-bell do-not"></i></span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
       </div>
 
       <div class="notification-window do-not" id="notify">
@@ -48,7 +49,61 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container"></div>
+      <div class="container">
+        <div class="widgets">
+          <div class="widget-left widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-building-columns"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Total Sales Volume</p>
+              <p class="w-value">30,000 LKR</p>
+            </div>
+          </div>
+          <div class="widget-right widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-building-columns"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title">Pending Payments</p>
+              <p class="w-value">70</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sales">
+          <div class="heading-button">
+            <div class="table-heading">
+              <h2>Sales Data</h2>
+              <p>Monthly Sales Data Visualisation</p>
+            </div>
+
+            <div class="report">
+              <button class="report-button">
+                Generate report
+                <span><i class="fa-solid fa-file-arrow-down icon"></i></span>
+              </button>
+            </div>
+          </div>
+          <div><h2>chart</h2></div>
+        </div>
+
+        <div class="distributor-sales sales">
+          <div class="heading-button">
+            <div class="table-heading">
+              <h2>Disributor Sales</h2>
+              <p>Sales Data Visualisation for each distributor</p>
+            </div>
+            <div class="report">
+              <button class="report-button">
+                Generate report
+                <span><i class="fa-solid fa-file-arrow-down icon"></i></span>
+              </button>
+            </div>
+          </div>
+          <div><h2>chart</h2></div>
+        </div>
+      </div>
     </section>
     <script src="../common/func.js"></script>
     <script src="script.js"></script>
