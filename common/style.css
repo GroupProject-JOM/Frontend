@@ -184,6 +184,15 @@ body.dark {
   overflow: auto;
 }
 
+:is(#notifications)::-webkit-scrollbar{
+  width: 10px;
+}
+
+:is(#notifications)::-webkit-scrollbar-thumb {
+  background: var(--shadow-color); 
+  border-radius: 10px;
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 400px) {
   .notification-window {
     width: 90%;
@@ -218,11 +227,11 @@ body.dark {
   width: fit-content;
   position: relative;
   bottom: -8px;
-  right: -168px;
+  right: -175px;
 }
 
 .notify-msg:hover {
-  background-color: #99f9b05e;
+  background-color: rgba(66, 222, 81, 0.452);
   transition: var(--tran-03);
 }
 

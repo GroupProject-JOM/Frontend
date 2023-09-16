@@ -1,6 +1,6 @@
 .stock {
   margin-top: 1.5rem;
-  display: grid;
+  display: grid !important;
   grid-template-areas: "left middle right";
   gap: 40px;
 }
@@ -22,7 +22,6 @@
 }
 
 .stock h3 {
-  /* text-align: center; */
   padding-bottom: 15px;
   padding-left: 25px;
   font-weight: 500;
