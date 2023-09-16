@@ -565,10 +565,6 @@ header i.toggle{
   grid-template-areas: "left right";
   width: 90%;
 }
-/* 
-.table-heading{
-  grid-area: left;
-} */
 
 .report {
   grid-area: right;
@@ -591,38 +587,3 @@ header i.toggle{
   align-items: center;
 }
 
-.sales {
-  margin-top: 3rem;
-  display: grid;
-}
-
-.w-admin {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  padding-bottom: 3rem;
-}
-
-.tool {
-  background-color: var(--body-color);
-  box-shadow: 0px 0px 25px var(--shadow-color);
-  width: 50rem;
-  height: 6rem;
-  border-radius: 0.7rem;
-  display: flex;
-  align-items: center;
-}
-
-.t-title{
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding-bottom: 3px;
-}
-
-.admin-tools{
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding-top: 15px;
-  padding-bottom: 50px;
-}
