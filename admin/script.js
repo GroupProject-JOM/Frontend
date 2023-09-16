@@ -30,34 +30,34 @@
     setGreeting();
   });
 
-  bell.addEventListener("click", () => {
-    notify.style.display = "grid";
-    bell.classList.add("active");
-  });
+  // bell.addEventListener("click", () => {
+  //   notify.style.display = "grid";
+  //   bell.classList.add("active");
+  // });
 
-  closeBtn.addEventListener("click", () => {
-    notify.style.display = "none";
-    bell.classList.remove("active");
-  });
+  // closeBtn.addEventListener("click", () => {
+  //   notify.style.display = "none";
+  //   bell.classList.remove("active");
+  // });
 
-  body.addEventListener("click", (e) => {
-    if (
-      !e.target.classList.contains("do-not") &&
-      bell.classList.contains("active")
-    ) {
-      notify.style.display = "none";
-      bell.classList.remove("active");
-    }
-  });
+  // body.addEventListener("click", (e) => {
+  //   if (
+  //     !e.target.classList.contains("do-not") &&
+  //     bell.classList.contains("active")
+  //   ) {
+  //     notify.style.display = "none";
+  //     bell.classList.remove("active");
+  //   }
+  // });
 
-  var data = {
-    sin: {
-      l10: "දැනුම්දීම්",
-    },
-    en: {
-      l10: "Notifications",
-    },
-  };
+  // var data = {
+  //   sin: {
+  //     l10: "දැනුම්දීම්",
+  //   },
+  //   en: {
+  //     l10: "Notifications",
+  //   },
+  // };
 
   checkLng();
   checkMode();
