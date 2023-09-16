@@ -3,10 +3,6 @@
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     modeSwitch = body.querySelector(".toggle-switch"),
-    closeBtn = body.querySelector(".close-btn"),
-    bell = body.querySelector(".bell"),
-    notify = body.querySelector("#notify"),
-    l10 = body.querySelector(".l10"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
@@ -22,7 +18,6 @@
     document.documentElement.setAttribute("lang", "sin");
     sessionStorage.setItem("lang", "sin");
 
-    l10.textContent = data["sin"]["l10"];
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
     c1.textContent = data["sin"]["c1"];
@@ -40,7 +35,6 @@
     document.documentElement.setAttribute("lang", "en");
     sessionStorage.setItem("lang", "en");
 
-    l10.textContent = data["en"]["l10"];
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
     c1.textContent = data["en"]["c1"];
@@ -51,29 +45,9 @@
     setGreeting();
   });
 
-  bell.addEventListener("click", () => {
-    notify.style.display = "grid";
-    bell.classList.add("active");
-  });
-
-  closeBtn.addEventListener("click", () => {
-    notify.style.display = "none";
-    bell.classList.remove("active");
-  });
-
-  body.addEventListener("click", (e) => {
-    if (
-      !e.target.classList.contains("do-not") &&
-      bell.classList.contains("active")
-    ) {
-      notify.style.display = "none";
-      bell.classList.remove("active");
-    }
-  });
 
   var data = {
     sin: {
-      l10: "දැනුම්දීම්",
       w1: "මාසික පරිමාව",
       w2: "අඛණ්ඩ නිෂ්පාදනය",
       c1: "කණ්ඩායම් දළ විශ්ලේෂණය",
@@ -83,7 +57,6 @@
       c3: "*සැපයුම් පොල් ප්‍රමාණය අවශ්‍ය අවම මට්ටමට නොපැමිණීම හේතුවෙන් සැපයුම් හැඳුනුම්පත P092 ප්‍රතික්ෂේප කර ඇත. <br/>මෙය දින 7කින් ස්වයංක්‍රීයව මැකෙනු ඇත",
     },
     en: {
-      l10: "Notifications",
       w1: "Monthly Volume",
       w2: "Ongoing Production",
       c1: "Batch Overview",
