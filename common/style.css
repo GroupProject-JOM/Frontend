@@ -18,6 +18,7 @@
   --shadow-color: lightgray;
   --th-color: #e9e9e9;
   --wtext--color: #000000;
+  --table-color-hover: #ffe0b6;
 
   --tran-02: all 0.2s ease;
   --tran-03: all 0.3s ease;
@@ -38,9 +39,10 @@ body.dark {
   --primary-color-light: #7e7e7e;
   --toggle-color: #fff;
   --text-color: #ccc;
-  --shadow-color: rgb(30, 30, 30);
+  --shadow-color: rgb(57, 57, 57);
   --wtext--color: #ccc;
   --th-color: #242526;
+  --table-color-hover: #343434;
 
   color: var(--text-color);
 }
@@ -112,7 +114,7 @@ body.dark {
   justify-content: center;
   align-items: center;
   border: 3px solid var(--body-color);
-  border-radius: 50%;
+  border-radius: 30%;
   padding: 5px;
 }
 
@@ -144,14 +146,14 @@ body.dark {
   display: none;
   width: 300px;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: var(--body-color);
   padding: 10px 20px;
   border-radius: 10px;
   margin-top: 60px;
   position: absolute;
   top: 20px;
   right: 90px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.168);
+  box-shadow: 0 0 20px 0 var(--shadow-color);
   z-index: 1;
   transition: var(--tran-04);
 }
@@ -188,10 +190,10 @@ body.dark {
 .notification-window .title {
   font-size: 1.5rem;
   text-align: center;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin-bottom: 0.5rem;
   margin-top: 15px;
-  color: #3100a3;
+  color: var(--wtext-color);
+  font-weight: 700;
 }
 
 .notify-msg {
@@ -224,10 +226,6 @@ body.dark {
 
 
 /*    must me solved and check     */
-
-header i.toggle{
-  font-size: 16px !important;
-}
 
 .widget {
   background-color: var(--body-color);
@@ -336,7 +334,7 @@ header i.toggle{
 }
 
 .overview-tables tr:hover {
-  background-color: var(--primary-color-light);
+  background-color: var(--table-color-hover);
   cursor: pointer;
   transition: var(--tran-05);
 }
@@ -457,7 +455,7 @@ header i.toggle{
 .status {
   border-radius: 6px;
   border: none;
-  padding: 0.3rem;
+  padding: 0.3rem 1rem;
   color: white;
 }
 
@@ -577,18 +575,21 @@ header i.toggle{
 
 .report-button {
   background-color: white;
-  border-color: #bb9056;
-  padding: 0.3rem 0.3rem;
-  border-radius: 5px;
+  border: 2px solid #bb9056;
+  padding: 0.3rem 0.5rem;
+  border-radius: 7px;
   display: flex;
   justify-content: space-between;
   /* align-self: center; */
-  width: 11rem;
-  /* width: fit-content; */
+  width: fit-content;
   font-size: 1.1rem;
   font-weight: 600;
   color: #bb9056;
   align-items: center;
+  cursor: pointer;
+}
+.report-button i{
+  padding-left: 0.6rem;
 }
 
 .sales {
