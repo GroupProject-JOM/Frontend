@@ -64,7 +64,7 @@ body.dark {
   padding: 2.4rem 0rem;
 }
 
-.home .lng-picker {
+.lng-picker {
   background-color: var(--body-color);
   color: #bb9056;
   border-radius: 20px;
@@ -81,15 +81,15 @@ body.dark {
   cursor: pointer;
 }
 
-.home .lng-picker .sin {
+ .lng-picker .sin {
   padding: 0 8px 0 20px;
 }
 
-.home .lng-picker .en {
+.lng-picker .en {
   padding: 0 20px 0 12px;
 }
 
-.home .lng-picker .active {
+ .lng-picker .active {
   background-color: var(--sidebar-color);
   border-radius: 20px;
   height: 2rem;
