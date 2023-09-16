@@ -1,0 +1,43 @@
+.stock {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-areas: "left middle right";
+  gap: 40px;
+}
+
+.yard1 {
+  grid-area: left;
+}
+
+.yard2 {
+  grid-area: middle;
+}
+
+.yard3 {
+  grid-area: right;
+}
+
+.stock table tr:hover {
+  background-color: rgb(224, 224, 224) !important;
+}
+
+.stock h3 {
+  /* text-align: center; */
+  padding-bottom: 15px;
+  padding-left: 25px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.req-tables {
+  grid-template-areas: "left right";
+  gap: 40px;
+}
+
+.production-req {
+  grid-area: left;
+}
+
+.supply-req {
+  grid-area: right;
+}

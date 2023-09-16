@@ -58,7 +58,7 @@
       l10: "Notifications",
     },
   };
-  
+
   checkLng();
   checkMode();
 
@@ -70,5 +70,4 @@
       sessionStorage.setItem("mode", "light");
     }
   });
-  
 })();

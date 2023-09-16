@@ -6,26 +6,25 @@
 }
 
 .tool {
-    background-color: var(--body-color);
-    box-shadow: 0px 0px 25px var(--shadow-color);
-    width: 50rem;
-    height: 6rem;
-    border-radius: 0.7rem;
-    display: flex;
-    align-items: center;
-  }
+  background-color: var(--body-color);
+  box-shadow: 0px 0px 25px var(--shadow-color);
+  width: 50rem;
+  height: 6rem;
+  border-radius: 0.7rem;
+  display: flex;
+  align-items: center;
+}
 
-  .t-title{
-    font-size: 1.5rem;
-    font-weight: 600;
-    padding-bottom: 3px;
-  }
-  
-  .admin-tools{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    padding-top: 15px;
-    padding-bottom: 50px;
-  }
-  
+.t-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 3px;
+}
+
+.admin-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-top: 15px;
+  padding-bottom: 50px;
+}

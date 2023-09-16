@@ -10,7 +10,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../common/nav.css">
+    <link rel="stylesheet" href="../common/nav.css" />
   </head>
 
   <body>
@@ -71,13 +71,13 @@
           </div>
         </div>
 
-        <div class="production">
+        <div class="layer">
           <div class="table-heading">
             <h2>Batch Overview</h2>
             <p>View ongoing production status</p>
           </div>
-          <table class="production-table overview-tables">
-            <thead class="thead">
+          <table class="overview-tables">
+            <thead>
               <tr>
                 <th>Batch ID</th>
                 <th>Date</th>
@@ -89,7 +89,7 @@
 
             <tbody>
               <tr>
-                <td>S091</td>
+                <td>B091</td>
                 <td>21/10/2023</td>
                 <td>200</td>
                 <td>5 Hours</td>
@@ -98,7 +98,7 @@
                 </td>
               </tr>
               <tr>
-                <td>S092</td>
+                <td>B092</td>
                 <td>02/01/2023</td>
                 <td>2000</td>
                 <td>13 Hours</td>
@@ -107,7 +107,7 @@
                 </td>
               </tr>
               <tr>
-                <td>S093</td>
+                <td>B093</td>
                 <td>09/04/2023</td>
                 <td>300</td>
                 <td>0</td>
@@ -116,7 +116,7 @@
                 </td>
               </tr>
               <tr>
-                <td>S094</td>
+                <td>B094</td>
                 <td>21/02/2023</td>
                 <td>900</td>
                 <td>0</td>
@@ -128,15 +128,15 @@
           </table>
         </div>
 
-        <div class="production-request">
+        <div class="layer">
           <div class="table-heading">
             <h2>Production Status</h2>
-            <p>View upcoming collections for next 2 days</p>
+            <p>View your Request status</p>
           </div>
-          <table class="production-request-table overview-tables">
-            <thead class="thead">
+          <table class="overview-tables">
+            <thead>
               <tr>
-                <th>Batch ID</th>
+                <th>Request ID</th>
                 <th>Date</th>
                 <th>Amount</th>
                 <th>Yard</th>
@@ -147,7 +147,7 @@
 
             <tbody>
               <tr>
-                <td>S091</td>
+                <td>P091</td>
                 <td>21/10/2023</td>
                 <td>200</td>
                 <td>2</td>
@@ -155,7 +155,7 @@
                 <td><button class="accepted status">Accepted</button></td>
               </tr>
               <tr>
-                <td>S092</td>
+                <td>P092</td>
                 <td>21/02/2023</td>
                 <td>100</td>
                 <td>1</td>
@@ -163,15 +163,15 @@
                 <td><button class="accepted status">Accepted</button></td>
               </tr>
               <tr>
-                <td>S093</td>
+                <td>P093</td>
                 <td>22/09/2023</td>
-                <td>40</td>
+                <td>400</td>
                 <td>1</td>
                 <td>1</td>
                 <td><button class="accepted status">Accepted</button></td>
               </tr>
               <tr>
-                <td>S094</td>
+                <td>P094</td>
                 <td>09/10/2023</td>
                 <td>290</td>
                 <td>2</td>
@@ -180,6 +180,11 @@
               </tr>
             </tbody>
           </table>
+          <p class="reject-note">
+            *Production ID S094 has been rejected due to the supply amount not
+            meeting the minimum required. <br />
+            This will be automatically deleted in 7 days
+          </p>
         </div>
       </div>
     </section>
