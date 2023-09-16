@@ -10,7 +10,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../common/nav.css">
+    <link rel="stylesheet" href="../common/nav.css" />
   </head>
 
   <body>
@@ -71,13 +71,13 @@
           </div>
         </div>
 
-        <div class="req-tables">
+        <div class="layer req-tables">
           <div class="production-req">
             <div class="table-heading">
               <h2>Production Requests Overview</h2>
               <p>View and update production manager requests</p>
             </div>
-            <table class="production-table overview-tables">
+            <table class="overview-tables">
               <thead class="thead">
                 <tr>
                   <th>Request ID</th>
@@ -120,7 +120,7 @@
               <h2>Supplier Requests Overview</h2>
               <p>View and update Supplier requests</p>
             </div>
-            <table class="supply-table overview-tables">
+            <table class="overview-tables">
               <thead>
                 <tr>
                   <th>Request ID</th>
@@ -164,7 +164,7 @@
           </div>
         </div>
 
-        <div class="stock-tables">
+        <div class="layer">
           <div class="table-heading">
             <h2>Stock Information</h2>
             <p>View color-coded stock information</p>
@@ -173,7 +173,7 @@
           <div class="stock">
             <div class="yard1">
               <h3>Yard 1</h3>
-              <table>
+              <table class="overview-tables" style="margin-top: 0">
                 <thead>
                   <tr>
                     <th>Stock ID</th>
@@ -214,7 +214,7 @@
 
             <div class="yard2">
               <h3>Yard 2</h3>
-              <table>
+              <table class="overview-tables" style="margin-top: 0">
                 <thead>
                   <tr>
                     <th>Stock ID</th>
@@ -255,7 +255,7 @@
 
             <div class="yard3">
               <h3>Yard 3</h3>
-              <table>
+              <table class="overview-tables" style="margin-top: 0">
                 <thead>
                   <tr>
                     <th>Stock ID</th>
