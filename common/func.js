@@ -64,3 +64,24 @@ function setGreeting() {
 
   greeting.innerHTML = getGreetingTime(moment());
 }
+
+function modeTranslate(){
+  var text = null;
+  const curMode = sessionStorage.getItem("mode");
+  const curLng = sessionStorage.getItem("lang");
+
+  if(curMode == "dark"){
+    if(curLng == "sin"){
+      text = "ආලෝක මාදිලිය";
+    }else{
+      text = "Light Mode";
+    }
+  }else{
+    if(curLng == "sin"){
+      text = "අඳුරු මාදිලිය";
+    }else{
+      text = "Dark Mode";
+    }
+  }
+  return text;
+}

@@ -26,23 +26,12 @@
 
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
-
       if (body.classList.contains("dark")) {
         sessionStorage.setItem("mode", "dark");
-
-        if (sin.classList.contains("active")) {
-          modeText.innerHTML = "ආලෝක මාදිලිය";
-        } else {
-          modeText.innerHTML = "Light Mode";
-        }
+        modeText.innerHTML = modeTranslate();
       } else {
         sessionStorage.setItem("mode", "light");
-
-        if (sin.classList.contains("active")) {
-          modeText.innerHTML = "අඳුරු මාදිලිය";
-        } else {
-          modeText.innerHTML = "Dark Mode";
-        }
+        modeText.innerHTML = modeTranslate();
       }
     });
 
@@ -50,14 +39,14 @@
       l6.textContent = data["sin"]["l6"];
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
-      l9.textContent = data["sin"]["l9"];
+      l9.textContent = modeTranslate();
     });
 
     en.addEventListener("click", () => {
       l6.textContent = data["en"]["l6"];
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
-      l9.textContent = data["en"]["l9"];
+      l9.textContent = modeTranslate();
     });
 
     var data = {
@@ -65,13 +54,11 @@
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
-        l9: "අඳුරු මාදිලිය",
       },
       en: {
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
-        l9: "Dark Mode",
       },
     };
 

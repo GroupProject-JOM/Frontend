@@ -171,7 +171,8 @@ body.dark {
 }
 
 .close-btn:hover {
-  color: rgb(12, 0, 0);
+  color: var(--primary-color);
+  scale: 1.1;
   cursor: pointer;
 }
 
