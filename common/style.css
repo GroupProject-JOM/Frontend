@@ -101,7 +101,7 @@ body.dark {
 .notification .bell {
   position: relative;
   color: #bb9056;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 500;
   float: right;
   margin-right: 2rem;
@@ -218,8 +218,4 @@ body.dark {
 .notify-msg:hover {
   background-color: #99f9b05e;
   transition: var(--tran-03);
-}
-
-header i.toggle{
-  font-size: 16px !important;
 }

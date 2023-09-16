@@ -10,33 +10,33 @@
 <div class="menu-bar">
   <div class="menu"></div>
   <div class="menu-mid">
-    <span class="text nav-head">USER ACTION</span>
+    <span class="text nav-head l0"></span>
 
     <li class="nav-link">
       <a href="#">
         <i class="fa-solid fa-chart-column icon"></i>
-        <span class="text nav-text">Stock Overview</span>
+        <span class="text nav-text l1"></span>
       </a>
     </li>
     <li class="nav-link">
         <a href="#">
           <i class="fa-solid fa-chart-line icon"></i>
-          <span class="text nav-text">Production History</span>
+          <span class="text nav-text l2"></span>
         </a>
       </li>
   </div>
   <div class="bottom-content">
-    <span class="text nav-head l6">MAIN ACTIONS</span>
+    <span class="text nav-head l6"></span>
     <li class="">
       <a href="#">
         <i class="fas fa-user icon"></i>
-        <span class="text nav-text l7">View Profile</span>
+        <span class="text nav-text l7"></span>
       </a>
     </li>
     <li class="">
       <a href="#">
         <i class="fa-solid fa-right-from-bracket icon"></i>
-        <span class="text nav-text l8">Log Out</span>
+        <span class="text nav-text l8"></span>
       </a>
     </li>
     <li class="mode">
@@ -44,223 +44,10 @@
         <i class="fas fa-moon icon moon"></i>
         <i class="fas fa-sun icon sun"></i>
       </div>
-      <span class="mode-text text l9">Dark Mode</span>
+      <span class="mode-text text l9"></span>
       <div class="toggle-switch">
         <span class="switch"></span>
       </div>
     </li>
   </div>
 </div>
-
-<style>
-  /* sidebar */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 325px;
-    padding: 2.7rem 3rem 0 2rem;
-    background: var(--sidebar-color);
-    transition: var(--tran-05);
-    z-index: 100;
-  }
-
-  .sidebar.close {
-    width: 88px;
-    padding: 2.7rem 0.8rem 0 01rem;
-  }
-
-  /* reuse css */
-  .sidebar .text {
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--text-color);
-    transition: var(--tran-04);
-    white-space: nowrap;
-    opacity: 1;
-  }
-
-  .sidebar.close .text {
-    opacity: 0;
-  }
-
-  .sidebar li {
-    height: 40px;
-    margin-top: 0px;
-    list-style: none;
-    display: flex;
-    align-items: center;
-  }
-
-  .sidebar li .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 60px;
-    font-size: 20px;
-  }
-
-  .sidebar li .icon,
-  .sidebar li .text {
-    color: var(--text-color);
-    transition: var(--tran-02);
-  }
-
-  .sidebar header {
-    position: relative;
-  }
-
-  header .welcome-text .header-text {
-    padding-left: 1rem;
-    color: var(--primary-color);
-  }
-
-  .header-text .greeting {
-    font-weight: 700;
-    font-size: 24px;
-  }
-
-  .header-text .name {
-    font-size: 20px;
-    padding-top: 0.4rem;
-  }
-
-  .sidebar header .toggle {
-    position: absolute;
-    top: 50%;
-    right: -60px;
-    transform: translateY(-50%) rotate(180deg);
-    height: 25px;
-    width: 25px;
-    background: var(--primary-color-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: var(--sidebar-color);
-    font-size: 22px;
-    transition: var(--tran-03);
-    cursor: pointer;
-  }
-
-  .sidebar.close header .toggle {
-    transform: translateY(-50%);
-    position: absolute;
-    right: -25px;
-  }
-
-  .sidebar li a {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: var(--tran-04);
-  }
-
-  .sidebar li a:hover {
-    background: var(--toggle-color);
-  }
-
-  .sidebar li a:hover .icon,
-  .sidebar li a:hover .text {
-    color: var(--primary-color);
-  }
-
-  body.dark .sidebar li a:hover .icon,
-  body.dark .sidebar li a:hover .text {
-    color: var(--sidebar-color);
-  }
-
-  .sidebar .menu-bar {
-    height: calc(100% - 90px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .menu-bar .mode {
-    position: relative;
-    border-radius: 6px;
-    margin-top: 10px;
-    background: var(--mode-color);
-  }
-
-  .menu-bar .mode .moon-sun {
-    height: 50px;
-    width: 60px;
-    display: flex;
-    align-items: center;
-  }
-
-  .menu-bar .mode i {
-    position: absolute;
-    transition: var(--tran-03);
-  }
-
-  .menu-bar .mode i.moon {
-    opacity: 0;
-  }
-
-  body.dark .menu-bar .mode i.moon {
-    opacity: 1;
-  }
-
-  body.dark .menu-bar .mode i.sun {
-    opacity: 0;
-  }
-
-  .menu-bar .mode .toggle-switch {
-    position: absolute;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    min-width: 60px;
-    cursor: pointer;
-    border-radius: 6px;
-    background: var(--mode-color);
-    transition: var(--tran-05);
-  }
-
-  .toggle-switch .switch {
-    position: relative;
-    height: 22px;
-    width: 44px;
-    border-radius: 25px;
-    background: var(--toggle-color);
-  }
-
-  .switch::before {
-    content: "";
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    background: var(--sidebar-color);
-    transition: var(--tran-03);
-  }
-
-  body.dark .switch::before {
-    left: 25px;
-  }
-
-  .sidebar.close ~ .home {
-    left: 88px;
-    width: calc(100% - 88px);
-  }
-
-  span.nav-head {
-    color: var(--primary-color-light) !important;
-    position: relative;
-    left: 20px;
-    bottom: 10px;
-    font-size: 12px !important;
-  }
-</style>
