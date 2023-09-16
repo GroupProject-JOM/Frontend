@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/notify.css">
     <link rel="stylesheet" href="style.css" />
 
     <script
@@ -27,23 +28,7 @@
         ></span>
       </div>
 
-      <div class="notification-window do-not" id="notify">
-        <div class="title l10 do-not"></div>
-        <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
-        <div id="notifications" class="do-not">
-          <div class="notify-msg do-not">
-            Your pick up is on Tuesday<span>6.30 PM</span>
-          </div>
-          <div class="notify-msg do-not">Hehe<span>4.59 PM</span></div>
-          <div class="notify-msg do-not">
-            Singithi athal<span>1.00 PM</span>
-          </div>
-          <div class="notify-msg do-not">
-            Onece upon a time a rabbit...<span>12.44 PM</span>
-          </div>
-          <div class="notify-msg do-not">Here we go...<span>8.02 AM</span></div>
-        </div>
-      </div>
+      <div class="notification-window do-not" id="notify"></div>
 
       <div class="lng-picker">
         <div class="sin">සිං</div>
@@ -59,7 +44,7 @@
               <span><i class="fa-solid fa-users"></i></span>
             </div>
             <div class="w-text">
-              <p class="w-title">Employees</p>
+              <p class="w-title w1"></p>
               <p class="w-value">200</p>
             </div>
           </div>
@@ -69,7 +54,7 @@
               <span><i class="fa-solid fa-box-open"></i></span>
             </div>
             <div class="w-text">
-              <p class="w-title">Suppliers</p>
+              <p class="w-title w2"></p>
               <p class="w-value">70</p>
             </div>
           </div>
@@ -79,7 +64,7 @@
               <span><i class="fa-solid fa-store"></i></span>
             </div>
             <div class="w-text">
-              <p class="w-title">Outlets</p>
+              <p class="w-title w3"></p>
               <p class="w-value">70</p>
             </div>
           </div>
@@ -89,7 +74,7 @@
               <span><i class="fa-solid fa-building-columns"></i></span>
             </div>
             <div class="w-text">
-              <p class="w-title">Pending Payments</p>
+              <p class="w-title w4"></p>
               <p class="w-value">70</p>
             </div>
           </div>
@@ -97,7 +82,7 @@
 
         <div class="tools">
           <div class="table-heading">
-            <h2>Admin Tools</h2>
+            <h2 class="t0"></h2>
           </div>
 
           <div class="admin-tools">
@@ -106,8 +91,8 @@
                 <span><i class="fa-solid fa-users"></i></span>
               </div>
               <div class="t-text">
-                <p class="t-title">Employee Management</p>
-                <p class="t-value">Add / Edit / Remove Employees</p>
+                <p class="t-title t1"></p>
+                <p class="t-value t2"></p>
               </div>
             </div>
 
@@ -116,8 +101,8 @@
                 <span><i class="fa-solid fa-box-open"></i></span>
               </div>
               <div class="t-text">
-                <p class="t-title">Collection Management</p>
-                <p class="t-value">Manually Edit Collection Records</p>
+                <p class="t-title t3"></p>
+                <p class="t-value t4"></p>
               </div>
             </div>
 
@@ -126,8 +111,8 @@
                 <span><i class="fa-solid fa-store"></i></span>
               </div>
               <div class="t-text">
-                <p class="t-title">Outlet Management</p>
-                <p class="t-value">Edit Outlet Details</p>
+                <p class="t-title t5"></p>
+                <p class="t-value t6"></p>
               </div>
             </div>
           </div>
@@ -138,5 +123,6 @@
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
+    <script src="./notifications/load-notifications.js"></script>
   </body>
 </html>

@@ -17,14 +17,11 @@
   gap: 40px;
 }
 
-
-
 .stock table tr:hover {
   background-color: rgb(224, 224, 224) !important;
 }
 
 .stock h3 {
-  /* text-align: center; */
   padding-bottom: 15px;
   padding-left: 25px;
   font-weight: 500;
