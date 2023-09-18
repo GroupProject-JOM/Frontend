@@ -320,6 +320,11 @@ body.dark {
   padding-left: 0.6rem;
 }
 
+.report-button:hover{
+  background-color: var(--sidebar-color);
+  color: var(--body-color);
+}
+
 .layer {
   margin-top: 3rem;
   display: grid;

@@ -4,7 +4,9 @@
 
 .coco-amount{
     width: 37rem;
-    padding-top: 3rem;
+    margin-top: 3rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .method{

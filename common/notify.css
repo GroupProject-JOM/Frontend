@@ -64,7 +64,7 @@
 }
 
 .notify-msg {
-  background-color: #2268ff45;
+  background-color: var(--th-color);
   font-size: 15px;
   padding: 10px 10px;
   /* margin-top: 10px; */
@@ -86,6 +86,6 @@
 }
 
 .notify-msg:hover {
-  background-color: rgba(66, 222, 81, 0.452);
+  background-color: var(--primary-color-light);
   transition: var(--tran-03);
 }
