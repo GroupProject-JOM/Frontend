@@ -1,0 +1,40 @@
+.supply-text{
+    font-size: 14px;
+}
+
+.coco-amount{
+    width: 37rem;
+    padding-top: 3rem;
+}
+
+.method{
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.method-text{
+    /* height: 5rem; */
+    width: 10rem;
+}
+
+.method label{
+    width: 10rem;
+}
+
+.supply-container{
+    position: absolute;
+  top: 50%;
+  transform: translate(0, 30%);
+  margin-left: 6rem;
+}
+
+.method label{
+    color: #5E5E5E;
+}
+
+.method input[type="checkbox"]{
+    margin-right: 10px;
+    accent-color: #5E5E5E;
+}
+
