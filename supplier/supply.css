@@ -1,42 +1,81 @@
-.supply-text{
-    font-size: 14px;
+.supply-text {
+  font-size: 14px;
 }
 
-.coco-amount{
-    width: 37rem;
-    margin-top: 3rem;
-    background-color: var(--background-color);
-    color: var(--text-color);
+.coco-amount {
+  width: 37rem;
+  margin-top: 3rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  width: 37rem;
+  padding-top: 3rem;
 }
 
-.method{
-    display: flex;
-    align-items: center;
-    gap: 4rem;
+.method {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.method-text{
-    /* height: 5rem; */
-    width: 10rem;
+.method-text {
+  /* height: 5rem; */
+  width: 10rem;
+  margin-right: 3rem;
 }
 
-.method label{
-    width: 10rem;
+.method label {
+  width: 10rem;
 }
 
-.supply-container{
-    position: absolute;
+.supply-container {
+  position: absolute;
   top: 50%;
   transform: translate(0, 30%);
   margin-left: 6rem;
 }
 
-.method label{
-    color: #5E5E5E;
+.method label {
+  color: #5e5e5e;
 }
 
-.method input[type="checkbox"]{
-    margin-right: 10px;
-    accent-color: #5E5E5E;
+.method input[type="checkbox"] {
+  accent-color: #5e5e5e;
 }
 
+.checkbox:checked + .supply-label {
+  color: var(--primary-color);
+}
+
+.date-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6rem;
+}
+
+.feasibility input {
+  width: 17rem;
+  margin-bottom: 30px;
+}
+
+.form-button {
+  margin-top: 50px;
+}
+
+.supply3-container {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, 10%);
+}
+
+.supply-address {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.supply4-container {
+  transform: translate(0, 40%);
+}
+
+.supply5-container {
+  transform: translate(0, 20%);
+}
