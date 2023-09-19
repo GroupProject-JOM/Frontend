@@ -344,3 +344,21 @@ body.dark {
   background: var(--shadow-color);
   border-radius: 10px;
 }
+
+@media only screen and (max-device-width: 1260px) {
+  .widget {
+    width: 40vw;
+  }
+  .w-value{
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-device-width: 900px) {
+  .widget {
+    width: 50vw;
+  }
+  .w-value{
+    font-size: 1.8rem;
+  }
+}

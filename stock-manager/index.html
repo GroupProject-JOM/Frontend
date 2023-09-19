@@ -102,7 +102,7 @@
             </table>
           </div>
 
-          <div class="layer">
+          <div class="supply-req">
             <div class="table-heading">
               <h2 class="c4"></h2>
               <p class="c5"></p>
@@ -151,16 +151,16 @@
           </div>
         </div>
 
-        <div class="layer">
+        <div class="layer" style="margin-top: 4rem;">
           <div class="table-heading">
             <h2 class="c6"></h2>
             <p class="c7"></p>
           </div>
 
           <div class="stock">
-            <div class="yard1">
+            <div class="yard1 center">
               <h3>Yard 1</h3>
-              <table class="overview-tables" >
+              <table class="overview-tables" style="margin-top: 0;">
                 <thead>
                   <tr>
                     <th>Stock ID</th>
@@ -170,27 +170,27 @@
                 </thead>
 
                 <tbody>
-                  <tr style="background-color: rgba(66, 222, 81, 0.452)">
+                  <tr style="background-color: #E9FFE8">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #e96d6d">
+                  <tr style="background-color: #E9FFE8">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #e96d6d">
+                  <tr style="background-color: #FFE0E0">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #2268ff45">
+                  <tr style="background-color: #FBFFCC">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #2268ff45">
+                  <tr style="background-color: #FBFFCC">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
@@ -199,9 +199,9 @@
               </table>
             </div>
 
-            <div class="yard2">
+            <div class="yard2 center">
               <h3>Yard 2</h3>
-              <table class="overview-tables" >
+              <table class="overview-tables" style="margin-top: 0;">
                 <thead>
                   <tr>
                     <th>Stock ID</th>
@@ -211,27 +211,27 @@
                 </thead>
 
                 <tbody>
-                  <tr style="background-color: rgba(66, 222, 81, 0.452)">
+                  <tr style="background-color: #E9FFE8">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #e96d6d">
+                  <tr style="background-color: #FFE0E0">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #e96d6d">
+                  <tr style="background-color: #FFE0E0">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #2268ff45">
+                  <tr style="background-color: #FBFFCC">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #2268ff45">
+                  <tr style="background-color: #FBFFCC">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
@@ -240,9 +240,9 @@
               </table>
             </div>
 
-            <div class="yard3">
+            <div class="yard3 center">
               <h3>Yard 3</h3>
-              <table class="overview-tables" >
+              <table class="overview-tables" style="margin-top: 0;">
                 <thead>
                   <tr>
                     <th>Stock ID</th>
@@ -251,27 +251,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="background-color: rgba(66, 222, 81, 0.452)">
+                  <tr style="background-color: #E9FFE8">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #e96d6d">
+                  <tr style="background-color: #FFE0E0">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #e96d6d">
+                  <tr style="background-color: #FFE0E0">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #2268ff45">
+                  <tr style="background-color: #FBFFCC">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #2268ff45">
+                  <tr style="background-color: #FBFFCC">
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
@@ -288,5 +288,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
+    <script>
+      function myFunction(x) {
+        const body = document.querySelector("body"),
+      sidebar = body.querySelector(".sidebar");
+        if (x.matches) {
+          // If media query matches
+          sidebar.classList.add('close');
+        } else {
+          sidebar.classList.remove('close');
+        }
+      }
+
+      var x = window.matchMedia("(max-width: 1010px)");
+      myFunction(x); // Call listener function at run time
+      x.addListener(myFunction);
+    </script>
   </body>
 </html>
