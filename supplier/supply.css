@@ -80,6 +80,10 @@
   transform: translate(0, 20%);
 }
 
+.supply7-container {
+  transform: translate(0, 20%);
+}
+
 input {
   /* box-sizing: border-box; */
   border: none;
@@ -118,4 +122,17 @@ input:focus {
 
 .form-button:hover{
   background-color: #d6a360;
+}
+
+select.dropdown{
+  border:0;
+  border-bottom: 1px solid #a9a9a9;
+  outline:0;
+}
+
+.dropdown{
+  width: 40rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  color: #a9a9a9;
 }
