@@ -80,6 +80,11 @@
   transform: translate(0, 20%);
 }
 
+.supply6-container {
+  transform: translate(0, 10%);
+}
+
+
 input {
   /* box-sizing: border-box; */
   border: none;
