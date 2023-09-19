@@ -80,8 +80,8 @@
   transform: translate(0, 20%);
 }
 
-.supply6-container {
-  transform: translate(0, 10%);
+.supply6-container, .supply8-container {
+  transform: translate(0, 20%);
 }
 
 .supply7-container {
@@ -139,4 +139,13 @@ select.dropdown{
   margin-top: 3rem;
   margin-bottom: 3rem;
   color: #a9a9a9;
+}
+
+.bankaccc-table .icon, .addresses-table .icon{
+  color: var(--sidebar-color);
+  font-size: 18px;
+}
+
+.supply6-container .next, .supply8-container .next{
+  margin-top: 40px;
 }
