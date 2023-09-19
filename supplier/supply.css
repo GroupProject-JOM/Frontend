@@ -4,6 +4,10 @@
 
 .coco-amount {
   width: 37rem;
+  /* margin-top: 3rem; */
+  background-color: var(--background-color);
+  color: var(--wtext-color);
+  width: 37rem;
   padding-top: 3rem;
 }
 
@@ -42,37 +46,76 @@
   color: var(--primary-color);
 }
 
-.date-form{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6rem;
+.date-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6rem;
 }
 
-.feasibility input{
-    width: 17rem;
-    margin-bottom: 30px;
+.feasibility input {
+  width: 17rem;
+  margin-bottom: 30px;
 }
 
-.form-button{
-    margin-top: 50px;
+.form-button {
+  margin-top: 50px;
 }
 
-.supply3-container{
-    position: absolute;
+.supply3-container {
+  position: absolute;
   top: 50%;
   transform: translate(0, 10%);
 }
 
-.supply-address{
-    font-size: 15px;font-weight: 600;
+.supply-address {
+  font-size: 15px;
+  font-weight: 600;
 }
 
-.supply4-container{
-   
+.supply4-container {
   transform: translate(0, 40%);
 }
 
-.supply5-container{
-    
+.supply5-container {
   transform: translate(0, 20%);
+}
+
+input {
+  /* box-sizing: border-box; */
+  border: none;
+  border-bottom: 1px solid #a9a9a9;
+  color: #484848;
+  padding: 7px 0;
+  margin: 20px 0;
+}
+
+input::placeholder {
+  color: #a9a9a9;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #484848;
+  transition: var(--tran-05);
+}
+
+.next {
+  margin-top: 20px;
+  width: 12rem;
+  font-size: 18px;
+}
+
+.form-button {
+  color: var(--text-color);
+  background-color: var(--sidebar-color);
+  border-radius: 6px;
+  border: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.form-button:hover{
+  background-color: #d6a360;
 }

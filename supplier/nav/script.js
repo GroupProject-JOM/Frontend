@@ -96,3 +96,12 @@
     checkMode();
   }, 10);
 })();
+
+function newSupply(){
+  location.href = "./supply1.html";
+
+  const body = document.querySelector("body"),
+  newSupply = body.querySelector(".newSupply");
+  newSupply.classList.add("active");
+  console.log('hello')
+}

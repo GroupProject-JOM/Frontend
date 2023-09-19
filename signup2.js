@@ -28,7 +28,7 @@
       ml4.innerHTML = data["sin"]["ml4"];
       ml5.textContent = data["sin"]["ml5"];
       fh.textContent = data["sin"]["fh"];
-      fht.textContent = data["sin"]["fht"];
+      fht.innerHTML = data["sin"]["fht"];
       ename.placeholder = data["sin"]["ename"];
       location.placeholder = data["sin"]["location"];
       area.placeholder = data["sin"]["area"];
@@ -48,7 +48,7 @@
       ml4.textContent = data["en"]["ml4"];
       ml5.textContent = data["en"]["ml5"];
       fh.textContent = data["en"]["fh"];
-      fht.textContent = data["en"]["fht"];
+      fht.innerHTML = data["en"]["fht"];
       ename.placeholder = data["en"]["ename"];
       location.placeholder = data["en"]["location"];
       area.placeholder = data["en"]["area"];

@@ -76,7 +76,7 @@ body.dark {
   align-items: center;
   box-shadow: 0px 5px 10px var(--shadow-color);
   float: right;
-  margin-right: 1rem;
+  margin-right: 1vw;
   margin-top: 2.4rem;
   font-weight: 500;
   cursor: pointer;
@@ -108,31 +108,31 @@ body.dark {
   font-size: 30px;
   font-weight: 500;
   float: right;
-  margin-right: 2rem;
+  margin-right: 1vw;
   margin-top: 2rem;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid var(--body-color);
+  /* border: 3px solid var(--body-color); */
   border-radius: 30%;
   padding: 5px;
 }
-
+/* 
 .notification .bell:hover {
   border: 3px solid var(--sidebar-color);
   transition: var(--tran-05);
-}
+} */
 
-.notification .active {
+/* .notification .active {
   border: 3px solid var(--sidebar-color);
-}
+} */
 
 .notification .count {
   z-index: 1;
   position: relative;
-  right: 45px;
+  right: 1.5vw;
   font-weight: 600;
   background-color: crimson;
   border-radius: 4px;
@@ -318,6 +318,11 @@ body.dark {
 
 .report-button i {
   padding-left: 0.6rem;
+}
+
+.report-button:hover{
+  background-color: var(--sidebar-color);
+  color: var(--body-color);
 }
 
 .layer {
