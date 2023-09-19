@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Supply1</title>
+  <title>Supply7</title>
 
   <script src="https://kit.fontawesome.com/3d9946f29b.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../common/style.css" />
@@ -33,44 +33,29 @@
 
     <div class="text"></div>
 
-    <div class="supply-container">
+    <div class="supply7-container supply-container">
       <div class="supply-heading table-heading">
-        <h2 class="supply-title">New Supply</h2>
+        <h2 class="supply-title">Add New Estate Location</h2>
         <p class="supply-text">
-          Fill up the details correctly for your new supply request. <br />
-          Requests will be reviewed within 24 hours. You can check them inside
-          your dashboard.
+            Add information for a new estate location. <br>
+            You can edit these information any time at Dashboard > Addresses
         </p>
 
       </div>
       <div class="supply-content">
-        <form class="supply">
-          <input type="text" class="coco-amount" placeholder="Coconut Amount" />
+        <form class="location-form supply">
+          <input type="text" class="estate-name" placeholder="Estate Name" />
+          <input type="text" class="location" placeholder="Location" /> <br>
+          <!-- <input type="text" class="area" placeholder="Area/Region" /> -->
+          <select class="dropdown"> 
+            <option value="" disabled selected hidden >Select your Area</option>
+              <option value="piliyandala">piliyandala</option> 
+              <option value="Kasbawa">Kasbawa</option> 
+              <option value="area51">area51</option> 
+          </select>
         </form>
 
-        <div class="collection method ">
-          <div class="method-text">Collection Method</div>
-          <input type="checkbox" class="pickup checkbox">
-          <label class="pickup-label supply-label">
-            Pickup at Estate
-          </label>
-          <input type="checkbox" class="delivered checkbox">
-          <label class="delivered-label supply-label">
-            Delivered to Yard
-            </label>
-        </div>
-
-        <div class="payment method">
-          <div class="method-text">Payment Method</div>
-
-          <input type="checkbox" class="cash checkbox">
-          <label class="cash-label supply-label">Cash on Pickup</label>
-
-          <input type="checkbox" class="bank-transfer checkbox">
-          <label class="bank-label supply-label">Bank Transfer</label>
-
-        </div>
-        <button class="next form-button">Next</button>
+        <button class="next form-button">Add</button>
 
       </div>
     </div>
