@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../common/style.css" />
-
-    <!-- Boxicons CSS -->
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/notify.css">
   </head>
 
   <body>
@@ -20,26 +19,12 @@
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
-        <span class="bell do-not"><i class="bx bx-bell do-not"></i></span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
       </div>
 
-      <div class="notification-window do-not" id="notify">
-        <div class="title l10 do-not">Notifications</div>
-        <p class="close-btn do-not"><i class="bx bxs-x-square"></i></p>
-        <div id="notifications" class="do-not">
-          <div class="notify-msg do-not">
-            Your pick up is on Tuesday<span>6.30 PM</span>
-          </div>
-          <div class="notify-msg do-not">Hehe<span>4.59 PM</span></div>
-          <div class="notify-msg do-not">
-            Singithi athal<span>1.00 PM</span>
-          </div>
-          <div class="notify-msg do-not">
-            Onece upon a time a rabbit...<span>12.44 PM</span>
-          </div>
-          <div class="notify-msg do-not">Here we go...<span>8.02 AM</span></div>
-        </div>
-      </div>
+      <div class="notification-window do-not" id="notify"></div>
 
       <div class="lng-picker">
         <div class="sin">සිං</div>
@@ -48,10 +33,139 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container"></div>
+      <div class="container">
+        <div class="widgets">
+          <div class="widget-left widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-calendar"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title w1"></p>
+              <p class="w-value">70</p>
+            </div>
+          </div>
+          <div class="widget-right widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-calendar-check"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title w2"></p>
+              <p class="w-value">10<span>/70</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="layer">
+          <div class="table-heading">
+            <h2 class="c1"></h2>
+            <p class="c2"></p>
+          </div>
+          <table class="overview-tables">
+            <thead>
+              <tr>
+                <th>Job ID</th>
+                <th>Area</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>C091</td>
+                <td>Nugegoda</td>
+                <td>10:30 AM</td>
+                <td>200</td>
+                <td>
+                  <button class="direction status">Get Directions</button>
+                </td>
+              </tr>
+              <tr>
+                <td>C092</td>
+                <td>Kirulapone</td>
+                <td>11:00 AM</td>
+                <td>1000</td>
+                <td>
+                  <button class="direction status">Get Directions</button>
+                </td>
+              </tr>
+              <tr>
+                <td>C093</td>
+                <td>Delkanda</td>
+                <td>03:10 PM</td>
+                <td>500</td>
+                <td>
+                  <button class="direction status">Get Directions</button>
+                </td>
+              </tr>
+              <tr>
+                <td>C094</td>
+                <td>Maharagama</td>
+                <td>03:50 PM</td>
+                <td>400</td>
+                <td>
+                  <button class="direction status">Get Directions</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="layer">
+          <div class="table-heading">
+            <h2 class="c4"></h2>
+            <p class="c5"></p>
+          </div>
+          <table class="overview-tables">
+            <thead class="thead">
+              <tr>
+                <th>Job ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>C091</td>
+                <td>21/10/2023</td>
+                <td>10:30 AM</td>
+                <td>200</td>
+                <td><button class="direction status">Get Direction</button></td>
+              </tr>
+              <tr>
+                <td>C092</td>
+                <td>31/12/2023</td>
+                <td>06:00 AM</td>
+                <td>1000</td>
+                <td><button class="direction status">Get Direction</button></td>
+              </tr>
+              <tr>
+                <td>C093</td>
+                <td>02/11/2023</td>
+                <td>04:30 PM</td>
+                <td>500</td>
+                <td><button class="direction status">Get Direction</button></td>
+              </tr>
+              <tr>
+                <td>C094</td>
+                <td>09/11/2023</td>
+                <td>08:40 AM</td>
+                <td>200</td>
+                <td><button class="direction status">Get Direction</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <script src="../common/func.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
+    <script src="./notifications/load-notifications.js"></script>
   </body>
 </html>

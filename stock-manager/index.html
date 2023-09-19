@@ -5,41 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
 
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../common/style.css" />
-
-    <!-- Boxicons CSS -->
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/notify.css">
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
+    
     <nav class="sidebar"></nav>
 
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
-        <span class="bell do-not"><i class="bx bx-bell do-not"></i></span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
       </div>
 
-      <div class="notification-window do-not" id="notify">
-        <div class="title l10 do-not">Notifications</div>
-        <p class="close-btn do-not"><i class="bx bxs-x-square"></i></p>
-        <div id="notifications" class="do-not">
-          <div class="notify-msg do-not">
-            Your pick up is on Tuesday<span>6.30 PM</span>
-          </div>
-          <div class="notify-msg do-not">Hehe<span>4.59 PM</span></div>
-          <div class="notify-msg do-not">
-            Singithi athal<span>1.00 PM</span>
-          </div>
-          <div class="notify-msg do-not">
-            Onece upon a time a rabbit...<span>12.44 PM</span>
-          </div>
-          <div class="notify-msg do-not">Here we go...<span>8.02 AM</span></div>
-        </div>
-      </div>
+      <div class="notification-window do-not" id="notify"></div>
 
       <div class="lng-picker">
         <div class="sin">සිං</div>
@@ -48,10 +36,257 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container"></div>
+      <div class="container">
+        <div class="widgets">
+          <div class="widget-left widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-calendar"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title w1"></p>
+              <p class="w-value">500</p>
+            </div>
+          </div>
+          <div class="widget-right widget">
+            <div class="w-icon">
+              <span><i class="fa-solid fa-calendar-check"></i></span>
+            </div>
+            <div class="w-text">
+              <p class="w-title w2"></p>
+              <p class="w-value">100<span>/500</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="layer req-tables">
+          <div class="production-req">
+            <div class="table-heading">
+              <h2 class="c1"></h2>
+              <p class="c2"></p>
+            </div>
+            <table class="overview-tables">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Date</th>
+                  <th>Block ID</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>P052</td>
+                  <td>21/04/2023</td>
+                  <td>A001</td>
+                  <td>200</td>
+                </tr>
+                <tr>
+                  <td>P053</td>
+                  <td>22/04/2023</td>
+                  <td>A002</td>
+                  <td>1000</td>
+                </tr>
+                <tr>
+                  <td>P054</td>
+                  <td>24/04/2023</td>
+                  <td>A003</td>
+                  <td>500</td>
+                </tr>
+                <tr>
+                  <td>P055</td>
+                  <td>24/04/2023</td>
+                  <td>A004</td>
+                  <td>400</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="layer">
+            <div class="table-heading">
+              <h2 class="c4"></h2>
+              <p class="c5"></p>
+            </div>
+            <table class="overview-tables">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Supplier</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Area</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S052</td>
+                  <td>Kamal</td>
+                  <td>21/04/2023</td>
+                  <td>200</td>
+                  <td>city1</td>
+                </tr>
+                <tr>
+                  <td>S053</td>
+                  <td>Ajith P.</td>
+                  <td>22/04/2023</td>
+                  <td>1000</td>
+                  <td>city1</td>
+                </tr>
+                <tr>
+                  <td>S054</td>
+                  <td>Sumana</td>
+                  <td>23/04/2023</td>
+                  <td>500</td>
+                  <td>city1</td>
+                </tr>
+                <tr>
+                  <td>S055</td>
+                  <td>Saman</td>
+                  <td>24/04/2023</td>
+                  <td>400</td>
+                  <td>city1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="layer">
+          <div class="table-heading">
+            <h2 class="c6"></h2>
+            <p class="c7"></p>
+          </div>
+
+          <div class="stock">
+            <div class="yard1">
+              <h3>Yard 1</h3>
+              <table class="overview-tables" >
+                <thead>
+                  <tr>
+                    <th>Stock ID</th>
+                    <th>Day</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr style="background-color: rgba(66, 222, 81, 0.452)">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #e96d6d">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #e96d6d">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #2268ff45">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #2268ff45">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="yard2">
+              <h3>Yard 2</h3>
+              <table class="overview-tables" >
+                <thead>
+                  <tr>
+                    <th>Stock ID</th>
+                    <th>Day</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr style="background-color: rgba(66, 222, 81, 0.452)">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #e96d6d">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #e96d6d">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #2268ff45">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #2268ff45">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="yard3">
+              <h3>Yard 3</h3>
+              <table class="overview-tables" >
+                <thead>
+                  <tr>
+                    <th>Stock ID</th>
+                    <th>Day</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="background-color: rgba(66, 222, 81, 0.452)">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #e96d6d">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #e96d6d">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #2268ff45">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                  <tr style="background-color: #2268ff45">
+                    <td>SA001</td>
+                    <td>25</td>
+                    <td>500</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <script src="../common/func.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
+    <script src="./notifications/load-notifications.js"></script>
   </body>
 </html>

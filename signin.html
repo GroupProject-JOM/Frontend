@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignIn</title>
+
+    <link rel="stylesheet" href="./common/style.css" />
+    <link rel="stylesheet" href="./signin.css">
+  </head>
+
+  <body>
+    <nav class="sidebar-photo">
+        <img
+        src="./common/signininImage.png"
+        alt="login photo"
+        style="max-width: 100%;height: 100vh;"
+       />
+    </nav>
+
+    <section class="home" style="left: 47vw; width: calc(100% - 47vw);position:fixed;padding-right: 4rem;">
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="container">
+        <div class="login-content">
+            <img src="./common/JOM logo 1.png" class="logo" />
+            <p class="login-line1 login-text"></p>
+            <p class="login-line2 login-text"></p>
+            <div class="login-form">
+              <form>
+                <input class="username" type="text" id="username" name="username" placeholder="" /><br />
+                <input class="password" type="password" id="login-password" name="password" placeholder="" /><br />
+              </form>
+            </div>
+            <button class="login-button form-button"></button>
+            <a class="login-line3 login-text"></a>
+            <p class="login-line4 login-text"></p>
+          </div>        
+      </div>
+    </section>
+    <script src="./common/func.js"></script>
+    <script src="./signin.js"></script>
+  </body>
+</html>

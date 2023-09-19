@@ -9,7 +9,11 @@
       modeText = body.querySelector(".mode-text"),
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
-      greeting = body.querySelector(".greeting"),
+      l0 = body.querySelector(".l0"),
+      l1 = body.querySelector(".l1"),
+      l2 = body.querySelector(".l2"),
+      l3 = body.querySelector(".l3"),
+      l4 = body.querySelector(".l4"),
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
@@ -26,60 +30,64 @@
 
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
-
       if (body.classList.contains("dark")) {
         sessionStorage.setItem("mode", "dark");
-
-        if (sin.classList.contains("active")) {
-          modeText.innerHTML = "ආලෝක මාදිලිය";
-        } else {
-          modeText.innerHTML = "Light Mode";
-        }
+        modeText.innerHTML = modeTranslate();
       } else {
         sessionStorage.setItem("mode", "light");
-
-        if (sin.classList.contains("active")) {
-          modeText.innerHTML = "අඳුරු මාදිලිය";
-        } else {
-          modeText.innerHTML = "Dark Mode";
-        }
+        modeText.innerHTML = modeTranslate();
       }
     });
 
     sin.addEventListener("click", () => {
-      greeting.textContent = data["sin"]["greeting"];
+      l0.textContent = data["sin"]["l0"];
+      l1.textContent = data["sin"]["l1"];
+      l2.textContent = data["sin"]["l2"];
+      l3.textContent = data["sin"]["l3"];
+      l4.textContent = data["sin"]["l4"];
       l6.textContent = data["sin"]["l6"];
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
-      l9.textContent = data["sin"]["l9"];
+      l9.textContent = modeTranslate();
     });
 
     en.addEventListener("click", () => {
-      greeting.textContent = data["en"]["greeting"];
+      l0.textContent = data["en"]["l0"];
+      l1.textContent = data["en"]["l1"];
+      l2.textContent = data["en"]["l2"];
+      l3.textContent = data["en"]["l3"];
+      l4.textContent = data["en"]["l4"];
       l6.textContent = data["en"]["l6"];
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
-      l9.textContent = data["en"]["l9"];
+      l9.textContent = modeTranslate();
     });
 
     var data = {
       sin: {
-        l6: "ප්‍රධාන ක්‍ර්‍රියාවන්",
+        l0: "පරිශීලක ක්‍රියා",
+        l1: "එකතුකරන්නන් ලුහුබැඳීම",
+        l2: "සැපයුම් ඉල්ලීම්",
+        l3: "කතාබස් කරන්න",
+        l4: "සියලුම එකතු කිරීම්",
+        l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
-        l9: "අඳුරු මාදිලිය",
-        greeting: "සුභ දහවලක්",
       },
       en: {
+        l0: "USER ACTIONS",
+        l1: "Track Collectors",
+        l2: "Supply Requests",
+        l3: "Chat",
+        l4: "All Collections",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
-        l9: "Dark Mode",
-        greeting: "Good Afternoon",
       },
     };
 
+    setGreeting();
     checkLng();
     checkMode();
-  }, 100);
+  }, 10);
 })();
