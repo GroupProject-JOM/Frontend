@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supply1</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../common/style.css" />
+    <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/notify.css" />
+    <!-- <link rel="stylesheet" href="../signin.css" /> -->
+    <link rel="stylesheet" href="./supply.css" />
+  </head>
+
+  <body>
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="supply-container container">
+        <div class="supply-heading table-heading">
+          <h2 class="supply-title">New Supply</h2>
+          <p class="supply-text">
+            Fill up the details correctly for your new supply request. <br />
+            Requests will be reviewed within 24 hours. You can check them inside
+            your dashboard.
+          </p>
+        </div>
+        <div class="supply-content">
+          <form class="supply">
+            <input
+              type="text"
+              class="coco-amount"
+              placeholder="Coconut Amount"
+            />
+          </form>
+
+          <div class="collection method">
+            <div class="method-text">Collection Method</div>
+            <label class="pickup-label supply-label">
+              <input
+                type="checkbox"
+                class="pickup radio checkbox"
+                value="1"
+                name="fooby[1][]"
+              />
+              Pickup at Estate</label
+            >
+            <label class="delivered-label">
+              <input
+                type="checkbox"
+                class="delivered radio checkbox"
+                value="1"
+                name="fooby[1][]"
+              />
+              Delivered to Yard</label
+            >
+          </div>
+
+          <div class="payment method">
+            <div class="method-text">Payment Method</div>
+
+            <label class="cash-label">
+              <input
+                type="checkbox"
+                class="cash radio checkbox"
+                value="1"
+                name="fooby[2][]"
+              />
+              Cash on Pickup</label
+            >
+
+            <label class="bank-label">
+              <input
+                type="checkbox"
+                class="bank-transfer radio checkbox"
+                value="1"
+                name="fooby[2][]"
+              />
+              Bank Transfer</label
+            >
+          </div>
+          <button class="next form-button">Next</button>
+        </div>
+      </div>
+    </section>
+    <script src="../common/func.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./nav/load-nav.js"></script>
+    <script src="./notifications/load-notifications.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+      $("input:checkbox").on("click", function () {
+        var $box = $(this);
+        if ($box.is(":checked")) {
+          var group = "input:checkbox[name='" + $box.attr("name") + "']";
+          $(group).prop("checked", false);
+          $box.prop("checked", true);
+        } else {
+          $box.prop("checked", false);
+        }
+      });
+    </script>
+  </body>
+</html>

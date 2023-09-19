@@ -7,6 +7,7 @@
       en = body.querySelector(".en"),
       closeBtn = body.querySelector(".close-btn"),
       bell = body.querySelector(".bell"),
+      fabell = body.querySelector(".fa-bell"),
       notify = body.querySelector("#notify"),
       l10 = body.querySelector(".l10");
 
@@ -25,23 +26,38 @@
 
     bell.addEventListener("click", () => {
       notify.style.display = "grid";
-      bell.classList.add("active");
-    });
-
-    closeBtn.addEventListener("click", () => {
-      notify.style.display = "none";
-      bell.classList.remove("active");
     });
 
     body.addEventListener("click", (e) => {
       if (
-        !e.target.classList.contains("do-not") &&
-        bell.classList.contains("active")
+        !e.target.classList.contains("do-not")
       ) {
         notify.style.display = "none";
-        bell.classList.remove("active");
+        // bell.classList.remove("active");
+        fabell.classList.add("far");
+        fabell.classList.remove("fas");
       }
     });
+
+    bell.addEventListener("mouseover", () => {
+      fabell.classList.add("fas");
+      fabell.classList.remove("far");
+    });
+
+    bell.addEventListener("mouseleave", () => {
+      if (notify.style.display == "none") {
+        fabell.classList.add("far");
+        fabell.classList.remove("fas");
+      }
+    });
+
+    closeBtn.addEventListener("click", () => {
+      notify.style.display = "none";
+      fabell.classList.add("far");
+        fabell.classList.remove("fas");
+    });
+
+
 
     var data = {
       sin: {

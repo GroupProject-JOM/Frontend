@@ -32,7 +32,7 @@
 
 .sidebar li {
   height: 40px;
-  margin-top: 0px;
+  margin-top: 1px;
   list-style: none;
   display: flex;
   align-items: center;
@@ -109,8 +109,21 @@ header .welcome-text .header-text {
   background: var(--toggle-color);
 }
 
+.sidebar li a:active {
+  background: var(--toggle-color);
+}
+
+.sidebar .active a{
+  background: var(--toggle-color); 
+}
+
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text {
+  color: var(--primary-color);
+}
+
+.sidebar .active a .icon,
+.sidebar .active a .text {
   color: var(--primary-color);
 }
 
