@@ -344,3 +344,12 @@ body.dark {
   background: var(--shadow-color);
   border-radius: 10px;
 }
+
+@media only screen and (max-device-width: 1322px) {
+  .widget {
+    width: 18rem;
+  }
+  .w-value{
+    font-size: 1.8rem;
+  }
+}
