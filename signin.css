@@ -92,7 +92,8 @@ input:focus {
 
 .next {
   margin-top: 20px;
-  width: 8rem;
+  width: 12rem;
+  font-size: 18px;
 }
 
 
