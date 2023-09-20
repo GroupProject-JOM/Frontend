@@ -80,7 +80,8 @@
   transform: translate(0, 20%);
 }
 
-.supply6-container, .supply8-container {
+.supply6-container,
+.supply8-container {
   transform: translate(0, 20%);
 }
 
@@ -95,6 +96,7 @@ input {
   color: #484848;
   padding: 7px 0;
   margin: 20px 0;
+  background-color: var(--body-color);
 }
 
 input::placeholder {
@@ -134,19 +136,22 @@ select.dropdown{
   outline:0;
 }
 
-.dropdown{
+.dropdown {
   width: 40rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
+  background-color: var(--body-color);
   color: var(--input-border);
 }
 
-.bankaccc-table .icon, .addresses-table .icon{
-  color: var(--sidebar-color);
+.bankaccc-table .icon,
+.addresses-table .icon {
+  color: var(--tbicon-color);
   font-size: 18px;
 }
 
-.supply6-container .next, .supply8-container .next{
+.supply6-container .next,
+.supply8-container .next {
   margin-top: 40px;
 }
 
