@@ -92,7 +92,7 @@
 input {
   /* box-sizing: border-box; */
   border: none;
-  border-bottom: 1px solid #a9a9a9;
+  border-bottom: 1px solid var(--input-border);
   color: #484848;
   padding: 7px 0;
   margin: 20px 0;
@@ -100,7 +100,7 @@ input {
 }
 
 input::placeholder {
-  color: #a9a9a9;
+  color: var(--input-border);
 }
 
 textarea:focus,
@@ -126,22 +126,22 @@ input:focus {
   cursor: pointer;
 }
 
-.form-button:hover {
-  background-color: #d6a360;
+.form-button:hover{
+  background-color: var(--button-hover);
 }
 
-select.dropdown {
-  border: 0;
-  border-bottom: 1px solid #a9a9a9;
-  outline: 0;
+select.dropdown{
+  border:0;
+  border-bottom: 1px solid var(--input-border);
+  outline:0;
 }
 
 .dropdown {
   width: 40rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  color: #a9a9a9;
   background-color: var(--body-color);
+  color: var(--input-border);
 }
 
 .bankaccc-table .icon,
@@ -153,4 +153,8 @@ select.dropdown {
 .supply6-container .next,
 .supply8-container .next {
   margin-top: 40px;
+}
+
+.checkbox:checked + .supply-label{
+  color: var(--label-selected);
 }
