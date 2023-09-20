@@ -20,6 +20,9 @@
   --wtext--color: #000000;
   --table-color-hover: #ffe0b6;
   --disable-color: #ffdeb2;
+  --input-border: #a9a9a9;
+  --button-hover: #d6a360;
+  --label-selected: #2D2D2D;
 
   --tran-02: all 0.2s ease;
   --tran-03: all 0.3s ease;
@@ -44,6 +47,10 @@ body.dark {
   --wtext--color: #ccc;
   --th-color: #242526;
   --table-color-hover: #343434;
+  --input-border: #a9a9a9;
+  --label-selected: #ccc;
+
+
 
   color: var(--text-color);
 }
