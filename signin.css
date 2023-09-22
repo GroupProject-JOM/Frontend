@@ -9,8 +9,8 @@
   z-index: 100;
 }
 .lng-picker {
-  margin-right: 1vw;
   padding-right: 0;
+  margin-right: 3vw;
 }
 
 .login-content {
@@ -229,7 +229,8 @@ input:focus {
   padding-bottom: 20px;
 }
 
-.location-form input {
+.location-form input,
+.verify-form input {
   width: 40rem;
   margin: 35px 0;
 }
@@ -283,3 +284,18 @@ input:focus {
     position: absolute; */
   }
 }
+
+.menu-line6{
+  margin-top: 60px;
+  font-size: 13px;
+}
+
+.menu-line6 span{
+  font-weight: 500;
+}
+
+.verify-button{
+  padding: 5px 30px;
+  border-radius: 20px;
+}
+

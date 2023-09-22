@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supply8</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../common/style.css" />
+    <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/notify.css" />
+    <!-- <link rel="stylesheet" href="../signin.css" /> -->
+    <link rel="stylesheet" href="./supply.css" />
+  </head>
+
+  <body>
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+      <div class="text"></div>
+      <div class="supply8-container container">
+        <div class="supply-heading table-heading">
+          <h2 class="supply-title">Your Bank Accounts</h2>
+          <p class="supply-text">View and Edit the your bank account details</p>
+        </div>
+
+        <div class="table-heading">
+          <h2 class="c1"></h2>
+          <p class="c2"></p>
+        </div>
+        <table class="bankaccc-table overview-tables">
+          <thead>
+            <tr>
+              <th>Account Number</th>
+              <th>Bank</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>0103035132</td>
+              <td>Hatton National Bank</td>
+              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></i></td>
+            </tr>
+
+            <tr>
+              <td>124352</td>
+              <td>Bank of Ceylon</td>
+              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></i></td>
+            </tr>
+            <tr>
+              <td>88909999</td>
+              <td>Bank of Ceylon</td>
+              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></i></td>
+            </tr>
+            <tr>
+              <td>3035</td>
+              <td>Nation Trust Bank</td>
+              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="next form-button">Add New</button>
+      </div>
+    </section>
+    <script src="../common/func.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./nav/load-nav.js"></script>
+    <script src="./notifications/load-notifications.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </body>
+</html>
