@@ -2,11 +2,6 @@
     const body = document.querySelector("body"),
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
-      ml1 = body.querySelector(".menu-line1"),
-      ml2 = body.querySelector(".menu-line2"),
-      ml3 = body.querySelector(".menu-line3"),
-      ml4 = body.querySelector(".menu-line4"),
-      ml5 = body.querySelector(".menu-line5"),
       fh = body.querySelector(".form-heading"),
       fht = body.querySelector(".form-heading-text"),
       ename = body.querySelector(".estate-name"),
@@ -22,11 +17,7 @@
       document.documentElement.setAttribute("lang", "sin");
       sessionStorage.setItem("lang", "sin");
   
-      ml1.textContent = data["sin"]["ml1"];
-      ml2.textContent = data["sin"]["ml2"];
-      ml3.textContent = data["sin"]["ml3"];
-      ml4.innerHTML = data["sin"]["ml4"];
-      ml5.textContent = data["sin"]["ml5"];
+      
       fh.textContent = data["sin"]["fh"];
       fht.innerHTML = data["sin"]["fht"];
       ename.placeholder = data["sin"]["ename"];
@@ -42,11 +33,7 @@
       document.documentElement.setAttribute("lang", "en");
       sessionStorage.setItem("lang", "en");
   
-      ml1.textContent = data["en"]["ml1"];
-      ml2.textContent = data["en"]["ml2"];
-      ml3.textContent = data["en"]["ml3"];
-      ml4.textContent = data["en"]["ml4"];
-      ml5.textContent = data["en"]["ml5"];
+      
       fh.textContent = data["en"]["fh"];
       fht.innerHTML = data["en"]["fht"];
       ename.placeholder = data["en"]["ename"];
@@ -57,11 +44,7 @@
   
     var data = {
       sin: {
-        ml1: "ජයසිංහ ඔයිල් මිල්ස්",
-        ml2: "පොල්තෙල් නිෂ්පාදකයින්",
-        ml3: "මූලික තොරතුරු",
-        ml4: "වතු ස්ථාන",
-        ml5: "ගෙවීම් තොරතුරු",
+        
         fh: "වතු ස්ථාන",
         fht: "ඔබේ මූලික වතු තොරතුරු එක් කරන්න. <br /> ඔබට උපකරණ පුවරුව තුළ තවත් වතු ස්ථාන එක් කිරීමට හැකි වනු ඇත",
         ename: "වතු නම",
@@ -70,11 +53,7 @@
         next: "ඊළඟ",
       },
       en: {
-        ml1: "Jayasinghe Oil Mills",
-        ml2: "Coconut Oil Manufacturers",
-        ml3: "Basic Information",
-        ml4: "Estate Locations",
-        ml5: "Payment Details",
+        
         fh: "Estate Locations",
         fht: "Add your primary estate information. <br /> You will be able to add more estate locations inside the dashboard",
         ename: "Estate Name",
