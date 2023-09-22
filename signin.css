@@ -59,15 +59,7 @@ input:focus {
   width: 25rem;
 }
 
-.form-button {
-  color: var(--text-color);
-  background-color: var(--sidebar-color);
-  border-radius: 6px;
-  border: none;
-  padding: 10px;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
+
 
 .form-button:hover {
   background-color: #d6a360;
@@ -95,11 +87,7 @@ input:focus {
   color: var(--text-color);
 }
 
-.next {
-  margin-top: 20px;
-  width: 12rem;
-  font-size: 18px;
-}
+
 
 .signup-form input {
   font-size: 15px;

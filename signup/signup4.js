@@ -2,9 +2,11 @@
     const body = document.querySelector("body"),
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
-      
       fh = body.querySelector(".form-heading"),
       fht = body.querySelector(".form-heading-text"),
+      hname = body.querySelector(".acc-holder-name"),
+      acc = body.querySelector(".acc-no"),
+      bank = body.querySelector(".bank"),
       next = body.querySelector(".next");
 
   
@@ -18,6 +20,9 @@
       
       fh.textContent = data["sin"]["fh"];
       fht.innerHTML = data["sin"]["fht"];
+      hname.placeholder = data["sin"]["hname"];
+      acc.placeholder = data["sin"]["acc"];
+      bank.placeholder = data["sin"]["bank"];
       next.textContent = data["sin"]["next"];
     });
   
@@ -28,24 +33,33 @@
       document.documentElement.setAttribute("lang", "en");
       sessionStorage.setItem("lang", "en");
   
-     
+      
       fh.textContent = data["en"]["fh"];
       fht.innerHTML = data["en"]["fht"];
+      hname.placeholder = data["en"]["hname"];
+      acc.placeholder = data["en"]["acc"];
+      bank.placeholder = data["en"]["bank"];
       next.textContent = data["en"]["next"];
     });
   
     var data = {
       sin: {
        
-        fh: "ගිණුම සාදා ඇත",
-        fht: "ඔබගේ ගිණුම සාර්ථකව නිර්මාණය කර ඇත. <br /> ඔබට දැන් පරිශීලක නාමය සහ මුරපදය භාවිතා කර ගිණුමට ලොග් විය හැක",
-        next: "ඇතුල් වන්න",
+        fh: "ගෙවීම් තොරතුරු",
+        fht: "ඔබගේ බැංකු ගිණුම් විස්තර එක් කරන්න. <br />ඔබට උපකරණ පුවරුව තුළ ගෙවීම් ක්‍රම සංස්කරණය කිරීමට හැකි වනු ඇත",
+        hname: "ගිණුම් හිමියාගේ නම",
+        acc: "ගිණුම් අංකය.",
+        bank: "බැංකුව",
+        next: "ඊළඟ",
       },
       en: {
         
-        fh: "Account Created",
-        fht: "Your account has been successfully created. <br /> You can now log in to the account using the username and password",
-        next: "Log in",
+        fh: "Payment Details",
+        fht: "Add your bank account details. <br />You will be able to edit payment methods inside the dashboard",
+        hname: "Account Holder Name",
+        acc: "Account No.",
+        bank: "Bank",
+        next: "Next",
       },
     };
   

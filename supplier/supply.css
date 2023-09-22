@@ -28,7 +28,7 @@
 }
 
 .supply-container {
-  position: absolute;
+  /* position: absolute; */
   top: 50%;
   transform: translate(0, 30%);
   margin-left: 6rem;
@@ -83,6 +83,7 @@
 .supply6-container,
 .supply8-container {
   transform: translate(0, 20%);
+
 }
 
 .supply7-container {
@@ -110,25 +111,8 @@ input:focus {
   transition: var(--tran-05);
 }
 
-.next {
-  margin-top: 20px;
-  width: 12rem;
-  font-size: 18px;
-}
 
-.form-button {
-  color: var(--text-color);
-  background-color: var(--sidebar-color);
-  border-radius: 6px;
-  border: none;
-  padding: 10px;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
 
-.form-button:hover{
-  background-color: var(--button-hover);
-}
 
 select.dropdown{
   border:0;
@@ -150,11 +134,11 @@ select.dropdown{
   font-size: 18px;
 }
 
-.supply6-container .next,
-.supply8-container .next {
-  margin-top: 40px;
-}
-
 .checkbox:checked + .supply-label{
   color: var(--label-selected);
+}
+
+.loaction-form input, .bank-form input{
+  margin-top: 3rem;
+  width: 40rem;
 }

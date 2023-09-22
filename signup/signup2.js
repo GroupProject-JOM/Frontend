@@ -1,68 +1,85 @@
 (() => {
-    const body = document.querySelector("body"),
-      sin = body.querySelector(".sin"),
-      en = body.querySelector(".en"),
-      fh = body.querySelector(".form-heading"),
-      fht = body.querySelector(".form-heading-text"),
-      ename = body.querySelector(".estate-name"),
-      location = body.querySelector(".location"),
-      area = body.querySelector(".area"),
-      next = body.querySelector(".next");
+  const body = document.querySelector("body"),
+    sin = body.querySelector(".sin"),
+    en = body.querySelector(".en"),
+    fh1 = body.querySelector(".form-heading1"),
+    fh2 = body.querySelector(".form-heading2"),
+    fht1 = body.querySelector(".form-heading-text1"),
+    fht2 = body.querySelector(".form-heading-text2"),
+    eotp = body.querySelector(".email-otp"),
+    potp = body.querySelector(".phone-otp"),
+    // next = body.querySelector(".next"),
+    vbt1 = body.querySelector(".vb1"),
+    vbt2 = body.querySelector(".vb2");
 
-  
-    sin.addEventListener("click", () => {
-      sin.classList.add("active");
-      en.classList.remove("active");
-  
-      document.documentElement.setAttribute("lang", "sin");
-      sessionStorage.setItem("lang", "sin");
-  
+
+  sin.addEventListener("click", () => {
+    sin.classList.add("active");
+    en.classList.remove("active");
+
+    document.documentElement.setAttribute("lang", "sin");
+    sessionStorage.setItem("lang", "sin");
+
+    fh1.textContent = data["sin"]["fh1"];
+    fh2.textContent = data["sin"]["fh2"];
+    fht1.innerHTML = data["sin"]["fht1"];
+    fht2.innerHTML = data["sin"]["fht2"];
+    eotp.placeholder = data["sin"]["eotp"];
+    potp.placeholder = data["sin"]["potp"];
+
+    // next.textContent = data["sin"]["next"];
+    vbt1.textContent = data["sin"]["vbt1"];
+    vbt2.textContent = data["sin"]["vbt2"];
+
+  });
+
+  en.addEventListener("click", () => {
+    en.classList.add("active");
+    sin.classList.remove("active");
+
+    document.documentElement.setAttribute("lang", "en");
+    sessionStorage.setItem("lang", "en");
+
+    
+    fh1.textContent = data["en"]["fh1"];
+    fh2.textContent = data["en"]["fh2"];
+    fht1.innerHTML = data["en"]["fht1"];
+    fht2.innerHTML = data["en"]["fht2"];
+    eotp.placeholder = data["en"]["eotp"];
+    potp.placeholder = data["en"]["potp"];
+    // next.textContent = data["en"]["next"];
+    vbt1.textContent = data["en"]["vbt1"];
+    vbt2.textContent = data["en"]["vbt2"];
+
+  });
+
+  var data = {
+    sin: {
       
-      fh.textContent = data["sin"]["fh"];
-      fht.innerHTML = data["sin"]["fht"];
-      ename.placeholder = data["sin"]["ename"];
-      location.placeholder = data["sin"]["location"];
-      area.placeholder = data["sin"]["area"];
-      next.textContent = data["sin"]["next"];
-    });
-  
-    en.addEventListener("click", () => {
-      en.classList.add("active");
-      sin.classList.remove("active");
-  
-      document.documentElement.setAttribute("lang", "en");
-      sessionStorage.setItem("lang", "en");
-  
+      fh1: "ඔබගේ විද්‍යුත් තැපෑල තහවුරු කරන්න",
+      fh2: "ඔබගේ දුරකථනය තහවුරු කරන්න",
+      fht1: "[සැපයුම්කරු-ඊමේල්] වෙත යැවූ OTP ඇතුලත් කරන්න <br /> වැරදි විද්‍යුත් තැපැල් ලිපිනයක්ද?",
+      fht2: "[සැපයුම්කරු-දුරකථනය] වෙත යැවූ OTP ඇතුලත් කරන්න <br /> වැරදි විද්‍යුත් තැපැල් ලිපිනයක්ද?",
+      eotp: "කේතය ඇතුලත් කරන්න",
+      potp: "කේතය ඇතුලත් කරන්න",
+      next: "ඊළඟ",
+      vbt1: "තහවුරු කරන්න",
+      vbt2: "තහවුරු කරන්න",
+    },
+    en: {
       
-      fh.textContent = data["en"]["fh"];
-      fht.innerHTML = data["en"]["fht"];
-      ename.placeholder = data["en"]["ename"];
-      location.placeholder = data["en"]["location"];
-      area.placeholder = data["en"]["area"];
-      next.textContent = data["en"]["next"];
-    });
-  
-    var data = {
-      sin: {
-        
-        fh: "වතු ස්ථාන",
-        fht: "ඔබේ මූලික වතු තොරතුරු එක් කරන්න. <br /> ඔබට උපකරණ පුවරුව තුළ තවත් වතු ස්ථාන එක් කිරීමට හැකි වනු ඇත",
-        ename: "වතු නම",
-        location: "ස්ථානය",
-        area: "ප්රදේශය/කලාපය",
-        next: "ඊළඟ",
-      },
-      en: {
-        
-        fh: "Estate Locations",
-        fht: "Add your primary estate information. <br /> You will be able to add more estate locations inside the dashboard",
-        ename: "Estate Name",
-        location: "Location",
-        area: "Area/Region",
-        next: "Next",
-      },
-    };
-  
-    checkLng();
-  })();
-  
+      fh1: "Verify your email",
+      fh2: "Verify your mobile",
+      fht1: "Enter the OTP Sent to [supplier-email] <br /> Wrong Email Address?",
+      fht2: "Enter the OTP Sent to [supplier-phone] <br /> Wrong Phone Number?",
+      eotp: "Enter Code",
+      potp: "Enter Code",
+      next: "Next",
+      vbt1: "Verify",
+      vbt2: "Verify",
+
+    },
+  };
+
+  checkLng();
+})();
