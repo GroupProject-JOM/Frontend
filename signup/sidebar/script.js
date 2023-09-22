@@ -7,10 +7,7 @@
       ml3 = body.querySelector(".menu-line3"),
       ml4 = body.querySelector(".menu-line4"),
       ml5 = body.querySelector(".menu-line5"),
-      fh = body.querySelector(".form-heading"),
-      fht = body.querySelector(".form-heading-text"),
-      next = body.querySelector(".next");
-
+      ml6 = body.querySelector(".menu-line6");
   
     sin.addEventListener("click", () => {
       sin.classList.add("active");
@@ -24,9 +21,7 @@
       ml3.textContent = data["sin"]["ml3"];
       ml4.textContent = data["sin"]["ml4"];
       ml5.textContent = data["sin"]["ml5"];
-      fh.textContent = data["sin"]["fh"];
-      fht.innerHTML = data["sin"]["fht"];
-      next.textContent = data["sin"]["next"];
+      ml6.innerHTML = data["sin"]["ml6"];
     });
   
     en.addEventListener("click", () => {
@@ -41,9 +36,7 @@
       ml3.textContent = data["en"]["ml3"];
       ml4.textContent = data["en"]["ml4"];
       ml5.textContent = data["en"]["ml5"];
-      fh.textContent = data["en"]["fh"];
-      fht.innerHTML = data["en"]["fht"];
-      next.textContent = data["en"]["next"];
+      ml6.innerHTML = data["en"]["ml6"];
     });
   
     var data = {
@@ -53,9 +46,7 @@
         ml3: "මූලික තොරතුරු",
         ml4: "වතු ස්ථාන",
         ml5: "ගෙවීම් තොරතුරු",
-        fh: "ගිණුම සාදා ඇත",
-        fht: "ඔබගේ ගිණුම සාර්ථකව නිර්මාණය කර ඇත. <br /> ඔබට දැන් පරිශීලක නාමය සහ මුරපදය භාවිතා කර ගිණුමට ලොග් විය හැක",
-        next: "ඇතුල් වන්න",
+        ml6: "දැනටමත් ගිණුමක් ඇත? <span>මෙතනින් පුරන්න.</span>",
       },
       en: {
         ml1: "Jayasinghe Oil Mills",
@@ -63,9 +54,7 @@
         ml3: "Basic Information",
         ml4: "Estate Locations",
         ml5: "Payment Details",
-        fh: "Account Created",
-        fht: "Your account has been successfully created. <br /> You can now log in to the account using the username and password",
-        next: "Log in",
+        ml6: "Already have an account? <span>Sign in here.</span>",
       },
     };
   
