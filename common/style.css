@@ -371,3 +371,28 @@ body.dark {
     font-size: 1.8rem;
   }
 }
+
+.form-button {
+  color: var(--text-color);
+  background-color: var(--sidebar-color);
+  border-radius: 6px;
+  border: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  
+}
+
+.next {
+  margin-top: 20px;
+  width: 12rem;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-button:hover{
+  background-color: var(--button-hover);
+}
