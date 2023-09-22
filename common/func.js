@@ -85,3 +85,14 @@ function modeTranslate() {
   }
   return text;
 }
+
+window.addEventListener("resize", (e) => {
+  const body = document.querySelector("body"),
+    sidebar = body.querySelector(".sidebar");
+
+  if (window.innerWidth <= 1010) {
+    sidebar.classList.add("close");
+  } else {
+    sidebar.classList.remove("close");
+  }
+});
