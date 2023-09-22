@@ -132,6 +132,11 @@ body.dark .sidebar li a:hover .text {
   color: var(--sidebar-color);
 }
 
+body.dark .sidebar .active a .icon,
+body.dark .sidebar .active a .text {
+  color: var(--sidebar-color);
+}
+
 .sidebar .menu-bar {
   height: calc(100% - 90px);
   display: flex;
