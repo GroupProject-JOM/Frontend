@@ -158,3 +158,8 @@ select.dropdown{
 .checkbox:checked + .supply-label{
   color: var(--label-selected);
 }
+
+.loaction-form input, .bank-form input{
+  margin-top: 3rem;
+  width: 40rem;
+}
