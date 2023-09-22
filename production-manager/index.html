@@ -174,21 +174,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
-    <script>
-      function myFunction(x) {
-        const body = document.querySelector("body"),
-      sidebar = body.querySelector(".sidebar");
-        if (x.matches) {
-          // If media query matches
-          sidebar.classList.add('close');
-        } else {
-          sidebar.classList.remove('close');
-        }
-      }
-
-      var x = window.matchMedia("(max-width: 1010px)");
-      myFunction(x); // Call listener function at run time
-      x.addListener(myFunction);
-    </script>
+    
   </body>
 </html>

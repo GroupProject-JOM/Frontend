@@ -9,6 +9,7 @@
   z-index: 100;
 }
 .lng-picker {
+  padding-right: 0;
   margin-right: 3vw;
 }
 
@@ -73,7 +74,7 @@ input:focus {
 }
 
 .login-button {
-  width: 25rem;
+  width: 20rem;
   margin-top: 50px;
   font-size: 20px;
 }
@@ -262,6 +263,28 @@ input:focus {
   top: 10%;
 }
 
+@media only screen and (max-device-width: 900px) {
+  .sidebar-photo {
+    display: none;
+  }
+  section .container {
+    left: 0;
+    width: calc(100% - 0vw);
+    position: fixed;
+  }
+  .login-button {
+    width: 50vw;
+  }
+  .login-form input {
+    width: 70vw;
+  }
+  .lng-picker{
+    margin-right: 6vw;
+    /* display: flex;
+    position: absolute; */
+  }
+}
+
 .menu-line6{
   margin-top: 60px;
   font-size: 13px;
@@ -275,3 +298,4 @@ input:focus {
   padding: 5px 30px;
   border-radius: 20px;
 }
+

@@ -97,11 +97,19 @@
   }, 10);
 })();
 
-function newSupply(){
-  location.href = "./supply1.html";
+var pathname = window.location.pathname;
+pathname = pathname.split("/")[2] || "";
+pathname = pathname.replace(".html", "");
+const navItems = ["supply1"];
 
-  const body = document.querySelector("body"),
-  newSupply = body.querySelector(".newSupply");
-  newSupply.classList.add("active");
-  console.log('hello')
+for (const navItem of navItems) {
+  const nav = document.querySelector(`#nav-item-${pathname}`);
+
+  if (!nav) continue;
+
+  if (navItem == pathname) {
+    nav.classList.add("active");
+  } else {
+    nav.classList.remove("active");
+  }
 }
