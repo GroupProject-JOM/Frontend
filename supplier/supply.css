@@ -83,7 +83,6 @@
 .supply6-container,
 .supply8-container {
   transform: translate(0, 20%);
-
 }
 
 .supply7-container {
@@ -111,13 +110,10 @@ input:focus {
   transition: var(--tran-05);
 }
 
-
-
-
-select.dropdown{
-  border:0;
+select.dropdown {
+  border: 0;
   border-bottom: 1px solid var(--input-border);
-  outline:0;
+  outline: 0;
 }
 
 .dropdown {
@@ -134,11 +130,12 @@ select.dropdown{
   font-size: 18px;
 }
 
-.checkbox:checked + .supply-label{
+.checkbox:checked + .supply-label {
   color: var(--label-selected);
 }
 
-.loaction-form input, .bank-form input{
+.loaction-form input,
+.bank-form input {
   margin-top: 3rem;
   width: 40rem;
 }
