@@ -103,7 +103,7 @@ window.addEventListener("load", (e) => {
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
     // pathname = pathname.replace(".html", "");
-    const navItems = ["supply"];
+    const navItems = ["supply", "address", "payment", "report", "chat"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
@@ -116,9 +116,12 @@ window.addEventListener("load", (e) => {
 
       if (navItem == pathname) {
         nav.classList.add("active");
+        break;
       } else {
         nav.classList.remove("active");
       }
     }
+
+    if (!pathname) clearInterval(interval);
   }, 10);
 });
