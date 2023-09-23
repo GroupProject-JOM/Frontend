@@ -2,14 +2,14 @@
   font-size: 14px;
 }
 
-.map iframe{
+.map iframe {
   width: 450px;
   height: 75vh;
   border: 0;
   border-radius: 30px;
 }
 
-.collection-container {
+.collection-view-container {
   padding-left: 20px;
   display: flex;
   gap: 65px;
@@ -55,23 +55,24 @@
   background-color: var(--body-color);
 }
 
-.complete-container .collection-button {
+.collection-container .collection-button {
   margin-top: 15px;
 }
 
-.collection-container .collection-text{
+.collection-view-container .collection-text {
   width: 95%;
 }
 
-/* .collection-container .collection-content{
-  width: fit-content;
-} */
-
-.complete-container {
+.collection-container {
+  padding-left: 6rem;
   top: 50%;
   transform: translate(0, 50%);
 }
 
-.complete-container .initial-amount {
+.collection-container .initial-amount {
+  font-weight: 500;
+}
+
+.collection-container .collection-subtitle{
   font-weight: 500;
 }
