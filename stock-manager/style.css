@@ -41,3 +41,43 @@
 .supply-req {
   grid-area: right;
 }
+
+@media only screen and (max-device-width: 1260px) {
+  .production-req {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .supply-req {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+
+  .req-tables {
+    display: inline-block;
+    /* flex-wrap: wrap; */
+  }
+
+  .yard2 {
+    /* display: flex;
+    flex-wrap: wrap; */
+    margin-top: 1rem;
+  }
+  .yard3 {
+    /* display: flex;
+    flex-wrap: wrap; */
+    margin-top: 1rem;
+  }
+
+  .stock {
+    display: inline-block;
+    margin-right: 4rem;
+    /* flex-wrap: wrap; */
+  }
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
