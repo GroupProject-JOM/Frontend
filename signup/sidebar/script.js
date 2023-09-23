@@ -1,4 +1,7 @@
 (() => {
+  let loaded = false;
+
+  const interval = setInterval(() => {
     const body = document.querySelector("body"),
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
@@ -8,6 +11,11 @@
       ml4 = body.querySelector(".menu-line4"),
       ml5 = body.querySelector(".menu-line5"),
       ml6 = body.querySelector(".menu-line6");
+
+      if (!loaded && ml6) {
+        loaded = true;
+        clearInterval(interval);
+      }
   
     sin.addEventListener("click", () => {
       sin.classList.add("active");
@@ -46,7 +54,7 @@
         ml3: "මූලික තොරතුරු",
         ml4: "වතු ස්ථාන",
         ml5: "ගෙවීම් තොරතුරු",
-        ml6: "දැනටමත් ගිණුමක් ඇත? <span>මෙතනින් පුරන්න.</span>",
+        ml6: "දැනටමත් ගිණුමක් ඇත? <a href='../signin.html'>මෙතනින් පුරන්න.</a>",
       },
       en: {
         ml1: "Jayasinghe Oil Mills",
@@ -54,10 +62,11 @@
         ml3: "Basic Information",
         ml4: "Estate Locations",
         ml5: "Payment Details",
-        ml6: "Already have an account? <span>Sign in here.</span>",
+        ml6: "Already have an account? <a href='../signin.html'>Sign in here.</a>",
       },
     };
   
     checkLng();
+  }, 10);
   })();
   

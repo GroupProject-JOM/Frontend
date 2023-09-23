@@ -189,12 +189,13 @@ input:focus {
   width: 46px;
   height: 46px;
   border-radius: 100px;
-  border: 2px solid var(--text-color);
+  border: 3px solid var(--text-color);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 30px;
+  font-weight: 600;
 }
 
 .vertical-line {
@@ -274,12 +275,13 @@ input:focus {
 }
 
 .menu-line6{
-  margin-top: 60px;
+  margin-top: 20%;
   font-size: 13px;
 }
 
-.menu-line6 span{
+.menu-line6 a{
   font-weight: 500;
+  color: var(--text-color);
 }
 
 .verify-button{
@@ -287,3 +289,6 @@ input:focus {
   border-radius: 20px;
 }
 
+.bold{
+  font-weight: 600;
+}
