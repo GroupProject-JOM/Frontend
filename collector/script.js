@@ -8,7 +8,14 @@
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     c4 = body.querySelector(".c4"),
-    c5 = body.querySelector(".c5");
+    c5 = body.querySelector(".c5"),
+    rows = body.querySelectorAll("tr[data-href]");
+    
+  rows.forEach((row) => {
+    row.addEventListener("click", () => {
+      window.location.href = row.dataset.href;
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
