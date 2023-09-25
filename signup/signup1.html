@@ -25,7 +25,7 @@
         <div class="signup">
           <div class="form-heading"></div>
           <div class="signup-form">
-            <form  autocomplete="on">
+            <form action="http://localhost:8090/JOM_war_exploded/signup" method="post" autocomplete="on">
               <div>
                 <input
                   type="text"
@@ -51,7 +51,7 @@
                 autocomplete="email"
               /><br />
               <input
-                type="text"
+                type="password"
                 class="long password"
                 name="password"
                 placeholder=""
@@ -89,9 +89,10 @@
                   autocomplete="address-line3"
                 />
               </div>
+              <input type="submit" class="next form-button" value="submit"/>
             </form>
           </div>
-          <a type="submit" class="next form-button" href="./signup2.html"></a>
+          <!-- <a type="submit" class="next form-button" href="./signup2.html"></a> -->
         </div>
       </section>
     </div>
