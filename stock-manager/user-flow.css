@@ -3,14 +3,17 @@
   }
 
 
-/* .stockmg-button {
-    margin-top: 35px;
+.stockmg-button {
+    margin: 35px 10px;
     width: fit-content;
     padding: 8px 20px;
     font-size: 15px;
-    display: flex;
+    display: inline-block;
     justify-content: center;
-  } */
+    
+
+    
+  } 
 
 .map iframe {
     width: 450px;
