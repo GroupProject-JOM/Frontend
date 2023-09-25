@@ -1,133 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Assign Collectors</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assign Collectors</title>
 
-        <script src="https://kit.fontawesome.com/3d9946f29b.js"
-         crossorigin="anonymous"
-        ></script>
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
 
-        <link rel="stylesheet" href="../../common/style.css" />
-        <link rel="stylesheet" href="../../common/nav.css" />
-        <link rel="stylesheet" href="../../common/notify.css" />
-        <link rel="stylesheet" href="../user-flow.css" />
-    </head>
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
+  </head>
 
-    <body>
+  <body>
+    <nav class="sidebar"></nav>
 
-        <nav class="sidebar"></nav>
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
 
-        <section class="home">
-            <div class="notification">
-                <span class="count">10</span>
-                <span class="bell do-not"
-                   ><i class="fa-regular fa-bell do-not"></i
-                ></span>
-            </div>
+      <div class="notification-window do-not" id="notify"></div>
 
-            <div class="notification-window do-not" id="notify"></div>
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
 
-            <div class="lng-picker">
-                <div class="sin">සිං</div>
-                <div class="en active">En</div>
-            </div>
+      <div class="text"></div>
 
-            <div class="text"></div>
+      <div class="assign-collector-container container">
+        <div class="stockmg-heading table-heading">
+          <h2 class="stockmg-title">Assign Collectors</h2>
+          <p class="stockmg-text">
+            View real-time information on active collections and assign one to
+            the new collection
+          </p>
+        </div>
 
-            <div class="stockmg-collections-container container"></div>
+        <table class="addresses-table overview-tables">
+          <thead>
+            <tr>
+              <th>Employee ID</th>
+              <th>Collector Name</th>
+              <th>Area</th>
+              <th>Capacity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
-            <div class="stockmg-heading table-heading">
-                <h2 class="stockmg-title">Assign Collectors</h2>
-                <p class="stockmg-text">View real-time information on active collections and assign one to the new collection</p>
-            </div>
+          <tbody>
+            <tr>
+              <td>E052</td>
+              <td>Ranjith</td>
+              <td>Kirulapone</td>
+              <td>2000/50000</td>
+              <td>
+                <button class="direction status">Assign</button>
+              </td>
+            </tr>
 
-            <table class="addresses-table overview-tables">
-                <thead>
-                  <tr>
-                    <th>Employee ID</th>
-                    <th>Collector Name</th>
-                    <th>Area</th>
-                    <th>Capacity</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
+            <tr>
+              <td>E053</td>
+              <td>Devinda</td>
+              <td>Maharagama</td>
+              <td>2000/50000</td>
+              <td>
+                <button class="direction status">Assign</button>
+              </td>
+            </tr>
 
-                <tbody>
+            <tr>
+              <td>E053</td>
+              <td>Devinda</td>
+              <td>Maharagama</td>
+              <td>2000/50000</td>
+              <td>
+                <button class="direction status">Assign</button>
+              </td>
+            </tr>
 
-                    <tr>
-                        <td>E052</td>
-                        <td>Ranjith</td>
-                        <td>Kirulapone</td>
-                        <td>2000/50000</td>
-                        <td>
-                          <button class="direction status">Assign</button>
-                        </td>
-                      </tr>
+            <tr>
+              <td>E054</td>
+              <td>Piyal</td>
+              <td>Kurunagala</td>
+              <td>2000/50000</td>
+              <td>
+                <button class="direction status">Assign</button>
+              </td>
+            </tr>
 
-                    <tr>
-                        <td>E053</td>
-                        <td>Devinda</td>
-                        <td>Maharagama</td>
-                        <td>2000/50000</td>
-                        <td>
-                          <button class="direction status">Assign</button>
-                        </td>
-                      </tr>
-        
-                    <tr>
-                      <td>E053</td>
-                      <td>Devinda</td>
-                      <td>Maharagama</td>
-                      <td>2000/50000</td>
-                      <td>
-                        <button class="direction status">Assign</button>
-                      </td>
-                    </tr>
+            <tr>
+              <td>E055</td>
+              <td>Pradeep</td>
+              <td>Matara</td>
+              <td>2000/50000</td>
+              <td>
+                <button class="direction status">Assign</button>
+              </td>
+            </tr>
 
-                    <tr>
-                        <td>E054</td>
-                        <td>Piyal</td>
-                        <td>Kurunagala</td>
-                        <td>2000/50000</td>
-                        <td>
-                          <button class="direction status">Assign</button>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>E055</td>
-                        <td>Pradeep</td>
-                        <td>Matara</td>
-                        <td>2000/50000</td>
-                        <td>
-                          <button class="direction status">Assign</button>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>E055</td>
-                        <td>Pradeep</td>
-                        <td>Matara</td>
-                        <td>1000/50000</td>
-                        <td>
-                          <button class="direction status">Assign</button>
-                        </td>
-                      </tr>
-
-                </tbody>
-            </table>
-
-
-
-
-
-        </section>
-
-
-
-    </body>
-  
-
+            <tr>
+              <td>E055</td>
+              <td>Pradeep</td>
+              <td>Matara</td>
+              <td>1000/50000</td>
+              <td>
+                <button class="direction status">Assign</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </body>
 </html>
