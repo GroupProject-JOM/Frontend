@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../signin.css" />
-
   </head>
 
   <body>
@@ -27,20 +26,28 @@
           <div class="signup-form">
             <form autocomplete="on">
               <div>
-                <input
-                  type="text"
-                  class="short fname"
-                  name="fname"
-                  placeholder=""
-                  autocomplete="given-name"
-                />
-                <input
-                  type="text"
-                  class="short lname"
-                  name="lname"
-                  placeholder=""
-                  autocomplete="family-name"
-                />
+                <section>
+                  <input
+                    type="text"
+                    class="short fname"
+                    name="fname"
+                    placeholder=""
+                    autocomplete="given-name"
+                  />
+                  <br />
+                  <span class="form-error fname-error"></span>
+                </section>
+                <section>
+                  <input
+                    type="text"
+                    class="short lname"
+                    name="lname"
+                    placeholder=""
+                    autocomplete="family-name"
+                  />
+                  <br />
+                  <span class="form-error lname-error"></span>
+                </section>
               </div>
               <br />
               <input
@@ -49,7 +56,7 @@
                 name="email"
                 placeholder=""
                 autocomplete="email"
-              /><br>
+              /><br />
               <span class="form-error email-error"></span>
               <br />
               <input
@@ -58,14 +65,16 @@
                 name="password"
                 placeholder=""
                 autocomplete="new-password"
-              /><br />
+              /><br /><span class="form-error password-error"></span>
+              <br />
               <input
                 type="text"
                 name="phone"
                 class="long phone"
                 placeholder=""
                 autocomplete="tel"
-              /><br />
+              /><br /><span class="form-error phone-error"></span>
+              <br />
               <p class="address"></p>
               <br />
               <input
@@ -74,27 +83,29 @@
                 name="address1"
                 placeholder=""
                 autocomplete="address-line1"
-              /><br />
+              /><br /><span class="form-error address1-error"></span><br />
               <div>
+                <section>
                 <input
                   type="text"
                   name="address2"
                   class="short address2"
                   placeholder=""
                   autocomplete="address-line2"
-                />
+                /><br /><span class="form-error address2-error"></span></section>
+                <section>
                 <input
                   type="text"
                   name="address3"
                   class="short address3"
                   placeholder=""
                   autocomplete="address-line3"
-                />
+                /><br /><span class="form-error address3-error"></span></section>
               </div>
-              <input type="submit" class="next form-button" value="submit"/>
+              <!-- <input type="submit" class="next form-button" value="submit"/> -->
             </form>
           </div>
-          <!-- <a type="submit" class="next form-button"></a> -->
+          <a type="submit" class="next form-button"></a>
         </div>
       </section>
     </div>
