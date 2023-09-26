@@ -25,7 +25,7 @@
         <div class="signup">
           <div class="form-heading"></div>
           <div class="signup-form">
-            <form  autocomplete="on">
+            <form autocomplete="on">
               <div>
                 <input
                   type="text"
@@ -49,9 +49,11 @@
                 name="email"
                 placeholder=""
                 autocomplete="email"
-              /><br />
+              /><br>
+              <span class="form-error email-error"></span>
+              <br />
               <input
-                type="text"
+                type="password"
                 class="long password"
                 name="password"
                 placeholder=""
@@ -89,9 +91,10 @@
                   autocomplete="address-line3"
                 />
               </div>
+              <!-- <input type="submit" class="next form-button" value="submit"/> -->
             </form>
           </div>
-          <a type="submit" class="next form-button" href="./signup2.html"></a>
+          <a type="submit" class="next form-button"></a>
         </div>
       </section>
     </div>

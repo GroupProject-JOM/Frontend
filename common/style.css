@@ -396,3 +396,13 @@ body.dark {
 .form-button:hover{
   background-color: var(--button-hover);
 }
+
+.form-error{
+  color: red;
+  font-size: x-small;
+  padding: 0;
+  margin-bottom: 20px 0;
+}
+.email{
+  margin-bottom: 0;
+}
