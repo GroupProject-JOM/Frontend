@@ -18,7 +18,19 @@
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
-      l9 = body.querySelector(".l9");
+      l9 = body.querySelector(".l9"),
+      l11 = body.querySelector(".l11"),
+      newSupply = body.querySelector(".newSupply"),
+      address = body.querySelector(".address"),
+      payment = body.querySelector(".payment"),
+      dashboard = body.querySelector(".dashboard");
+
+      var proxy = "http://localhost:5501/supplier";
+
+      newSupply.href = proxy + "/supply/new.html";
+      address.href = proxy + "/address/view-all.html";
+      payment.href = proxy + "/payment/view-all.html";
+      dashboard.href = proxy + "/";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -51,6 +63,7 @@
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
       l9.textContent = modeTranslate();
+      l11.textContent = data["sin"]["l11"];
     });
 
     en.addEventListener("click", () => {
@@ -64,6 +77,7 @@
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
       l9.textContent = modeTranslate();
+      l11.textContent = data["en"]["l11"];
     });
 
     var data = {
@@ -77,6 +91,7 @@
         l6: "ප්‍රධාන ක්‍ර්‍රියාවන්",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
+        l11:"උපකරණ පුවරුව",
       },
       en: {
         l0: "USER ACTIONS",
@@ -88,6 +103,7 @@
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
+        l11:"Dashboard",
       },
     };
 
@@ -120,7 +136,8 @@ window.addEventListener("load", (e) => {
       } else {
         nav.classList.remove("active");
       }
-    }
+    } 
+    console.log("hi")
 
     if (!pathname) clearInterval(interval);
   }, 10);
