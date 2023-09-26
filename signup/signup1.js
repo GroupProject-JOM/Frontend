@@ -86,7 +86,8 @@
   checkLng();
 })();
 
-document.querySelector(".next").addEventListener("click", () => {
+document.querySelector(".next").addEventListener("click", (e) => {
+  e.preventDefault();
   var formData = {
     first_name: document.querySelector(".fname").value,
     last_name: document.querySelector(".lname").value,
@@ -100,14 +101,13 @@ document.querySelector(".next").addEventListener("click", () => {
   console.log(JSON.stringify(formData));
 
   fetch("http://localhost:8090/JOM_war_exploded/signup", {
-    method: "post",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
   })
     .then((response) => {
-      console.log("then");
       if (response.ok) {
         window.location.href = "http://127.0.0.1:5501/signup/signup2.html";
       } else if (response.status === 401) {
