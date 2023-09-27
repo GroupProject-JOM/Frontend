@@ -16,7 +16,7 @@ function checkMode() {
   const body = document.querySelector("body"),
     modeSwitch = body.querySelector(".toggle-switch");
 
-  //reload language detecter
+  //reload mode detecter
   const curMode = sessionStorage.getItem("mode");
   if (curMode == "dark") {
     modeSwitch.click();
@@ -111,3 +111,6 @@ window.addEventListener("load", (e) => {
     sidebar.classList.remove("close");
   }
 });
+
+const frontProxy = "http://127.0.0.1:5501";
+const backProxy = "http://127.0.0.1:8090/JOM_war_exploded";

@@ -25,12 +25,10 @@
       payment = body.querySelector(".payment"),
       dashboard = body.querySelector(".dashboard");
 
-      var proxy = "http://localhost:5501/supplier";
-
-      newSupply.href = proxy + "/supply/new.html";
-      address.href = proxy + "/address/view-all.html";
-      payment.href = proxy + "/payment/view-all.html";
-      dashboard.href = proxy + "/";
+      newSupply.href = frontProxy + "/supplier/supply/new.html";
+      address.href = frontProxy + "/supplier/address/view-all.html";
+      payment.href = frontProxy + "/supplier/payment/view-all.html";
+      dashboard.href = frontProxy + "/supplier/";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;

@@ -262,7 +262,7 @@ var fname_status = false,
         add_line_3: document.querySelector(".address3").value,
       };
 
-      fetch("http://localhost:8090/JOM_war_exploded/signup", {
+      fetch( backProxy+"/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -275,7 +275,7 @@ var fname_status = false,
             response.text().then((data) => {
               console.log(data);
             });
-            window.location.href = "http://127.0.0.1:5501/signup/signup2.html";
+            window.location.href = frontProxy+"/signup/signup2.html";
           } else if (response.status === 401) {
             console.log("Registration unsuccessful");
           } else if (response.status === 406) {
