@@ -134,9 +134,7 @@ window.addEventListener("load", (e) => {
       } else {
         nav.classList.remove("active");
       }
-    } 
-    console.log("hi")
-
+    }
     if (!pathname) clearInterval(interval);
   }, 10);
 });

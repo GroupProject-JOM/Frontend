@@ -185,6 +185,10 @@ input:focus {
   color: var(--text-color);
 }
 
+.bold{
+  font-weight: 600;
+}
+
 .circle {
   width: 46px;
   height: 46px;
@@ -199,7 +203,7 @@ input:focus {
 }
 
 .vertical-line {
-  width: 1px;
+  width: 2px;
   height: 60px;
   background: var(--text-color);
   margin: 0px auto 0 53px;
@@ -243,6 +247,7 @@ input:focus {
 }
 
 .disable3 {
+  font-weight: 400;
   color: var(--disable-color);
 }
 
@@ -287,8 +292,4 @@ input:focus {
 .verify-button{
   padding: 5px 30px;
   border-radius: 20px;
-}
-
-.bold{
-  font-weight: 600;
 }
