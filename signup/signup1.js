@@ -29,7 +29,10 @@ var fname_status = false,
     address2Error = body.querySelector(".address2-error"),
     address3 = body.querySelector(".address3"),
     address3Error = body.querySelector(".address3-error"),
+    mainError = body.querySelector(".main-error"),
     next = body.querySelector(".next");
+
+  checkLng();
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -100,144 +103,56 @@ var fname_status = false,
     },
   };
 
-  checkLng();
-
   // input chage validations
   fname.addEventListener("input", () => {
-    if (typeof fname.value === "string" && fname.value.trim().length === 0) {
-      fnameError.textContent = "First name cannot be empty";
-      fname_status = false;
-    } else {
-      fname_status = true;
-      fnameError.textContent = "";
-    }
+    fname_status_func();
   });
   lname.addEventListener("input", () => {
-    if (typeof lname.value === "string" && lname.value.trim().length === 0) {
-      lnameError.textContent = "Last name cannot be empty";
-      lname_status = false;
-    } else {
-      lname_status = true;
-      lnameError.textContent = "";
-    }
+    lname_status_func();
   });
   email.addEventListener("input", () => {
-    if (typeof email.value === "string" && email.value.trim().length === 0) {
-      emailError.textContent = "Email cannot be empty";
-      email_status = false;
-    } else if (!ValidateEmail(email)) {
-      emailError.textContent = "Invalid email address!";
-      email_status = false;
-    } else {
-      emailError.textContent = "";
-      email_status = true;
-    }
+    email_status_func();
   });
   password.addEventListener("input", () => {
-    if (
-      typeof password.value === "string" &&
-      password.value.trim().length === 0
-    ) {
-      passwordError.textContent = "Password cannot be empty";
-      password_status = false;
-    } else {
-      password_status = true;
-      passwordError.textContent = "";
-    }
+    password_status_func();
   });
   phone.addEventListener("input", () => {
-    if (typeof phone.value === "string" && phone.value.trim().length === 0) {
-      phoneError.textContent = "Phone number cannot be empty";
-      phone_status = false;
-    } else {
-      phone_status = true;
-      phoneError.textContent = "";
-    }
+    phone_status_func();
   });
   address1.addEventListener("input", () => {
-    if (
-      typeof address1.value === "string" &&
-      address1.value.trim().length === 0
-    ) {
-      address1Error.textContent = "Address Line 1 cannot be empty";
-      address1_status = false;
-    } else {
-      address1_status = true;
-      address1Error.textContent = "";
-    }
+    address1_status_func();
   });
   address2.addEventListener("input", () => {
-    if (
-      typeof address2.value === "string" &&
-      address2.value.trim().length === 0
-    ) {
-      address2Error.textContent = "Street cannot be empty";
-      address2_status = false;
-    } else {
-      address2_status = true;
-      address2Error.textContent = "";
-    }
+    address2_status_func();
   });
   address3.addEventListener("input", () => {
-    if (
-      typeof address3.value === "string" &&
-      address3.value.trim().length === 0
-    ) {
-      address3Error.textContent = "City cannot be empty";
-      address3_status = false;
-    } else {
-      address3_status = true;
-      address3Error.textContent = "";
-    }
+    address3_status_func();
   });
 
   next.addEventListener("click", () => {
     // submit form validation
-    if (
-      typeof address3.value === "string" &&
-      address3.value.trim().length === 0
-    ) {
-      address3Error.textContent = "City cannot be empty";
+    if (!address3_status_func()) {
       address3.focus();
     }
-    if (
-      typeof address2.value === "string" &&
-      address2.value.trim().length === 0
-    ) {
-      address2Error.textContent = "Street cannot be empty";
+    if (!address2_status_func()) {
       address2.focus();
     }
-    if (
-      typeof address1.value === "string" &&
-      address1.value.trim().length === 0
-    ) {
-      address1Error.textContent = "Address Line 1 cannot be empty";
+    if (!address1_status_func()) {
       address1.focus();
     }
-    if (typeof phone.value === "string" && phone.value.trim().length === 0) {
-      phoneError.textContent = "Phone number cannot be empty";
+    if (!phone_status_func()) {
       phone.focus();
     }
-    if (
-      typeof password.value === "string" &&
-      password.value.trim().length === 0
-    ) {
-      passwordError.textContent = "Password cannot be empty";
+    if (!password_status_func()) {
       password.focus();
     }
-    if (typeof email.value === "string" && email.value.trim().length === 0) {
-      emailError.textContent = "Email cannot be empty";
-      email.focus();
-    } else if (!ValidateEmail(email)) {
-      emailError.textContent = "Invalid email address!";
+    if (!email_status_func()) {
       email.focus();
     }
-    if (typeof lname.value === "string" && lname.value.trim().length === 0) {
-      lnameError.textContent = "Last name cannot be empty";
+    if (!lname_status_func()) {
       lname.focus();
     }
-    if (typeof fname.value === "string" && fname.value.trim().length === 0) {
-      fnameError.textContent = "First name cannot be empty";
+    if (!fname_status_func()) {
       fname.focus();
     }
     if (
@@ -262,7 +177,8 @@ var fname_status = false,
         add_line_3: document.querySelector(".address3").value,
       };
 
-      fetch( backProxy+"/signup", {
+      // send form data object via fetch api
+      fetch(backProxy + "/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -275,22 +191,157 @@ var fname_status = false,
             response.text().then((data) => {
               console.log(data);
             });
-            window.location.href = frontProxy+"/signup/signup2.html";
+            window.location.href = frontProxy + "/signup/signup2.html";
           } else if (response.status === 401) {
             console.log("Registration unsuccessful");
           } else if (response.status === 406) {
+            // backend error handle
             response.text().then((data) => {
-              console.log(data);
+              if (data == "fname") {
+                fnameError.textContent = "First name cannot be empty!";
+              } else if (data == "lname") {
+                lnameError.textContent = "Last name cannot be empty!";
+              } else if (data == "email1") {
+                emailError.textContent = "Email cannot be empty!";
+              } else if (data == "email2") {
+                emailError.textContent = "Enter a valid email!";
+              } else if (data == "password") {
+                passwordError.textContent = "Password cannot be empty!";
+              } else if (data == "phone") {
+                phoneError.textContent = "Contact number cannot be empty!";
+              } else if (data == "adddress1") {
+                address1Error.textContent = "Address line 1 cannot be empty!";
+              } else if (data == "adddress2") {
+                address2Error.textContent = "Street cannot be empty!";
+              } else if (data == "adddress3") {
+                address3Error.textContent = "City cannot be empty!";
+              }
             });
           } else {
+            mainError.textContent = "CORS ERROR";
+            mainError.style.display = "block";
             console.error("Error:", response.status);
           }
         })
         .catch((error) => {
+          mainError.textContent = "CONNECTION REFUSED";
+          mainError.style.display = "block";
           console.error("An error occurred:", error);
         });
     }
   });
+
+  function fname_status_func() {
+    if (typeof fname.value === "string" && fname.value.trim().length === 0) {
+      fnameError.textContent = "First name cannot be empty";
+      fname_status = false;
+      return false;
+    } else {
+      fnameError.textContent = "";
+      fname_status = true;
+      return true;
+    }
+  }
+
+  function lname_status_func() {
+    if (typeof lname.value === "string" && lname.value.trim().length === 0) {
+      lnameError.textContent = "Last name cannot be empty";
+      lname_status = false;
+      return false;
+    } else {
+      lname_status = true;
+      lnameError.textContent = "";
+      return true;
+    }
+  }
+
+  function email_status_func() {
+    if (typeof email.value === "string" && email.value.trim().length === 0) {
+      emailError.textContent = "Email cannot be empty";
+      email_status = false;
+      return false;
+    } else if (!ValidateEmail(email)) {
+      emailError.textContent = "Invalid email address!";
+      email_status = false;
+      return false;
+    } else {
+      emailError.textContent = "";
+      email_status = true;
+      return true;
+    }
+  }
+
+  function password_status_func() {
+    if (
+      typeof password.value === "string" &&
+      password.value.trim().length === 0
+    ) {
+      passwordError.textContent = "Password cannot be empty";
+      password_status = false;
+      return false;
+    } else {
+      password_status = true;
+      passwordError.textContent = "";
+      return true;
+    }
+  }
+
+  function phone_status_func() {
+    if (typeof phone.value === "string" && phone.value.trim().length === 0) {
+      phoneError.textContent = "Phone number cannot be empty";
+      phone_status = false;
+      return false;
+    } else {
+      phone_status = true;
+      phoneError.textContent = "";
+      return true;
+    }
+  }
+
+  function address1_status_func() {
+    if (
+      typeof address1.value === "string" &&
+      address1.value.trim().length === 0
+    ) {
+      address1Error.textContent = "Address Line 1 cannot be empty";
+      address1_status = false;
+      return false;
+    } else {
+      address1_status = true;
+      address1Error.textContent = "";
+      return true;
+    }
+  }
+
+  function address2_status_func() {
+    if (
+      typeof address2.value === "string" &&
+      address2.value.trim().length === 0
+    ) {
+      address2Error.textContent = "Street cannot be empty";
+      address2_status = false;
+      return false;
+    } else {
+      address2_status = true;
+      address2Error.textContent = "";
+      return true;
+    }
+  }
+
+  function address3_status_func() {
+    if (
+      typeof address3.value === "string" &&
+      address3.value.trim().length === 0
+    ) {
+      address3Error.textContent = "City cannot be empty";
+      address3_status = false;
+      return false;
+    } else {
+      address3_status = true;
+      address3Error.textContent = "";
+      return true;
+    }
+  }
 })();
 
 function ValidateEmail(email) {
