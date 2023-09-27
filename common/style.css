@@ -403,3 +403,13 @@ body.dark {
   padding: 0;
   margin-bottom: 20px 0;
 }
+
+.main-error{
+  display: none;
+  width: 40rem;
+  text-align: center;
+  padding: 5px;
+  color: rgb(181, 70, 70);
+  border: 2px solid rgb(255, 194, 194);
+  background-color: rgba(255, 207, 207, 0.385);
+}
