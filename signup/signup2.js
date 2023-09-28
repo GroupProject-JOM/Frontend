@@ -75,9 +75,9 @@
     en: {
       fh1: "Verify your email",
       fh2: "Verify your mobile",
-      fht1: "Enter the OTP Sent to "+ email,
+      fht1: "Send OTP to "+ email,
       fht2: "Wrong Email Address?",
-      fht3: "Enter the OTP Sent to "+ phone,
+      fht3: "Send OTP to "+ phone,
       fht4: "Wrong Phone Number?",
       eotp: "Enter Code",
       potp: "Enter Code",
