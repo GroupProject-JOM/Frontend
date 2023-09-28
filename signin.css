@@ -89,7 +89,7 @@ input:focus {
 
 
 
-.signup-form input {
+.signup-form input, .check-email input{
   font-size: 15px;
 }
 
@@ -112,10 +112,10 @@ input:focus {
 .short {
   width: 17rem;
 }
-
+/* 
 .email {
   margin-top: 0;
-}
+} */
 
 .long {
   width: 40rem;
@@ -223,7 +223,7 @@ input:focus {
 }
 
 .location-form input,
-.verify-form input {
+.verify-form input{
   width: 40rem;
   margin: 35px 0;
 }
@@ -289,7 +289,24 @@ input:focus {
   color: var(--text-color);
 }
 
-.verify-button{
+.verify-button, .send-button{
+  width: 7rem;
   padding: 5px 30px;
   border-radius: 20px;
+}
+
+.send-otp{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin:10px 0 20px 0;  
+}
+
+.correct-email, .correct-phone{
+  width: 40rem;
+  margin-top: 0;
+}
+
+.check-email, .check-phone{
+  margin-top: 0;
 }
