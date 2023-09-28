@@ -167,14 +167,14 @@ var fname_status = false,
     ) {
       // create form data object
       var formData = {
-        first_name: document.querySelector(".fname").value,
-        last_name: document.querySelector(".lname").value,
-        email: document.querySelector(".email").value,
-        password: document.querySelector(".password").value,
-        phone: document.querySelector(".phone").value,
-        add_line_1: document.querySelector(".address1").value,
-        add_line_2: document.querySelector(".address2").value,
-        add_line_3: document.querySelector(".address3").value,
+        first_name: fname.value,
+        last_name: lname.value,
+        email: email.value,
+        password: password.value,
+        phone: phone.value,
+        add_line_1: address1.value,
+        add_line_2: address2.value,
+        add_line_3: address3.value,
       };
 
       // send form data object via fetch api
@@ -190,10 +190,10 @@ var fname_status = false,
           if (response.ok) {
             response.json().then(data => {
               console.log(data.message);
-              console.log(data.email);
-              console.log(data.phone);
+              sessionStorage.setItem("email",data.email);
+              sessionStorage.setItem("phone",data.phone);
           });
-            // window.location.href = frontProxy + "/signup/signup2.html";
+            window.location.href = frontProxy + "/signup/signup2.html";
           } else if (response.status === 401) {
             console.log("Registration unsuccessful");
           } else if (response.status === 400) {

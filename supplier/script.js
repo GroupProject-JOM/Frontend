@@ -2,7 +2,6 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
@@ -66,16 +65,6 @@
     },
   };
   
-  checkLng();
-  checkMode();
-
-  modeSwitch.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    if (body.classList.contains("dark")) {
-      sessionStorage.setItem("mode", "dark");
-    } else {
-      sessionStorage.setItem("mode", "light");
-    }
-  });
-  
+  // checkLng();
+  // checkMode();  
 })();
