@@ -85,7 +85,7 @@
         response.json().then(data => {
           console.log(data.message);
           if(data.message == "Login successfully"){
-            window.location.href = frontProxy + "/supplier";
+            window.location.href = frontProxy + "/" + data.page;
           }
       });
       } else if (response.status === 401) {

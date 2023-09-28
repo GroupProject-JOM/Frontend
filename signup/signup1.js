@@ -188,11 +188,11 @@ var fname_status = false,
       })
         .then((response) => {
           if (response.ok) {
-            response.json().then(data => {
+            response.json().then((data) => {
               console.log(data.message);
-              sessionStorage.setItem("email",data.email);
-              sessionStorage.setItem("phone",data.phone);
-          });
+              sessionStorage.setItem("email", data.email);
+              sessionStorage.setItem("phone", data.phone);
+            });
             window.location.href = frontProxy + "/signup/signup2.html";
           } else if (response.status === 401) {
             console.log("Registration unsuccessful");
@@ -204,31 +204,34 @@ var fname_status = false,
                 fname.focus();
               } else if (data.message == "lname") {
                 lnameError.textContent = "Last name cannot be empty!";
-                lname.focus()
+                lname.focus();
               } else if (data.message == "email1") {
                 emailError.textContent = "Email cannot be empty!";
-                email.focus()
+                email.focus();
               } else if (data.message == "email2") {
                 emailError.textContent = "Enter a valid email!";
-                email.focus()
+                email.focus();
               } else if (data.message == "email3") {
                 emailError.textContent = "This email is already used";
-                email.focus()
+                email.focus();
               } else if (data.message == "password") {
                 passwordError.textContent = "Password cannot be empty!";
-                password.focus()
+                password.focus();
               } else if (data.message == "phone") {
                 phoneError.textContent = "Contact number cannot be empty!";
-                phone.focus()
+                phone.focus();
               } else if (data.message == "adddress1") {
                 address1Error.textContent = "Address line 1 cannot be empty!";
-                address1.focus()
+                address1.focus();
               } else if (data.message == "adddress2") {
                 address2Error.textContent = "Street cannot be empty!";
-                address2.focus()
+                address2.focus();
               } else if (data.message == "adddress3") {
                 address3Error.textContent = "City cannot be empty!";
-                address3.focus()
+                address3.focus();
+              } else {
+                mainError.textContent = "Something went wrong";
+                mainError.style.display = "block";
               }
             });
           } else {
