@@ -64,4 +64,43 @@
   };
 
   checkLng();
+
+  button.addEventListener("click", () => {
+  var formData = {
+    username: username.value,
+    password: password.value,
+  };
+
+  // send form data object via fetch api
+  fetch(backProxy + "/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.ok) {
+        response.json().then(data => {
+          console.log(data.message);
+          if(data.message == "Login successfully"){
+            window.location.href = frontProxy + "/supplier";
+          }
+      });
+      } else if (response.status === 401) {
+        console.log("Registration unsuccessful");
+      } else if (response.status === 400) {
+        // backend error handle
+        response.json().then((data) => {
+          console(data.message);
+        });
+      } else {
+        console.error("Error:", response.status);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+  });
 })();
