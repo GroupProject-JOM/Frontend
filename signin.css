@@ -310,3 +310,11 @@ input:focus {
 .check-email, .check-phone{
   margin-top: 0;
 }
+
+.renter-email , .resend-email , .renter-phone , .resend-phone{
+  display: none;
+}
+
+.form-heading-text2 , .form-heading-text4{
+  cursor: pointer;
+}
