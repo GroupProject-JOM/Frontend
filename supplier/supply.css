@@ -61,6 +61,14 @@
   margin-top: 50px;
 }
 
+.add-button{
+  margin-top: 20px;
+width: 8rem;
+font-size: 18px;
+display: flex;
+justify-content: center;
+}
+
 .supply3-container {
   position: absolute;
   top: 50%;
