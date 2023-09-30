@@ -44,6 +44,7 @@
   display: flex;
   align-items: center;
   width: fit-content;
+  padding: 10px 0;
 }
 
 .collection-data input {
@@ -73,6 +74,43 @@
   font-weight: 500;
 }
 
-.collection-container .collection-subtitle{
+.collection-subtitle{
   font-weight: 500;
+  color: #404040;
+}
+
+.pending-heading{
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--sidebar-color);
+}
+
+.optional-verification{
+  background-color: #d9d9d961;
+  border-radius: 10px;
+  padding: 50px 4rem;
+  width: 50rem;
+  margin-top: 4rem;
+}
+
+.optional-heading{
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.optional-button{
+  width: fit-content;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.sub-text{
+  font-size: 14px;
+  margin: 10px 0;
+  color: #626262;
+}
+
+.pending-container{
+  padding: 0 4rem;
 }
