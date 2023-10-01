@@ -10,6 +10,14 @@
     fht4 = body.querySelector(".form-heading-text4"),
     eotp = body.querySelector(".email-otp"),
     potp = body.querySelector(".phone-otp"),
+
+    sendEmail = body.querySelector(".send-email"),
+    reEmail = body.querySelector(".renter-email"),
+    emailOtp = body.querySelector(".email-otp"),
+
+    sendPhone = body.querySelector(".send-phone"),
+    rePhone = body.querySelector(".renter-phone"),
+    phoneOtp = body.querySelector(".phone-otp"),
     // next = body.querySelector(".next"),
     vbt1 = body.querySelector(".vb1"),
     vbt2 = body.querySelector(".vb2");
@@ -88,4 +96,20 @@
   };
 
   checkLng();
+
+  fht2.addEventListener("click",() => {
+    reEmail.style.display = "block";
+    sendEmail.style.display = "none";
+    fht1.style.display = "none";
+    emailOtp.style.display = "none";
+    vbt1.style.display = "none";
+  })
+
+  fht4.addEventListener("click",() => {
+    rePhone.style.display = "block";
+    sendPhone.style.display = "none";
+    fht3.style.display = "none";
+    phoneOtp.style.display = "none";
+    vbt2.style.display = "none";
+  })
 })();
