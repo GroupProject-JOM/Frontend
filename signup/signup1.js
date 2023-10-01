@@ -178,7 +178,7 @@ var fname_status = false,
       };
 
       // send form data object via fetch api
-      fetch(backProxy + "/signup", {
+      fetch( backProxy + "/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -371,3 +371,4 @@ function ValidateEmail(email) {
     return false;
   }
 }
+

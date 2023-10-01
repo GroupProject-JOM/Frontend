@@ -91,6 +91,7 @@ input:focus {
 
 .signup-form input, .check-email input{
   font-size: 15px;
+  padding: 0;
 }
 
 .address {
@@ -299,7 +300,7 @@ input:focus {
   display: flex;
   gap: 20px;
   align-items: center;
-  margin:10px 0 20px 0;  
+  /* margin:10px 0 20px 0;   */
 }
 
 .correct-email, .correct-phone{
