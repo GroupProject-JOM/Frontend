@@ -16,11 +16,11 @@
   gap: 40px;
 }
 
-.stock table tr:hover {
+.stock table tr:hover, .yard .overview-tables tr:hover{
   background-color: rgb(224, 224, 224) !important;
 }
 
-.stock h3 {
+.stock h3, .yard h3 {
   padding-bottom: 0.8rem;
   /* margin-top: 1rem; */
   /* padding-left: 25px; */
@@ -36,6 +36,44 @@
   width: 95%;
   font-size: 14px;
 }
+
+.production-stock-request{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  gap: 10rem;
+  margin-top: 25px;
+  /* justify-content: space-between; */
+}
+
+.yard{
+  width: 30%;
+}
+
+.productionmg-button{
+  margin: 70px 0 15px 0;
+  width: fit-content;
+  padding: 8px 20px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.collection-data-table {
+  width: 25rem;
+  /* margin-top: 35px; */
+  top: 50%;
+  transform: translate(0, 15%);
+}
+
+.production-ongoing{
+  background-color: var(--sidebar-color);
+}
+
+.production-completed{
+  background-color: var(--completed-green);
+}
+
+
 
 @media only screen and (max-device-width: 1260px) {
   .production-req {
@@ -74,5 +112,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .production-stock-request{
+    gap: 20px;
+  }
+
+  .yard{
+    width: 90%;
   }
 }

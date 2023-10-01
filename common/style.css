@@ -24,6 +24,8 @@
   --input-border: #a9a9a9;
   --button-hover: #d6a360;
   --label-selected: #2D2D2D;
+  --completed-green: #70BB56;
+  --reject-red: #e96d6d;
 
   --tran-02: all 0.2s ease;
   --tran-03: all 0.3s ease;
@@ -267,42 +269,24 @@ body.dark {
   color: white;
 }
 
-.pending {
-  background-color: #bb9056;
-}
-
 .rejected {
-  background-color: #e96d6d;
-}
-
-.ready {
-  background-color: #70bb56;
+  background-color: var(--reject-red);
 }
 
 .reject-note {
-  color: #e96d6d;
+  color: var(--reject-red);
   font-size: 0.7rem;
   padding-top: 1rem;
 }
 
-.paid {
-  background-color: #70bb56;
+.accepted, .processing, .paid, .ready {
+  background-color: var(--completed-green);
 }
 
-.processing {
-  background-color: #70bb56;
-}
-.waiting {
-  background-color: #bb9056;
+.direction, .waiting, .pending {
+  background-color: var(--sidebar-color);
 }
 
-.accepted {
-  background-color: #70bb56;
-}
-
-.direction {
-  background-color: #bb9056;
-}
 
 .heading-button {
   display: grid;
