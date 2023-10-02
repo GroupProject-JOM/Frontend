@@ -50,7 +50,7 @@
 }
 
 .productionmg-button{
-  margin: 70px 0 15px 0;
+  margin-bottom:15px;
   width: fit-content;
   padding: 8px 20px;
   font-size: 15px;
@@ -61,8 +61,8 @@
 .collection-data-table {
   width: 25rem;
   /* margin-top: 35px; */
-  top: 50%;
-  transform: translate(0, 15%);
+  /* top: 50%;
+  transform: translate(0, 15%); */
 }
 
 .production-ongoing{
@@ -73,7 +73,33 @@
   background-color: var(--completed-green);
 }
 
+.stock-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 
+
+input {
+  /* box-sizing: border-box; */
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  color: #484848;
+  padding: 7px 0;
+  margin: 20px 0;
+  background-color: var(--body-color);
+}
+
+input::placeholder {
+  color: var(--input-border);
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #484848;
+  transition: var(--tran-05);
+}
 
 @media only screen and (max-device-width: 1260px) {
   .production-req {
