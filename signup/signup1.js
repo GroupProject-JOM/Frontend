@@ -178,7 +178,7 @@ var fname_status = false,
       };
 
       // send form data object via fetch api
-      fetch( backProxy + "/signup", {
+      fetch(backProxy + "/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -211,9 +211,6 @@ var fname_status = false,
               } else if (data.message == "email2") {
                 emailError.textContent = "Enter a valid email!";
                 email.focus();
-              } else if (data.message == "email3") {
-                emailError.textContent = "This email is already used";
-                email.focus();
               } else if (data.message == "password") {
                 passwordError.textContent = "Password cannot be empty!";
                 password.focus();
@@ -232,6 +229,13 @@ var fname_status = false,
               } else {
                 mainError.textContent = "Something went wrong";
                 mainError.style.display = "block";
+              }
+            });
+          } else if (response.status === 409) {
+            response.json().then((data) => {
+              if (data.message == "email3") {
+                emailError.textContent = "This email is already used";
+                email.focus();
               }
             });
           } else {
@@ -372,3 +376,4 @@ function ValidateEmail(email) {
   }
 }
 
+// TODO fname lname etc. have to validate
