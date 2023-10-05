@@ -41,6 +41,22 @@
   width: 40rem;
 }
 
+.production-ongoing{
+  background-color: var(--sidebar-color);
+}
+
+.production-completed{
+  background-color: var(--completed-green);
+}
+
+.payment-pending{
+  background-color: var(--sidebar-color);
+}
+
+.payment-paid{
+  background-color: var(--completed-green);
+}
+
 input {
   /* box-sizing: border-box; */
   border: none;
