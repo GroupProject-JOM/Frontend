@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Distributor</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../common/style.css" />
+    <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/notify.css" />
+
+    <style>
+        .container {
+            top: 50%;
+            transform: translate(0, 10%);
+            margin-left: 10rem;   
+        }
+      input {
+        /* box-sizing: border-box; */
+        border: none;
+        border-bottom: 1px solid #a9a9a9;
+        color: #484848;
+        padding: 7px 0;
+        margin: 20px 0 0 0;
+        font-size: 15px;
+        margin: 20px 0;
+      }
+      input::placeholder {
+        color: #a9a9a9;
+      }
+      textarea:focus,
+      input:focus {
+        outline: none;
+        border-bottom: 1px solid #484848;
+        transition: var(--tran-05);
+      }
+      .short {
+        width: 17rem;
+      }
+      .long {
+        width: 40rem;
+      }
+      .add-outlet-form {
+        padding: 0;
+        margin: 0;
+        display: grid;
+        flex-direction: column;
+        align-items: center;
+      }
+      .add-outlet-form div {
+        display: flex;
+        width: 40rem;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="container">
+        <div class="outlet-heading table-heading">
+          <h2 class="outlet-title" style="margin-bottom: 2rem;">Add New Outlet</h2>
+        </div>
+        <div class="add-outlet-form">
+          <form autocomplete="on">
+            <input
+              type="text"
+              class="long oname"
+              placeholder="Outlet Name"
+              autocomplete="given-name"
+            />
+            <br />
+            <input
+              type="text"
+              class="long email"
+              placeholder="Outlet Email"
+              autocomplete="email"
+            /><br />
+            <input
+              type="text"
+              class="long phone"
+              placeholder="Outlet Phone Number"
+              autocomplete="tel"
+            /><br />
+            <input
+              type="text"
+              class="long address1"
+              placeholder="Address Line 1"
+              autocomplete="address-line1"
+            /><br />
+            <div>
+              <input
+                type="text"
+                class="short address2"
+                placeholder="Street"
+                autocomplete="address-line2"
+              />
+              <input
+                type="text"
+                class="short address3"
+                placeholder="City"
+                autocomplete="address-line3"
+              />
+            </div>
+          </form>
+        </div>
+        <button class="next form-button">Add</button>
+      </div>
+    </section>
+    <script src="../common/func.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./nav/load-nav.js"></script>
+    <script src="./notifications/load-notifications.js"></script>
+  </body>
+</html>
