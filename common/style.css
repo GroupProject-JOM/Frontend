@@ -26,6 +26,7 @@
   --label-selected: #2D2D2D;
   --completed-green: #70BB56;
   --reject-red: #e96d6d;
+  --input-border-focus: #484848;
 
   --tran-02: all 0.2s ease;
   --tran-03: all 0.3s ease;

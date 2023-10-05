@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payouts</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
+  </head>
+
+  <body>
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="container">
+        <div class="productionmg-heading table-heading">
+          <h2 class="productionmg-title">Payouts</h2>
+          <p class="production-history-text">
+            View the history of payments for the suppliers
+          </p>
+        </div>
+
+        <table class="production-table overview-tables">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Date</th>
+              <th>Supplier ID</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>T0006</td>
+              <td>21/04/2023</td>
+              <td>S0002</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-pending status">Pending</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>T0007</td>
+              <td>21/04/2023</td>
+              <td>S0005</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-pending status">Pending</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>T0008</td>
+              <td>21/04/2023</td>
+              <td>S0004</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-pending status">Pending</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>T0009</td>
+              <td>21/04/2023</td>
+              <td>S0005</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-pending status">Pending</button>
+              </td>
+            </tr>
+            <tr>
+              <td>T0001</td>
+              <td>21/04/2023</td>
+              <td>S0001</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-paid status">Paid</button>
+              </td>
+            </tr>
+            <tr>
+              <td>T0002</td>
+              <td>21/04/2023</td>
+              <td>S0001</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-paid status">Paid</button>
+              </td>
+            </tr>
+            <tr>
+              <td>T0003</td>
+              <td>21/04/2023</td>
+              <td>S0002</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-paid status">Paid</button>
+              </td>
+            </tr>
+            <tr>
+              <td>T0004</td>
+              <td>21/04/2023</td>
+              <td>S0003</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-paid status">Paid</button>
+              </td>
+            </tr>
+            <tr>
+              <td>T0005</td>
+              <td>21/04/2023</td>
+              <td>S0004</td>
+              <td>2000</td>
+              <td>
+                <button class="payment-paid status">Paid</button>
+              </td>
+            </tr>
+
+            
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>
