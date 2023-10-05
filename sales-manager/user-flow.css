@@ -26,14 +26,18 @@
 }
 
 .add-container {
-  /* position: absolute;
-    top: 50%; */
+  /* position: absolute; */
+    /* top: 50%; */
   /* transform: translate(0, 30%); */
   margin-left: 6rem;
 }
 
-.add-distributor-container {
-  transform: translate(0, 40%);
+.add-outlet-container {
+  transform: translate(0, 20%);
+}
+
+.payment-container{
+  transform: translate(0, 10%);
 }
 
 .add-form input {
@@ -61,7 +65,7 @@ input {
   /* box-sizing: border-box; */
   border: none;
   border-bottom: 1px solid var(--input-border);
-  color: #484848;
+  color: var(--input-border-focus);
   padding: 7px 0;
   margin: 20px 0;
   background-color: var(--body-color);
@@ -74,6 +78,10 @@ input::placeholder {
 textarea:focus,
 input:focus {
   outline: none;
-  border-bottom: 1px solid #484848;
+  border-bottom: 1px solid var(--input-border-focus);
   transition: var(--tran-05);
+}
+
+.payment-table {
+  width: 25rem;
 }
