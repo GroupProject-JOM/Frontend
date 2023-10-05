@@ -10,17 +10,18 @@
     fht4 = body.querySelector(".form-heading-text4"),
     eotp = body.querySelector(".email-otp"),
     potp = body.querySelector(".phone-otp"),
-
     sendEmail = body.querySelector(".send-email"),
     reEmail = body.querySelector(".renter-email"),
     emailOtp = body.querySelector(".email-otp"),
-
     sendPhone = body.querySelector(".send-phone"),
     rePhone = body.querySelector(".renter-phone"),
     phoneOtp = body.querySelector(".phone-otp"),
-    // next = body.querySelector(".next"),
+    next = body.querySelector(".next"),
     vbt1 = body.querySelector(".vb1"),
-    vbt2 = body.querySelector(".vb2");
+    vbt2 = body.querySelector(".vb2"),
+    emailRing = body.querySelector(".lds-ring"),
+    counter = body.querySelector("#counter");
+  // vbt2 = body.querySelector(".vb2");
 
   var email = sessionStorage.getItem("email"),
     phone = sessionStorage.getItem("phone");
@@ -40,8 +41,7 @@
     fht4.textContent = data["sin"]["fht4"];
     eotp.placeholder = data["sin"]["eotp"];
     potp.placeholder = data["sin"]["potp"];
-
-    // next.textContent = data["sin"]["next"];
+    next.textContent = data["sin"]["next"];
     vbt1.textContent = data["sin"]["vbt1"];
     vbt2.textContent = data["sin"]["vbt2"];
   });
@@ -61,7 +61,7 @@
     fht4.textContent = data["en"]["fht4"];
     eotp.placeholder = data["en"]["eotp"];
     potp.placeholder = data["en"]["potp"];
-    // next.textContent = data["en"]["next"];
+    next.textContent = data["en"]["next"];
     vbt1.textContent = data["en"]["vbt1"];
     vbt2.textContent = data["en"]["vbt2"];
   });
@@ -70,9 +70,9 @@
     sin: {
       fh1: "ඔබගේ විද්‍යුත් තැපෑල තහවුරු කරන්න",
       fh2: "ඔබගේ දුරකථනය තහවුරු කරන්න",
-      fht1: email+ " වෙත යැවූ OTP ඇතුලත් කරන්න",
+      fht1: email + " වෙත යැවූ OTP ඇතුලත් කරන්න",
       fht2: "වැරදි විද්‍යුත් තැපැල් ලිපිනයක්ද?",
-      fht3: phone +" වෙත යැවූ OTP ඇතුලත් කරන්න",
+      fht3: phone + " වෙත යැවූ OTP ඇතුලත් කරන්න",
       fht4: "වැරදි දුරකථන අංකයක්ද?",
       eotp: "කේතය ඇතුලත් කරන්න",
       potp: "කේතය ඇතුලත් කරන්න",
@@ -83,9 +83,9 @@
     en: {
       fh1: "Verify your email",
       fh2: "Verify your mobile",
-      fht1: "Send OTP to "+ email,
+      fht1: "Send OTP to " + email,
       fht2: "Wrong Email Address?",
-      fht3: "Send OTP to "+ phone,
+      fht3: "Send OTP to " + phone,
       fht4: "Wrong Phone Number?",
       eotp: "Enter Code",
       potp: "Enter Code",
@@ -97,19 +97,69 @@
 
   checkLng();
 
-  fht2.addEventListener("click",() => {
+  fht2.addEventListener("click", () => {
     reEmail.style.display = "block";
     sendEmail.style.display = "none";
     fht1.style.display = "none";
     emailOtp.style.display = "none";
     vbt1.style.display = "none";
-  })
+  });
 
-  fht4.addEventListener("click",() => {
+  fht4.addEventListener("click", () => {
     rePhone.style.display = "block";
     sendPhone.style.display = "none";
     fht3.style.display = "none";
     phoneOtp.style.display = "none";
     vbt2.style.display = "none";
-  })
+  });
+
+  sendEmail.addEventListener("click", () => {
+
+    emailRing.style.display = "block";
+    sendEmail.style.display = "none";
+
+    var formData = {
+      email: email,
+    };
+    fetch(backProxy + "/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.ok) {
+          response.json().then((data) => {
+            console.log(data.message);
+            sessionStorage.setItem("otp", data.otp);
+          });
+          emailRing.style.display = "none";
+          sendEmail.textContent = "Resend"          
+          sendEmail.style.display = "block";
+          sendEmail.disabled = true;
+          counter.style.display = "block";
+
+          var count = 59, timer = setInterval(()=>{
+            counter.innerHTML = "00:" + (count--).padStart(2,"0");
+            if(count == 0){ 
+              clearInterval(timer);
+              sendEmail.disabled = false;
+              counter.style.display = "none";
+            };
+          },1000)
+
+
+        } else if (response.status === 401) {
+          console.log("Registration unsuccessful");
+        } else {
+          console.error("Error:", response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      });
+  });
 })();
+
