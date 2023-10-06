@@ -188,6 +188,9 @@
             response.json().then((data) => {
               console.log(data.message);
             });
+            sessionStorage.removeItem("id");
+            sessionStorage.removeItem("phone");
+            sessionStorage.removeItem("email");
             window.location.href = frontProxy + "/signup/signup3.html";
           } else if (response.status === 401) {
             console.log("Invalid OTP");
