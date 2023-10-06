@@ -60,7 +60,7 @@
 
   checkLng();
   var enameStatus = false,
-    locationstatus = false,
+    locationStatus = false,
     areaStatus = false;
 
   next.addEventListener("click", () => {
@@ -78,7 +78,7 @@
       console.log("Location cannot be empty");
       location.focus();
     } else {
-      locationstatus = true;
+      locationStatus = true;
     }
 
     if (typeof ename.value === "string" && ename.value.trim().length === 0) {
@@ -88,7 +88,7 @@
       enameStatus = true;
     }
 
-    if (enameStatus && locationstatus && enameStatus) {
+    if (enameStatus && locationStatus && areaStatus) {
       var formData = {
         supplier_id: sessionStorage.getItem("sId"),
         estate_name: ename.value,

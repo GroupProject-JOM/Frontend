@@ -64,5 +64,70 @@
     };
   
     checkLng();
+
+    var accStatus = false,
+    bankStatus = false,
+    hnameStatus = false;
+
+  next.addEventListener("click", () => {    
+    if (
+      typeof bank.value === "string" &&
+      bank.value.trim().length === 0
+      ) {
+        console.log("Bank cannot be empty");
+        bank.focus();
+      } else {
+        bankStatus = true;
+      }
+      
+      if (typeof acc.value === "string" && acc.value.trim().length === 0) {
+        console.log("Account number cannot be empty");
+        acc.focus();
+      } else {
+        accStatus = true;
+      }
+      
+      if (typeof hname.value === "string" && hname.value.trim().length === 0) {
+        console.log("Holder name cannot be empty");
+        hname.focus();
+      } else {
+        hnameStatus = true;
+      }
+
+    if (accStatus && bankStatus && hnameStatus) {
+      var formData = {
+        supplier_id: sessionStorage.getItem("sId"),
+        name: hname.value,
+        account_number: acc.value,
+        bank: bank.value,
+      };
+      fetch(backProxy + "/account", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            sessionStorage.removeItem("sId");
+            window.location.href = frontProxy + "/signup/signup5.html";
+          } else if (response.status === 400) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+          } else {
+            console.error("Error:", response.status);
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+        });
+    }
+  });
   })();
   
