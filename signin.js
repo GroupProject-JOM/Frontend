@@ -131,6 +131,9 @@ var username_status = false,
               if (data.message == "username") {
                 usernameError.textContent = "Invalid Username!";
                 username.focus();
+              } else if (data.message == "validate") {
+                usernameError.textContent = "User is not validated!";
+                username.focus();
               }
             });
           } else {
