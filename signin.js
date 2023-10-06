@@ -104,6 +104,7 @@ var username_status = false,
             response.json().then((data) => {
               console.log(data.message);
               if (data.message == "Login successfully") {
+                sessionStorage.setItem('name', data.name);
                 window.location.href = frontProxy + "/" + data.page;
               }
             });

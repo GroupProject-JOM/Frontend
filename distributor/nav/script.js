@@ -15,7 +15,10 @@
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
-      l9 = body.querySelector(".l9");
+      l9 = body.querySelector(".l9"),
+      Uname = body.querySelector(".name");
+
+      Uname.textContent = sessionStorage.getItem('name');
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
