@@ -23,7 +23,10 @@
       newSupply = body.querySelector(".newSupply"),
       address = body.querySelector(".address"),
       payment = body.querySelector(".payment"),
-      dashboard = body.querySelector(".dashboard");
+      dashboard = body.querySelector(".dashboard"),
+      Uname = body.querySelector(".name");
+
+      Uname.textContent = sessionStorage.getItem('name');
 
       newSupply.href = frontProxy + "/supplier/supply/new.html";
       address.href = frontProxy + "/supplier/address/view-all.html";
