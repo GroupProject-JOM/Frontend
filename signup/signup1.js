@@ -191,6 +191,7 @@ var fname_status = false,
             response.json().then((data) => {
               console.log(data.message); // to alert
               sessionStorage.setItem("id", data.id);
+              sessionStorage.setItem("sId", data.sId);
               sessionStorage.setItem("email", data.email);
               sessionStorage.setItem("phone", data.phone);
             });
