@@ -21,10 +21,10 @@
     vbt2 = body.querySelector(".vb2"),
     emailRing = body.querySelector(".lds-ring"),
     counter = body.querySelector("#counter");
-  // vbt2 = body.querySelector(".vb2");
 
   var email = sessionStorage.getItem("email"),
-    phone = sessionStorage.getItem("phone");
+    phone = sessionStorage.getItem("phone"),
+    oId;
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -114,12 +114,12 @@
   });
 
   sendEmail.addEventListener("click", () => {
-
     emailRing.style.display = "block";
     sendEmail.style.display = "none";
 
     var formData = {
       email: email,
+      id: sessionStorage.getItem("id"),
     };
     fetch(backProxy + "/email", {
       method: "POST",
@@ -133,24 +133,23 @@
         if (response.ok) {
           response.json().then((data) => {
             console.log(data.message);
-            sessionStorage.setItem("otp", data.otp);
+            oId = data.oId;
           });
           emailRing.style.display = "none";
-          sendEmail.textContent = "Resend"          
+          sendEmail.textContent = "Resend";
           sendEmail.style.display = "block";
           sendEmail.disabled = true;
           counter.style.display = "block";
 
-          var count = 59, timer = setInterval(()=>{
-            counter.innerHTML = "00:" + (count--).padStart(2,"0");
-            if(count == 0){ 
-              clearInterval(timer);
-              sendEmail.disabled = false;
-              counter.style.display = "none";
-            };
-          },1000)
-
-
+          var count = 59,
+            timer = setInterval(() => {
+              counter.innerHTML = "00:" + count--;
+              if (count == 0) {
+                clearInterval(timer);
+                sendEmail.disabled = false;
+                counter.style.display = "none";
+              }
+            }, 1000);
         } else if (response.status === 401) {
           console.log("Registration unsuccessful");
         } else {
@@ -161,5 +160,45 @@
         console.error("An error occurred:", error);
       });
   });
-})();
 
+  // TODO input chage must be handle in emailOTP
+  vbt1.addEventListener("click", () => {
+    if (
+      typeof emailOtp.value === "string" &&
+      emailOtp.value.trim().length === 0
+    ) {
+      console.log("OTP cannot be empty");
+      emailOtp.focus();
+    } else {
+      var formData = {
+        otp: emailOtp.value,
+        id: sessionStorage.getItem("id"),
+        oId: oId,
+      };
+      fetch(backProxy + "/validateE", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            window.location.href = frontProxy + "/signup/signup3.html";
+          } else if (response.status === 401) {
+            console.log("Invalid OTP");
+            emailOtp.focus();
+          } else {
+            console.error("Error:", response.status);
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+        });
+    }
+  });
+})();

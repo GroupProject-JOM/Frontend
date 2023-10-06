@@ -187,9 +187,10 @@ var fname_status = false,
         credentials: "include",
       })
         .then((response) => {
-          if (response.ok) {
+          if (response.status == 200) {
             response.json().then((data) => {
-              console.log(data.message);
+              console.log(data.message); // to alert
+              sessionStorage.setItem("id", data.id);
               sessionStorage.setItem("email", data.email);
               sessionStorage.setItem("phone", data.phone);
             });
