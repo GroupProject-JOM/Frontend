@@ -1,3 +1,7 @@
+if(sessionStorage.getItem('page') !=  null){
+  window.location.href = frontProxy + "/" + sessionStorage.getItem('page');
+}
+
 var username_status = false,
   password_status = false;
 
@@ -52,7 +56,7 @@ var username_status = false,
       ll1: "ජයසිංහ ඔයිල් මිල්ස් වෙත",
       ll2: "සාදරයෙන් පිළිගනිමු",
       ll3: "මුරපදය අමතක වුණා ද?",
-      ll4: "JOM වෙත අලුත්ද ? <a href='./signup/signup1.html'>ගිණුමක් තනන්න</a>",
+      ll4: "JOM වෙත අලුත්ද ? <a href='./signup'>ගිණුමක් තනන්න</a>",
       username: "පරිශීලක නාමය",
       password: "මුරපදය",
       button: "පිවිසෙන්න",
@@ -61,7 +65,7 @@ var username_status = false,
       ll1: "Welcome to",
       ll2: "Jayasinghe Oil Mills",
       ll3: "Forgot Password?",
-      ll4: "New to JOM ? <a href='./signup/signup1.html'>Create an Account</a>",
+      ll4: "New to JOM ? <a href='./signup'>Create an Account</a>",
       username: "Username",
       password: "Password",
       button: "Login",
@@ -105,6 +109,7 @@ var username_status = false,
               console.log(data.message);
               if (data.message == "Login successfully") {
                 sessionStorage.setItem('name', data.name);
+                sessionStorage.setItem('page',data.page);
                 window.location.href = frontProxy + "/" + data.page;
               }
             });

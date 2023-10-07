@@ -1,3 +1,11 @@
+if (sessionStorage.getItem("page") == null) {
+  window.location.href = frontProxy + "/signin.html";
+}
+
+if (sessionStorage.getItem("page") != "stock-manager") {
+  window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+}
+
 (() => {
   let loaded = false;
 
@@ -20,7 +28,7 @@
       l9 = body.querySelector(".l9"),
       Uname = body.querySelector(".name");
 
-      Uname.textContent = sessionStorage.getItem('name');
+    Uname.textContent = sessionStorage.getItem("name");
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;

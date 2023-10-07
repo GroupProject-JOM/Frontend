@@ -1,3 +1,11 @@
+if (sessionStorage.getItem("page") == null) {
+  window.location.href = frontProxy + "/signin.html";
+}
+
+if (sessionStorage.getItem("page") != "supplier") {
+  window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+}
+
 (() => {
   let loaded = false;
 
@@ -26,12 +34,12 @@
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name");
 
-      Uname.textContent = sessionStorage.getItem('name');
+    Uname.textContent = sessionStorage.getItem("name");
 
-      newSupply.href = frontProxy + "/supplier/supply/new.html";
-      address.href = frontProxy + "/supplier/address/view-all.html";
-      payment.href = frontProxy + "/supplier/payment/view-all.html";
-      dashboard.href = frontProxy + "/supplier/";
+    newSupply.href = frontProxy + "/supplier/supply/new.html";
+    address.href = frontProxy + "/supplier/address/view-all.html";
+    payment.href = frontProxy + "/supplier/payment/view-all.html";
+    dashboard.href = frontProxy + "/supplier/";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -92,7 +100,7 @@
         l6: "ප්‍රධාන ක්‍ර්‍රියාවන්",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
-        l11:"උපකරණ පුවරුව",
+        l11: "උපකරණ පුවරුව",
       },
       en: {
         l0: "USER ACTIONS",
@@ -104,7 +112,7 @@
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
-        l11:"Dashboard",
+        l11: "Dashboard",
       },
     };
 
