@@ -1,3 +1,11 @@
+if (sessionStorage.getItem("page") == null) {
+  window.location.href = frontProxy + "/signin.html";
+}
+
+if (sessionStorage.getItem("page") != "admin") {
+  window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+}
+
 (() => {
   let loaded = false;
 
