@@ -90,7 +90,7 @@ window.addEventListener("resize", (e) => {
   const body = document.querySelector("body"),
     sidebar = body.querySelector(".sidebar");
 
-    if (!sidebar) return;
+  if (!sidebar) return;
 
   if (window.innerWidth <= 1010) {
     sidebar.classList.add("close");
@@ -103,7 +103,7 @@ window.addEventListener("load", (e) => {
   const body = document.querySelector("body"),
     sidebar = body.querySelector(".sidebar");
 
-    if (!sidebar) return;
+  if (!sidebar) return;
 
   if (window.innerWidth <= 1010) {
     sidebar.classList.add("close");

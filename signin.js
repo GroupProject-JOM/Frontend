@@ -1,5 +1,8 @@
-if(sessionStorage.getItem('page') !=  null){
-  window.location.href = frontProxy + "/" + sessionStorage.getItem('page');
+if (
+  sessionStorage.getItem("page") != null &&
+  sessionStorage.getItem("page").length != 0
+) {
+  window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
 }
 
 var username_status = false,
@@ -108,8 +111,8 @@ var username_status = false,
             response.json().then((data) => {
               console.log(data.message);
               if (data.message == "Login successfully") {
-                sessionStorage.setItem('name', data.name);
-                sessionStorage.setItem('page',data.page);
+                sessionStorage.setItem("name", data.name);
+                sessionStorage.setItem("page", data.page);
                 window.location.href = frontProxy + "/" + data.page;
               }
             });
@@ -125,14 +128,14 @@ var username_status = false,
                 password.focus();
               }
             });
-          } else if(response.status === 202) {
+          } else if (response.status === 202) {
             response.json().then((data) => {
               if (data.message == "password") {
                 passwordError.textContent = "Invalid Password!";
                 password.focus();
               }
             });
-          } else if(response.status === 401) {
+          } else if (response.status === 401) {
             response.json().then((data) => {
               if (data.message == "username") {
                 usernameError.textContent = "Invalid Username!";
