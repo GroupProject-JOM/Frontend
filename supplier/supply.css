@@ -132,11 +132,11 @@ select.dropdown {
   color: var(--input-border);
 }
 
-.bankaccc-table .icon,
+/* .bankaccc-table .icon,
 .addresses-table .icon {
   color: var(--tbicon-color);
   font-size: 18px;
-}
+} */
 
 .checkbox:checked + .supply-label {
   color: var(--label-selected);

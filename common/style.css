@@ -435,3 +435,9 @@ body.dark {
     transform: rotate(360deg);
   }
 }
+
+
+.overview-tables .icon{
+  color: var(--tbicon-color);
+  font-size: 18px;
+}
