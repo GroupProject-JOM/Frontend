@@ -1,9 +1,12 @@
-if (sessionStorage.getItem("page") == null) {
-  window.location.href = frontProxy + "/signin.html";
-}
-
 if (sessionStorage.getItem("page") != "distributor") {
-  window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+  if (
+    sessionStorage.getItem("page") == null ||
+    sessionStorage.getItem("page").length === 0
+  ) {
+    window.location.href = frontProxy + "/signin.html";
+  } else {
+    window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+  }
 }
 
 (() => {

@@ -1,4 +1,7 @@
-if (sessionStorage.getItem("page") != null) {
+if (
+  sessionStorage.getItem("page") != null &&
+  sessionStorage.getItem("page").length != 0
+) {
   window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
 }
 
