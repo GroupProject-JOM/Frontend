@@ -102,14 +102,16 @@ window.addEventListener("resize", (e) => {
 window.addEventListener("load", (e) => {
   const body = document.querySelector("body"),
     sidebar = body.querySelector(".sidebar");
+    
+    if (window.innerWidth <= 1010) {
+      sidebar.classList.add("close");
+    } else {
+      sidebar.classList.remove("close");
+    }
 
-  if (!sidebar) return;
+    if (!sidebar) return;
 
-  if (window.innerWidth <= 1010) {
-    sidebar.classList.add("close");
-  } else {
-    sidebar.classList.remove("close");
-  }
+    console.log(window.innerWidth)
 });
 
 const frontProxy = "http://127.0.0.1:5501";
