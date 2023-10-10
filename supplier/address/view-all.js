@@ -1,4 +1,4 @@
-sessionStorage.setItem("id",0);
+sessionStorage.setItem("id", 0);
 
 (() => {
   const body = document.querySelector("body"),
@@ -72,27 +72,40 @@ sessionStorage.setItem("id",0);
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            console.log(item);
+            // console.log(item);
 
             row +=
-              "<tr data-href='./view.html' id="+ item.id +">" +
+              "<tr data-href='./view.html' id=" +
+              item.id +
+              ">" +
               "<td>" +
               item.estate_name +
               "</td>" +
               "<td>" +
               item.area +
               "</td>" +
-              '<td><i class="fa-solid fa-pen-to-square icon"></i></td>' +
+              '<td class="edit"><i class="fa-solid fa-pen-to-square icon"></i></td>' +
               '<td><i class="fa-solid fa-trash-can icon"></i></td>' +
               "</tr>";
           }
           tbody.innerHTML = row;
 
-          const rows = document.querySelectorAll("tr[data-href]");
+          const rows = document.querySelectorAll("tr[data-href]"),
+            edits = document.querySelectorAll(".edit");
+
+          console.log(edits);
+          edits.forEach((e) => {
+            e.addEventListener("click", () => {
+              console.log(e.parentElement.id);
+              sessionStorage.setItem("id", e.parentElement.id);
+              window.location.href = "./edit.html";
+            });
+          });
+
           rows.forEach((r) => {
             r.addEventListener("click", () => {
-              sessionStorage.setItem("id",r.id)
-              window.location.href = r.dataset.href;
+              sessionStorage.setItem("id", r.id);
+              // window.location.href = r.dataset.href;
             });
           });
         });

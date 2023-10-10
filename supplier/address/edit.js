@@ -51,28 +51,26 @@
 
   var data = {
     sin: {
-      sTitle: "නව වතු ස්ථානය එක් කරන්න",
-      sText:
-        "නව වතු ස්ථානයක් සඳහා තොරතුරු එක් කරන්න. <br />ඔබට ඕනෑම වේලාවක උපකරණ පුවරුව > ලිපිනයන් හිදී මෙම තොරතුරු සංස්කරණය කළ හැක",
+      sTitle: "වතු ස්ථානය සංස්කරණය කරන්න",
+      sText: "ඔබගේ ස්ථාන විස්තර සංස්කරණය කරන්න",
       ename: "වතු නම",
       location: "ස්ථානය",
       op1: "ඔබේ ප්රදේශය තෝරන්න",
       op2: "පිළියන්දල",
       op3: "කැස්බෑව",
       op4: "ප්රදේශය51",
-      btn: "එකතු කරන්න",
+      btn: "සුරකින්න",
     },
     en: {
-      sTitle: "Add New Estate Location",
-      sText:
-        "Add information for a new estate location. <br />You can edit these information any time at Dashboard > Addresses",
+      sTitle: "Edit Estate Location",
+      sText: "Edit your location details",
       ename: "Estate Name",
       location: "Location",
       op1: "Select your Area",
       op2: "piliyandala",
       op3: "Kasbawa",
       op4: "area51",
-      btn: "Add",
+      btn: "Save",
     },
   };
 
@@ -110,13 +108,15 @@
 
     if (enameStatus && locationStatus && dropdownStatus) {
       var formData = {
+        id: sessionStorage.getItem("id"),
         supplier_id: sessionStorage.getItem("sId"),
         estate_name: ename.value,
         estate_location: location.value,
         area: dropdown.value,
       };
+
       fetch(backProxy + "/estate", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -128,7 +128,7 @@
             response.json().then((data) => {
               console.log(data.message);
             });
-            window.location.href = "./view-all.html";
+            window.location.href = "./view.html";
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
@@ -142,4 +142,39 @@
         });
     }
   });
+
+  //Get data
+  fetch(
+    backProxy +
+      "/estate?sId=" +
+      sessionStorage.getItem("sId") +
+      "&id=" +
+      sessionStorage.getItem("id"),
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  )
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          console.log(data.estate);
+          ename.value = data.estate.estate_name;
+          location.value = data.estate.estate_location;
+          dropdown.value = data.estate.area;
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.estate);
+        });
+      } else {
+        console.error("Error:", response.status);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
 })();
