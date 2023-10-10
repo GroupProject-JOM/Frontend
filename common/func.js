@@ -111,7 +111,6 @@ window.addEventListener("load", (e) => {
 
     if (!sidebar) return;
 
-    console.log(window.innerWidth)
 });
 
 const frontProxy = "http://127.0.0.1:5501";
