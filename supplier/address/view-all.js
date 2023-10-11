@@ -57,7 +57,6 @@ sessionStorage.setItem("id", 0);
   };
 
   var row = "";
-
   fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
     method: "GET",
     headers: {
@@ -72,8 +71,6 @@ sessionStorage.setItem("id", 0);
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            // console.log(item);
-
             row +=
               "<tr data-href='./view.html' id=" +
               item.id +
@@ -84,28 +81,63 @@ sessionStorage.setItem("id", 0);
               "<td>" +
               item.area +
               "</td>" +
-              '<td class="edit"><i class="fa-solid fa-pen-to-square icon"></i></td>' +
-              '<td><i class="fa-solid fa-trash-can icon"></i></td>' +
+              '<td class="edit"><a href="./edit.html"><i class="fa-solid fa-pen-to-square icon"></a></i></td>' +
+              '<td class="delete"><a href="./view-all.html"><i class="fa-solid fa-trash-can icon"></a></i></td>' +
               "</tr>";
           }
           tbody.innerHTML = row;
 
           const rows = document.querySelectorAll("tr[data-href]"),
-            edits = document.querySelectorAll(".edit");
+            edits = document.querySelectorAll(".edit"),
+            deletes = document.querySelectorAll(".delete");
 
-          console.log(edits);
           edits.forEach((e) => {
             e.addEventListener("click", () => {
               console.log(e.parentElement.id);
               sessionStorage.setItem("id", e.parentElement.id);
-              window.location.href = "./edit.html";
+            });
+          });
+
+          deletes.forEach((d) => {
+            d.addEventListener("click", () => {
+              fetch(
+                backProxy +
+                  "/estate?sId=" +
+                  sessionStorage.getItem("sId") +
+                  "&id=" +
+                  d.parentElement.id,
+                {
+                  method: "DELETE",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+                }
+              )
+                .then((response) => {
+                  if (response.status == 200) {
+                    response.json().then((data) => {
+                      console.log(data.message);
+                    });
+                  } else if (response.status === 400) {
+                    response.json().then((data) => {
+                      console.log(data.message);
+                    });
+                  } else {
+                    console.error("Error:", response.status);
+                    console.log(error);
+                  }
+                })
+                .catch((error) => {
+                  console.error("An error occurred:", error);
+                });
             });
           });
 
           rows.forEach((r) => {
             r.addEventListener("click", () => {
               sessionStorage.setItem("id", r.id);
-              // window.location.href = r.dataset.href;
+              window.location.href = r.dataset.href;
             });
           });
         });
