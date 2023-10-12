@@ -1,3 +1,4 @@
+sessionStorage.removeItem("id");
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
