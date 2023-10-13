@@ -59,7 +59,7 @@
       op1: "ඔබේ ප්රදේශය තෝරන්න",
       op2: "පිළියන්දල",
       op3: "කැස්බෑව",
-      op4: "ප්රදේශය51",
+      op4: "ප්රදේශය",
       btn: "එකතු කරන්න",
     },
     en: {
@@ -71,7 +71,7 @@
       op1: "Select your Area",
       op2: "piliyandala",
       op3: "Kasbawa",
-      op4: "area51",
+      op4: "area",
       btn: "Add",
     },
   };
