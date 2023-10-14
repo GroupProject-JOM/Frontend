@@ -16,11 +16,11 @@
       .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {
-            console.log(data.payment);
+            console.log(data.account);
           });
         } else if (response.status === 202) {
           response.json().then((data) => {
-            console.log(data.payment);
+            console.log(data.account);
           });
         } else {
           console.error("Error:", response.status);
