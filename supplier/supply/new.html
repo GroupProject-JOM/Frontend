@@ -38,24 +38,20 @@
 
       <div class="supply-container container">
         <div class="supply-heading table-heading">
-          <h2 class="supply-title">New Supply</h2>
-          <p class="supply-text">
-            Fill up the details correctly for your new supply request. <br />
-            Requests will be reviewed within 24 hours. You can check them inside
-            your dashboard.
-          </p>
+          <h2 class="supply-title"></h2>
+          <p class="supply-text"></p>
         </div>
         <div class="supply-content">
           <form class="supply">
             <input
               type="text"
               class="coco-amount"
-              placeholder="Coconut Amount"
+              placeholder=""
             />
           </form>
 
           <div class="collection method">
-            <div class="method-text">Collection Method</div>
+            <div class="method-text c-method"></div>
 
             <input
               type="checkbox"
@@ -63,20 +59,18 @@
               value="1"
               name="fooby[1][]"
             />
-            <label class="pickup-label supply-label"> Pickup at Estate</label>
+            <label class="pickup-label supply-label"></label>
             <input
               type="checkbox"
               class="delivered radio checkbox"
               value="1"
               name="fooby[1][]"
             />
-            <label class="delivered-label supply-label">
-              Delivered to Yard</label
-            >
+            <label class="delivered-label supply-label"></label>
           </div>
 
           <div class="payment method">
-            <div class="method-text">Payment Method</div>
+            <div class="method-text p-method"></div>
 
             <input
               type="checkbox"
@@ -84,7 +78,7 @@
               value="1"
               name="fooby[2][]"
             />
-            <label class="cash-label supply-label"> Cash on Pickup</label>
+            <label class="cash-label supply-label"></label>
 
             <input
               type="checkbox"
@@ -92,14 +86,13 @@
               value="1"
               name="fooby[2][]"
             />
-            <label class="bank-label supply-label"> Bank Transfer</label>
+            <label class="bank-label supply-label"></label>
           </div>
-          <button class="next form-button">Next</button>
+          <button class="next form-button"></button>
         </div>
       </div>
     </section>
     <script src="../../common/func.js"></script>
-    <!-- <script src="../script.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
@@ -116,5 +109,6 @@
         }
       });
     </script>
+    <script src="./new.js"></script>
   </body>
 </html>
