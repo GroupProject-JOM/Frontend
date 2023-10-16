@@ -57,16 +57,16 @@
 
   var data = {
     sin: {
-      sTitle: "",
-      sText: "",
-      amount: "",
-      cMethod: "",
-      pLabel: "",
-      dLabel: "",
-      pMethod: "",
-      cLabel: "",
-      bLabel: "",
-      btn: "",
+      sTitle: "නව සැපයුම",
+      sText: "ඔබගේ නව සැපයුම් ඉල්ලීම සඳහා විස්තර නිවැරදිව පුරවන්න. <br /> ඉල්ලීම් පැය 24ක් ඇතුළත සමාලෝචනය කෙරේ. ඔබට ඒවා ඔබේ උපකරණ පුවරුව තුළ පරීක්ෂා කළ හැකිය.",
+      amount: "පොල් ප්‍රමාණය",
+      cMethod: "එකතු කිරීමේ ක්රමය",
+      pLabel: "වත්තේ පිකප්",
+      dLabel: "අංගනයට භාර දෙන ලදී",
+      pMethod: "ගෙවීම් ක්රමය",
+      cLabel: "පිකප් මත මුදල්",
+      bLabel: "බැංකු හුවමාරුව",
+      btn: "ඊළඟ",
     },
     en: {
       sTitle: "New Supply",
@@ -84,7 +84,9 @@
   };
 
   var amountStatus = false,
-    p = "";
+    page = "",
+    collection = "",
+    money = "";
 
   btn.addEventListener("click", () => {
     if (typeof amount.value === "string" && amount.value.trim().length === 0) {
@@ -95,18 +97,24 @@
     }
 
     if (pickup.checked) {
+      collection = "pickup";
       if (cash.checked) {
-        p = "./pickup-cash.html";
+        money = "cash";
+        page = "./pickup-cash.html";
       } else if (bTransfer.checked) {
-        p = "./pickup-bank.html";
+        money = "bank";
+        page = "./pickup-bank.html";
       } else {
         console.log("Payment method cannot be empty");
       }
     } else if (delivered.checked) {
+      collection = "yard";
       if (cash.checked) {
-        p = "./yard-cash.html";
+        money = "cash";
+        page = "./yard-cash.html";
       } else if (bTransfer.checked) {
-        p = "./yard-bank.html";
+        money = "bank";
+        page = "./yard-bank.html";
       } else {
         console.log("Payment method cannot be empty");
       }
@@ -123,7 +131,38 @@
       (cash.checked || bTransfer)
     ) {
       sessionStorage.setItem("amount", amount.value);
-      window.location.href = p;
+      var formData = {
+        supplier_id: sessionStorage.getItem("sId"),
+        init_amount:amount.value,
+        p_method: money,
+        method: collection,
+      };
+      fetch(backProxy + "/collection", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          console.log(response.status)
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            // window.location.href = page;
+          } else if (response.status === 400) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+          } else {
+            console.error("Error:", response.status);
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+        });
     }
   });
 })();
