@@ -58,7 +58,8 @@
   var data = {
     sin: {
       sTitle: "නව සැපයුම",
-      sText: "ඔබගේ නව සැපයුම් ඉල්ලීම සඳහා විස්තර නිවැරදිව පුරවන්න. <br /> ඉල්ලීම් පැය 24ක් ඇතුළත සමාලෝචනය කෙරේ. ඔබට ඒවා ඔබේ උපකරණ පුවරුව තුළ පරීක්ෂා කළ හැකිය.",
+      sText:
+        "ඔබගේ නව සැපයුම් ඉල්ලීම සඳහා විස්තර නිවැරදිව පුරවන්න. <br /> ඉල්ලීම් පැය 24ක් ඇතුළත සමාලෝචනය කෙරේ. ඔබට ඒවා ඔබේ උපකරණ පුවරුව තුළ පරීක්ෂා කළ හැකිය.",
       amount: "පොල් ප්‍රමාණය",
       cMethod: "එකතු කිරීමේ ක්රමය",
       pLabel: "වත්තේ පිකප්",
@@ -128,14 +129,14 @@
     if (
       amountStatus &&
       (pickup.checked || delivered.checked) &&
-      (cash.checked || bTransfer)
+      (cash.checked || bTransfer.checked)
     ) {
       sessionStorage.setItem("amount", amount.value);
       var formData = {
         supplier_id: sessionStorage.getItem("sId"),
-        init_amount:amount.value,
-        p_method: money,
-        method: collection,
+        initial_amount: amount.value,
+        payment_method: money,
+        supply_method: collection,
       };
       fetch(backProxy + "/collection", {
         method: "POST",
@@ -146,13 +147,17 @@
         credentials: "include",
       })
         .then((response) => {
-          console.log(response.status)
+          console.log(response.status);
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message);
             });
-            // window.location.href = page;
+            window.location.href = page;
           } else if (response.status === 400) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+          } else if (response.status === 401) {
             response.json().then((data) => {
               console.log(data.message);
             });
