@@ -35,17 +35,13 @@
 
     <div class="supply3-container supply-container">
       <div class="supply-heading table-heading">
-        <h2 class="supply-title">New Supply</h2>
-        <p class="supply-text">
-          Fill up the details correctly for your new supply request. <br />
-          Requests will be reviewed within 24 hours. You can check them inside
-          your dashboard.
-        </p>
+        <h2 class="supply-title"></h2>
+        <p class="supply-text top-text"></p>
 
       </div>
       <div class="supply-content">
-        <select class="dropdown"> 
-          <option value="" disabled selected hidden >Estate Location</option>
+        <select class="dropdown location"> 
+          <option value="" disabled selected hidden class="lop"></option>
             <option value="location1">location 1</option> 
             <option value="location1">location 2</option> 
             <option value="location1">location 3</option> 
@@ -55,26 +51,23 @@
             <form class="date-form supply">
                 <!-- <input type="date" class="date" placeholder="Feasible Date" />
                 <input type="time" class="time" placeholder="Feasible Time" /> -->
-                <input type="text" placeholder="feasible date"
+                <input type="text" class="date" placeholder=""
                     onmousemove="(this.type='date')" onmouseleave="(this.type='text')">
-                    <input type="text" placeholder="feasible time"
+                    <input type="text" class="time" placeholder=""
                     onmousemove="(this.type='time')" onmouseleave="(this.type='text')">
             </form>
         </div>
 
-        <select class="dropdown"> 
-          <option value="" disabled selected hidden >Bank Account</option>
+        <select class="dropdown bank"> 
+          <option value="" disabled selected hidden class="time"></option>
             <option value="bank1">bank 1</option> 
             <option value="bank2">bank 2</option> 
             <option value="bank3">bank 3</option> 
         </select>
 
-        <p class="supply-text">
-            A cash payment for the collected coconuts will be made upon the collection. <br>
-            Please help our collectors to validate the coconut amount.
-        </p>
+        <p class="supply-text bottom-text"></p>
 
-        <button class="next form-button">Submit Request</button>
+        <button class="next form-button"></button>
 
       </div>
     </div>
@@ -84,6 +77,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
   <script src="./load-nav.js"></script>
   <script src="./load-notifications.js"></script>
+  <script src="./pickup-bank.js"></script>
 </body>
 
 </html>
