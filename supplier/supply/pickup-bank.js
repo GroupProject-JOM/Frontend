@@ -4,13 +4,83 @@
     en = body.querySelector(".en"),
     sTitle = body.querySelector(".supply-title"),
     tText = body.querySelector(".top-text"),
-    location = body.querySelector(".location"),
-    lop = body.querySelector(".lop"),
-    date = body.querySelector(".date"),
+    location = body.querySelector(".location");
+
+  var lop, bop;
+
+  var location_options =
+    "<option value='' disabled selected hidden class='lop'></option>";
+  fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.list;
+          arr.forEach(setter);
+
+          function setter(item) {
+            location_options +=
+              "<option value=" + item.id + ">" + item.estate_name + "</option>";
+          }
+          location.innerHTML = location_options;
+          lop = body.querySelector(".lop");
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.size);
+        });
+      } else {
+        console.error("Error:", response.status);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+
+  const date = body.querySelector(".date"),
     time = body.querySelector(".time"),
-    bank = body.querySelector(".bank"),
-    bop = body.querySelector(".bop"),
-    bText = body.querySelector(".bottom-text"),
+    bank = body.querySelector(".bank");
+
+  var bank_options =
+    "<option value='' disabled selected hidden class='bop'></option>";
+  fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.list;
+          arr.forEach(setter);
+
+          function setter(item) {
+            bank_options +=
+              "<option value=" + item.id + ">" + item.name + "</option>";
+          }
+          bank.innerHTML = bank_options;
+          bop = body.querySelector(".bop");
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.size);
+        });
+      } else {
+        console.error("Error:", response.status);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+
+  const bText = body.querySelector(".bottom-text"),
     btn = body.querySelector(".form-button");
 
   sin.addEventListener("click", () => {
@@ -120,7 +190,6 @@
         time: time.value,
         account_id: bank.value,
       };
-      console.log(formData);
       fetch(backProxy + "/pickup-bank", {
         method: "POST",
         headers: {
