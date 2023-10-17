@@ -1,4 +1,3 @@
-sessionStorage.removeItem("id");
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -51,41 +50,36 @@ sessionStorage.removeItem("id");
   var data = {
     sin: {
       sTitle: "නව සැපයුම",
-      tText: "ඔබගේ නව සැපයුම් ඉල්ලීම සඳහා විස්තර නිවැරදිව පුරවන්න. <br />ඉල්ලීම් පැය 24ක් ඇතුළත සමාලෝචනය කෙරේ. ඔබට ඒවා ඔබේ උපකරණ පුවරුව තුළ පරීක්ෂා කළ හැකිය.",
-        lop: "වතු ස්ථානය",
-        date: "හැකි දිනය",
-        time: "හැකි කාලය",
-        bop: "බැංකු ගිණුම",
-        bText: "එකතු කරන ලද පොල් එකතු කිරීම මත මුදල් ගෙවීමක් සිදු කරනු ලැබේ. <br> කරුණාකර පොල් ප්‍රමාණය වලංගු කිරීමට අපගේ එකතුකරන්නන්ට උදවු කරන්න.",
+      tText:
+        "ඔබගේ නව සැපයුම් ඉල්ලීම සඳහා විස්තර නිවැරදිව පුරවන්න. <br />ඉල්ලීම් පැය 24ක් ඇතුළත සමාලෝචනය කෙරේ. ඔබට ඒවා ඔබේ උපකරණ පුවරුව තුළ පරීක්ෂා කළ හැකිය.",
+      lop: "වතු ස්ථානය",
+      date: "හැකි දිනය",
+      time: "හැකි කාලය",
+      bop: "බැංකු ගිණුම",
+      bText:
+        "එකතු කරන ලද පොල් එකතු කිරීම මත මුදල් ගෙවීමක් සිදු කරනු ලැබේ. <br> කරුණාකර පොල් ප්‍රමාණය වලංගු කිරීමට අපගේ එකතුකරන්නන්ට උදවු කරන්න.",
       btn: "ඉල්ලීම ඉදිරිපත් කරන්න",
     },
     en: {
-        sTitle: "New Supply",
-        tText: "Fill up the details correctly for your new supply request. <br />Requests will be reviewed within 24 hours. You can check them inside  your dashboard.",
-          lop: "Estate Location",
-          date: "feasible date",
-          time: "feasible time",
-          bop: "Bank Account",
-          bText: "A cash payment for the collected coconuts will be made upon the collection. <br> Please help our collectors to validate the coconut amount.",
-        btn: "Submit Request",
+      sTitle: "New Supply",
+      tText:
+        "Fill up the details correctly for your new supply request. <br />Requests will be reviewed within 24 hours. You can check them inside  your dashboard.",
+      lop: "Estate Location",
+      date: "feasible date",
+      time: "feasible time",
+      bop: "Bank Account",
+      bText:
+        "A cash payment for the collected coconuts will be made upon the collection. <br> Please help our collectors to validate the coconut amount.",
+      btn: "Submit Request",
     },
   };
 
-  var enameStatus = false,
-    locationStatus = false,
-    dropdownStatus = false;
+  var locationStatus = false,
+    dateStatus = false,
+    timeStatus = false,
+    bankStatus = false;
 
   btn.addEventListener("click", () => {
-    if (
-      typeof dropdown.value === "string" &&
-      dropdown.value.trim().length === 0
-    ) {
-      console.log("Area cannot be empty");
-      dropdown.focus();
-    } else {
-      dropdownStatus = true;
-    }
-
     if (
       typeof location.value === "string" &&
       location.value.trim().length === 0
@@ -96,21 +90,38 @@ sessionStorage.removeItem("id");
       locationStatus = true;
     }
 
-    if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-      console.log("Estate name cannot be empty");
-      ename.focus();
+    if (typeof date.value === "string" && date.value.trim().length === 0) {
+      console.log("Date cannot be empty");
+      date.focus();
     } else {
-      enameStatus = true;
+      dateStatus = true;
     }
 
-    if (enameStatus && locationStatus && dropdownStatus) {
+    if (typeof time.value === "string" && time.value.trim().length === 0) {
+      console.log("Time cannot be empty");
+      time.focus();
+    } else {
+      timeStatus = true;
+    }
+
+    if (typeof bank.value === "string" && bank.value.trim().length === 0) {
+      console.log("Bank cannot be empty");
+      bank.focus();
+    } else {
+      bankStatus = true;
+    }
+
+    if (locationStatus && dateStatus && timeStatus && bankStatus) {
       var formData = {
+        collection_id: sessionStorage.getItem("id"),
         supplier_id: sessionStorage.getItem("sId"),
-        estate_name: ename.value,
-        estate_location: location.value,
-        area: dropdown.value,
+        estate_id: location.value,
+        date: date.value,
+        time: time.value,
+        account_id: bank.value,
       };
-      fetch(backProxy + "/estate", {
+      console.log(formData);
+      fetch(backProxy + "/pickup-bank", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -123,7 +134,6 @@ sessionStorage.removeItem("id");
             response.json().then((data) => {
               console.log(data.message);
             });
-            window.location.href = "./view-all.html";
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);

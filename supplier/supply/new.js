@@ -151,6 +151,7 @@
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message);
+              sessionStorage.setItem("id",data.id);
             });
             window.location.href = page;
           } else if (response.status === 400) {
