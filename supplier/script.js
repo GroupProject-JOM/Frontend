@@ -1,4 +1,12 @@
 (() => {
+//   document.cookie = "name=Buddhika";
+//   document.cookie = "page=supplier";
+//   document.cookie = "sId=1";
+//   let cookies = document.cookie;
+//   console.log(cookies);
+
+// console.log(getCookie('lang'));
+
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
@@ -15,7 +23,8 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -32,7 +41,8 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -64,7 +74,7 @@
       c5: "Overview of past supplies at your estates",
     },
   };
-  
+
   // checkLng();
-  // checkMode();  
+  // checkMode();
 })();

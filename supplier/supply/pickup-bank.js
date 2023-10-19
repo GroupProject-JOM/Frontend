@@ -10,7 +10,8 @@
 
   var location_options =
     "<option value='' disabled selected hidden class='lop'></option>";
-  fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
+  // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
+  fetch(backProxy + "/estates?sId=" + getCookie('sId'), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +49,8 @@
 
   var bank_options =
     "<option value='' disabled selected hidden class='bop'></option>";
-  fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
+  // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
+  fetch(backProxy + "/accounts?sId=" + getCookie('sId'), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -88,7 +90,8 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     tText.innerHTML = data["sin"]["tText"];
@@ -105,7 +108,8 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en";
 
     sTitle.textContent = data["en"]["sTitle"];
     tText.innerHTML = data["en"]["tText"];
@@ -183,8 +187,10 @@
 
     if (locationStatus && dateStatus && timeStatus && bankStatus) {
       var formData = {
-        collection_id: sessionStorage.getItem("id"),
-        supplier_id: sessionStorage.getItem("sId"),
+        // collection_id: sessionStorage.getItem("id"),
+        // supplier_id: sessionStorage.getItem("sId"),
+        collection_id: getCookie('id'),
+        supplier_id: getCookie("sId"),
         estate_id: location.value,
         date: date.value,
         time: time.value,

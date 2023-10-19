@@ -1,4 +1,5 @@
-sessionStorage.removeItem("id");
+// sessionStorage.removeItem("id");
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -19,7 +20,8 @@ sessionStorage.removeItem("id");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     sText.innerHTML = data["sin"]["sText"];
@@ -37,7 +39,8 @@ sessionStorage.removeItem("id");
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en";
 
     sTitle.textContent = data["en"]["sTitle"];
     sText.innerHTML = data["en"]["sText"];
@@ -111,7 +114,8 @@ sessionStorage.removeItem("id");
 
     if (enameStatus && locationStatus && dropdownStatus) {
       var formData = {
-        supplier_id: sessionStorage.getItem("sId"),
+        // supplier_id: sessionStorage.getItem("sId"),
+        supplier_id: getCookie("sId"),
         estate_name: ename.value,
         estate_location: location.value,
         area: dropdown.value,
