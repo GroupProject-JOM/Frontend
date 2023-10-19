@@ -16,4 +16,4 @@
   const sideScript = document.createElement("script");
   sideScript.setAttribute("src", "sidebar/script.js");
   document.body.appendChild(sideScript);
-})();
+})();  

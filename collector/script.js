@@ -23,7 +23,7 @@
 
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
-    document.cookie="lang=sin";
+    document.cookie="lang=sin; path=/";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -40,7 +40,7 @@
 
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
-    document.cookie="lang=sin";
+    document.cookie="lang=en; path=/";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
