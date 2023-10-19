@@ -18,12 +18,6 @@
     }
 
     sin.addEventListener("click", () => {
-      sin.classList.add("active");
-      en.classList.remove("active");
-
-      document.documentElement.setAttribute("lang", "sin");
-      sessionStorage.setItem("lang", "sin");
-
       ml1.textContent = data["sin"]["ml1"];
       ml2.textContent = data["sin"]["ml2"];
       ml3.textContent = data["sin"]["ml3"];
@@ -33,12 +27,6 @@
     });
 
     en.addEventListener("click", () => {
-      en.classList.add("active");
-      sin.classList.remove("active");
-
-      document.documentElement.setAttribute("lang", "en");
-      sessionStorage.setItem("lang", "en");
-
       ml1.textContent = data["en"]["ml1"];
       ml2.textContent = data["en"]["ml2"];
       ml3.textContent = data["en"]["ml3"];

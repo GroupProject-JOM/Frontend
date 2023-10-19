@@ -1,13 +1,13 @@
-if (sessionStorage.getItem("page") != "supplier") {
-  if (
-    sessionStorage.getItem("page") == null ||
-    sessionStorage.getItem("page").length === 0
-  ) {
-    window.location.href = frontProxy + "/signin.html";
-  } else {
-    window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-  }
-}
+// if (sessionStorage.getItem("page") != "supplier") {
+//   if (
+//     sessionStorage.getItem("page") == null ||
+//     sessionStorage.getItem("page").length === 0
+//   ) {
+//     window.location.href = frontProxy + "/signin.html";
+//   } else {
+//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+//   }
+// }
 
 (() => {
   let loaded = false;
@@ -37,9 +37,10 @@ if (sessionStorage.getItem("page") != "supplier") {
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name");
 
-    Uname.textContent = sessionStorage.getItem("name");
+    // Uname.textContent = sessionStorage.getItem("name");
+    Uname.textContent = getCookie('name');
 
-    newSupply.href = frontProxy + "/supplier/supply/new.html";
+    newSupply.href = frontProxy + "/supplier/supply";
     address.href = frontProxy + "/supplier/address/view-all.html";
     payment.href = frontProxy + "/supplier/payment/view-all.html";
     dashboard.href = frontProxy + "/supplier/";
@@ -56,10 +57,12 @@ if (sessionStorage.getItem("page") != "supplier") {
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
-        sessionStorage.setItem("mode", "dark");
+        // sessionStorage.setItem("mode", "dark");
+        document.cookie = "mode=dark; path=/";
         modeText.innerHTML = modeTranslate();
       } else {
-        sessionStorage.setItem("mode", "light");
+        // sessionStorage.setItem("mode", "light");
+        document.cookie = "mode=light; path=/";
         modeText.innerHTML = modeTranslate();
       }
     });

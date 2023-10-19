@@ -14,7 +14,8 @@
       en.classList.remove("active");
   
       document.documentElement.setAttribute("lang", "sin");
-      sessionStorage.setItem("lang", "sin");
+      // sessionStorage.setItem("lang", "sin");
+      document.cookie = "lang=sin; path=/";
   
       sTitle.textContent = data["sin"]["sTitle"];
       sText.innerHTML = data["sin"]["sText"];
@@ -29,7 +30,8 @@
       sin.classList.remove("active");
   
       document.documentElement.setAttribute("lang", "en");
-      sessionStorage.setItem("lang", "en");
+      // sessionStorage.setItem("lang", "en");
+      document.cookie = "lang=en; path=/";
   
       sTitle.textContent = data["en"]["sTitle"];
       sText.innerHTML = data["en"]["sText"];
@@ -92,8 +94,10 @@
   
       if (hnameStatus && accNumStatus && bankStatus) {
         var formData = {
-          id: sessionStorage.getItem("id"),
-          supplier_id: sessionStorage.getItem("sId"),
+          // id: sessionStorage.getItem("id"),
+          // supplier_id: sessionStorage.getItem("sId"),
+          id: getCookie("id"),
+        supplier_id: getCookie("sId"),
           name: hname.value,
           account_number: accNum.value,
           bank: bank.value,
@@ -131,9 +135,11 @@
     fetch(
       backProxy +
         "/account?sId=" +
-        sessionStorage.getItem("sId") +
+        // sessionStorage.getItem("sId") +
+        getCookie("sId") +
         "&id=" +
-        sessionStorage.getItem("id"),
+        // sessionStorage.getItem("id"),
+        getCookie("id"),
       {
         method: "GET",
         headers: {

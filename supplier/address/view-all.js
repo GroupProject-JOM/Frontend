@@ -1,5 +1,5 @@
-sessionStorage.setItem("id", 0);
-
+// sessionStorage.setItem("id", 0);
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -16,7 +16,8 @@ sessionStorage.setItem("id", 0);
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin; path=/";
 
     sTitle.textContent = data["sin"]["sTitle"];
     sText.innerHTML = data["sin"]["sText"];
@@ -30,7 +31,8 @@ sessionStorage.setItem("id", 0);
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en; path=/";
 
     sTitle.textContent = data["en"]["sTitle"];
     sText.innerHTML = data["en"]["sText"];
@@ -57,7 +59,8 @@ sessionStorage.setItem("id", 0);
   };
 
   var row = "";
-  fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
+  // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
+  fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -94,7 +97,8 @@ sessionStorage.setItem("id", 0);
           edits.forEach((e) => {
             e.addEventListener("click", () => {
               console.log(e.parentElement.id);
-              sessionStorage.setItem("id", e.parentElement.id);
+              // sessionStorage.setItem("id", e.parentElement.id);
+              document.cookie = "id="+e.parentElement.id;
             });
           });
 
@@ -103,7 +107,8 @@ sessionStorage.setItem("id", 0);
               fetch(
                 backProxy +
                   "/estate?sId=" +
-                  sessionStorage.getItem("sId") +
+                  // sessionStorage.getItem("sId") +
+                  getCookie("sId") +
                   "&id=" +
                   d.parentElement.id,
                 {
@@ -136,7 +141,8 @@ sessionStorage.setItem("id", 0);
 
           rows.forEach((r) => {
             r.addEventListener("click", () => {
-              sessionStorage.setItem("id", r.id);
+              // sessionStorage.setItem("id", r.id);
+              document.cookie = "id="+ r.id;
               window.location.href = r.dataset.href;
             });
           });

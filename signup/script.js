@@ -32,14 +32,15 @@ var fname_status = false,
     mainError = body.querySelector(".main-error"),
     next = body.querySelector(".next");
 
-  checkLng();
+  // checkLng();
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin; path=/";
 
     fh.textContent = data["sin"]["fh"];
     fname.placeholder = data["sin"]["fname"];
@@ -59,7 +60,8 @@ var fname_status = false,
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en; path=/";
 
     fh.textContent = data["en"]["fh"];
     fname.placeholder = data["en"]["fname"];
@@ -190,10 +192,14 @@ var fname_status = false,
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message); // to alert
-              sessionStorage.setItem("id", data.id);
-              sessionStorage.setItem("sId", data.sId);
-              sessionStorage.setItem("email", data.email);
-              sessionStorage.setItem("phone", data.phone);
+              // sessionStorage.setItem("id", data.id);
+              // sessionStorage.setItem("sId", data.sId);
+              // sessionStorage.setItem("email", data.email);
+              // sessionStorage.setItem("phone", data.phone);
+              document.cookie = "id=" + data.id;
+              document.cookie = "sId=" + data.sId;
+              document.cookie = "email=" + data.email;
+              document.cookie = "phone=" + data.phone;
             });
             window.location.href = frontProxy + "/signup/signup2.html";
           } else if (response.status === 401) {

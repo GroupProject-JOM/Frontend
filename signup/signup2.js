@@ -22,8 +22,11 @@
     emailRing = body.querySelector(".lds-ring"),
     counter = body.querySelector("#counter");
 
-  var email = sessionStorage.getItem("email"),
-    phone = sessionStorage.getItem("phone"),
+  // var email = sessionStorage.getItem("email"),
+  //   phone = sessionStorage.getItem("phone"),
+  //   oId;
+  var email = getCookie("email"),
+    phone = getCookie("phone"),
     oId;
 
   sin.addEventListener("click", () => {
@@ -31,7 +34,8 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie="lang=sin; path=/";
 
     fh1.textContent = data["sin"]["fh1"];
     fh2.textContent = data["sin"]["fh2"];
@@ -51,7 +55,8 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie="lang=en; path=/";
 
     fh1.textContent = data["en"]["fh1"];
     fh2.textContent = data["en"]["fh2"];
@@ -119,7 +124,8 @@
 
     var formData = {
       email: email,
-      id: sessionStorage.getItem("id"),
+      // id: sessionStorage.getItem("id"),
+      id: getCookie("id"),
     };
     fetch(backProxy + "/email", {
       method: "POST",
@@ -172,7 +178,8 @@
     } else {
       var formData = {
         otp: emailOtp.value,
-        id: sessionStorage.getItem("id"),
+        // id: sessionStorage.getItem("id"),
+        id: getCookie("id"),
         oId: oId,
       };
       fetch(backProxy + "/validateE", {
@@ -188,9 +195,12 @@
             response.json().then((data) => {
               console.log(data.message);
             });
-            sessionStorage.removeItem("id");
-            sessionStorage.removeItem("phone");
-            sessionStorage.removeItem("email");
+            // sessionStorage.removeItem("id");
+            // sessionStorage.removeItem("phone");
+            // sessionStorage.removeItem("email");
+            document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            document.cookie = "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             window.location.href = frontProxy + "/signup/signup3.html";
           } else if (response.status === 401) {
             console.log("Invalid OTP");

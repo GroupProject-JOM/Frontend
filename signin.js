@@ -1,9 +1,9 @@
-if (
-  sessionStorage.getItem("page") != null &&
-  sessionStorage.getItem("page").length != 0
-) {
-  window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-}
+// if (
+//   sessionStorage.getItem("page") != null &&
+//   sessionStorage.getItem("page").length != 0
+// ) {
+//   window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+// }
 
 var username_status = false,
   password_status = false;
@@ -27,7 +27,8 @@ var username_status = false,
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin; path=/";
 
     ll1.textContent = data["sin"]["ll1"];
     ll2.textContent = data["sin"]["ll2"];
@@ -43,7 +44,8 @@ var username_status = false,
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en; path=/";
 
     ll1.textContent = data["en"]["ll1"];
     ll2.textContent = data["en"]["ll2"];
@@ -111,8 +113,11 @@ var username_status = false,
             response.json().then((data) => {
               console.log(data.message);
               if (data.message == "Login successfully") {
-                sessionStorage.setItem("name", data.name);
-                sessionStorage.setItem("page", data.page);
+                // sessionStorage.setItem("name", data.name);
+                // sessionStorage.setItem("page", data.page);
+                document.cookie = "name=" + data.name + "; path=/";
+                document.cookie = "page=" + data.page + "; path=/";
+                document.cookie = "sId=" + data.sId + "; path=/";
                 window.location.href = frontProxy + "/" + data.page;
               }
             });

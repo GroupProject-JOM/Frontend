@@ -1,13 +1,13 @@
-if (sessionStorage.getItem("page") != "admin") {
-  if (
-    sessionStorage.getItem("page") == null ||
-    sessionStorage.getItem("page").length === 0
-  ) {
-    window.location.href = frontProxy + "/signin.html";
-  } else {
-    window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-  }
-}
+// if (sessionStorage.getItem("page") != "admin") {
+//   if (
+//     sessionStorage.getItem("page") == null ||
+//     sessionStorage.getItem("page").length === 0
+//   ) {
+//     window.location.href = frontProxy + "/signin.html";
+//   } else {
+//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+//   }
+// }
 
 (() => {
   let loaded = false;
@@ -37,10 +37,12 @@ if (sessionStorage.getItem("page") != "admin") {
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
-        sessionStorage.setItem("mode", "dark");
+        // sessionStorage.setItem("mode", "dark");
+        document.cookie="mode=dark; path=/";
         modeText.innerHTML = modeTranslate();
       } else {
-        sessionStorage.setItem("mode", "light");
+        // sessionStorage.setItem("mode", "light");
+        document.cookie="mode=light; path=/";
         modeText.innerHTML = modeTranslate();
       }
     });

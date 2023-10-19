@@ -14,7 +14,8 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie="lang=sin; path=/";
 
     fh.textContent = data["sin"]["fh"];
     fht.innerHTML = data["sin"]["fht"];
@@ -29,7 +30,8 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie="lang=en; path=/";
 
     fh.textContent = data["en"]["fh"];
     fht.innerHTML = data["en"]["fht"];
@@ -90,7 +92,8 @@
 
     if (enameStatus && locationStatus && areaStatus) {
       var formData = {
-        supplier_id: sessionStorage.getItem("sId"),
+        // supplier_id: sessionStorage.getItem("sId"),
+        supplier_id: getCookie("sId"),
         estate_name: ename.value,
         estate_location: location.value,
         area: area.value,
