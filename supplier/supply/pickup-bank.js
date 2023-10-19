@@ -196,7 +196,7 @@
         time: time.value,
         account_id: bank.value,
       };
-      fetch(backProxy + "/pickup-bank", {
+      fetch(backProxy + "/pickup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
