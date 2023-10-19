@@ -146,7 +146,7 @@
           date: date.value,
           time: time.value,
         };
-        fetch(backProxy + "/pickup-cash", {
+        fetch(backProxy + "/pickup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

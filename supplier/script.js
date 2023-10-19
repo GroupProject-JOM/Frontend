@@ -91,13 +91,26 @@
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
+            console.log(item)
+            var stat='',st='';
+            if(item.status== 1){
+              stat = 'pending'
+              st = 'Pending Approval'
+            }else if(item.status==2){
+              stat = 'ready'
+              st = 'Ready to pick-up'
+            }else if(item.status==3){
+              stat='rejected'
+              st = 'Rejected'
+            }
+
             row +="<tr>"+
             "<td>"+item.id+"</td>"+
             "<td>"+item.date+"</td>"+
             "<td>"+item.time+"</td>"+
-            "<td>"+item.initial_amount+"</td>"+
+            "<td>"+item.amount+"</td>"+
             "<td>"+
-              "<button class='pending status'>Pending Approval</button>"+
+              "<button class='"+ stat +" status'>"+st+"</button>"+
             "</td>"+
           "</tr>";
           }

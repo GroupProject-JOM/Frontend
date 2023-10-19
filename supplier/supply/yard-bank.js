@@ -106,13 +106,15 @@
         bankStatus = true;
       }
   
-      if (dateStatus && timeStatus && bankStatus) {
+      if (bankStatus) {
         var formData = {
-          collection_id: sessionStorage.getItem("id"),
-          supplier_id: sessionStorage.getItem("sId"),
+          // collection_id: sessionStorage.getItem("id"),
+          // supplier_id: sessionStorage.getItem("sId"),
+          collection_id: getCookie("id"),
+          supplier_id: getCookie("sId"),
           account_id: bank.value,
         };
-        fetch(backProxy + "/pickup-bank", {
+        fetch(backProxy + "/yard", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
