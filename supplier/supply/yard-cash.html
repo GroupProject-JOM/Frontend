@@ -39,8 +39,29 @@
         <p class="supply-text">
           Fill up the details correctly for your new supply request. <br />
           Requests will be reviewed within 24 hours. You can check them inside
-          your dashboard. <br> <br> <br> <br> <br>
+          your dashboard. <br> <br>
         </p>
+
+        <div class="feasibility">
+          <form class="date-form">
+            <!-- <input type="date" class="date" placeholder="Feasible Date" />
+              <input type="time" class="time" placeholder="Feasible Time" /> -->
+            <input
+              type="text"
+              class="date"
+              placeholder="Feasible Date"
+              onmousemove="(this.type='date')"
+              onmouseleave="(this.type='text')"
+            />
+            <input
+              type="text"
+              class="time"
+              placeholder="Feasible Time"
+              onmousemove="(this.type='time')"
+              onmouseleave="(this.type='text')"
+            />
+          </form>
+        </div>
 
         <p class="supply-text">
             Please deliver the coconuts to this location: <br> <br> <br>
@@ -51,7 +72,7 @@
             A cash payment for the collected coconuts will be made upon the collection. 
           </p>
 
-          <button class="next form-button">Submit Request</button>
+          <button class="submit form-button">Submit Request</button>
       </div>
       
       </div>
