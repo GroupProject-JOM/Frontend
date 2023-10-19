@@ -1,5 +1,5 @@
 // sessionStorage.setItem("id", 0);
-document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/supplier/payment";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),

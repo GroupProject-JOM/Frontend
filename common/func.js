@@ -20,7 +20,6 @@ function checkMode() {
   //reload mode detecter
   // const curMode = sessionStorage.getItem("mode");
   const curMode = getCookie("mode");
-  console.log(curMode);
   if (curMode == "dark") {
     modeSwitch.click();
   }
@@ -150,10 +149,11 @@ function getCookie(name) {
   var myCookie = checkCookie(name);
 
   if (myCookie == null) {
-    console.log("null " + myCookie);
-  } else {
-    console.log("not null " + myCookie);
-  }
+    console.log(name + " - null");
+  } 
+  // else {
+  //   console.log("not null " + myCookie);
+  // }
 
   return myCookie;
 }

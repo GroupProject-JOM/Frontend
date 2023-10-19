@@ -156,7 +156,7 @@
             response.json().then((data) => {
               console.log(data.message);
               // sessionStorage.setItem("id",data.id);
-              document.cookie = "amount="+data.id;
+              document.cookie = "id="+data.id;
             });
             window.location.href = page;
           } else if (response.status === 400) {
