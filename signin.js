@@ -28,7 +28,7 @@ var username_status = false,
 
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
-    document.cookie="lang=sin";
+    document.cookie = "lang=sin; path=/";
 
     ll1.textContent = data["sin"]["ll1"];
     ll2.textContent = data["sin"]["ll2"];
@@ -45,7 +45,7 @@ var username_status = false,
 
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
-    document.cookie="lang=en";
+    document.cookie = "lang=en; path=/";
 
     ll1.textContent = data["en"]["ll1"];
     ll2.textContent = data["en"]["ll2"];
@@ -115,8 +115,8 @@ var username_status = false,
               if (data.message == "Login successfully") {
                 // sessionStorage.setItem("name", data.name);
                 // sessionStorage.setItem("page", data.page);
-                document.cookie="name="+data.name;
-                document.cookie="page="+data.page;
+                document.cookie = "name=" + data.name + "; path=/";
+                document.cookie = "page=" + data.page + "; path=/";
                 window.location.href = frontProxy + "/" + data.page;
               }
             });

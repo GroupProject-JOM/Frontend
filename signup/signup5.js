@@ -14,7 +14,7 @@
   
       document.documentElement.setAttribute("lang", "sin");
       // sessionStorage.setItem("lang", "sin");
-      document.cookie="lang=sin";
+      document.cookie="lang=sin; path=/";
   
       
       fh.textContent = data["sin"]["fh"];
@@ -28,7 +28,7 @@
   
       document.documentElement.setAttribute("lang", "en");
       // sessionStorage.setItem("lang", "en");
-      document.cookie="lang=en";
+      document.cookie="lang=en; path=/";
   
      
       fh.textContent = data["en"]["fh"];

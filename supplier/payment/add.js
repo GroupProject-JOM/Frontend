@@ -17,7 +17,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   
       document.documentElement.setAttribute("lang", "sin");
       // sessionStorage.setItem("lang", "sin");
-      document.cookie = "lang=sin";
+      document.cookie = "lang=sin; path=/";
   
       sTitle.textContent = data["sin"]["sTitle"];
       sText.innerHTML = data["sin"]["sText"];
@@ -33,7 +33,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   
       document.documentElement.setAttribute("lang", "en");
       // sessionStorage.setItem("lang", "en");
-      document.cookie = "lang=en";
+      document.cookie = "lang=en; path=/";
   
       sTitle.textContent = data["en"]["sTitle"];
       sText.innerHTML = data["en"]["sText"];

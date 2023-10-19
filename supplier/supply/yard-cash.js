@@ -12,7 +12,7 @@
   
       document.documentElement.setAttribute("lang", "sin");
     //   sessionStorage.setItem("lang", "sin");
-    document.cookie = "lang=sin";
+    document.cookie = "lang=sin; path=/";
   
       sTitle.textContent = data["sin"]["sTitle"];
       tText.innerHTML = data["sin"]["tText"];
@@ -25,7 +25,7 @@
   
       document.documentElement.setAttribute("lang", "en");
     //   sessionStorage.setItem("lang", "en");
-    document.cookie = "lang=en";
+    document.cookie = "lang=en; path=/";
   
       sTitle.textContent = data["en"]["sTitle"];
       tText.innerHTML = data["en"]["tText"];

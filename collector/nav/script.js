@@ -28,7 +28,7 @@
       Uname = body.querySelector(".name");
 
     // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie('name');
+    Uname.textContent = getCookie("name");
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -43,11 +43,11 @@
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
         // sessionStorage.setItem("mode", "dark");
-        document.cookie = "mode=dark";
+        document.cookie = "mode=dark; path=/";
         modeText.innerHTML = modeTranslate();
       } else {
         // sessionStorage.setItem("mode", "light");
-        document.cookie = "mode=light";
+        document.cookie = "mode=light; path=/";
         modeText.innerHTML = modeTranslate();
       }
     });
