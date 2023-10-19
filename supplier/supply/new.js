@@ -22,7 +22,8 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     sText.innerHTML = data["sin"]["sText"];
@@ -41,7 +42,8 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en";
 
     sTitle.textContent = data["en"]["sTitle"];
     sText.innerHTML = data["en"]["sText"];
@@ -131,9 +133,11 @@
       (pickup.checked || delivered.checked) &&
       (cash.checked || bTransfer.checked)
     ) {
-      sessionStorage.setItem("amount", amount.value);
+      // sessionStorage.setItem("amount", amount.value);
+      document.cookie = "amount="+amount.value;
       var formData = {
-        supplier_id: sessionStorage.getItem("sId"),
+        // supplier_id: sessionStorage.getItem("sId"),
+        supplier_id: getCookie('sId'),
         initial_amount: amount.value,
         payment_method: money,
         supply_method: collection,
@@ -151,7 +155,8 @@
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message);
-              sessionStorage.setItem("id",data.id);
+              // sessionStorage.setItem("id",data.id);
+              document.cookie = "amount="+data.id;
             });
             window.location.href = page;
           } else if (response.status === 400) {

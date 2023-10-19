@@ -15,7 +15,8 @@
       en.classList.remove("active");
   
       document.documentElement.setAttribute("lang", "sin");
-      sessionStorage.setItem("lang", "sin");
+      // sessionStorage.setItem("lang", "sin");
+      document.cookie="lang=sin";
   
       
       fh.textContent = data["sin"]["fh"];
@@ -31,7 +32,8 @@
       sin.classList.remove("active");
   
       document.documentElement.setAttribute("lang", "en");
-      sessionStorage.setItem("lang", "en");
+      // sessionStorage.setItem("lang", "en");
+      document.cookie="lang=en";
   
       
       fh.textContent = data["en"]["fh"];
@@ -96,7 +98,8 @@
 
     if (accStatus && bankStatus && hnameStatus) {
       var formData = {
-        supplier_id: sessionStorage.getItem("sId"),
+        // supplier_id: sessionStorage.getItem("sId"),
+        supplier_id: getCookie("sId"),
         name: hname.value,
         account_number: acc.value,
         bank: bank.value,
@@ -114,7 +117,8 @@
             response.json().then((data) => {
               console.log(data.message);
             });
-            sessionStorage.removeItem("sId");
+            // sessionStorage.removeItem("sId");
+            document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             window.location.href = frontProxy + "/signup/signup5.html";
           } else if (response.status === 400) {
             response.json().then((data) => {
