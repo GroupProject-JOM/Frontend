@@ -117,6 +117,7 @@ var username_status = false,
                 // sessionStorage.setItem("page", data.page);
                 document.cookie = "name=" + data.name + "; path=/";
                 document.cookie = "page=" + data.page + "; path=/";
+                document.cookie = "sId=" + data.sId + "; path=/";
                 window.location.href = frontProxy + "/" + data.page;
               }
             });

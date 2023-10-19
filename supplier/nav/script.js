@@ -40,7 +40,7 @@
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie('name');
 
-    newSupply.href = frontProxy + "/supplier/supply/new.html";
+    newSupply.href = frontProxy + "/supplier/supply";
     address.href = frontProxy + "/supplier/address/view-all.html";
     payment.href = frontProxy + "/supplier/payment/view-all.html";
     dashboard.href = frontProxy + "/supplier/";
