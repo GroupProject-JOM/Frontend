@@ -8,7 +8,8 @@
     c2 = body.querySelector(".c2"),
     c3 = body.querySelector(".c3"),
     c4 = body.querySelector(".c4"),
-    c5 = body.querySelector(".c5");
+    c5 = body.querySelector(".c5"),
+    tbody = body.querySelector(".tbody");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -65,6 +66,51 @@
     },
   };
   
-  // checkLng();
-  // checkMode();  
+  var row = "";
+  fetch(backProxy + "/collection?sId=" + getCookie("sId"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.list;
+          arr.forEach(data_to_table);
+
+          function data_to_table(item) {
+            row +="<tr>"+
+            "<td>"+item.id+"</td>"+
+            "<td>"+item.date+"</td>"+
+            "<td>"+item.time+"</td>"+
+            "<td>"+item.initial_amount+"</td>"+
+            "<td>"+
+              "<button class='pending status'>Pending Approval</button>"+
+            "</td>"+
+          "</tr>";
+          }
+          tbody.innerHTML = row;
+
+          const rows = document.querySelectorAll("tr[data-href]");
+
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              sessionStorage.setItem("id", r.id);
+              window.location.href = r.dataset.href;
+            });
+          });
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.size);
+        });
+      } else {
+        console.error("Error:", response.status);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
 })();
