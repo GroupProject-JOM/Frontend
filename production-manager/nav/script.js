@@ -1,13 +1,13 @@
-if (sessionStorage.getItem("page") != "production-manager") {
-  if (
-    sessionStorage.getItem("page") == null ||
-    sessionStorage.getItem("page").length === 0
-  ) {
-    window.location.href = frontProxy + "/signin.html";
-  } else {
-    window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-  }
-}
+// if (sessionStorage.getItem("page") != "production-manager") {
+//   if (
+//     sessionStorage.getItem("page") == null ||
+//     sessionStorage.getItem("page").length === 0
+//   ) {
+//     window.location.href = frontProxy + "/signin.html";
+//   } else {
+//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+//   }
+// }
 
 (() => {
   let loaded = false;
@@ -30,7 +30,8 @@ if (sessionStorage.getItem("page") != "production-manager") {
       l9 = body.querySelector(".l9"),
       Uname = body.querySelector(".name");
 
-    Uname.textContent = sessionStorage.getItem("name");
+    // Uname.textContent = sessionStorage.getItem("name");
+    Uname.textContent = getCookie('name');
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -44,10 +45,12 @@ if (sessionStorage.getItem("page") != "production-manager") {
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
-        sessionStorage.setItem("mode", "dark");
+        // sessionStorage.setItem("mode", "dark");
+        document.cookie = "mode=dark";
         modeText.innerHTML = modeTranslate();
       } else {
-        sessionStorage.setItem("mode", "light");
+        // sessionStorage.setItem("mode", "light");
+        document.cookie = "mode=light";
         modeText.innerHTML = modeTranslate();
       }
     });

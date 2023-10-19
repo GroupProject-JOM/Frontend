@@ -15,7 +15,8 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie="lang=sin";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -31,7 +32,8 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie="lang=en";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -61,15 +63,4 @@
     },
   };
 
-  checkLng();
-  checkMode();
-
-  modeSwitch.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    if (body.classList.contains("dark")) {
-      sessionStorage.setItem("mode", "dark");
-    } else {
-      sessionStorage.setItem("mode", "light");
-    }
-  });
 })();

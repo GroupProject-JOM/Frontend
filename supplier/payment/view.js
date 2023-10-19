@@ -2,9 +2,11 @@
     fetch(
       backProxy +
         "/account?sId=" +
-        sessionStorage.getItem("sId") +
+        // sessionStorage.getItem("sId") +
+        getCookie("sId") +
         "&id=" +
-        sessionStorage.getItem("id"),
+        // sessionStorage.getItem("id"),
+        getCookie("id"),
       {
         method: "GET",
         headers: {
