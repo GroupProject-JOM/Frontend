@@ -1,11 +1,11 @@
 (() => {
-//   document.cookie = "name=Buddhika";
-//   document.cookie = "page=supplier";
-//   document.cookie = "sId=1";
-//   let cookies = document.cookie;
-//   console.log(cookies);
+  //   document.cookie = "name=Buddhika";
+  //   document.cookie = "page=supplier";
+  //   document.cookie = "sId=1";
+  //   let cookies = document.cookie;
+  //   console.log(cookies);
 
-// console.log(getCookie('lang'));
+  // console.log(getCookie('lang'));
 
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -75,7 +75,7 @@
       c5: "Overview of past supplies at your estates",
     },
   };
-  
+
   var row = "";
   fetch(backProxy + "/collection?sId=" + getCookie("sId"), {
     method: "GET",
@@ -91,28 +91,30 @@
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            console.log(item)
-            var stat='',st='';
-            if(item.status== 1){
-              stat = 'pending'
-              st = 'Pending Approval'
-            }else if(item.status==2){
-              stat = 'ready'
-              st = 'Ready to pick-up'
-            }else if(item.status==3){
-              stat='rejected'
-              st = 'Rejected'
+            console.log(item);
+            var stat = "",
+              st = "";
+            if (item.status == 0) {
+              stat = "uncomplete";
+              st = "Request not completed";
+            } else if (item.status == 1) {
+              stat = "pending";
+              st = "Pending Approval";
+            } else if (item.status == 2) {
+              stat = "ready";
+              st = "Ready to pick-up";
+            } else if (item.status == 3) {
+              stat = "rejected";
+              st = "Rejected";
             }
 
-            row +="<tr>"+
-            "<td>"+item.id+"</td>"+
-            "<td>"+item.date+"</td>"+
-            "<td>"+item.time+"</td>"+
-            "<td>"+item.amount+"</td>"+
-            "<td>"+
-              "<button class='"+ stat +" status'>"+st+"</button>"+
-            "</td>"+
-          "</tr>";
+            row += "<tr data-href='./view.html' id=" + item.id + ">" +
+              "<td>" + item.id + "</td>" +
+              "<td>" + item.date + "</td>" +
+              "<td>" + item.time + "</td>" +
+              "<td>" + item.amount + "</td>" +
+              "<td>" + "<button class='" + stat + " status'>" + st + "</button>" + "</td>" +
+              "</tr>";
           }
           tbody.innerHTML = row;
 
@@ -120,7 +122,7 @@
 
           rows.forEach((r) => {
             r.addEventListener("click", () => {
-              sessionStorage.setItem("id", r.id);
+              document.cookie = "id="+ r.id;
               window.location.href = r.dataset.href;
             });
           });
