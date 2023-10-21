@@ -11,7 +11,7 @@
   var location_options =
     "<option value='' disabled selected hidden class='lop'></option>";
   // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
-  fetch(backProxy + "/estates?sId=" + getCookie('sId'), {
+  fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@
   var bank_options =
     "<option value='' disabled selected hidden class='bop'></option>";
   // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
-  fetch(backProxy + "/accounts?sId=" + getCookie('sId'), {
+  fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -189,7 +189,7 @@
       var formData = {
         // collection_id: sessionStorage.getItem("id"),
         // supplier_id: sessionStorage.getItem("sId"),
-        collection_id: getCookie('id'),
+        collection_id: getCookie("id"),
         supplier_id: getCookie("sId"),
         estate_id: location.value,
         date: date.value,
@@ -209,6 +209,7 @@
             response.json().then((data) => {
               console.log(data.message);
             });
+            window.location.href = "../";
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);

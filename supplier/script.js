@@ -11,6 +11,7 @@
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     w1 = body.querySelector(".w1"),
+    ongoing = body.querySelector(".ongoing"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
@@ -117,7 +118,7 @@
               "</tr>";
           }
           tbody.innerHTML = row;
-
+          ongoing.textContent = data.size;
           const rows = document.querySelectorAll("tr[data-href]");
 
           rows.forEach((r) => {
