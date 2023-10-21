@@ -155,6 +155,7 @@
             response.json().then((data) => {
               console.log(data.message);
             });
+            window.location.href = "../";
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
