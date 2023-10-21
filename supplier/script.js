@@ -95,10 +95,7 @@
             console.log(item);
             var stat = "",
               st = "";
-            if (item.status == 0) {
-              stat = "uncomplete";
-              st = "Request not completed";
-            } else if (item.status == 1) {
+            if (item.status == 1) {
               stat = "pending";
               st = "Pending Approval";
             } else if (item.status == 2) {
