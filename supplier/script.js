@@ -18,7 +18,9 @@
     c3 = body.querySelector(".c3"),
     c4 = body.querySelector(".c4"),
     c5 = body.querySelector(".c5"),
-    tbody = body.querySelector(".tbody");
+    tbody1 = body.querySelector(".tbody1"),
+    tbody2 = body.querySelector(".tbody2"),
+    income = body.querySelector(".income");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -77,7 +79,11 @@
     },
   };
 
-  var row = "";
+  var row1 = "",
+    row2 = "",
+    count = 0,
+    value = 0;
+
   fetch(backProxy + "/collection?sId=" + getCookie("sId"), {
     method: "GET",
     headers: {
@@ -95,32 +101,99 @@
             console.log(item);
             var stat = "",
               st = "";
-            if (item.status == 1) {
-              stat = "pending";
-              st = "Pending Approval";
-            } else if (item.status == 2) {
-              stat = "ready";
-              st = "Ready to pick-up";
-            } else if (item.status == 3) {
-              stat = "rejected";
-              st = "Rejected";
+            // Ongoing table
+            if (0 < item.status && item.status < 4) {
+              if (item.status == 1) {
+                stat = "pending";
+                st = "Pending Approval";
+              } else if (item.status == 2) {
+                stat = "ready";
+                st = "Ready to pick-up";
+              } else if (item.status == 3) {
+                stat = "rejected";
+                st = "Rejected";
+              } else {
+                return;
+              }
+
+              row1 +=
+                "<tr data-href='./view.html' id=" +
+                item.id +
+                ">" +
+                "<td>" +
+                item.id +
+                "</td>" +
+                "<td>" +
+                item.date +
+                "</td>" +
+                "<td>" +
+                item.time +
+                "</td>" +
+                "<td>" +
+                item.amount.toLocaleString("en-US") +
+                "</td>" +
+                "<td>" +
+                "<button class='" +
+                stat +
+                " status'>" +
+                st +
+                "</button>" +
+                "</td>" +
+                "</tr>";
+
+              count++;
+            } else if (3 < item.status && item.status < 6) {
+              // Past table
+              if (item.status == 4) {
+                stat = "pending";
+                st = "Pending Paymant";
+              } else if (item.status == 5) {
+                stat = "paid";
+                st = "Paid";
+              } else {
+                return;
+              }
+
+              row2 +=
+                "<tr data-href='./view.html' id=" +
+                item.id +
+                ">" +
+                "<td>" +
+                item.id +
+                "</td>" +
+                "<td>" +
+                item.date +
+                "</td>" +
+                "<td>" +
+                item.final_amount.toLocaleString("en-US") +
+                "</td>" +
+                "<td>" +
+                item.value.toLocaleString("en-US") +
+                "</td>" +
+                "<td>" +
+                "<button class='" +
+                stat +
+                " status'>" +
+                st +
+                "</button>" +
+                "</td>" +
+                "</tr>";
+
+              value += item.value;
+            } else {
+              return;
             }
-
-            row += "<tr data-href='./view.html' id=" + item.id + ">" +
-              "<td>" + item.id + "</td>" +
-              "<td>" + item.date + "</td>" +
-              "<td>" + item.time + "</td>" +
-              "<td>" + item.amount + "</td>" +
-              "<td>" + "<button class='" + stat + " status'>" + st + "</button>" + "</td>" +
-              "</tr>";
           }
-          tbody.innerHTML = row;
-          ongoing.textContent = data.size;
-          const rows = document.querySelectorAll("tr[data-href]");
 
+          tbody1.innerHTML = row1;
+          tbody2.innerHTML = row2;
+          ongoing.textContent = count;
+          income.textContent = value.toLocaleString("en-US") + " LKR";
+
+          const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
             r.addEventListener("click", () => {
-              document.cookie = "id="+ r.id;
+              document.cookie = "id=" + r.id;
               window.location.href = r.dataset.href;
             });
           });
