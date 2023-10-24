@@ -20,7 +20,8 @@ var username_status = false,
     ll1 = body.querySelector(".login-line1"),
     ll2 = body.querySelector(".login-line2"),
     ll3 = body.querySelector(".login-line3"),
-    ll4 = body.querySelector(".login-line4");
+    ll4 = body.querySelector(".login-line4"),
+    validate = body.querySelector(".validate");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -37,16 +38,17 @@ var username_status = false,
     username.placeholder = data["sin"]["username"];
     password.placeholder = data["sin"]["password"];
     button.textContent = data["sin"]["button"];
+    validate.innerHTML = data["sin"]["validate"];
   });
-
+  
   en.addEventListener("click", () => {
     en.classList.add("active");
     sin.classList.remove("active");
-
+    
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
-
+    
     ll1.textContent = data["en"]["ll1"];
     ll2.textContent = data["en"]["ll2"];
     ll3.textContent = data["en"]["ll3"];
@@ -54,6 +56,7 @@ var username_status = false,
     username.placeholder = data["en"]["username"];
     password.placeholder = data["en"]["password"];
     button.textContent = data["en"]["button"];
+    validate.innerHTML = data["en"]["validate"];
   });
 
   var data = {
@@ -65,6 +68,7 @@ var username_status = false,
       username: "පරිශීලක නාමය",
       password: "මුරපදය",
       button: "පිවිසෙන්න",
+      validate: "ඔබගේ විද්‍යුත් තැපෑල වලංගු කිරීමට <a href='./signup/signup2.html'>මෙහි ක්ලික් කරන්න </a>",
     },
     en: {
       ll1: "Welcome to",
@@ -74,6 +78,7 @@ var username_status = false,
       username: "Username",
       password: "Password",
       button: "Login",
+      validate: "<a href='./signup/signup2.html'>Click here </a>to Validate your Email",
     },
   };
 
@@ -148,6 +153,7 @@ var username_status = false,
               } else if (data.message == "validate") {
                 usernameError.textContent = "User is not validated!";
                 username.focus();
+                validate.style.display = "block";
               }
             });
           } else {

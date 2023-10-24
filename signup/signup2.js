@@ -35,7 +35,7 @@
 
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
-    document.cookie="lang=sin; path=/";
+    document.cookie = "lang=sin; path=/";
 
     fh1.textContent = data["sin"]["fh1"];
     fh2.textContent = data["sin"]["fh2"];
@@ -56,7 +56,7 @@
 
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
-    document.cookie="lang=en; path=/";
+    document.cookie = "lang=en; path=/";
 
     fh1.textContent = data["en"]["fh1"];
     fh2.textContent = data["en"]["fh2"];
@@ -167,6 +167,7 @@
       });
   });
 
+  const isValidate = false;
   // TODO input chage must be handle in emailOTP
   vbt1.addEventListener("click", () => {
     if (
@@ -198,10 +199,7 @@
             // sessionStorage.removeItem("id");
             // sessionStorage.removeItem("phone");
             // sessionStorage.removeItem("email");
-            document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-            document.cookie = "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-            document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-            window.location.href = frontProxy + "/signup/signup3.html";
+            isValidate = true;
           } else if (response.status === 401) {
             console.log("Invalid OTP");
             emailOtp.focus();
@@ -213,5 +211,17 @@
           console.error("An error occurred:", error);
         });
     }
+  });
+
+  next.addEventListener("click", () => {
+    if (isValidate) {
+      document.cookie =
+        "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+      document.cookie =
+        "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+      document.cookie =
+        "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+      window.location.href = frontProxy + "/signup/signup3.html";
+    } else console.log("Please validate your Email address");
   });
 })();

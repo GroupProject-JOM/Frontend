@@ -118,7 +118,7 @@
               console.log(data.message);
             });
             // sessionStorage.removeItem("sId");
-            document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
             window.location.href = frontProxy + "/signup/signup5.html";
           } else if (response.status === 400) {
             response.json().then((data) => {
