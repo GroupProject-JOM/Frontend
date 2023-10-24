@@ -323,3 +323,10 @@ input:focus {
   top: -8px;
   color: #484848;
 }
+
+.validate{
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  display: none;
+}
