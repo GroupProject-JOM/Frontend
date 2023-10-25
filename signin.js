@@ -68,7 +68,7 @@ var username_status = false,
       username: "පරිශීලක නාමය",
       password: "මුරපදය",
       button: "පිවිසෙන්න",
-      validate: "ඔබගේ විද්‍යුත් තැපෑල වලංගු කිරීමට <a href='./signup/signup2.html'>මෙහි ක්ලික් කරන්න </a>",
+      validate: "ඔබගේ විද්‍යුත් තැපෑල වලංගු කිරීමට <a>මෙහි ක්ලික් කරන්න </a>",
     },
     en: {
       ll1: "Welcome to",
@@ -78,7 +78,7 @@ var username_status = false,
       username: "Username",
       password: "Password",
       button: "Login",
-      validate: "<a href='./signup/signup2.html'>Click here </a>to Validate your Email",
+      validate: "<a>Click here </a>to Validate your Email",
     },
   };
 
@@ -165,6 +165,12 @@ var username_status = false,
         });
     }
   });
+
+  validate.addEventListener("click", () => {
+    document.cookie =  "email="+username.value+"; path=/signup";
+    window.location.href = './signup/signup2.html'
+  })
+
   function username_status_func() {
     if (
       typeof username.value === "string" &&

@@ -274,6 +274,9 @@ input:focus {
     /* display: flex;
     position: absolute; */
   }
+  .side{
+    display: none;
+  }
 }
 
 .menu-line6{

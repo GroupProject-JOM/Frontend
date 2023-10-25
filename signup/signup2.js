@@ -13,9 +13,11 @@
     sendEmail = body.querySelector(".send-email"),
     reEmail = body.querySelector(".renter-email"),
     emailOtp = body.querySelector(".email-otp"),
+    shPhone = body.querySelector(".signup-heading-phone"),
     sendPhone = body.querySelector(".send-phone"),
     rePhone = body.querySelector(".renter-phone"),
     phoneOtp = body.querySelector(".phone-otp"),
+    vPhone = body.querySelector(".vPhone"),
     next = body.querySelector(".next"),
     vbt1 = body.querySelector(".vb1"),
     vbt2 = body.querySelector(".vb2"),
@@ -28,6 +30,40 @@
   var email = getCookie("email"),
     phone = getCookie("phone"),
     oId;
+
+    if(email == null){
+      window.location.href = "./"
+    }
+
+    if(phone == null){
+      shPhone.style.display = "none";
+      vPhone.style.display = "none";
+    }
+
+    if(getCookie("id") == null){
+      fetch(backProxy + "/validateE?email="+email, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }).then((response) => {
+        if (response.status == 200) {
+          response.json().then((data) => {
+            console.log(data.id);
+            document.cookie = "id=" + data.id;
+            document.cookie = "sId=" + data.sId;
+          });
+        } else if (response.status === 202) {
+          console.log("No user in this email");
+        } else {
+          console.error("Error:", response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      });
+    }
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
