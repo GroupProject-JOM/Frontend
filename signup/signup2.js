@@ -17,6 +17,7 @@
     sendPhone = body.querySelector(".send-phone"),
     rePhone = body.querySelector(".renter-phone"),
     phoneOtp = body.querySelector(".phone-otp"),
+    vPhone = body.querySelector(".vPhone"),
     next = body.querySelector(".next"),
     vbt1 = body.querySelector(".vb1"),
     vbt2 = body.querySelector(".vb2"),
@@ -36,6 +37,7 @@
 
     if(phone == null){
       shPhone.style.display = "none";
+      vPhone.style.display = "none";
     }
 
     if(getCookie("id") == null){
