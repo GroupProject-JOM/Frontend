@@ -1,10 +1,11 @@
 function checkLng() {
   const body = document.querySelector("body"),
-    sin = body.querySelector(".sin");
-  en = body.querySelector(".en");
+    sin = body.querySelector(".sin"),
+    en = body.querySelector(".en");
 
   //reload language detecter
-  const curLng = sessionStorage.getItem("lang");
+  // const curLng = sessionStorage.getItem("lang");
+  const curLng = getCookie("lang");
   if (curLng == "sin") {
     sin.click();
   } else {
@@ -16,8 +17,9 @@ function checkMode() {
   const body = document.querySelector("body"),
     modeSwitch = body.querySelector(".toggle-switch");
 
-  //reload language detecter
-  const curMode = sessionStorage.getItem("mode");
+  //reload mode detecter
+  // const curMode = sessionStorage.getItem("mode");
+  const curMode = getCookie("mode");
   if (curMode == "dark") {
     modeSwitch.click();
   }
@@ -33,7 +35,8 @@ function getGreetingTime(m) {
   var split_afternoon = 12; //24hr time to split the afternoon
   var split_evening = 17; //24hr time to split the evening
   var currentHour = parseFloat(m.format("HH"));
-  const curLng = sessionStorage.getItem("lang");
+  // const curLng = sessionStorage.getItem("lang");
+  const curLng = getCookie("lang");
 
   if (currentHour >= split_afternoon && currentHour <= split_evening) {
     if (curLng == "sin") {
@@ -67,8 +70,10 @@ function setGreeting() {
 
 function modeTranslate() {
   var text = null;
-  const curMode = sessionStorage.getItem("mode");
-  const curLng = sessionStorage.getItem("lang");
+  // const curMode = sessionStorage.getItem("mode");
+  // const curLng = sessionStorage.getItem("lang");
+  const curMode = getCookie("mode");
+  const curLng = getCookie("lang");
 
   if (curMode == "dark") {
     if (curLng == "sin") {
@@ -85,3 +90,73 @@ function modeTranslate() {
   }
   return text;
 }
+
+window.addEventListener("resize", (e) => {
+  const body = document.querySelector("body"),
+    sidebar = body.querySelector(".sidebar");
+
+  if (!sidebar) return;
+
+  if (window.innerWidth <= 1010) {
+    sidebar.classList.add("close");
+  } else {
+    sidebar.classList.remove("close");
+  }
+});
+
+window.addEventListener("load", (e) => {
+  const body = document.querySelector("body"),
+    sidebar = body.querySelector(".sidebar");
+
+  if (!sidebar) return;
+
+  if (window.innerWidth <= 1010) {
+    sidebar.classList.add("close");
+  } else {
+    sidebar.classList.remove("close");
+  }
+});
+
+// function checkCookie(name) {
+//   var dc = document.cookie;
+//   var prefix = name + "=";
+//   var begin = dc.indexOf("; " + prefix);
+//   if (begin == -1) {
+//     begin = dc.indexOf(prefix);
+//     if (begin != 0) return null;
+//   } else {
+//     begin += 2;
+//     var end = document.cookie.indexOf(";", begin);
+//     if (end == -1) {
+//       end = dc.length;
+//     }
+//   }
+//   return decodeURI(dc.substring(begin + prefix.length, end));
+// }
+
+function checkCookie(cName) {
+  const name = cName + "=";
+  const cDecoded = decodeURIComponent(document.cookie); //to be careful
+  const cArr = cDecoded.split("; ");
+  let res;
+  cArr.forEach((val) => {
+    if (val.indexOf(name) === 0) res = val.substring(name.length);
+  });
+  return res;
+}
+
+function getCookie(name) {
+  var myCookie = checkCookie(name);
+
+  if (myCookie == null) {
+    console.log(name + " - null");
+  } 
+  // else {
+  //   console.log("not null " + myCookie);
+  // }
+
+  return myCookie;
+}
+
+const frontProxy = "http://127.0.0.1:5501";
+const backProxy = "http://127.0.0.1:8090/JOM_war_exploded";

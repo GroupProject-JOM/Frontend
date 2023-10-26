@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <!-- <link rel="stylesheet" href="../signin.css" /> -->
+    <link rel="stylesheet" href="../user-flow.css" />
+  </head>
+
+  <body>
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="payment-container add-container">
+        <div class="salesmg-heading table-heading">
+          <h2 class="salesmg-title">Payment Details</h2>
+        </div>
+        <div class="salesmg-content">
+          
+          <div class="stock-details">
+            <table class="payment-table overview-tables">
+              <tbody>
+                <tr>
+                  <td>Supplier ID</td>
+                  <td>S0001</td>
+                </tr>
+                <tr>
+                  <td>Supplier Name</td>
+                  <td>Jayathilake</td>
+                </tr>
+                <tr>
+                  <td>Area</td>
+                  <td>Kurunagala Town</td>
+                </tr>
+                <tr>
+                  <td>Coconut Count</td>
+                  <td>10000</td>
+                </tr>
+                <tr>
+                  <td>Delivery Method</td>
+                  <td>Pick up from estate</td>
+                </tr>
+                <tr>
+                  <td>Paymment Method</td>
+                  <td>Cash</td>
+                </tr>
+                <tr>
+                  <td>Payment</td>
+                  <td>20000 LKR</td>
+                </tr>
+              </tbody>
+            </table>
+            <a class="salesmg-button form-button">Payment Completed</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="../../common/func.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./load-nav.js"></script>
+    <script src="./load-notifications.js"></script>
+  </body>
+</html>

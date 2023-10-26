@@ -1,0 +1,150 @@
+.yard1 {
+  grid-area: left;
+}
+
+.yard2 {
+  grid-area: middle;
+}
+
+.yard3 {
+  grid-area: right;
+}
+
+.stock {
+  display: grid;
+  grid-template-areas: "left middle right";
+  gap: 40px;
+}
+
+.stock table tr:hover, .yard .overview-tables tr:hover{
+  background-color: rgb(224, 224, 224) !important;
+}
+
+.stock h3, .yard h3 {
+  padding-bottom: 0.8rem;
+  /* margin-top: 1rem; */
+  /* padding-left: 25px; */
+  font-weight: 600;
+  font-size: 19px;
+}
+.production-stock-container {
+  top: 50%;
+  transform: translate(0, 10%);
+}
+
+.productionmg-text {
+  width: 95%;
+  font-size: 14px;
+}
+
+.production-stock-request{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  gap: 10rem;
+  margin-top: 25px;
+  /* justify-content: space-between; */
+}
+
+.yard{
+  width: 30%;
+}
+
+.productionmg-button{
+  margin-bottom:15px;
+  width: fit-content;
+  padding: 8px 20px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.collection-data-table {
+  width: 25rem;
+  /* margin-top: 35px; */
+  /* top: 50%;
+  transform: translate(0, 15%); */
+}
+
+.production-ongoing{
+  background-color: var(--sidebar-color);
+}
+
+.production-completed{
+  background-color: var(--completed-green);
+}
+
+.stock-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+
+input {
+  /* box-sizing: border-box; */
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  color: #484848;
+  padding: 7px 0;
+  margin: 20px 0;
+  background-color: var(--body-color);
+}
+
+input::placeholder {
+  color: var(--input-border);
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #484848;
+  transition: var(--tran-05);
+}
+
+@media only screen and (max-device-width: 1260px) {
+  .production-req {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .supply-req {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+
+  .req-tables {
+    display: inline-block;
+    /* flex-wrap: wrap; */
+  }
+
+  .yard2 {
+    /* display: flex;
+      flex-wrap: wrap; */
+    margin-top: 1rem;
+  }
+  .yard3 {
+    /* display: flex;
+      flex-wrap: wrap; */
+    margin-top: 1rem;
+  }
+
+  .stock {
+    display: inline-block;
+    margin-right: 4rem;
+    /* flex-wrap: wrap; */
+  }
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .production-stock-request{
+    gap: 20px;
+  }
+
+  .yard{
+    width: 90%;
+  }
+}

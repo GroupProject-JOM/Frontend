@@ -13,7 +13,7 @@
 
 .sidebar.close {
   width: 88px;
-  padding: 2.7rem 0.8rem 0 01rem;
+  padding: 2.7rem 0.8rem 0 0.8rem;
 }
 
 /* reuse css */
@@ -129,6 +129,11 @@ header .welcome-text .header-text {
 
 body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text {
+  color: var(--sidebar-color);
+}
+
+body.dark .sidebar .active a .icon,
+body.dark .sidebar .active a .text {
   color: var(--sidebar-color);
 }
 

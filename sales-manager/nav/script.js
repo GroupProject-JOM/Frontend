@@ -1,3 +1,14 @@
+// if (sessionStorage.getItem("page") != "sales-manager") {
+//   if (
+//     sessionStorage.getItem("page") == null ||
+//     sessionStorage.getItem("page").length === 0
+//   ) {
+//     window.location.href = frontProxy + "/signin.html";
+//   } else {
+//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+//   }
+// }
+
 (() => {
   let loaded = false;
 
@@ -18,7 +29,11 @@
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
-      l9 = body.querySelector(".l9");
+      l9 = body.querySelector(".l9"),
+      Uname = body.querySelector(".name");
+
+    // Uname.textContent = sessionStorage.getItem("name");
+    Uname.textContent = getCookie('name');
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -32,10 +47,12 @@
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
-        sessionStorage.setItem("mode", "dark");
+        // sessionStorage.setItem("mode", "dark");
+        document.cookie = "mode=dark; path=/";
         modeText.innerHTML = modeTranslate();
       } else {
-        sessionStorage.setItem("mode", "light");
+        // sessionStorage.setItem("mode", "light");
+        document.cookie = "mode=light; path=/";
         modeText.innerHTML = modeTranslate();
       }
     });

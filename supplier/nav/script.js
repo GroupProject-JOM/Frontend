@@ -1,3 +1,14 @@
+// if (sessionStorage.getItem("page") != "supplier") {
+//   if (
+//     sessionStorage.getItem("page") == null ||
+//     sessionStorage.getItem("page").length === 0
+//   ) {
+//     window.location.href = frontProxy + "/signin.html";
+//   } else {
+//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
+//   }
+// }
+
 (() => {
   let loaded = false;
 
@@ -18,7 +29,21 @@
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
-      l9 = body.querySelector(".l9");
+      l9 = body.querySelector(".l9"),
+      l11 = body.querySelector(".l11"),
+      newSupply = body.querySelector(".newSupply"),
+      address = body.querySelector(".address"),
+      payment = body.querySelector(".payment"),
+      dashboard = body.querySelector(".dashboard"),
+      Uname = body.querySelector(".name");
+
+    // Uname.textContent = sessionStorage.getItem("name");
+    Uname.textContent = getCookie('name');
+
+    newSupply.href = frontProxy + "/supplier/supply";
+    address.href = frontProxy + "/supplier/address/view-all.html";
+    payment.href = frontProxy + "/supplier/payment/view-all.html";
+    dashboard.href = frontProxy + "/supplier/";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -32,10 +57,12 @@
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
-        sessionStorage.setItem("mode", "dark");
+        // sessionStorage.setItem("mode", "dark");
+        document.cookie = "mode=dark; path=/";
         modeText.innerHTML = modeTranslate();
       } else {
-        sessionStorage.setItem("mode", "light");
+        // sessionStorage.setItem("mode", "light");
+        document.cookie = "mode=light; path=/";
         modeText.innerHTML = modeTranslate();
       }
     });
@@ -51,6 +78,7 @@
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
       l9.textContent = modeTranslate();
+      l11.textContent = data["sin"]["l11"];
     });
 
     en.addEventListener("click", () => {
@@ -64,6 +92,7 @@
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
       l9.textContent = modeTranslate();
+      l11.textContent = data["en"]["l11"];
     });
 
     var data = {
@@ -77,6 +106,7 @@
         l6: "ප්‍රධාන ක්‍ර්‍රියාවන්",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
+        l11: "උපකරණ පුවරුව",
       },
       en: {
         l0: "USER ACTIONS",
@@ -88,6 +118,7 @@
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
+        l11: "Dashboard",
       },
     };
 
@@ -97,11 +128,30 @@
   }, 10);
 })();
 
-function newSupply(){
-  location.href = "./supply1.html";
+window.addEventListener("load", (e) => {
+  const interval = setInterval(() => {
+    let loaded = false;
+    var pathname = window.location.pathname;
+    pathname = pathname.split("/")[2] || "";
+    // pathname = pathname.replace(".html", "");
+    const navItems = ["supply", "address", "payment", "report", "chat"];
+    if (!loaded && pathname) {
+      loaded = true;
+      clearInterval(interval);
+    }
 
-  const body = document.querySelector("body"),
-  newSupply = body.querySelector(".newSupply");
-  newSupply.classList.add("active");
-  console.log('hello')
-}
+    for (const navItem of navItems) {
+      const nav = document.querySelector(`#nav-item-${pathname}`);
+
+      if (!nav) continue;
+
+      if (navItem == pathname) {
+        nav.classList.add("active");
+        break;
+      } else {
+        nav.classList.remove("active");
+      }
+    }
+    if (!pathname) clearInterval(interval);
+  }, 10);
+});

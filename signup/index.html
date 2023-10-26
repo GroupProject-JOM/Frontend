@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Information</title>
+
+    <link rel="stylesheet" href="../common/style.css" />
+    <link rel="stylesheet" href="../signin.css" />
+  </head>
+
+  <body>
+    <div class="signup-container">
+      <div class="side"></div>
+
+      <section class="signup-home">
+        <div class="lng-picker">
+          <div class="sin">සිං</div>
+          <div class="en active">En</div>
+        </div>
+
+        <div class="text"></div>
+        
+        <div class="signup">
+          <div class="form-heading"></div>
+          <div class="main-error"></div>
+          <div class="signup-form">
+            <form autocomplete="on">
+              <div style="margin: 0; padding: 0;">
+                <section>
+                  <input
+                    type="text"
+                    class="short fname"
+                    name="fname"
+                    placeholder=""
+                    autocomplete="given-name"
+                  />
+                  <br />
+                  <span class="form-error fname-error"></span>
+                </section>
+                <section>
+                  <input
+                    type="text"
+                    class="short lname"
+                    name="lname"
+                    placeholder=""
+                    autocomplete="family-name"
+                  />
+                  <br />
+                  <span class="form-error lname-error"></span>
+                </section>
+              </div>
+              <br />
+              <input
+                type="text"
+                class="long email"
+                name="email"
+                placeholder=""
+                autocomplete="email"
+              /><br />
+              <span class="form-error email-error"></span>
+              <br />
+              <input
+                type="password"
+                class="long password"
+                name="password"
+                placeholder=""
+                autocomplete="new-password"
+              /><br /><span class="form-error password-error"></span>
+              <br />
+              <input
+                type="text"
+                name="phone"
+                class="long phone"
+                placeholder=""
+                autocomplete="tel"
+              /><br /><span class="form-error phone-error"></span>
+              <br />
+              <p class="address"></p>
+              <br />
+              <input
+                type="text"
+                class="long address1"
+                name="address1"
+                placeholder=""
+                autocomplete="address-line1"
+              /><br /><span class="form-error address1-error"></span><br />
+              <div>
+                <section>
+                <input
+                  type="text"
+                  name="address2"
+                  class="short address2"
+                  placeholder=""
+                  autocomplete="address-line2"
+                /><br /><span class="form-error address2-error"></span></section>
+                <section>
+                <input
+                  type="text"
+                  name="address3"
+                  class="short address3"
+                  placeholder=""
+                  autocomplete="address-line3"
+                /><br /><span class="form-error address3-error"></span></section>
+              </div>
+              <!-- <input type="submit" class="next form-button" value="submit"/> -->
+            </form>
+          </div>
+          <a type="submit" class="next form-button"></a>
+        </div>
+      </section>
+    </div>
+    <script src="./sidebar/load-sidebar.js"></script>
+    <script src="../common/func.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

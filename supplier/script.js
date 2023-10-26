@@ -1,22 +1,34 @@
 (() => {
+  //   document.cookie = "name=Buddhika";
+  //   document.cookie = "page=supplier";
+  //   document.cookie = "sId=1";
+  //   let cookies = document.cookie;
+  //   console.log(cookies);
+
+  // console.log(getCookie('lang'));
+
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     w1 = body.querySelector(".w1"),
+    ongoing = body.querySelector(".ongoing"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     c3 = body.querySelector(".c3"),
     c4 = body.querySelector(".c4"),
-    c5 = body.querySelector(".c5");
+    c5 = body.querySelector(".c5"),
+    tbody1 = body.querySelector(".tbody1"),
+    tbody2 = body.querySelector(".tbody2"),
+    income = body.querySelector(".income");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    sessionStorage.setItem("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin; path=/";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -33,7 +45,8 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    sessionStorage.setItem("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en; path=/";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -65,17 +78,135 @@
       c5: "Overview of past supplies at your estates",
     },
   };
-  
-  checkLng();
-  checkMode();
 
-  modeSwitch.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    if (body.classList.contains("dark")) {
-      sessionStorage.setItem("mode", "dark");
-    } else {
-      sessionStorage.setItem("mode", "light");
-    }
-  });
-  
+  var row1 = "",
+    row2 = "",
+    count = 0,
+    value = 0;
+
+  fetch(backProxy + "/collection?sId=" + getCookie("sId"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.list;
+          arr.forEach(data_to_table);
+
+          function data_to_table(item) {
+            console.log(item);
+            var stat = "",
+              st = "";
+            // Ongoing table
+            if (0 < item.status && item.status < 4) {
+              if (item.status == 1) {
+                stat = "pending";
+                st = "Pending Approval";
+              } else if (item.status == 2) {
+                stat = "ready";
+                st = "Ready to pick-up";
+              } else if (item.status == 3) {
+                stat = "rejected";
+                st = "Rejected";
+              } else {
+                return;
+              }
+
+              row1 +=
+                "<tr data-href='./view.html' id=" +
+                item.id +
+                ">" +
+                "<td>" +
+                item.id +
+                "</td>" +
+                "<td>" +
+                item.date +
+                "</td>" +
+                "<td>" +
+                item.time +
+                "</td>" +
+                "<td>" +
+                item.amount.toLocaleString("en-US") +
+                "</td>" +
+                "<td>" +
+                "<button class='" +
+                stat +
+                " status'>" +
+                st +
+                "</button>" +
+                "</td>" +
+                "</tr>";
+
+              count++;
+            } else if (3 < item.status && item.status < 6) {
+              // Past table
+              if (item.status == 4) {
+                stat = "pending";
+                st = "Pending Paymant";
+              } else if (item.status == 5) {
+                stat = "paid";
+                st = "Paid";
+              } else {
+                return;
+              }
+
+              row2 +=
+                "<tr data-href='./view.html' id=" +
+                item.id +
+                ">" +
+                "<td>" +
+                item.id +
+                "</td>" +
+                "<td>" +
+                item.date +
+                "</td>" +
+                "<td>" +
+                item.final_amount.toLocaleString("en-US") +
+                "</td>" +
+                "<td>" +
+                item.value.toLocaleString("en-US") +
+                "</td>" +
+                "<td>" +
+                "<button class='" +
+                stat +
+                " status'>" +
+                st +
+                "</button>" +
+                "</td>" +
+                "</tr>";
+
+              value += item.value;
+            } else {
+              return;
+            }
+          }
+
+          tbody1.innerHTML = row1;
+          tbody2.innerHTML = row2;
+          ongoing.textContent = count;
+          income.textContent = value.toLocaleString("en-US") + " LKR";
+
+          const rows = document.querySelectorAll("tr[data-href]");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id;
+              window.location.href = r.dataset.href;
+            });
+          });
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.size);
+        });
+      } else {
+        console.error("Error:", response.status);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
 })();

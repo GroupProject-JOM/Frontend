@@ -68,6 +68,8 @@
                 <th>Name</th>
                 <th>Location</th>
                 <th>Contact No</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
 
@@ -77,24 +79,32 @@
                 <td>Cargills</td>
                 <td>Gunasinghepura</td>
                 <td>+94 766406539</td>
+                <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></i></td>
               </tr>
               <tr>
                 <td>O053</td>
                 <td>Gunasinghe Stores</td>
                 <td>Nugegoda</td>
                 <td>+94 766406539</td>
+                <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></i></td>
               </tr>
               <tr>
                 <td>O054</td>
                 <td>JOM Factory Outlet</td>
                 <td>Kotte</td>
                 <td>+94 766406539</td>
+                <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></i></td>
               </tr>
               <tr>
                 <td>O055</td>
                 <td>ABC Stores</td>
                 <td>Boralla</td>
                 <td>+94 766406539</td>
+                <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></i></td>
               </tr>
             </tbody>
           </table>
@@ -106,21 +116,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
-    <script>
-      function myFunction(x) {
-        const body = document.querySelector("body"),
-      sidebar = body.querySelector(".sidebar");
-        if (x.matches) {
-          // If media query matches
-          sidebar.classList.add('close');
-        } else {
-          sidebar.classList.remove('close');
-        }
-      }
-
-      var x = window.matchMedia("(max-width: 1010px)");
-      myFunction(x); // Call listener function at run time
-      x.addListener(myFunction);
-    </script>
+    
   </body>
 </html>

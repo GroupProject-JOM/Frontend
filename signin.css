@@ -8,7 +8,8 @@
   transition: var(--tran-05);
   z-index: 100;
 }
-.lng-picker{
+.lng-picker {
+  padding-right: 0;
   margin-right: 3vw;
 }
 
@@ -40,7 +41,7 @@ input {
   border-bottom: 1px solid #a9a9a9;
   color: #484848;
   padding: 7px 0;
-  margin: 20px 0;
+  margin: 20px 0 0 0;
 }
 
 input::placeholder {
@@ -58,22 +59,14 @@ input:focus {
   width: 25rem;
 }
 
-.form-button {
-  color: var(--text-color);
-  background-color: var(--sidebar-color);
-  border-radius: 6px;
-  border: none;
-  padding: 10px;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
 
-.form-button:hover{
+
+.form-button:hover {
   background-color: #d6a360;
 }
 
 .login-button {
-  width: 25rem;
+  width: 20rem;
   margin-top: 50px;
   font-size: 20px;
 }
@@ -94,15 +87,11 @@ input:focus {
   color: var(--text-color);
 }
 
-.next {
-  margin-top: 20px;
-  width: 12rem;
-  font-size: 18px;
-}
 
 
-.signup-form input {
+.signup-form input, .check-email input{
   font-size: 15px;
+  padding: 0;
 }
 
 .address {
@@ -125,11 +114,7 @@ input:focus {
   width: 17rem;
 }
 
-.email {
-  margin-top: 0;
-}
-
-.long{
+.long {
   width: 40rem;
 }
 
@@ -192,25 +177,30 @@ input:focus {
   height: auto;
 }
 
-.wrapper a{
+.wrapper a {
   text-decoration: none;
   color: var(--text-color);
+}
+
+.bold{
+  font-weight: 600;
 }
 
 .circle {
   width: 46px;
   height: 46px;
   border-radius: 100px;
-  border: 2px solid var(--text-color);
+  border: 3px solid var(--text-color);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 30px;
+  font-weight: 600;
 }
 
 .vertical-line {
-  width: 1px;
+  width: 2px;
   height: 60px;
   background: var(--text-color);
   margin: 0px auto 0 53px;
@@ -229,7 +219,8 @@ input:focus {
   padding-bottom: 20px;
 }
 
-.location-form input {
+.location-form input,
+.verify-form input{
   width: 40rem;
   margin: 35px 0;
 }
@@ -243,21 +234,102 @@ input:focus {
   margin-top: 35px;
 }
 
-.disable1{
-  border:1px solid var(--disable-color);
+.disable1 {
+  border: 1px solid var(--disable-color);
 }
 
 .disable2 {
   color: var(--disable-color);
-  border:2px solid var(--disable-color);
+  border: 2px solid var(--disable-color);
 }
 
-.disable3{
+.disable3 {
+  font-weight: 400;
   color: var(--disable-color);
 }
 
-.signup-content{
+.signup-content {
   margin: 0;
   position: relative;
   top: 10%;
+}
+
+@media only screen and (max-device-width: 900px) {
+  .sidebar-photo {
+    display: none;
+  }
+  section .container {
+    left: 0;
+    width: calc(100% - 0vw);
+    position: fixed;
+  }
+  .login-button {
+    width: 50vw;
+  }
+  .login-form input {
+    width: 70vw;
+  }
+  .lng-picker{
+    margin-right: 6vw;
+    /* display: flex;
+    position: absolute; */
+  }
+  .side{
+    display: none;
+  }
+}
+
+.menu-line6{
+  margin-top: 20%;
+  font-size: 13px;
+}
+
+.menu-line6 a{
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.verify-button, .send-button{
+  width: 7rem;
+  padding: 5px 30px;
+  border-radius: 20px;
+}
+
+.send-otp{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  /* margin:10px 0 20px 0;   */
+}
+
+.correct-email, .correct-phone{
+  width: 40rem;
+  margin: 35px 0;
+}
+
+.check-email, .check-phone{
+  margin-top: 0;
+}
+
+.renter-email , .renter-phone , .resend-phone{
+  display: none;
+}
+
+.form-heading-text2 , .form-heading-text4{
+  cursor: pointer;
+}
+
+#counter{
+  display: none;
+  font-size: 12px;
+  position: relative;
+  top: -8px;
+  color: #484848;
+}
+
+.validate{
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  display: none;
 }

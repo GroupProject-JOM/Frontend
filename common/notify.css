@@ -40,7 +40,7 @@
 }
 
 :is(#notifications)::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 :is(#notifications)::-webkit-scrollbar-thumb {
