@@ -16,7 +16,7 @@
 
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
-    document.cookie="lang=sin; path=/";
+    document.cookie = "lang=sin; path=/";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -33,7 +33,7 @@
 
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
-    document.cookie="lang=en; path=/";
+    document.cookie = "lang=en; path=/";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -63,4 +63,88 @@
     },
   };
 
+  let labels1 = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let labels2 = ["Saman", "Kamal", "Amal", "Chamal", "Piyal", "Sunil", "Kasun"];
+  let itemData1 = [
+    7000, 5000, 5000, 3000, 7000, 1100, 1500, 1000, 2100, 3000, 4500, 1200,
+  ];
+  let itemData2 = [7000, 5000, 5000, 3000, 7000, 1100, 1500];
+
+  const dataLine1 = {
+    labels: labels1,
+    datasets: [
+      {
+        data: itemData1,
+        fill: true,
+        borderColor: "#909090",
+        // hoverBorderColor: '#000000',
+        // backgroundColor:'#ffe0b6'
+        tension: 0.1,
+      },
+    ],
+  };
+  const dataLine2 = {
+    labels: labels2,
+    datasets: [
+      {
+        data: itemData2,
+        backgroundColor: ['rgb(24, 0, 201)', 'rgb(0, 201, 64)', 'rgb(201, 178, 0)', 'rgb(201, 77, 0)', 'rgb(201, 0, 147)', 'rgb(9, 8, 10)', 'rgb(48, 230, 121)']
+      },
+    ],
+  };
+
+  const configLine1 = {
+    type: "line",
+    data: dataLine1,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          // display: true,
+          // text: 'Monthly Sales'
+        },
+      },
+    },
+  };
+  const configLine2 = {
+    type: "bar",
+    data: dataLine2,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          // display: true,
+          // text: 'Monthly Sales'
+        },
+      },
+    },
+  };
+
+  const chartLine1 = new Chart(
+    document.getElementById("sales-data"),
+    configLine1
+  );
+  const chartLine2 = new Chart(
+    document.getElementById("distributor-sales"),
+    configLine2
+  );
 })();

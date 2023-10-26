@@ -11,7 +11,7 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/notify.css">
+    <link rel="stylesheet" href="../common/notify.css" />
   </head>
 
   <body>
@@ -70,7 +70,9 @@
               </div>
             </div>
           </div>
-          <div><h2>chart</h2></div>
+          <div class="sales-data layer" style="width: 90%">
+            <canvas id="sales-data"></canvas>
+          </div>
         </div>
 
         <div class="layer">
@@ -86,15 +88,17 @@
               </div>
             </div>
           </div>
-          <div><h2>chart</h2></div>
+          <div class="distributor-sales layer" style="width: 90%">
+            <canvas id="distributor-sales"></canvas>
+          </div>
         </div>
       </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
     <script src="../common/func.js"></script>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
-    
   </body>
 </html>
