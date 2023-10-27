@@ -98,7 +98,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             e.addEventListener("click", () => {
               console.log(e.parentElement.id);
               // sessionStorage.setItem("id", e.parentElement.id);
-              document.cookie = "id="+e.parentElement.id;
+              document.cookie = "id=" + e.parentElement.id  + "; path=/";
             });
           });
 
@@ -142,7 +142,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           rows.forEach((r) => {
             r.addEventListener("click", () => {
               // sessionStorage.setItem("id", r.id);
-              document.cookie = "id="+ r.id;
+              document.cookie = "id=" + r.id + "; path=/";
               window.location.href = r.dataset.href;
             });
           });

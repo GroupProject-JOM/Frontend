@@ -1,3 +1,5 @@
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   //   document.cookie = "name=Buddhika";
   //   document.cookie = "page=supplier";
@@ -20,7 +22,11 @@
     c5 = body.querySelector(".c5"),
     tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
-    income = body.querySelector(".income");
+    income = body.querySelector(".income"),
+    ongoingSupplyTable = body.querySelector(".ongoing-supply-table"),
+    ongoingError = body.querySelector(".ongoing-error"),
+    pastError = body.querySelector(".past-error"),
+    pastSupplyTable = body.querySelector(".past-supply-table");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -37,6 +43,8 @@
     c3.innerHTML = data["sin"]["c3"];
     c4.textContent = data["sin"]["c4"];
     c5.textContent = data["sin"]["c5"];
+    ongoingError.textContent = data["sin"]["ongoingError"];
+    pastError.textContent = data["sin"]["pastError"];
     setGreeting();
   });
 
@@ -55,6 +63,8 @@
     c3.innerHTML = data["en"]["c3"];
     c4.textContent = data["en"]["c4"];
     c5.textContent = data["en"]["c5"];
+    ongoingError.textContent = data["en"]["ongoingError"];
+    pastError.textContent = data["en"]["pastError"];
     setGreeting();
   });
 
@@ -67,6 +77,8 @@
       c3: "*සැපයුම් පොල් ප්‍රමාණය අවශ්‍ය අවම මට්ටමට නොපැමිණීම හේතුවෙන් සැපයුම් හැඳුනුම්පත S092 ප්‍රතික්ෂේප කර ඇත. <br/>මෙය දින 7කින් ස්වයංක්‍රීයව මැකෙනු ඇත",
       c4: "අතීත සැපයුම්",
       c5: "ඔබේ වතුවල අතීත සැපයුම් පිළිබඳ දළ විශ්ලේෂණය",
+      ongoingError: "**ඔබට අඛණ්ඩ සැපයුම් කිසිවක් නොමැත",
+      pastError: "**ඔබට අතීත සැපයුම් කිසිවක් නොමැත",
     },
     en: {
       w1: "Ongoing Supplies",
@@ -76,10 +88,12 @@
       c3: "*Supply ID S092 has been rejected due to the supply coconut amount not meeting the minimum required. <br/>This will be automatically deleted in 7 days",
       c4: "Past Supplies",
       c5: "Overview of past supplies at your estates",
+      ongoingError: "**You have not any Ongoing Supplies",
+      pastError: "**You have not any Past Supplies",
     },
   };
 
-  var row1 = "",
+  let row1 = "",
     row2 = "",
     count = 0,
     value = 0;
@@ -193,7 +207,7 @@
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
             r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id;
+              document.cookie = "id=" + r.id + "; path=/";
               window.location.href = r.dataset.href;
             });
           });
@@ -201,6 +215,11 @@
       } else if (response.status === 202) {
         response.json().then((data) => {
           console.log(data.size);
+          ongoingSupplyTable.style.display = "none";
+          pastSupplyTable.style.display = "none";
+          c3.style.display = "none";
+          ongoingError.style.display = "Block";
+          pastError.style.display = "Block";
         });
       } else {
         console.error("Error:", response.status);
@@ -209,4 +228,7 @@
     .catch((error) => {
       console.error("An error occurred:", error);
     });
+
+  ongoing.textContent = count;
+  income.textContent = value.toLocaleString("en-US") + " LKR";
 })();
