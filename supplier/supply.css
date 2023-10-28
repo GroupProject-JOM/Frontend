@@ -147,3 +147,19 @@ select.dropdown {
   margin-top: 3rem;
   width: 40rem;
 }
+
+.buttons{
+  display: flex;
+  gap: 20px;
+  /* margin-top: 30px; */
+  flex-wrap: wrap;
+}
+
+.address-table {
+  width: 25vw;
+  margin-top: 40px;
+}
+
+.smallbt{
+  width: 10vw; 
+}
