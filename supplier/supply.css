@@ -3,17 +3,25 @@
 }
 
 .coco-amount {
-  width: 37rem;
+  width: 50vw;
   /* margin-top: 3rem; */
   background-color: var(--background-color);
   color: var(--wtext-color);
-  width: 37rem;
+  /* width: 37rem; */
   padding-top: 3rem;
 }
 
 .method {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.collection-input{
+  display: flex;
+  align-items: center;
+  /* flex-wrap: wrap; */
   gap: 1rem;
 }
 
@@ -31,7 +39,7 @@
   /* position: absolute; */
   top: 50%;
   transform: translate(0, 30%);
-  margin-left: 6rem;
+  margin-left: 6vw;
 }
 
 .method label {
@@ -125,7 +133,7 @@ select.dropdown {
 }
 
 .dropdown {
-  width: 40rem;
+  width: 40vw;
   margin-top: 3rem;
   margin-bottom: 3rem;
   background-color: var(--body-color);
@@ -145,7 +153,7 @@ select.dropdown {
 .loaction-form input,
 .bank-form input {
   margin-top: 3rem;
-  width: 40rem;
+  width: 40vw;
 }
 
 .buttons{
@@ -162,4 +170,49 @@ select.dropdown {
 
 .smallbt{
   width: 10vw; 
+}
+
+.collection-data-table{
+  width: 30vw;
+}
+
+@media only screen and (max-device-width: 900px){
+  .supply-container{
+    margin-left: 0;
+  }
+
+  .coco-amount {
+    width: 70vw;
+  }
+
+  
+.loaction-form input,
+.bank-form input ,
+.dropdown{
+  width: 60vw;
+}
+
+.supply-heading{
+  margin-right: 10px;
+}
+
+.next{
+  width: 38vw;
+  font-size: 12px;
+}
+
+.smallbt{
+  width: 25vw;
+  font-size: 12px;
+}
+.date-form{
+  gap: 0;
+}
+.date-form input{
+  width: 60vw;
+}
+
+.collection-data-table{
+  width: 60vw;
+}
 }
