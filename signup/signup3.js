@@ -48,7 +48,7 @@
       ename: "වතු නම",
       location: "ස්ථානය",
       area: "ප්රදේශය/කලාපය",
-      next: "ඊළඟ",
+      next: "සුරකින්න",
     },
     en: {
       fh: "Estate Locations",
@@ -56,7 +56,7 @@
       ename: "Estate Name",
       location: "Location",
       area: "Area/Region",
-      next: "Next",
+      next: "Save",
     },
   };
 
