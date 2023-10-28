@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Employees</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+  </head>
+
+  <body>
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="container">
+        <div class="outlet-heading table-heading">
+          <h2 class="outlet-title">View Emploees</h2>
+          <p class="outlet-text">View all the employees of Jayasinghe Oil Mills (PVT) Ltd</p>
+        </div>
+
+        <table class="outlets-table overview-tables">
+          <thead>
+            <tr>
+              <th>Employee ID</th>
+              <th>Employee Name</th>
+              <th>Designation</th>
+              <th>Phone Number</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>O001</td>
+              <td>Samara Stores</td>
+              <td>Kirulapone</td>
+              <td>5000</td>
+            </tr>
+
+            <tr>
+              <td>O002</td>
+              <td>Cargills</td>
+              <td>Kurunagala</td>
+              <td>400</td>
+            </tr>
+
+            <tr>
+              <td>O003</td>
+              <td>Keells</td>
+              <td>Galle</td>
+              <td>10 000</td>
+            </tr>
+
+            <tr>
+              <td>O004</td>
+              <td>SPAR Supermarket</td>
+              <td>Nuwara Eliya</td>
+              <td>20 000</td>
+            </tr>
+
+            <tr>
+              <td>O005</td>
+              <td>MN Stores</td>
+              <td>Galle</td>
+              <td>3000</td>
+            </tr>
+
+            <tr>
+              <td>O005</td>
+              <td>Amarapala Grocery</td>
+              <td>Nuwara Eliya</td>
+              <td>900</td>
+            </tr>
+
+            <tr>
+              <td>O005</td>
+              <td>Amara Super City</td>
+              <td>Gampaha</td>
+              <td>500</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="outlet-button form-button" style="margin-top: 2rem;">Add Employee</button>
+      </div>
+    </section>
+    <script src="../../common/func.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./nav/load-nav.js"></script>
+    <script src="./notifications/load-notifications.js"></script>
+  </body>
+</html>
