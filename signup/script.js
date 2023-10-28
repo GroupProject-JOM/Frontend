@@ -101,7 +101,7 @@ var fname_status = false,
       address1: "Address Line 1",
       address2: "Street",
       address3: "City",
-      next: "Next",
+      next: "Save",
     },
   };
 

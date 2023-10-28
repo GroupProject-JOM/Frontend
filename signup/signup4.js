@@ -52,7 +52,7 @@
         hname: "ගිණුම් හිමියාගේ නම",
         acc: "ගිණුම් අංකය.",
         bank: "බැංකුව",
-        next: "ඊළඟ",
+        next: "සුරකින්න",
       },
       en: {
         
@@ -61,7 +61,7 @@
         hname: "Account Holder Name",
         acc: "Account No.",
         bank: "Bank",
-        next: "Next",
+        next: "Save",
       },
     };
   

@@ -370,7 +370,7 @@ body.dark {
   font-size: 16px;
 }
 
-.next {
+.next, .skip{
   margin-top: 20px;
   width: 12rem;
   font-size: 18px;
