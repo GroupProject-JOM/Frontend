@@ -27,9 +27,16 @@
   margin-left: 6rem;
 }
 
-.add-outlet-container {
+/* .add-outlet-container {
   transform: translate(0, 20%);
+} */
+
+.container {
+  top: 50%;
+  transform: translate(0, 10%);
+  margin-left: 10rem;   
 }
+
 
 .payment-container{
   transform: translate(0, 10%);
@@ -80,3 +87,16 @@ input:focus {
 .payment-table {
   width: 25vw;
 }
+
+.add-outlet-form div {
+  display: flex;
+  width: 40vw;
+  justify-content: space-between;
+  }
+
+  .short {
+    width: 17rem;
+    }
+    .long {
+    width: 40rem;
+    }
