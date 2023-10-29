@@ -132,10 +132,9 @@ input:focus {
 }
 
 .signup3-container .buttons,
-.signup4-container .buttons{
+.signup4-container .buttons {
   margin-top: 30px;
 }
-
 
 .buttons .next,
 .buttons .skip {
@@ -312,8 +311,6 @@ input:focus {
   border-radius: 20px;
 }
 
-
-
 .send-otp {
   display: flex;
   gap: 20px;
@@ -358,7 +355,7 @@ input:focus {
   display: none;
 }
 
-.text{
+.text {
   display: none;
 }
 
@@ -395,7 +392,7 @@ input:focus {
     position: absolute; */
   }
 
-  .signup-home{
+  .signup-home {
     /* margin-top: 0px; */
     margin-right: 6vw;
   }
@@ -403,14 +400,16 @@ input:focus {
   .signup-home .buttons {
     margin-top: 0px;
   }
-  .signup3-container .signup-form, .signup4-container .signup-form  {
+  .signup3-container .signup-form,
+  .signup4-container .signup-form {
     margin-bottom: 20px;
   }
 
-  .signup3-container .buttons, .signup4-container .buttons {tainer .buttons, .signup4-container .buttons{
+  .signup3-container .buttons,
+  .signup4-container .buttons,
+  .signup4-container .buttons {
     justify-content: center;
     margin-left: -3vw;
-
   }
 
   .signup-basic .next {
@@ -429,10 +428,11 @@ input:focus {
     top: 50%;
     margin-right: 7px;
   }
-    
+
   .side {
     display: none;
   }
+
   .signup-container {
     margin-left: 10%;
   }
@@ -454,7 +454,7 @@ input:focus {
     font-weight: 500;
   }
 
-  .text{
+  .text {
     display: block;
   }
 
@@ -462,31 +462,28 @@ input:focus {
     margin-top: 0px;
   }
 
-  .verify-container .next{
+  .verify-container .next {
     margin-top: 50px;
     /* position: absolute; */
     align-self: center;
   }
 
-
   .location-form input,
-.verify-form input {
-  width: 80vw;
-  margin: 35px 0;
-}
+  .verify-form input {
+    width: 80vw;
+    margin: 35px 0;
+  }
 
-.correct-email,
-.correct-phone {
-  width: 80vw;
-  margin: 35px 0;
-}
+  .correct-email,
+  .correct-phone {
+    width: 80vw;
+    margin: 35px 0;
+  }
 
-.buttons .next,
-.buttons .skip,.signup5-container .next {
-  font-size: 15px;
-  width: 8rem; 
-}
-
-
-
+  .buttons .next,
+  .buttons .skip,
+  .signup5-container .next {
+    font-size: 15px;
+    width: 8rem;
+  }
 }
