@@ -31,9 +31,9 @@
     phone = getCookie("phone"),
     oId;
 
-    if(email == null){
-      window.location.href = "./"
-    }
+    // if(email == null){
+    //   window.location.href = "./"
+    // }
 
     if(phone == null){
       shPhone.style.display = "none";
