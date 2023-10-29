@@ -8,7 +8,7 @@
       acc = body.querySelector(".acc-no"),
       bank = body.querySelector(".bank"),
       next = body.querySelector(".next");
-
+      skip = body.querySelector(".skip");
   
     sin.addEventListener("click", () => {
       sin.classList.add("active");
@@ -25,6 +25,8 @@
       acc.placeholder = data["sin"]["acc"];
       bank.placeholder = data["sin"]["bank"];
       next.textContent = data["sin"]["next"];
+      skip.textContent = data["sin"]["skip"];
+
     });
   
     en.addEventListener("click", () => {
@@ -42,6 +44,8 @@
       acc.placeholder = data["en"]["acc"];
       bank.placeholder = data["en"]["bank"];
       next.textContent = data["en"]["next"];
+      skip.textContent = data["en"]["skip"];
+
     });
   
     var data = {
@@ -53,6 +57,7 @@
         acc: "ගිණුම් අංකය.",
         bank: "බැංකුව",
         next: "සුරකින්න",
+        skip: "මඟ හැර ඉදිරියට යන්න",
       },
       en: {
         
@@ -62,6 +67,7 @@
         acc: "Account No.",
         bank: "Bank",
         next: "Save",
+        skip: "Skip",
       },
     };
   

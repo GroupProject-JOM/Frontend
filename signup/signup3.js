@@ -8,6 +8,7 @@
     location = body.querySelector(".location"),
     area = body.querySelector(".area"),
     next = body.querySelector(".next");
+    skip = body.querySelector(".skip");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -23,6 +24,8 @@
     location.placeholder = data["sin"]["location"];
     area.placeholder = data["sin"]["area"];
     next.textContent = data["sin"]["next"];
+    skip.textContent = data["sin"]["skip"];
+
   });
 
   en.addEventListener("click", () => {
@@ -39,16 +42,20 @@
     location.placeholder = data["en"]["location"];
     area.placeholder = data["en"]["area"];
     next.textContent = data["en"]["next"];
+    skip.textContent = data["en"]["skip"];
+
   });
 
   var data = {
     sin: {
-      fh: "වතු ස්ථාන",
-      fht: "ඔබේ මූලික වතු තොරතුරු එක් කරන්න. <br /> ඔබට උපකරණ පුවරුව තුළ තවත් වතු ස්ථාන එක් කිරීමට හැකි වනු ඇත",
-      ename: "වතු නම",
+      fh: "ඔබගේ ලිපිනයන්",
+      fht: "ඔබේ මූලික වතු තොරතුරු එක් කරන්න. <br /> ඔබට උපකරණ පුවරුව තුළ තවත් වතුයායන් එක් කිරීමට හැකි වනු ඇත",
+      ename: "වතුයායේ නම",
       location: "ස්ථානය",
       area: "ප්රදේශය/කලාපය",
       next: "සුරකින්න",
+      skip: "මඟ හැර ඉදිරියට යන්න",
+
     },
     en: {
       fh: "Estate Locations",
@@ -57,6 +64,7 @@
       location: "Location",
       area: "Area/Region",
       next: "Save",
+      skip: "Skip",
     },
   };
 
