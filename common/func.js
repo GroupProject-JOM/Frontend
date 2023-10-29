@@ -115,6 +115,7 @@ window.addEventListener("load", (e) => {
   } else {
     sidebar.classList.remove("close");
   }
+  console.log(window.innerWidth)
 });
 
 // function checkCookie(name) {

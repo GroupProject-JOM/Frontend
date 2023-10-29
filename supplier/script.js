@@ -112,7 +112,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            console.log(item);
+            // console.log(item);
             var stat = "",
               st = "";
             // Ongoing table
@@ -130,6 +130,22 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 return;
               }
 
+              var T = item.time.split(":"),
+                timeString = "";
+
+              if (T[0] > 12) {
+                T[0] -= 12;
+                if (T[0] >= 12) {
+                  timeString =
+                    String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
+                } else {
+                  timeString =
+                    String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
+                }
+              } else {
+                timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
+              }
+
               row1 +=
                 "<tr data-href='./view.html' id=" +
                 item.id +
@@ -141,7 +157,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 item.date +
                 "</td>" +
                 "<td>" +
-                item.time +
+                timeString +
                 "</td>" +
                 "<td>" +
                 item.amount.toLocaleString("en-US") +
