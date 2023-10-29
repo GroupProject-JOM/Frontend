@@ -35,10 +35,10 @@
     //   window.location.href = "./"
     // }
 
-    if(phone == null){
-      shPhone.style.display = "none";
-      vPhone.style.display = "none";
-    }
+    // if(phone == null){
+    //   shPhone.style.display = "none";
+    //   vPhone.style.display = "none";
+    // }
 
     if(getCookie("id") == null){
       fetch(backProxy + "/validateE?email="+email, {
