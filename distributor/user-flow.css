@@ -37,6 +37,27 @@ align-items: center;
 }
 .add-outlet-form div {
 display: flex;
-width: 40rem;
+width: 40vw;
 justify-content: space-between;
 }
+
+.outlet-table {
+    width: 25vw;
+    margin-top: 40px;
+  }
+
+  .smallbt{
+    width: 10vw; 
+  }
+
+  .buttons{
+    margin-top: 40px;
+  }
+
+  .outlet-edit-container .savebt{
+    margin-top: 30px;
+  }
+
+  .edit-outlet-form input::placeholder {
+    color: var(--input-border-focus);
+    }
