@@ -52,7 +52,7 @@
     sin: {
       w1: "මාසික පරිමාව",
       w2: "අඛණ්ඩ නිෂ්පාදනය",
-      c1: "කණ්ඩායම් දළ විශ්ලේෂණය",
+      c1: "දැනට පවතින නිෂ්පාදන",
       c2: "දැනට පවතින නිෂ්පාදන තත්ත්වය බලන්න",
       c4: "නිෂ්පාදන තත්ත්වය",
       c5: "ඔබගේ ඉල්ලීම් තත්ත්වය බලන්න",
@@ -61,9 +61,9 @@
     en: {
       w1: "Monthly Volume",
       w2: "Ongoing Production",
-      c1: "Batch Overview",
+      c1: "Ongoing Productions",
       c2: "View ongoing production status",
-      c4: "Production Status",
+      c4: "Production Requests",
       c5: "View your Request status",
       c3: "*Production ID P094 has been rejected due to the supply amount not meeting the minimum required. <br />This will be automatically deleted in 7 days",
     },

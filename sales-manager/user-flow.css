@@ -34,7 +34,7 @@
 .container {
   top: 50%;
   transform: translate(0, 10%);
-  margin-left: 10rem;   
+  /* margin-left: 10rem;    */
 }
 
 
