@@ -30,6 +30,7 @@ var fname_status = false,
     address3 = body.querySelector(".address3"),
     address3Error = body.querySelector(".address3-error"),
     mainError = body.querySelector(".main-error"),
+    m7 = body.querySelector(".menu-line7"),
     next = body.querySelector(".next");
 
   // checkLng();
@@ -53,6 +54,7 @@ var fname_status = false,
     address2.placeholder = data["sin"]["address2"];
     address3.placeholder = data["sin"]["address3"];
     next.textContent = data["sin"]["next"];
+    m7.innerHTML = data["sin"]["m7"];
   });
 
   en.addEventListener("click", () => {
@@ -74,6 +76,7 @@ var fname_status = false,
     address2.placeholder = data["en"]["address2"];
     address3.placeholder = data["en"]["address3"];
     next.textContent = data["en"]["next"];
+    m7.innerHTML = data["en"]["m7"];
   });
 
   var data = {
@@ -88,6 +91,7 @@ var fname_status = false,
       address1: "ලිපින පේළි 1",
       address2: "වීදිය",
       address3: "නගරය",
+      m7: "දැනටමත් ගිණුමක් ඇත? <a href='../signin.html'>මෙතනින් පුරන්න.</a>",
       next: "ඊළඟ",
     },
     en: {
@@ -101,6 +105,7 @@ var fname_status = false,
       address1: "Address Line 1",
       address2: "Street",
       address3: "City",
+      m7: "Already have an account? <a href='../signin.html'>Sign in here.</a>",
       next: "Save",
     },
   };
