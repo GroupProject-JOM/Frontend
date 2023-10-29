@@ -132,10 +132,10 @@ input:focus {
 }
 
 .signup3-container .buttons,
-.signup4-container .buttons,
-.signup5-container {
+.signup4-container .buttons{
   margin-top: 30px;
 }
+
 
 .buttons .next,
 .buttons .skip {
@@ -312,6 +312,8 @@ input:focus {
   border-radius: 20px;
 }
 
+
+
 .send-otp {
   display: flex;
   gap: 20px;
@@ -321,7 +323,7 @@ input:focus {
 
 .correct-email,
 .correct-phone {
-  width: 40rem;
+  width: 40vw;
   margin: 35px 0;
 }
 
@@ -393,18 +395,19 @@ input:focus {
     position: absolute; */
   }
 
-  .signup-home .next {
-    margin-top: 0px;
+  .signup-home{
+    /* margin-top: 0px; */
+    margin-right: 6vw;
   }
 
   .signup-home .buttons {
     margin-top: 0px;
   }
-  .signup3-container .signup-form {
+  .signup3-container .signup-form, .signup4-container .signup-form  {
     margin-bottom: 20px;
   }
 
-  .signup3-container .buttons {
+  .signup3-container .buttons, .signup4-container .buttons {
     justify-content: center;
   }
 
@@ -454,9 +457,32 @@ input:focus {
   .signup .next {
     margin-top: 0px;
   }
+
+  .verify-container .next{
+    margin-top: 50px;
+    /* position: absolute; */
+    align-self: center;
+  }
+
+
   .location-form input,
 .verify-form input {
   width: 80vw;
   margin: 35px 0;
 }
+
+.correct-email,
+.correct-phone {
+  width: 80vw;
+  margin: 35px 0;
+}
+
+.buttons .next,
+.buttons .skip,.signup5-container .next {
+  font-size: 15px;
+  width: 8rem; 
+}
+
+
+
 }
