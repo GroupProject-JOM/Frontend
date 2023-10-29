@@ -409,6 +409,8 @@ input:focus {
 
   .signup3-container .buttons, .signup4-container .buttons {
     justify-content: center;
+    margin-left: -3vw;
+
   }
 
   .signup-basic .next {
