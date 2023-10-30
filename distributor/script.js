@@ -76,13 +76,16 @@
               item.id +
               ">" +
               "<td>" +
+              item.id +
+              "</td>" +
+              "<td>" +
               item.name +
               "</td>" +
               "<td>" +
               item.city +
               "</td>" +
               "<td>" +
-              item.number +
+              item.phone +
               "</td>" +
               "</tr>";
           }
