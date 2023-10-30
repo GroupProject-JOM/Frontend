@@ -36,10 +36,8 @@
       <div class="text"></div>
       <div class="outlet-container distibutor-container">
         <div class="distibutor-heading table-heading">
-          <h2 class="distibutor-title">Outlet Name</h2>
-          <p class="distibutor-text">
-            Outlet details are displayed below.
-          </p>
+          <h2 class="distibutor-title"></h2>
+          <p class="distibutor-text"></p>
         </div>
 
         <div>
@@ -47,19 +45,23 @@
             <tbody>
               <tr>
                 <td>Outlet ID</td>
-                <td>01</td>
+                <td class="oId"></td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td class="oName"></td>
               </tr>
               <tr>
                 <td>Email</td>
-                <td>Saman@gmail.com</td>
+                <td class="oEmail"></td>
               </tr>
               <tr>
                 <td>Phone No</td>
-                <td>077873300</td>
+                <td class="oPhone"></td>
               </tr>
               <tr>
                 <td>Adress</td>
-                <td>22/87, piliyandala</td>
+                <td class="oAddress"></td>
               </tr>
               
             </tbody>
@@ -68,12 +70,12 @@
 
     </div>
         <div class="buttons">
-          <a class="smallbt form-button" href="./edit.html">Edit</a>
-          <a class="smallbt form-button">Delete</a>
-          <!-- <a class="smallbt form-button">Delete</a> -->
+          <a class="smallbt form-button edit" href="./edit.html"></a>
+          <a class="smallbt form-button delete"></a>
         </div>
     </section>
     <script src="../common/func.js"></script>
+    <script src="./view.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
