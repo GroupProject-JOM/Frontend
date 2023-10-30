@@ -52,4 +52,99 @@ select.dropdown {
   .dropdown {
     width: 60vw;
   }
+
+  .register-form .short {
+    width: 75vw;
+  }
+  .register-form .long {
+    width: 75vw;
+  }
+  .register-form div {
+    flex-wrap: wrap;
+  }
+}
+
+
+
+
+/* 
+.signup-content {
+  margin: 0;
+  position: relative;
+  top: 10%;
+} */
+
+.register-container{
+  margin-left: 10vw;
+}
+
+
+.form-heading {
+  color: var(--input-border-focus);
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+input {
+  /* box-sizing: border-box; */
+  border: none;
+  border-bottom: 1px solid #a9a9a9;
+  color: #484848;
+  padding: 7px 0;
+  margin: 20px 0 0 0;
+}
+
+
+input::placeholder {
+  color: #a9a9a9;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #484848;
+  transition: var(--tran-05);
+}
+
+.address {
+  color: var(--input-border-focus);
+  font-weight: 600;
+  margin-top: 60px;
+}
+
+.register-form input{
+  font-size: 15px;
+  /* padding: 0; */
+  margin-top: 25px;
+
+}
+
+.register-form div {
+  display: flex;
+  width: 40vw;
+  gap: 20px;
+  /* flex-wrap: wrap; */
+  /* width: fit-content; */
+  justify-content: space-between;
+}
+
+.register-name section {
+  margin: 0;
+  padding: 0;
+}
+
+.short {
+  width: 17vw;
+}
+
+.long {
+  width: 40vw;
+}
+
+.register-container .form-button{
+  display: flex;
+  justify-content: center;
+  width: 13rem;
+  margin-top: 30px;
 }
