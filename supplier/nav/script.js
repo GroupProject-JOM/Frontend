@@ -133,8 +133,14 @@ window.addEventListener("load", (e) => {
     let loaded = false;
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
+    pathname = pathname.split('.')[0];
+
+    if(!pathname){
+      document.querySelector(`#nav-item-index`).classList.add("active");
+    }
+    
     // pathname = pathname.replace(".html", "");
-    const navItems = ["supply", "address", "payment", "report", "chat"];
+    const navItems = ["supply", "address", "payment", "report", "chat","index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
