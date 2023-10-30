@@ -6,7 +6,8 @@
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
-    c2 = body.querySelector(".c2");
+    c2 = body.querySelector(".c2"),
+    tbody = body.querySelector(".tbody");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -53,5 +54,59 @@
       c2: "View and update Outlet Information",
     },
   };
+
+
+  var row = "";
+  fetch(backProxy + "/outlets", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.list;
+          arr.forEach(data_to_table);
+
+          function data_to_table(item) {
+            row +=
+              "<tr data-href='./view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.name +
+              "</td>" +
+              "<td>" +
+              item.city +
+              "</td>" +
+              "<td>" +
+              item.number +
+              "</td>" +
+              "</tr>";
+          }
+          tbody.innerHTML = row;
+
+          const rows = document.querySelectorAll("tr[data-href]");
+
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id + "; path=/";
+              window.location.href = r.dataset.href;
+            });
+          });
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.size);
+        });
+      } else {
+        console.error("Error:", response.status);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
 
 })();
