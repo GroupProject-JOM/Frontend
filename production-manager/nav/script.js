@@ -29,9 +29,17 @@
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
       Uname = body.querySelector(".name");
+      stock = body.querySelector(".stock"),
+      production = body.querySelector(".production"),
+
+
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie('name');
+
+    stock.href = frontProxy + "/production-manager/stock/view.html";
+    production.href = frontProxy + "/production-manager/production-history.html";
+
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;

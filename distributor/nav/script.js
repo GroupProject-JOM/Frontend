@@ -28,9 +28,12 @@
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
       Uname = body.querySelector(".name");
+      addOutlet = body.querySelector(".addOutlet");
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie('name');
+
+    addOutlet.href = frontProxy + "/distributor/add.html";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;

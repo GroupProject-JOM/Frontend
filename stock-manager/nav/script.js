@@ -30,9 +30,16 @@
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
       Uname = body.querySelector(".name");
+      trackcollectors = body.querySelector(".trackcollectors"),
+      supplyRequests = body.querySelector(".supplyRequests"),
+
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie('name');
+
+    trackcollectors.href = frontProxy + "/stock-manager/track-collectors/view-all.html";
+    supplyRequests.href = frontProxy + "/stock-manager/supply-requests/view-request1.html";
+
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;

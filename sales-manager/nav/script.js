@@ -31,9 +31,18 @@
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
       Uname = body.querySelector(".name");
+      distributors = body.querySelector(".distributors"),
+      outlets = body.querySelector(".outlets"),
+      productions = body.querySelector(".productions"),
+      payouts = body.querySelector(".payouts"),
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie('name');
+
+    distributors.href = frontProxy + "/sales-manager/distributors/view-all.html";
+    outlets.href = frontProxy + "/sales-manager/outlets/view-all.html";
+    productions.href = frontProxy + "/sales-manager/productions/view-all.html";
+    payouts.href = frontProxy + "/sales-manager/payouts/view-all.html";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
