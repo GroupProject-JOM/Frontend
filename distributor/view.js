@@ -72,7 +72,12 @@
           oName.textContent = data.outlet.name;
           oEmail.textContent = data.outlet.email;
           oPhone.textContent = data.outlet.phone;
-          oAddress.textContent = data.outlet.address1+", "+data.outlet.street+", "+data.outlet.city;
+          oAddress.textContent =
+            data.outlet.address1 +
+            ", " +
+            data.outlet.street +
+            ", " +
+            data.outlet.city;
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -85,4 +90,33 @@
     .catch((error) => {
       console.error("An error occurred:", error);
     });
+
+    //delete outlet
+  del.addEventListener("click", () => {
+    fetch(backProxy + "/outlet?id=" + getCookie("id"), {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.status == 200) {
+          response.json().then((data) => {
+            console.log(data.message);
+            window.location.href = "./";
+          });
+        } else if (response.status === 400) {
+          response.json().then((data) => {
+            console.log(data.message);
+          });
+        } else {
+          console.error("Error:", response.status);
+          console.log(error);
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+      });
+  });
 })();
