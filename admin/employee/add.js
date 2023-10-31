@@ -214,7 +214,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       dropdownStatus
     ) {
       var formData = {
-        // supplier_id: sessionStorage.getItem("sId"),
         first_name: fname.value,
         last_name: lname.value,
         email: email.value,
