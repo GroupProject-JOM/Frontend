@@ -40,6 +40,9 @@ select.dropdown {
   flex-direction: column;
   align-items: center;
 }
+
+
+
   /* .signup-container{
     margin-left: 10%;
   } */
@@ -147,4 +150,26 @@ input:focus {
   justify-content: center;
   width: 13rem;
   margin-top: 30px;
+}
+
+.buttons{
+  display: flex;
+  gap: 20px;
+  /* margin-top: 30px; */
+  flex-wrap: wrap;
+}
+
+.employee-view-table{
+  width: 32vw;
+  margin-top: 40px;
+}
+
+
+.smallbt{
+  width: 10vw; 
+}
+
+.view-employee-container .form-button{
+  margin-top: 50px;
+
 }
