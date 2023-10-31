@@ -12,7 +12,16 @@
     t3 = body.querySelector(".t3"),
     t4 = body.querySelector(".t4"),
     t5 = body.querySelector(".t5"),
-    t6 = body.querySelector(".t6");
+    t6 = body.querySelector(".t6"),
+    employee = body.querySelector(".employee"),
+    collection = body.querySelector(".collection"),
+    outlet = body.querySelector(".outlet");
+
+    employee.addEventListener("click", () => {
+      window.location.href = "./employee/view-all.html";
+    });
+    collection.addEventListener("click", () => {});
+    outlet.addEventListener("click", () => {});
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

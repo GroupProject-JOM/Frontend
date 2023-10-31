@@ -1,4 +1,3 @@
-document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -9,7 +8,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     lname = body.querySelector(".lname"),
     lnameError = body.querySelector(".lname-error"),
     email = body.querySelector(".email"),
-    emailError = document.querySelector(".email-error"),
     phone = body.querySelector(".phone"),
     phoneError = body.querySelector(".phone-error"),
     address1 = body.querySelector(".address1"),
@@ -34,7 +32,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var fnameStatus = false,
     lnameStatus = false,
-    emailStatus = false,
     phoneStatus = false,
     address1Status = false,
     address2Status = false,
@@ -97,7 +94,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      fh: "සේවකයා ලියාපදිංචි කරන්න",
+      fh: "සේවක විස්තර සංස්කරණය කරන්න",
       fname: "මුල් නම",
       lname: "අවසන් නම",
       email: "ඊතැපැල් ලිපිනය",
@@ -113,10 +110,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       op3: "කොටස් කළමනාකරු",
       op4: "නිෂ්පාදන කළමනාකරු",
       op5: "අලෙවි කළමනාකරු",
-      btn: "සේවකයා එකතු කරන්න",
+      btn: "වෙනස්කම් සුරකින්න",
     },
     en: {
-      fh: "Register Employee",
+      fh: "Edit Employee Details",
       fname: "First Name",
       lname: "Last Name",
       email: "Email Address",
@@ -132,7 +129,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       op3: "Stock Manager",
       op4: "Production Manager",
       op5: "Sales Manager",
-      btn: "Add Employee",
+      btn: "Save Changes",
     },
   };
 
@@ -142,9 +139,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   });
   lname.addEventListener("input", () => {
     lname_status_func();
-  });
-  email.addEventListener("input", () => {
-    email_status_func();
   });
   phone.addEventListener("input", () => {
     phone_status_func();
@@ -191,9 +185,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     if (!phone_status_func()) {
       phone.focus();
     }
-    if (!email_status_func()) {
-      email.focus();
-    }
     if (!lname_status_func()) {
       lname.focus();
     }
@@ -204,7 +195,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     if (
       fnameStatus &&
       lnameStatus &&
-      emailStatus &&
       phoneStatus &&
       address1Status &&
       address2Status &&
@@ -214,91 +204,110 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       dropdownStatus
     ) {
       var formData = {
+        eId:getCookie('id'),
         first_name: fname.value,
         last_name: lname.value,
-        email: email.value,
         phone: phone.value,
         add_line_1: address1.value,
         add_line_2: address2.value,
         add_line_3: address3.value,
-        dob:dob.value,
-        nic:nic.value,
-        role:dropdown.value,
+        dob: dob.value,
+        nic: nic.value,
+        role: dropdown.value,
       };
       fetch(backProxy + "/employee", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
         credentials: "include",
       })
-      .then((response) => {
-        if (response.status == 200) {
-          response.json().then((data) => {
-            console.log(data.message); 
-          });
-          window.location.href = "./view-all.html";
-        } else if (response.status === 401) {
-          console.log("Registration unsuccessful");
-        } else if (response.status === 400) {
-          // backend error handle
-          response.json().then((data) => {
-            if (data.message == "fname") {
-              fnameError.textContent = "First name cannot be empty!";
-              fname.focus();
-            } else if (data.message == "lname") {
-              lnameError.textContent = "Last name cannot be empty!";
-              lname.focus();
-            } else if (data.message == "email1") {
-              emailError.textContent = "Email cannot be empty!";
-              email.focus();
-            } else if (data.message == "email2") {
-              emailError.textContent = "Enter a valid email!";
-              email.focus();
-            } else if (data.message == "phone") {
-              phoneError.textContent = "Contact number cannot be empty!";
-              phone.focus();
-            } else if (data.message == "adddress1") {
-              address1Error.textContent = "Address line 1 cannot be empty!";
-              address1.focus();
-            } else if (data.message == "adddress2") {
-              address2Error.textContent = "Street cannot be empty!";
-              address2.focus();
-            } else if (data.message == "adddress3") {
-              address3Error.textContent = "City cannot be empty!";
-              address3.focus();
-            } else if (data.message == "dob") {
-              dobError.textContent = "DOB cannot be empty!";
-              dob.focus();
-            } else if (data.message == "nic") {
-              nicError.textContent = "NIC cannot be empty!";
-              nic.focus();
-            } else if (data.message == "role") {
-              dropdownError.textContent = "Designation cannot be empty!";
-              dropdown.focus();
-            } else {
-              console.log(data.message)
-            }
-          });
-        } else if (response.status === 409) {
-          response.json().then((data) => {
-            if (data.message == "email3") {
-              emailError.textContent = "This email is already used";
-              email.focus();
-            }
-          });
-        } else {
-          console.error("Error:", response.status);
-        }
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error);
-      });
+        .then((response) => {
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            window.location.href = "./view.html";
+          } else if (response.status === 401) {
+            console.log("Registration unsuccessful");
+          } else if (response.status === 400) {
+            // backend error handle
+            response.json().then((data) => {
+              if (data.message == "fname") {
+                fnameError.textContent = "First name cannot be empty!";
+                fname.focus();
+              } else if (data.message == "lname") {
+                lnameError.textContent = "Last name cannot be empty!";
+                lname.focus();
+              } else if (data.message == "phone") {
+                phoneError.textContent = "Contact number cannot be empty!";
+                phone.focus();
+              } else if (data.message == "adddress1") {
+                address1Error.textContent = "Address line 1 cannot be empty!";
+                address1.focus();
+              } else if (data.message == "adddress2") {
+                address2Error.textContent = "Street cannot be empty!";
+                address2.focus();
+              } else if (data.message == "adddress3") {
+                address3Error.textContent = "City cannot be empty!";
+                address3.focus();
+              } else if (data.message == "dob") {
+                dobError.textContent = "DOB cannot be empty!";
+                dob.focus();
+              } else if (data.message == "nic") {
+                nicError.textContent = "NIC cannot be empty!";
+                nic.focus();
+              } else if (data.message == "role") {
+                dropdownError.textContent = "Designation cannot be empty!";
+                dropdown.focus();
+              } else {
+                console.log(data.message);
+              }
+            });
+          } else {
+            console.error("Error:", response.status);
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+        });
     }
   });
 
-  
+  fetch(backProxy + "/employee?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          fname.value = data.employee.first_name;
+          lname.value = data.employee.last_name;
+          email.value = data.employee.email;
+          phone.value = data.employee.phone;
+          address1.value = data.employee.add_line_1;
+          address2.value = data.employee.add_line_2;
+          address3.value = data.employee.add_line_3;
+          dob.value = data.employee.dob;
+          nic.value = data.employee.nic;
+          dropdown.value = data.employee.role;
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.employee);
+        });
+      } else {
+        console.error("Error:", response.status);
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+    });
+
   function fname_status_func() {
     if (typeof fname.value === "string" && fname.value.trim().length === 0) {
       fnameError.textContent = "First name cannot be empty";
@@ -319,22 +328,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else {
       lnameStatus = true;
       lnameError.textContent = "";
-      return true;
-    }
-  }
-
-  function email_status_func() {
-    if (typeof email.value === "string" && email.value.trim().length === 0) {
-      emailError.textContent = "Email cannot be empty";
-      emailStatus = false;
-      return false;
-    } else if (!ValidateEmail(email)) {
-      emailError.textContent = "Invalid email address!";
-      emailStatus = false;
-      return false;
-    } else {
-      emailError.textContent = "";
-      emailStatus = true;
       return true;
     }
   }
@@ -396,10 +389,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     }
   }
   function dob_status_func() {
-    if (
-      typeof dob.value === "string" &&
-      dob.value.trim().length === 0
-    ) {
+    if (typeof dob.value === "string" && dob.value.trim().length === 0) {
       dobError.textContent = "DOB cannot be empty";
       dobStatus = false;
       return false;
@@ -410,10 +400,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     }
   }
   function nic_status_func() {
-    if (
-      typeof nic.value === "string" &&
-      nic.value.trim().length === 0
-    ) {
+    if (typeof nic.value === "string" && nic.value.trim().length === 0) {
       nicError.textContent = "NIC cannot be empty";
       nicStatus = false;
       return false;
@@ -437,16 +424,4 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       return true;
     }
   }
-
 })();
-
-function ValidateEmail(email) {
-    var validRegex =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/;
-  
-    if (email.value.match(validRegex)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
