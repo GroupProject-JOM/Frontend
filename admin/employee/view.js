@@ -93,7 +93,7 @@
   
       //delete outlet
     del.addEventListener("click", () => {
-      fetch(backProxy + "/outlet?id=" + getCookie("id"), {
+      fetch(backProxy + "/employee?id=" + getCookie("id"), {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -104,7 +104,7 @@
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message);
-              window.location.href = "./";
+              window.location.href = "./view-all.html";
             });
           } else if (response.status === 400) {
             response.json().then((data) => {
