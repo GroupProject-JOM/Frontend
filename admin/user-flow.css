@@ -77,7 +77,7 @@ select.dropdown {
   top: 10%;
 } */
 
-.register-container{
+.register-container, .edit-employee-container{
   margin-left: 10vw;
 }
 
@@ -100,7 +100,7 @@ input {
 
 
 input::placeholder {
-  color: #a9a9a9;
+  color: var(--input-border);
 }
 
 textarea:focus,
@@ -171,5 +171,13 @@ input:focus {
 
 .view-employee-container .form-button{
   margin-top: 50px;
-
 }
+
+.edit-employee-container .form-button{
+  margin-top: 50px;
+}
+
+.edit-employee-container input::placeholder {
+  color: var(--input-border-focus);
+}
+

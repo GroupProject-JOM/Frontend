@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Add Employee</title>
+    <title>Edit Employee Details</title>
 
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
@@ -38,9 +38,9 @@
 
       <div class="text"></div>
 
-      <div class="register-container container">
+      <div class="edit-employee-container container">
         <div class="admin-content">
-          <div class="form-heading">Register Employee</div>
+          <div class="form-heading">Edit Employee Details</div>
           <div class="register-form">
             <form autocomplete="on">
               <div class="register-name" style="margin: 0; padding: 0">
@@ -49,7 +49,7 @@
                     type="text"
                     class="short fname"
                     name="fname"
-                    placeholder="First Name"
+                    placeholder="Saman"
                     autocomplete="given-name"
                   />
                   <!-- <br /> -->
@@ -60,7 +60,7 @@
                     type="text"
                     class="short lname"
                     name="lname"
-                    placeholder="Last Name"
+                    placeholder="Kumara"
                     autocomplete="family-name"
                   />
                   <!-- <br /> -->
@@ -72,26 +72,19 @@
                 type="text"
                 class="long email"
                 name="email"
-                placeholder="Email Address"
+                placeholder="samankumara@jom.lk"
                 autocomplete="email"
               />
               <!-- <br /> -->
               <!-- <span class="form-error email-error"></span> -->
-              <br />
-              <input
-                type="password"
-                class="long password"
-                name="password"
-                placeholder="Create Password"
-                autocomplete="new-password"
-              />
+              
               <!-- <br /><span class="form-error password-error"></span> -->
               <br />
               <input
                 type="text"
                 name="phone"
                 class="long phone"
-                placeholder="Phone Number"
+                placeholder="0766640051"
                 autocomplete="tel"
               />
               <!-- <br /><span class="form-error phone-error"></span> -->
@@ -102,7 +95,7 @@
                 type="text"
                 class="long address1"
                 name="address1"
-                placeholder="Address Line-1"
+                placeholder="No.3"
                 autocomplete="address-line1"
               />
               <!-- <br /><span class="form-error address1-error"></span><br /> -->
@@ -112,7 +105,7 @@
                     type="text"
                     name="address2"
                     class="short address2"
-                    placeholder="Street"
+                    placeholder="Kirulapone Ave"
                     autocomplete="address-line2"
                   />
                   <!-- <br /><span class="form-error address2-error"></span> -->
@@ -122,7 +115,7 @@
                     type="text"
                     name="address3"
                     class="short address3"
-                    placeholder="City"
+                    placeholder="Colombo 5"
                     autocomplete="address-line3"
                   />
                   <!-- <br /><span class="form-error address3-error"></span> -->
@@ -139,22 +132,22 @@
                 type="text"
                 class="long nic"
                 name="nic"
-                placeholder="NIC Number"
+                placeholder="20011100129V"
               />
               <br>
               <input
                 type="text"
                 class="long role"
                 name="role"
-                placeholder="Designation"
+                placeholder="Stock Manager"
               />
             </form>
 <br><br>
-            <p>Profile Image</p>
+            <!-- <p>Profile Image</p> -->
 
           </div>
-
-          <a class="form-button">Add Employee</a>
+<br>
+          <a class="form-button">Save Changes</a>
         </div>
       </div>
     </section>
