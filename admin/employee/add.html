@@ -49,22 +49,22 @@
                     type="text"
                     class="short fname"
                     name="fname"
-                    placeholder="First Name"
+                    placeholder=""
                     autocomplete="given-name"
                   />
-                  <!-- <br /> -->
-                  <!-- <span class="form-error fname-error"></span> -->
+                  <br />
+                  <span class="form-error fname-error"></span>
                 </section>
                 <section>
                   <input
                     type="text"
                     class="short lname"
                     name="lname"
-                    placeholder="Last Name"
+                    placeholder=""
                     autocomplete="family-name"
                   />
-                  <!-- <br /> -->
-                  <!-- <span class="form-error lname-error"></span> -->
+                  <br />
+                  <span class="form-error lname-error"></span>
                 </section>
               </div>
 
@@ -72,96 +72,86 @@
                 type="text"
                 class="long email"
                 name="email"
-                placeholder="Email Address"
+                placeholder=""
                 autocomplete="email"
               />
-              <!-- <br /> -->
-              <!-- <span class="form-error email-error"></span> -->
               <br />
-              <input
-                type="password"
-                class="long password"
-                name="password"
-                placeholder="Create Password"
-                autocomplete="new-password"
-              />
-              <!-- <br /><span class="form-error password-error"></span> -->
+              <span class="form-error email-error"></span>
               <br />
               <input
                 type="text"
                 name="phone"
                 class="long phone"
-                placeholder="Phone Number"
+                placeholder=""
                 autocomplete="tel"
               />
-              <!-- <br /><span class="form-error phone-error"></span> -->
-              <br />
-              <p class="address">Personal Address</p>
+              <br /><span class="form-error phone-error"></span>
               <br />
               <input
                 type="text"
                 class="long address1"
                 name="address1"
-                placeholder="Address Line-1"
+                placeholder=""
                 autocomplete="address-line1"
               />
-              <!-- <br /><span class="form-error address1-error"></span><br /> -->
+              <br /><span class="form-error address1-error"></span><br />
               <div class="register-name">
                 <section>
                   <input
                     type="text"
                     name="address2"
                     class="short address2"
-                    placeholder="Street"
+                    placeholder=""
                     autocomplete="address-line2"
                   />
-                  <!-- <br /><span class="form-error address2-error"></span> -->
+                  <br /><span class="form-error address2-error"></span>
                 </section>
                 <section>
                   <input
                     type="text"
                     name="address3"
                     class="short address3"
-                    placeholder="City"
+                    placeholder=""
                     autocomplete="address-line3"
                   />
-                  <!-- <br /><span class="form-error address3-error"></span> -->
+                  <br /><span class="form-error address3-error"></span>
                 </section>
               </div>
               <input
-                type="date"
+                type="text"
                 class="long dob"
-                name="dob"
-                placeholder="Date of Birth"
-              />
-              <br>
+                placeholder=""
+                onmousemove="(this.type='date')"
+                onmouseleave="(this.type='text')"
+              /><br /><span class="form-error dob-error"></span>
+              <br />
               <input
                 type="text"
                 class="long nic"
                 name="nic"
-                placeholder="NIC Number"
-              />
-              <br>
-              <input
-                type="text"
-                class="long role"
-                name="role"
-                placeholder="Designation"
-              />
+                placeholder=""
+              /><br /><span class="form-error nic-error"></span>
+              <br />
+              <select class="dropdown role">
+                <option value="" default hidden class="op0"></option>
+                <option value="Collector" class="op1"></option>
+                <option value="Distributor" class="op2"></option>
+                <option value="Stock-Manager" class="op3"></option>
+                <option value="Production-Manager" class="op4"></option>
+                <option value="Sales-Manager" class="op5"></option>
+              </select>
+              <br /><span class="form-error dropdown-error"></span>
             </form>
-<br><br>
-            <p>Profile Image</p>
-
           </div>
 
-          <a class="form-button">Add Employee</a>
+          <a class="form-button"></a>
         </div>
       </div>
     </section>
     <script src="../../common/func.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <script src="./add.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="../nav/load-nav.js"></script>
-    <script src="../notifications/load-notifications.js"></script>
+    <script src="./load-nav.js"></script>
+    <script src="./load-notifications.js"></script>
   </body>
 </html>
