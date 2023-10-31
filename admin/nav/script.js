@@ -25,9 +25,12 @@
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
       l11 = body.querySelector(".l11"),
+      dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name");
 
       Uname.textContent = getCookie('name');
+
+      dashboard.href = frontProxy + "/admin";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;

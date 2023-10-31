@@ -238,6 +238,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           response.json().then((data) => {
             console.log(data.message); 
           });
+          window.location.href = "./view-all.html";
         } else if (response.status === 401) {
           console.log("Registration unsuccessful");
         } else if (response.status === 400) {
