@@ -44,8 +44,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   var data = {
     sin: {
       sTitle: "ඔබගේ ලිපිනයන්",
-      sText: "ඔබගේ වතු ස්ථානය බලන්න සහ සංස්කරණය කරන්න",
-      th1: "වතු නම",
+      sText: "ඔබගේ වතුයායන් වල ලිපිනයන් බලන්න සහ සංස්කරණය කරන්න",
+      th1: "වතුයායේ නම නම",
       th2: "ප්රදේශය/කලාපය",
       btn: "අලුතින් එකතු කරන්න",
     },
@@ -98,7 +98,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             e.addEventListener("click", () => {
               console.log(e.parentElement.id);
               // sessionStorage.setItem("id", e.parentElement.id);
-              document.cookie = "id="+e.parentElement.id;
+              document.cookie = "id=" + e.parentElement.id  + "; path=/";
             });
           });
 
@@ -142,7 +142,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           rows.forEach((r) => {
             r.addEventListener("click", () => {
               // sessionStorage.setItem("id", r.id);
-              document.cookie = "id="+ r.id;
+              document.cookie = "id=" + r.id + "; path=/";
               window.location.href = r.dataset.href;
             });
           });

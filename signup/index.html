@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <div class="signup-container">
+    <div class="signup-basic signup-container">
       <div class="side"></div>
 
       <section class="signup-home">
@@ -20,93 +20,99 @@
         </div>
 
         <div class="text"></div>
-        
+
         <div class="signup">
-          <div class="form-heading"></div>
-          <div class="main-error"></div>
-          <div class="signup-form">
-            <form autocomplete="on">
-              <div style="margin: 0; padding: 0;">
-                <section>
-                  <input
-                    type="text"
-                    class="short fname"
-                    name="fname"
-                    placeholder=""
-                    autocomplete="given-name"
-                  />
-                  <br />
-                  <span class="form-error fname-error"></span>
-                </section>
-                <section>
-                  <input
-                    type="text"
-                    class="short lname"
-                    name="lname"
-                    placeholder=""
-                    autocomplete="family-name"
-                  />
-                  <br />
-                  <span class="form-error lname-error"></span>
-                </section>
-              </div>
-              <br />
-              <input
-                type="text"
-                class="long email"
-                name="email"
-                placeholder=""
-                autocomplete="email"
-              /><br />
-              <span class="form-error email-error"></span>
-              <br />
-              <input
-                type="password"
-                class="long password"
-                name="password"
-                placeholder=""
-                autocomplete="new-password"
-              /><br /><span class="form-error password-error"></span>
-              <br />
-              <input
-                type="text"
-                name="phone"
-                class="long phone"
-                placeholder=""
-                autocomplete="tel"
-              /><br /><span class="form-error phone-error"></span>
-              <br />
-              <p class="address"></p>
-              <br />
-              <input
-                type="text"
-                class="long address1"
-                name="address1"
-                placeholder=""
-                autocomplete="address-line1"
-              /><br /><span class="form-error address1-error"></span><br />
-              <div>
-                <section>
+          <div class="signup-content">
+            <div class="form-heading"></div>
+            <div class="main-error"></div>
+            <div class="signup-form">
+              <form autocomplete="on">
+                <div class="signup-name" style="margin: 0; padding: 0">
+                  <section>
+                    <input
+                      type="text"
+                      class="short fname"
+                      name="fname"
+                      placeholder=""
+                      autocomplete="given-name"
+                    />
+                    <br />
+                    <span class="form-error fname-error"></span>
+                  </section>
+                  <section>
+                    <input
+                      type="text"
+                      class="short lname"
+                      name="lname"
+                      placeholder=""
+                      autocomplete="family-name"
+                    />
+                    <br />
+                    <span class="form-error lname-error"></span>
+                  </section>
+                </div>
+                <br />
                 <input
                   type="text"
-                  name="address2"
-                  class="short address2"
+                  class="long email"
+                  name="email"
                   placeholder=""
-                  autocomplete="address-line2"
-                /><br /><span class="form-error address2-error"></span></section>
-                <section>
+                  autocomplete="email"
+                /><br />
+                <span class="form-error email-error"></span>
+                <br />
+                <input
+                  type="password"
+                  class="long password"
+                  name="password"
+                  placeholder=""
+                  autocomplete="new-password"
+                /><br /><span class="form-error password-error"></span>
+                <br />
                 <input
                   type="text"
-                  name="address3"
-                  class="short address3"
+                  name="phone"
+                  class="long phone"
                   placeholder=""
-                  autocomplete="address-line3"
-                /><br /><span class="form-error address3-error"></span></section>
-              </div>
-              <!-- <input type="submit" class="next form-button" value="submit"/> -->
-            </form>
+                  autocomplete="tel"
+                /><br /><span class="form-error phone-error"></span>
+                <br />
+                <p class="address"></p>
+                <br />
+                <input
+                  type="text"
+                  class="long address1"
+                  name="address1"
+                  placeholder=""
+                  autocomplete="address-line1"
+                /><br /><span class="form-error address1-error"></span><br />
+                <div class="signup-name">
+                  <section>
+                    <input
+                      type="text"
+                      name="address2"
+                      class="short address2"
+                      placeholder=""
+                      autocomplete="address-line2"
+                    /><br /><span class="form-error address2-error"></span>
+                  </section>
+                  <section>
+                    <input
+                      type="text"
+                      name="address3"
+                      class="short address3"
+                      placeholder=""
+                      autocomplete="address-line3"
+                    /><br /><span class="form-error address3-error"></span>
+                  </section>
+                </div>
+                <!-- <input type="submit" class="next form-button" value="submit"/> -->
+              </form>
+            </div>
           </div>
+          <br><br>
           <a type="submit" class="next form-button"></a>
+          <div class="menu-line7"></div>
         </div>
       </section>
     </div>

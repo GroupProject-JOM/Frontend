@@ -52,8 +52,8 @@
 
           <div class="collection method">
             <div class="method-text c-method"></div>
-
-            <input
+            <div class="collection-input">
+              <input
               type="checkbox"
               class="pickup radio checkbox"
               value="1"
@@ -67,10 +67,13 @@
               name="fooby[1][]"
             />
             <label class="delivered-label supply-label"></label>
+            </div>
+            
           </div>
 
           <div class="payment method">
             <div class="method-text p-method"></div>
+            <div class="collection-input">
 
             <input
               type="checkbox"
@@ -88,11 +91,14 @@
             />
             <label class="bank-label supply-label"></label>
           </div>
+
+          </div>
           <button class="next form-button"></button>
         </div>
       </div>
     </section>
     <script src="../../common/func.js"></script>
+    <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
@@ -109,6 +115,5 @@
         }
       });
     </script>
-    <script src="./script.js"></script>
   </body>
 </html>

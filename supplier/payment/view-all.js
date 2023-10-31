@@ -1,5 +1,6 @@
 // sessionStorage.setItem("id", 0);
-document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/supplier/payment";
+document.cookie =
+  "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -98,7 +99,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/supplier/pa
             e.addEventListener("click", () => {
               console.log(e.parentElement.id);
               // sessionStorage.setItem("id", e.parentElement.id);
-              document.cookie = "id="+e.parentElement.id;
+              document.cookie = "id=" + e.parentElement.id  + "; path=/";
             });
           });
 
@@ -142,7 +143,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/supplier/pa
           rows.forEach((r) => {
             r.addEventListener("click", () => {
               // sessionStorage.setItem("id", r.id);
-              document.cookie = "id="+r.id;
+              document.cookie = "id=" + r.id + "; path=/";
               window.location.href = r.dataset.href;
             });
           });

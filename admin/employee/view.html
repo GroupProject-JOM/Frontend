@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Employee</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <!-- <link rel="stylesheet" href="../signin.css" /> -->
+    <!-- <link rel="stylesheet" href="../supply.css" /> -->
+    <link rel="stylesheet" href="../user-flow.css" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+
+  <body>
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+      <div class="text"></div>
+      <div class="view-employee-container container">
+        <div class="admin-heading table-heading">
+          <h2 class="admin-title"></h2>
+          <!-- <p class="admin-text"></p> -->
+        </div>
+
+        <div>
+          <table class="employee-view-table overview-tables">
+            <tbody>
+              <tr>
+                <td>First Name</td>
+                <td class="efname"></td>
+              </tr>
+              <tr>
+                <td>Last Name</td>
+                <td class="elname"></td>
+              </tr>
+              <tr>
+                <td>Email Address</td>
+                <td class="eEmail"></td>
+              </tr>
+              <tr>
+                <td>Phone Number</td>
+                <td class="ePhone"></td>
+              </tr>
+              <tr>
+                <td>Personal Address</td>
+                <td class="eAddress"></td>
+              </tr>
+              <tr>
+                <td>Date of Birth</td>
+                <td class="eDob"></td>
+              </tr>
+              <tr>
+                <td>NIC Number</td>
+                <td class="eNic"></td>
+              </tr>
+              <tr>
+                <td>Designation</td>
+                <td class="eRole"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="buttons">
+          <a class="smallbt form-button edit" href="./edit.html"></a>
+          <a class="smallbt form-button delete"></a>
+        </div>
+      </div>
+    </section>
+    <script src="../../common/func.js"></script>
+    <script src="./view.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./load-nav.js"></script>
+    <script src="./load-notifications.js"></script>
+  </body>
+</html>

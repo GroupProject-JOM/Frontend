@@ -12,7 +12,16 @@
     t3 = body.querySelector(".t3"),
     t4 = body.querySelector(".t4"),
     t5 = body.querySelector(".t5"),
-    t6 = body.querySelector(".t6");
+    t6 = body.querySelector(".t6"),
+    employee = body.querySelector(".employee"),
+    collection = body.querySelector(".collection"),
+    outlet = body.querySelector(".outlet");
+
+    employee.addEventListener("click", () => {
+      window.location.href = "./employee/view-all.html";
+    });
+    collection.addEventListener("click", () => {});
+    outlet.addEventListener("click", () => {});
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -67,8 +76,8 @@
       t0:"පරිපාලක මෙවලම්",
       t1:"සේවක කළමනාකරණය",
       t2:"සේවකයින් එක් කරන්න / සංස්කරණය කරන්න / ඉවත් කරන්න",
-      t3:"එකතු කිරීමේ කළමනාකරණය",
-      t4:"එකතු කිරීමේ වාර්තා අතින් සංස්කරණය කරන්න",
+      t3:"සැපයුම් කළමනාකරණය",
+      t4:"සැපයුම් වාර්තා සංස්කරණය කරන්න",
       t5:"අලෙවිසැල කළමනාකරණය",
       t6:"අලෙවිසැල් විස්තර සංස්කරණය කරන්න",
     },

@@ -102,7 +102,7 @@
         l2: "ලිපින",
         l3: "ගෙවීම්",
         l4: "වාර්තා",
-        l5: "කතාබස් කරන්න",
+        l5: "කෙටි පණිවිඩ",
         l6: "ප්‍රධාන ක්‍ර්‍රියාවන්",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
@@ -133,8 +133,14 @@ window.addEventListener("load", (e) => {
     let loaded = false;
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
+    pathname = pathname.split('.')[0];
+
+    if(!pathname){
+      document.querySelector(`#nav-item-index`).classList.add("active");
+    }
+    
     // pathname = pathname.replace(".html", "");
-    const navItems = ["supply", "address", "payment", "report", "chat"];
+    const navItems = ["supply", "address", "payment", "report", "chat","index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
