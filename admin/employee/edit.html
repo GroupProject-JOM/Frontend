@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Add Employee</title>
+    <title>Edit Employee Details</title>
 
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
@@ -38,9 +38,9 @@
 
       <div class="text"></div>
 
-      <div class="register-container container">
+      <div class="edit-employee-container container">
         <div class="admin-content">
-          <div class="form-heading">Register Employee</div>
+          <div class="form-heading">Edit Employee Details</div>
           <div class="register-form">
             <form autocomplete="on">
               <div class="register-name" style="margin: 0; padding: 0">
@@ -49,22 +49,22 @@
                     type="text"
                     class="short fname"
                     name="fname"
-                    placeholder=""
+                    placeholder="Saman"
                     autocomplete="given-name"
                   />
-                  <br />
-                  <span class="form-error fname-error"></span>
+                  <!-- <br /> -->
+                  <!-- <span class="form-error fname-error"></span> -->
                 </section>
                 <section>
                   <input
                     type="text"
                     class="short lname"
                     name="lname"
-                    placeholder=""
+                    placeholder="Kumara"
                     autocomplete="family-name"
                   />
-                  <br />
-                  <span class="form-error lname-error"></span>
+                  <!-- <br /> -->
+                  <!-- <span class="form-error lname-error"></span> -->
                 </section>
               </div>
 
@@ -72,86 +72,89 @@
                 type="text"
                 class="long email"
                 name="email"
-                placeholder=""
+                placeholder="samankumara@jom.lk"
                 autocomplete="email"
               />
-              <br />
-              <span class="form-error email-error"></span>
+              <!-- <br /> -->
+              <!-- <span class="form-error email-error"></span> -->
+              
+              <!-- <br /><span class="form-error password-error"></span> -->
               <br />
               <input
                 type="text"
                 name="phone"
                 class="long phone"
-                placeholder=""
+                placeholder="0766640051"
                 autocomplete="tel"
               />
-              <br /><span class="form-error phone-error"></span>
+              <!-- <br /><span class="form-error phone-error"></span> -->
+              <br />
+              <p class="address">Personal Address</p>
               <br />
               <input
                 type="text"
                 class="long address1"
                 name="address1"
-                placeholder=""
+                placeholder="No.3"
                 autocomplete="address-line1"
               />
-              <br /><span class="form-error address1-error"></span><br />
+              <!-- <br /><span class="form-error address1-error"></span><br /> -->
               <div class="register-name">
                 <section>
                   <input
                     type="text"
                     name="address2"
                     class="short address2"
-                    placeholder=""
+                    placeholder="Kirulapone Ave"
                     autocomplete="address-line2"
                   />
-                  <br /><span class="form-error address2-error"></span>
+                  <!-- <br /><span class="form-error address2-error"></span> -->
                 </section>
                 <section>
                   <input
                     type="text"
                     name="address3"
                     class="short address3"
-                    placeholder=""
+                    placeholder="Colombo 5"
                     autocomplete="address-line3"
                   />
-                  <br /><span class="form-error address3-error"></span>
+                  <!-- <br /><span class="form-error address3-error"></span> -->
                 </section>
               </div>
               <input
-                type="text"
+                type="date"
                 class="long dob"
-                placeholder=""
-                onmousemove="(this.type='date')"
-                onmouseleave="(this.type='text')"
-              /><br /><span class="form-error dob-error"></span>
-              <br />
+                name="dob"
+                placeholder="Date of Birth"
+              />
+              <br>
               <input
                 type="text"
                 class="long nic"
                 name="nic"
-                placeholder=""
-              /><br /><span class="form-error nic-error"></span>
-              <br />
-              <select class="dropdown role">
-                <option value="" default hidden class="op0"></option>
-                <option value="Collector" class="op1"></option>
-                <option value="Distributor" class="op2"></option>
-                <option value="Stock-Manager" class="op3"></option>
-                <option value="Production-Manager" class="op4"></option>
-                <option value="Sales-Manager" class="op5"></option>
-              </select>
-              <br /><span class="form-error dropdown-error"></span>
+                placeholder="20011100129V"
+              />
+              <br>
+              <input
+                type="text"
+                class="long role"
+                name="role"
+                placeholder="Stock Manager"
+              />
             </form>
-          </div>
+<br><br>
+            <!-- <p>Profile Image</p> -->
 
-          <a class="form-button"></a>
+          </div>
+<br>
+          <a class="form-button">Save Changes</a>
         </div>
       </div>
     </section>
     <script src="../../common/func.js"></script>
-    <script src="./add.js"></script>
+    <!-- <script src="script.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./load-nav.js"></script>
-    <script src="./load-notifications.js"></script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
   </body>
 </html>
