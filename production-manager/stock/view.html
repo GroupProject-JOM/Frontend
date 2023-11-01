@@ -56,42 +56,42 @@
                 </thead>
 
                 <tbody>
-                  <tr style="background-color: #e9ffe8">
+                  <tr style="background-color: #e9ffe8"  data-href='./request.html'>
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #e9ffe8">
+                  <tr style="background-color: #e9ffe8" data-href='./request.html'>
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #ffe0e0">
+                  <tr style="background-color: #ffe0e0" data-href='./request.html'>
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #fbffcc">
+                  <tr style="background-color: #fbffcc" data-href='./request.html'>
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #fbffcc">
+                  <tr style="background-color: #fbffcc" data-href='./request.html'>
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #fbffcc">
+                  <tr style="background-color: #fbffcc" data-href='./request.html'>
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #fbffcc">
+                  <tr style="background-color: #fbffcc" data-href='./request.html'>
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
                   </tr>
-                  <tr style="background-color: #fbffcc">
+                  <tr style="background-color: #fbffcc" data-href='./request.html'>
                     <td>SA001</td>
                     <td>25</td>
                     <td>500</td>
@@ -220,5 +220,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
+    <script>
+      const rows = document.querySelectorAll("tr[data-href]");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id + "; path=/";
+              window.location.href = r.dataset.href;
+            });
+          });
+    </script>
   </body>
 </html>
