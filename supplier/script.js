@@ -98,7 +98,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     count = 0,
     value = 0;
 
-  fetch(backProxy + "/collection?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/collections?sId=" + getCookie("sId"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -147,7 +147,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               }
 
               row1 +=
-                "<tr data-href='./view.html' id=" +
+                "<tr data-href='./supply-view.html' id=" +
                 item.id +
                 ">" +
                 "<td>" +
@@ -185,7 +185,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               }
 
               row2 +=
-                "<tr data-href='./view.html' id=" +
+                "<tr data-href='./supply-view.html' id=" +
                 item.id +
                 ">" +
                 "<td>" +

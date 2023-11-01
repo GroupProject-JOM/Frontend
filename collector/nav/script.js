@@ -25,7 +25,12 @@
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
+      l11 = body.querySelector(".l11"),
+      dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name");
+
+      
+      dashboard.href = frontProxy + "/collector/";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -57,6 +62,7 @@
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
       l9.textContent = modeTranslate();
+      l11.textContent = data["sin"]["l11"];
     });
 
     en.addEventListener("click", () => {
@@ -64,6 +70,7 @@
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
       l9.textContent = modeTranslate();
+      l11.textContent = data["en"]["l11"];
     });
 
     var data = {
@@ -71,11 +78,13 @@
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
+        l11: "උපකරණ පුවරුව",
       },
       en: {
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
+        l11: "Dashboard",
       },
     };
 
@@ -84,3 +93,39 @@
     checkMode();
   }, 10);
 })();
+
+
+window.addEventListener("load", (e) => {
+  const interval = setInterval(() => {
+    let loaded = false;
+    var pathname = window.location.pathname;
+    pathname = pathname.split("/")[2] || "";
+    pathname = pathname.split('.')[0];
+
+    if(!pathname){
+      document.querySelector(`#nav-item-index`).classList.add("active");
+    }
+    
+    console.log(pathname);
+    // pathname = pathname.replace(".html", "");
+    const navItems = ["index"];
+    if (!loaded && pathname) {
+      loaded = true;
+      clearInterval(interval);
+    }
+
+    for (const navItem of navItems) {
+      const nav = document.querySelector(`#nav-item-${pathname}`);
+
+      if (!nav) continue;
+
+      if (navItem == pathname) {
+        nav.classList.add("active");
+        break;
+      } else {
+        nav.classList.remove("active");
+      }
+    }
+    if (!pathname) clearInterval(interval);
+  }, 10);
+});
