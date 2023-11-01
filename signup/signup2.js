@@ -22,32 +22,31 @@
     vbt1 = body.querySelector(".vb1"),
     vbt2 = body.querySelector(".vb2"),
     emailRing = body.querySelector(".lds-ring"),
+    error = body.querySelector(".error"),
     counter = body.querySelector("#counter");
 
-  // var email = sessionStorage.getItem("email"),
-  //   phone = sessionStorage.getItem("phone"),
-  //   oId;
   var email = getCookie("email"),
     phone = getCookie("phone"),
     oId;
 
-    // if(email == null){
-    //   window.location.href = "./"
-    // }
+  if (email == null) {
+    window.location.href = "./";
+  }
 
-    // if(phone == null){
-    //   shPhone.style.display = "none";
-    //   vPhone.style.display = "none";
-    // }
+  if (phone == null) {
+    shPhone.style.display = "none";
+    vPhone.style.display = "none";
+  }
 
-    if(getCookie("id") == null){
-      fetch(backProxy + "/validateE?email="+email, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      }).then((response) => {
+  if (getCookie("id") == null) {
+    fetch(backProxy + "/validateE?email=" + email, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {
             console.log(data.id);
@@ -56,6 +55,7 @@
           });
         } else if (response.status === 202) {
           console.log("No user in this email");
+          error.textContent = "No user in this email";
         } else {
           console.error("Error:", response.status);
         }
@@ -63,7 +63,7 @@
       .catch((error) => {
         console.error("An error occurred:", error);
       });
-    }
+  }
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -175,6 +175,8 @@
         if (response.ok) {
           response.json().then((data) => {
             console.log(data.message);
+
+            error.textContent = data.message;
             oId = data.oId;
           });
           emailRing.style.display = "none";
@@ -194,6 +196,7 @@
             }, 1000);
         } else if (response.status === 401) {
           console.log("Registration unsuccessful");
+          error.textContent = "Registration unsuccessful";
         } else {
           console.error("Error:", response.status);
         }
@@ -211,6 +214,7 @@
       emailOtp.value.trim().length === 0
     ) {
       console.log("OTP cannot be empty");
+      error.textContent = "OTP cannot be empty";
       emailOtp.focus();
     } else {
       var formData = {
@@ -230,14 +234,22 @@
         .then((response) => {
           if (response.status == 200) {
             response.json().then((data) => {
+              document.cookie =
+                "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+              document.cookie =
+                "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+              document.cookie =
+                "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+              window.location.href = frontProxy + "/signup/signup3.html";
+
               console.log(data.message);
+              error.textContent = data.message;
             });
-            // sessionStorage.removeItem("id");
-            // sessionStorage.removeItem("phone");
-            // sessionStorage.removeItem("email");
+            vbt1.disabled = true;
             isValidate = true;
           } else if (response.status === 401) {
             console.log("Invalid OTP");
+            error.textContent = "Invalid OTP";
             emailOtp.focus();
           } else {
             console.error("Error:", response.status);

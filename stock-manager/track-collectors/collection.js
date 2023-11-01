@@ -3,8 +3,6 @@
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     sTitle = body.querySelector(".stockmg-title"),
-    
-    tbody = body.querySelector(".tbody"),
     btn = body.querySelector(".form-button");
 
     sin.addEventListener("click", () => {
@@ -16,7 +14,6 @@
         document.cookie = "lang=sin; path=/";
     
         sTitle.textContent = data["sin"]["sTitle"];
-        btn.textContent = data["sin"]["btn"];
       });
 
       en.addEventListener("click", () => {
@@ -28,7 +25,6 @@
         document.cookie = "lang=en; path=/";
     
         sTitle.textContent = data["en"]["sTitle"];
-        btn.textContent = data["en"]["btn"];
       });
 
 

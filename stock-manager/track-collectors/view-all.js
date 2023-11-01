@@ -13,6 +13,14 @@
     tbody = body.querySelector(".tbody"),
     btn = body.querySelector(".form-button");
 
+    const rows = document.querySelectorAll("tr[data-href]");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id + "; path=/";
+              window.location.href = r.dataset.href;
+            });
+          });
+
     sin.addEventListener("click", () => {
         sin.classList.add("active");
         en.classList.remove("active");

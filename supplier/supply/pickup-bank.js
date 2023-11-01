@@ -1,4 +1,6 @@
 (() => {
+  let loaded = false;
+  const interval = setInterval(() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
@@ -7,6 +9,11 @@
     location = body.querySelector(".location");
 
   var lop, bop;
+
+  if (!loaded && lop && bop) {
+    loaded = true;
+    clearInterval(interval);
+  }
 
   var location_options =
     "<option value='' disabled selected hidden class='lop'></option>";
@@ -223,4 +230,5 @@
         });
     }
   });
+}, 100);
 })();
