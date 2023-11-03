@@ -197,10 +197,6 @@ var fname_status = false,
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message); // to alert
-              // sessionStorage.setItem("id", data.id);
-              // sessionStorage.setItem("sId", data.sId);
-              // sessionStorage.setItem("email", data.email);
-              // sessionStorage.setItem("phone", data.phone);
               document.cookie = "id=" + data.id;
               document.cookie = "sId=" + data.sId;
               document.cookie = "email=" + data.email;
@@ -270,6 +266,10 @@ var fname_status = false,
       fnameError.textContent = "First name cannot be empty";
       fname_status = false;
       return false;
+    } else if (!ValidateName(fname.value)) {
+      fnameError.textContent = "Name must contain only letters and ' '";
+      fname_status = false;
+      return false;
     } else {
       fnameError.textContent = "";
       fname_status = true;
@@ -280,6 +280,10 @@ var fname_status = false,
   function lname_status_func() {
     if (typeof lname.value === "string" && lname.value.trim().length === 0) {
       lnameError.textContent = "Last name cannot be empty";
+      lname_status = false;
+      return false;
+    } else if (!ValidateName(lname.value)) {
+      lnameError.textContent = "Name must contain only letters and ' '";
       lname_status = false;
       return false;
     } else {
@@ -294,7 +298,7 @@ var fname_status = false,
       emailError.textContent = "Email cannot be empty";
       email_status = false;
       return false;
-    } else if (!ValidateEmail(email)) {
+    } else if (!ValidateEmail(email.value)) {
       emailError.textContent = "Invalid email address!";
       email_status = false;
       return false;
@@ -325,7 +329,11 @@ var fname_status = false,
       phoneError.textContent = "Phone number cannot be empty";
       phone_status = false;
       return false;
-    } else {
+    } else if (!ValidatePhone(phone.value)) {
+      phoneError.textContent = "Invalid phone number!";
+      phone_status = false;
+      return false;
+    }  else {
       phone_status = true;
       phoneError.textContent = "";
       return true;
@@ -379,14 +387,21 @@ var fname_status = false,
 })();
 
 function ValidateEmail(email) {
-  var validRegex =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/;
-
-  if (email.value.match(validRegex)) {
-    return true;
-  } else {
-    return false;
-  }
+  var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (email.match(emailRegex)) return true;
+  else return false;
 }
 
-// TODO fname lname etc. have to validate
+function ValidateName(name) {
+  var nameRegex = /^[a-zA-Z ]{2,30}$/;
+  if (nameRegex.test(name)) return true;
+  else return false;
+}
+
+function ValidatePhone(number) {
+  var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  if (number.match(phoneRegex)) return true;
+  else return false;
+}
+
+// TODO address validations
