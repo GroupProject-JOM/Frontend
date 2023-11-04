@@ -281,7 +281,8 @@ var fname_status = false,
           } else if (response.status === 409) {
             response.json().then((data) => {
               if (data.message == "email3") {
-                emailError.textContent = "This email is already used";
+                if(lang == "sin") emailError.textContent = "මෙම විද්‍යුත් තැපෑල දැනටමත් භාවිතා කර ඇත";
+                else emailError.textContent = "This email is already used";
                 email.focus();
               }
             });
@@ -292,7 +293,8 @@ var fname_status = false,
           }
         })
         .catch((error) => {
-          mainError.textContent = "CONNECTION REFUSED";
+          if(lang == "sin") mainError.textContent = "සම්බන්ධතාවය ප්රතික්ෂේප විය";
+          else mainError.textContent = "CONNECTION REFUSED";
           mainError.style.display = "block";
           console.error("An error occurred:", error);
         });
