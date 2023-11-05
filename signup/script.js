@@ -5,7 +5,8 @@ var fname_status = false,
   phone_status = false,
   address1_status = false,
   address2_status = false,
-  address3_status = false;
+  address3_status = false,
+  lang = getCookie("lang");
 
 (() => {
   const body = document.querySelector("body"),
@@ -42,6 +43,7 @@ var fname_status = false,
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     fh.textContent = data["sin"]["fh"];
     fname.placeholder = data["sin"]["fname"];
@@ -64,6 +66,7 @@ var fname_status = false,
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     fh.textContent = data["en"]["fh"];
     fname.placeholder = data["en"]["fname"];
@@ -208,42 +211,78 @@ var fname_status = false,
           } else if (response.status === 400) {
             // backend error handle
             response.json().then((data) => {
-              if (data.message == "fname") {
-                fnameError.textContent = "First name cannot be empty!";
-                fname.focus();
-              } else if (data.message == "lname") {
-                lnameError.textContent = "Last name cannot be empty!";
-                lname.focus();
-              } else if (data.message == "email1") {
-                emailError.textContent = "Email cannot be empty!";
-                email.focus();
-              } else if (data.message == "email2") {
-                emailError.textContent = "Enter a valid email!";
-                email.focus();
-              } else if (data.message == "password") {
-                passwordError.textContent = "Password cannot be empty!";
-                password.focus();
-              } else if (data.message == "phone") {
-                phoneError.textContent = "Contact number cannot be empty!";
-                phone.focus();
-              } else if (data.message == "adddress1") {
-                address1Error.textContent = "Address line 1 cannot be empty!";
-                address1.focus();
-              } else if (data.message == "adddress2") {
-                address2Error.textContent = "Street cannot be empty!";
-                address2.focus();
-              } else if (data.message == "adddress3") {
-                address3Error.textContent = "City cannot be empty!";
-                address3.focus();
+              if (lang == "sin") {
+                if (data.message == "fname") {
+                  fnameError.textContent = "මුල් නම හිස් විය නොහැක!";
+                  fname.focus();
+                } else if (data.message == "lname") {
+                  lnameError.textContent = "අවසාන නම හිස් විය නොහැක!";
+                  lname.focus();
+                } else if (data.message == "email1") {
+                  emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක!";
+                  email.focus();
+                } else if (data.message == "email2") {
+                  emailError.textContent =
+                    "වලංගු විද්‍යුත් තැපෑලක් ඇතුළු කරන්න!";
+                  email.focus();
+                } else if (data.message == "password") {
+                  passwordError.textContent = "මුරපදය හිස් විය නොහැක!";
+                  password.focus();
+                } else if (data.message == "phone") {
+                  phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
+                  phone.focus();
+                } else if (data.message == "adddress1") {
+                  address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
+                  address1.focus();
+                } else if (data.message == "adddress2") {
+                  address2Error.textContent = "වීදිය හිස් විය නොහැක!";
+                  address2.focus();
+                } else if (data.message == "adddress3") {
+                  address3Error.textContent = "නගරය හිස් විය නොහැක!";
+                  address3.focus();
+                } else {
+                  mainError.textContent = "මොකක්හරි වැරැද්දක් වෙලා";
+                  mainError.style.display = "block";
+                }
               } else {
-                mainError.textContent = "Something went wrong";
-                mainError.style.display = "block";
+                if (data.message == "fname") {
+                  fnameError.textContent = "First name cannot be empty!";
+                  fname.focus();
+                } else if (data.message == "lname") {
+                  lnameError.textContent = "Last name cannot be empty!";
+                  lname.focus();
+                } else if (data.message == "email1") {
+                  emailError.textContent = "Email cannot be empty!";
+                  email.focus();
+                } else if (data.message == "email2") {
+                  emailError.textContent = "Enter a valid email!";
+                  email.focus();
+                } else if (data.message == "password") {
+                  passwordError.textContent = "Password cannot be empty!";
+                  password.focus();
+                } else if (data.message == "phone") {
+                  phoneError.textContent = "Contact number cannot be empty!";
+                  phone.focus();
+                } else if (data.message == "adddress1") {
+                  address1Error.textContent = "Address line 1 cannot be empty!";
+                  address1.focus();
+                } else if (data.message == "adddress2") {
+                  address2Error.textContent = "Street cannot be empty!";
+                  address2.focus();
+                } else if (data.message == "adddress3") {
+                  address3Error.textContent = "City cannot be empty!";
+                  address3.focus();
+                } else {
+                  mainError.textContent = "Something went wrong";
+                  mainError.style.display = "block";
+                }
               }
             });
           } else if (response.status === 409) {
             response.json().then((data) => {
               if (data.message == "email3") {
-                emailError.textContent = "This email is already used";
+                if(lang == "sin") emailError.textContent = "මෙම විද්‍යුත් තැපෑල දැනටමත් භාවිතා කර ඇත";
+                else emailError.textContent = "This email is already used";
                 email.focus();
               }
             });
@@ -254,7 +293,8 @@ var fname_status = false,
           }
         })
         .catch((error) => {
-          mainError.textContent = "CONNECTION REFUSED";
+          if(lang == "sin") mainError.textContent = "සම්බන්ධතාවය ප්රතික්ෂේප විය";
+          else mainError.textContent = "CONNECTION REFUSED";
           mainError.style.display = "block";
           console.error("An error occurred:", error);
         });
@@ -333,7 +373,7 @@ var fname_status = false,
       phoneError.textContent = "Invalid phone number!";
       phone_status = false;
       return false;
-    }  else {
+    } else {
       phone_status = true;
       phoneError.textContent = "";
       return true;
