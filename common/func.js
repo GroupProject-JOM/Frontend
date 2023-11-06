@@ -115,7 +115,7 @@ window.addEventListener("load", (e) => {
   } else {
     sidebar.classList.remove("close");
   }
-  console.log(window.innerWidth)
+  console.log(window.innerWidth);
 });
 
 // function checkCookie(name) {
@@ -151,12 +151,20 @@ function getCookie(name) {
 
   if (myCookie == null) {
     console.log(name + " - null");
-  } 
+  }
   // else {
   //   console.log("not null " + myCookie);
   // }
 
   return myCookie;
+}
+
+function signout() {
+  // remove previous data
+  document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+  document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+  document.cookie = "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+  window.location.href = frontProxy;
 }
 
 const frontProxy = "http://127.0.0.1:5501";

@@ -30,10 +30,15 @@
       l11 = body.querySelector(".l11"),
       add = body.querySelector(".add"),
       dashboard = body.querySelector(".dashboard"),
-      Uname = body.querySelector(".name");
+      Uname = body.querySelector(".name"),
+      logout = document.querySelector(".logout");
+
+    logout.addEventListener("click", () => {
+      signout();
+    });
 
     // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie('name');
+    Uname.textContent = getCookie("name");
 
     add.href = "./add.html";
     dashboard.href = "./";
@@ -110,13 +115,13 @@ window.addEventListener("load", (e) => {
     let loaded = false;
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
-    pathname = pathname.split('.')[0];
+    pathname = pathname.split(".")[0];
 
-    if(!pathname){
+    if (!pathname) {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
     // pathname = pathname.replace(".html", "");
-    const navItems = ["add",'index'];
+    const navItems = ["add", "index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

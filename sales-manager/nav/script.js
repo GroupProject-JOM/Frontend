@@ -36,16 +36,21 @@
       outlets = body.querySelector(".outlets"),
       productions = body.querySelector(".productions"),
       payouts = body.querySelector(".payouts"),
-      Uname = body.querySelector(".name");
+      Uname = body.querySelector(".name"),
+      logout = document.querySelector(".logout");
 
-      dashboard.href = frontProxy + "/sales-manager/";
-      distributor.href = frontProxy + "/sales-manager/distributors/view-all.html";
-      outlets.href = frontProxy + "/sales-manager/outlets/view-all.html";
-      productions.href = frontProxy + "/sales-manager/productions/view-all.html";
-      payouts.href = frontProxy + "/sales-manager/payouts/view-all.html";
+    logout.addEventListener("click", () => {
+      signout();
+    });
+
+    dashboard.href = frontProxy + "/sales-manager/";
+    distributor.href = frontProxy + "/sales-manager/distributors/view-all.html";
+    outlets.href = frontProxy + "/sales-manager/outlets/view-all.html";
+    productions.href = frontProxy + "/sales-manager/productions/view-all.html";
+    payouts.href = frontProxy + "/sales-manager/payouts/view-all.html";
 
     // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie('name');
+    Uname.textContent = getCookie("name");
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -126,21 +131,26 @@
   }, 10);
 })();
 
-
 window.addEventListener("load", (e) => {
   const interval = setInterval(() => {
     let loaded = false;
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
-    pathname = pathname.split('.')[0];
+    pathname = pathname.split(".")[0];
 
-    if(!pathname){
+    if (!pathname) {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
-    
+
     console.log(pathname);
     // pathname = pathname.replace(".html", "");
-    const navItems = ["distributors","productions","payouts", "outlets","index"];
+    const navItems = [
+      "distributors",
+      "productions",
+      "payouts",
+      "outlets",
+      "index",
+    ];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

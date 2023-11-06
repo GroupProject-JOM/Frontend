@@ -27,7 +27,12 @@
       l9 = body.querySelector(".l9"),
       l11 = body.querySelector(".l11"),
       dashboard = body.querySelector(".dashboard"),
-      Uname = body.querySelector(".name");
+      Uname = body.querySelector(".name"),
+      logout = document.querySelector(".logout");
+
+    logout.addEventListener("click", () => {
+      signout();
+    });
 
       
       dashboard.href = frontProxy + "/collector/";

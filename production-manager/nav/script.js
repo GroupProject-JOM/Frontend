@@ -32,14 +32,20 @@
       dashboard = body.querySelector(".dashboard"),
       stockk = body.querySelector(".stockk"),
       productionhistory = body.querySelector(".production-history"),
-      Uname = body.querySelector(".name");
+      Uname = body.querySelector(".name"),
+      logout = document.querySelector(".logout");
 
-      dashboard.href = frontProxy + "/production-manager/";
-      stockk.href = frontProxy + "/production-manager/stock/view.html";
-      productionhistory.href = frontProxy + "/production-manager/production-history.html";
+    logout.addEventListener("click", () => {
+      signout();
+    });
+
+    dashboard.href = frontProxy + "/production-manager/";
+    stockk.href = frontProxy + "/production-manager/stock/view.html";
+    productionhistory.href =
+      frontProxy + "/production-manager/production-history.html";
 
     // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie('name');
+    Uname.textContent = getCookie("name");
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -117,15 +123,15 @@ window.addEventListener("load", (e) => {
     let loaded = false;
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
-    pathname = pathname.split('.')[0];
+    pathname = pathname.split(".")[0];
 
-    if(!pathname){
+    if (!pathname) {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
-    
+
     console.log(pathname);
     // pathname = pathname.replace(".html", "");
-    const navItems = ["stock","production-history","index"];
+    const navItems = ["stock", "production-history", "index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

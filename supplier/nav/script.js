@@ -35,10 +35,15 @@
       address = body.querySelector(".address"),
       payment = body.querySelector(".payment"),
       dashboard = body.querySelector(".dashboard"),
-      Uname = body.querySelector(".name");
+      Uname = body.querySelector(".name"),
+      logout = document.querySelector(".logout");
+
+    logout.addEventListener("click", () => {
+      signout();
+    });
 
     // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie('name');
+    Uname.textContent = getCookie("name");
 
     newSupply.href = frontProxy + "/supplier/supply";
     address.href = frontProxy + "/supplier/address/view-all.html";
@@ -133,14 +138,21 @@ window.addEventListener("load", (e) => {
     let loaded = false;
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
-    pathname = pathname.split('.')[0];
+    pathname = pathname.split(".")[0];
 
-    if(!pathname){
+    if (!pathname) {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
-    
+
     // pathname = pathname.replace(".html", "");
-    const navItems = ["supply", "address", "payment", "report", "chat","index"];
+    const navItems = [
+      "supply",
+      "address",
+      "payment",
+      "report",
+      "chat",
+      "index",
+    ];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
