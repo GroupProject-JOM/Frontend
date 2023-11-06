@@ -1,3 +1,9 @@
+// remove previous data
+document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+document.cookie = "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+
 // Input fields status indicators
 var fname_status = false,
   lname_status = false,
