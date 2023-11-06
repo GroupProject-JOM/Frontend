@@ -1,3 +1,4 @@
+// Input fields status indicators
 var fname_status = false,
   lname_status = false,
   email_status = false,
@@ -6,11 +7,11 @@ var fname_status = false,
   address1_status = false,
   address2_status = false,
   address3_status = false,
-  lang = getCookie("lang");
+  lang = getCookie("lang"); // current language
 
 (() => {
   const body = document.querySelector("body"),
-    sin = body.querySelector(".sin"),
+    sin = body.querySelector(".sin"), 
     en = body.querySelector(".en"),
     fh = body.querySelector(".form-heading"),
     fname = body.querySelector(".fname"),
@@ -34,19 +35,18 @@ var fname_status = false,
     m7 = body.querySelector(".menu-line7"),
     next = body.querySelector(".next");
 
-  // checkLng();
 
-  sin.addEventListener("click", () => {
+
+  sin.addEventListener("click", () => { // when sin is clicked
     sin.classList.add("active");
     en.classList.remove("active");
 
-    document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
-    document.cookie = "lang=sin; path=/";
+    document.documentElement.setAttribute("lang", "sin"); // edit lang in html tag
+    document.cookie = "lang=sin; path=/"; // save current language in the cookie
     lang = "sin";
 
     fh.textContent = data["sin"]["fh"];
-    fname.placeholder = data["sin"]["fname"];
+    fname.placeholder = data["sin"]["fname"]; // input field 'first name' placeholder
     lname.placeholder = data["sin"]["lname"];
     email.placeholder = data["sin"]["email"];
     password.placeholder = data["sin"]["password"];
@@ -59,13 +59,12 @@ var fname_status = false,
     m7.innerHTML = data["sin"]["m7"];
   });
 
-  en.addEventListener("click", () => {
+  en.addEventListener("click", () => { // when en is clicked
     en.classList.add("active");
     sin.classList.remove("active");
 
-    document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
-    document.cookie = "lang=en; path=/";
+    document.documentElement.setAttribute("lang", "en"); // edit lang in html tag
+    document.cookie = "lang=en; path=/"; // save current language in the cookie
     lang = "en";
 
     fh.textContent = data["en"]["fh"];
@@ -82,7 +81,7 @@ var fname_status = false,
     m7.innerHTML = data["en"]["m7"];
   });
 
-  var data = {
+  var data = { // language translations array
     sin: {
       fh: "මූලික තොරතුරු",
       fname: "මුල් නම",
@@ -139,7 +138,7 @@ var fname_status = false,
     address3_status_func();
   });
 
-  next.addEventListener("click", () => {
+  next.addEventListener("click", () => { // when submit button is clicked
     // submit form validation
     if (!address3_status_func()) {
       address3.focus();
@@ -165,7 +164,8 @@ var fname_status = false,
     if (!fname_status_func()) {
       fname.focus();
     }
-    if (
+
+    if ( // check input data are ready to submit
       fname_status &&
       lname_status &&
       email_status &&
@@ -175,6 +175,7 @@ var fname_status = false,
       address2_status &&
       address3_status
     ) {
+
       // create form data object
       var formData = {
         first_name: fname.value,
@@ -188,7 +189,7 @@ var fname_status = false,
       };
 
       // send form data object via fetch api
-      fetch(backProxy + "/signup", {
+      fetch(backProxy + "/signup", { // endpoint
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -199,19 +200,19 @@ var fname_status = false,
         .then((response) => {
           if (response.status == 200) {
             response.json().then((data) => {
-              console.log(data.message); // to alert
+              // set needed data in cookie
               document.cookie = "id=" + data.id;
               document.cookie = "sId=" + data.sId;
               document.cookie = "email=" + data.email;
               document.cookie = "phone=" + data.phone;
             });
-            window.location.href = frontProxy + "/signup/signup2.html";
+            window.location.href = frontProxy + "/signup/signup2.html"; // redirect path
           } else if (response.status === 401) {
             console.log("Registration unsuccessful");
           } else if (response.status === 400) {
-            // backend error handle
+            // backend error catch
             response.json().then((data) => {
-              if (lang == "sin") {
+              if (lang == "sin") { // check current language and visualize error
                 if (data.message == "fname") {
                   fnameError.textContent = "මුල් නම හිස් විය නොහැක!";
                   fname.focus();
@@ -241,10 +242,10 @@ var fname_status = false,
                   address3Error.textContent = "නගරය හිස් විය නොහැක!";
                   address3.focus();
                 } else {
-                  mainError.textContent = "මොකක්හරි වැරැද්දක් වෙලා";
+                  mainError.textContent = "මොකක්හරි වැරැද්දක් වෙලා"; // main error content top of the page
                   mainError.style.display = "block";
                 }
-              } else {
+              } else {// check current language and visualize error
                 if (data.message == "fname") {
                   fnameError.textContent = "First name cannot be empty!";
                   fname.focus();
@@ -303,11 +304,13 @@ var fname_status = false,
 
   function fname_status_func() {
     if (typeof fname.value === "string" && fname.value.trim().length === 0) {
-      fnameError.textContent = "First name cannot be empty";
+      if(lang == "sin") fnameError.textContent = "මුල් නම හිස් විය නොහැක";
+      else fnameError.textContent = "First name cannot be empty";
       fname_status = false;
       return false;
     } else if (!ValidateName(fname.value)) {
-      fnameError.textContent = "Name must contain only letters and ' '";
+      if(lang == "sin") fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
+      else fnameError.textContent = "Name must contain only letters and ' '";
       fname_status = false;
       return false;
     } else {
@@ -319,11 +322,13 @@ var fname_status = false,
 
   function lname_status_func() {
     if (typeof lname.value === "string" && lname.value.trim().length === 0) {
-      lnameError.textContent = "Last name cannot be empty";
+      if(lang == "sin") lnameError.textContent = "අවසාන නම හිස් විය නොහැක";
+      else lnameError.textContent = "Last name cannot be empty";
       lname_status = false;
       return false;
     } else if (!ValidateName(lname.value)) {
-      lnameError.textContent = "Name must contain only letters and ' '";
+      if(lang == "sin") lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
+      else lnameError.textContent = "Name must contain only letters and ' '";
       lname_status = false;
       return false;
     } else {
@@ -335,11 +340,13 @@ var fname_status = false,
 
   function email_status_func() {
     if (typeof email.value === "string" && email.value.trim().length === 0) {
-      emailError.textContent = "Email cannot be empty";
+      if(lang == "sin") emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
+      else emailError.textContent = "Email cannot be empty";
       email_status = false;
       return false;
     } else if (!ValidateEmail(email.value)) {
-      emailError.textContent = "Invalid email address!";
+      if(lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
+      else emailError.textContent = "Invalid email address!";
       email_status = false;
       return false;
     } else {
@@ -354,7 +361,8 @@ var fname_status = false,
       typeof password.value === "string" &&
       password.value.trim().length === 0
     ) {
-      passwordError.textContent = "Password cannot be empty";
+      if(lang == "sin") passwordError.textContent = "මුරපදය හිස් විය නොහැක";
+      else passwordError.textContent = "Password cannot be empty";
       password_status = false;
       return false;
     } else {
@@ -366,11 +374,13 @@ var fname_status = false,
 
   function phone_status_func() {
     if (typeof phone.value === "string" && phone.value.trim().length === 0) {
-      phoneError.textContent = "Phone number cannot be empty";
+      if(lang == "sin") phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක";
+      else phoneError.textContent = "Phone number cannot be empty";
       phone_status = false;
       return false;
     } else if (!ValidatePhone(phone.value)) {
-      phoneError.textContent = "Invalid phone number!";
+      if(lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      else phoneError.textContent = "Invalid phone number!";
       phone_status = false;
       return false;
     } else {
@@ -385,7 +395,8 @@ var fname_status = false,
       typeof address1.value === "string" &&
       address1.value.trim().length === 0
     ) {
-      address1Error.textContent = "Address Line 1 cannot be empty";
+      if(lang == "sin") address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+      else address1Error.textContent = "Address Line 1 cannot be empty";
       address1_status = false;
       return false;
     } else {
@@ -400,7 +411,8 @@ var fname_status = false,
       typeof address2.value === "string" &&
       address2.value.trim().length === 0
     ) {
-      address2Error.textContent = "Street cannot be empty";
+      if(lang == "sin") address2Error.textContent = "වීදිය හිස් විය නොහැක";
+      else address2Error.textContent = "Street cannot be empty";
       address2_status = false;
       return false;
     } else {
@@ -415,7 +427,8 @@ var fname_status = false,
       typeof address3.value === "string" &&
       address3.value.trim().length === 0
     ) {
-      address3Error.textContent = "City cannot be empty";
+      if(lang == "sin") address3Error.textContent = "නගරය හිස් විය නොහැක";
+      else address3Error.textContent = "City cannot be empty";
       address3_status = false;
       return false;
     } else {
