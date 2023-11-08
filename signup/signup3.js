@@ -1,3 +1,8 @@
+var enameStatus = false,
+    locationStatus = false,
+    areaStatus = false,
+    lang = getCookie("lang"); // current language
+    
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -68,13 +73,7 @@
       next: "Save",
       skip: "Skip",
     },
-  };
-
-  checkLng();
-  var enameStatus = false,
-    locationStatus = false,
-    areaStatus = false,
-    lang = getCookie("lang"); // current language
+  };  
 
   function ename_status() {
     if (typeof ename.value === "string" && ename.value.trim().length === 0) {
