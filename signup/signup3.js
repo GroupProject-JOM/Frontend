@@ -5,9 +5,12 @@
     fh = body.querySelector(".form-heading"),
     fht = body.querySelector(".form-heading-text"),
     ename = body.querySelector(".estate-name"),
+    enameError = body.querySelector(".ename-error"),
     location = body.querySelector(".location"),
+    locationError = body.querySelector(".location-error"),
     area = body.querySelector(".area"),
-    next = body.querySelector(".next");
+    areaError = body.querySelector(".area-error"),
+    next = body.querySelector(".next"),
     skip = body.querySelector(".skip");
 
   sin.addEventListener("click", () => {
@@ -16,7 +19,8 @@
 
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
-    document.cookie="lang=sin; path=/";
+    document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     fh.textContent = data["sin"]["fh"];
     fht.innerHTML = data["sin"]["fht"];
@@ -25,7 +29,6 @@
     area.placeholder = data["sin"]["area"];
     next.textContent = data["sin"]["next"];
     skip.textContent = data["sin"]["skip"];
-
   });
 
   en.addEventListener("click", () => {
@@ -34,7 +37,8 @@
 
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
-    document.cookie="lang=en; path=/";
+    document.cookie = "lang=en; path=/";
+    lang = "en";
 
     fh.textContent = data["en"]["fh"];
     fht.innerHTML = data["en"]["fht"];
@@ -43,7 +47,6 @@
     area.placeholder = data["en"]["area"];
     next.textContent = data["en"]["next"];
     skip.textContent = data["en"]["skip"];
-
   });
 
   var data = {
@@ -55,7 +58,6 @@
       area: "ප්රදේශය/කලාපය",
       next: "සුරකින්න",
       skip: "මඟ හරින්න",
-
     },
     en: {
       fh: "Estate Locations",
@@ -71,31 +73,70 @@
   checkLng();
   var enameStatus = false,
     locationStatus = false,
-    areaStatus = false;
+    areaStatus = false,
+    lang = getCookie("lang"); // current language
 
-  next.addEventListener("click", () => {
-    if (typeof area.value === "string" && area.value.trim().length === 0) {
-      console.log("Area cannot be empty");
-      area.focus();
+  function ename_status() {
+    if (typeof ename.value === "string" && ename.value.trim().length === 0) {
+      if (lang == "sin") enameError.textContent = "";
+      else enameError.textContent = "Estate name cannot be empty";
+      enameStatus = false;
+      return false;
     } else {
-      areaStatus = true;
+      enameError.textContent = "";
+      enameStatus = true;
+      return true;
     }
+  }
 
+  function location_status() {
     if (
       typeof location.value === "string" &&
       location.value.trim().length === 0
     ) {
-      console.log("Location cannot be empty");
-      location.focus();
+      if (lang == "sin") locationError.textContent = "";
+      else locationError.textContent = "Location cannot be empty";
+      locationStatus = false;
+      return false;
     } else {
+      locationError.textContent = "";
       locationStatus = true;
+      return true;
     }
+  }
 
-    if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-      console.log("Estate name cannot be empty");
-      ename.focus();
+  function area_status() {
+    if (typeof area.value === "string" && area.value.trim().length === 0) {
+      if (lang == "sin") areaError.textContent = "";
+      else areaError.textContent = "Area cannot be empty";
+      areaStatus = false;
+      return false;
     } else {
-      enameStatus = true;
+      areaError.textContent = "";
+      areaStatus = true;
+      return true;
+    }
+  }
+
+  ename.addEventListener("input", () => {
+    ename_status();
+  });
+  location.addEventListener("input", () => {
+    location_status();
+  });
+  area.addEventListener("input", () => {
+    area_status();
+  });
+
+  next.addEventListener("click", () => {
+    if (!area_status()) {
+      area.focus();
+    }
+    if (!location_status()) {
+      location.focus();
+    }
+    if (!ename_status()) {
+      ename.focus();
     }
 
     if (enameStatus && locationStatus && areaStatus) {

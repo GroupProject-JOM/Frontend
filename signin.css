@@ -131,10 +131,6 @@ input:focus {
   flex-wrap: wrap;
 }
 
-.signup3-container .buttons,
-.signup4-container .buttons {
-  margin-top: 30px;
-}
 
 .buttons .next,
 .buttons .skip {
@@ -254,7 +250,7 @@ input:focus {
 .location-form input,
 .verify-form input {
   width: 40vw;
-  margin: 35px 0;
+  margin: 35px 0 0 0;
 }
 
 .signup4 {
@@ -359,6 +355,11 @@ input:focus {
   display: none;
 }
 
+.signup3-container .buttons,
+.signup4-container .buttons {
+  margin-top: 60px;
+}
+
 @media only screen and (max-device-width: 900px) {
   .sidebar-photo {
     display: none;
@@ -391,12 +392,12 @@ input:focus {
     /* display: flex;
     position: absolute; */
   }
-
+  
   .signup-home {
     /* margin-top: 0px; */
     margin-right: 6vw;
   }
-
+  
   .signup-home .buttons {
     margin-top: 0px;
   }
@@ -404,52 +405,53 @@ input:focus {
   .signup4-container .signup-form {
     margin-bottom: 20px;
   }
-
+  
   .signup3-container .buttons,
   .signup4-container .buttons,
   .signup4-container .buttons {
     justify-content: center;
     margin-left: -3vw;
+    margin-top: 0px;
   }
-
+  
   .signup-basic .next {
     margin-top: 40px;
   }
-
+  
   .signup-basic .signup {
     align-items: center;
   }
-
+  
   .signup-content {
     top: 0;
   }
-
+  
   .signup5-content {
     top: 50%;
     margin-right: 7px;
   }
-
+  
   .side {
     display: none;
   }
-
+  
   .signup-container {
     margin-left: 10%;
   }
-
+  
   .signup {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
-
+  
   .menu-line7 {
     display: block;
     font-size: 13px;
     margin-top: 1rem;
     margin-bottom: 2rem;
   }
-
+  
   .menu-line7 a {
     font-weight: 500;
   }
@@ -457,29 +459,29 @@ input:focus {
   .text {
     display: block;
   }
-
+  
   .signup .next {
     margin-top: 0px;
   }
-
+  
   .verify-container .next {
     margin-top: 50px;
     /* position: absolute; */
     align-self: center;
   }
-
+  
   .location-form input,
   .verify-form input {
     width: 80vw;
-    margin: 35px 0;
+    margin: 35px 0 0 0;
   }
-
+  
   .correct-email,
   .correct-phone {
     width: 80vw;
     margin: 35px 0;
   }
-
+  
   .buttons .next,
   .buttons .skip,
   .signup5-container .next {
