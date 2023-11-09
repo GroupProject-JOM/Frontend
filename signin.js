@@ -36,15 +36,15 @@ var username_status = false,
     button.textContent = data["sin"]["button"];
     validate.innerHTML = data["sin"]["validate"];
   });
-  
+
   en.addEventListener("click", () => {
     en.classList.add("active");
     sin.classList.remove("active");
-    
+
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
-    
+
     ll1.textContent = data["en"]["ll1"];
     ll2.textContent = data["en"]["ll2"];
     ll3.textContent = data["en"]["ll3"];
@@ -154,18 +154,20 @@ var username_status = false,
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response,"Error");
           }
         })
         .catch((error) => {
-          console.error("An error occurred:", error);
+          // console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });
 
   validate.addEventListener("click", () => {
-    document.cookie =  "email="+username.value+"; path=/signup";
-    window.location.href = './signup/signup2.html'
-  })
+    document.cookie = "email=" + username.value + "; path=/signup";
+    window.location.href = "./signup/signup2.html";
+  });
 
   function username_status_func() {
     if (
