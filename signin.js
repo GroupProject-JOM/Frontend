@@ -1,9 +1,5 @@
-// if (
-//   sessionStorage.getItem("page") != null &&
-//   sessionStorage.getItem("page").length != 0
-// ) {
-//   window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-// }
+if (getCookie("page") != null && getCookie("page").length != 0)
+  window.location.href = frontProxy + "/" + getCookie("page");
 
 var username_status = false,
   password_status = false;

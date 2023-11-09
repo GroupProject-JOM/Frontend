@@ -1,3 +1,5 @@
+var lang = getCookie("lang"); // current language
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -54,8 +56,8 @@
             document.cookie = "sId=" + data.sId;
           });
         } else if (response.status === 202) {
-          console.log("No user in this email");
-          error.textContent = "No user in this email";
+          if (lang == "sin") error.textContent = "මෙම විද්‍යුත් තැපෑලෙහි පරිශීලක නැත";
+          else error.textContent = "No user in this email";
         } else {
           console.error("Error:", response.status);
         }
@@ -72,6 +74,7 @@
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     fh1.textContent = data["sin"]["fh1"];
     fh2.textContent = data["sin"]["fh2"];
@@ -93,6 +96,7 @@
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     fh1.textContent = data["en"]["fh1"];
     fh2.textContent = data["en"]["fh2"];
@@ -172,11 +176,12 @@
       credentials: "include",
     })
       .then((response) => {
-        if (response.ok) {
+        if (response.status === 200) {
           response.json().then((data) => {
             console.log(data.message);
 
-            error.textContent = data.message;
+            if (lang == "sin") error.textContent = "OTP යවන ලදී";
+            else error.textContent = "OTP sent";
             oId = data.oId;
           });
           emailRing.style.display = "none";
@@ -196,7 +201,8 @@
             }, 1000);
         } else if (response.status === 401) {
           console.log("Registration unsuccessful");
-          error.textContent = "Registration unsuccessful";
+          if (lang == "sin") error.textContent = "ලියාපදිංචිය අසාර්ථකයි";
+          else error.textContent = "Registration unsuccessful";
         } else {
           console.error("Error:", response.status);
         }
@@ -213,13 +219,12 @@
       typeof emailOtp.value === "string" &&
       emailOtp.value.trim().length === 0
     ) {
-      console.log("OTP cannot be empty");
-      error.textContent = "OTP cannot be empty";
+      if (lang == "sin") error.textContent = "OTP හිස් විය නොහැක";
+      else error.textContent = "OTP cannot be empty";
       emailOtp.focus();
     } else {
       var formData = {
         otp: emailOtp.value,
-        // id: sessionStorage.getItem("id"),
         id: getCookie("id"),
         oId: oId,
       };
@@ -249,7 +254,8 @@
             isValidate = true;
           } else if (response.status === 401) {
             console.log("Invalid OTP");
-            error.textContent = "Invalid OTP";
+            if (lang == "sin") error.textContent = "වලංගු නොවන OTP";
+            else error.textContent = "Invalid OTP";
             emailOtp.focus();
           } else {
             console.error("Error:", response.status);

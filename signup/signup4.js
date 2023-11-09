@@ -1,3 +1,8 @@
+var accStatus = false,
+bankStatus = false,
+hnameStatus = false,
+lang = getCookie("lang"); // current language
+
 (() => {
     const body = document.querySelector("body"),
       sin = body.querySelector(".sin"),
@@ -5,9 +10,12 @@
       fh = body.querySelector(".form-heading"),
       fht = body.querySelector(".form-heading-text"),
       hname = body.querySelector(".acc-holder-name"),
+      holderError = body.querySelector(".holder-error"),
       acc = body.querySelector(".acc-no"),
+      accError = body.querySelector(".acc-error"),
       bank = body.querySelector(".bank"),
-      next = body.querySelector(".next");
+      bankError = body.querySelector(".bank-error"),
+      next = body.querySelector(".next"),
       skip = body.querySelector(".skip");
   
     sin.addEventListener("click", () => {
@@ -17,7 +25,7 @@
       document.documentElement.setAttribute("lang", "sin");
       // sessionStorage.setItem("lang", "sin");
       document.cookie="lang=sin; path=/";
-  
+      lang = "sin";  
       
       fh.textContent = data["sin"]["fh"];
       fht.innerHTML = data["sin"]["fht"];
@@ -36,7 +44,7 @@
       document.documentElement.setAttribute("lang", "en");
       // sessionStorage.setItem("lang", "en");
       document.cookie="lang=en; path=/";
-  
+      lang = "en";
       
       fh.textContent = data["en"]["fh"];
       fht.innerHTML = data["en"]["fht"];
@@ -70,37 +78,69 @@
         skip: "Skip",
       },
     };
-  
-    checkLng();
 
-    var accStatus = false,
-    bankStatus = false,
-    hnameStatus = false;
+    function hname_status() {
+      if (typeof hname.value === "string" && hname.value.trim().length === 0) {
+        if (lang == "sin") holderError.textContent = "දරන්නාගේ නම හිස් විය නොහැක";
+        else holderError.textContent = "Holder name cannot be empty";
+        hnameStatus = false;
+        return false;
+      } else {
+        holderError.textContent = "";
+        hnameStatus = true;
+        return true;
+      }
+    }
+  
+    function acc_status() {
+      if (
+        typeof acc.value === "string" &&
+        acc.value.trim().length === 0
+      ) {
+        if (lang == "sin") accError.textContent = "ගිණුම් අංකය හිස් විය නොහැක";
+        else accError.textContent = "Account number cannot be empty";
+        accStatus = false;
+        return false;
+      } else {
+        accError.textContent = "";
+        accStatus = true;
+        return true;
+      }
+    }
+  
+    function bank_status() {
+      if (typeof bank.value === "string" && bank.value.trim().length === 0) {
+        if (lang == "sin") bankError.textContent = "බැංකුව හිස් විය නොහැක";
+        else bankError.textContent = "Bank cannot be empty";
+        bankStatus = false;
+        return false;
+      } else {
+        bankError.textContent = "";
+        bankStatus = true;
+        return true;
+      }
+    }
+
+    hname.addEventListener("input", () => {
+      hname_status();
+    });
+    acc.addEventListener("input", () => {
+      acc_status();
+    });
+    bank.addEventListener("input", () => {
+      bank_status();
+    });
 
   next.addEventListener("click", () => {    
-    if (
-      typeof bank.value === "string" &&
-      bank.value.trim().length === 0
-      ) {
-        console.log("Bank cannot be empty");
-        bank.focus();
-      } else {
-        bankStatus = true;
-      }
-      
-      if (typeof acc.value === "string" && acc.value.trim().length === 0) {
-        console.log("Account number cannot be empty");
-        acc.focus();
-      } else {
-        accStatus = true;
-      }
-      
-      if (typeof hname.value === "string" && hname.value.trim().length === 0) {
-        console.log("Holder name cannot be empty");
-        hname.focus();
-      } else {
-        hnameStatus = true;
-      }
+    if (!bank_status()) {
+      bank.focus();
+    }
+    if (!acc_status()) {
+      acc.focus();
+    }
+    if (!hname_status()) {
+      hname.focus();
+    }
 
     if (accStatus && bankStatus && hnameStatus) {
       var formData = {

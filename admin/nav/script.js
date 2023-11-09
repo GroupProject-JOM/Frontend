@@ -26,11 +26,16 @@
       l9 = body.querySelector(".l9"),
       l11 = body.querySelector(".l11"),
       dashboard = body.querySelector(".dashboard"),
-      Uname = body.querySelector(".name");
+      Uname = body.querySelector(".name"),
+      logout = document.querySelector(".logout");
 
-      Uname.textContent = getCookie('name');
+    logout.addEventListener("click", () => {
+      signout();
+    });
 
-      dashboard.href = frontProxy + "/admin";
+    Uname.textContent = getCookie("name");
+
+    dashboard.href = frontProxy + "/admin";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -45,11 +50,11 @@
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
         // sessionStorage.setItem("mode", "dark");
-        document.cookie="mode=dark; path=/";
+        document.cookie = "mode=dark; path=/";
         modeText.innerHTML = modeTranslate();
       } else {
         // sessionStorage.setItem("mode", "light");
-        document.cookie="mode=light; path=/";
+        document.cookie = "mode=light; path=/";
         modeText.innerHTML = modeTranslate();
       }
     });
@@ -74,7 +79,7 @@
       sin: {
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
-        l8: "ගිණුමෙන් ඉවත් වන්න",        
+        l8: "ගිණුමෙන් ඉවත් වන්න",
         l11: "උපකරණ පුවරුව",
       },
       en: {
@@ -91,18 +96,17 @@
   }, 10);
 })();
 
-
 window.addEventListener("load", (e) => {
   const interval = setInterval(() => {
     let loaded = false;
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
-    pathname = pathname.split('.')[0];
+    pathname = pathname.split(".")[0];
 
-    if(!pathname){
+    if (!pathname) {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
-    
+
     // pathname = pathname.replace(".html", "");
     const navItems = ["index"];
     if (!loaded && pathname) {
