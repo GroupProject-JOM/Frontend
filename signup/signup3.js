@@ -77,7 +77,7 @@ var enameStatus = false,
 
   function ename_status() {
     if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-      if (lang == "sin") enameError.textContent = "";
+      if (lang == "sin") enameError.textContent = "වතු නම හිස් විය නොහැක";
       else enameError.textContent = "Estate name cannot be empty";
       enameStatus = false;
       return false;
@@ -93,7 +93,7 @@ var enameStatus = false,
       typeof location.value === "string" &&
       location.value.trim().length === 0
     ) {
-      if (lang == "sin") locationError.textContent = "";
+      if (lang == "sin") locationError.textContent = "ස්ථානය හිස් විය නොහැක";
       else locationError.textContent = "Location cannot be empty";
       locationStatus = false;
       return false;
@@ -106,7 +106,7 @@ var enameStatus = false,
 
   function area_status() {
     if (typeof area.value === "string" && area.value.trim().length === 0) {
-      if (lang == "sin") areaError.textContent = "";
+      if (lang == "sin") areaError.textContent = "ප්‍රදේශය හිස් විය නොහැක";
       else areaError.textContent = "Area cannot be empty";
       areaStatus = false;
       return false;

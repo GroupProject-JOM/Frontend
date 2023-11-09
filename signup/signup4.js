@@ -81,7 +81,7 @@ lang = getCookie("lang"); // current language
 
     function hname_status() {
       if (typeof hname.value === "string" && hname.value.trim().length === 0) {
-        if (lang == "sin") holderError.textContent = "";
+        if (lang == "sin") holderError.textContent = "දරන්නාගේ නම හිස් විය නොහැක";
         else holderError.textContent = "Holder name cannot be empty";
         hnameStatus = false;
         return false;
@@ -97,7 +97,7 @@ lang = getCookie("lang"); // current language
         typeof acc.value === "string" &&
         acc.value.trim().length === 0
       ) {
-        if (lang == "sin") accError.textContent = "";
+        if (lang == "sin") accError.textContent = "ගිණුම් අංකය හිස් විය නොහැක";
         else accError.textContent = "Account number cannot be empty";
         accStatus = false;
         return false;
@@ -110,7 +110,7 @@ lang = getCookie("lang"); // current language
   
     function bank_status() {
       if (typeof bank.value === "string" && bank.value.trim().length === 0) {
-        if (lang == "sin") bankError.textContent = "";
+        if (lang == "sin") bankError.textContent = "බැංකුව හිස් විය නොහැක";
         else bankError.textContent = "Bank cannot be empty";
         bankStatus = false;
         return false;
