@@ -1,14 +1,6 @@
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
 (() => {
-  //   document.cookie = "name=Buddhika";
-  //   document.cookie = "page=supplier";
-  //   document.cookie = "sId=1";
-  //   let cookies = document.cookie;
-  //   console.log(cookies);
-
-  // console.log(getCookie('lang'));
-
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
@@ -239,10 +231,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         });
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response, "Error");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
 
   ongoing.textContent = count;

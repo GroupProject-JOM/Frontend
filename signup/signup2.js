@@ -226,7 +226,7 @@ var lang = getCookie("lang"); // current language
       });
   });
 
-  const isValidate = false;
+  let isValidate = false;
   // TODO input chage must be handle in emailOTP
   vbt1.addEventListener("click", () => {
     if (
