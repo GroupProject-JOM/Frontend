@@ -4,10 +4,12 @@
     en = body.querySelector(".en"),
     sTitle = body.querySelector(".supply-title"),
     tText = body.querySelector(".top-text"),
+    bText = body.querySelector(".bottom-text"),
     date = body.querySelector(".date"),
     dateError = body.querySelector(".date-error"),
     time = body.querySelector(".time"),
     timeError = body.querySelector(".time-error"),
+    address = body.querySelector(".cAddress"),
     btn = body.querySelector(".form-button");
 
   let lang = getCookie("lang"); // current language
@@ -23,8 +25,10 @@
 
     sTitle.textContent = data["sin"]["sTitle"];
     tText.innerHTML = data["sin"]["tText"];
+    bText.innerHTML = data["sin"]["bText"];
     date.placeholder = data["sin"]["date"];
     time.placeholder = data["sin"]["time"];
+    address.innerHTML = data["sin"]["address"];
     btn.textContent = data["sin"]["btn"];
   });
 
@@ -39,8 +43,10 @@
 
     sTitle.textContent = data["en"]["sTitle"];
     tText.innerHTML = data["en"]["tText"];
+    bText.innerHTML = data["en"]["bText"];
     date.placeholder = data["en"]["date"];
     time.placeholder = data["en"]["time"];
+    address.innerHTML = data["en"]["address"];
     btn.textContent = data["en"]["btn"];
   });
 
@@ -49,16 +55,23 @@
       sTitle: "නව සැපයුම",
       tText:
         "ඔබගේ නව සැපයුම් ඉල්ලීම සඳහා විස්තර නිවැරදිව පුරවන්න. <br />ඉල්ලීම් පැය 24ක් ඇතුළත සමාලෝචනය කෙරේ. ඔබට ඒවා ඔබේ උපකරණ පුවරුව තුළ පරීක්ෂා කළ හැකිය.",
+      bText: "එකතු කරන ලද පොල් එකතු කිරීම මත මුදල් ගෙවීමක් සිදු කරනු ලැබේ.",
       date: "දිනය",
       time: "වෙලාව",
+      address:
+        "කරුණාකර මෙම ස්ථානයට පොල් ලබා දෙන්න: <br> <br> <br><span class='supply-address supply-text'>ජයසිංහ තෙල් මිල්ස්, <br> අංක 105, රවිට පාර, වෙල්පල්ල, ශ්‍රී ලංකාව. <br><br></span>",
       btn: "ඉල්ලීම ඉදිරිපත් කරන්න",
     },
     en: {
       sTitle: "New Supply",
       tText:
         "Fill up the details correctly for your new supply request. <br />Requests will be reviewed within 24 hours. You can check them inside  your dashboard.",
+      bText:
+        "A cash payment for the collected coconuts will be made upon the collection. ",
       date: "feasible date",
       time: "feasible time",
+      address:
+        "Please deliver the coconuts to this location: <br> <br> <br><span class='supply-address supply-text'>Jayasinghe Oil Mills, <br> No 105, Ravita Road, Welpalla, Sri Lanka. <br><br></span>",
       btn: "Submit Request",
     },
   };
@@ -120,6 +133,7 @@
         });
     }
   });
+  
   function date_status_func() {
     if (typeof date.value === "string" && date.value.trim().length === 0) {
       if (lang == "sin") {
@@ -131,6 +145,14 @@
       }
       dateStatus = false;
       return false;
+    } else if (!checkDate(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය අනාගතයේ විය යුතුය";
+        Command: toastr["warning"]("දිනය අනාගතයේ විය යුතුය");
+      } else {
+        dateError.textContent = "Date must be in the future";
+        Command: toastr["warning"]("Date must be in the future");
+      }
     } else {
       dateError.textContent = "";
       dateStatus = true;
@@ -149,6 +171,18 @@
       }
       timeStatus = false;
       return false;
+    } else if (!checkTime(time.value)) {
+      if (lang == "sin") {
+        timeError.textContent = "වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය";
+        Command: toastr["warning"]("වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය");
+      } else {
+        timeError.textContent = "Time must be between 08:00:AM and 05:00:PM";
+        Command: toastr["warning"](
+          "Time must be between 08:00:AM and 05:00:PM"
+        );
+      }
+      timeStatus = false;
+      return false;
     } else {
       timeError.textContent = "";
       timeStatus = true;
@@ -156,3 +190,19 @@
     }
   }
 })();
+
+function checkDate(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTime(time) {
+  var t = time.split(":");
+  var hour = +t[0],
+    min = +t[1];
+  if (8 <= hour && 17 > hour) return true;
+  else return false;
+}

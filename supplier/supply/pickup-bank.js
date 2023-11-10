@@ -304,6 +304,14 @@
       }
       dateStatus = false;
       return false;
+    } else if (!checkDate(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය අනාගතයේ විය යුතුය";
+        Command: toastr["warning"]("දිනය අනාගතයේ විය යුතුය");
+      } else {
+        dateError.textContent = "Date must be in the future";
+        Command: toastr["warning"]("Date must be in the future");
+      }
     } else {
       dateError.textContent = "";
       dateStatus = true;
@@ -319,6 +327,18 @@
       } else {
         timeError.textContent = "Time cannot be empty";
         Command: toastr["warning"]("Time cannot be empty");
+      }
+      timeStatus = false;
+      return false;
+    } else if (!checkTime(time.value)) {
+      if (lang == "sin") {
+        timeError.textContent = "වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය";
+        Command: toastr["warning"]("වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය");
+      } else {
+        timeError.textContent = "Time must be between 08:00:AM and 05:00:PM";
+        Command: toastr["warning"](
+          "Time must be between 08:00:AM and 05:00:PM"
+        );
       }
       timeStatus = false;
       return false;
@@ -347,3 +367,19 @@
     }
   }
 })();
+
+function checkDate(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTime(time) {
+  var t = time.split(":");
+  var hour = +t[0],
+    min = +t[1];
+  if (8 <= hour && 17 > hour) return true;
+  else return false;
+}
