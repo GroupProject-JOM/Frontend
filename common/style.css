@@ -466,7 +466,7 @@ body.dark {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: var(--body-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -503,7 +503,7 @@ body.dark {
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: var(--sidebar-color);
+  background: var(--tbicon-color);
 }
 .lds-spinner div:nth-child(1) {
   transform: rotate(0deg);
