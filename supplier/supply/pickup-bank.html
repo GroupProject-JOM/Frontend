@@ -46,7 +46,8 @@
           <p class="supply-text top-text"></p>
         </div>
         <div class="supply-content">
-          <select class="dropdown location"></select>
+          <select class="dropdown location"></select><br>
+          <span class="form-error location-error"></span><br />
 
           <div class="feasibility">
             <form class="date-form supply">
@@ -59,6 +60,7 @@
                 onmousemove="(this.type='date')"
                 onmouseleave="(this.type='text')"
               />
+              <span class="form-error date-error"></span>
               <input
                 type="text"
                 class="time"
@@ -66,10 +68,12 @@
                 onmousemove="(this.type='time')"
                 onmouseleave="(this.type='text')"
               />
+              <span class="form-error time-error"></span>
             </form>
           </div>
 
-          <select class="dropdown bank"></select>
+          <select class="dropdown bank"></select><br>
+          <span class="form-error bank-error"></span><br />
 
           <p class="supply-text bottom-text"></p>
 

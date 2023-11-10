@@ -5,17 +5,22 @@
     sTitle = body.querySelector(".supply-title"),
     sText = body.querySelector(".supply-text"),
     amount = body.querySelector(".coco-amount"),
+    amountError = body.querySelector(".coco-error"),
     cMethod = body.querySelector(".c-method"),
+    collectionError = body.querySelector(".collection-error"),
     pickup = body.querySelector(".pickup"),
     pLabel = body.querySelector(".pickup-label"),
     delivered = body.querySelector(".delivered"),
     dLabel = body.querySelector(".delivered-label"),
     pMethod = body.querySelector(".p-method"),
+    paymentError = body.querySelector(".payment-error"),
     cash = body.querySelector(".cash"),
     cLabel = body.querySelector(".cash-label"),
     bTransfer = body.querySelector(".bank-transfer"),
     bLabel = body.querySelector(".bank-label"),
     btn = body.querySelector(".form-button");
+
+  var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -24,6 +29,7 @@
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     sText.innerHTML = data["sin"]["sText"];
@@ -44,6 +50,7 @@
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     sTitle.textContent = data["en"]["sTitle"];
     sText.innerHTML = data["en"]["sText"];
@@ -91,40 +98,89 @@
     collection = "",
     money = "";
 
-  btn.addEventListener("click", () => {
+  amount.addEventListener("input", () => {
+    amount_status_func();
+  });
+
+  function amount_status_func() {
     if (typeof amount.value === "string" && amount.value.trim().length === 0) {
-      console.log("Coconut amount cannot be empty");
-      amount.focus();
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය හිස් විය නොහැක";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය හිස් විය නොහැක");
+      } else {
+        amountError.textContent = "Coconut amount cannot be empty";
+        Command: toastr["warning"]("Coconut amount cannot be empty");
+      }
+      amountStatus = false;
+      return false;
     } else {
+      amountError.textContent = "";
       amountStatus = true;
+      return true;
+    }
+  }
+
+  btn.addEventListener("click", () => {
+    if (!amount_status_func()) {
+      amount.focus();
     }
 
     if (pickup.checked) {
       collection = "pickup";
+      collectionError.textContent = "";
       if (cash.checked) {
         money = "cash";
         page = "./pickup-cash.html";
+        paymentError.textContent = "";
       } else if (bTransfer.checked) {
         money = "bank";
         page = "./pickup-bank.html";
+        paymentError.textContent = "";
       } else {
-        console.log("Payment method cannot be empty");
+        if (lang == "sin") {
+          paymentError.textContent = "ගෙවීමේ ක්‍රමය හිස් විය නොහැක";
+          Command: toastr["warning"]("ගෙවීමේ ක්‍රමය හිස් විය නොහැක");
+        } else {
+          paymentError.textContent = "Payment method cannot be empty";
+          Command: toastr["warning"]("Payment method cannot be empty");
+        }
       }
     } else if (delivered.checked) {
       collection = "yard";
+      collectionError.textContent = "";
       if (cash.checked) {
         money = "cash";
         page = "./yard-cash.html";
+        paymentError.textContent = "";
       } else if (bTransfer.checked) {
         money = "bank";
         page = "./yard-bank.html";
+        paymentError.textContent = "";
       } else {
-        console.log("Payment method cannot be empty");
+        if (lang == "sin") {
+          paymentError.textContent = "ගෙවීමේ ක්‍රමය හිස් විය නොහැක";
+          Command: toastr["warning"]("ගෙවීමේ ක්‍රමය හිස් විය නොහැක");
+        } else {
+          paymentError.textContent = "Payment method cannot be empty";
+          Command: toastr["warning"]("Payment method cannot be empty");
+        }
       }
     } else {
-      console.log("Collection method cannot be empty");
+      if (lang == "sin") {
+        collectionError.textContent = "එකතු කිරීමේ ක්‍රමය හිස් විය නොහැක";
+        Command: toastr["warning"]("එකතු කිරීමේ ක්‍රමය හිස් විය නොහැක");
+      } else {
+        collectionError.textContent = "Collection method cannot be empty";
+        Command: toastr["warning"]("Collection method cannot be empty");
+      }
       if (!(cash.checked || bTransfer.checked)) {
-        console.log("Payment method cannot be empty");
+        if (lang == "sin") {
+          paymentError.textContent = "ගෙවීමේ ක්‍රමය හිස් විය නොහැක";
+          Command: toastr["warning"]("ගෙවීමේ ක්‍රමය හිස් විය නොහැක");
+        } else {
+          paymentError.textContent = "Payment method cannot be empty";
+          Command: toastr["warning"]("Payment method cannot be empty");
+        }
       }
     }
 
@@ -134,10 +190,10 @@
       (cash.checked || bTransfer.checked)
     ) {
       // sessionStorage.setItem("amount", amount.value);
-      document.cookie = "amount="+amount.value;
+      document.cookie = "amount=" + amount.value;
       var formData = {
         // supplier_id: sessionStorage.getItem("sId"),
-        supplier_id: getCookie('sId'),
+        supplier_id: getCookie("sId"),
         initial_amount: amount.value,
         payment_method: money,
         supply_method: collection,
@@ -156,7 +212,7 @@
             response.json().then((data) => {
               console.log(data.message);
               // sessionStorage.setItem("id",data.id);
-              document.cookie = "id="+data.id;
+              document.cookie = "id=" + data.id;
             });
             window.location.href = page;
           } else if (response.status === 400) {
