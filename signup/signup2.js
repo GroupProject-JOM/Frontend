@@ -56,14 +56,17 @@ var lang = getCookie("lang"); // current language
             document.cookie = "sId=" + data.sId;
           });
         } else if (response.status === 202) {
-          if (lang == "sin") error.textContent = "මෙම විද්‍යුත් තැපෑලෙහි පරිශීලක නැත";
+          if (lang == "sin")
+            error.textContent = "මෙම විද්‍යුත් තැපෑලෙහි පරිශීලක නැත";
           else error.textContent = "No user in this email";
         } else {
           console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
         }
       })
       .catch((error) => {
         console.error("An error occurred:", error);
+        Command: toastr["error"](error);
       });
   }
 
@@ -132,8 +135,8 @@ var lang = getCookie("lang"); // current language
       fht2: "Wrong Email Address?",
       fht3: "Send OTP to " + phone,
       fht4: "Wrong Phone Number?",
-      eotp: "Enter Code",
-      potp: "Enter Code",
+      eotp: "Enter OTP",
+      potp: "Enter OTP",
       next: "Next",
       vbt1: "Verify",
       vbt2: "Verify",
@@ -180,8 +183,13 @@ var lang = getCookie("lang"); // current language
           response.json().then((data) => {
             console.log(data.message);
 
-            if (lang == "sin") error.textContent = "OTP යවන ලදී";
-            else error.textContent = "OTP sent";
+            if (lang == "sin") {
+              error.textContent = "OTP යවන ලදී";
+              Command: toastr["info"]("OTP යවන ලදී");
+            } else {
+              error.textContent = "OTP sent";
+              Command: toastr["info"]("OTP sent");
+            }
             oId = data.oId;
           });
           emailRing.style.display = "none";
@@ -200,29 +208,41 @@ var lang = getCookie("lang"); // current language
               }
             }, 1000);
         } else if (response.status === 401) {
-          console.log("Registration unsuccessful");
-          if (lang == "sin") error.textContent = "ලියාපදිංචිය අසාර්ථකයි";
-          else error.textContent = "Registration unsuccessful";
+          if (lang == "sin") {
+            error.textContent = "ලියාපදිංචිය අසාර්ථකයි";
+            Command: toastr["error"]("ලියාපදිංචිය අසාර්ථකයි");
+          } else {
+            error.textContent = "Registration unsuccessful";
+            Command: toastr["error"]("Registration unsuccessful");
+          }
         } else {
           console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
         }
       })
       .catch((error) => {
         console.error("An error occurred:", error);
+        Command: toastr["error"](error);
       });
   });
 
-  const isValidate = false;
+  let isValidate = false;
   // TODO input chage must be handle in emailOTP
   vbt1.addEventListener("click", () => {
     if (
       typeof emailOtp.value === "string" &&
       emailOtp.value.trim().length === 0
     ) {
-      if (lang == "sin") error.textContent = "OTP හිස් විය නොහැක";
-      else error.textContent = "OTP cannot be empty";
+      if (lang == "sin") {
+        error.textContent = "OTP හිස් විය නොහැක";
+        Command: toastr["warning"]("OTP හිස් විය නොහැක");
+      } else {
+        error.textContent = "OTP cannot be empty";
+        Command: toastr["warning"]("OTP cannot be empty");
+      }
       emailOtp.focus();
     } else {
+      error.textContent = "";
       var formData = {
         otp: emailOtp.value,
         id: getCookie("id"),
@@ -245,24 +265,31 @@ var lang = getCookie("lang"); // current language
                 "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
               document.cookie =
                 "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
-              window.location.href = frontProxy + "/signup/signup3.html";
 
               console.log(data.message);
               error.textContent = data.message;
             });
             vbt1.disabled = true;
             isValidate = true;
+            window.location.href = frontProxy + "/signup/signup3.html";
           } else if (response.status === 401) {
             console.log("Invalid OTP");
-            if (lang == "sin") error.textContent = "වලංගු නොවන OTP";
-            else error.textContent = "Invalid OTP";
+            if (lang == "sin") {
+              error.textContent = "වලංගු නොවන OTP";
+              Command: toastr["warning"]("වලංගු නොවන OTP");
+            } else {
+              error.textContent = "Invalid OTP";
+              Command: toastr["warning"]("Invalid OTP");
+            }
             emailOtp.focus();
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });

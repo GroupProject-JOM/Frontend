@@ -169,13 +169,16 @@ lang = getCookie("lang"); // current language
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });
