@@ -10,7 +10,7 @@
     edit = body.querySelector(".edit"),
     del = body.querySelector(".delete");
 
-    var lang = getCookie("lang"); // current language
+  var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -148,8 +148,9 @@
                   title: title,
                   text: text,
                   icon: "success",
+                }).then((response) => {
+                  window.location.href = "./view-all.html";
                 });
-                window.location.href = "./view-all.html";
               });
             } else if (response.status === 400) {
               response.json().then((data) => {

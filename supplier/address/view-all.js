@@ -168,8 +168,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                               title: title,
                               text: text,
                               icon: "success",
+                            }).then((response) => {
+                              getData();
                             });
-                            getData();
                           });
                         } else if (response.status === 400) {
                           response.json().then((data) => {
