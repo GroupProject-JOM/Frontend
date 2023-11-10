@@ -118,23 +118,6 @@ window.addEventListener("load", (e) => {
   console.log(window.innerWidth);
 });
 
-// function checkCookie(name) {
-//   var dc = document.cookie;
-//   var prefix = name + "=";
-//   var begin = dc.indexOf("; " + prefix);
-//   if (begin == -1) {
-//     begin = dc.indexOf(prefix);
-//     if (begin != 0) return null;
-//   } else {
-//     begin += 2;
-//     var end = document.cookie.indexOf(";", begin);
-//     if (end == -1) {
-//       end = dc.length;
-//     }
-//   }
-//   return decodeURI(dc.substring(begin + prefix.length, end));
-// }
-
 function checkCookie(cName) {
   const name = cName + "=";
   const cDecoded = decodeURIComponent(document.cookie); //to be careful
@@ -189,3 +172,7 @@ toastr.options = {
   showMethod: "fadeIn",
   hideMethod: "fadeOut",
 };
+
+// Sweet alerts colors
+var confirmButtonColor = "#3085d6",
+  cancelButtonColor = "#d33";
