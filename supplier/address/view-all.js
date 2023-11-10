@@ -107,16 +107,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               edits = document.querySelectorAll(".edit"),
               deletes = document.querySelectorAll(".delete");
 
-            edits.forEach((e) => {
-              e.addEventListener("click", () => {
-                console.log(e.parentElement.id);
-                document.cookie = "id=" + e.parentElement.id + "; path=/";
+            edits.forEach((edit) => {
+              edit.addEventListener("click", () => {
+                document.cookie = "id=" + edit.parentElement.id + "; path=/";
                 window.location.href = "./edit.html";
               });
             });
 
-            deletes.forEach((d) => {
-              d.addEventListener("click", () => {
+            deletes.forEach((del) => {
+              del.addEventListener("click", () => {
                 if (lang == "sin") {
                   var title = "ඔයාට විශ්වාස ද?",
                     text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
@@ -144,7 +143,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                         "/estate?sId=" +
                         getCookie("sId") +
                         "&id=" +
-                        d.parentElement.id,
+                        del.parentElement.id,
                       {
                         method: "DELETE",
                         headers: {
@@ -191,11 +190,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               });
             });
 
-            cols.forEach((r) => {
-              r.addEventListener("click", () => {
-                // sessionStorage.setItem("id", r.id);
-                document.cookie = "id=" + r.parentElement.id + "; path=/";
-                window.location.href = r.dataset.href;
+            cols.forEach((col) => {
+              col.addEventListener("click", () => {
+                document.cookie = "id=" + col.parentElement.id + "; path=/";
+                window.location.href = col.dataset.href;
               });
             });
           });
