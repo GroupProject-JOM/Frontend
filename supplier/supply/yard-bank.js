@@ -41,15 +41,17 @@
       } else if (response.status === 202) {
         response.json().then((data) => {
           // data.size=0
-          if (lang == "sin")
+          if (lang == "sin") {
             bank_options +=
               "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
-          else
+            Command: toastr["info"]("බැංකු ගිණුම් නැත");
+          } else {
             bank_options +=
               "<option value='' disabled >No Bank Accounts</option>";
+            Command: toastr["info"]("No Bank Accounts");
+          }
           bank.innerHTML = bank_options;
           bop = body.querySelector(".bop");
-          Command: toastr["info"]("No Bank Accounts");
         });
       } else {
         console.error("Error:", response.status);

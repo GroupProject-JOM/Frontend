@@ -47,19 +47,17 @@
         </div>
         <div class="supply-content">
           <form class="bank-form supply edit">
-            <input
-              type="text"
-              class="acc-holders name"
-              placeholder=""
-            /> <br>
-            <input
-              type="text"
-              class="account-number"
-              placeholder=""
-            />
+            <input type="text" class="acc-holders name" placeholder="" />
+            <br /><span class="form-error holder-error"></span>
+            <br />
+            <input type="text" class="account-number" placeholder="" />
+            <br /><span class="form-error acc-error"></span>
             <br />
             <!-- <input type="text" class="area" placeholder="Area/Region" /> -->
-            <input type="text" class="bank" placeholder="" />
+            <input type="text" class="bank" placeholder="" /><br /><span
+              class="form-error bank-error"
+            ></span>
+            <br />
           </form>
 
           <button class="add-button form-button">Save</button>
@@ -69,7 +67,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
-    <!-- <script src="script.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>

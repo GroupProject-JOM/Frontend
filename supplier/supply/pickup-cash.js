@@ -43,11 +43,15 @@
       } else if (response.status === 202) {
         response.json().then((data) => {
           // data.size=0
-          if (lang == "sin") location_options += "<option value='' disabled>වතු නැත</option>";
-          else location_options += "<option value='' disabled>No Estates</option>";
+          if (lang == "sin") {
+            location_options += "<option value='' disabled>වතු නැත</option>";
+            Command: toastr["info"]("වතු නැත");
+          } else {
+            location_options += "<option value='' disabled>No Estates</option>";
+            Command: toastr["info"]("No Estates");
+          }
           location.innerHTML = location_options;
           lop = body.querySelector(".lop");
-          Command: toastr["info"]("No Estates");
         });
       } else {
         console.error("Error:", response.status);
