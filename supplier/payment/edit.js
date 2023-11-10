@@ -5,8 +5,11 @@
     sTitle = body.querySelector(".supply-title"),
     sText = body.querySelector(".supply-text"),
     hname = body.querySelector(".acc-holders"),
+    holderError = body.querySelector(".holder-error"),
     accNum = body.querySelector(".account-number"),
+    accError = body.querySelector(".acc-error"),
     bank = body.querySelector(".bank"),
+    bankError = body.querySelector(".bank-error"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language

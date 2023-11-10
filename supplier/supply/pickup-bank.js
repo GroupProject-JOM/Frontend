@@ -1,4 +1,4 @@
-(() => {
+(async () => {
   // let loaded = false;
   // const interval = setInterval(() => {
   const body = document.querySelector("body"),
@@ -17,7 +17,7 @@
     bText = body.querySelector(".bottom-text"),
     btn = body.querySelector(".form-button");
 
-  let lop, bop;
+  let lop, bop, locWait, bankWait;
 
   // if (!loaded && lop && bop) {
   //   loaded = true;
@@ -80,8 +80,9 @@
       Command: toastr["error"](error);
     });
 
+
   //Get bank accounts
-  fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+  bankWait = await fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -133,6 +134,7 @@
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
+
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
