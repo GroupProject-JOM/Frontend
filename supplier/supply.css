@@ -135,7 +135,7 @@ select.dropdown {
 .dropdown {
   width: 40vw;
   margin-top: 3rem;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
   background-color: var(--body-color);
   color: var(--input-border);
 }

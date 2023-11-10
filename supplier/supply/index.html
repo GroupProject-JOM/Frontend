@@ -47,7 +47,8 @@
         </div>
         <div class="supply-content">
           <form class="supply">
-            <input type="text" class="coco-amount" placeholder="" />
+            <input type="text" class="coco-amount" placeholder="" /><br>
+            <span class="form-error coco-error"></span>
           </form>
 
           <div class="collection method">
@@ -58,17 +59,22 @@
                 class="pickup radio checkbox"
                 value="1"
                 name="fooby[1][]"
+                id="pickup"
+                style="cursor: pointer;"
               />
-              <label class="pickup-label supply-label"></label>
+              <label for="pickup" class="pickup-label supply-label" style="cursor: pointer;"></label>
               <input
                 type="checkbox"
                 class="delivered radio checkbox"
                 value="1"
                 name="fooby[1][]"
+                id="delivered"
+                style="cursor: pointer;"
               />
-              <label class="delivered-label supply-label"></label>
+              <label for="delivered" class="delivered-label supply-label" style="cursor: pointer;"></label>
             </div>
-          </div>
+          </div><br>
+          <span class="form-error collection-error"></span>
 
           <div class="payment method">
             <div class="method-text p-method"></div>
@@ -78,18 +84,23 @@
                 class="cash radio checkbox"
                 value="1"
                 name="fooby[2][]"
+                id="cash"
+                style="cursor: pointer;"
               />
-              <label class="cash-label supply-label"></label>
+              <label for="cash" class="cash-label supply-label" style="cursor: pointer;"></label>
 
               <input
                 type="checkbox"
                 class="bank-transfer radio checkbox"
                 value="1"
                 name="fooby[2][]"
+                id="bank-transfer"
+                style="cursor: pointer;"
               />
-              <label class="bank-label supply-label"></label>
+              <label for="bank-transfer" class="bank-label supply-label" style="cursor: pointer;"></label>
             </div>
-          </div>
+          </div><br>
+          <span class="form-error payment-error"></span>
           <button class="next form-button"></button>
         </div>
       </div>
