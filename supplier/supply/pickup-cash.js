@@ -82,6 +82,7 @@
     time.placeholder = data["sin"]["time"];
     bText.innerHTML = data["sin"]["bText"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -100,6 +101,7 @@
     time.placeholder = data["en"]["time"];
     bText.innerHTML = data["en"]["bText"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {

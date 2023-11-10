@@ -64,6 +64,7 @@
     op4.textContent = data["sin"]["op4"];
     op5.textContent = data["sin"]["op5"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -90,6 +91,7 @@
     op4.textContent = data["en"]["op4"];
     op5.textContent = data["en"]["op5"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {

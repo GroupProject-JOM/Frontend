@@ -28,6 +28,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     address2.placeholder = data["sin"]["address2"];
     address3.placeholder = data["sin"]["address3"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -46,6 +47,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     address2.placeholder = data["en"]["address2"];
     address3.placeholder = data["en"]["address3"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {
@@ -79,21 +81,30 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     address3Status = false;
 
   btn.addEventListener("click", () => {
-    if (typeof address3.value === "string" && address3.value.trim().length === 0) {
+    if (
+      typeof address3.value === "string" &&
+      address3.value.trim().length === 0
+    ) {
       console.log("City cannot be empty");
       address3.focus();
     } else {
       address3Status = true;
     }
 
-    if (typeof address2.value === "string" && address2.value.trim().length === 0) {
+    if (
+      typeof address2.value === "string" &&
+      address2.value.trim().length === 0
+    ) {
       console.log("Street cannot be empty");
       address2.focus();
     } else {
       address2Status = true;
     }
 
-    if (typeof address1.value === "string" && address1.value.trim().length === 0) {
+    if (
+      typeof address1.value === "string" &&
+      address1.value.trim().length === 0
+    ) {
       console.log("Address1 cannot be empty");
       address1.focus();
     } else {
@@ -121,14 +132,21 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       onameStatus = true;
     }
 
-    if (onameStatus && emailStatus && phoneStatus && address1Status && address2Status && address3Status) {
+    if (
+      onameStatus &&
+      emailStatus &&
+      phoneStatus &&
+      address1Status &&
+      address2Status &&
+      address3Status
+    ) {
       var formData = {
-        name : oname.value,
-        email : email.value,
-        phone : phone.value,
-        address1:address1.value,
-        street:address2.value,
-        city:address3.value,
+        name: oname.value,
+        email: email.value,
+        phone: phone.value,
+        address1: address1.value,
+        street: address2.value,
+        city: address3.value,
       };
       fetch(backProxy + "/outlet", {
         method: "POST",

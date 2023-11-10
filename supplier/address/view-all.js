@@ -30,6 +30,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     th2.textContent = data["sin"]["th2"];
     btn.textContent = data["sin"]["btn"];
     tError.textContent = data["sin"]["tError"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -47,6 +48,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     th2.textContent = data["en"]["th2"];
     btn.textContent = data["en"]["btn"];
     tError.textContent = data["en"]["tError"];
+    setGreeting();
   });
 
   var data = {

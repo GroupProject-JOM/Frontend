@@ -15,7 +15,7 @@
 
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
-    document.cookie="lang=sin; path=/";
+    document.cookie = "lang=sin; path=/";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -30,7 +30,7 @@
 
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
-    document.cookie="lang=en; path=/";
+    document.cookie = "lang=en; path=/";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -38,7 +38,6 @@
     c2.textContent = data["en"]["c2"];
     setGreeting();
   });
-
 
   var data = {
     sin: {
@@ -54,7 +53,6 @@
       c2: "View and update Outlet Information",
     },
   };
-
 
   var row = "";
   fetch(backProxy + "/outlets", {
@@ -111,5 +109,4 @@
     .catch((error) => {
       console.error("An error occurred:", error);
     });
-
 })();

@@ -17,7 +17,7 @@
 
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
-    document.cookie="lang=sin; path=/";
+    document.cookie = "lang=sin; path=/";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -35,7 +35,7 @@
 
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
-    document.cookie="lang=en; path=/";
+    document.cookie = "lang=en; path=/";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -46,7 +46,6 @@
     c3.innerHTML = data["en"]["c3"];
     setGreeting();
   });
-
 
   var data = {
     sin: {
@@ -68,5 +67,4 @@
       c3: "*Production ID P094 has been rejected due to the supply amount not meeting the minimum required. <br />This will be automatically deleted in 7 days",
     },
   };
-
 })();

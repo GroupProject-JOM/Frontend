@@ -87,6 +87,7 @@
     bop.textContent = data["sin"]["bop"];
     bText.innerHTML = data["sin"]["bText"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -105,6 +106,7 @@
     bop.textContent = data["en"]["bop"];
     bText.innerHTML = data["en"]["bText"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {
