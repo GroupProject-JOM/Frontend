@@ -234,11 +234,11 @@
       return false;
     } else if (!checkInt(amount.value)) {
       if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය නිඛිල විය යුතුය";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය නිඛිල විය යුතුය");
+        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
       } else {
-        amountError.textContent = "Coconut amount must be integer";
-        Command: toastr["warning"]("Coconut amount must be integer");
+        amountError.textContent = "Coconut amount must be positive integer";
+        Command: toastr["warning"]("Coconut amount must be positive integer");
       }
       amountStatus = false;
       return false;
@@ -251,5 +251,6 @@
 })();
 
 function checkInt(num) {
-  return Number.isInteger(+num);
+  if (Number.isInteger(+num) && (+num) > 0) return true;
+  return false;
 }
