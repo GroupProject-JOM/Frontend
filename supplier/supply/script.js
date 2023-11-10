@@ -41,6 +41,7 @@
     cLabel.textContent = data["sin"]["cLabel"];
     bLabel.textContent = data["sin"]["bLabel"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -62,6 +63,7 @@
     cLabel.textContent = data["en"]["cLabel"];
     bLabel.textContent = data["en"]["bLabel"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {

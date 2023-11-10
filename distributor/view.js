@@ -91,7 +91,7 @@
       console.error("An error occurred:", error);
     });
 
-    //delete outlet
+  //delete outlet
   del.addEventListener("click", () => {
     fetch(backProxy + "/outlet?id=" + getCookie("id"), {
       method: "DELETE",

@@ -25,6 +25,7 @@
     sText.textContent = data["sin"]["sText"];
     edit.textContent = data["sin"]["edit"];
     del.textContent = data["sin"]["del"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -40,6 +41,7 @@
     sText.textContent = data["en"]["sText"];
     edit.textContent = data["en"]["edit"];
     del.textContent = data["en"]["del"];
+    setGreeting();
   });
 
   var data = {

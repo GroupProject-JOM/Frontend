@@ -26,6 +26,7 @@
     accNum.placeholder = data["sin"]["accNum"];
     bank.textContent = data["sin"]["bank"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -43,6 +44,7 @@
     accNum.placeholder = data["en"]["accNum"];
     bank.textContent = data["en"]["bank"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {
