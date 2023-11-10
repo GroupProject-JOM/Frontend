@@ -9,6 +9,7 @@
   color: var(--wtext-color);
   /* width: 37rem; */
   padding-top: 3rem;
+  margin-bottom: 0;
 }
 
 .method {
@@ -16,6 +17,14 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+
+.collection, .payment{
+  margin-top: 30px;
+
 }
 
 .collection-input{
@@ -23,6 +32,7 @@
   align-items: center;
   /* flex-wrap: wrap; */
   gap: 1rem;
+  
 }
 
 .method-text {
@@ -38,7 +48,7 @@
 .supply-container {
   /* position: absolute; */
   top: 50%;
-  transform: translate(0, 30%);
+  transform: translate(0, 25%);
   margin-left: 6vw;
 }
 
@@ -57,12 +67,16 @@
 .date-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 6rem;
+  justify-content: space-between;
+}
+
+.feasibility{
+  width: 40vw;
 }
 
 .feasibility input {
-  width: 17rem;
-  margin-bottom: 30px;
+  width: 16rem;
+  /* margin-bottom: 30px; */
 }
 
 .form-button {
@@ -111,8 +125,14 @@ input {
   border-bottom: 1px solid var(--input-border);
   color: #484848;
   padding: 7px 0;
-  margin: 20px 0;
+  margin-top: 20px;
+  /* margin: 20px 0; */
   background-color: var(--body-color);
+}
+
+.method input{
+  margin: 0;
+  padding: 0;
 }
 
 input::placeholder {
@@ -174,6 +194,15 @@ select.dropdown {
 
 .collection-data-table{
   width: 30vw;
+}
+.collection-error{
+margin-top: 0;
+padding-top: 0;
+vertical-align: top;
+}
+
+.bottom-text{
+  margin-top: 30px;
 }
 
 @media only screen and (max-device-width: 900px){

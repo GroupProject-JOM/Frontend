@@ -52,22 +52,28 @@
             <form class="date-form supply">
               <!-- <input type="date" class="date" placeholder="Feasible Date" />
                 <input type="time" class="time" placeholder="Feasible Time" /> -->
-              <input
-                type="text"
-                class="date"
-                placeholder=""
-                onmousemove="(this.type='date')"
-                onmouseleave="(this.type='text')"
-              />
-              <span class="form-error date-error"></span>
-              <input
-                type="text"
-                class="time"
-                placeholder=""
-                onmousemove="(this.type='time')"
-                onmouseleave="(this.type='text')"
-              />
-              <span class="form-error time-error"></span>
+                <div>
+                  <input
+                  type="text"
+                  class="date"
+                  placeholder=""
+                  onmousemove="(this.type='date')"
+                  onmouseleave="(this.type='text')"
+                  />
+                  <br>
+                  <span class="form-error date-error"></span>
+                </div>
+                <div>
+                  <input
+                  type="text"
+                  class="time"
+                  placeholder=""
+                  onmousemove="(this.type='time')"
+                  onmouseleave="(this.type='text')"
+                  />
+                  <br>
+                  <span class="form-error time-error"></span>
+                </div>
             </form>
           </div>
 
@@ -76,7 +82,7 @@
 
           <p class="supply-text bottom-text"></p>
 
-          <button class="next form-button"></button>
+          <button class="form-button"></button>
         </div>
       </div>
     </section>
