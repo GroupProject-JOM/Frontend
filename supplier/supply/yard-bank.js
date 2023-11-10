@@ -5,10 +5,16 @@
     sTitle = body.querySelector(".supply-title"),
     tText = body.querySelector(".top-text"),
     date = body.querySelector(".date"),
+    dateError = body.querySelector(".date-error"),
     time = body.querySelector(".time"),
-    bank = body.querySelector(".bank");
+    timeError = body.querySelector(".time-error"),
+    bank = body.querySelector(".bank"),
+    bankError = body.querySelector(".bank-error"),
+    bText = body.querySelector(".bottom-text"),
+    btn = body.querySelector(".form-button");
 
-  var bop;
+  let bop,
+    lang = getCookie("lang"); // current language
   var bank_options =
     "<option value='' disabled selected hidden class='bop'></option>";
   // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
@@ -34,18 +40,34 @@
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.size);
+          // data.size=0
+          if (lang == "sin")
+            bank_options +=
+              "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+          else
+            bank_options +=
+              "<option value='' disabled >No Bank Accounts</option>";
+          bank.innerHTML = bank_options;
+          bop = body.querySelector(".bop");
+          Command: toastr["info"]("No Bank Accounts");
         });
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+        if (lang == "sin")
+          bank_options +=
+            "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+        else
+          bank_options +=
+            "<option value='' disabled >No Bank Accounts</option>";
+        bank.innerHTML = bank_options;
+        bop = body.querySelector(".bop");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
-
-  const bText = body.querySelector(".bottom-text"),
-    btn = body.querySelector(".form-button");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -54,6 +76,7 @@
     document.documentElement.setAttribute("lang", "sin");
     //   sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     tText.innerHTML = data["sin"]["tText"];
@@ -71,6 +94,7 @@
     document.documentElement.setAttribute("lang", "en");
     //   sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     sTitle.textContent = data["en"]["sTitle"];
     tText.innerHTML = data["en"]["tText"];
@@ -110,26 +134,25 @@
     timeStatus = false,
     bankStatus = false;
 
+  date.addEventListener("input", () => {
+    date_status_func();
+  });
+  time.addEventListener("input", () => {
+    time_status_func();
+  });
+  bank.addEventListener("input", () => {
+    bank_status_func();
+  });
+
   btn.addEventListener("click", () => {
-    if (typeof bank.value === "string" && bank.value.trim().length === 0) {
-      console.log("Bank cannot be empty");
+    if (!bank_status_func()) {
       bank.focus();
-    } else {
-      bankStatus = true;
     }
-
-    if (typeof date.value === "string" && date.value.trim().length === 0) {
-      console.log("Date cannot be empty");
-      date.focus();
-    } else {
-      dateStatus = true;
-    }
-
-    if (typeof time.value === "string" && time.value.trim().length === 0) {
-      console.log("Time cannot be empty");
+    if (!time_status_func()) {
       time.focus();
-    } else {
-      timeStatus = true;
+    }
+    if (!date_status_func()) {
+      date.focus();
     }
 
     if (bankStatus && dateStatus && timeStatus) {
@@ -159,14 +182,71 @@
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });
+
+  function date_status_func() {
+    if (typeof date.value === "string" && date.value.trim().length === 0) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය හිස් විය නොහැක";
+        Command: toastr["warning"]("දිනය හිස් විය නොහැක");
+      } else {
+        dateError.textContent = "Date cannot be empty";
+        Command: toastr["warning"]("Date cannot be empty");
+      }
+      dateStatus = false;
+      return false;
+    } else {
+      dateError.textContent = "";
+      dateStatus = true;
+      return true;
+    }
+  }
+
+  function time_status_func() {
+    if (typeof time.value === "string" && time.value.trim().length === 0) {
+      if (lang == "sin") {
+        timeError.textContent = "කාලය හිස් විය නොහැක";
+        Command: toastr["warning"]("කාලය හිස් විය නොහැක");
+      } else {
+        timeError.textContent = "Time cannot be empty";
+        Command: toastr["warning"]("Time cannot be empty");
+      }
+      timeStatus = false;
+      return false;
+    } else {
+      timeError.textContent = "";
+      timeStatus = true;
+      return true;
+    }
+  }
+
+  function bank_status_func() {
+    if (typeof bank.value === "string" && bank.value.trim().length === 0) {
+      if (lang == "sin") {
+        bankError.textContent = "බැංකුව හිස් විය නොහැක";
+        Command: toastr["warning"]("බැංකුව හිස් විය නොහැක");
+      } else {
+        bankError.textContent = "Bank cannot be empty";
+        Command: toastr["warning"]("Bank cannot be empty");
+      }
+      bankStatus = false;
+      return false;
+    } else {
+      bankError.textContent = "";
+      bankStatus = true;
+      return true;
+    }
+  }
 })();

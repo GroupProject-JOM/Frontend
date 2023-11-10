@@ -54,7 +54,10 @@
       } else if (response.status === 202) {
         response.json().then((data) => {
           // data.size=0
-          location_options += "<option value='' disabled>No Estates</option>";
+          if (lang == "sin")
+            location_options += "<option value='' disabled>වතු නැත</option>";
+          else
+            location_options += "<option value='' disabled>No Estates</option>";
           location.innerHTML = location_options;
           lop = body.querySelector(".lop");
           Command: toastr["info"]("No Estates");
@@ -62,7 +65,10 @@
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
-        location_options += "<option value='' disabled>No Estates</option>";
+        if (lang == "sin")
+          location_options += "<option value='' disabled>වතු නැත</option>";
+        else
+          location_options += "<option value='' disabled>No Estates</option>";
         location.innerHTML = location_options;
         lop = body.querySelector(".lop");
       }
@@ -96,8 +102,12 @@
       } else if (response.status === 202) {
         response.json().then((data) => {
           // data.size=0
-          bank_options +=
-            "<option value='' disabled >No Bank Accounts</option>";
+          if (lang == "sin")
+            bank_options +=
+              "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+          else
+            bank_options +=
+              "<option value='' disabled >No Bank Accounts</option>";
           bank.innerHTML = bank_options;
           bop = body.querySelector(".bop");
           Command: toastr["info"]("No Bank Accounts");
@@ -105,7 +115,12 @@
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
-        bank_options += "<option value='' disabled >No Bank Accounts</option>";
+        if (lang == "sin")
+          bank_options +=
+            "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+        else
+          bank_options +=
+            "<option value='' disabled >No Bank Accounts</option>";
         bank.innerHTML = bank_options;
         bop = body.querySelector(".bop");
       }
@@ -238,6 +253,7 @@
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else {
             console.error("Error:", response.status);
