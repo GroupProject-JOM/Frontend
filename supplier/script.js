@@ -231,7 +231,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         });
       } else {
         console.error("Error:", response.status);
-        Command: toastr["error"](response, "Error");
+        Command: toastr["error"](response.status, "Error");
       }
     })
     .catch((error) => {

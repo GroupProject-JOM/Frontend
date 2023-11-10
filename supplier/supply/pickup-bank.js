@@ -1,23 +1,31 @@
 (() => {
-  let loaded = false;
-  const interval = setInterval(() => {
+  // let loaded = false;
+  // const interval = setInterval(() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     sTitle = body.querySelector(".supply-title"),
     tText = body.querySelector(".top-text"),
-    location = body.querySelector(".location");
+    location = body.querySelector(".location"),
+    date = body.querySelector(".date"),
+    time = body.querySelector(".time"),
+    bank = body.querySelector(".bank"),
+    bText = body.querySelector(".bottom-text"),
+    btn = body.querySelector(".form-button");
 
-  var lop, bop;
+  let lop, bop;
 
-  if (!loaded && lop && bop) {
-    loaded = true;
-    clearInterval(interval);
-  }
+  // if (!loaded && lop && bop) {
+  //   loaded = true;
+  //   clearInterval(interval);
+  // }
 
   var location_options =
-    "<option value='' disabled selected hidden class='lop'></option>";
-  // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
+      "<option value='' disabled selected hidden class='lop'></option>",
+    bank_options =
+      "<option value='' disabled selected hidden class='bop'></option>";
+
+  // Get estates
   fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
     method: "GET",
     headers: {
@@ -40,23 +48,26 @@
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.size);
+          // data.size=0
+          location_options += "<option value='' disabled>No Estates</option>";
+          location.innerHTML = location_options;
+          lop = body.querySelector(".lop");
+          Command: toastr["info"]("No Estates");
         });
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+        location_options += "<option value='' disabled>No Estates</option>";
+        location.innerHTML = location_options;
+        lop = body.querySelector(".lop");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
 
-  const date = body.querySelector(".date"),
-    time = body.querySelector(".time"),
-    bank = body.querySelector(".bank");
-
-  var bank_options =
-    "<option value='' disabled selected hidden class='bop'></option>";
-  // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
+  //Get bank accounts
   fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
     method: "GET",
     headers: {
@@ -79,18 +90,25 @@
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.size);
+          // data.size=0
+          bank_options +=
+            "<option value='' disabled >No Bank Accounts</option>";
+          bank.innerHTML = bank_options;
+          bop = body.querySelector(".bop");
+          Command: toastr["info"]("No Bank Accounts");
         });
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+        bank_options += "<option value='' disabled >No Bank Accounts</option>";
+        bank.innerHTML = bank_options;
+        bop = body.querySelector(".bop");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
-
-  const bText = body.querySelector(".bottom-text"),
-    btn = body.querySelector(".form-button");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -102,12 +120,12 @@
 
     sTitle.textContent = data["sin"]["sTitle"];
     tText.innerHTML = data["sin"]["tText"];
-    lop.textContent = data["sin"]["lop"];
     date.placeholder = data["sin"]["date"];
     time.placeholder = data["sin"]["time"];
-    bop.textContent = data["sin"]["bop"];
     bText.innerHTML = data["sin"]["bText"];
     btn.textContent = data["sin"]["btn"];
+    lop.textContent = data["sin"]["lop"];
+    bop.textContent = data["sin"]["bop"];
   });
 
   en.addEventListener("click", () => {
@@ -120,12 +138,12 @@
 
     sTitle.textContent = data["en"]["sTitle"];
     tText.innerHTML = data["en"]["tText"];
-    lop.textContent = data["en"]["lop"];
     date.placeholder = data["en"]["date"];
     time.placeholder = data["en"]["time"];
-    bop.textContent = data["en"]["bop"];
     bText.innerHTML = data["en"]["bText"];
     btn.textContent = data["en"]["btn"];
+    lop.textContent = data["en"]["lop"];
+    bop.textContent = data["en"]["bop"];
   });
 
   var data = {
@@ -194,8 +212,6 @@
 
     if (locationStatus && dateStatus && timeStatus && bankStatus) {
       var formData = {
-        // collection_id: sessionStorage.getItem("id"),
-        // supplier_id: sessionStorage.getItem("sId"),
         collection_id: getCookie("id"),
         supplier_id: getCookie("sId"),
         estate_id: location.value,
@@ -223,12 +239,14 @@
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });
-}, 100);
+  // }, 3000);
 })();

@@ -180,7 +180,7 @@ var username_status = false,
             });
           } else {
             console.error("Error:", response.status);
-            Command: toastr["error"](response, "Error");
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {

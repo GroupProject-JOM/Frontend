@@ -93,7 +93,7 @@
 
   btn.addEventListener("click", () => {
     if (typeof amount.value === "string" && amount.value.trim().length === 0) {
-      console.log("Estate name cannot be empty");
+      console.log("Coconut amount cannot be empty");
       amount.focus();
     } else {
       amountStatus = true;
@@ -162,17 +162,21 @@
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else if (response.status === 401) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });

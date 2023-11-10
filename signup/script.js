@@ -310,7 +310,7 @@ var fname_status = false,
             mainError.textContent = "CORS ERROR";
             mainError.style.display = "block";
             console.error("Error:", response.status);
-            Command: toastr["error"](response, "Error");
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {

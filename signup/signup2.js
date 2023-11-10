@@ -61,7 +61,7 @@ var lang = getCookie("lang"); // current language
           else error.textContent = "No user in this email";
         } else {
           console.error("Error:", response.status);
-          Command: toastr["error"](response, "Error");
+          Command: toastr["error"](response.status, "Error");
         }
       })
       .catch((error) => {
@@ -217,7 +217,7 @@ var lang = getCookie("lang"); // current language
           }
         } else {
           console.error("Error:", response.status);
-          Command: toastr["error"](response, "Error");
+          Command: toastr["error"](response.status, "Error");
         }
       })
       .catch((error) => {
@@ -284,7 +284,7 @@ var lang = getCookie("lang"); // current language
             emailOtp.focus();
           } else {
             console.error("Error:", response.status);
-            Command: toastr["error"](response, "Error");
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
