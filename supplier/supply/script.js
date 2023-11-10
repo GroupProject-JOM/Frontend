@@ -41,6 +41,7 @@
     cLabel.textContent = data["sin"]["cLabel"];
     bLabel.textContent = data["sin"]["bLabel"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -62,6 +63,7 @@
     cLabel.textContent = data["en"]["cLabel"];
     bLabel.textContent = data["en"]["bLabel"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {
@@ -101,24 +103,6 @@
   amount.addEventListener("input", () => {
     amount_status_func();
   });
-
-  function amount_status_func() {
-    if (typeof amount.value === "string" && amount.value.trim().length === 0) {
-      if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය හිස් විය නොහැක";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය හිස් විය නොහැක");
-      } else {
-        amountError.textContent = "Coconut amount cannot be empty";
-        Command: toastr["warning"]("Coconut amount cannot be empty");
-      }
-      amountStatus = false;
-      return false;
-    } else {
-      amountError.textContent = "";
-      amountStatus = true;
-      return true;
-    }
-  }
 
   btn.addEventListener("click", () => {
     if (!amount_status_func()) {
@@ -236,4 +220,36 @@
         });
     }
   });
+
+  function amount_status_func() {
+    if (typeof amount.value === "string" && amount.value.trim().length === 0) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය හිස් විය නොහැක";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය හිස් විය නොහැක");
+      } else {
+        amountError.textContent = "Coconut amount cannot be empty";
+        Command: toastr["warning"]("Coconut amount cannot be empty");
+      }
+      amountStatus = false;
+      return false;
+    } else if (!checkInt(amount.value)) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය නිඛිල විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය නිඛිල විය යුතුය");
+      } else {
+        amountError.textContent = "Coconut amount must be integer";
+        Command: toastr["warning"]("Coconut amount must be integer");
+      }
+      amountStatus = false;
+      return false;
+    } else {
+      amountError.textContent = "";
+      amountStatus = true;
+      return true;
+    }
+  }
 })();
+
+function checkInt(num) {
+  return Number.isInteger(+num);
+}

@@ -16,7 +16,7 @@
     op4 = body.querySelector(".op4"),
     btn = body.querySelector(".form-button");
 
-    var lang = getCookie("lang"); // current language
+  var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -36,6 +36,7 @@
     op3.textContent = data["sin"]["op3"];
     op4.textContent = data["sin"]["op4"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -56,6 +57,7 @@
     op3.textContent = data["en"]["op3"];
     op4.textContent = data["en"]["op4"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {
@@ -87,57 +89,60 @@
     locationStatus = false,
     dropdownStatus = false;
 
-    function ename_status() {
-      if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-        if (lang == "sin") enameError.textContent = "වතු නම හිස් විය නොහැක";
-        else enameError.textContent = "Estate name cannot be empty";
-        enameStatus = false;
-        return false;
-      } else {
-        enameError.textContent = "";
-        enameStatus = true;
-        return true;
-      }
+  function ename_status() {
+    if (typeof ename.value === "string" && ename.value.trim().length === 0) {
+      if (lang == "sin") enameError.textContent = "වතු නම හිස් විය නොහැක";
+      else enameError.textContent = "Estate name cannot be empty";
+      enameStatus = false;
+      return false;
+    } else {
+      enameError.textContent = "";
+      enameStatus = true;
+      return true;
     }
-  
-    function location_status() {
-      if (
-        typeof location.value === "string" &&
-        location.value.trim().length === 0
-      ) {
-        if (lang == "sin") locationError.textContent = "ස්ථානය හිස් විය නොහැක";
-        else locationError.textContent = "Location cannot be empty";
-        locationStatus = false;
-        return false;
-      } else {
-        locationError.textContent = "";
-        locationStatus = true;
-        return true;
-      }
-    }
-  
-    function area_status() {
-      if (typeof dropdown.value === "string" && dropdown.value.trim().length === 0) {
-        if (lang == "sin") areaError.textContent = "ප්‍රදේශය හිස් විය නොහැක";
-        else areaError.textContent = "Area cannot be empty";
-        dropdownStatus = false;
-        return false;
-      } else {
-        areaError.textContent = "";
-        dropdownStatus = true;
-        return true;
-      }
-    }
+  }
 
-    ename.addEventListener("input", () => {
-      ename_status();
-    });
-    location.addEventListener("input", () => {
-      location_status();
-    });
-    dropdown.addEventListener("input", () => {
-      area_status();
-    });
+  function location_status() {
+    if (
+      typeof location.value === "string" &&
+      location.value.trim().length === 0
+    ) {
+      if (lang == "sin") locationError.textContent = "ස්ථානය හිස් විය නොහැක";
+      else locationError.textContent = "Location cannot be empty";
+      locationStatus = false;
+      return false;
+    } else {
+      locationError.textContent = "";
+      locationStatus = true;
+      return true;
+    }
+  }
+
+  function area_status() {
+    if (
+      typeof dropdown.value === "string" &&
+      dropdown.value.trim().length === 0
+    ) {
+      if (lang == "sin") areaError.textContent = "ප්‍රදේශය හිස් විය නොහැක";
+      else areaError.textContent = "Area cannot be empty";
+      dropdownStatus = false;
+      return false;
+    } else {
+      areaError.textContent = "";
+      dropdownStatus = true;
+      return true;
+    }
+  }
+
+  ename.addEventListener("input", () => {
+    ename_status();
+  });
+  location.addEventListener("input", () => {
+    location_status();
+  });
+  dropdown.addEventListener("input", () => {
+    area_status();
+  });
 
   btn.addEventListener("click", () => {
     if (!area_status()) {

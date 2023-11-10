@@ -31,6 +31,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accNum.placeholder = data["sin"]["accNum"];
     bank.placeholder = data["sin"]["bank"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -48,6 +49,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accNum.placeholder = data["en"]["accNum"];
     bank.placeholder = data["en"]["bank"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {
