@@ -5,13 +5,18 @@
     sTitle = body.querySelector(".supply-title"),
     sText = body.querySelector(".supply-text"),
     ename = body.querySelector(".estate-name"),
+    enameError = body.querySelector(".ename-error"),
     location = body.querySelector(".location"),
+    locationError = body.querySelector(".location-error"),
     dropdown = body.querySelector(".dropdown"),
+    areaError = body.querySelector(".area-error"),
     op1 = body.querySelector(".op1"),
     op2 = body.querySelector(".op2"),
     op3 = body.querySelector(".op3"),
     op4 = body.querySelector(".op4"),
     btn = body.querySelector(".form-button");
+
+    var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -20,6 +25,7 @@
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     sText.innerHTML = data["sin"]["sText"];
@@ -39,6 +45,7 @@
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     sTitle.textContent = data["en"]["sTitle"];
     sText.innerHTML = data["en"]["sText"];
@@ -80,32 +87,67 @@
     locationStatus = false,
     dropdownStatus = false;
 
+    function ename_status() {
+      if (typeof ename.value === "string" && ename.value.trim().length === 0) {
+        if (lang == "sin") enameError.textContent = "වතු නම හිස් විය නොහැක";
+        else enameError.textContent = "Estate name cannot be empty";
+        enameStatus = false;
+        return false;
+      } else {
+        enameError.textContent = "";
+        enameStatus = true;
+        return true;
+      }
+    }
+  
+    function location_status() {
+      if (
+        typeof location.value === "string" &&
+        location.value.trim().length === 0
+      ) {
+        if (lang == "sin") locationError.textContent = "ස්ථානය හිස් විය නොහැක";
+        else locationError.textContent = "Location cannot be empty";
+        locationStatus = false;
+        return false;
+      } else {
+        locationError.textContent = "";
+        locationStatus = true;
+        return true;
+      }
+    }
+  
+    function area_status() {
+      if (typeof dropdown.value === "string" && dropdown.value.trim().length === 0) {
+        if (lang == "sin") areaError.textContent = "ප්‍රදේශය හිස් විය නොහැක";
+        else areaError.textContent = "Area cannot be empty";
+        dropdownStatus = false;
+        return false;
+      } else {
+        areaError.textContent = "";
+        dropdownStatus = true;
+        return true;
+      }
+    }
+
+    ename.addEventListener("input", () => {
+      ename_status();
+    });
+    location.addEventListener("input", () => {
+      location_status();
+    });
+    dropdown.addEventListener("input", () => {
+      area_status();
+    });
+
   btn.addEventListener("click", () => {
-    if (
-      typeof dropdown.value === "string" &&
-      dropdown.value.trim().length === 0
-    ) {
-      console.log("Area cannot be empty");
+    if (!area_status()) {
       dropdown.focus();
-    } else {
-      dropdownStatus = true;
     }
-
-    if (
-      typeof location.value === "string" &&
-      location.value.trim().length === 0
-    ) {
-      console.log("Location cannot be empty");
+    if (!location_status()) {
       location.focus();
-    } else {
-      locationStatus = true;
     }
-
-    if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-      console.log("Estate name cannot be empty");
+    if (!ename_status()) {
       ename.focus();
-    } else {
-      enameStatus = true;
     }
 
     if (enameStatus && locationStatus && dropdownStatus) {
@@ -136,13 +178,16 @@
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });
@@ -175,12 +220,15 @@
       } else if (response.status === 202) {
         response.json().then((data) => {
           console.log(data.estate);
+          Command: toastr["error"](data.estate);
         });
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
 })();
