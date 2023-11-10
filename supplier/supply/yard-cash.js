@@ -9,7 +9,7 @@
     dateError = body.querySelector(".date-error"),
     time = body.querySelector(".time"),
     timeError = body.querySelector(".time-error"),
-    address = body.querySelector(".address"),
+    address = body.querySelector(".cAddress"),
     btn = body.querySelector(".form-button");
 
   let lang = getCookie("lang"); // current language
@@ -133,6 +133,7 @@
         });
     }
   });
+  
   function date_status_func() {
     if (typeof date.value === "string" && date.value.trim().length === 0) {
       if (lang == "sin") {
@@ -170,6 +171,18 @@
       }
       timeStatus = false;
       return false;
+    } else if (!checkTime(time.value)) {
+      if (lang == "sin") {
+        timeError.textContent = "වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය";
+        Command: toastr["warning"]("වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය");
+      } else {
+        timeError.textContent = "Time must be between 08:00:AM and 05:00:PM";
+        Command: toastr["warning"](
+          "Time must be between 08:00:AM and 05:00:PM"
+        );
+      }
+      timeStatus = false;
+      return false;
     } else {
       timeError.textContent = "";
       timeStatus = true;
@@ -181,6 +194,15 @@
 function checkDate(date) {
   var selectedDate = new Date(date);
   var now = new Date();
-  if (selectedDate < now) return false;
-  else return true;
+  now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTime(time) {
+  var t = time.split(":");
+  var hour = +t[0],
+    min = +t[1];
+  if (8 <= hour && 17 > hour) return true;
+  else return false;
 }
