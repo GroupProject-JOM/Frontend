@@ -57,11 +57,15 @@
 .date-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 6rem;
+  justify-content: space-between;
+}
+
+.feasibility{
+  width: 43vw;
 }
 
 .feasibility input {
-  width: 17rem;
+  width: 16rem;
   margin-bottom: 30px;
 }
 
