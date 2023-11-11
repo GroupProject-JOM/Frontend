@@ -22,7 +22,7 @@
 }
 
 
-.collection, .payment{
+.collection, .supply-content .payment{
   margin-top: 30px;
 
 }
@@ -103,7 +103,7 @@ justify-content: center;
 }
 
 .supply4-container {
-  transform: translate(0, 40%);
+  transform: translate(0, 20%);
 }
 
 .supply5-container {
