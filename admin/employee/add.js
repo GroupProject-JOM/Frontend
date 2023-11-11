@@ -218,6 +218,21 @@ let gendr, bDay;
         nic: nic.value,
         role: dropdown.value,
       };
+      if(lang == "sin"){
+        var title = "සේවක ලියාපදිංචිය...",text = "කරුණාකර රැඳී සිටින්න..."
+      }else{
+        var title = "Employee registers…",text="Please wait..."
+      }
+
+      Swal.fire({
+        title: title,
+        html: text,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
 
       fetch(backProxy + "/employee", {
         method: "POST",
@@ -232,12 +247,15 @@ let gendr, bDay;
             response.json().then((data) => {
               console.log(data.message);
             });
+            Swal.close();
             window.location.href = "./view-all.html";
-          } else if (response.status === 401) {
+          } else if (response.status === 401) {            
+            Swal.close();
             if (lang == "sin")
               Command: toastr["warning"]("ලියාපදිංචිය අසාර්ථකයි");
             else Command: toastr["warning"]("Registration unsuccessful");
           } else if (response.status === 400) {
+            Swal.close();
             // backend error handle
             response.json().then((data) => {
               if (lang == "sin") {
@@ -326,6 +344,7 @@ let gendr, bDay;
               }
             });
           } else if (response.status === 409) {
+            Swal.close();
             response.json().then((data) => {
               if (data.message == "email3") {
                 if (lang == "sin") {
@@ -343,11 +362,13 @@ let gendr, bDay;
               }
             });
           } else {
+            Swal.close();
             console.error("Error:", response.status);
             Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
+          Swal.close();
           console.error("An error occurred:", error);
           Command: toastr["error"](error);
         });
@@ -497,7 +518,7 @@ let gendr, bDay;
       return true;
     }
   }
-  
+
   function dropdown_status_func() {
     if (
       typeof dropdown.value === "string" &&
