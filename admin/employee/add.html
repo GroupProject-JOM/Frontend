@@ -114,6 +114,22 @@
               <br />
               <input
                 type="text"
+                class="long nic"
+                name="nic"
+                placeholder=""
+              /><br /><span class="form-error nic-error"></span>
+              <br />
+              <select class="dropdown role">
+                <option value="" default hidden class="op0"></option>
+                <option value="Collector" class="op1"></option>
+                <option value="Distributor" class="op2"></option>
+                <option value="Stock-Manager" class="op3"></option>
+                <option value="Production-Manager" class="op4"></option>
+                <option value="Sales-Manager" class="op5"></option>
+              </select>
+              <br /><span class="form-error dropdown-error"></span><br>
+              <input
+                type="text"
                 class="long address1"
                 name="address1"
                 placeholder=""
@@ -142,30 +158,6 @@
                   <br /><span class="form-error address3-error"></span>
                 </section>
               </div>
-              <input
-                type="text"
-                class="long dob"
-                placeholder=""
-                onmousemove="(this.type='date')"
-                onmouseleave="(this.type='text')"
-              /><br /><span class="form-error dob-error"></span>
-              <br />
-              <input
-                type="text"
-                class="long nic"
-                name="nic"
-                placeholder=""
-              /><br /><span class="form-error nic-error"></span>
-              <br />
-              <select class="dropdown role">
-                <option value="" default hidden class="op0"></option>
-                <option value="Collector" class="op1"></option>
-                <option value="Distributor" class="op2"></option>
-                <option value="Stock-Manager" class="op3"></option>
-                <option value="Production-Manager" class="op4"></option>
-                <option value="Sales-Manager" class="op5"></option>
-              </select>
-              <br /><span class="form-error dropdown-error"></span>
             </form>
           </div>
 
