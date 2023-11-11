@@ -8,13 +8,16 @@
 
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/notify.css">
+    <link rel="stylesheet" href="../common/notify.css" />
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
     />
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
@@ -70,7 +73,7 @@
             </div>
             <div class="w-text">
               <p class="w-title w1"></p>
-              <p class="w-value">200</p>
+              <p class="w-value w1-value"></p>
             </div>
           </div>
 
@@ -80,7 +83,7 @@
             </div>
             <div class="w-text">
               <p class="w-title w2"></p>
-              <p class="w-value">70</p>
+              <p class="w-value w2-value"></p>
             </div>
           </div>
 
@@ -90,17 +93,17 @@
             </div>
             <div class="w-text">
               <p class="w-title w3"></p>
-              <p class="w-value">70</p>
+              <p class="w-value w3-value"></p>
             </div>
           </div>
 
           <div class="widget">
             <div class="w-icon">
-              <span><i class="fa-solid fa-building-columns"></i></span>
+              <span><i class="fa-solid fa-box-open"></i></span>
             </div>
             <div class="w-text">
               <p class="w-title w4"></p>
-              <p class="w-value">70</p>
+              <p class="w-value w4-value"></p>
             </div>
           </div>
         </div>
@@ -144,6 +147,7 @@
         </div>
       </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../common/func.js"></script>
@@ -152,6 +156,5 @@
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
     <script src="../common/loader.js"></script>
-    
   </body>
 </html>
