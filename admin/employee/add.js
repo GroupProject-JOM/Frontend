@@ -328,10 +328,17 @@ let gendr, bDay;
           } else if (response.status === 409) {
             response.json().then((data) => {
               if (data.message == "email3") {
-                if (lang == "sin")
+                if (lang == "sin") {
                   emailError.textContent =
                     "මෙම විද්‍යුත් තැපෑල දැනටමත් භාවිතා කර ඇත";
-                else emailError.textContent = "This email is already used";
+
+                  Command: toastr["error"](
+                    "මෙම විද්‍යුත් තැපෑල දැනටමත් භාවිතා කර ඇත"
+                  );
+                } else {
+                  emailError.textContent = "This email is already used";
+                  Command: toastr["error"]("This email is already used");
+                }
                 email.focus();
               }
             });
@@ -490,6 +497,7 @@ let gendr, bDay;
       return true;
     }
   }
+  
   function dropdown_status_func() {
     if (
       typeof dropdown.value === "string" &&
