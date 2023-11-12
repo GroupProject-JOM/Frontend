@@ -83,7 +83,6 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          console.log(data.collection);
           if (data.collection.sMethod == "pickup") {
             sMethod.textContent = "Pickup from estate";
             dateText.textContent = "Pickup Date";
@@ -149,6 +148,7 @@
               data.collection.final_amount.toLocaleString("en-US");
             value.textContent = data.collection.value.toLocaleString("en-US");
             edit.style.display = "none";
+            edit.disabled = true;
           }
         });
       } else if (response.status === 202) {
@@ -166,5 +166,78 @@
       Command: toastr["error"](error);
     });
 
-  //delete outlet
+    del.addEventListener("click", () => {
+      if (lang == "sin") {
+        var title = "ඔයාට විශ්වාස ද?",
+          text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+          confirmButtonText = "ඔව්, එය මකන්න!",
+          cancelButtonText = "අවලංගු කරන්න";
+      } else {
+        var title = "Are you sure?",
+          text = "You won't be able to revert this!",
+          confirmButtonText = "Yes, delete it!",
+          cancelButtonText = "Cancel";
+      }
+      Swal.fire({
+        title: title,
+        text: text,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: confirmButtonColor,
+        cancelButtonColor: cancelButtonColor,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(
+            backProxy +
+              "/collection?sId=" +
+              getCookie("sId") +
+              "&id=" +
+              getCookie("id"),
+            {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+            }
+          )
+            .then((response) => {
+              if (response.status == 200) {
+                response.json().then((data) => {
+                  console.log(data.message);
+                  if (lang == "sin") {
+                    var title = "මකා දමන ලදී!",
+                      text = "ඔබගේ සැපයුම මකා ඇත.";
+                  } else {
+                    var title = "Deleted!",
+                      text = "Your supply has been deleted.";
+                  }
+                  // sweet alert
+                  Swal.fire({
+                    title: title,
+                    text: text,
+                    icon: "success",
+                  }).then((response) => {
+                    window.location.href = "./";
+                  });
+                });
+              } else if (response.status === 400) {
+                response.json().then((data) => {
+                  console.log(data.message);
+                  Command: toastr["error"](data.message);
+                });
+              } else {
+                console.error("Error:", response.status);
+                Command: toastr["error"](response.status, "Error");
+              }
+            })
+            .catch((error) => {
+              console.error("An error occurred:", error);
+              Command: toastr["error"](error);
+            });
+        }
+      });
+    });
 })();
