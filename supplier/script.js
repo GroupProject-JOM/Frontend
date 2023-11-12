@@ -135,7 +135,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                     String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
                 }
               } else {
-                timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
+                timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
               }
 
               row1 +=
