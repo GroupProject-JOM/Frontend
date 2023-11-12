@@ -9,6 +9,8 @@
     c2 = body.querySelector(".c2"),
     tbody = body.querySelector(".tbody");
 
+  var lang = getCookie("lang"); // current language
+
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
@@ -16,6 +18,7 @@
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -31,6 +34,7 @@
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -55,7 +59,7 @@
   };
 
   var row = "";
-  fetch(backProxy + "/outlets", {
+  fetch(backProxy + "/outlets?emp=" + getCookie("sId"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -102,11 +106,21 @@
         response.json().then((data) => {
           console.log(data.size);
         });
+        if (lang == "sin") Command: toastr["info"]("අලෙවිසැල් නැත");
+        else Command: toastr["info"]("No outlets");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
 })();
