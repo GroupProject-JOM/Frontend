@@ -176,3 +176,11 @@ toastr.options = {
 // Sweet alerts colors
 var confirmButtonColor = "#3085d6",
   cancelButtonColor = "#d33";
+
+function pageLoading(){
+  // const loader = document.querySelector(".loader-wrapper");
+  // // loader.style.display = "block";
+  // loader.toggle()
+  
+  $(".loader-wrapper").toggle();
+}

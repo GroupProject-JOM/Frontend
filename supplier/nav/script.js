@@ -36,8 +36,20 @@
       payment = body.querySelector(".payment"),
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
-      logout = document.querySelector(".logout");
+      logout = body.querySelector(".logout");
 
+    newSupply.addEventListener("click", () => {
+      pageLoading();
+    });
+    address.addEventListener("click", () => {
+      pageLoading();
+    });
+    payment.addEventListener("click", () => {
+      pageLoading();
+    });
+    dashboard.addEventListener("click", () => {
+      pageLoading();
+    });
     logout.addEventListener("click", () => {
       signout();
     });
