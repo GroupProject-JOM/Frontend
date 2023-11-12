@@ -238,112 +238,112 @@
       Command: toastr["error"](error);
     });
 
-    function oname_status_func() {
-      if (typeof oname.value === "string" && oname.value.trim().length === 0) {
-        if (lang == "sin") onameError.textContent = "අලෙවිසැලේ නම හිස් විය නොහැක";
-        else onameError.textContent = "Outlet name cannot be empty";
-        oname_status = false;
-        return false;
-      } else if (!ValidateName(oname.value)) {
-        if (lang == "sin")
-          onameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-        else
-          onameError.textContent =
-            "Name must contain only numbers, letters and ' '";
-        oname_status = false;
-        return false;
-      } else {
-        onameError.textContent = "";
-        oname_status = true;
-        return true;
-      }
+  function oname_status_func() {
+    if (typeof oname.value === "string" && oname.value.trim().length === 0) {
+      if (lang == "sin") onameError.textContent = "අලෙවිසැලේ නම හිස් විය නොහැක";
+      else onameError.textContent = "Outlet name cannot be empty";
+      oname_status = false;
+      return false;
+    } else if (!ValidateName(oname.value)) {
+      if (lang == "sin")
+        onameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
+      else
+        onameError.textContent =
+          "Name must contain only numbers, letters and ' '";
+      oname_status = false;
+      return false;
+    } else {
+      onameError.textContent = "";
+      oname_status = true;
+      return true;
     }
-  
-    function email_status_func() {
-      if (typeof email.value === "string" && email.value.trim().length === 0) {
-        if (lang == "sin")
-          emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
-        else emailError.textContent = "Email cannot be empty";
-        email_status = false;
-        return false;
-      } else if (!ValidateEmail(email.value)) {
-        if (lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
-        else emailError.textContent = "Invalid email address!";
-        email_status = false;
-        return false;
-      } else {
-        emailError.textContent = "";
-        email_status = true;
-        return true;
-      }
+  }
+
+  function email_status_func() {
+    if (typeof email.value === "string" && email.value.trim().length === 0) {
+      if (lang == "sin")
+        emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
+      else emailError.textContent = "Email cannot be empty";
+      email_status = false;
+      return false;
+    } else if (!ValidateEmail(email.value)) {
+      if (lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
+      else emailError.textContent = "Invalid email address!";
+      email_status = false;
+      return false;
+    } else {
+      emailError.textContent = "";
+      email_status = true;
+      return true;
     }
-  
-    function phone_status_func() {
-      if (typeof phone.value === "string" && phone.value.trim().length === 0) {
-        if (lang == "sin") phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක";
-        else phoneError.textContent = "Phone number cannot be empty";
-        phone_status = false;
-        return false;
-      } else if (!ValidatePhone(phone.value)) {
-        if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
-        else phoneError.textContent = "Invalid phone number!";
-        phone_status = false;
-        return false;
-      } else {
-        phone_status = true;
-        phoneError.textContent = "";
-        return true;
-      }
+  }
+
+  function phone_status_func() {
+    if (typeof phone.value === "string" && phone.value.trim().length === 0) {
+      if (lang == "sin") phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක";
+      else phoneError.textContent = "Phone number cannot be empty";
+      phone_status = false;
+      return false;
+    } else if (!ValidatePhone(phone.value)) {
+      if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      else phoneError.textContent = "Invalid phone number!";
+      phone_status = false;
+      return false;
+    } else {
+      phone_status = true;
+      phoneError.textContent = "";
+      return true;
     }
-  
-    function address1_status_func() {
-      if (
-        typeof address1.value === "string" &&
-        address1.value.trim().length === 0
-      ) {
-        if (lang == "sin")
-          address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
-        else address1Error.textContent = "Address Line 1 cannot be empty";
-        address1_status = false;
-        return false;
-      } else {
-        address1_status = true;
-        address1Error.textContent = "";
-        return true;
-      }
+  }
+
+  function address1_status_func() {
+    if (
+      typeof address1.value === "string" &&
+      address1.value.trim().length === 0
+    ) {
+      if (lang == "sin")
+        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+      else address1Error.textContent = "Address Line 1 cannot be empty";
+      address1_status = false;
+      return false;
+    } else {
+      address1_status = true;
+      address1Error.textContent = "";
+      return true;
     }
-  
-    function address2_status_func() {
-      if (
-        typeof address2.value === "string" &&
-        address2.value.trim().length === 0
-      ) {
-        if (lang == "sin") address2Error.textContent = "වීදිය හිස් විය නොහැක";
-        else address2Error.textContent = "Street cannot be empty";
-        address2_status = false;
-        return false;
-      } else {
-        address2_status = true;
-        address2Error.textContent = "";
-        return true;
-      }
+  }
+
+  function address2_status_func() {
+    if (
+      typeof address2.value === "string" &&
+      address2.value.trim().length === 0
+    ) {
+      if (lang == "sin") address2Error.textContent = "වීදිය හිස් විය නොහැක";
+      else address2Error.textContent = "Street cannot be empty";
+      address2_status = false;
+      return false;
+    } else {
+      address2_status = true;
+      address2Error.textContent = "";
+      return true;
     }
-  
-    function address3_status_func() {
-      if (
-        typeof address3.value === "string" &&
-        address3.value.trim().length === 0
-      ) {
-        if (lang == "sin") address3Error.textContent = "නගරය හිස් විය නොහැක";
-        else address3Error.textContent = "City cannot be empty";
-        address3_status = false;
-        return false;
-      } else {
-        address3_status = true;
-        address3Error.textContent = "";
-        return true;
-      }
+  }
+
+  function address3_status_func() {
+    if (
+      typeof address3.value === "string" &&
+      address3.value.trim().length === 0
+    ) {
+      if (lang == "sin") address3Error.textContent = "නගරය හිස් විය නොහැක";
+      else address3Error.textContent = "City cannot be empty";
+      address3_status = false;
+      return false;
+    } else {
+      address3_status = true;
+      address3Error.textContent = "";
+      return true;
     }
+  }
 })();
 
 function ValidateEmail(email) {

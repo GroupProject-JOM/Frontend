@@ -12,6 +12,8 @@
     edit = body.querySelector(".edit"),
     del = body.querySelector(".delete");
 
+  var lang = getCookie("lang"); // current language
+
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
@@ -19,6 +21,7 @@
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     dTitle.textContent = data["sin"]["dTitle"];
     dText.textContent = data["sin"]["dText"];
@@ -34,6 +37,7 @@
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     dTitle.textContent = data["en"]["dTitle"];
     dText.textContent = data["en"]["dText"];
@@ -57,17 +61,19 @@
     },
   };
 
-  fetch(backProxy + "/outlet?id=" + getCookie("id"), {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
+  fetch(
+    backProxy + "/outlet?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  )
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          console.log(data.outlet);
           oId.textContent = data.outlet.id;
           oName.textContent = data.outlet.name;
           oEmail.textContent = data.outlet.email;
@@ -79,44 +85,109 @@
             ", " +
             data.outlet.city;
         });
-      } else if (response.status === 202) {
+      } else if (response.status === 400) {
         response.json().then((data) => {
           console.log(data.outlet);
         });
+        if (lang == "sin") Command: toastr["error"]("අලෙවිසැලක් නැත");
+        else Command: toastr["error"]("No outlet");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
 
   //delete outlet
   del.addEventListener("click", () => {
-    fetch(backProxy + "/outlet?id=" + getCookie("id"), {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then((response) => {
-        if (response.status == 200) {
-          response.json().then((data) => {
-            console.log(data.message);
-            window.location.href = "./";
+    if (lang == "sin") {
+      var title = "ඔයාට විශ්වාස ද?",
+        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+        confirmButtonText = "ඔව්, එය මකන්න!",
+        cancelButtonText = "අවලංගු කරන්න";
+    } else {
+      var title = "Are you sure?",
+        text = "You won't be able to revert this!",
+        confirmButtonText = "Yes, delete it!",
+        cancelButtonText = "Cancel";
+    }
+    Swal.fire({
+      title: title,
+      text: text,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: confirmButtonColor,
+      cancelButtonColor: cancelButtonColor,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          backProxy +
+            "/outlet?id=" +
+            getCookie("id") +
+            "&emp=" +
+            getCookie("sId"),
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        )
+          .then((response) => {
+            if (response.status == 200) {
+              response.json().then((data) => {
+                console.log(data.message);
+              });
+              if (lang == "sin") {
+                var title = "මකා දමන ලදී!",
+                  text = "අලෙවිසැල මකා ඇත.";
+              } else {
+                var title = "Deleted!",
+                  text = "Outlet has been deleted.";
+              }
+              // sweet alert
+              Swal.fire({
+                title: title,
+                text: text,
+                icon: "success",
+              }).then((response) => {
+                window.location.href = "./";
+              });
+            } else if (response.status === 400) {
+              response.json().then((data) => {
+                console.log(data.message);
+              });
+              if (lang == "sin")
+                Command: toastr["error"]("Outlet මකා දැමිය නොහැක");
+              else Command: toastr["error"]("Unable to Delete Outlet");
+            } else if (response.status === 401) {
+              response.json().then((data) => {
+                console.log(data.message);
+              });
+              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+              else Command: toastr["error"]("Invalid User");
+            } else {
+              console.error("Error:", response.status);
+              Command: toastr["error"](response.status, "Error");
+            }
+          })
+          .catch((error) => {
+            console.error("An error occurred:", error);
+            Command: toastr["error"](error);
           });
-        } else if (response.status === 400) {
-          response.json().then((data) => {
-            console.log(data.message);
-          });
-        } else {
-          console.error("Error:", response.status);
-          console.log(error);
-        }
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error);
-      });
+      }
+    });
   });
 })();
