@@ -87,8 +87,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   let row1 = "",
     row2 = "",
-    count = 0,
-    value = 0;
+    count = 0;
 
   fetch(backProxy + "/collections?sId=" + getCookie("sId"), {
     method: "GET",
@@ -135,7 +134,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                     String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
                 }
               } else {
-                timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
+                timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
               }
 
               row1 +=
@@ -200,8 +199,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "</button>" +
                 "</td>" +
                 "</tr>";
-
-              value += item.value;
             } else {
               return;
             }
@@ -210,7 +207,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
           ongoing.textContent = count;
-          income.textContent = value.toLocaleString("en-US") + " LKR";
+          income.textContent = data.income.toLocaleString("en-US") + " LKR";
 
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
@@ -240,5 +237,5 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     });
 
   ongoing.textContent = count;
-  income.textContent = value.toLocaleString("en-US") + " LKR";
+  income.textContent = 0 + " LKR";
 })();

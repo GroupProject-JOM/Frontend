@@ -11,6 +11,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -56,7 +60,7 @@
               <div class="send-otp">
                 <div class="form-heading-text1 form-heading-text"></div>
                 <br />
-                <button class="send-button form-button send-email">Send</button>
+                <button class="send-button form-button send-email"></button>
                 <div class="lds-ring">
                   <div></div>
                   <div></div>
@@ -70,13 +74,13 @@
                   <span class="form-heading-text2"></span>
                 </div>
                 <div class="renter-email">
-                  <input
-                    type="text"
-                    class="correct-email"
-                    placeholder="Enter correct email address"
-                  /><button type="submit" class="send-button form-button">
-                    Update
-                  </button>
+                  <input type="text" class="correct-email" placeholder="" />
+                  <button
+                    type="submit"
+                    class="send-button form-button update-email"
+                  ></button>
+                  <br />
+                  <span class="form-error email-error"></span>
                 </div>
               </div>
             </div>
@@ -154,6 +158,7 @@
         </div>
       </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../common/func.js"></script>
