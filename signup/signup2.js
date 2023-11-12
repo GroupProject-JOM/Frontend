@@ -13,7 +13,10 @@ var lang = getCookie("lang"); // current language
     eotp = body.querySelector(".email-otp"),
     potp = body.querySelector(".phone-otp"),
     sendEmail = body.querySelector(".send-email"),
+    updateEmail = body.querySelector(".update-email"),
     reEmail = body.querySelector(".renter-email"),
+    CorEmail = body.querySelector(".correct-email"),
+    emailError = document.querySelector(".email-error"),
     emailOtp = body.querySelector(".email-otp"),
     shPhone = body.querySelector(".signup-heading-phone"),
     sendPhone = body.querySelector(".send-phone"),
@@ -29,6 +32,7 @@ var lang = getCookie("lang"); // current language
 
   var email = getCookie("email"),
     phone = getCookie("phone"),
+    email_status = false,
     oId;
 
   if (email == null) {
@@ -90,6 +94,9 @@ var lang = getCookie("lang"); // current language
     next.textContent = data["sin"]["next"];
     vbt1.textContent = data["sin"]["vbt1"];
     vbt2.textContent = data["sin"]["vbt2"];
+    CorEmail.placeholder = data["sin"]["CorEmail"];
+    sendEmail.textContent = data["sin"]["sendEmail"];
+    updateEmail.textContent = data["sin"]["updateEmail"];
   });
 
   en.addEventListener("click", () => {
@@ -112,6 +119,9 @@ var lang = getCookie("lang"); // current language
     next.textContent = data["en"]["next"];
     vbt1.textContent = data["en"]["vbt1"];
     vbt2.textContent = data["en"]["vbt2"];
+    CorEmail.placeholder = data["en"]["CorEmail"];
+    sendEmail.textContent = data["en"]["sendEmail"];
+    updateEmail.textContent = data["en"]["updateEmail"];
   });
 
   var data = {
@@ -127,6 +137,9 @@ var lang = getCookie("lang"); // current language
       next: "ඊළඟ",
       vbt1: "තහවුරු කරන්න",
       vbt2: "තහවුරු කරන්න",
+      CorEmail: "නිවැරදි ඊමේල් ලිපිනය ඇතුලත් කරන්න",
+      sendEmail: "යවන්න",
+      updateEmail: "යාවත්කාලීන කරන්න",
     },
     en: {
       fh1: "Verify your email",
@@ -140,6 +153,9 @@ var lang = getCookie("lang"); // current language
       next: "Next",
       vbt1: "Verify",
       vbt2: "Verify",
+      CorEmail: "Enter correct email address",
+      sendEmail: "Send",
+      updateEmail: "Update",
     },
   };
 
@@ -207,13 +223,26 @@ var lang = getCookie("lang"); // current language
                 counter.style.display = "none";
               }
             }, 1000);
+        } else if (response.status === 409) {
+          if (lang == "sin") {
+            error.textContent =
+              "OTP යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න";
+            Command: toastr["error"](
+              "OTP යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න"
+            );
+          } else {
+            error.textContent = "Failed to send OTP, please try again later";
+            Command: toastr["error"](
+              "Failed to send OTP, please try again later"
+            );
+          }
         } else if (response.status === 401) {
           if (lang == "sin") {
-            error.textContent = "ලියාපදිංචිය අසාර්ථකයි";
-            Command: toastr["error"]("ලියාපදිංචිය අසාර්ථකයි");
+            error.textContent = "වලංගු නොවන පරිශීලක";
+            Command: toastr["error"]("වලංගු නොවන පරිශීලක");
           } else {
-            error.textContent = "Registration unsuccessful";
-            Command: toastr["error"]("Registration unsuccessful");
+            error.textContent = "Invalid user";
+            Command: toastr["error"]("Invalid user");
           }
         } else {
           console.error("Error:", response.status);
@@ -282,6 +311,20 @@ var lang = getCookie("lang"); // current language
               Command: toastr["warning"]("Invalid OTP");
             }
             emailOtp.focus();
+          } else if (response.status === 409) {
+            // already validated
+            document.cookie =
+              "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+            document.cookie =
+              "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+            document.cookie =
+              "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+
+            console.log(data.message);
+            error.textContent = data.message;
+            vbt1.disabled = true;
+            isValidate = true;
+            window.location.href = frontProxy + "/signup/signup3.html";
           } else {
             console.error("Error:", response.status);
             Command: toastr["error"](response.status, "Error");
@@ -305,4 +348,129 @@ var lang = getCookie("lang"); // current language
       window.location.href = frontProxy + "/signup/signup3.html";
     } else console.log("Please validate your Email address");
   });
+
+  CorEmail.addEventListener("input", () => {
+    email_status_func();
+  });
+
+  updateEmail.addEventListener("click", () => {
+    if (!email_status_func()) {
+      CorEmail.focus();
+    }
+    if (email_status) {
+      var formData = {
+        email: CorEmail.value,
+        id: getCookie("id"),
+      };
+      fetch(backProxy + "/updateEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            document.cookie = "email=" + CorEmail.value;
+            if (lang == "sin")
+              var title = "විද්‍යුත් තැපෑල සාර්ථකව යාවත්කාලීන කරන ලදී";
+            else var title = "Email updated successfully";
+
+            Swal.fire({
+              title: title,
+              // text: "You clicked the button!",
+              icon: "success",
+            }).then((response) => {
+              reEmail.style.display = "none";
+              sendEmail.style.display = "block";
+              fht1.style.display = "block";
+              emailOtp.style.display = "block";
+              vbt1.style.display = "block";
+              location.reload();
+            });
+          } else if (response.status === 400) {
+            if (lang == "sin") {
+              if (data.message == "email1") {
+                emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක!";
+                CorEmail.focus();
+              } else if (data.message == "email2") {
+                emailError.textContent = "වලංගු විද්‍යුත් තැපෑලක් ඇතුළු කරන්න!";
+                CorEmail.focus();
+              } else {
+                emailError.textContent = "ඊමේල් යාවත්කාලීන කිරීමට අසමත් විය";
+                Command: toastr["error"]("ඊමේල් යාවත්කාලීන කිරීමට අසමත් විය");
+              }
+            } else {
+              if (data.message == "email1") {
+                emailError.textContent = "Email cannot be empty!";
+                CorEmail.focus();
+              } else if (data.message == "email2") {
+                emailError.textContent = "Enter a valid email!";
+                CorEmail.focus();
+              } else {
+                emailError.textContent = "Failed to update email";
+                Command: toastr["error"]("Failed to update email");
+              }
+            }
+          } else if (response.status === 409) {
+            response.json().then((data) => {
+              if (data.message == "email3") {
+                if (lang == "sin")
+                  emailError.textContent =
+                    "මෙම විද්‍යුත් තැපෑල දැනටමත් භාවිතා කර ඇත";
+                else emailError.textContent = "This email is already used";
+                CorEmail.focus();
+              }
+            });
+          } else if (response.status === 401) {
+            if (lang == "sin") {
+              emailError.textContent = "වලංගු නොවන පරිශීලක";
+              Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+            } else {
+              emailError.textContent = "Invalid user";
+              Command: toastr["error"]("Invalid user");
+            }
+          } else {
+            console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+          Command: toastr["error"](error);
+        });
+    }
+  });
+
+  function email_status_func() {
+    if (
+      typeof CorEmail.value === "string" &&
+      CorEmail.value.trim().length === 0
+    ) {
+      if (lang == "sin")
+        emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
+      else emailError.textContent = "Email cannot be empty";
+      email_status = false;
+      return false;
+    } else if (!ValidateEmail(CorEmail.value)) {
+      if (lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
+      else emailError.textContent = "Invalid email address!";
+      email_status = false;
+      return false;
+    } else {
+      emailError.textContent = "";
+      email_status = true;
+      return true;
+    }
+  }
 })();
+
+function ValidateEmail(email) {
+  var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (email.match(emailRegex)) return true;
+  else return false;
+}
