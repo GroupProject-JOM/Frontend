@@ -17,7 +17,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
     />
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -73,6 +76,7 @@
               placeholder=""
               autocomplete="given-name"
             />
+            <br /><span class="form-error oname-error"></span>
             <br />
             <input
               type="text"
@@ -80,37 +84,46 @@
               placeholder=""
               autocomplete="email"
             /><br />
+            <span class="form-error email-error"></span><br />
             <input
               type="text"
               class="long phone"
               placeholder=""
               autocomplete="tel"
             /><br />
+            <span class="form-error phone-error"></span><br />
             <input
               type="text"
               class="long address1"
               placeholder=""
               autocomplete="address-line1"
-            /><br />
+            /><br /><span class="form-error address1-error"></span><br />
             <div>
-              <input
-                type="text"
-                class="short address2"
-                placeholder=""
-                autocomplete="address-line2"
-              />
-              <input
-                type="text"
-                class="short address3"
-                placeholder=""
-                autocomplete="address-line3"
-              />
+              <section>
+                <input
+                  type="text"
+                  name="address2"
+                  class="short address2"
+                  placeholder=""
+                  autocomplete="address-line2"
+                /><br /><span class="form-error address2-error"></span>
+              </section>
+              <section>
+                <input
+                  type="text"
+                  name="address3"
+                  class="short address3"
+                  placeholder=""
+                  autocomplete="address-line3"
+                /><br /><span class="form-error address3-error"></span>
+              </section>
             </div>
           </form>
         </div>
         <button class="savebt form-button"></button>
       </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../common/func.js"></script>
