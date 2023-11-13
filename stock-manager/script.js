@@ -2,15 +2,17 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     c4 = body.querySelector(".c4"),
     c5 = body.querySelector(".c5"),
+    tbody2 = body.querySelector(".tbody2"),
     c6 = body.querySelector(".c6"),
     c7 = body.querySelector(".c7");
+
+  var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -19,6 +21,7 @@
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -38,6 +41,7 @@
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -72,4 +76,70 @@
       c7: "View color-coded stock information",
     },
   };
+
+  let row2 = "";
+
+  fetch(backProxy + "/stock-manager?sId=" + getCookie("sId"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          console.log(data);
+          let arr = data.list;
+          arr.forEach(data_to_table);
+
+          function data_to_table(item) {
+            row2 +=
+              "<tr data-href='./supply-requests/view-request1.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.id +
+              "</td>" +
+              "<td>" +
+              item.name +
+              "</td>" +
+              "<td>" +
+              item.date +
+              "</td>" +
+              "<td>" +
+              item.amount.toLocaleString("en-US") +
+              "</td>" +
+              "<td>" +
+              item.method.charAt(0).toUpperCase() +
+              item.method.slice(1) +
+              "</td>" +
+              "</tr>";
+          }
+
+          tbody2.innerHTML = row2;
+
+          const rows = document.querySelectorAll("tr[data-href]");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id + "; path=/";
+              window.location.href = r.dataset.href;
+            });
+          });
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.size);
+        });
+        if (lang == "sin") Command: toastr["info"]("සැපයුම් ඉල්ලීම් නොමැත");
+        else Command: toastr["info"]("No Supply requests");
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
 })();
