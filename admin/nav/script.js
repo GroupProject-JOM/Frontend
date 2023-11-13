@@ -44,7 +44,7 @@
 
     employee.href = frontProxy + "/admin/employee/view-all.html";
     collection.href = frontProxy + "/admin/employee/view-all.html";
-    outlet.href = frontProxy + "/admin/employee/view-all.html";
+    outlet.href = frontProxy + "/admin/outlet";
     dashboard.href = frontProxy + "/admin";
 
     if (!loaded && toggle && modeSwitch) {

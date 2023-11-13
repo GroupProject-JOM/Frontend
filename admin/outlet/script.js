@@ -1,15 +1,10 @@
-// sessionStorage.setItem("id", 0);
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    sTitle = body.querySelector(".supply-title"),
-    sText = body.querySelector(".supply-text"),
-    bankTable = body.querySelector(".bankaccc-table"),
-    tError = body.querySelector(".error"),
-    th1 = body.querySelector(".th1"),
-    th2 = body.querySelector(".th2"),
+    c1 = body.querySelector(".c1"),
+    c2 = body.querySelector(".c2"),
     tbody = body.querySelector(".tbody"),
     btn = body.querySelector(".form-button");
 
@@ -24,12 +19,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
-    sTitle.textContent = data["sin"]["sTitle"];
-    sText.innerHTML = data["sin"]["sText"];
-    th1.textContent = data["sin"]["th1"];
-    th2.textContent = data["sin"]["th2"];
+    c1.textContent = data["sin"]["c1"];
+    c2.textContent = data["sin"]["c2"];
     btn.textContent = data["sin"]["btn"];
-    tError.textContent = data["sin"]["tError"];
     setGreeting();
   });
 
@@ -42,31 +34,22 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.cookie = "lang=en; path=/";
     lang = "en";
 
-    sTitle.textContent = data["en"]["sTitle"];
-    sText.innerHTML = data["en"]["sText"];
-    th1.textContent = data["en"]["th1"];
-    th2.textContent = data["en"]["th2"];
+    c1.textContent = data["en"]["c1"];
+    c2.textContent = data["en"]["c2"];
     btn.textContent = data["en"]["btn"];
-    tError.textContent = data["en"]["tError"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      sTitle: "ඔබගේ බැංකු ගිණුම්",
-      sText: "ඔබගේ බැංකු ගිණුම් විස්තර බලන්න සහ සංස්කරණය කරන්න",
-      th1: "ගිණුම් අංකය",
-      th2: "බැංකුව",
+      c1: "අලෙවිසැල්",
+      c2: "අලෙවිසැල් තොරතුරු බලන්න සහ යාවත්කාලීන කරන්න",
       btn: "අලුතින් එකතු කරන්න",
-      tError: "බැංකු ගිණුම් නැත",
     },
     en: {
-      sTitle: "Your Bank Accounts",
-      sText: "View and Edit the your bank account details",
-      th1: "Account Number",
-      th2: "Bank",
+      c1: "Outlets",
+      c2: "View and update Outlet Information",
       btn: "Add New",
-      tError: "No Bank Accounts",
     },
   };
 
@@ -74,8 +57,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function getData() {
     var row = "";
-    // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
-    fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+    fetch(backProxy + "/outlets?emp=" + getCookie("sId"), {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -94,10 +76,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 item.id +
                 ">" +
                 "<td data-href='./view.html'>" +
-                item.account_number +
+                item.id +
                 "</td>" +
                 "<td data-href='./view.html'>" +
-                item.bank +
+                item.name +
+                "</td>" +
+                "<td data-href='./view.html'>" +
+                item.city +
+                "</td>" +
+                "<td data-href='./view.html'>" +
+                item.phone +
                 "</td>" +
                 '<td class="edit"><i class="fa-solid fa-pen-to-square icon"></i></td>' +
                 '<td class="delete"><i class="fa-solid fa-trash-can icon"></i></td>' +
@@ -143,11 +131,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   if (result.isConfirmed) {
                     fetch(
                       backProxy +
-                        "/account?sId=" +
-                        // sessionStorage.getItem("sId") +
-                        getCookie("sId") +
-                        "&id=" +
-                        del.parentElement.id,
+                        "/outlet?id=" +
+                        del.parentElement.id +
+                        "&emp=" +
+                        getCookie("sId"),
                       {
                         method: "DELETE",
                         headers: {
@@ -160,28 +147,38 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                         if (response.status == 200) {
                           response.json().then((data) => {
                             console.log(data.message);
-                            if (lang == "sin") {
-                              var title = "මකා දමන ලදී!",
-                                text = "ඔබගේ ගිණුම මකා ඇත.";
-                            } else {
-                              var title = "Deleted!",
-                                text = "Your account has been deleted.";
-                            }
-                            // sweet alert
-                            Swal.fire({
-                              title: title,
-                              text: text,
-                              icon: "success",
-                              confirmButtonColor: confirmButtonColor,
-                            }).then((response) => {
-                              getData();
-                            });
+                          });
+                          if (lang == "sin") {
+                            var title = "මකා දමන ලදී!",
+                              text = "අලෙවිසැල මකා ඇත.";
+                          } else {
+                            var title = "Deleted!",
+                              text = "Outlet has been deleted.";
+                          }
+                          // sweet alert
+                          Swal.fire({
+                            title: title,
+                            text: text,
+                            icon: "success",
+                            confirmButtonColor: confirmButtonColor,
+                          }).then((response) => {
+                            getData();
                           });
                         } else if (response.status === 400) {
                           response.json().then((data) => {
                             console.log(data.message);
-                            Command: toastr["error"](data.message);
                           });
+                          if (lang == "sin")
+                            Command: toastr["error"]("Outlet මකා දැමිය නොහැක");
+                          else
+                            Command: toastr["error"]("Unable to Delete Outlet");
+                        } else if (response.status === 401) {
+                          response.json().then((data) => {
+                            console.log(data.message);
+                          });
+                          if (lang == "sin")
+                            Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+                          else Command: toastr["error"]("Invalid User");
                         } else {
                           console.error("Error:", response.status);
                           Command: toastr["error"](response.status, "Error");
@@ -205,11 +202,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           });
         } else if (response.status === 202) {
           response.json().then((data) => {
-            tError.style.display = "block";
-            bankTable.style.display = "none";
-            if (lang == "sin") Command: toastr["info"]("බැංකු ගිණුම් නැත");
-            else Command: toastr["info"]("No Bank accounts");
+            console.log(data.size);
           });
+          if (lang == "sin") Command: toastr["info"]("අලෙවිසැල් නැත");
+          else Command: toastr["info"]("No outlets");
+        } else if (response.status === 401) {
+          response.json().then((data) => {
+            console.log(data.message);
+          });
+          if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+          else Command: toastr["error"]("Invalid User");
         } else {
           console.error("Error:", response.status);
           Command: toastr["error"](response.status, "Error");
