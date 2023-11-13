@@ -85,7 +85,7 @@
             data.employee.add_line_3;
           eDob.textContent = data.employee.dob;
           eNic.textContent = data.employee.nic;
-          eRole.textContent = data.employee.role;
+          eRole.textContent = data.employee.role.charAt(0).toUpperCase() +data.employee.role.slice(1);
           eGender.textContent = data.employee.gender;
         });
       } else if (response.status === 202) {

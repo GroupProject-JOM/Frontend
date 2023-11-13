@@ -78,7 +78,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               item.first_name +
               "</td>" +
               "<td>" +
-              item.role +
+              item.role.charAt(0).toUpperCase() +
+              item.role.slice(1) +
               "</td>" +
               "<td>" +
               item.phone +
