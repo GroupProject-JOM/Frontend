@@ -141,8 +141,6 @@ window.addEventListener("load", (e) => {
     if (!pathname) {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
-
-    console.log(pathname);
     // pathname = pathname.replace(".html", "");
     const navItems = [
       "distributors",
