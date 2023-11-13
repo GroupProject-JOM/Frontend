@@ -197,6 +197,7 @@ let gendr, bDay;
     ) {
       var formData = {
         eId: getCookie("id"),
+        emp: getCookie("sId"),
         first_name: fname.value,
         last_name: lname.value,
         phone: phone.value,
@@ -222,84 +223,92 @@ let gendr, bDay;
               console.log(data.message);
             });
             window.location.href = "./view.html";
-          } else if (response.status === 401) {
-            console.log("Registration unsuccessful");
+          } else if (response.status === 406) {
+            if (lang == "sin")
+              Command: toastr["error"]("යාවත්කාලීන කිරීම අසාර්ථකයි");
+            else Command: toastr["error"]("Update unsuccessful");
           } else if (response.status === 400) {
             // backend error handle
             response.json().then((data) => {
-            // backend error handle
-            if (lang == "sin") {
-              if (data.message == "fname") {
-                fnameError.textContent = "මුල් නම හිස් විය නොහැක!";
-                fname.focus();
-              } else if (data.message == "lname") {
-                lnameError.textContent = "අවසාන නම හිස් විය නොහැක!";
-                lname.focus();
-              } else if (data.message == "phone") {
-                phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
-                phone.focus();
-              } else if (data.message == "adddress1") {
-                address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
-                address1.focus();
-              } else if (data.message == "adddress2") {
-                address2Error.textContent = "වීදිය හිස් විය නොහැක!";
-                address2.focus();
-              } else if (data.message == "adddress3") {
-                address3Error.textContent = "නගරය හිස් විය නොහැක!";
-                address3.focus();
-              } else if (data.message == "nic") {
-                nicError.textContent = "ජාතික හැඳුනුම්පත හිස් විය නොහැක!";
-                nic.focus();
-              } else if (data.message == "NIC") {
-                nicError.textContent = "NIC දැනටමත් පවතී!";
-                nic.focus();
-              } else if (data.message == "role") {
-                dropdownError.textContent = "තනතුර හිස් විය නොහැක!";
-                dropdown.focus();
-              } else if (data.message == "roleV") {
-                dropdownError.textContent = "වලංගු තනතුරක් ඇතුළත් කරන්න!";
-                dropdown.focus();
+              // backend error handle
+              if (lang == "sin") {
+                if (data.message == "fname") {
+                  fnameError.textContent = "මුල් නම හිස් විය නොහැක!";
+                  fname.focus();
+                } else if (data.message == "lname") {
+                  lnameError.textContent = "අවසාන නම හිස් විය නොහැක!";
+                  lname.focus();
+                } else if (data.message == "phone") {
+                  phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
+                  phone.focus();
+                } else if (data.message == "adddress1") {
+                  address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
+                  address1.focus();
+                } else if (data.message == "adddress2") {
+                  address2Error.textContent = "වීදිය හිස් විය නොහැක!";
+                  address2.focus();
+                } else if (data.message == "adddress3") {
+                  address3Error.textContent = "නගරය හිස් විය නොහැක!";
+                  address3.focus();
+                } else if (data.message == "nic") {
+                  nicError.textContent = "ජාතික හැඳුනුම්පත හිස් විය නොහැක!";
+                  nic.focus();
+                } else if (data.message == "NIC") {
+                  nicError.textContent = "NIC දැනටමත් පවතී!";
+                  nic.focus();
+                } else if (data.message == "role") {
+                  dropdownError.textContent = "තනතුර හිස් විය නොහැක!";
+                  dropdown.focus();
+                } else if (data.message == "roleV") {
+                  dropdownError.textContent = "වලංගු තනතුරක් ඇතුළත් කරන්න!";
+                  dropdown.focus();
+                } else {
+                  console.log(data.message);
+                  Command: toastr["error"](data.message);
+                }
               } else {
-                console.log(data.message);
-                Command: toastr["error"](data.message);
+                if (data.message == "fname") {
+                  fnameError.textContent = "First name cannot be empty!";
+                  fname.focus();
+                } else if (data.message == "lname") {
+                  lnameError.textContent = "Last name cannot be empty!";
+                  lname.focus();
+                } else if (data.message == "phone") {
+                  phoneError.textContent = "Contact number cannot be empty!";
+                  phone.focus();
+                } else if (data.message == "adddress1") {
+                  address1Error.textContent = "Address line 1 cannot be empty!";
+                  address1.focus();
+                } else if (data.message == "adddress2") {
+                  address2Error.textContent = "Street cannot be empty!";
+                  address2.focus();
+                } else if (data.message == "adddress3") {
+                  address3Error.textContent = "City cannot be empty!";
+                  address3.focus();
+                } else if (data.message == "nic") {
+                  nicError.textContent = "NIC cannot be empty!";
+                  nic.focus();
+                } else if (data.message == "NIC") {
+                  nicError.textContent = "NIC already exists!";
+                  nic.focus();
+                } else if (data.message == "role") {
+                  dropdownError.textContent = "Designation cannot be empty!";
+                  dropdown.focus();
+                } else if (data.message == "roleV") {
+                  dropdownError.textContent = "Enter valid designation!";
+                  dropdown.focus();
+                } else {
+                  console.log(data.message);
+                  Command: toastr["error"](data.message);
+                }
               }
-            } else {
-              if (data.message == "fname") {
-                fnameError.textContent = "First name cannot be empty!";
-                fname.focus();
-              } else if (data.message == "lname") {
-                lnameError.textContent = "Last name cannot be empty!";
-                lname.focus();
-              } else if (data.message == "phone") {
-                phoneError.textContent = "Contact number cannot be empty!";
-                phone.focus();
-              } else if (data.message == "adddress1") {
-                address1Error.textContent = "Address line 1 cannot be empty!";
-                address1.focus();
-              } else if (data.message == "adddress2") {
-                address2Error.textContent = "Street cannot be empty!";
-                address2.focus();
-              } else if (data.message == "adddress3") {
-                address3Error.textContent = "City cannot be empty!";
-                address3.focus();
-              } else if (data.message == "nic") {
-                nicError.textContent = "NIC cannot be empty!";
-                nic.focus();
-              } else if (data.message == "NIC") {
-                nicError.textContent = "NIC already exists!";
-                nic.focus();
-              } else if (data.message == "role") {
-                dropdownError.textContent = "Designation cannot be empty!";
-                dropdown.focus();
-              } else if (data.message == "roleV") {
-                dropdownError.textContent = "Enter valid designation!";
-                dropdown.focus();
-              } else {
-                console.log(data.message);
-                Command: toastr["error"](data.message);
-              }
-            }
-          });
+            });
+          } else if (response.status === 401) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+            else Command: toastr["error"]("Invalid User");
           } else {
             console.error("Error:", response.status);
             Command: toastr["error"](response.status, "Error");
@@ -312,13 +321,16 @@ let gendr, bDay;
     }
   });
 
-  fetch(backProxy + "/employee?id=" + getCookie("id"), {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
+  fetch(
+    backProxy + "/employee?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  )
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -337,6 +349,12 @@ let gendr, bDay;
           console.log(data.employee);
           Command: toastr["error"](data.employee);
         });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");

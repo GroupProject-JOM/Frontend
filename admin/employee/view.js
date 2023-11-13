@@ -60,13 +60,16 @@
     },
   };
 
-  fetch(backProxy + "/employee?id=" + getCookie("id"), {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
+  fetch(
+    backProxy + "/employee?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  )
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -90,6 +93,12 @@
           console.log(data.employee);
           Command: toastr["error"](data.employee);
         });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
