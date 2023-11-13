@@ -33,7 +33,7 @@
       l11 = body.querySelector(".l11"),
       dashboard = body.querySelector(".dashboard"),
       distributor = body.querySelector(".distributor"),
-      outlets = body.querySelector(".outlets"),
+      outlet = body.querySelector(".outlet"),
       productions = body.querySelector(".productions"),
       payouts = body.querySelector(".payouts"),
       Uname = body.querySelector(".name"),
@@ -45,7 +45,7 @@
 
     dashboard.href = frontProxy + "/sales-manager/";
     distributor.href = frontProxy + "/sales-manager/distributors/view-all.html";
-    outlets.href = frontProxy + "/sales-manager/outlets/view-all.html";
+    outlet.href = frontProxy + "/sales-manager/outlet/";
     productions.href = frontProxy + "/sales-manager/productions/view-all.html";
     payouts.href = frontProxy + "/sales-manager/payouts/view-all.html";
 
@@ -148,7 +148,7 @@ window.addEventListener("load", (e) => {
       "distributors",
       "productions",
       "payouts",
-      "outlets",
+      "outlet",
       "index",
     ];
     if (!loaded && pathname) {

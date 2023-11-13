@@ -10,4 +10,3 @@
     navScript.setAttribute("src", "../nav/script.js");
     document.body.appendChild(navScript);
   })();
-  
