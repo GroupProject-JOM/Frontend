@@ -64,7 +64,7 @@
   
             function data_to_table(item) {
               row +=
-                "<tr data-href='./supply-requests/view-request1.html' id=" +
+                "<tr data-href='./view-request1.html' id=" +
                 item.id +
                 ">" +
                 "<td>" +

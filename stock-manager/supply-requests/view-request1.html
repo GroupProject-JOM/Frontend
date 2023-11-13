@@ -73,43 +73,55 @@
 
         <div class="stockmg-content">
           <div class="stockmg-heading table-heading">
-            <h2 class="stockmg-title">View Request</h2>
-            <p class="stockmg-subtitle">Status: Pending</p>
+            <h2 class="stockmg-title"></h2>
+            <p class="stockmg-subtitle"></p>
           </div>
 
           <div>
             <table class="collection-data-table overview-tables">
               <tbody>
                 <tr>
-                  <td>Supplier ID</td>
-                  <td>S0001</td>
+                  <td>Request ID</td>
+                  <td class="rId"></td>
                 </tr>
                 <tr>
                   <td>Supplier Name</td>
-                  <td>Jayathilake</td>
+                  <td class="sName"></td>
                 </tr>
                 <tr>
-                  <td>Area</td>
-                  <td>Kurunagala Town</td>
+                  <td>Supplier Phone</td>
+                  <td class="sPhone"></td>
+                </tr>
+                <tr>
+                  <td>Supply Method</td>
+                  <td class="sMethod"></td>
+                </tr>
+                <tr class="estate">
+                  <td>Estate Address</td>
+                  <td class="address"></td>
+                </tr>
+                <tr>
+                  <td class="date-text"></td>
+                  <td class="date"></td>
+                </tr>
+                <tr>
+                  <td class="time-text"></td>
+                  <td class="time"></td>
                 </tr>
                 <tr>
                   <td>Coconut Count</td>
-                  <td>10000</td>
-                </tr>
-                <tr>
-                  <td>Delivery Method</td>
-                  <td>Pick up from estate</td>
+                  <td class="amount"></td>
                 </tr>
                 <tr>
                   <td>Paymment Method</td>
-                  <td>Transfer to Account</td>
+                  <td class="pMethod"></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="accept-decline">
-            <a class="stockmg-button form-button" href="./view-request2.html">Accept</a>
-            <a class="stockmg-button form-button" href="./">Decline</a>
+            <a class="stockmg-button form-button accept" href="./view-request2.html"></a>
+            <a class="stockmg-button form-button decline" href="./"></a>
           </div>
         </div>
       </div>
@@ -117,7 +129,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
-    <!-- <script src="../script.js"></script> -->
+    <script src="./view-request1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>

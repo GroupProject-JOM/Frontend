@@ -138,7 +138,6 @@ window.addEventListener("load", (e) => {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
 
-    console.log(pathname);
     // pathname = pathname.replace(".html", "");
     const navItems = ["supply-requests", "track-collectors", "index"];
     if (!loaded && pathname) {
