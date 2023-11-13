@@ -9,6 +9,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tbody = body.querySelector(".tbody"),
     btn = body.querySelector(".form-button");
 
+  var lang = getCookie("lang"); // current language
+
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
@@ -16,6 +18,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     oTitle.textContent = data["sin"]["oTitle"];
     oText.innerHTML = data["sin"]["oText"];
@@ -30,6 +33,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     oTitle.textContent = data["en"]["oTitle"];
     oText.innerHTML = data["en"]["oText"];
@@ -52,7 +56,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var row = "";
   // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
-  fetch(backProxy + "/employees", {
+  fetch(backProxy + "/employees?emp=" + getCookie("sId"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -86,7 +90,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           }
           tbody.innerHTML = row;
 
-          const rows = document.querySelectorAll("tr[data-href]");       
+          const rows = document.querySelectorAll("tr[data-href]");
 
           rows.forEach((r) => {
             r.addEventListener("click", () => {
@@ -98,12 +102,22 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       } else if (response.status === 202) {
         response.json().then((data) => {
           console.log(data.size);
+          if (lang == "sin") Command: toastr["error"]("සේවකයන් නැත");
+          else Command: toastr["error"]("No employees");
         });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
 })();
