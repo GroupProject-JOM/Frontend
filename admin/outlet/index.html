@@ -9,11 +9,15 @@
       crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/notify.css">
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css">
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
       rel="stylesheet"
     />
   </head>
@@ -22,7 +26,7 @@
     <!-- Loading screen -->
     <div class="loader-wrapper">
       <div class="logo-container">
-        <img src="../common/JOM logo 1.png" alt="" />
+        <img src="../../common/JOM logo 1.png" alt="" />
       </div>
       <div class="lds-spinner">
         <div></div>
@@ -57,30 +61,9 @@
         <div class="en active">En</div>
       </div>
 
-      <div class="text">Dashboard</div>
+      <div class="text"></div>
 
-      <div class="container">
-        <div class="widgets">
-          <div class="widget-left widget">
-            <div class="w-icon">
-              <span><i class="fa-solid fa-building-columns"></i></span>
-            </div>
-            <div class="w-text">
-              <p class="w-title w1"></p>
-              <p class="w-value">500</p>
-            </div>
-          </div>
-          <div class="widget-right widget">
-            <div class="w-icon">
-              <span><i class="fa-solid fa-building-columns"></i></span>
-            </div>
-            <div class="w-text">
-              <p class="w-title w2"></p>
-              <p class="w-value">100<span>/500</span></p>
-            </div>
-          </div>
-        </div>
-
+      <div class="container">   
         <div class="layer">
           <div class="table-heading">
             <h2 class="c1"></h2>
@@ -93,22 +76,26 @@
                 <th>Name</th>
                 <th>Location</th>
                 <th>Contact No</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
 
             <tbody class="tbody"></tbody>
           </table>
+          <a class="next form-button" href="./add.html"></a>
         </div>
       </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="../common/func.js"></script>
+    <script src="../../common/func.js"></script>
     <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./nav/load-nav.js"></script>
-    <script src="./notifications/load-notifications.js"></script>
-    <script src="../common/loader.js"></script>
+    <script src="./load-nav.js"></script>
+    <script src="./load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
     
   </body>
 </html>
