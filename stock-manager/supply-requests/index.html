@@ -63,8 +63,8 @@
 
       <div class="supplyreq-container container">
         <div class="stockmg-heading table-heading">
-          <h2 class="stockmg-title">Supply Requests</h2>
-          <p class="stockmg-text">View and approve supplier requests</p>
+          <h2 class="stockmg-title"></h2>
+          <p class="stockmg-text"></p>
         </div>
 
         <table class="addresses-table overview-tables">
@@ -74,66 +74,11 @@
               <th>Supplier</th>
               <th>Date</th>
               <th>Amount</th>
-              <th>Area</th>
+              <th>Method</th>
             </tr>
           </thead>
 
-          <tbody>
-            <tr data-href='./view-request1.html'>
-              <td>S052</td>
-              <td>Kamal</td>
-              <td>23/02/2023</td>
-              <td>200</td>
-              <td>City01</td>
-            </tr>
-
-            <tr data-href='./view-request1.html'>
-              <td>S053</td>
-              <td>Lalith</td>
-              <td>26/02/2023</td>
-              <td>1000</td>
-              <td>City03</td>
-            </tr>
-
-            <tr data-href='./view-request1.html'>
-              <td>S054</td>
-              <td>Sumana</td>
-              <td>23/04/2023</td>
-              <td>600</td>
-              <td>City02</td>
-            </tr>
-
-            <tr data-href='./view-request1.html'>
-              <td>S054</td>
-              <td>Sumana</td>
-              <td>23/04/2023</td>
-              <td>600</td>
-              <td>City02</td>
-            </tr>
-
-            <tr data-href='./view-request1.html'>
-              <td>S054</td>
-              <td>Sumana</td>
-              <td>23/04/2023</td>
-              <td>600</td>
-              <td>City02</td>
-            </tr>
-            <tr data-href='./view-request1.html'>
-              <td>S054</td>
-              <td>Sumana</td>
-              <td>23/04/2023</td>
-              <td>600</td>
-              <td>City02</td>
-            </tr>
-
-            <tr data-href='./view-request1.html'>
-              <td>S055</td>
-              <td>Kamalan</td>
-              <td>04/06/2023</td>
-              <td>800</td>
-              <td>City05</td>
-            </tr>
-          </tbody>
+          <tbody class="tbody"></tbody>
         </table>
       </div>
     </section>
@@ -141,19 +86,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
-    <script>
-      const rows = document.querySelectorAll("tr[data-href]");
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
-            });
-          });
-    </script>
-  <script src="../../common/loader.js"></script>
+    <script src="../../common/loader.js"></script>
   </body>
 </html>

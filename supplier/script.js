@@ -225,6 +225,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           c3.style.display = "none";
           ongoingError.style.display = "Block";
           pastError.style.display = "Block";
+          income.textContent = data.income.toLocaleString("en-US") + " LKR";
         });
       } else {
         console.error("Error:", response.status);
