@@ -206,6 +206,7 @@ let gendr, bDay;
       dropdownStatus
     ) {
       var formData = {
+        emp: getCookie("sId"),
         first_name: fname.value,
         last_name: lname.value,
         email: email.value,
@@ -218,11 +219,13 @@ let gendr, bDay;
         nic: nic.value,
         role: dropdown.value,
       };
-      
-      if(lang == "sin"){
-        var title = "සේවක ලියාපදිංචිය...",text = "කරුණාකර රැඳී සිටින්න..."
-      }else{
-        var title = "Employee registers…",text="Please wait..."
+
+      if (lang == "sin") {
+        var title = "සේවක ලියාපදිංචිය...",
+          text = "කරුණාකර රැඳී සිටින්න...";
+      } else {
+        var title = "Employee registers…",
+          text = "Please wait...";
       }
 
       Swal.fire({
@@ -250,7 +253,7 @@ let gendr, bDay;
             });
             Swal.close();
             window.location.href = "./view-all.html";
-          } else if (response.status === 401) {            
+          } else if (response.status === 406) {
             Swal.close();
             if (lang == "sin")
               Command: toastr["warning"]("ලියාපදිංචිය අසාර්ථකයි");
@@ -362,6 +365,12 @@ let gendr, bDay;
                 email.focus();
               }
             });
+          } else if (response.status === 401) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+            else Command: toastr["error"]("Invalid User");
           } else {
             Swal.close();
             console.error("Error:", response.status);
