@@ -43,7 +43,7 @@
     dashboard.href = frontProxy + "/stock-manager/";
     track.href = frontProxy + "/stock-manager/track-collectors/view-all.html";
     supply.href =
-      frontProxy + "/stock-manager/supply-requests/supply-request.html";
+      frontProxy + "/stock-manager/supply-requests/";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");

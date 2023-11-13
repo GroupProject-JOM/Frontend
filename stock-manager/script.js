@@ -89,7 +89,6 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          console.log(data);
           let arr = data.list;
           arr.forEach(data_to_table);
 
