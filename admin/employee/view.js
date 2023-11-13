@@ -133,13 +133,20 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(backProxy + "/employee?id=" + getCookie("id"), {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        })
+        fetch(
+          backProxy +
+            "/employee?id=" +
+            getCookie("id") +
+            "&emp=" +
+            getCookie("sId"),
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        )
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {
@@ -161,9 +168,17 @@
                   window.location.href = "./view-all.html";
                 });
               });
-            } else if (response.status === 400) {
+            } else if (response.status === 202) {
               response.json().then((data) => {
-                Command: toastr["error"](data.message);
+                if (lang == "sin")
+                  Command: toastr["error"]("සේවකයා මකා දැමිය නොහැක");
+                else Command: toastr["error"]("Unable to Delete employee");
+              });
+            } else if (response.status === 401) {
+              response.json().then((data) => {
+                if (lang == "sin")
+                  Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+                else Command: toastr["error"]("Invalid User");
               });
             } else {
               console.error("Error:", response.status);
