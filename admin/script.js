@@ -21,6 +21,8 @@
     collection = body.querySelector(".collection"),
     outlet = body.querySelector(".outlet");
 
+  var lang = getCookie("lang"); // current language
+
   employee.addEventListener("click", () => {
     window.location.href = "./employee/view-all.html";
   });
@@ -34,6 +36,7 @@
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     w1.textContent = data["sin"]["w1"];
     w2.textContent = data["sin"]["w2"];
@@ -56,6 +59,7 @@
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     w1.textContent = data["en"]["w1"];
     w2.textContent = data["en"]["w2"];
@@ -100,7 +104,7 @@
     },
   };
 
-  fetch(backProxy + "/admin", {
+  fetch(backProxy + "/admin?emp=" + getCookie("sId"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -115,11 +119,12 @@
           w3Value.textContent = data.outlets;
           w4Value.textContent = data.collections;
         });
-      } else if (response.status === 202) {
+      } else if (response.status === 401) {
         response.json().then((data) => {
-          console.log(data.employee);
-          Command: toastr["error"](data.employee);
+          console.log(data.message);
         });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
