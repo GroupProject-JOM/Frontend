@@ -384,6 +384,7 @@ var lang = getCookie("lang"); // current language
               title: title,
               // text: "You clicked the button!",
               icon: "success",
+              confirmButtonColor : confirmButtonColor,
             }).then((response) => {
               reEmail.style.display = "none";
               sendEmail.style.display = "block";

@@ -147,6 +147,7 @@ function signout() {
   document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   document.cookie = "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+  pageLoading();
   window.location.href = frontProxy;
 }
 
@@ -175,11 +176,20 @@ toastr.options = {
 
 // Sweet alerts colors
 var confirmButtonColor = "#3085d6",
-  cancelButtonColor = "#d33";
+  cancelButtonColor = "#d33",
+  confirmButtonColor = "#3085d6",
+  denyButtonColor = "#dd6b55";
 
 function pageLoading(){
+  // const loader = document.querySelector(".loader-wrapper");
+  // loader.style.display = "block";
+  // loader.toggle()
+  
+  $(".loader-wrapper").toggle();
+}
+function pageLoadingStop(){
   const loader = document.querySelector(".loader-wrapper");
-  loader.style.display = "block";
+  loader.style.display = "none";
   // loader.toggle()
   
   // $(".loader-wrapper").toggle();

@@ -165,6 +165,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               title: title,
               // text: "You clicked the button!",
               icon: "success",
+              confirmButtonColor : confirmButtonColor,
             }).then((response) => {
               window.location.href = "./";
             });

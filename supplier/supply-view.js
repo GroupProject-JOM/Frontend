@@ -219,6 +219,7 @@
                     title: title,
                     text: text,
                     icon: "success",
+                    confirmButtonColor : confirmButtonColor,
                   }).then((response) => {
                     window.location.href = "./";
                   });

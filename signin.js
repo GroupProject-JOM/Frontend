@@ -103,6 +103,22 @@ var username_status = false,
         password: password.value,
       };
 
+      if(lang == "sin"){
+        var title = "සම්බන්ධ වෙමින්...",text = "කරුණාකර රැඳී සිටින්න..."
+      }else{
+        var title = "Connecting...",text="Please wait..."
+      }
+
+      Swal.fire({
+        title: title,
+        html: text,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
       // send form data object via fetch api
       fetch(backProxy + "/signin", {
         method: "POST",
@@ -113,6 +129,7 @@ var username_status = false,
         credentials: "include",
       })
         .then((response) => {
+          Swal.close();
           if (response.status === 200) {
             response.json().then((data) => {
               console.log(data.message);
@@ -123,6 +140,7 @@ var username_status = false,
                 document.cookie = "name=" + data.name + "; path=/";
                 document.cookie = "page=" + data.page + "; path=/";
                 document.cookie = "sId=" + data.sId + "; path=/";
+                pageLoading();
                 window.location.href = frontProxy + "/" + data.page;
               }
             });
@@ -184,6 +202,7 @@ var username_status = false,
           }
         })
         .catch((error) => {
+          Swal.close();          
           // console.error("An error occurred:", error);
           Command: toastr["error"](error);
         });

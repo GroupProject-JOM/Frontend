@@ -172,6 +172,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                               title: title,
                               text: text,
                               icon: "success",
+                              confirmButtonColor : confirmButtonColor,
                             }).then((response) => {
                               getData();
                             });
