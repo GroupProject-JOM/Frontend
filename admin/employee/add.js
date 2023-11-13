@@ -218,6 +218,7 @@ let gendr, bDay;
         nic: nic.value,
         role: dropdown.value,
       };
+      
       if(lang == "sin"){
         var title = "සේවක ලියාපදිංචිය...",text = "කරුණාකර රැඳී සිටින්න..."
       }else{

@@ -167,6 +167,7 @@
               title: title,
               // text: "You clicked the button!",
               icon: "success",
+              confirmButtonColor : confirmButtonColor,
             }).then((response) => {
               window.location.href = "./view.html";
             });
