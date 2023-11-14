@@ -86,26 +86,10 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          var T = data.request.time.split(":"),
-            timeString = "";
-
-          if (T[0] > 12) {
-            T[0] -= 12;
-            if (T[0] >= 12) {
-              timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
-            } else {
-              timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
-            }
-          } else {
-            timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
-          }
-
           rId.textContent = data.request.id;
           sName.textContent = data.request.name + " " + data.request.last_name;
           sPhone.textContent = data.request.phone;
-          sMethod.textContent =
-            data.request.method.charAt(0).toUpperCase() +
-            data.request.method.slice(1);
+          sMethod.textContent = capitalize(data.request.method);
           address.textContent = data.request.location + "," + data.request.area;
           dText.textContent = "Pickup Date";
           tText.textContent = "Pickup Time";
@@ -116,11 +100,9 @@
             tText.textContent = "Delivery Time";
           }
           date.textContent = data.request.date;
-          time.textContent = timeString;
+          time.textContent = timeString(data.request.time);
           amount.textContent = data.request.amount.toLocaleString("en-US");
-          pMethod.textContent =
-            data.request.payment_method.charAt(0).toUpperCase() +
-            data.request.payment_method.slice(1);
+          pMethod.textContent = capitalize(data.request.payment_method);
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -137,4 +119,81 @@
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
+
+  accept.addEventListener("click", () => {
+    if (lang == "sin") {
+      var title = "ඔයාට විශ්වාස ද?",
+        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+        confirmButtonText = "ඔව්, පිළිගන්න!",
+        cancelButtonText = "අවලංගු කරන්න";
+    } else {
+      var title = "Are you sure?",
+        text = "You won't be able to revert this!",
+        confirmButtonText = "Yes, accept it!",
+        cancelButtonText = "Cancel";
+    }
+    Swal.fire({
+      title: title,
+      text: text,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: confirmButtonColor,
+      cancelButtonColor: cancelButtonColor,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          backProxy +
+            "/accept-request?id=" +
+            getCookie("id") +
+            "&sId=" +
+            getCookie("sId"),
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        )
+          .then((response) => {
+            if (response.status == 200) {
+              response.json().then((data) => {
+                console.log(data.message);
+                if (lang == "sin") {
+                  var title = "පිළිගත්තා!",
+                    text = "සැපයුම් ඉල්ලීම පිළිගනු ලැබේ.";
+                } else {
+                  var title = "Accepted!",
+                    text = "Supply request accepted.";
+                }
+                // sweet alert
+                Swal.fire({
+                  title: title,
+                  text: text,
+                  icon: "success",
+                  confirmButtonColor: confirmButtonColor,
+                }).then((response) => {
+                  if(sMethod.textContent == "Pickup") window.location.href = "./view-request2.html";
+                  else window.location.href = "./";
+                });
+              });
+            } else if (response.status === 400) {
+              response.json().then((data) => {
+                console.log(data.message);
+                Command: toastr["error"](data.message);
+              });
+            } else {
+              console.error("Error:", response.status);
+              Command: toastr["error"](response.status, "Error");
+            }
+          })
+          .catch((error) => {
+            console.error("An error occurred:", error);
+            Command: toastr["error"](error);
+          });
+      }
+    });
+  });
 })();

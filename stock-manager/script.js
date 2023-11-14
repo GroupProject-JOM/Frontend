@@ -110,8 +110,7 @@
               item.amount.toLocaleString("en-US") +
               "</td>" +
               "<td>" +
-              item.method.charAt(0).toUpperCase() +
-              item.method.slice(1) +
+              capitalize(item.method) +
               "</td>" +
               "</tr>";
           }
