@@ -63,8 +63,13 @@
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
+            let status = "Pending Approval";
+            if (item.status == 2)
+              if (item.method == "yard") return;
+              else status = "Assign collector";
+
             row +=
-              "<tr data-href='./view-request1.html' id=" +
+              "<tr data-href='./view-request.html' id=" +
               item.id +
               ">" +
               "<td>" +
@@ -81,6 +86,9 @@
               "</td>" +
               "<td>" +
               capitalize(item.method) +
+              "</td>" +
+              "<td>" +
+              status +
               "</td>" +
               "</tr>";
           }

@@ -111,12 +111,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               if (item.status == 1) {
                 stat = "pending";
                 st = "Pending Approval";
+                count++;
               } else if (item.status == 2) {
                 stat = "ready";
                 st = "Accepted";
+                count++;
               } else if (item.status == 3) {
                 stat = "ready";
                 st = "Ready to Pickup";
+                count++;
               } else if (item.status == 4) {
                 stat = "rejected";
                 st = "Rejected";
@@ -149,7 +152,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "</td>" +
                 "</tr>";
 
-              count++;
             } else if (4 < item.status && item.status < 6) {
               // Past table
               if (item.status == 5) {

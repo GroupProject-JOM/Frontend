@@ -18,7 +18,8 @@
     amount = body.querySelector(".amount"),
     pMethod = body.querySelector(".pMethod"),
     accept = body.querySelector(".accept"),
-    decline = body.querySelector(".decline");
+    decline = body.querySelector(".decline"),
+    assign = body.querySelector(".assign");
 
   var lang = getCookie("lang"); // current language
 
@@ -32,9 +33,9 @@
     lang = "sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
-    sText.textContent = data["sin"]["sText"];
     accept.textContent = data["sin"]["accept"];
     decline.textContent = data["sin"]["decline"];
+    assign.textContent = data["sin"]["assign"];
     setGreeting();
   });
 
@@ -48,24 +49,24 @@
     lang = "en";
 
     sTitle.textContent = data["en"]["sTitle"];
-    sText.textContent = data["en"]["sText"];
     accept.textContent = data["en"]["accept"];
     decline.textContent = data["en"]["decline"];
+    assign.textContent = data["en"]["assign"];
     setGreeting();
   });
 
   var data = {
     sin: {
       sTitle: "ඉල්ලීම බලන්න",
-      sText: "තත්ත්වය: පොරොත්තුවෙන්",
       accept: "පිළිගන්න",
       decline: "ප්රතික්ෂේප කරන්න",
+      assign: "එකතුකරන්නා පවරන්න",
     },
     en: {
       sTitle: "View Request",
-      sText: "Status: Pending",
       accept: "Accept",
       decline: "Decline",
+      assign: "Assign Collector",
     },
   };
 
@@ -103,6 +104,17 @@
           time.textContent = timeString(data.request.time);
           amount.textContent = data.request.amount.toLocaleString("en-US");
           pMethod.textContent = capitalize(data.request.payment_method);
+          if (data.request.status == 1)
+            if (lang == "sin") sText.textContent = "තත්ත්වය: පොරොත්තු අනුමැතිය";
+            else sText.textContent = "Status: Pending Approval";
+          else {
+            if (lang == "sin")
+              sText.textContent = "තත්ත්වය: එකතු කරන්නා පවරන්න";
+            else sText.textContent = "Status: Assign collector";
+            accept.style.display = "none";
+            decline.style.display = "none";
+            assign.style.display = "block";
+          }
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -176,7 +188,7 @@
                   confirmButtonColor: confirmButtonColor,
                 }).then((response) => {
                   if (sMethod.textContent == "Pickup")
-                    window.location.href = "./view-request2.html";
+                    window.location.href = "./assign-collector.html";
                   else window.location.href = "./";
                 });
               });
