@@ -175,8 +175,91 @@
                   icon: "success",
                   confirmButtonColor: confirmButtonColor,
                 }).then((response) => {
-                  if(sMethod.textContent == "Pickup") window.location.href = "./view-request2.html";
+                  if (sMethod.textContent == "Pickup")
+                    window.location.href = "./view-request2.html";
                   else window.location.href = "./";
+                });
+              });
+            } else if (response.status === 400) {
+              response.json().then((data) => {
+                console.log(data.message);
+                Command: toastr["error"](data.message);
+              });
+            } else {
+              console.error("Error:", response.status);
+              Command: toastr["error"](response.status, "Error");
+            }
+          })
+          .catch((error) => {
+            console.error("An error occurred:", error);
+            Command: toastr["error"](error);
+          });
+      }
+    });
+  });
+
+  decline.addEventListener("click", () => {
+    if (lang == "sin") {
+      var title = "ඔයාට විශ්වාස ද?",
+        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+        confirmButtonText = "ඔව්, එය ප්රතික්ෂේප කරන්න!",
+        cancelButtonText = "අවලංගු කරන්න";
+    } else {
+      var title = "Are you sure?",
+        text = "You won't be able to revert this!",
+        confirmButtonText = "Yes, decline it!",
+        cancelButtonText = "Cancel";
+    }
+    Swal.fire({
+      title: title,
+      text: text,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: confirmButtonColor,
+      cancelButtonColor: cancelButtonColor,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var formData = {
+          id: getCookie("id"),
+          sId: getCookie("sId"),
+        };
+
+        fetch(
+          backProxy +
+            "/accept-request?id=" +
+            getCookie("id") +
+            "&sId=" +
+            getCookie("sId"),
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+            credentials: "include",
+          }
+        )
+          .then((response) => {
+            if (response.status == 200) {
+              response.json().then((data) => {
+                console.log(data.message);
+                if (lang == "sin") {
+                  var title = "ප්‍රතික්ෂේප කළා!",
+                    text = "සැපයුම් ඉල්ලීම ප්‍රතික්ෂේප විය.";
+                } else {
+                  var title = "Declined!",
+                    text = "Supply request declined.";
+                }
+                // sweet alert
+                Swal.fire({
+                  title: title,
+                  text: text,
+                  icon: "success",
+                  confirmButtonColor: confirmButtonColor,
+                }).then((response) => {
+                  window.location.href = "./";
                 });
               });
             } else if (response.status === 400) {
