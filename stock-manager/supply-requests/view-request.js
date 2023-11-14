@@ -1,3 +1,4 @@
+document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -114,6 +115,7 @@
             accept.style.display = "none";
             decline.style.display = "none";
             assign.style.display = "block";
+            document.cookie = "date=" + date.textContent + "; path=/";
           }
         });
       } else if (response.status === 202) {
@@ -122,6 +124,12 @@
         });
         if (lang == "sin") Command: toastr["error"]("සැපයුම් ඉල්ලීම් නොමැත");
         else Command: toastr["error"]("No Supply requests");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
@@ -187,16 +195,18 @@
                   icon: "success",
                   confirmButtonColor: confirmButtonColor,
                 }).then((response) => {
-                  if (sMethod.textContent == "Pickup")
+                  if (sMethod.textContent == "Pickup") {
+                    document.cookie = "date=" + date.textContent + "; path=/";
                     window.location.href = "./assign-collector.html";
-                  else window.location.href = "./";
+                  } else window.location.href = "./";
                 });
               });
-            } else if (response.status === 400) {
+            } else if (response.status === 401) {
               response.json().then((data) => {
                 console.log(data.message);
-                Command: toastr["error"](data.message);
               });
+              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+              else Command: toastr["error"]("Invalid User");
             } else {
               console.error("Error:", response.status);
               Command: toastr["error"](response.status, "Error");
@@ -274,11 +284,12 @@
                   window.location.href = "./";
                 });
               });
-            } else if (response.status === 400) {
+            } else if (response.status === 401) {
               response.json().then((data) => {
                 console.log(data.message);
-                Command: toastr["error"](data.message);
               });
+              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+              else Command: toastr["error"]("Invalid User");
             } else {
               console.error("Error:", response.status);
               Command: toastr["error"](response.status, "Error");

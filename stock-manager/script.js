@@ -131,6 +131,12 @@
         });
         if (lang == "sin") Command: toastr["info"]("සැපයුම් ඉල්ලීම් නොමැත");
         else Command: toastr["info"]("No Supply requests");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
