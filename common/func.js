@@ -180,17 +180,39 @@ var confirmButtonColor = "#3085d6",
   confirmButtonColor = "#3085d6",
   denyButtonColor = "#dd6b55";
 
-function pageLoading(){
+function pageLoading() {
   // const loader = document.querySelector(".loader-wrapper");
   // loader.style.display = "block";
   // loader.toggle()
-  
+
   $(".loader-wrapper").toggle();
 }
-function pageLoadingStop(){
+
+function pageLoadingStop() {
   const loader = document.querySelector(".loader-wrapper");
   loader.style.display = "none";
   // loader.toggle()
-  
+
   // $(".loader-wrapper").toggle();
 }
+
+function timeString(time) {
+  var T = time.split(":")
+
+  if (T[0] > 12) {
+    T[0] -= 12;
+    if (T[0] >= 12) {
+      return String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
+    } else {
+      return String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
+    }
+  } else {
+    return String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
+  }
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+var log = console.log

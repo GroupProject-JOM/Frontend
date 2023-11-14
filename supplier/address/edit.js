@@ -157,8 +157,6 @@
 
     if (enameStatus && locationStatus && dropdownStatus) {
       var formData = {
-        // id: sessionStorage.getItem("id"),
-        // supplier_id: sessionStorage.getItem("sId"),
         id: getCookie("id"),
         supplier_id: getCookie("sId"),
         estate_name: ename.value,

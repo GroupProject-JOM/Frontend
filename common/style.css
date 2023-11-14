@@ -296,6 +296,10 @@ body.dark {
   background-color: var(--completed-green);
 }
 
+.accept {
+  background-color: rgba(255, 170, 0, 0.674);
+}
+
 .direction, .waiting, .pending {
   background-color: var(--sidebar-color);
 }

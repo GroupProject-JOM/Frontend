@@ -94,7 +94,7 @@
 
           function data_to_table(item) {
             row2 +=
-              "<tr data-href='./supply-requests/view-request1.html' id=" +
+              "<tr data-href='./supply-requests/view-request.html' id=" +
               item.id +
               ">" +
               "<td>" +
@@ -110,8 +110,7 @@
               item.amount.toLocaleString("en-US") +
               "</td>" +
               "<td>" +
-              item.method.charAt(0).toUpperCase() +
-              item.method.slice(1) +
+              capitalize(item.method) +
               "</td>" +
               "</tr>";
           }
@@ -132,6 +131,12 @@
         });
         if (lang == "sin") Command: toastr["info"]("සැපයුම් ඉල්ලීම් නොමැත");
         else Command: toastr["info"]("No Supply requests");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");

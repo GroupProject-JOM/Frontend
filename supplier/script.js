@@ -107,34 +107,24 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             var stat = "",
               st = "";
             // Ongoing table
-            if (0 < item.status && item.status < 4) {
+            if (0 < item.status && item.status < 5) {
               if (item.status == 1) {
                 stat = "pending";
                 st = "Pending Approval";
+                count++;
               } else if (item.status == 2) {
-                stat = "ready";
-                st = "Ready to pick-up";
+                stat = "accept";
+                st = "Accepted";
+                count++;
               } else if (item.status == 3) {
+                stat = "ready";
+                st = "Ready to Pickup";
+                count++;
+              } else if (item.status == 4) {
                 stat = "rejected";
                 st = "Rejected";
               } else {
                 return;
-              }
-
-              var T = item.time.split(":"),
-                timeString = "";
-
-              if (T[0] > 12) {
-                T[0] -= 12;
-                if (T[0] >= 12) {
-                  timeString =
-                    String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
-                } else {
-                  timeString =
-                    String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
-                }
-              } else {
-                timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
               }
 
               row1 +=
@@ -148,7 +138,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 item.date +
                 "</td>" +
                 "<td>" +
-                timeString +
+                timeString(item.time) +
                 "</td>" +
                 "<td>" +
                 item.amount.toLocaleString("en-US") +
@@ -162,13 +152,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "</td>" +
                 "</tr>";
 
-              count++;
-            } else if (3 < item.status && item.status < 6) {
+            } else if (4 < item.status && item.status < 6) {
               // Past table
-              if (item.status == 4) {
+              if (item.status == 5) {
                 stat = "pending";
                 st = "Pending Paymant";
-              } else if (item.status == 5) {
+              } else if (item.status == 6) {
                 stat = "paid";
                 st = "Paid";
               } else {
