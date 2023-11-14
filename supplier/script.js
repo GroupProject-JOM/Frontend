@@ -113,7 +113,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 st = "Pending Approval";
                 count++;
               } else if (item.status == 2) {
-                stat = "ready";
+                stat = "accept";
                 st = "Accepted";
                 count++;
               } else if (item.status == 3) {
