@@ -71,67 +71,57 @@
         </div>
         <div class="collection-content">
           <div class="collection-heading table-heading">
-            <h2 class="collection-title">View Collection</h2>
-            <p class="collection-text">
-              You can view all the information related to your collections here.
-              <br /><br />
-              To mark a collection as completed, click the button bellow
-            </p>
+            <h2 class="collection-title"></h2>
+            <p class="collection-text"></p>
           </div>
 
           <div>
             <table class="collection-data-table overview-tables">
               <tbody>
                 <tr>
-                  <td>Collection ID</td>
-                  <td>D0001</td>
+                  <td>Supplier Name</td>
+                  <td class="sName"></td>
                 </tr>
                 <tr>
-                  <td>Area</td>
-                  <td>Kurunagala Town</td>
+                  <td>Supplier Phone</td>
+                  <td class="sPhone"></td>
+                </tr>
+                <tr>
+                  <td>Estate Address</td>
+                  <td class="address"></td>
+                </tr>
+                <tr>
+                  <td>Pickup Date</td>
+                  <td class="date"></td>
+                </tr>
+                <tr>
+                  <td>Pickup Time</td>
+                  <td class="time"></td>
                 </tr>
                 <tr>
                   <td>Coconut Count</td>
-                  <td>5000</td>
+                  <td class="amount"></td>
                 </tr>
                 <tr>
-                  <td>Owner Name</td>
-                  <td>K.P.S. Kumarasiri</td>
-                </tr>
-                <tr>
-                  <td>Owner Contact No.</td>
-                  <td>076 635 0932</td>
+                  <td>Paymment Method</td>
+                  <td class="pMethod"></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <a class="collection-button form-button" href="./enter-amount.html"
-            >Complete Collection</a
-          >
+          <a class="collection-button form-button"></a>
         </div>
       </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
-    <!-- <script src="../script.js"></script> -->
+    <script src="./view.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-      $("input:checkbox").on("click", function () {
-        var $box = $(this);
-        if ($box.is(":checked")) {
-          var group = "input:checkbox[name='" + $box.attr("name") + "']";
-          $(group).prop("checked", false);
-          $box.prop("checked", true);
-        } else {
-          $box.prop("checked", false);
-        }
-      });
-    </script>
     <script src="../../common/loader.js"></script>
   </body>
 </html>

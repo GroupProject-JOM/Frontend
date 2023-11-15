@@ -4,6 +4,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     modeSwitch = body.querySelector(".toggle-switch"),
+    fire = body.querySelector(".fire"),
     w1 = body.querySelector(".w1"),
     w1Value = body.querySelector(".w1-value"),
     w2 = body.querySelector(".w2"),
@@ -13,6 +14,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c4 = body.querySelector(".c4"),
     c5 = body.querySelector(".c5"),
     tbody1 = body.querySelector(".tbody1"),
+    todayTable = body.querySelector(".today-table"),
+    greet = body.querySelector(".greet-text"),
     tbody2 = body.querySelector(".tbody2");
 
   var lang = getCookie("lang"); // current language
@@ -95,9 +98,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
-          w1Value.textContent = data.count;
-          w2Value.innerHTML =
-            data.count - data.size + `<span>/` + data.count + `</span>`;
+          w1Value.textContent = data.count - data.size;
+          w2Value.innerHTML = data.size + `<span>/` + data.count + `</span>`;
+
+          if ((data.size = 0 && data.count > 0)) {
+            fire.style.display = "block";
+            greet.style.display = "block";
+            todayTable.style.display = "none";
+          }
 
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
@@ -119,25 +127,38 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             tbody2.innerHTML = row2;
             if (lang == "sin") Command: toastr["info"]("අද එකතු කිරීම් නැත");
             else Command: toastr["info"]("No collections today");
+
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach((r) => {
+              r.addEventListener("click", () => {
+                document.cookie = "id=" + r.id + "; path=/";
+                window.location.href = r.dataset.href;
+              });
+            });
           } else {
             let arr1 = data.today;
             arr1.forEach(data_to_table1);
             tbody1.innerHTML = row1;
-            w1Value.textContent = data.count;
-            w2Value.innerHTML =
-              data.count - data.size + `<span>/` + data.count + `</span>`;
+            w1Value.textContent = data.count - data.size;
+            w2Value.innerHTML = data.size + `<span>/` + data.count + `</span>`;
             if (lang == "sin")
               Command: toastr["info"]("ඉදිරියට එන එකතු කිරීම් නැත");
             else Command: toastr["info"]("No upcoming collections");
-          }
-        });
 
-        const rows = document.querySelectorAll("tr[data-href]");
-        rows.forEach((r) => {
-          r.addEventListener("click", () => {
-            document.cookie = "id=" + r.id + "; path=/";
-            window.location.href = r.dataset.href;
-          });
+            if ((data.size = 0 && data.count > 0)) {
+              fire.style.display = "block";
+              greet.style.display = "block";
+              todayTable.style.display = "none";
+            }
+
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach((r) => {
+              r.addEventListener("click", () => {
+                document.cookie = "id=" + r.id + "; path=/";
+                window.location.href = r.dataset.href;
+              });
+            });
+          }
         });
       } else if (response.status === 401) {
         response.json().then((data) => {
@@ -157,7 +178,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function data_to_table1(item) {
     row1 +=
-      `<tr data-href="./collection/view.html">
+      `<tr data-href="./collection/view.html" id=`+item.id+`>
       <td>` +
       item.area +
       `</td>
@@ -175,7 +196,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function data_to_table2(item) {
     row2 +=
-      `<tr data-href="./collection/view.html">
+      `<tr data-href="./collection/view.html" id=`+item.id+`>
       <td>` +
       item.date +
       `</td>
