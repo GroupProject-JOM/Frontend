@@ -34,8 +34,7 @@
       signout();
     });
 
-      
-      dashboard.href = frontProxy + "/collector/";
+    dashboard.href = frontProxy + "/collector/";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -99,19 +98,17 @@
   }, 10);
 })();
 
-
 window.addEventListener("load", (e) => {
   const interval = setInterval(() => {
     let loaded = false;
     var pathname = window.location.pathname;
     pathname = pathname.split("/")[2] || "";
-    pathname = pathname.split('.')[0];
+    pathname = pathname.split(".")[0];
 
-    if(!pathname){
+    if (!pathname) {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
-    
-    console.log(pathname);
+
     // pathname = pathname.replace(".html", "");
     const navItems = ["index"];
     if (!loaded && pathname) {
