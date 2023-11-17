@@ -66,8 +66,8 @@
       c7: "වර්ණ-කේතගත අමු ද්රව්ය තොරතුරු බලන්න",
     },
     en: {
-      w1: "Today's Total",
-      w2: "Today's Remaining",
+      w1: "Today's Collections",
+      w2: "Remaining Collections",
       c1: "Production Requests Overview",
       c2: "View and respond to production manager requests",
       c4: "Supplier Requests Overview",

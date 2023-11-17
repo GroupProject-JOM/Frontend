@@ -223,6 +223,18 @@ select.dropdown {
   padding: 7px 0;
 }
 
+.location-pick-bt{
+  display: flex;
+  margin: 40px 0;
+  width: 17rem;
+  font-size: 13px;
+  border-radius: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+
 @media only screen and (max-device-width: 900px) {
   .supply-container {
     margin-left: 0;
