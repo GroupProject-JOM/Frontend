@@ -1,4 +1,5 @@
 document.cookie = "amount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -61,6 +62,7 @@ document.cookie = "amount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
+  let area="";
   fetch(
     backProxy +
       "/pickup-collection?id=" +
@@ -87,6 +89,8 @@ document.cookie = "amount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           time.textContent = timeString(data.collection.time);
           amount.textContent = data.collection.amount.toLocaleString("en-US");
           pMethod.textContent = capitalize(data.collection.payment_method);
+
+          area = data.collection.area;
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -112,6 +116,7 @@ document.cookie = "amount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   btn.addEventListener("click", () => {
     document.cookie = "amount=" + amount.textContent + "; path=/";
+    document.cookie = "area=" + area + "; path=/";
     window.location.href = "./enter-amount.html";
   });
 })();

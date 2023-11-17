@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collector Portal</title>
+</head>
+<body>
+    <h1>Collector Portal</h1>
+    
+    <!-- Assume there's a form to enter collected amount -->
+    <form id="collectorForm">
+        <label for="collectedAmount">Collected Amount:</label>
+        <input type="text" id="collectedAmount" name="collectedAmount">
+        <button type="button" onclick="notifySuppliers()">Submit</button>
+    </form>
+    <p class="Hello"></p>
+
+    <script>
+        const socket = new WebSocket("ws://127.0.0.1:8090/JOM_war_exploded/websocket/collector123");
+
+        function notifySuppliers() {
+            // Assume you perform some actions and then notify the WebSocket
+            // socket.send("CollectorEnteredAmount is "+ document.getElementById("collectedAmount").value);
+            console.log( document.getElementById("collectedAmount").value + " sent")
+
+            const supplierId = "supplier456"; // Replace with the actual supplier's user ID
+            const notification = "CollectorEnteredAmount is "+ document.getElementById("collectedAmount").value;
+            socket.send(`SaveNotification:${supplierId}:${notification}`);
+        }
+
+        socket.onmessage = function (event) {
+            // Handle messages received from the server
+            const message = event.data;
+            if (message === "Collector entered collected amount.") {
+                // Trigger a pop-up notification for the supplier
+                // alert("Collector entered collected amount.");
+            }
+            document.querySelector(".Hello").innerHTML += event.data + "<br />";
+            console.log(event)
+        };
+    </script>
+</body>
+</html>

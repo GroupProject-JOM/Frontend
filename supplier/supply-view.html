@@ -63,12 +63,17 @@
         <div class="en active">En</div>
       </div>
       <div class="text"></div>
+
+      <div class="soc">
+        <p class="collec-text"></p>
+        <button class="val-ok" onclick="accept()">Accept</button>
+        <button class="val-ok" onclick="deny()">Deny</button>
+      </div>
+
       <div class="supply7-container supply-container">
         <div class="supply-heading table-heading">
           <h2 class="supply-title"></h2>
-          <p class="supply-text">
-            
-          </p>
+          <p class="supply-text"></p>
         </div>
 
         <div>
@@ -121,5 +126,38 @@
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
     <script src="../common/loader.js"></script>
+    <script>
+      const socket = new WebSocket(
+        "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" +
+          getCookie("user")
+      );
+
+      socket.onmessage = function (event) {
+        // Handle messages received from the server
+        const message = event.data;
+        log(message);
+        document.querySelector(".collec-text").innerHTML += message + "<br />";
+      };
+
+      function accept() {
+        // Assume you perform some actions and then notify the WebSocket
+        const senderId = getCookie("user");
+        const notification = "OK";
+        const collection = getCookie("id");
+
+        socket.send(`${senderId}:${notification}:${collection}`);
+        console.log("OK");
+      }
+
+      function deny() {
+        // Assume you perform some actions and then notify the WebSocket
+        const senderId = getCookie("user");
+        const notification = "Denied";
+        const collection = getCookie("id");
+
+        socket.send(`${senderId}:${notification}:${collection}`);
+        console.log("OK");
+      }
+    </script>
   </body>
 </html>

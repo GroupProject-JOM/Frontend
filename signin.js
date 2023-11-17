@@ -140,6 +140,7 @@ var username_status = false,
                 document.cookie = "name=" + data.name + "; path=/";
                 document.cookie = "page=" + data.page + "; path=/";
                 document.cookie = "sId=" + data.sId + "; path=/";
+                document.cookie = "user=" + data.user + "; path=/";
                 pageLoading();
                 window.location.href = frontProxy + "/" + data.page;
               }
