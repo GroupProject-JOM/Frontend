@@ -14,7 +14,8 @@
     op2 = body.querySelector(".op2"),
     op3 = body.querySelector(".op3"),
     op4 = body.querySelector(".op4"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".add-button"),
+    pick = body.querySelector(".location-pick-bt");
 
   var lang = getCookie("lang"); // current language
 
@@ -36,6 +37,8 @@
     op3.textContent = data["sin"]["op3"];
     op4.textContent = data["sin"]["op4"];
     btn.textContent = data["sin"]["btn"];
+    pick.textContent = data["sin"]["pick"];
+
     setGreeting();
   });
 
@@ -57,6 +60,8 @@
     op3.textContent = data["en"]["op3"];
     op4.textContent = data["en"]["op4"];
     btn.textContent = data["en"]["btn"];
+    pick.textContent = data["en"]["pick"];
+
     setGreeting();
   });
 
@@ -71,6 +76,7 @@
       op3: "කැස්බෑව",
       op4: "ප්රදේශය51",
       btn: "සුරකින්න",
+      pick: "සිතියම මත ඔබේ වතුයාය තෝරන්න",
     },
     en: {
       sTitle: "Edit Estate Location",
@@ -82,6 +88,7 @@
       op3: "Kasbawa",
       op4: "area51",
       btn: "Save",
+      pick: "Pick Your Location on the map",
     },
   };
 
