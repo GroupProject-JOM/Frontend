@@ -64,59 +64,96 @@
 
       <div class="text"></div>
 
-      <div class="outlet-edit-container container">
+      <div class="outlet-edit-container distributor-container">
         <div class="outlet-heading table-heading">
           <h2 class="outlet-title" style="margin-bottom: 2rem;"></h2>
         </div>
         <div class="edit-outlet-form">
           <form autocomplete="on">
-            <input
-              type="text"
-              class="long oname"
-              placeholder=""
-              autocomplete="given-name"
-            />
-            <br /><span class="form-error oname-error"></span>
-            <br />
-            <input
-              type="text"
-              class="long email"
-              placeholder=""
-              autocomplete="email"
-            /><br />
-            <span class="form-error email-error"></span><br />
-            <input
-              type="text"
-              class="long phone"
-              placeholder=""
-              autocomplete="tel"
-            /><br />
-            <span class="form-error phone-error"></span><br />
-            <input
-              type="text"
-              class="long address1"
-              placeholder=""
-              autocomplete="address-line1"
-            /><br /><span class="form-error address1-error"></span><br />
-            <div>
-              <section>
+            <div class="row">
+              <div class="add-label"><label>Outlet Name</label></div>
+              <div class="add-input">
+                <input
+                  type="text"
+                  class="long oname"
+                  placeholder=""
+                  autocomplete="given-name"
+                />
+                <br />
+                <span class="form-error oname-error"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="add-label"><label>Outlet Email</label></div>
+              <div class="add-input">
+                <input
+                  type="text"
+                  class="long email"
+                  placeholder=""
+                  autocomplete="email"
+                />
+                <br />
+                <span class="form-error email-error"></span>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="add-label"><label>Outlet Phone Number</label></div>
+              <div class="add-input">
+                <input
+                  type="text"
+                  class="long phone"
+                  placeholder=""
+                  autocomplete="tel"
+                />
+                <br />
+                <span class="form-error phone-error"></span>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="add-label"><label>Address Line 1</label></div>
+              <div class="add-input">
+                <input
+                  type="text"
+                  class="long address1"
+                  placeholder=""
+                  autocomplete="address-line1"
+                />
+                <br /><span class="form-error address1-error"></span>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="add-label"><label>Street</label></div>
+              <div class="add-input">
                 <input
                   type="text"
                   name="address2"
-                  class="short address2"
+                  class="long address2"
                   placeholder=""
                   autocomplete="address-line2"
-                /><br /><span class="form-error address2-error"></span>
-              </section>
-              <section>
+                /><br />
+                <span class="form-error address2-error"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="add-label"><label>City</label></div>
+              <div class="add-input">
                 <input
                   type="text"
                   name="address3"
-                  class="short address3"
+                  class="long address3"
                   placeholder=""
                   autocomplete="address-line3"
-                /><br /><span class="form-error address3-error"></span>
-              </section>
+                /><br />
+                <span class="form-error address3-error"></span>
+              </div>
             </div>
           </form>
         </div>

@@ -48,7 +48,7 @@
 }
 
 .collection-data-table {
-  width: 25rem;
+  width: 25vw;
 }
 
 .supplyreq-container, .assign-collector-container, .track-collectors-container{
@@ -59,4 +59,27 @@
 .production-view-container{
   top: 50%;
   transform: translate(0, 15vh);
+}
+
+select.dropdown {
+  border: 0;
+  border-bottom: 1px solid var(--input-border);
+  outline: 0;
+}
+
+.dropdown {
+  width: 40vw;
+  margin-top: 3rem;
+  /* margin-bottom: 3rem; */
+  background-color: var(--body-color);
+  color: var(--input-border);
+}
+
+.collection-view-container .dropdown{
+  width: 25vw;
+  margin-top: 20px;
+}
+
+.collection-view-container .reason{
+  margin-top: 40px;
 }

@@ -1,7 +1,8 @@
-.container {
+.distributor-container {
   top: 50%;
   transform: translate(0, 10%);
-  margin-left: 10rem;
+  margin-left: 6vw;
+  /* width: ; */
 }
 input {
   /* box-sizing: border-box; */
@@ -35,11 +36,7 @@ input:focus {
   flex-direction: column;
   align-items: center;
 }
-.add-outlet-form div {
-  display: flex;
-  width: 40vw;
-  justify-content: space-between;
-}
+
 
 .outlet-table {
   width: 25vw;
@@ -71,4 +68,40 @@ input:focus {
   border-radius: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+
+.distributor-container input{
+  margin-top: 0;
+  /* padding: 12px; */
+}
+
+.distributor-container label{
+  padding: 20px 20px 0 0;
+  display: inline-block;
+}
+
+.distributor-container .add-label{
+  float: left;
+  width: 20%;
+  margin-top: 6px;
+  
+}
+
+.distributor-container .add-input{
+  float: left;
+  width: 80%;
+  margin-top: 20px;
+  padding-top: 0;
+}
+
+
+.distributor-container .row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.distributor-container .bank-form{
+  margin-top: 30px;
 }

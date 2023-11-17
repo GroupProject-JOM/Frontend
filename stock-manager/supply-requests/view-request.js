@@ -20,7 +20,9 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     pMethod = body.querySelector(".pMethod"),
     accept = body.querySelector(".accept"),
     decline = body.querySelector(".decline"),
-    assign = body.querySelector(".assign");
+    assign = body.querySelector(".assign"),
+    change = body.querySelector(".change"),
+    rtext = body.querySelector(".reason-text");
 
   var lang = getCookie("lang"); // current language
 
@@ -37,6 +39,10 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept.textContent = data["sin"]["accept"];
     decline.textContent = data["sin"]["decline"];
     assign.textContent = data["sin"]["assign"];
+    change.textContent = data["sin"]["change"];
+    rtext.textContent = data["sin"]["rtext"];
+
+
     setGreeting();
   });
 
@@ -53,6 +59,10 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept.textContent = data["en"]["accept"];
     decline.textContent = data["en"]["decline"];
     assign.textContent = data["en"]["assign"];
+    change.textContent = data["en"]["change"];
+    rtext.textContent = data["en"]["rtext"];
+
+
     setGreeting();
   });
 
@@ -62,12 +72,16 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       accept: "පිළිගන්න",
       decline: "ප්රතික්ෂේප කරන්න",
       assign: "එකතුකරන්නා පවරන්න",
+      change: "දිනය/වේලාව වෙනස් කරන්න",
+      rtext: "ඉල්ලීම ප්‍රතික්ෂේප කිරීමට හේතුව තෝරන්න",
     },
     en: {
       sTitle: "View Request",
       accept: "Accept",
       decline: "Decline",
       assign: "Assign Collector",
+      change: "Change date or time",
+      rtext: "Select the reason for declining the request",
     },
   };
 

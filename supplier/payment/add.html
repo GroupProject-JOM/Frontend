@@ -68,16 +68,30 @@
         </div>
         <div class="supply-content">
           <form class="bank-form supply">
-            <input type="text" class="acc-holders name" placeholder="" />
-            <br /><span class="form-error holder-error"></span>
-            <br />
-            <input type="text" class="account-number" placeholder="" />
-            <br /><span class="form-error acc-error"></span>
-            <br />
-            <!-- <input type="text" class="area" placeholder="Area/Region" /> -->
-            <input type="text" class="bank" placeholder="" /><br /><span
-              class="form-error bank-error"
-            ></span>
+            <div class="row">
+              <div class="add-label"><label>Account Holder Name</label></div>
+              <div class="add-input">
+                <input type="text" class="acc-holders name" placeholder="" />
+                <br /><span class="form-error holder-error"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="add-label"><label>Account No</label></div>
+              <div class="add-input">
+                <input type="text" class="account-number" placeholder="" />
+                <br /><span class="form-error acc-error"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="add-label"><label>Bank</label></div>
+              <div class="add-input">
+                <input type="text" class="bank" placeholder="" /><br /><span
+                  class="form-error bank-error"
+                ></span>
+              </div>
+            </div>
             <br />
           </form>
 

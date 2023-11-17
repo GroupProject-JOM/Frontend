@@ -234,6 +234,40 @@ select.dropdown {
 
 }
 
+.supply7-container input{
+  margin-top: 0;
+  /* padding: 12px; */
+}
+
+.supply7-container label{
+  padding: 20px 20px 20px 0;
+  display: inline-block;
+}
+
+.supply7-container .add-label{
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+  
+}
+
+.supply7-container .add-input{
+  float: left;
+  width: 75%;
+  margin-top: 20px;
+  padding-top: 0;
+}
+
+
+.supply7-container .row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.supply7-container .bank-form{
+  margin-top: 30px;
+}
 
 @media only screen and (max-device-width: 900px) {
   .supply-container {
