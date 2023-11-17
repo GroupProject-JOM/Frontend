@@ -22,7 +22,7 @@
   border-radius: 30px;
 }
 
-.collection-view-container {
+.collection-view-container,  .production-view-container{
   padding-left: 20px;
   display: flex;
   gap: 65px;
@@ -54,4 +54,9 @@
 .supplyreq-container, .assign-collector-container, .track-collectors-container{
   top: 50%;
   transform: translate(0, 10%);
+}
+
+.production-view-container{
+  top: 50%;
+  transform: translate(0, 15vh);
 }
