@@ -16,7 +16,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op2 = body.querySelector(".op2"),
     op3 = body.querySelector(".op3"),
     op4 = body.querySelector(".op4"),
-    btn = body.querySelector(".form-button");
+    addbtn = body.querySelector(".add-button");
+    pick = body.querySelector(".location-pick-bt");
 
   var lang = getCookie("lang"); // current language
 
@@ -37,7 +38,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op2.textContent = data["sin"]["op2"];
     op3.textContent = data["sin"]["op3"];
     op4.textContent = data["sin"]["op4"];
-    btn.textContent = data["sin"]["btn"];
+    addbtn.textContent = data["sin"]["addbtn"];
+    pick.textContent = data["sin"]["pick"];
+
     setGreeting();
   });
 
@@ -58,7 +61,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op2.textContent = data["en"]["op2"];
     op3.textContent = data["en"]["op3"];
     op4.textContent = data["en"]["op4"];
-    btn.textContent = data["en"]["btn"];
+    addbtn.textContent = data["en"]["addbtn"];
+    pick.textContent = data["en"]["pick"];
+
     setGreeting();
   });
 
@@ -73,7 +78,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       op2: "පිළියන්දල",
       op3: "කැස්බෑව",
       op4: "ප්රදේශය51",
-      btn: "එකතු කරන්න",
+      addbtn: "එකතු කරන්න",
+      pick: "සිතියම මත ඔබේ වතුයාය තෝරන්න",
     },
     en: {
       sTitle: "Add New Estate Location",
@@ -85,7 +91,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       op2: "piliyandala",
       op3: "Kasbawa",
       op4: "area51",
-      btn: "Add",
+      addbtn: "Add",
+      pick: "Pick Your Location on the map",
     },
   };
 
@@ -148,7 +155,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     area_status();
   });
 
-  btn.addEventListener("click", () => {
+  addbtn.addEventListener("click", () => {
     if (!area_status()) {
       dropdown.focus();
     }
