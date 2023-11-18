@@ -194,10 +194,12 @@
 
   socket.onclose = function (event) {
     console.log("WebSocket closed:", event);
+    Command: toastr["error"]("WebSocket closed");
   };
 
   socket.onerror = function (error) {
     console.error("WebSocket error:", error);
+    Command: toastr["error"]("WebSocket error");
   };
 
   // Optional verification methods
@@ -358,7 +360,7 @@
     }
   });
 
-  function completeCollection(){
+  function completeCollection() {
     var formData = {
       user: getCookie("user"),
       id: getCookie("id"),
@@ -372,26 +374,27 @@
       },
       body: JSON.stringify(formData),
       credentials: "include",
-    }).then((response) => {
-      if (response.status == 200) {
-        response.json().then((data) => {
-          console.log(data.message);
-          window.location.href = "./complete.html";
-        });
-        window.location.href = "../";
-      } else if (response.status === 400) {
-        response.json().then((data) => {
-          console.log(data.message);
-          Command: toastr["error"](data.message);
-        });
-      } else {
-        console.error("Error:", response.status);
-        Command: toastr["error"](response.status, "Error");
-      }
     })
-    .catch((error) => {
-      console.error("An error occurred:", error);
-      Command: toastr["error"](error);
-    });    
+      .then((response) => {
+        if (response.status == 200) {
+          response.json().then((data) => {
+            console.log(data.message);
+            window.location.href = "./complete.html";
+          });
+          window.location.href = "../";
+        } else if (response.status === 400) {
+          response.json().then((data) => {
+            console.log(data.message);
+            Command: toastr["error"](data.message);
+          });
+        } else {
+          console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+        Command: toastr["error"](error);
+      });
   }
 })();

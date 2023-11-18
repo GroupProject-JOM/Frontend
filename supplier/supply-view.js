@@ -2,6 +2,10 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    sMessage = body.querySelector(".socket-messages"),
+    cMessage = body.querySelector(".collecter-messages"),
+    accept = body.querySelector(".accept"),
+    deny = body.querySelector(".deny"),
     sTitle = body.querySelector(".supply-title"),
     sText = body.querySelector(".supply-text"),
     sMethod = body.querySelector(".sMethod"),
@@ -228,4 +232,134 @@
       }
     });
   });
+
+  // web socket
+  const socket = new WebSocket(
+    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" + getCookie("user")
+  );
+
+  socket.onmessage = function (event) {
+    // Handle messages received from the server
+    const message = event.data;
+    if (message.length != 0) {
+      cMessage.innerHTML += message + "<br />";
+      sMessage.style.display = "block";
+    }
+  };
+
+  accept.addEventListener("click", () => {
+    if (lang == "sin") {
+      var title = "ඔයාට විශ්වාස ද?",
+        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+        confirmButtonText = "ඔව්, එය පිළිගන්න!",
+        cancelButtonText = "අවලංගු කරන්න";
+    } else {
+      var title = "Are you sure?",
+        text = "You won't be able to revert this!",
+        confirmButtonText = "Yes, Accept it!",
+        cancelButtonText = "Cancel";
+    }
+    Swal.fire({
+      title: title,
+      text: text,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: confirmButtonColor,
+      cancelButtonColor: cancelButtonColor,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (lang == "sin") {
+          var title = "සම්පූර්ණයි!",
+            text =
+              "එකතු කරන්නා විසින් ඇතුළත් කළ පොල් ප්‍රමාණය නිවැරදි බව ඔබ තහවුරු කර ඇත.",
+            confirmButtonText = "හරි";
+        } else {
+          var title = "Accepted!",
+            text =
+              "You have verified that the amount of coconut entered by the collector is correct.",
+            confirmButtonText = "Ok";
+        }
+        // sweet alert
+        Swal.fire({
+          title: title,
+          text: text,
+          icon: "success",
+          confirmButtonText: confirmButtonText,
+          confirmButtonColor: confirmButtonColor,
+        }).then((response) => {
+          const senderId = getCookie("user");
+          const notification = "OK";
+          const collection = getCookie("id");
+
+          socket.send(`${senderId}:${notification}:${collection}`);
+          window.location.href = "./";
+        });
+      }
+    });
+  });
+
+  deny.addEventListener("click", () => {
+    if (lang == "sin") {
+      var title = "ඔයාට විශ්වාස ද?",
+        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+        confirmButtonText = "ඔව්, එය ප්‍රතික්ෂේප කරන්න!",
+        cancelButtonText = "අවලංගු කරන්න";
+    } else {
+      var title = "Are you sure?",
+        text = "You won't be able to revert this!",
+        confirmButtonText = "Yes, Deny it!",
+        cancelButtonText = "Cancel";
+    }
+    Swal.fire({
+      title: title,
+      text: text,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: confirmButtonColor,
+      cancelButtonColor: cancelButtonColor,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (lang == "sin") {
+          var title = "සම්පූර්ණයි!",
+            text =
+              "එකතුකරන්නා ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව ඔබ ප්‍රතික්ෂේප කර ඇත.",
+            confirmButtonText = "හරි";
+        } else {
+          var title = "Accepted!",
+            text =
+              "You have denied that the amount of coconut entered by the collector is correct.",
+            confirmButtonText = "Ok";
+        }
+        // sweet alert
+        Swal.fire({
+          title: title,
+          text: text,
+          icon: "success",
+          confirmButtonText: confirmButtonText,
+          confirmButtonColor: confirmButtonColor,
+        }).then((response) => {
+          const senderId = getCookie("user");
+          const notification = "Denied";
+          const collection = getCookie("id");
+
+          socket.send(`${senderId}:${notification}:${collection}`);
+          window.location.reload();
+        });
+      }
+    });
+  });
+
+  socket.onclose = function (event) {
+    console.log("WebSocket closed:", event);
+    Command: toastr["error"]("WebSocket closed");
+  };
+
+  socket.onerror = function (error) {
+    console.error("WebSocket error:", error);
+    Command: toastr["error"]("WebSocket error");
+  };
 })();
