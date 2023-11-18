@@ -1,0 +1,15 @@
+.location-pick {
+    display: none;
+    width: 50vw;
+    margin: 0 auto;
+    background-color: var(--body-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 60px;
+    position: absolute;
+    /* top: 20px; */
+    /* right: 300px; */
+    box-shadow: 0 0 20px 0 var(--shadow-color);
+    z-index: 1;
+    transition: var(--tran-04);
+  }

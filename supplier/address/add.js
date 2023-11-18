@@ -16,7 +16,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op2 = body.querySelector(".op2"),
     op3 = body.querySelector(".op3"),
     op4 = body.querySelector(".op4"),
-    addbtn = body.querySelector(".add-button");
+    addbtn = body.querySelector(".add-button"),
     pick = body.querySelector(".location-pick-bt");
 
   var lang = getCookie("lang"); // current language
@@ -204,4 +204,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         });
     }
   });
+
+  pick.addEventListener("click",()=>{
+    document.querySelector(".location-pick").style.display = "block";
+  })
 })();

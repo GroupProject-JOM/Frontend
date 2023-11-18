@@ -126,7 +126,6 @@
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            log(item);
             if (item.sender == getCookie("user")) {
               chat.innerHTML +=
                 `<div class="sent">
