@@ -65,44 +65,48 @@
       <div class="text"></div>
       <div class="supply-edit-container supply-container">
         <div class="supply-heading table-heading">
-          <h2 class="supply-title">Edit Supply</h2>
-          <p class="supply-text">Edit your supply request details</p>
+          <h2 class="supply-title"></h2>
+          <p class="supply-text"></p>
         </div>
 
         <div class="edit-grid-container">
           <div class="coconut-amount edit-item">
-            <div class="collection-text">Coconut Amount</div>
+            <div class="collection-text amount-text"></div>
             <div>
-              <input type="text" class="collected-amount" placeholder="500" />
+              <input type="number" class="collected-amount" placeholder="" />
             </div>
           </div>
           <div class="supply-method edit-item">
-            <div class="collection-text">Supply Method</div>
+            <div class="collection-text method-text"></div>
             <div>
-              <select
-                class="collected-method dropdown"
-                placeholder="pickup"
-              ></select>
+              <select class="collected-method dropdown method">
+              <option value="" default hidden class="op0"></option>
+              <option value="pickup" class="op1"></option>
+              <option value="yard" class="op2"></option></select>
             </div>
           </div>
           
           <div class="supply-payment edit-item">
-            <div class="collection-text">Payment Method</div>
+            <div class="collection-text payment-text"></div>
             <div>
-              <select class="payment-method dropdown"></select>
+              <select class="payment-method dropdown payment">
+                <option value="" default hidden class="op3"></option>
+                <option value="cash" class="op4"></option>
+                <option value="bank" class="op5"></option>
+              </select>
             </div>
           </div>
 
           <div class="supply-date edit-item">
-            <div class="collection-text">Supply Date</div>
+            <div class="collection-text date-text"></div>
             <div>
-              <input type="date" class="collected-date" />
+              <input type="date" class="collected-date date" />
             </div>
           </div>
           <div class="supply-time edit-item">
-            <div class="collection-text">Supply Time</div>
+            <div class="collection-text time-text"></div>
             <div>
-              <input type="time" class="collected-time" />
+              <input type="time" class="collected-time time" />
             </div>
           </div>
         </div>
@@ -112,7 +116,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../common/func.js"></script>
-    <!-- <script src="./supply-view.js"></script> -->
+    <script src="./supply-edit.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
