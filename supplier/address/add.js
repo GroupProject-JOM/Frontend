@@ -17,6 +17,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op3 = body.querySelector(".op3"),
     op4 = body.querySelector(".op4"),
     addbtn = body.querySelector(".add-button"),
+    closeBtn = body.querySelector(".close-btn"),
+    confirm = body.querySelector(".confirm"),
     pick = body.querySelector(".location-pick-bt");
 
   var lang = getCookie("lang"); // current language
@@ -205,7 +207,101 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     }
   });
 
-  pick.addEventListener("click",()=>{
+  pick.addEventListener("click", () => {
     document.querySelector(".location-pick").style.display = "block";
-  })
+  });
+
+  closeBtn.addEventListener("click", () => {
+    document.querySelector(".location-pick").style.display = "none";
+  });
+
+  //Map
+
+  let map;
+  let markers = [];
+  let marker;
+
+  let loc = "",
+    ar = "";
+
+  function initMap() {
+    const colombo = { lat: 6.9022, lng: 79.8611 };
+
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 15,
+      center: colombo,
+    });
+    // This event listener will call addMarker() when the map is clicked.
+    map.addListener("click", (event) => {
+      addMarker(event.latLng);
+    });
+    addMarker(colombo);
+  }
+
+  // Adds a marker to the map and push to the array.
+  function addMarker(position) {
+    marker = new google.maps.Marker({
+      position,
+      map,
+    });
+    deleteMarkers();
+
+    markers.push(marker);
+    console.log(marker.position.lat(), marker.position.lng());
+    // console.log(marker.position.results)
+
+    const options = { method: "GET", headers: { accept: "application/json" } };
+
+    fetch(
+      "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+        marker.position.lat() +
+        "%2C" +
+        marker.position.lng() +
+        "&key=AIzaSyCZFEe9IjYVTBsTO7o4Ais2KM2qgBpep4Q",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response.results[0].formatted_address);
+        document.querySelector(".loc-add").value =
+          response.results[0].formatted_address;
+        loc = response.results[0].formatted_address;
+        ar =
+          response.results[0].address_components[
+            response.results[0].address_components.length - 1
+          ].long_name;
+      })
+      .catch((err) => console.error(err));
+  }
+
+  confirm.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeBtn.click();
+    location.value = loc;
+  });
+
+  // Sets the map on all markers in the array.
+  function setMapOnAll(map) {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+
+  // // Removes the markers from the map, but keeps them in the array.
+  function hideMarkers() {
+    setMapOnAll(null);
+  }
+
+  // // Shows any markers currently in the array.
+  function showMarkers() {
+    setMapOnAll(map);
+  }
+
+  // // Deletes all markers in the array by removing references to them.
+  function deleteMarkers() {
+    hideMarkers();
+    markers = [];
+  }
+
+  window.initMap = initMap;
 })();
