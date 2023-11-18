@@ -298,7 +298,8 @@ body.dark {
 }
 
 .accept {
-  background-color: rgba(255, 170, 0, 0.674);
+  background-color: var(--button-color);
+  color: var(--text-color);
 }
 
 .direction, .waiting, .pending {

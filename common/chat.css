@@ -77,7 +77,7 @@ p {
 
 .sent{
     overflow: hidden;
-    margin: 26px 0 26px 20px;
+    margin: 26px 20px 26px 20px;
 }
 .sent-msg p{
     background-color: var(--tbicon-color);
@@ -104,4 +104,17 @@ p {
 .chat-content{
     max-height: 55vh;
     overflow-y: auto;
+}
+
+.received .time{
+  display: block;
+    font-size: 10px;
+    margin: 6px 0 6px 20px ;
+}
+
+.sent .time{
+  display: block;
+  float: right;
+  font-size: 10px;
+  margin: 6px 0 6px 0;
 }
