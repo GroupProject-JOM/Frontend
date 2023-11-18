@@ -143,7 +143,6 @@
 
   socket.onmessage = function (event) {
     const message = event.data;
-    log(event.data);
     if (message === "OK") {
       if (lang == "sin") {
         var title = "සම්පූර්ණයි!",
