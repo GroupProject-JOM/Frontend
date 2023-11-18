@@ -9,13 +9,10 @@
     <input type="text" id="recipientInput" placeholder="Recipient ID" />
     <input type="text" id="messageInput" placeholder="Type your message" />
     <button onclick="sendMessage()">Send</button>
-    <button onclick="close()">Close</button>
+    <!-- <button onclick="close()">Close</button> -->
 
     <script>
-      const username = prompt("Enter your username:");
-      const password = prompt("Enter your password:");
-
-      const socket = new WebSocket(`ws://127.0.0.1:8090/JOM_war_exploded/chat?username=${username}&password=${password}`);
+      const socket = new WebSocket(`ws://127.0.0.1:8090/JOM_war_exploded/chat/3`);
 
       socket.onmessage = function (event) {
         const chatDiv = document.getElementById("chat");
@@ -30,15 +27,13 @@
         const message = messageInput.value.trim();
 
         if (recipientId !== "" && message !== "") {
-          const fullMessage = recipientId + ": " + message;
+          const fullMessage =  "3:" + message + ":"+recipientId;
           socket.send(fullMessage);
 
           // Display the sent message in the chat
           const chatDiv = document.getElementById("chat");
           chatDiv.innerHTML +=
-            "<p><strong>You to " +
-            recipientId +
-            ":</strong> " +
+            "<p><strong>You to supplier :</strong> " +
             message +
             "</p>";
 
