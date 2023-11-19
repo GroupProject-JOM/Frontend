@@ -79,6 +79,7 @@
         </div>`;
     }
     message.value = null;
+    chat.scrollTop = chat.scrollHeight;
   }
 
   function receive(msg) {
@@ -90,6 +91,7 @@
       ` </p>
       </div>
     </div>`;
+    chat.scrollTop = chat.scrollHeight;
   }
 
   // web socket
@@ -112,7 +114,7 @@
   };
 
   //load chat
-  fetch(backProxy + "/chat?user=" + getCookie("user"), {
+  fetch(backProxy + "/chat?user=" + getCookie("user") + "&to=3", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

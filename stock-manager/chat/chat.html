@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
     <link rel="stylesheet" href="../user-flow.css" />
-    <link rel="stylesheet" href="../../common/chat.css"/>
+    <link rel="stylesheet" href="../../common/chat.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -64,66 +64,41 @@
 
       <div class="stockmg-chat-container chat-container">
         <div class="supplier-chats">
-            <div class="chats-heading table-heading">
-                <h2 class="chat-title">Supplier Messages</h2>
-                <!-- <hr /> -->
-                <br> <br>
-              </div>
-              <div class="all-chats">
-                <div class="single-chat">
-                    <div class="profile-photo">
-                        <span class="profile-icon"> <i class="fa-solid fa-user"></i>
-                        </span>
-                    </div>
-                    <div class="single-chat-content">
-                        <p class="supplier-name">Saumya Ssssss</p>
-                        <p class="last-text">badagini</p>
-                    </div>
-                </div>
-
-                <div class="single-chat">
-                    <div class="profile-photo">
-                        <span class="profile-icon"> <i class="fa-solid fa-user"></i>
-                        </span>
-                    </div>
-                    <div class="single-chat-content">
-                        <p class="supplier-name">Saumya </p>
-                        <p class="last-text">badagini</p>
-                    </div>
-                </div>
-
-                <div class="single-chat">
-                    <div class="profile-photo">
-                        <span class="profile-icon"> <i class="fa-solid fa-user"></i>
-                        </span>
-                    </div>
-                    <div class="single-chat-content">
-                        <p class="supplier-name">Saumya </p>
-                        <p class="last-text">badagini</p>
-                    </div>
-                </div>
-              </div>
+          <div class="chats-heading table-heading">
+            <h2 class="chat-title">Supplier Messages</h2>
+            <!-- <hr /> -->
+            <br />
+            <br />
+          </div>
+          <div class="all-chats"></div>
         </div>
+
         <div class="stockmg-chat">
-            <div class="chat-heading table-heading">
-                <h2 class="chat-title">supplier's name</h2>
-                <hr />
+          <div class="chat-heading table-heading">
+            <h2 class="chat-title catcher"></h2>
+            <hr />
+          </div>
+
+          <div class="inbox">
+            <div class="chat-content"></div>
+          </div>
+
+          <div class="msg-bottom">
+            <div class="sender">
+              <form class="form">
+                <input
+                  type="text"
+                  class="message"
+                  placeholder="Type a message"
+                />
+              </form>
+              <div class="sent-icon">
+                <span style="cursor: pointer"
+                  ><i class="fa-regular fa-paper-plane"></i
+                ></span>
               </div>
-      
-              <div class="inbox">
-                <div class="chat-content"></div>
-              </div>
-      
-              <div class="msg-bottom">
-                <div class="sender">
-                  <form class="form">
-                    <input type="text" class="message" placeholder="Type a message" />
-                </form>
-                    <div class="sent-icon">
-                      <span style="cursor: pointer;"><i class="fa-regular fa-paper-plane"></i></span>
-                    </div>
-                </div>
-              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -131,7 +106,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
-    <!-- <script src="./script.js"></script> -->
+    <script src="./chat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
