@@ -224,8 +224,24 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   let loc = "",
     ar = "";
 
+    let lat=0.0,long=0.0;
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  }
+
+  function showPosition(position) {
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+  }
+  getLocation();
+
   function initMap() {
-    const colombo = { lat: 6.9022, lng: 79.8611 };
+    console.log("lat " + lat);
+    console.log("lng " + long);
+    const colombo = { lat: lat, lng: long };
 
     map = new google.maps.Map(document.getElementById("map"), {
       zoom: 15,
