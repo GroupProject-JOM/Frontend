@@ -102,6 +102,8 @@
 
 .supply4-container {
   transform: translate(0, 20%);
+  display: flex;
+  gap: 65px;
 }
 
 .supply5-container {
@@ -277,6 +279,21 @@ select.dropdown {
 .supply7-container .socket-messages button{
   margin-top: 20px;
 }
+
+.map{
+  width: 30vw;
+  height: 75vh;
+  border: 0;
+  border-radius: 30px;
+}
+
+textarea{
+  padding: 5px 5px;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  /* color: red; */
+}
+
 
 @media only screen and (max-device-width: 900px) {
   .supply-container {

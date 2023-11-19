@@ -68,6 +68,7 @@
           <h2 class="supply-title"></h2>
           <p class="supply-text"></p>
         </div>
+
         <div class="supply-content">
           <form class="loaction-form supply">
             <!-- Map window start -->
@@ -77,6 +78,7 @@
                 <div class="pick-map">
                   <div id="map"></div>
                 </div>
+
                 <div class="pick-address">
                   <h2 class="table-heading t1"></h2>
                   <div>
@@ -86,21 +88,44 @@
                       style="width: 20vw"
                     ></textarea>
                   </div>
-                  <p class="pick-text">
-                    
-                  </p>
+                  <p class="pick-text"></p>
                   <button class="confirm form-button"></button>
                 </div>
               </div>
             </div>
             <!-- Map window end -->
 
-            <label class="ename-label"></label>
+            <!-- <label class="ename-label"></label>
             <input type="text" class="estate-name" placeholder="" /><br /><span
               class="form-error ename-error"
             ></span>
-            <br />
+            <br /> -->
 
+            <div class="row">
+              <div class="add-label"><label class="ename-label"></label></div>
+              <div class="add-input">
+                <input
+                  type="text"
+                  class="estate-name"
+                  placeholder=""
+                /><br /><span class="form-error ename-error"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="add-label"><label class="address-label"></label></div>
+              <div class="add-input">
+                <textarea
+                  class="address"
+                  rows="3"
+                  placeholder=""
+                  style="width: 40vw"
+                ></textarea>
+                <br /><span class="form-error address-error"></span><br />
+              </div>
+            </div>
+
+            <!-- 
             <label class="address-label"></label>
             <textarea
               class="address"
@@ -108,13 +133,22 @@
               placeholder=""
               style="width: 40vw"
             ></textarea>
-            <br /><span class="form-error address-error"></span><br />
+            <br /><span class="form-error address-error"></span><br /> -->
 
-            <label class="area-label"></label>
+
+            <div class="row">
+              <div class="add-label"><label class="area-label"></label></div>
+              <div class="add-input">
+                <input type="text" class="area" placeholder="" />
+            <br /><span class="form-error area-error"></span>
+              </div>
+            </div>
+
+            <!-- <label class="area-label"></label>
             <input type="text" class="area" placeholder="" />
             <br /><span class="form-error area-error"></span>
 
-            <br />
+            <br /> -->
             <a class="location-pick-bt form-button"></a>
           </form>
 
