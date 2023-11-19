@@ -1,17 +1,17 @@
 .location-pick {
   display: none;
-  width: 60vw;
-  height: 60vh;
+  width: 75vw;
+  height: 80vh;
   margin: 0 auto;
   background-color: var(--body-color);
   padding: 10px 10px;
   border-radius: 10px;
   margin-top: 60px;
   position: absolute;
-  /* top: 20px; */
-  /* right: 300px; */
+  top: -100px;
+  right: 30px;
   box-shadow: 0 0 20px 0 var(--shadow-color);
-  z-index: 1;
+  z-index: 999;
   transition: var(--tran-04);
 }
 
@@ -22,13 +22,39 @@
   gap: 30px;
 }
 
-iframe {
-  width: 25vw;
-  height: 57vh;
+.location-container iframe {
+  width: 50vw;
+  height: 77vh;
   border: none;
   border-radius: 10px;
   padding-left: 0;
   margin-left: 0;
+}
+
+.location-container #map {
+  width: 50vw;
+  height: 77vh;
+  border: none;
+  border-radius: 10px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.location-container .close-btn {
+  display: grid;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  color: gray;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.location-container .close-btn:hover {
+  color: var(--primary-color);
+  scale: 1.1;
+  cursor: pointer;
 }
 
 .pick-text {
