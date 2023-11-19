@@ -33,6 +33,7 @@
       dashboard = body.querySelector(".dashboard"),
       track = body.querySelector(".track"),
       supply = body.querySelector(".supply"),
+      chat = body.querySelector(".chat"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout");
 
@@ -42,8 +43,8 @@
 
     dashboard.href = frontProxy + "/stock-manager/";
     track.href = frontProxy + "/stock-manager/track-collectors/view-all.html";
-    supply.href =
-      frontProxy + "/stock-manager/supply-requests/";
+    supply.href = frontProxy + "/stock-manager/supply-requests/";
+    chat.href = frontProxy + "/stock-manager/chat/chat.html";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -139,7 +140,7 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["supply-requests", "track-collectors", "index"];
+    const navItems = ["supply-requests", "track-collectors", "chat", "index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
