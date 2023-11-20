@@ -6,6 +6,7 @@
     sText = body.querySelector(".supply-text"),
     aText = body.querySelector(".amount-text"),
     amount = body.querySelector(".collected-amount"),
+    amountError = body.querySelector(".coco-error"),
     mText = body.querySelector(".method-text"),
     op0 = body.querySelector(".op0"),
     op1 = body.querySelector(".op1"),
@@ -16,10 +17,14 @@
     op5 = body.querySelector(".op5"),
     dText = body.querySelector(".date-text"),
     date = body.querySelector(".date"),
+    dateError = body.querySelector(".date-error"),
     tText = body.querySelector(".time-text"),
     time = body.querySelector(".time"),
+    timeError = body.querySelector(".time-error"),
     method = body.querySelector(".method"),
-    payment = body.querySelector(".payment");
+    collectionError = body.querySelector(".collection-error"),
+    payment = body.querySelector(".payment"),
+    paymentError = body.querySelector(".payment-error");
 
   var lang = getCookie("lang"); // current language
 
@@ -100,6 +105,26 @@
     },
   };
 
+  var dateStatus = false,
+    timeStatus = false,
+    amountStatus = false;
+
+  amount.addEventListener("input", () => {
+    amount_status_func();
+  });
+  date.addEventListener("input", () => {
+    date_status_func();
+  });
+  time.addEventListener("input", () => {
+    time_status_func();
+  });
+  method.addEventListener("input", () => {
+    log(method.value)
+  });
+  payment.addEventListener("input", () => {
+    log(payment.value)
+  });
+
   fetch(
     backProxy +
       "/collection?sId=" +
@@ -156,4 +181,109 @@
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
+
+  function amount_status_func() {
+    if (typeof amount.value === "string" && amount.value.trim().length === 0) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය හිස් විය නොහැක";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය හිස් විය නොහැක");
+      } else {
+        amountError.textContent = "Coconut amount cannot be empty";
+        Command: toastr["warning"]("Coconut amount cannot be empty");
+      }
+      amountStatus = false;
+      return false;
+    } else if (!checkInt(amount.value)) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+      } else {
+        amountError.textContent = "Coconut amount must be positive integer";
+        Command: toastr["warning"]("Coconut amount must be positive integer");
+      }
+      amountStatus = false;
+      return false;
+    } else {
+      amountError.textContent = "";
+      amountStatus = true;
+      return true;
+    }
+  }
+
+  function date_status_func() {
+    if (typeof date.value === "string" && date.value.trim().length === 0) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය හිස් විය නොහැක";
+        Command: toastr["warning"]("දිනය හිස් විය නොහැක");
+      } else {
+        dateError.textContent = "Date cannot be empty";
+        Command: toastr["warning"]("Date cannot be empty");
+      }
+      dateStatus = false;
+      return false;
+    } else if (!checkDate(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය අනාගතයේ විය යුතුය";
+        Command: toastr["warning"]("දිනය අනාගතයේ විය යුතුය");
+      } else {
+        dateError.textContent = "Date must be in the future";
+        Command: toastr["warning"]("Date must be in the future");
+      }
+    } else {
+      dateError.textContent = "";
+      dateStatus = true;
+      return true;
+    }
+  }
+
+  function time_status_func() {
+    if (typeof time.value === "string" && time.value.trim().length === 0) {
+      if (lang == "sin") {
+        timeError.textContent = "කාලය හිස් විය නොහැක";
+        Command: toastr["warning"]("කාලය හිස් විය නොහැක");
+      } else {
+        timeError.textContent = "Time cannot be empty";
+        Command: toastr["warning"]("Time cannot be empty");
+      }
+      timeStatus = false;
+      return false;
+    } else if (!checkTime(time.value)) {
+      if (lang == "sin") {
+        timeError.textContent = "වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය";
+        Command: toastr["warning"]("වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය");
+      } else {
+        timeError.textContent = "Time must be between 08:00:AM and 05:00:PM";
+        Command: toastr["warning"](
+          "Time must be between 08:00:AM and 05:00:PM"
+        );
+      }
+      timeStatus = false;
+      return false;
+    } else {
+      timeError.textContent = "";
+      timeStatus = true;
+      return true;
+    }
+  }
 })();
+
+function checkInt(num) {
+  if (Number.isInteger(+num) && +num > 0) return true;
+  return false;
+}
+
+function checkDate(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTime(time) {
+  var t = time.split(":");
+  var hour = +t[0],
+    min = +t[1];
+  if (8 <= hour && 17 > hour) return true;
+  else return false;
+}
