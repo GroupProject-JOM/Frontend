@@ -151,7 +151,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "</button>" +
                 "</td>" +
                 "</tr>";
-
             } else if (4 < item.status && item.status < 6) {
               // Past table
               if (item.status == 5) {

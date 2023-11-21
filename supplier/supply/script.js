@@ -251,6 +251,6 @@
 })();
 
 function checkInt(num) {
-  if (Number.isInteger(+num) && (+num) > 0) return true;
+  if (Number.isInteger(+num) && +num > 0) return true;
   return false;
 }

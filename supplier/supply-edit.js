@@ -28,7 +28,8 @@
     payment = body.querySelector(".payment"),
     bank = body.querySelector(".bank"),
     bankError = body.querySelector(".bank-error"),
-    paymentError = body.querySelector(".payment-error");
+    paymentError = body.querySelector(".payment-error"),
+    btn = body.querySelector(".add-button");
 
   var lang = getCookie("lang"); // current language
 
@@ -54,6 +55,7 @@
     op5.textContent = data["sin"]["op5"];
     lop.textContent = data["sin"]["lop"];
     bop.textContent = data["sin"]["bop"];
+    btn.textContent = data["sin"]["btn"];
     setGreeting();
   });
 
@@ -79,6 +81,7 @@
     op5.textContent = data["en"]["op5"];
     lop.textContent = data["en"]["lop"];
     bop.textContent = data["en"]["bop"];
+    btn.textContent = data["en"]["btn"];
     setGreeting();
   });
 
@@ -98,6 +101,7 @@
       op5: "බැංකුවට මාරු කරන්න",
       lop: "වතුයායේ ස්ථානය",
       bop: "බැංකු ගිණුම",
+      btn: "සුරකින්න",
     },
     en: {
       sTitle: "Edit Supply",
@@ -114,6 +118,7 @@
       op5: "Transfer to bank",
       lop: "Estate Location",
       bop: "Bank Account",
+      btn: "Save",
     },
   };
 
@@ -231,7 +236,10 @@
 
   var dateStatus = false,
     timeStatus = false,
-    amountStatus = false;
+    amountStatus = false,
+    proceed = false,
+    locationStatus = false,
+    bankStatus = false;
 
   amount.addEventListener("input", () => {
     amount_status_func();
@@ -244,18 +252,135 @@
   });
   method.addEventListener("input", () => {
     log(method.value);
-    if(method.value == 'pickup'){      
+    if (method.value == "pickup") {
       location.style.display = "block";
-    }else{      
+      location_status_func();
+    } else {
       location.style.display = "none";
     }
   });
   payment.addEventListener("input", () => {
     log(payment.value);
-    if(payment.value == 'bank'){      
+    if (payment.value == "bank") {
       bank.style.display = "block";
-    }else{      
+      bank_status_func();
+    } else {
       bank.style.display = "none";
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    if (!amount_status_func()) {
+      amount.focus();
+    }
+    if (!date_status_func()) {
+      date.focus();
+    }
+    if (!time_status_func()) {
+      time.focus();
+    }
+
+    if (method.value == "pickup") location_status_func();
+
+    if (payment.value == "bank") bank_status_func();
+
+    if (amountStatus && dateStatus && timeStatus) {
+      if (method.value == "pickup") {
+        if (payment.value == "bank") {
+          if (locationStatus && bankStatus) {
+            proceed = true;
+            var formData = {
+              id: getCookie("id"),
+              supplier_id: getCookie("sId"),
+              initial_amount: amount.value,
+              payment_method: payment.value,
+              supply_method: method.value,
+              estate: location.value,
+              date: date.value,
+              time: time.value,
+              account: bank.value,
+            };
+          }
+        } else if (payment.value == "cash") {
+          if (locationStatus) {
+            proceed = true;
+            var formData = {
+              id: getCookie("id"),
+              supplier_id: getCookie("sId"),
+              initial_amount: amount.value,
+              payment_method: payment.value,
+              supply_method: method.value,
+              estate: location.value,
+              date: date.value,
+              time: time.value,
+            };
+          }
+        }
+      } else if (method.value == "yard") {
+        if (payment.value == "bank") {
+          if (bankStatus) {
+            proceed = true;
+            var formData = {
+              id: getCookie("id"),
+              supplier_id: getCookie("sId"),
+              initial_amount: amount.value,
+              payment_method: payment.value,
+              supply_method: method.value,
+              date: date.value,
+              time: time.value,
+              account: bank.value,
+            };
+          }
+        } else if (payment.value == "cash") {
+          proceed = true;
+          var formData = {
+            id: getCookie("id"),
+            supplier_id: getCookie("sId"),
+            initial_amount: amount.value,
+            payment_method: payment.value,
+            supply_method: method.value,
+            date: date.value,
+            time: time.value,
+          };
+        }
+      }
+      if (proceed) {
+        log(formData);
+        fetch(backProxy + "/collection", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+          credentials: "include",
+        })
+          .then((response) => {
+            if (response.status == 200) {
+              response.json().then((data) => {
+                console.log(data.message);
+              });
+              window.location.href = "./supply-view.html";
+            } else if (response.status === 401) {
+              response.json().then((data) => {
+                console.log(data.message);
+              });
+              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+              else Command: toastr["error"]("Invalid User");
+            } else if (response.status === 400) {
+              response.json().then((data) => {
+                console.log(data.message);
+                Command: toastr["error"](data.message);
+              });
+            } else {
+              console.error("Error:", response.status);
+              Command: toastr["error"](response.status, "Error");
+            }
+          })
+          .catch((error) => {
+            console.error("An error occurred:", error);
+            Command: toastr["error"](error);
+          });
+      }
     }
   });
 
@@ -403,6 +528,45 @@
     } else {
       timeError.textContent = "";
       timeStatus = true;
+      return true;
+    }
+  }
+
+  function location_status_func() {
+    if (
+      typeof location.value === "string" &&
+      location.value.trim().length === 0
+    ) {
+      if (lang == "sin") {
+        locationError.textContent = "ස්ථානය හිස් විය නොහැක";
+        Command: toastr["warning"]("ස්ථානය හිස් විය නොහැක");
+      } else {
+        locationError.textContent = "Location cannot be empty";
+        Command: toastr["warning"]("Location cannot be empty");
+      }
+      locationStatus = false;
+      return false;
+    } else {
+      locationError.textContent = "";
+      locationStatus = true;
+      return true;
+    }
+  }
+
+  function bank_status_func() {
+    if (typeof bank.value === "string" && bank.value.trim().length === 0) {
+      if (lang == "sin") {
+        bankError.textContent = "බැංකුව හිස් විය නොහැක";
+        Command: toastr["warning"]("බැංකුව හිස් විය නොහැක");
+      } else {
+        bankError.textContent = "Bank cannot be empty";
+        Command: toastr["warning"]("Bank cannot be empty");
+      }
+      bankStatus = false;
+      return false;
+    } else {
+      bankError.textContent = "";
+      bankStatus = true;
       return true;
     }
   }
