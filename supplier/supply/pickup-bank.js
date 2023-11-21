@@ -80,7 +80,6 @@
       Command: toastr["error"](error);
     });
 
-
   //Get bank accounts
   bankWait = await fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
     method: "GET",
@@ -134,7 +133,6 @@
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
-
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

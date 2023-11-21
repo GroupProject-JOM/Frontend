@@ -22,8 +22,12 @@
     time = body.querySelector(".time"),
     timeError = body.querySelector(".time-error"),
     method = body.querySelector(".method"),
+    location = body.querySelector(".location"),
+    locationError = body.querySelector(".location-error"),
     collectionError = body.querySelector(".collection-error"),
     payment = body.querySelector(".payment"),
+    bank = body.querySelector(".bank"),
+    bankError = body.querySelector(".bank-error"),
     paymentError = body.querySelector(".payment-error");
 
   var lang = getCookie("lang"); // current language
@@ -48,6 +52,8 @@
     op3.textContent = data["sin"]["op3"];
     op4.textContent = data["sin"]["op4"];
     op5.textContent = data["sin"]["op5"];
+    lop.textContent = data["sin"]["lop"];
+    bop.textContent = data["sin"]["bop"];
     setGreeting();
   });
 
@@ -71,6 +77,8 @@
     op3.textContent = data["en"]["op3"];
     op4.textContent = data["en"]["op4"];
     op5.textContent = data["en"]["op5"];
+    lop.textContent = data["en"]["lop"];
+    bop.textContent = data["en"]["bop"];
     setGreeting();
   });
 
@@ -88,6 +96,8 @@
       op3: "ගෙවීම් ක්‍රමය තෝරන්න",
       op4: "පිකප් මත මුදල්",
       op5: "බැංකුවට මාරු කරන්න",
+      lop: "වතුයායේ ස්ථානය",
+      bop: "බැංකු ගිණුම",
     },
     en: {
       sTitle: "Edit Supply",
@@ -102,8 +112,122 @@
       op3: "Select payment method",
       op4: "Cash on pickup",
       op5: "Transfer to bank",
+      lop: "Estate Location",
+      bop: "Bank Account",
     },
   };
+
+  let lop, bop;
+
+  var location_options =
+      "<option value='' disabled selected hidden class='lop'></option>",
+    bank_options =
+      "<option value='' disabled selected hidden class='bop'></option>";
+
+  // Get estates
+  fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.list;
+          arr.forEach(setter);
+
+          function setter(item) {
+            location_options +=
+              "<option value=" + item.id + ">" + item.estate_name + "</option>";
+          }
+          location.innerHTML = location_options;
+          lop = body.querySelector(".lop");
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          // data.size=0
+          if (lang == "sin") {
+            location_options += "<option value='' disabled>වතු නැත</option>";
+            Command: toastr["info"]("වතු නැත");
+          } else {
+            location_options += "<option value='' disabled>No Estates</option>";
+            Command: toastr["info"]("No Estates");
+          }
+          location.innerHTML = location_options;
+          lop = body.querySelector(".lop");
+        });
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+        if (lang == "sin")
+          location_options += "<option value='' disabled>වතු නැත</option>";
+        else
+          location_options += "<option value='' disabled>No Estates</option>";
+        location.innerHTML = location_options;
+        lop = body.querySelector(".lop");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
+
+  //Get bank accounts
+  // bankWait = await
+  fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.list;
+          arr.forEach(setter);
+
+          function setter(item) {
+            bank_options +=
+              "<option value=" + item.id + ">" + item.name + "</option>";
+          }
+          bank.innerHTML = bank_options;
+          bop = body.querySelector(".bop");
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          // data.size=0
+          if (lang == "sin") {
+            bank_options +=
+              "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+            Command: toastr["info"]("බැංකු ගිණුම් නැත");
+          } else {
+            bank_options +=
+              "<option value='' disabled >No Bank Accounts</option>";
+            Command: toastr["info"]("No Bank Accounts");
+          }
+          bank.innerHTML = bank_options;
+          bop = body.querySelector(".bop");
+        });
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+        if (lang == "sin")
+          bank_options +=
+            "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+        else
+          bank_options +=
+            "<option value='' disabled >No Bank Accounts</option>";
+        bank.innerHTML = bank_options;
+        bop = body.querySelector(".bop");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
 
   var dateStatus = false,
     timeStatus = false,
@@ -119,10 +243,20 @@
     time_status_func();
   });
   method.addEventListener("input", () => {
-    log(method.value)
+    log(method.value);
+    if(method.value == 'pickup'){      
+      location.style.display = "block";
+    }else{      
+      location.style.display = "none";
+    }
   });
   payment.addEventListener("input", () => {
-    log(payment.value)
+    log(payment.value);
+    if(payment.value == 'bank'){      
+      bank.style.display = "block";
+    }else{      
+      bank.style.display = "none";
+    }
   });
 
   fetch(
@@ -157,6 +291,8 @@
               dText.textContent = "Pickup Date";
               tText.textContent = "Pickup Time";
             }
+            location.value = data.collection.estate;
+            location.style.display = "block";
           } else {
             if (lang == "sin") {
               dText.textContent = "බෙදාහැරීමේ දිනය";
@@ -165,6 +301,11 @@
               dText.textContent = "Delivery Date";
               tText.textContent = "Delivery Time";
             }
+          }
+
+          if (data.collection.pMethod == "bank") {
+            bank.value = data.collection.account;
+            bank.style.display = "block";
           }
         });
       } else if (response.status === 202) {
