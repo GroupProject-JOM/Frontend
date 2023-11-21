@@ -5,10 +5,11 @@
     sTitle = body.querySelector(".supply-title"),
     sText = body.querySelector(".supply-text"),
     eName = body.querySelector(".eName"),
-    eLocation = body.querySelector(".eLocation"),
+    eAddress = body.querySelector(".eAddress"),
     eArea = body.querySelector(".eArea"),
     edit = body.querySelector(".edit"),
-    del = body.querySelector(".delete");
+    del = body.querySelector(".delete"),
+    map = body.querySelector(".map");
 
   var lang = getCookie("lang"); // current language
 
@@ -17,7 +18,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -60,13 +60,7 @@
   };
 
   fetch(
-    backProxy +
-      "/estate?sId=" +
-      // sessionStorage.getItem("sId") +
-      getCookie("sId") +
-      "&id=" +
-      // sessionStorage.getItem("id"),
-      getCookie("id"),
+    backProxy + "/estate?sId=" + getCookie("sId") + "&id=" + getCookie("id"),
     {
       method: "GET",
       headers: {
@@ -79,8 +73,15 @@
       if (response.status == 200) {
         response.json().then((data) => {
           eName.textContent = data.estate.estate_name;
-          eLocation.textContent = data.estate.estate_location;
+          eAddress.textContent = data.estate.estate_address;
           eArea.textContent = data.estate.area;
+          var arr = data.estate.estate_location.split(" ");
+          map.innerHTML =
+            `<iframe src='https://www.google.com/maps?q=` +
+            arr[0] +
+            `,` +
+            arr[1] +
+            `&hl=es;z=14&output=embed' frameborder='0' style='width: 100%;height: 100%;'></iframe>`;
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -150,7 +151,7 @@
                   title: title,
                   text: text,
                   icon: "success",
-                  confirmButtonColor : confirmButtonColor,
+                  confirmButtonColor: confirmButtonColor,
                 }).then((response) => {
                   window.location.href = "./view-all.html";
                 });
