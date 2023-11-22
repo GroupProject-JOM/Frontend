@@ -115,8 +115,8 @@
   );
 
   socket.onmessage = function (event) {
-    receive(event.data);
-    // loadChatList();
+    if (getCookie("id") != null) receive(event.data);
+    loadChatList();
   };
 
   socket.onclose = function (event) {
@@ -187,6 +187,7 @@
 
   //load chat list
   function loadChatList() {
+    allChat.innerHTML = null;
     var formData = {
       user: getCookie("user"),
     };
@@ -279,6 +280,7 @@
                 chat.innerHTML = null;
                 bottom.style.display = "block";
                 loadChat();
+                chat.style.display = "block";
               });
             });
           });
