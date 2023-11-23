@@ -38,7 +38,7 @@
   display: flex;
 }
 
-.form{
+.form {
   width: 90%;
 }
 
@@ -58,11 +58,11 @@
   padding-top: 20px;
 }
 
-.supplier-chat-container .sent-icon{
+.supplier-chat-container .sent-icon {
   padding-left: 50px;
 }
 
-.stockmg-chat-container .sent-icon{
+.stockmg-chat-container .sent-icon {
   padding-left: 40px;
 }
 
@@ -144,10 +144,10 @@ p {
   grid-template-columns: 20vw auto;
   margin-left: 0;
   /* height: 89.5vh; */
-  height: 85vh;  
+  height: 85vh;
 }
 
-.stockmg-chat{
+.stockmg-chat {
   height: 70vh;
   margin-left: 30px;
   /* width: fit-content; */
@@ -163,23 +163,22 @@ p {
   box-shadow: 0px 70px 40px 0px var(--box-shadow);
 }
 
-.supplier-chats hr{
+.supplier-chats hr {
   width: 20vw;
 }
 
-.single-chat{
+.single-chat {
   /* border: 1px solid red; */
   height: 10vh;
   display: grid;
   grid-template-columns: 70px auto;
-  
 }
 
-.single-chat:hover{
+.single-chat:hover {
   background-color: var(--hr-color);
 }
 
-.profile-photo{
+.profile-photo {
   background-color: var(--shadow-color);
   width: 50px;
   height: 50px;
@@ -190,14 +189,14 @@ p {
   justify-content: center;
 }
 
-.profile-icon{
+.profile-icon {
   display: flex;
   align-self: center;
   color: var(--text-color);
   font-size: 25px;
 }
 
-.single-chat-content{
+.single-chat-content {
   /* margin: 20px 0 20px 10px; */
   margin-left: 10px;
   display: flex;
@@ -205,28 +204,27 @@ p {
   justify-content: center;
 }
 
-.supplier-name{
+.supplier-name {
   font-weight: 600;
   font-size: 15px;
 }
 
-.last-text{
+.last-text {
   font-size: 13px;
   padding-top: 5px;
   color: var(--input-border);
 }
 
-
-.stockmg-chat-container .msg-bottom{
+.stockmg-chat-container .msg-bottom {
   width: 55vw;
 }
 
-.supplier-chats{
+.supplier-chats {
   height: 89.5vh;
   border-bottom: 20px solid white;
 }
 
-.stockmg-chat-container input{
+.stockmg-chat-container input {
   border: none;
   border-bottom: 1px solid var(--input-border);
   color: #484848;
@@ -236,9 +234,18 @@ p {
   /* background-color: var(--body-color); */
 }
 
-.stockmg-chat-container input:focus{
+.stockmg-chat-container input:focus {
   outline: none;
   border-bottom: 1px solid #484848;
   transition: var(--tran-05);
 }
 
+.unseen {
+  background-color: rgb(49, 248, 49);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: relative;
+  left: 190px;
+  bottom: 20px;
+}
