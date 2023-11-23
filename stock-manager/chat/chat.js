@@ -115,8 +115,14 @@
   );
 
   socket.onmessage = function (event) {
-    receive(event.data);
-    // loadChatList();
+    if (
+      getCookie("id") != null &&
+      getCookie("id") == event.data[event.data.length - 1]
+    ) {
+      let msg = event.data.substring(0, event.data.length - 1);
+      receive(msg);
+    }
+    loadChatList();
   };
 
   socket.onclose = function (event) {
@@ -187,6 +193,7 @@
 
   //load chat list
   function loadChatList() {
+    allChat.innerHTML = null;
     var formData = {
       user: getCookie("user"),
     };
@@ -229,25 +236,48 @@
                 return;
               }
               if (item.receiver == 3) {
-                allChat.innerHTML +=
-                  `<div class="single-chat" id=` +
-                  item.sender +
-                  `>` +
-                  `<div class="profile-photo">` +
-                  `<span class="profile-icon"> <i class="fa-solid fa-user"></i>` +
-                  `</span>` +
-                  `</div>` +
-                  `<div class="single-chat-content">` +
-                  `<p class="supplier-name">` +
-                  item.fist_name +
-                  ` ` +
-                  item.last_name +
-                  `</p>` +
-                  `<p class="last-text">` +
-                  item.content +
-                  `</p>` +
-                  `</div>` +
-                  `</div>`;
+                if (item.seen == 0) {
+                  allChat.innerHTML +=
+                    `<div class="single-chat" id=` +
+                    item.sender +
+                    `>` +
+                    `<div class="profile-photo">` +
+                    `<span class="profile-icon"> <i class="fa-solid fa-user"></i>` +
+                    `</span>` +
+                    `</div>` +
+                    `<div class="single-chat-content">` +
+                    `<p class="supplier-name">` +
+                    item.fist_name +
+                    ` ` +
+                    item.last_name +
+                    `</p>` +
+                    `<p class="last-text">` +
+                    item.content +
+                    `</p>` +
+                    `<div class="unseen"></div>` +
+                    `</div>` +
+                    `</div>`;
+                } else {
+                  allChat.innerHTML +=
+                    `<div class="single-chat" id=` +
+                    item.sender +
+                    `>` +
+                    `<div class="profile-photo">` +
+                    `<span class="profile-icon"> <i class="fa-solid fa-user"></i>` +
+                    `</span>` +
+                    `</div>` +
+                    `<div class="single-chat-content">` +
+                    `<p class="supplier-name">` +
+                    item.fist_name +
+                    ` ` +
+                    item.last_name +
+                    `</p>` +
+                    `<p class="last-text">` +
+                    item.content +
+                    `</p>` +
+                    `</div>` +
+                    `</div>`;
+                }
               } else {
                 allChat.innerHTML +=
                   `<div class="single-chat" id=` +
@@ -279,6 +309,10 @@
                 chat.innerHTML = null;
                 bottom.style.display = "block";
                 loadChat();
+                chat.style.display = "block";
+                if (c.getElementsByTagName("*").length == 7)
+                  c.children[1].children[2].remove();
+                seen();
               });
             });
           });
@@ -294,6 +328,41 @@
           });
           if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
           else Command: toastr["error"]("Invalid User");
+        } else {
+          console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+        Command: toastr["error"](error);
+      });
+  }
+
+  function seen() {
+    fetch(
+      backProxy + "/seen?user=" + getCookie("user") + "&id=" + getCookie("id"),
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    )
+      .then((response) => {
+        if (response.status == 200) {
+          response.json().then((data) => {
+            log(data.messages);
+          });
+        } else if (response.status === 202) {
+          response.json().then((data) => {
+            log(data.messages);
+          });
+        } else if (response.status === 401) {
+          response.json().then((data) => {
+            console.log(data.message);
+          });
         } else {
           console.error("Error:", response.status);
           Command: toastr["error"](response.status, "Error");
