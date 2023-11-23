@@ -52,8 +52,11 @@
             <div class="main-error"></div>
             <div class="signup-form">
               <form autocomplete="on">
-                <div class="signup-name" style="margin: 0; padding: 0">
-                  <section>
+                <div class="row">
+                  <div class="add-label">
+                    <label class="fname-label"></label>
+                  </div>
+                  <div class="add-input">
                     <input
                       type="text"
                       class="short fname"
@@ -63,8 +66,14 @@
                     />
                     <br />
                     <span class="form-error fname-error"></span>
-                  </section>
-                  <section>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="add-label">
+                    <label class="lname-label"></label>
+                  </div>
+                  <div class="add-input">
                     <input
                       type="text"
                       class="short lname"
@@ -74,44 +83,120 @@
                     />
                     <br />
                     <span class="form-error lname-error"></span>
-                  </section>
+                  </div>
                 </div>
-                <br />
-                <input
-                  type="text"
-                  class="long email"
-                  name="email"
-                  placeholder=""
-                  autocomplete="email"
-                /><br />
-                <span class="form-error email-error"></span>
-                <br />
-                <input
-                  type="password"
-                  class="long password"
-                  name="password"
-                  placeholder=""
-                  autocomplete="new-password"
-                /><br /><span class="form-error password-error"></span>
-                <br />
-                <input
-                  type="text"
-                  name="phone"
-                  class="long phone"
-                  placeholder=""
-                  autocomplete="tel"
-                /><br /><span class="form-error phone-error"></span>
-                <br />
+
+               
+                <div class="row">
+                  <div class="add-label">
+                    <label class="email-label"></label>
+                  </div>
+                  <div class="add-input">
+                    <input
+                      type="text"
+                      class="long email"
+                      name="email"
+                      placeholder=""
+                      autocomplete="email"
+                    /><br />
+                    <span class="form-error email-error"></span>
+                    <!-- <br /> -->
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="add-label">
+                    <label class="password-label"></label>
+                  </div>
+                  <div class="add-input">
+                    <input
+                      type="password"
+                      class="long password"
+                      name="password"
+                      placeholder=""
+                      autocomplete="new-password"
+                    /><br /><span class="form-error password-error"></span>
+                    <!-- <br /> -->
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="add-label">
+                    <label class="phone-label"></label>
+                  </div>
+                  <div class="add-input">
+                    <input
+                      type="text"
+                      name="phone"
+                      class="long phone"
+                      placeholder=""
+                      autocomplete="tel"
+                    /><br /><span class="form-error phone-error"></span>
+                    <!-- <br /> -->
+                  </div>
+                </div>
+                <br>
+
                 <p class="address"></p>
-                <br />
-                <input
+
+                <div class="row">
+                  <div class="add-label">
+                    <label class="address1-label"></label>
+                  </div>
+                  <div class="add-input">
+                    <input
+                      type="text"
+                      class="long address1"
+                      name="address1"
+                      placeholder=""
+                      autocomplete="address-line1"
+                    /><br /><span class="form-error address1-error"></span>
+                    <!-- <br /> -->
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="add-label">
+                    <label class="address2-label"></label>
+                  </div>
+                  <div class="add-input">
+                    <input
+                      type="text"
+                      name="address2"
+                      class="short address2"
+                      placeholder=""
+                      autocomplete="address-line2"
+                    /><br /><span class="form-error address2-error"></span>
+                    <!-- <br /> -->
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="add-label">
+                    <label class="address3-label"></label>
+                  </div>
+                  <div class="add-input">
+                    <input
+                      type="text"
+                      name="address3"
+                      class="short address3"
+                      placeholder=""
+                      autocomplete="address-line3"
+                    /><br /><span class="form-error address3-error"></span>
+                    <!-- <br /> -->
+                  </div>
+                </div>
+
+                <!-- <br /> -->
+                <!-- <input
                   type="text"
                   class="long address1"
                   name="address1"
                   placeholder=""
                   autocomplete="address-line1"
-                /><br /><span class="form-error address1-error"></span><br />
-                <div class="signup-name">
+                /><br /><span class="form-error address1-error"></span><br /> -->
+                <!-- <div class="signup-name">
                   <section>
                     <input
                       type="text"
@@ -130,7 +215,7 @@
                       autocomplete="address-line3"
                     /><br /><span class="form-error address3-error"></span>
                   </section>
-                </div>
+                </div> -->
                 <!-- <input type="submit" class="next form-button" value="submit"/> -->
               </form>
             </div>

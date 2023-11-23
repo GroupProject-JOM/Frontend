@@ -16,7 +16,10 @@ lang = getCookie("lang"); // current language
       bank = body.querySelector(".bank"),
       bankError = body.querySelector(".bank-error"),
       next = body.querySelector(".next"),
-      skip = body.querySelector(".skip");
+      skip = body.querySelector(".skip"),
+      accNameLabel = body.querySelector(".accname-label"),
+      accNoLabel = body.querySelector(".accno-label"),
+    bankLabel = body.querySelector(".bank-label");
   
     sin.addEventListener("click", () => {
       sin.classList.add("active");
@@ -34,6 +37,10 @@ lang = getCookie("lang"); // current language
       bank.placeholder = data["sin"]["bank"];
       next.textContent = data["sin"]["next"];
       skip.textContent = data["sin"]["skip"];
+      accNameLabel.textContent = data["sin"]["accNameLabel"];
+      accNoLabel.textContent = data["sin"]["accNoLabel"];
+      bankLabel.textContent = data["sin"]["bankLabel"];
+
 
     });
   
@@ -53,6 +60,10 @@ lang = getCookie("lang"); // current language
       bank.placeholder = data["en"]["bank"];
       next.textContent = data["en"]["next"];
       skip.textContent = data["en"]["skip"];
+      accNameLabel.textContent = data["en"]["accNameLabel"];
+      accNoLabel.textContent = data["en"]["accNoLabel"];
+      bankLabel.textContent = data["en"]["bankLabel"];
+
 
     });
   
@@ -62,10 +73,13 @@ lang = getCookie("lang"); // current language
         fh: "ගෙවීම් තොරතුරු",
         fht: "ඔබගේ බැංකු ගිණුම් විස්තර එක් කරන්න. <br />ඔබට උපකරණ පුවරුව තුළ ගෙවීම් ක්‍රම සංස්කරණය කිරීමට හැකි වනු ඇත",
         hname: "ගිණුම් හිමියාගේ නම",
-        acc: "ගිණුම් අංකය.",
+        acc: "ගිණුම් අංකය",
         bank: "බැංකුව",
         next: "සුරකින්න",
         skip: "මඟ හරින්න",
+        accNameLabel: "ගිණුම් හිමියාගේ නම",
+        accNoLabel: "ගිණුම් අංකය",
+        bankLabel: "බැංකුව",
       },
       en: {
         
@@ -76,6 +90,9 @@ lang = getCookie("lang"); // current language
         bank: "Bank",
         next: "Save",
         skip: "Skip",
+        accNameLabel: "Account Holder Name",
+        accNoLabel: "Account No.",
+        bankLabel: "Bank",
       },
     };
 

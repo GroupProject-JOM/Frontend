@@ -288,9 +288,10 @@ select.dropdown {
 }
 
 textarea{
-  padding: 5px 5px;
+  /* padding: 5px 5px; */
+  padding-top: 10px;
   border: none;
-  border-bottom: 1px solid var(--input-border);
+  /* border-bottom: 1px solid var(--input-border); */
   /* color: red; */
 }
 
