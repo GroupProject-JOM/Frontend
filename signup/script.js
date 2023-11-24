@@ -41,7 +41,15 @@ var fname_status = false,
     address3Error = body.querySelector(".address3-error"),
     mainError = body.querySelector(".main-error"),
     m7 = body.querySelector(".menu-line7"),
-    next = body.querySelector(".next");
+    next = body.querySelector(".next"),
+    fnameLabel = body.querySelector(".fname-label"),
+    lnameLabel = body.querySelector(".lname-label"),
+    emailLabel = body.querySelector(".email-label"),
+    passwordLabel = body.querySelector(".password-label"),
+    phoneLabel = body.querySelector(".phone-label"),
+    address1Label = body.querySelector(".address1-label"),
+    address2Label = body.querySelector(".address2-label"),
+    address3Label = body.querySelector(".address3-label");
 
   sin.addEventListener("click", () => {
     // when sin is clicked
@@ -64,6 +72,16 @@ var fname_status = false,
     address3.placeholder = data["sin"]["address3"];
     next.textContent = data["sin"]["next"];
     m7.innerHTML = data["sin"]["m7"];
+    fnameLabel.textContent = data["sin"]["fnameLabel"];
+    lnameLabel.textContent = data["sin"]["lnameLabel"];
+    emailLabel.textContent = data["sin"]["emailLabel"];
+    passwordLabel.textContent = data["sin"]["passwordLabel"];
+    phoneLabel.textContent = data["sin"]["phoneLabel"];
+    address1Label.textContent = data["sin"]["address1Label"];
+    address2Label.textContent = data["sin"]["address2Label"];
+    address3Label.textContent = data["sin"]["address3Label"];
+
+
   });
 
   en.addEventListener("click", () => {
@@ -87,6 +105,14 @@ var fname_status = false,
     address3.placeholder = data["en"]["address3"];
     next.textContent = data["en"]["next"];
     m7.innerHTML = data["en"]["m7"];
+    fnameLabel.textContent = data["en"]["fnameLabel"];
+    lnameLabel.textContent = data["en"]["lnameLabel"];
+    emailLabel.textContent = data["en"]["emailLabel"];
+    passwordLabel.textContent = data["en"]["passwordLabel"];
+    phoneLabel.textContent = data["en"]["phoneLabel"];
+    address1Label.textContent = data["en"]["address1Label"];
+    address2Label.textContent = data["en"]["address2Label"];
+    address3Label.textContent = data["en"]["address3Label"];
   });
 
   var data = {
@@ -104,6 +130,14 @@ var fname_status = false,
       address3: "නගරය",
       m7: "දැනටමත් ගිණුමක් ඇත? <a href='../signin.html'>මෙතනින් පුරන්න.</a>",
       next: "ඊළඟ",
+      fnameLabel: "මුල් නම",
+      lnameLabel: "අවසන් නම",
+      emailLabel: "ඊතැපැල් ලිපිනය",
+      passwordLabel: "මුරපදය සාදන්න",
+      phoneLabel: "දුරකථන අංකය",
+      address1Label: "ලිපින පේළි 1",
+      address2Label: "වීදිය",
+      address3Label: "නගරය",
     },
     en: {
       fh: "Basic Information",
@@ -118,6 +152,15 @@ var fname_status = false,
       address3: "City",
       m7: "Already have an account? <a href='../signin.html'>Sign in here.</a>",
       next: "Save",
+      fnameLabel: "First name",
+      lnameLabel: "Last name",
+      emailLabel: "Email Address",
+      passwordLabel: "Create Password",
+      phoneLabel: "Phone Number",
+      address1Label: "Address Line 1",
+      address2Label: "Street",
+      address3Label: "City",
+
     },
   };
 

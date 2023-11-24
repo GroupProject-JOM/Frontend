@@ -16,7 +16,12 @@ var enameStatus = false,
     area = body.querySelector(".area"),
     areaError = body.querySelector(".area-error"),
     next = body.querySelector(".next"),
-    skip = body.querySelector(".skip");
+    skip = body.querySelector(".skip"),
+    eLabel = body.querySelector(".ename-label"),
+    locationLabel = body.querySelector(".location-label"),
+    areaLabel = body.querySelector(".area-label");
+
+
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -34,6 +39,10 @@ var enameStatus = false,
     area.placeholder = data["sin"]["area"];
     next.textContent = data["sin"]["next"];
     skip.textContent = data["sin"]["skip"];
+    eLabel.textContent = data["sin"]["eLabel"];
+    locationLabel.textContent = data["sin"]["locationLabel"];
+    areaLabel.textContent = data["sin"]["areaLabel"];
+
   });
 
   en.addEventListener("click", () => {
@@ -52,17 +61,23 @@ var enameStatus = false,
     area.placeholder = data["en"]["area"];
     next.textContent = data["en"]["next"];
     skip.textContent = data["en"]["skip"];
+    eLabel.textContent = data["en"]["eLabel"];
+    locationLabel.textContent = data["en"]["locationLabel"];
+    areaLabel.textContent = data["en"]["areaLabel"];
   });
 
   var data = {
     sin: {
       fh: "ඔබගේ ලිපිනයන්",
       fht: "ඔබේ මූලික වතු තොරතුරු එක් කරන්න. <br /> ඔබට උපකරණ පුවරුව තුළ තවත් වතුයායන් එක් කිරීමට හැකි වනු ඇත",
-      ename: "වතුයායේ නම",
+      ename: "වතුයායේ නම  ඇතුලත් කරන්න",
       location: "ස්ථානය",
       area: "ප්රදේශය/කලාපය",
       next: "සුරකින්න",
       skip: "මඟ හරින්න",
+      eLabel: "වතුයායේ නම",
+      locationLabel: "ලිපිනය",
+      areaLabel: "ප්රදේශය",
     },
     en: {
       fh: "Estate Locations",
@@ -72,6 +87,9 @@ var enameStatus = false,
       area: "Area/Region",
       next: "Save",
       skip: "Skip",
+      eLabel: "Estate Name",
+      locationLabel: "Location",
+      areaLabel: "Area",
     },
   };  
 
