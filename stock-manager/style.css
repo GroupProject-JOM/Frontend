@@ -1,33 +1,3 @@
-.yard1 {
-  grid-area: left;
-}
-
-.yard2 {
-  grid-area: middle;
-}
-
-.yard3 {
-  grid-area: right;
-}
-
-.stock {
-  margin-top: 1.5rem;
-  display: grid;
-  grid-template-areas: "left middle right";
-  gap: 40px;
-}
-
-.stock table tr:hover {
-  background-color: rgb(224, 224, 224) !important;
-}
-
-.stock h3 {
-  padding-bottom: 0.8rem;
-  margin-top: 1rem;
-  /* padding-left: 25px; */
-  font-weight: 600;
-  font-size: 19px;
-}
 
 .req-tables {
   grid-template-areas: "left right";
@@ -58,26 +28,4 @@
     /* flex-wrap: wrap; */
   }
 
-  .yard2 {
-    /* display: flex;
-    flex-wrap: wrap; */
-    margin-top: 1rem;
-  }
-  .yard3 {
-    /* display: flex;
-    flex-wrap: wrap; */
-    margin-top: 1rem;
-  }
-
-  .stock {
-    display: inline-block;
-    margin-right: 4rem;
-    /* flex-wrap: wrap; */
-  }
-
-  .center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }
