@@ -109,7 +109,7 @@
               arr[0] +
               `,` +
               arr[1] +
-              `&hl=es;z=14&output=embed' frameborder='0' style='width: 100%;height: 100%;'></iframe>`;
+              `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
           } else if (data.collection.sMethod == "yard") {
             sMethod.textContent = "Delivered to Yard";
             dateText.textContent = "Delivery Date";

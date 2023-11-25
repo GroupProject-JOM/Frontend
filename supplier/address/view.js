@@ -81,7 +81,7 @@
             arr[0] +
             `,` +
             arr[1] +
-            `&hl=es;z=14&output=embed' frameborder='0' style='width: 100%;height: 100%;'></iframe>`;
+            `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
         });
       } else if (response.status === 202) {
         response.json().then((data) => {

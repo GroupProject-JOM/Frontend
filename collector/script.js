@@ -120,11 +120,19 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.size);
-          if (data.size == -2)
+          console.log(data);
+          if (data.size == -2) {
             if (lang == "sin") Command: toastr["info"]("එකතු කිරීම් නැත");
             else Command: toastr["info"]("No collections");
-          else if (data.size == -1) {
+
+            if ((data.count > 0)) {
+              fire.style.display = "block";
+              greet.style.display = "block";
+              todayTable.style.display = "none";
+            }
+            w1Value.textContent = data.count;
+            w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
+          } else if (data.size == -1) {
             let arr2 = data.upcoming;
             arr2.forEach(data_to_table2);
             tbody2.innerHTML = row2;
@@ -138,6 +146,14 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 window.location.href = r.dataset.href;
               });
             });
+
+            if ((data.count > 0)) {
+              fire.style.display = "block";
+              greet.style.display = "block";
+              todayTable.style.display = "none";
+            }
+            w1Value.textContent = data.count;
+            w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
           } else {
             let arr1 = data.today;
             arr1.forEach(data_to_table1);
@@ -181,7 +197,9 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function data_to_table1(item) {
     row1 +=
-      `<tr data-href="./collection/view.html" id=`+item.id+`>
+      `<tr data-href="./collection/view.html" id=` +
+      item.id +
+      `>
       <td>` +
       item.area +
       `</td>
@@ -199,7 +217,9 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function data_to_table2(item) {
     row2 +=
-      `<tr data-href="./collection/view.html" id=`+item.id+`>
+      `<tr data-href="./collection/view.html" id=` +
+      item.id +
+      `>
       <td>` +
       item.date +
       `</td>
