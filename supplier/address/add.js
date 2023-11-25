@@ -83,7 +83,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       address: "ලිපිනය ඇතුලත් කරන්න",
       area: "ප්රදේශය ඇතුල් කරන්න",
       t1: "වතුයායේ ලිපිනය",
-      pText: "ඔබගේ සැපයුම pin මගින් සලකුණු කර ඇති ඉහත ස්ථානයෙන් ලබා ගනී. කරුණාකර එය වැරදි ස්ථානයේ තිබේ නම් පින් එක නැවත ස්ථානගත කරන්න.",
+      pText:
+        "ඔබගේ සැපයුම pin මගින් සලකුණු කර ඇති ඉහත ස්ථානයෙන් ලබා ගනී. කරුණාකර එය වැරදි ස්ථානයේ තිබේ නම් පින් එක නැවත ස්ථානගත කරන්න.",
       confirm: "තහවුරු කරන්න",
       eLabel: "වතුයායේ නම",
       addLabel: "ලිපිනය",
@@ -99,7 +100,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       address: "Enter address",
       area: "Enter area",
       t1: "Estate Address",
-      pText: "Your supply will be picked-up from the above location marked by the pin. please relocate the pin is it's at the incorrect location.",
+      pText:
+        "Your supply will be picked-up from the above location marked by the pin. please relocate the pin is it's at the incorrect location.",
       confirm: "Confirm",
       eLabel: "Estate Name",
       addLabel: "Address",
@@ -178,7 +180,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     if (enameStatus && addressStatus && areaStatus) {
       var formData = {
-        // supplier_id: sessionStorage.getItem("sId"),
         supplier_id: getCookie("sId"),
         estate_name: ename.value,
         estate_location: location,
@@ -241,7 +242,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   let lat = 6.9270786;
   let long = 79.861243;
-  let location= "";
+  let location = "";
 
   function showPosition(position) {
     lat = position.coords.latitude;
@@ -296,12 +297,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         loc = response.results[0].formatted_address;
         // ar = response.results[0].address_components[0].short_name;
         let arr = loc.split(",");
-        if(arr.length>2) ar = arr[arr.length - 2].slice(1);
+        if (arr.length > 2) ar = arr[arr.length - 2].slice(1);
         else ar = arr[arr.length - 2];
-        lat =response.results[0].geometry.location.lat ;
-        long =response.results[0].geometry.location.lng ;
-        location = lat+" "+long
-        
+        lat = response.results[0].geometry.location.lat;
+        long = response.results[0].geometry.location.lng;
+        location = lat + " " + long;
       })
       .catch((err) => console.error(err));
   }
