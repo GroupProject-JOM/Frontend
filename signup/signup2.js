@@ -35,9 +35,9 @@ var lang = getCookie("lang"); // current language
     email_status = false,
     oId;
 
-  if (email == null) {
-    window.location.href = "./";
-  }
+  // if (email == null) {
+  //   window.location.href = "./";
+  // }
 
   if (phone == null) {
     shPhone.style.display = "none";
