@@ -13,7 +13,8 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     time = body.querySelector(".time"),
     amount = body.querySelector(".amount"),
     pMethod = body.querySelector(".pMethod"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".form-button"),
+    map = body.querySelector(".map");
 
   var lang = getCookie("lang"); // current language
 
@@ -62,7 +63,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  let area="";
+  let area = "";
   fetch(
     backProxy +
       "/pickup-collection?id=" +
@@ -83,12 +84,19 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           sName.textContent =
             data.collection.name + " " + data.collection.last_name;
           sPhone.textContent = data.collection.phone;
-          address.textContent =
-            data.collection.location + "," + data.collection.area;
+          address.textContent = data.collection.address;
           date.textContent = data.collection.date;
           time.textContent = timeString(data.collection.time);
           amount.textContent = data.collection.amount.toLocaleString("en-US");
           pMethod.textContent = capitalize(data.collection.payment_method);
+
+          var arr = data.collection.location.split(" ");
+          map.innerHTML =
+            `<iframe src='https://www.google.com/maps?q=` +
+            arr[0] +
+            `,` +
+            arr[1] +
+            `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
 
           area = data.collection.area;
         });

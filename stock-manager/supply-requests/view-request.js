@@ -42,7 +42,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     change.textContent = data["sin"]["change"];
     rtext.textContent = data["sin"]["rtext"];
 
-
     setGreeting();
   });
 
@@ -61,7 +60,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     assign.textContent = data["en"]["assign"];
     change.textContent = data["en"]["change"];
     rtext.textContent = data["en"]["rtext"];
-
 
     setGreeting();
   });
@@ -102,13 +100,23 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
+          log(data);
           rId.textContent = data.request.id;
           sName.textContent = data.request.name + " " + data.request.last_name;
           sPhone.textContent = data.request.phone;
           sMethod.textContent = capitalize(data.request.method);
-          address.textContent = data.request.location + "," + data.request.area;
+          address.textContent = data.request.address;
           dText.textContent = "Pickup Date";
           tText.textContent = "Pickup Time";
+
+          var arr = data.request.location.split(" ");
+          map.innerHTML =
+            `<iframe src='https://www.google.com/maps?q=` +
+            arr[0] +
+            `,` +
+            arr[1] +
+            `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
+
           if (data.request.method != "pickup") {
             estate.style.display = "none";
             map.style.display = "none";
