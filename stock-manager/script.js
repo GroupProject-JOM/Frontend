@@ -74,8 +74,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "View and respond to production manager requests",
       c4: "Supplier Requests Overview",
       c5: "View and update Supplier requests",
-      c6: "Stock Information",
-      c7: "View color-coded stock information",
+      c6: "Today's Collections",
+      c7: "View coconut collections scheduled for today",
     },
   };
 
