@@ -29,6 +29,7 @@
   --label-selected: #2D2D2D;
   --completed-green: #70BB56;
   --reject-red: #e96d6d;
+  --accept-yellow: #e9c66d;
   --input-border-focus: #484848;
   --hr-color: #f1f1f1;
 
@@ -298,7 +299,7 @@ body.dark {
 }
 
 .accept {
-  background-color: var(--button-color);
+  background-color: var(--accept-yellow);
   color: var(--text-color);
 }
 

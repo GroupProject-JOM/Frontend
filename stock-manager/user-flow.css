@@ -50,12 +50,14 @@
 
 .collection-data-table {
   width: 25vw;
+  margin-top: 30px;
 }
 
 .supplyreq-container,
 .assign-collector-container,
 .track-collectors-container,
-.stock-container {
+.stock-container,
+.block-container {
   top: 50%;
   transform: translate(0, 10%);
 }
@@ -121,6 +123,28 @@ select.dropdown {
 
 .stockmg-collections-container .collection-layer {
   padding-bottom: 60px;
+}
+
+
+.to-yard {
+  background-color: #d9d9d961;
+  border-radius: 10px;
+  padding: 40px 2rem 20px 4rem;
+  width: 40vw;
+  margin: 4rem 0;
+}
+
+.yard-value{
+  padding: 5px 0 35px 0;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.yard-button{
+  width: fit-content;
+  border-radius: 15px;
+  padding: 5px 30px;
+  
 }
 
 @media only screen and (max-device-width: 1260px) {
