@@ -9,14 +9,23 @@
     th3 = body.querySelector(".th3"),
     th4 = body.querySelector(".th4"),
     th5 = body.querySelector(".th5"),
+    th6 = body.querySelector(".th6"),
     tbody = body.querySelector(".tbody");
 
-  const rows = document.querySelectorAll("tr[data-href]");
-  rows.forEach((r) => {
-    r.addEventListener("click", () => {
-      document.cookie = "id=" + r.id + "; path=/";
-      window.location.href = r.dataset.href;
-    });
+  var lang = getCookie("lang"); // current language
+
+  sin.addEventListener("click", () => {
+    sin.classList.add("active");
+    en.classList.remove("active");
+
+    document.documentElement.setAttribute("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin; path=/";
+    lang = "sin";
+
+    sTitle.textContent = data["sin"]["sTitle"];
+    sText.textContent = data["sin"]["sText"];
+    setGreeting();
   });
 
   sin.addEventListener("click", () => {
@@ -34,6 +43,7 @@
     th3.textContent = data["sin"]["th3"];
     th4.textContent = data["sin"]["th4"];
     th5.textContent = data["sin"]["th5"];
+    th6.textContent = data["sin"]["th6"];
     setGreeting();
   });
 
@@ -52,27 +62,30 @@
     th3.textContent = data["en"]["th3"];
     th4.textContent = data["en"]["th4"];
     th5.textContent = data["en"]["th5"];
+    th6.textContent = data["en"]["th6"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      sTitle: "සමාගමේ එකතුකරන්නන්",
-      sText1: "සමාගම් එකතුකරන්නන්ගේ තොරතුරු සහ ඔවුන්ගේ එකතු කිරීම් බලන්න",
-      th1: "එකතුකරන්නාගේ නම",
+      sTitle: "Collector's name",
+      sText1: "එක් එක් දිනයේ පොල් එකතු කිරීමේ විස්තර බලන්න",
+      th1: "සේවක හැදුනුම්පත",
       th2: "ප්රදේශය",
-      th3: "දුරකතන අංකය",
-      th4: "එකතු කිරීම්",
-      th5: "එකතු කළ ප්රමාණය",
+      th3: "සැපයුම්කරු",
+      th4: "දුරකතන අංකය",
+      th5: "ප්රමාණය",
+      th6: "තත්ත්වය",
     },
     en: {
-      sTitle: "Collectors",
-      sText1: "View information of company collectors and their collections",
-      th1: "Collector's Name",
-      th2: "Hometown",
-      th3: "Phone No.",
-      th4: "Collections",
-      th5: "Current Amount",
+      sTitle: "Collectors Name",
+      sText1: "View coconut collection details for each day",
+      th1: "Collection ID",
+      th2: "Area",
+      th3: "Supplier",
+      th4: "Phone No",
+      th5: "Amount",
+      th6: "Status",
     },
   };
 })();
