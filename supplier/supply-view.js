@@ -9,6 +9,12 @@
     sTitle = body.querySelector(".supply-title"),
     sText = body.querySelector(".supply-text"),
     sMethod = body.querySelector(".sMethod"),
+    eNameText = body.querySelector(".eName-text"),
+    eName = body.querySelector(".eName"),
+    eAddressText = body.querySelector(".eAddress-text"),
+    eAddress = body.querySelector(".eAddress"),
+    eAreaText = body.querySelector(".eArea-text"),
+    eArea = body.querySelector(".eArea"),
     dateText = body.querySelector(".date-text"),
     date = body.querySelector(".date"),
     timeText = body.querySelector(".time-text"),
@@ -19,7 +25,9 @@
     val = body.querySelector(".val"),
     value = body.querySelector(".value"),
     edit = body.querySelector(".edit"),
-    del = body.querySelector(".delete");
+    del = body.querySelector(".delete"),
+    error = body.querySelector(".error"),
+    map = body.querySelector(".map");
 
   var lang = getCookie("lang"); // current language
 
@@ -87,14 +95,29 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
+          log(data.collection);
           if (data.collection.sMethod == "pickup") {
             sMethod.textContent = "Pickup from estate";
             dateText.textContent = "Pickup Date";
             timeText.textContent = "Pickup Time";
+            eName.textContent = data.collection.estate_name;
+            eAddress.textContent = data.collection.estate_address;
+            eArea.textContent = data.collection.estate_area;
+            var arr = data.collection.estate_location.split(" ");
+            map.innerHTML =
+              `<iframe src='https://www.google.com/maps?q=` +
+              arr[0] +
+              `,` +
+              arr[1] +
+              `&hl=es;z=14&output=embed' frameborder='0' style='width: 100%;height: 100%;'></iframe>`;
           } else if (data.collection.sMethod == "yard") {
             sMethod.textContent = "Delivered to Yard";
             dateText.textContent = "Delivery Date";
             timeText.textContent = "Delivery Time";
+            eNameText.style.display = "none";
+            eAddressText.style.display = "none";
+            eAreaText.style.display = "none";
+            map.style.display = "none";
           }
           date.textContent = data.collection.date;
           time.textContent = timeString(data.collection.time);
@@ -124,22 +147,46 @@
             );
             var now = new Date();
             now.setDate(now.getDate() + 1);
-            if (selectedDate <= now) {
+            var week = new Date();
+            week.setDate(week.getDate() - 7);
+            var dDate = new Date();
+            dDate.setDate(selectedDate.getDate() + 7);
+
+            if (selectedDate <= now || data.collection.final_amount != 0) {
               edit.style.display = "none";
               edit.disabled = true;
               del.style.display = "none";
               del.disabled = true;
+              if (lang == "sin")
+                error.textContent =
+                  "ඔබට මෙය මකා දැමීමට අවශ්‍ය නම්, " +
+                  dDate.toLocaleDateString() +
+                  " න් පසු ඔබට එය කළ හැක";
+              else
+                error.textContent =
+                  "If you want to delete this, you can do so after  " +
+                  dDate.toLocaleDateString();
             }
-          } else if (4 < data.collection.status && data.collection.status < 6) {
+
+            if (selectedDate < week) {
+              error.style.display = "none";
+              del.style.display = "block";
+              del.disabled = false;
+            }
+          } else if (4 < data.collection.status && data.collection.status < 7) {
             if (data.collection.status == 5)
               sstatus.textContent = "Pending Paymant";
             else if (data.collection.status == 6) sstatus.textContent = "Paid";
 
             ccount.textContent =
               data.collection.final_amount.toLocaleString("en-US");
-            value.textContent = data.collection.value.toLocaleString("en-US");
+            value.textContent =
+              data.collection.value.toLocaleString("en-US") + " LKR";
+
             edit.style.display = "none";
             edit.disabled = true;
+            del.style.display = "none";
+            del.disabled = true;
           }
         });
       } else if (response.status === 202) {
