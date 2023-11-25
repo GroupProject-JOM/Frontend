@@ -1,5 +1,5 @@
 .supplier-chat-container {
-  width: 70vw;
+  width: 90%;
   height: 80vh;
 }
 
@@ -29,9 +29,10 @@
   background-color: var(--hr-color);
   position: absolute;
   bottom: 0px;
-  width: 70vw;
+  width: 85%;
   border-radius: 10px;
   margin-top: 50px;
+  margin-right: 20px;
 }
 
 .sender {
@@ -56,6 +57,7 @@
   align-items: center;
   /* padding-left: 40px; */
   padding-top: 20px;
+  padding-right: 20px;
 }
 
 .supplier-chat-container .sent-icon {
@@ -248,4 +250,17 @@ p {
   position: relative;
   left: 190px;
   bottom: 20px;
+}
+
+
+
+
+@media only screen and (max-device-width: 900px)  {
+  .supplier-chat-container {
+    width: 95%;
+  }
+
+  .sent-msg p, .received-msg p{
+    font-size: 12px;
+  }
 }

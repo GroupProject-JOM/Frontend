@@ -291,10 +291,48 @@ textarea{
   /* padding: 5px 5px; */
   padding-top: 10px;
   border: none;
-  /* border-bottom: 1px solid var(--input-border); */
+  resize: none;
+  height: 40px;
+  border-bottom: 1px solid var(--input-border);
   /* color: red; */
 }
 
+textarea::placeholder{
+  color: var(--input-border);
+}
+
+
+.report-container{
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 3fr 1fr 1fr;
+  height: 73vh;
+  gap: 35px;
+  margin: 2rem 6rem 0rem 2rem;
+}
+
+.report-container> div{
+  box-shadow: 0px 4px 40px 0px var(--box-shadow);
+  border-radius: 8px;
+
+}
+
+.sales-graph{
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.earnings-graph{
+    grid-area: 2 / 1 / 4 / 2;
+}
+
+.coco-rate{
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.avg-rate{
+  grid-area: 3 / 2 / 4 / 3;
+}
 
 @media only screen and (max-device-width: 900px) {
   .supply-container {
@@ -333,5 +371,12 @@ textarea{
 
   .collection-data-table {
     width: 60vw;
+  }
+
+  .supply6-container .edit,
+  .supply6-container .delete,
+  .supply8-container .edit,
+  .supply8-container .delete  {
+    visibility: hidden;
   }
 }
