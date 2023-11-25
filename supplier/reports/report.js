@@ -1,3 +1,33 @@
+(() => {
+  const body = document.querySelector("body"),
+    sin = body.querySelector(".sin"),
+    en = body.querySelector(".en");
+
+  var lang = getCookie("lang"); // current language
+
+  sin.addEventListener("click", () => {
+    sin.classList.add("active");
+    en.classList.remove("active");
+
+    document.documentElement.setAttribute("lang", "sin");
+    document.cookie = "lang=sin; path=/";
+    lang = "sin";
+
+    setGreeting();
+  });
+
+  en.addEventListener("click", () => {
+    en.classList.add("active");
+    sin.classList.remove("active");
+
+    document.documentElement.setAttribute("lang", "en");
+    document.cookie = "lang=en; path=/";
+    lang = "en";
+
+    setGreeting();
+  });
+})();
+
 //for all charts
 let labels = [
   "Jan",
