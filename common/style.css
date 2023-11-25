@@ -293,7 +293,7 @@ body.dark {
   padding-top: 1rem;
 }
 
-.accepted, .processing, .paid, .ready {
+.accepted, .processing, .paid, .ready, .completed{
   background-color: var(--completed-green);
 }
 
