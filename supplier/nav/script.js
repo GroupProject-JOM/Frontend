@@ -34,7 +34,7 @@
       newSupply = body.querySelector(".newSupply"),
       address = body.querySelector(".address"),
       payment = body.querySelector(".payment"),
-      report = body.querySelector(".report"),
+      reports = body.querySelector(".reports"),
       chat = body.querySelector(".chat"),
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
@@ -49,7 +49,7 @@
     payment.addEventListener("click", () => {
       pageLoading();
     });
-    report.addEventListener("click", () => {
+    reports.addEventListener("click", () => {
       pageLoading();
     });
     chat.addEventListener("click", () => {
@@ -69,6 +69,7 @@
     address.href = frontProxy + "/supplier/address/view-all.html";
     payment.href = frontProxy + "/supplier/payment/view-all.html";
     chat.href = frontProxy + "/supplier/chat/chat.html";
+    reports.href = frontProxy + "/supplier/reports/report.html";
     dashboard.href = frontProxy + "/supplier/";
 
     if (!loaded && toggle && modeSwitch) {
@@ -170,7 +171,7 @@ window.addEventListener("load", (e) => {
       "supply",
       "address",
       "payment",
-      "report",
+      "reports",
       "chat",
       "index",
     ];

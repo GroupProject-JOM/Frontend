@@ -126,7 +126,7 @@
       },
     ],
   };
-  const dataLine2 = {
+  const dataBar = {
     labels: labels2,
     datasets: [
       {
@@ -160,9 +160,9 @@
       },
     },
   };
-  const configLine2 = {
+  const configBar = {
     type: "bar",
-    data: dataLine2,
+    data: dataBar,
     options: {
       responsive: true,
       plugins: {
@@ -183,7 +183,7 @@
   );
   const chartLine2 = new Chart(
     document.getElementById("distributor-sales"),
-    configLine2
+    configBar
   );
 
   //pdf generate code
