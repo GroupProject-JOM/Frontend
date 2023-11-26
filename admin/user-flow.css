@@ -24,10 +24,14 @@ select.dropdown {
 
 .dropdown {
   width: 40vw;
-  margin-top: 3rem;
+  margin-top: 20px;
+  font-size: 16px;
   margin-bottom: 3rem;
   background-color: var(--body-color);
-  color: var(--input-border);
+  color: var(--primary-color);
+  font-weight: 500;
+  padding-bottom: 5px;
+  
 }
 
 .employee-basic .next{
@@ -93,15 +97,11 @@ input {
   /* box-sizing: border-box; */
   border: none;
   border-bottom: 1px solid #a9a9a9;
-  color: #484848;
   padding: 7px 0;
-  margin: 20px 0 0 0;
+  margin: 10px 0 0 0;
+  font-size: 20px;
 }
 
-
-input::placeholder {
-  color: var(--input-border);
-}
 
 textarea:focus,
 input:focus {
@@ -111,15 +111,16 @@ input:focus {
 }
 
 .address {
-  color: var(--input-border-focus);
+  color: var(--input-border);
   font-weight: 600;
-  margin-top: 60px;
+  margin-top: 6px;
+  
 }
 
 .register-form input{
   font-size: 15px;
   /* padding: 0; */
-  margin-top: 25px;
+  /* margin-top: 25px; */
 
 }
 
@@ -178,6 +179,24 @@ input:focus {
 }
 
 .edit-employee-container input::placeholder {
-  color: var(--input-border-focus);
+  color: var(--primary-color);
+  font-weight: 500;
+  /* color: red; */
+  
+}
+
+.edit-employee-container .email-label{
+  margin-top: 40px;
+}
+
+
+.register-form label{
+  display: block;
+  margin-top: 30px;
+  color: var(--input-border);
+}
+
+.edit-employee-container .address-label{
+  margin-top: 10px;
 }
 
