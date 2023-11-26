@@ -27,7 +27,9 @@
     window.location.href = "./employee/view-all.html";
   });
   collection.addEventListener("click", () => {});
-  outlet.addEventListener("click", () => {});
+  outlet.addEventListener("click", () => {
+    window.location.href = "./outlet";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -104,7 +106,7 @@
     },
   };
 
-  fetch(backProxy + "/admin?emp=" + getCookie("sId"), {
+  fetch(backProxy + "/admin?user=" + getCookie("user"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

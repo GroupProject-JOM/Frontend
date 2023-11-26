@@ -251,7 +251,7 @@ let gendr, bDay;
     ) {
       var formData = {
         eId: getCookie("id"),
-        emp: getCookie("sId"),
+        emp: getCookie("user"),
         first_name: fname.value,
         last_name: lname.value,
         phone: phone.value,
@@ -376,7 +376,7 @@ let gendr, bDay;
   });
 
   fetch(
-    backProxy + "/employee?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
+    backProxy + "/employee?id=" + getCookie("id") + "&user=" + getCookie("user"),
     {
       method: "GET",
       headers: {

@@ -61,7 +61,7 @@
   };
 
   fetch(
-    backProxy + "/employee?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
+    backProxy + "/employee?id=" + getCookie("id") + "&user=" + getCookie("user"),
     {
       method: "GET",
       headers: {
@@ -137,8 +137,8 @@
           backProxy +
             "/employee?id=" +
             getCookie("id") +
-            "&emp=" +
-            getCookie("sId"),
+            "&user=" +
+            getCookie("user"),
           {
             method: "DELETE",
             headers: {
