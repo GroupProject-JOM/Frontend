@@ -4,20 +4,21 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    pTitle = body.querySelector(".productionmg-title"),
-    pText = body.querySelector(".production-history-text"),
-    tbody = body.querySelector(".tbody");
+    t1 = body.querySelector(".t1"),
+    t2 = body.querySelector(".t2"),
+    tbody1 = body.querySelector(".tbody1"),
+    tbody2 = body.querySelector(".tbody2");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
-    pTitle.textContent = data["sin"]["pTitle"];
-    pText.textContent = data["sin"]["pText"];
+    t1.textContent = data["sin"]["t1"];
+    t2.textContent = data["sin"]["t2"];
     setGreeting();
   });
 
@@ -26,28 +27,29 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
-    pTitle.textContent = data["en"]["pTitle"];
-    pText.textContent = data["en"]["pText"];
+    t1.textContent = data["en"]["t1"];
+    t2.textContent = data["en"]["t2"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      pTitle: "ගෙවීම්",
-      pText: "මාසික ආදායම",
+      t1: "පොරොත්තු ගෙවීම්",
+      t2: "සම්පූර්ණ කරන ලද ගෙවීම්",
     },
     en: {
-      pTitle: "Payouts",
-      pText: "View the history of payments for the suppliers",
+      t1: "Pending Payments",
+      t2: "Completed Payments",
     },
   };
 
-  let row = "";
+  let row1 = "",
+    row2 = "";
 
-  fetch(backProxy + "/collections?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/payouts?user=" + getCookie("user"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -57,24 +59,61 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          let arr = data.list;
+          let arr = data.payouts;
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            log(item);
-            row +=
-              `<tr data-href='./payment.html'>` +
-              `<td>T0006</td>` +
-              `<td>Cash</td>` +
-              `<td>Saman</td>` +
-              `<td>2000</td>` +
-              `<td>` +
-              `<button class="payment-pending status">Pending</button>` +
-              `</td>` +
-              `</tr>`;
+            if (item.status == 5) {
+              row1 +=
+                `<tr data-href='./payment.html' id=` +
+                item.id +
+                `>` +
+                `<td>` +
+                item.id +
+                `</td>` +
+                `<td>` +
+                item.name +
+                ` ` +
+                item.last_name +
+                `</td>` +
+                `<td>` +
+                capitalize(item.payment_method) +
+                `</td>` +
+                `<td>` +
+                item.value.toLocaleString("en-US") +
+                `</td>` +
+                `<td>` +
+                `<button class="payment-pending status">Pending</button>` +
+                `</td>` +
+                `</tr>`;
+            } else if (item.status == 6) {
+              row2 +=
+                `<tr data-href='./payment.html' id=` +
+                item.id +
+                `>` +
+                `<td>` +
+                item.id +
+                `</td>` +
+                `<td>` +
+                item.name +
+                ` ` +
+                item.last_name +
+                `</td>` +
+                `<td>` +
+                capitalize(item.payment_method) +
+                `</td>` +
+                `<td>` +
+                item.value.toLocaleString("en-US") +
+                `</td>` +
+                `<td>` +
+                `<button class="payment-paid status">Paid</button>` +
+                `</td>` +
+                `</tr>`;
+            }
           }
 
-          tbody.innerHTML = row;
+          tbody1.innerHTML = row1;
+          tbody2.innerHTML = row2;
 
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
@@ -86,8 +125,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.size);
+          log(data.size);
+        });if (lang == "sin") Command: toastr["error"]("ගෙවීම් නැත");
+        else Command: toastr["error"]("No payouts");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          log(data.message);
         });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
