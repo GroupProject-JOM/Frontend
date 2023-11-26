@@ -69,68 +69,50 @@
           <p class="supply-text"></p>
         </div>
 
-        <div class="edit-grid-container">
-          <div class="coconut-amount edit-item">
-            <div class="collection-text amount-text"></div>
-            <div>
-              <input type="number" class="collected-amount" placeholder="" />
-            </div>
-            <br />
-            <span class="form-error coco-error"></span>
-          </div>
+        <div class="supply-edit-content">
+          <label class="amount-label"></label>
+          <input type="number" class="long collected-amount" placeholder="" />
+          <br />
+          <span class="form-error coco-error"></span>
 
-          <div class="supply-method edit-item">
-            <div class="collection-text method-text"></div>
-            <div>
-              <select class="collected-method dropdown method">
-                <option value="" default hidden class="op0"></option>
-                <option value="pickup" class="op1"></option>
-                <option value="yard" class="op2"></option>
-              </select>
-            </div>
-            <br />
-            <span class="form-error collection-error"></span>
-          </div>
+          <label class="method-label"></label>
+          <select class="collected-method dropdown">
+            <option value="" default hidden class="op0"></option>
+            <option value="pickup" class="op1"></option>
+            <option value="yard" class="op2"></option>
+          </select>
+          <br />
+          <span class="form-error collection-error"></span>
 
           <!-- Estate list dropdown -->
           <select class="dropdown location" style="display: none"></select
           ><br />
-          <span class="form-error location-error"></span><br />
+          <span class="form-error location-error"></span>
 
-          <div class="supply-payment edit-item">
-            <div class="collection-text payment-text"></div>
-            <div>
-              <select class="payment-method dropdown payment">
-                <option value="" default hidden class="op3"></option>
-                <option value="cash" class="op4"></option>
-                <option value="bank" class="op5"></option>
-              </select>
-            </div>
-            <br />
-            <span class="form-error payment-error"></span>
-          </div>
+          <label class="payment-label"></label>
+          <select class="payment-method dropdown payment">
+            <option value="" default hidden class="op3"></option>
+            <option value="cash" class="op4"></option>
+            <option value="bank" class="op5"></option>
+          </select>
+          <br />
+          <span class="form-error payment-error"></span>
 
           <!-- Bank list dropdown -->
           <select class="dropdown bank" style="display: none"></select
           ><br />
-          <span class="form-error bank-error"></span><br />
+          <span class="form-error bank-error"></span>
 
-          <div class="supply-date edit-item">
-            <div class="collection-text date-text"></div>
-            <div>
-              <input type="date" class="collected-date date" />
-              <br />
-              <span class="form-error date-error"></span>
-            </div>
-          </div>
-          <div class="supply-time edit-item">
-            <div class="collection-text time-text"></div>
-            <div>
-              <input type="time" class="collected-time time" />
-              <br />
-              <span class="form-error time-error"></span>
-            </div>
-          </div>
+          <label class="date-label"></label>
+          <input type="date" class="long collected-date date" />
+          <br />
+          <span class="form-error date-error"></span>
+
+          <label class="date-label"></label>
+          <input type="time" class="long collected-time time" />
+          <br />
+          <span class="form-error time-error"></span>
+
           <button class="add-button form-button"></button>
         </div>
       </div>

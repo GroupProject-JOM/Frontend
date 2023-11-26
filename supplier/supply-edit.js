@@ -4,21 +4,16 @@
     en = body.querySelector(".en"),
     sTitle = body.querySelector(".supply-title"),
     sText = body.querySelector(".supply-text"),
-    aText = body.querySelector(".amount-text"),
     amount = body.querySelector(".collected-amount"),
     amountError = body.querySelector(".coco-error"),
-    mText = body.querySelector(".method-text"),
     op0 = body.querySelector(".op0"),
     op1 = body.querySelector(".op1"),
     op2 = body.querySelector(".op2"),
-    pText = body.querySelector(".payment-text"),
     op3 = body.querySelector(".op3"),
     op4 = body.querySelector(".op4"),
     op5 = body.querySelector(".op5"),
-    dText = body.querySelector(".date-text"),
     date = body.querySelector(".date"),
     dateError = body.querySelector(".date-error"),
-    tText = body.querySelector(".time-text"),
     time = body.querySelector(".time"),
     timeError = body.querySelector(".time-error"),
     method = body.querySelector(".method"),
@@ -29,7 +24,12 @@
     bank = body.querySelector(".bank"),
     bankError = body.querySelector(".bank-error"),
     paymentError = body.querySelector(".payment-error"),
-    btn = body.querySelector(".add-button");
+    btn = body.querySelector(".add-button"),
+    amountLabel = body.querySelector(".amount-label"),
+    methodLabel = body.querySelector(".method-label"),
+    paymentLabel = body.querySelector(".payment-label"),
+    dateLabel = body.querySelector(".date-label"),
+    timeLabel = body.querySelector(".time-label");
 
   var lang = getCookie("lang"); // current language
 
@@ -43,19 +43,22 @@
 
     sTitle.textContent = data["sin"]["sTitle"];
     sText.textContent = data["sin"]["sText"];
-    aText.textContent = data["sin"]["aText"];
     amount.placeholder = data["sin"]["amount"];
-    mText.textContent = data["sin"]["mText"];
     op0.textContent = data["sin"]["op0"];
     op1.textContent = data["sin"]["op1"];
     op2.textContent = data["sin"]["op2"];
-    pText.textContent = data["sin"]["pText"];
     op3.textContent = data["sin"]["op3"];
     op4.textContent = data["sin"]["op4"];
     op5.textContent = data["sin"]["op5"];
     lop.textContent = data["sin"]["lop"];
     bop.textContent = data["sin"]["bop"];
     btn.textContent = data["sin"]["btn"];
+    amountLabel.textContent = data["sin"]["amountLabel"];
+    methodLabel.textContent = data["sin"]["methodLabel"];
+    paymentLabel.textContent = data["sin"]["paymentLabel"];
+    dateLabel.textContent = data["sin"]["dateLabel"];
+    timeLabel.textContent = data["sin"]["timeLabel"];
+
     setGreeting();
   });
 
@@ -69,19 +72,21 @@
 
     sTitle.textContent = data["en"]["sTitle"];
     sText.textContent = data["en"]["sText"];
-    aText.textContent = data["en"]["aText"];
     amount.placeholder = data["en"]["amount"];
-    mText.textContent = data["en"]["mText"];
     op0.textContent = data["en"]["op0"];
     op1.textContent = data["en"]["op1"];
     op2.textContent = data["en"]["op2"];
-    pText.textContent = data["en"]["pText"];
     op3.textContent = data["en"]["op3"];
     op4.textContent = data["en"]["op4"];
     op5.textContent = data["en"]["op5"];
     lop.textContent = data["en"]["lop"];
     bop.textContent = data["en"]["bop"];
     btn.textContent = data["en"]["btn"];
+    amountLabel.textContent = data["en"]["amountLabel"];
+    methodLabel.textContent = data["en"]["methodLabel"];
+    paymentLabel.textContent = data["en"]["paymentLabel"];
+    dateLabel.textContent = data["en"]["dateLabel"];
+    timeLabel.textContent = data["en"]["timeLabel"];
     setGreeting();
   });
 
@@ -89,36 +94,40 @@
     sin: {
       sTitle: "සැපයුම සංස්කරණය කරන්න",
       sText: "ඔබගේ සැපයුම් ඉල්ලීම් විස්තර සංස්කරණය කරන්න",
-      aText: "පොල් ප්‍රමාණය",
       amount: "පොල් ප්‍රමාණය ඇතුළත් කරන්න",
-      mText: "සැපයුම් ක්රමය",
       op0: "සැපයුම් ක්‍රමය තෝරන්න",
       op1: "වත්තෙන් පිකප්",
       op2: "අංගනයට භාර දෙනු ලැබේ",
-      pText: "ගෙවීම්",
       op3: "ගෙවීම් ක්‍රමය තෝරන්න",
       op4: "පිකප් මත මුදල්",
       op5: "බැංකුවට මාරු කරන්න",
       lop: "වතුයායේ ස්ථානය",
       bop: "බැංකු ගිණුම",
       btn: "සුරකින්න",
+      amountLabel: "පොල් ප්‍රමාණය",
+      methodLabel: "සැපයුම් ක්රමය",
+      paymentLabel: "ගෙවීම් ක්රමය",
+      dateLabel: "එකතු කිරීමේ දිනය",
+      timeLabel: "එකතු කිරීමේ වෙලාව",
     },
     en: {
       sTitle: "Edit Supply",
       sText: "Edit your supply request details",
-      aText: "Coconut Amount",
       amount: "Enter coconut amount",
-      mText: "Supply Method",
       op0: "Select supply method",
       op1: "Pickup from estate",
       op2: "Delivered to yard",
-      pText: "Payment method",
       op3: "Select payment method",
       op4: "Cash on pickup",
       op5: "Transfer to bank",
       lop: "Estate Location",
       bop: "Bank Account",
-      btn: "Save",
+      btn: "Save Changes",
+      amountLabel: "Coconut Amount",
+      methodLabel: "Supply Method",
+      paymentLabel: "Payment Method",
+      dateLabel: "Collection Date",
+      timeLabel: "Collection Time",
     },
   };
 

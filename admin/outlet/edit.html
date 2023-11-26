@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
-    <link rel="stylesheet" href="./user-flow.css">
+    <link rel="stylesheet" href="../user-flow.css">
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -64,12 +64,13 @@
 
       <div class="text"></div>
 
-      <div class="outlet-edit-container container">
-        <div class="outlet-heading table-heading">
-          <h2 class="outlet-title" style="margin-bottom: 2rem;"></h2>
+      <div class="outlet-edit-container admin-container">
+        <div class="outlet-heading">
+          <h2 class="outlet-title form-heading" style="margin-bottom: 2rem;"></h2>
         </div>
         <div class="edit-outlet-form">
           <form autocomplete="on">
+            <label class="name-label">Outlet Name</label>
             <input
               type="text"
               class="long oname"
@@ -78,6 +79,8 @@
             />
             <br /><span class="form-error oname-error"></span>
             <br />
+
+            <label class="email-label">Email Address</label>
             <input
               type="text"
               class="long email"
@@ -85,6 +88,8 @@
               autocomplete="email"
             /><br />
             <span class="form-error email-error"></span><br />
+
+            <label class="phone-label"></label>
             <input
               type="text"
               class="long phone"
@@ -92,14 +97,19 @@
               autocomplete="tel"
             /><br />
             <span class="form-error phone-error"></span><br />
+
+            <p class="address">Outlet Address</p>
+
+            <label class="address1-label"></label>
             <input
               type="text"
               class="long address1"
               placeholder=""
               autocomplete="address-line1"
             /><br /><span class="form-error address1-error"></span><br />
-            <div>
+            <div class="register-name">
               <section>
+                <label class="address2-label"></label>
                 <input
                   type="text"
                   name="address2"
@@ -109,6 +119,7 @@
                 /><br /><span class="form-error address2-error"></span>
               </section>
               <section>
+                <label class="address3-label"></label>
                 <input
                   type="text"
                   name="address3"
@@ -120,7 +131,7 @@
             </div>
           </form>
         </div>
-        <button class="savebt form-button"></button>
+        <button class="form-button"></button>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
