@@ -22,7 +22,7 @@
 
 .add-container {
   /* position: absolute; */
-    /* top: 50%; */
+  /* top: 50%; */
   /* transform: translate(0, 30%); */
   margin-left: 6rem;
 }
@@ -33,12 +33,11 @@
 
 .container {
   top: 50%;
-  transform: translate(0, 10%);
+  /* transform: translate(0, 10%); */
   /* margin-left: 10rem;    */
 }
 
-
-.payment-container{
+.payment-container {
   transform: translate(0, 10%);
 }
 
@@ -47,19 +46,23 @@
   width: 40rem;
 }
 
-.production-ongoing{
+.production-ongoing {
   background-color: var(--sidebar-color);
 }
 
-.production-completed{
+.production-completed {
   background-color: var(--completed-green);
 }
 
-.payment-pending{
+.production-distributed{
+  background-color: var(--accept-yellow);
+}
+
+.payment-pending {
   background-color: var(--sidebar-color);
 }
 
-.payment-paid{
+.payment-paid {
   background-color: var(--completed-green);
 }
 
@@ -92,11 +95,20 @@ input:focus {
   display: flex;
   width: 40vw;
   justify-content: space-between;
-  }
+}
 
-  .short {
-    width: 17rem;
-    }
-    .long {
-    width: 40rem;
-    }
+.short {
+  width: 17rem;
+}
+.long {
+  width: 40rem;
+}
+
+.payouts-layer {
+  padding: 30px 0;
+}
+
+.payouts-layer .payouts-text {
+  font-size: 20px;
+  font-weight: 600;
+}
