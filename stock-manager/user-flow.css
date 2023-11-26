@@ -11,7 +11,7 @@
   justify-content: center;
 }
 
-.accept-decline{
+.accept-decline {
   display: flex;
   gap: 20px;
 }
@@ -22,7 +22,8 @@
   border-radius: 30px;
 }
 
-.collection-view-container,  .production-view-container{
+.collection-view-container,
+.production-view-container {
   padding-left: 20px;
   display: flex;
   gap: 65px;
@@ -49,14 +50,19 @@
 
 .collection-data-table {
   width: 25vw;
+  margin-top: 30px;
 }
 
-.supplyreq-container, .assign-collector-container, .track-collectors-container, .stock-container{
+.supplyreq-container,
+.assign-collector-container,
+.track-collectors-container,
+.stock-container,
+.block-container {
   top: 50%;
   transform: translate(0, 10%);
 }
 
-.production-view-container{
+.production-view-container {
   top: 50%;
   transform: translate(0, 15vh);
 }
@@ -75,12 +81,12 @@ select.dropdown {
   color: var(--input-border);
 }
 
-.collection-view-container .dropdown{
+.collection-view-container .dropdown {
   width: 25vw;
   margin-top: 20px;
 }
 
-.collection-view-container .reason{
+.collection-view-container .reason {
   margin-top: 40px;
 }
 
@@ -103,7 +109,6 @@ select.dropdown {
   gap: 40px;
 }
 
-
 .stocks table tr:hover {
   background-color: rgb(224, 224, 224) !important;
 }
@@ -116,11 +121,33 @@ select.dropdown {
   font-size: 19px;
 }
 
+.stockmg-collections-container .collection-layer {
+  padding-bottom: 60px;
+}
 
 
+.to-yard {
+  background-color: #d9d9d961;
+  border-radius: 10px;
+  padding: 40px 2rem 20px 4rem;
+  width: 40vw;
+  margin: 4rem 0;
+}
 
-@media only screen and (max-device-width: 1260px){
+.yard-value{
+  padding: 5px 0 35px 0;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.yard-button{
+  width: fit-content;
+  border-radius: 15px;
+  padding: 5px 30px;
   
+}
+
+@media only screen and (max-device-width: 1260px) {
   .yard2 {
     /* display: flex;
     flex-wrap: wrap; */

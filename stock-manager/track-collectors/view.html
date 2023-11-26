@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collectors</title>
+    <title>View Collector</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
@@ -63,9 +63,12 @@
       <div class="text"></div>
 
       <div class="track-collectors-container container">
-        <div class="stockmg-heading table-heading">
-          <h2 class="stockmg-title"></h2>
-          <p class="stockmg-text1 stockmg-text"></p>
+        <div class="heading-content">
+          <div class="stockmg-heading table-heading">
+            <h2 class="stockmg-title"></h2>
+            <p class="stockmg-text1 stockmg-text"></p>
+          </div>
+          <div class="filter"></div>
         </div>
 
         <table class="addresses-table overview-tables">
@@ -76,19 +79,59 @@
               <th class="th3"></th>
               <th class="th4"></th>
               <th class="th5"></th>
+              <th class="th6"></th>
             </tr>
           </thead>
 
           <tbody>
-            <tr data-href="./collection.html">
-              <td>Ranjith</td>
+            <tr>
+              <td>C12</td>
               <td>Piliyandala</td>
+              <td>Ranjith</td>
               <td>0123445678</td>
-              <td>20</td>
               <td>2000</td>
+              <td><button class="completed status">collected</button></td>
+            </tr>
+            <tr>
+              <td>C12</td>
+              <td>Piliyandala</td>
+              <td>Ranjith</td>
+              <td>0123445678</td>
+              <td>2000</td>
+              <td><button class="completed status">collected</button></td>
+            </tr>
+            <tr>
+              <td>C12</td>
+              <td>Piliyandala</td>
+              <td>Ranjith</td>
+              <td>0123445678</td>
+              <td>2000</td>
+              <td><button class="completed status">collected</button></td>
+            </tr>
+            <tr>
+              <td>C12</td>
+              <td>Piliyandala</td>
+              <td>Ranjith</td>
+              <td>0123445678</td>
+              <td>2000</td>
+              <td><button class="completed status">collected</button></td>
+            </tr>
+            <tr>
+              <td>C12</td>
+              <td>Piliyandala</td>
+              <td>Ranjith</td>
+              <td>0123445678</td>
+              <td>2000</td>
+              <td><button class="completed status">collected</button></td>
             </tr>
           </tbody>
         </table>
+
+        <div class="to-yard">
+          <p class="yard-text">Currently collected coconut amount by the collector:</p>
+          <p class="yard-value">10000</p>
+          <button class="yard-button form-button">Assign To Yards</button>
+        </div>
       </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -98,7 +141,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
-    <script src="./view-all.js"></script>
+    <script src="./view.js"></script>
     <script src="../../common/loader.js"></script>
   </body>
 </html>

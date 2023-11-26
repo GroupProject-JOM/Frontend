@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block details</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="block-container container">
+        <div class="stockmg-heading table-heading">
+          <h2 class="stockmg-title"></h2>
+          <p class="stockmg-text"></p>
+        </div>
+
+        <div>
+          <table class="collection-data-table overview-tables">
+            <tbody>
+              <tr>
+                <td>Block No</td>
+                <td class="rId">11</td>
+              </tr>
+              <tr>
+                <td>Yard No</td>
+                <td class="yard">1</td>
+              </tr>
+              
+              <tr>
+                <td class="date-text">Stored Date</td>
+                <td class="date"></td>
+              </tr>
+              
+              <tr>
+                <td>Coconut Count</td>
+                <td class="amount">8000</td>
+              </tr>
+              <tr>
+                <td>Stored period</td>
+                <td class="amount">20 days</td>
+              </tr>
+
+
+
+              
+            </tbody>
+          </table>
+        </div>
+
+
+
+      </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="./view-block.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./load-nav.js"></script>
+    <script src="./load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
+  </body>
+</html>

@@ -60,24 +60,91 @@
 
       <div class="text"></div>
 
-      <div class="container">
-        <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title"></h2>
-          <p class="production-history-text"></p>
-        </div>
+      <div class="payouts-container container">
+        <div class="pending-payments payouts-layer">
+          <div class="productionmg-heading table-heading">
+            <h2 class="productionmg-title">Pending Payments</h2>
+          </div>
 
-        <table class="production-table overview-tables">
-          <thead>
-            <tr>
-              <th>Supplier Name</th>
-              <th>Payment Method</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
+          <table class="production-table overview-tables">
+            <thead>
+              <tr>
+                <th>Supplier Name</th>
+                <th>Payment Method</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
 
+            
           <tbody class="tbody"></tbody>
-        </table>
+          </table>
+        </div>
+        <div class="paid-payments payouts-layer">
+          <div class="productionmg-heading table-heading">
+            <h2 class="productionmg-title">Completed Payments</h2>
+          </div>
+
+          <table class="production-table overview-tables">
+            <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Payment Method</th>
+                <th>Supplier Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr data-href="./payment.html">
+                <td>T0001</td>
+                <td>Bank Transfer</td>
+                <td>Saman</td>
+                <td>2000</td>
+                <td>
+                  <button class="payment-paid status">Paid</button>
+                </td>
+              </tr>
+              <tr data-href="./payment.html">
+                <td>T0002</td>
+                <td>Bank Transfer</td>
+                <td>Saman</td>
+                <td>2000</td>
+                <td>
+                  <button class="payment-paid status">Paid</button>
+                </td>
+              </tr>
+              <tr data-href="./payment.html">
+                <td>T0003</td>
+                <td>Bank Transfer</td>
+                <td>Saman</td>
+                <td>2000</td>
+                <td>
+                  <button class="payment-paid status">Paid</button>
+                </td>
+              </tr>
+              <tr data-href="./payment.html">
+                <td>T0004</td>
+                <td>Cash</td>
+                <td>Saman</td>
+                <td>2000</td>
+                <td>
+                  <button class="payment-paid status">Paid</button>
+                </td>
+              </tr>
+              <tr data-href="./payment.html">
+                <td>T0005</td>
+                <td>Cash</td>
+                <td>Saman</td>
+                <td>2000</td>
+                <td>
+                  <button class="payment-paid status">Paid</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
