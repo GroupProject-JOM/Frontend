@@ -46,7 +46,7 @@
 .supply-container {
   /* position: absolute; */
   top: 50%;
-  transform: translate(0, 25%);
+  /* transform: translate(0, 10%); */
   margin-left: 6vw;
 }
 
@@ -82,8 +82,7 @@
 }
 
 .add-button {
-  margin-top: 20px;
-  width: 8rem;
+  margin-top: 50px;
   font-size: 18px;
   display: flex;
   justify-content: center;
@@ -155,7 +154,7 @@ select.dropdown {
 .dropdown {
   width: 40vw;
   margin-top: 3rem;
-  /* margin-bottom: 3rem; */
+  font-size: 15px;
   background-color: var(--body-color);
   color: var(--input-border);
 }
@@ -205,25 +204,16 @@ select.dropdown {
   margin-top: 30px;
 }
 
-.supply-edit-container .collection-text {
+/* .supply-edit-container .collection-text {
   display: flex;
   align-items: flex-end;
-}
+} */
 
-.supply-edit-container .edit-item {
+/* .supply-edit-container .edit-item {
   display: grid;
   grid-template-columns: 1fr 4fr;
-}
+} */
 
-.supply-edit-container .dropdown,
-.supply-edit-container input {
-  width: 20vw;
-  margin-top: 40px;
-}
-
-.supply-edit-container .dropdown {
-  padding: 7px 0;
-}
 
 .location-pick-bt {
   display: flex;
@@ -401,6 +391,47 @@ textarea::placeholder {
   flex-direction: column;
   justify-content: center;
 }
+
+.supply-edit-container label{
+  display: block;
+  margin-top: 30px;
+  color: var(--input-border);
+}
+
+.supply-edit-container input::placeholder{
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+
+.long {
+  width: 40vw;
+}
+
+.supply-edit-container .dropdown{
+  color: var(--primary-color);
+  font-weight: 500;
+  padding-bottom: 5px;
+  margin-top: 15px;
+
+
+}
+
+.supply-edit-container input{
+  font-size: 15px;
+  margin: 10px 0 0 0;
+
+}
+
+.supply-edit-container .collected-amount{
+  margin-bottom: 20px;
+}
+
+.supply-edit-container .amount-label{
+  margin-top: 60px;
+}
+
+
 
 @media only screen and (max-device-width: 800px) {
   .report-container {

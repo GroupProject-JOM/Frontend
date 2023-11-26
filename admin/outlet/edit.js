@@ -9,13 +9,20 @@
     emailError = document.querySelector(".email-error"),
     phone = body.querySelector(".phone"),
     phoneError = body.querySelector(".phone-error"),
+    address = body.querySelector(".address"),
     address1 = body.querySelector(".address1"),
     address1Error = body.querySelector(".address1-error"),
     address2 = body.querySelector(".address2"),
     address2Error = body.querySelector(".address2-error"),
     address3 = body.querySelector(".address3"),
     address3Error = body.querySelector(".address3-error"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".form-button"),
+    nameLabel = body.querySelector(".name-label"),
+    emailLabel = body.querySelector(".email-label"),
+    phoneLabel = body.querySelector(".phone-label"),
+    address1Label = body.querySelector(".address1-label"),
+    address2Label = body.querySelector(".address2-label"),
+    address3Label = body.querySelector(".address3-label");
 
   var lang = getCookie("lang"); // current language
 
@@ -32,10 +39,18 @@
     oname.placeholder = data["sin"]["oname"];
     email.placeholder = data["sin"]["email"];
     phone.placeholder = data["sin"]["phone"];
+    address.textContent = data["sin"]["address"];
     address1.placeholder = data["sin"]["address1"];
     address2.placeholder = data["sin"]["address2"];
     address3.placeholder = data["sin"]["address3"];
     btn.textContent = data["sin"]["btn"];
+    nameLabel.textContent = data["sin"]["nameLabel"];
+    emailLabel.textContent = data["sin"]["emailLabel"];
+    phoneLabel.textContent = data["sin"]["phoneLabel"];
+    address1Label.textContent = data["sin"]["address1Label"];
+    address2Label.textContent = data["sin"]["address2Label"];
+    address3Label.textContent = data["sin"]["address3Label"];
+
     setGreeting();
   });
 
@@ -52,10 +67,17 @@
     oname.placeholder = data["en"]["oname"];
     email.placeholder = data["en"]["email"];
     phone.placeholder = data["en"]["phone"];
+    address.textContent = data["en"]["address"];
     address1.placeholder = data["en"]["address1"];
     address2.placeholder = data["en"]["address2"];
     address3.placeholder = data["en"]["address3"];
     btn.textContent = data["en"]["btn"];
+    nameLabel.textContent = data["en"]["nameLabel"];
+    emailLabel.textContent = data["en"]["emailLabel"];
+    phoneLabel.textContent = data["en"]["phoneLabel"];
+    address1Label.textContent = data["en"]["address1Label"];
+    address2Label.textContent = data["en"]["address2Label"];
+    address3Label.textContent = data["en"]["address3Label"];
     setGreeting();
   });
 
@@ -65,20 +87,34 @@
       oname: "අලෙවිසැලේ නම",
       email: "Outlet විද්‍යුත් තැපෑල",
       phone: "අලෙවිසැල දුරකථන අංකය",
+      address: "පුද්ගලික ලිපිනය",
       address1: "ලිපින පේළි 1",
       address2: "වීදිය",
       address3: "නගරය",
       btn: "වෙනස්කම් සුරකින්න",
+      nameLabel: "නම",
+      emailLabel: "ඊතැපැල් ලිපිනය",
+      phoneLabel: "දුරකථන අංකය",
+      address1Label: "ලිපින පේළි 1",
+      address2Label: "වීදිය",
+      address3Label: "නගරය",
     },
     en: {
       oTitle: "Edit Outlet Details",
       oname: "Outlet Name",
       email: "Outlet Email",
       phone: "Outlet Phone Number",
+      address: "Personal Address",
       address1: "Address Line 1",
       address2: "Street",
       address3: "City",
       btn: "Save Changes",
+      nameLabel: "Last Name",
+      emailLabel: "Email Address",
+      phoneLabel: "Phone Number",
+      address1Label: "Address Line 1",
+      address2Label: "Street",
+      address3Label: "City",
     },
   };
 
@@ -167,7 +203,7 @@
               title: title,
               // text: "You clicked the button!",
               icon: "success",
-              confirmButtonColor : confirmButtonColor,
+              confirmButtonColor: confirmButtonColor,
             }).then((response) => {
               window.location.href = "./view.html";
             });
