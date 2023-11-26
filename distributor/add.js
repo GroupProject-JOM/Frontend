@@ -137,7 +137,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       address3_status
     ) {
       var formData = {
-        emp_id: getCookie("sId"),
+        user: getCookie("user"),
         name: oname.value,
         email: email.value,
         phone: phone.value,

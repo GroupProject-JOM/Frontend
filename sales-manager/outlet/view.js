@@ -62,7 +62,7 @@
   };
 
   fetch(
-    backProxy + "/outlet?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
+    backProxy + "/outlet?id=" + getCookie("id") + "&user=" + getCookie("user"),
     {
       method: "GET",
       headers: {

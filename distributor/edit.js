@@ -137,7 +137,7 @@
       address3_status
     ) {
       var formData = {
-        emp_id: getCookie("sId"),
+        user: getCookie("user"),
         id: getCookie("id"),
         name: oname.value,
         email: email.value,
@@ -198,7 +198,7 @@
 
   //Get data
   fetch(
-    backProxy + "/outlet?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
+    backProxy + "/outlet?id=" + getCookie("id") + "&user=" + getCookie("user"),
     {
       method: "GET",
       headers: {

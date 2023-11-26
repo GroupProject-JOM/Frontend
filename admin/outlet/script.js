@@ -57,7 +57,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function getData() {
     var row = "";
-    fetch(backProxy + "/outlets?emp=" + getCookie("sId"), {
+    fetch(backProxy + "/outlets?user=" + getCookie("user"), {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
