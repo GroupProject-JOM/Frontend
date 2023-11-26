@@ -63,12 +63,13 @@
       <div class="payouts-container container">
         <div class="pending-payments payouts-layer">
           <div class="productionmg-heading table-heading">
-            <h2 class="productionmg-title">Pending Payments</h2>
+            <h2 class="productionmg-title t1"></h2>
           </div>
 
           <table class="production-table overview-tables">
             <thead>
               <tr>
+                <th>Collection ID</th>
                 <th>Supplier Name</th>
                 <th>Payment Method</th>
                 <th>Amount</th>
@@ -77,72 +78,26 @@
             </thead>
 
             
-          <tbody class="tbody"></tbody>
+          <tbody class="tbody1"></tbody>
           </table>
         </div>
         <div class="paid-payments payouts-layer">
           <div class="productionmg-heading table-heading">
-            <h2 class="productionmg-title">Completed Payments</h2>
+            <h2 class="productionmg-title t2"></h2>
           </div>
 
           <table class="production-table overview-tables">
             <thead>
               <tr>
-                <th>Transaction ID</th>
-                <th>Payment Method</th>
+                <th>Collection ID</th>
                 <th>Supplier Name</th>
+                <th>Payment Method</th>
                 <th>Amount</th>
                 <th>Status</th>
               </tr>
             </thead>
 
-            <tbody>
-              <tr data-href="./payment.html">
-                <td>T0001</td>
-                <td>Bank Transfer</td>
-                <td>Saman</td>
-                <td>2000</td>
-                <td>
-                  <button class="payment-paid status">Paid</button>
-                </td>
-              </tr>
-              <tr data-href="./payment.html">
-                <td>T0002</td>
-                <td>Bank Transfer</td>
-                <td>Saman</td>
-                <td>2000</td>
-                <td>
-                  <button class="payment-paid status">Paid</button>
-                </td>
-              </tr>
-              <tr data-href="./payment.html">
-                <td>T0003</td>
-                <td>Bank Transfer</td>
-                <td>Saman</td>
-                <td>2000</td>
-                <td>
-                  <button class="payment-paid status">Paid</button>
-                </td>
-              </tr>
-              <tr data-href="./payment.html">
-                <td>T0004</td>
-                <td>Cash</td>
-                <td>Saman</td>
-                <td>2000</td>
-                <td>
-                  <button class="payment-paid status">Paid</button>
-                </td>
-              </tr>
-              <tr data-href="./payment.html">
-                <td>T0005</td>
-                <td>Cash</td>
-                <td>Saman</td>
-                <td>2000</td>
-                <td>
-                  <button class="payment-paid status">Paid</button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody class="tbody2"></tbody>
           </table>
         </div>
       </div>
@@ -150,7 +105,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <script src="./view-all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
