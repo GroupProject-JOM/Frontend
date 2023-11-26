@@ -64,7 +64,7 @@
     },
   };
 
-  fetch(backProxy + "/sales-manager?emp=" + getCookie("sId"), {
+  fetch(backProxy + "/sales-manager?user=" + getCookie("user"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -74,7 +74,7 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          w2Value.textContent = data.payments;
+          w2Value.textContent = data.payouts;
         });
       } else if (response.status === 401) {
         response.json().then((data) => {
