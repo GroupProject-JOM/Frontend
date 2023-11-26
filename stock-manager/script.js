@@ -11,8 +11,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c4 = body.querySelector(".c4"),
     c5 = body.querySelector(".c5"),
     tbody2 = body.querySelector(".tbody2"),
+    tbody3 = body.querySelector(".tbody3"),
     c6 = body.querySelector(".c6"),
-    c7 = body.querySelector(".c7");
+    c7 = body.querySelector(".c7"),
+    w1Value = body.querySelector(".w1-value"),
+    w2Value = body.querySelector(".w2-value");
 
   var lang = getCookie("lang"); // current language
 
@@ -64,8 +67,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "නිෂ්පාදන කළමනාකරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
       c4: "සැපයුම්කරු ඉල්ලීම්",
       c5: "සැපයුම්කරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
-      c6: "කොටස් තොරතුරු",
-      c7: "වර්ණ-කේතගත අමු ද්රව්ය තොරතුරු බලන්න",
+      c6: "අද එකතු කිරීම්",
+      c7: "අද දිනට නියමිත පොල් එකතු කිරීම් බලන්න",
     },
     en: {
       w1: "Today's Collections",
@@ -79,9 +82,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  let row2 = "";
+  let row2 = "",
+    row3 = "";
 
-  fetch(backProxy + "/stock-manager?sId=" + getCookie("sId"), {
+  w1Value.textContent = 0;
+  w2Value.innerHTML = `0<span>/0</span>`;
+
+  fetch(backProxy + "/stock-manager?user=" + getCookie("user"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -91,48 +98,101 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          let arr = data.list;
-          arr.forEach(data_to_table);
+          w1Value.textContent = data.completed + data.remaining;
+          w2Value.innerHTML =
+            data.remaining +
+            `<span>/` +
+            (parseInt(data.completed) + parseInt(data.remaining)) +
+            `</span>`;
 
-          function data_to_table(item) {
-            row2 +=
-              "<tr data-href='./supply-requests/view-request.html' id=" +
-              item.id +
-              ">" +
-              "<td>" +
-              item.id +
-              "</td>" +
-              "<td>" +
-              item.name +
-              "</td>" +
-              "<td>" +
-              item.date +
-              "</td>" +
-              "<td>" +
-              item.amount.toLocaleString("en-US") +
-              "</td>" +
-              "<td>" +
-              capitalize(item.method) +
-              "</td>" +
-              "</tr>";
+          if (data.size == 0) {
+            if (lang == "sin") Command: toastr["info"]("සැපයුම් ඉල්ලීම් නොමැත");
+            else Command: toastr["info"]("No Supply requests");
+          } else {
+            data.list.forEach((item) => {
+              row2 +=
+                "<tr data-href='./supply-requests/view-request.html' id=" +
+                item.id +
+                ">" +
+                "<td>" +
+                item.id +
+                "</td>" +
+                "<td>" +
+                item.name +
+                "</td>" +
+                "<td>" +
+                item.date +
+                "</td>" +
+                "<td>" +
+                item.amount.toLocaleString("en-US") +
+                "</td>" +
+                "<td>" +
+                capitalize(item.method) +
+                "</td>" +
+                "</tr>";
+            });
+
+            tbody2.innerHTML = row2;
+
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach((r) => {
+              r.addEventListener("click", () => {
+                document.cookie = "id=" + r.id + "; path=/";
+                window.location.href = r.dataset.href;
+              });
+            });
           }
 
-          tbody2.innerHTML = row2;
+          if (data.today_size == 0) {
+            if (lang == "sin") Command: toastr["info"]("අද එකතු කිරීම් නැත");
+            else Command: toastr["info"]("No collections today");
+          } else {
+            data.today.forEach((item) => {
+              var fName = "-",
+                lName = "-";
 
-          const rows = document.querySelectorAll("tr[data-href]");
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
+              if (item.method == "pickup") {
+                fName = item.c_fName;
+                lName = item.c_lName;
+              }
+
+              row3 +=
+                `<tr data-href='./supply-requests/view-request.html' id=` +
+                item.id +
+                `>` +
+                `<td>` +
+                item.id +
+                `</td>` +
+                `<td>` +
+                item.name +
+                ` ` +
+                item.last_name +
+                `</td>` +
+                `<td>` +
+                fName +
+                ` ` +
+                lName +
+                `</td>` +
+                `<td>` +
+                item.amount.toLocaleString("en-US") +
+                `</td>` +
+                `<td>` +
+                capitalize(item.method) +
+                `</td>` +
+                `</tr>`;
             });
-          });
+
+            tbody3.innerHTML = row3;
+
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach((r) => {
+              r.addEventListener("click", () => {
+                document.cookie = "id=" + r.id + "; path=/";
+                window.location.href = r.dataset.href;
+              });
+            });
+          }
         });
-      } else if (response.status === 202) {
-        response.json().then((data) => {
-          console.log(data.size);
-        });
-        if (lang == "sin") Command: toastr["info"]("සැපයුම් ඉල්ලීම් නොමැත");
-        else Command: toastr["info"]("No Supply requests");
       } else if (response.status === 401) {
         response.json().then((data) => {
           console.log(data.message);
