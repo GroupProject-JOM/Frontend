@@ -22,7 +22,11 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     decline = body.querySelector(".decline"),
     assign = body.querySelector(".assign"),
     change = body.querySelector(".change"),
-    rtext = body.querySelector(".reason-text");
+    rtext = body.querySelector(".reason-text"),
+    cNameRow = body.querySelector(".cName-row"),
+    cName = body.querySelector(".cName"),
+    cPhoneRow = body.querySelector(".cPhone-row"),
+    cPhone = body.querySelector(".cPhone");
 
   var lang = getCookie("lang"); // current language
 
@@ -100,7 +104,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          log(data);
           rId.textContent = data.request.id;
           sName.textContent = data.request.name + " " + data.request.last_name;
           sPhone.textContent = data.request.phone;
@@ -120,6 +123,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           if (data.request.method != "pickup") {
             estate.style.display = "none";
             map.style.display = "none";
+            cNameRow.style.display = "none";
+            cPhoneRow.style.display = "none";
             dText.textContent = "Delivery Date";
             tText.textContent = "Delivery Time";
           }
@@ -127,17 +132,54 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           time.textContent = timeString(data.request.time);
           amount.textContent = data.request.amount.toLocaleString("en-US");
           pMethod.textContent = capitalize(data.request.payment_method);
-          if (data.request.status == 1)
+          if (data.request.status == 1) {
             if (lang == "sin") sText.textContent = "තත්ත්වය: පොරොත්තු අනුමැතිය";
             else sText.textContent = "Status: Pending Approval";
-          else {
+            cNameRow.style.display = "none";
+            cPhoneRow.style.display = "none";
+          } else if (
+            data.request.status == 2 &&
+            data.request.method == "pickup"
+          ) {
             if (lang == "sin")
               sText.textContent = "තත්ත්වය: එකතු කරන්නා පවරන්න";
             else sText.textContent = "Status: Assign collector";
             accept.style.display = "none";
+            accept.disabled = true;
             decline.style.display = "none";
+            decline.disabled = true;
             assign.style.display = "block";
             document.cookie = "date=" + date.textContent + "; path=/";
+            cNameRow.style.display = "none";
+            cPhoneRow.style.display = "none";
+          } else if (
+            data.request.status == 2 &&
+            data.request.method == "yard"
+          ) {
+            if (lang == "sin") sText.textContent = "තත්ත්වය: පිළිගත්තා";
+            else sText.textContent = "Status: Accepted";
+
+            accept.style.display = "none";
+            accept.disabled = true;
+            decline.style.display = "none";
+            decline.disabled = true;
+            assign.style.display = "none";
+            assign.disabled = true;
+            cNameRow.style.display = "none";
+            cPhoneRow.style.display = "none";
+          } else if (data.request.status == 3) {
+            if (lang == "sin")
+              sText.textContent = "තත්ත්වය: ලබා ගැනීමට සූදානම්";
+            else sText.textContent = "Status: Ready to pickup";
+
+            accept.style.display = "none";
+            accept.disabled = true;
+            decline.style.display = "none";
+            decline.disabled = true;
+            assign.style.display = "none";
+            assign.disabled = true;
+            cName.textContent=data.request.c_fName+" "+data.request.c_lName
+            cPhone.textContent=data.request.c_phone
           }
         });
       } else if (response.status === 202) {
