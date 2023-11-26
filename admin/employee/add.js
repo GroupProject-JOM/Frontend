@@ -206,7 +206,7 @@ let gendr, bDay;
       dropdownStatus
     ) {
       var formData = {
-        emp: getCookie("sId"),
+        emp: getCookie("user"),
         first_name: fname.value,
         last_name: lname.value,
         email: email.value,
