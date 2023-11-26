@@ -62,112 +62,21 @@
 
       <div class="container">
         <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title">Payouts</h2>
-          <p class="production-history-text">
-            View the history of payments for the suppliers
-          </p>
+          <h2 class="productionmg-title"></h2>
+          <p class="production-history-text"></p>
         </div>
 
         <table class="production-table overview-tables">
           <thead>
             <tr>
-              <th>Transaction ID</th>
-              <th>Payment Method</th>
               <th>Supplier Name</th>
+              <th>Payment Method</th>
               <th>Amount</th>
               <th>Status</th>
             </tr>
           </thead>
 
-          <tbody>
-            <tr data-href='./payment.html'>
-              <td>T0006</td>
-              <td>Cash</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-pending status">Pending</button>
-              </td>
-            </tr>
-
-            <tr data-href='./payment.html'>
-              <td>T0007</td>
-              <td>Cash</td>
-              <td>Nimal</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-pending status">Pending</button>
-              </td>
-            </tr>
-
-            <tr data-href='./payment.html'>
-              <td>T0008</td>
-              <!-- <td>21/04/2023</td> -->
-              <td>Cash</td>
-              <td>Kamal</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-pending status">Pending</button>
-              </td>
-            </tr>
-
-            <tr data-href='./payment.html'>
-              <td>T0009</td>
-              <td>Cash</td>
-              <td>Amara</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-pending status">Pending</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0001</td>
-              <td>Bank Transfer</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0002</td>
-              <td>Bank Transfer</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0003</td>
-              <td>Bank Transfer</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0004</td>
-              <td>Cash</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0005</td>
-              <td>Cash</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-
-            
-          </tbody>
+          <tbody class="tbody"></tbody>
         </table>
       </div>
     </section>
@@ -178,15 +87,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
-    <script>
-      const rows = document.querySelectorAll("tr[data-href]");
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
-            });
-          });
-    </script>
     <script src="../../common/loader.js"></script>
   </body>
 </html>
