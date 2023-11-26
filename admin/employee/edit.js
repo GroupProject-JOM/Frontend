@@ -11,6 +11,7 @@ let gendr, bDay;
     email = body.querySelector(".email"),
     phone = body.querySelector(".phone"),
     phoneError = body.querySelector(".phone-error"),
+    address = body.querySelector(".address"),
     address1 = body.querySelector(".address1"),
     address1Error = body.querySelector(".address1-error"),
     address2 = body.querySelector(".address2"),
@@ -27,7 +28,17 @@ let gendr, bDay;
     op3 = body.querySelector(".op3"),
     op4 = body.querySelector(".op4"),
     op5 = body.querySelector(".op5"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".form-button"),
+    fnameLabel = body.querySelector(".fname-label"),
+    lnameLabel = body.querySelector(".lname-label"),
+    emailLabel = body.querySelector(".email-label"),
+    phoneLabel = body.querySelector(".phone-label"),
+    nicLabel = body.querySelector(".nic-label"),
+    roleLabel = body.querySelector(".role-label"),
+    address1Label = body.querySelector(".address1-label"),
+    address2Label = body.querySelector(".address2-label"),
+    address3Label = body.querySelector(".address3-label");
+
 
   var fnameStatus = false,
     lnameStatus = false,
@@ -52,6 +63,7 @@ let gendr, bDay;
     lname.placeholder = data["sin"]["lname"];
     email.placeholder = data["sin"]["email"];
     phone.placeholder = data["sin"]["phone"];
+    address.textContent = data["sin"]["address"];
     address1.placeholder = data["sin"]["address1"];
     address2.placeholder = data["sin"]["address2"];
     address3.placeholder = data["sin"]["address3"];
@@ -63,6 +75,18 @@ let gendr, bDay;
     op4.textContent = data["sin"]["op4"];
     op5.textContent = data["sin"]["op5"];
     btn.textContent = data["sin"]["btn"];
+    fnameLabel.textContent = data["sin"]["fnameLabel"];
+    lnameLabel.textContent = data["sin"]["lnameLabel"];
+    emailLabel.textContent = data["sin"]["emailLabel"];
+    phoneLabel.textContent = data["sin"]["phoneLabel"];
+    nicLabel.textContent = data["sin"]["nicLabel"];
+    roleLabel.textContent = data["sin"]["roleLabel"];
+    address1Label.textContent = data["sin"]["address1Label"];
+    address2Label.textContent = data["sin"]["address2Label"];
+    address3Label.textContent = data["sin"]["address3Label"];
+
+
+
     setGreeting();
   });
 
@@ -79,6 +103,7 @@ let gendr, bDay;
     lname.placeholder = data["en"]["lname"];
     email.placeholder = data["en"]["email"];
     phone.placeholder = data["en"]["phone"];
+    address.textContent = data["en"]["address"];
     address1.placeholder = data["en"]["address1"];
     address2.placeholder = data["en"]["address2"];
     address3.placeholder = data["en"]["address3"];
@@ -90,6 +115,15 @@ let gendr, bDay;
     op4.textContent = data["en"]["op4"];
     op5.textContent = data["en"]["op5"];
     btn.textContent = data["en"]["btn"];
+    fnameLabel.textContent = data["en"]["fnameLabel"];
+    lnameLabel.textContent = data["en"]["lnameLabel"];
+    emailLabel.textContent = data["en"]["emailLabel"];
+    phoneLabel.textContent = data["en"]["phoneLabel"];
+    nicLabel.textContent = data["en"]["nicLabel"];
+    roleLabel.textContent = data["en"]["roleLabel"];
+    address1Label.textContent = data["en"]["address1Label"];
+    address2Label.textContent = data["en"]["address2Label"];
+    address3Label.textContent = data["en"]["address3Label"];
     setGreeting();
   });
 
@@ -100,6 +134,7 @@ let gendr, bDay;
       lname: "අවසන් නම",
       email: "ඊතැපැල් ලිපිනය",
       phone: "දුරකථන අංකය",
+      address: "පුද්ගලික ලිපිනය",
       address1: "ලිපින පේළි 1",
       address2: "වීදිය",
       address3: "නගරය",
@@ -111,6 +146,15 @@ let gendr, bDay;
       op4: "නිෂ්පාදන කළමනාකරු",
       op5: "අලෙවි කළමනාකරු",
       btn: "වෙනස්කම් සුරකින්න",
+      fnameLabel: "මුල් නම",
+    lnameLabel: "අවසන් නම",
+    emailLabel: "ඊතැපැල් ලිපිනය",
+    phoneLabel: "දුරකථන අංකය",
+    nicLabel: "ජාතික හැඳුනුම්පත් අංකය",
+    roleLabel: "තනතුරු",
+    address1Label: "ලිපින පේළි 1",
+    address2Label: "වීදිය",
+    address3Label: "නගරය",
     },
     en: {
       fh: "Edit Employee Details",
@@ -118,6 +162,7 @@ let gendr, bDay;
       lname: "Last Name",
       email: "Email Address",
       phone: "Phone Number",
+      address: "Personal Address",
       address1: "Address Line-1",
       address2: "Street",
       address3: "City",
@@ -129,6 +174,15 @@ let gendr, bDay;
       op4: "Production Manager",
       op5: "Sales Manager",
       btn: "Save Changes",
+      fnameLabel: "First Name",
+    lnameLabel: "Last Name",
+    emailLabel: "Email Address",
+    phoneLabel: "Phone Number",
+    nicLabel: "NIC Number",
+    roleLabel: "Designation",
+    address1Label: "Address Line 1",
+    address2Label: "Street",
+    address3Label: "City",
     },
   };
 
