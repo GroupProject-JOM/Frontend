@@ -43,7 +43,7 @@
     Uname.textContent = getCookie("name");
 
     employee.href = frontProxy + "/admin/employee/view-all.html";
-    collection.href = frontProxy + "/admin/employee/view-all.html";
+    collection.href = frontProxy + "/admin/collection/view-all.html";
     outlet.href = frontProxy + "/admin/outlet";
     dashboard.href = frontProxy + "/admin";
 
@@ -134,7 +134,7 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["index","employee","collection","outlet"];
+    const navItems = ["index","employee","collection","outlet","collection"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

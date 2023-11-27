@@ -26,7 +26,9 @@
   employee.addEventListener("click", () => {
     window.location.href = "./employee/view-all.html";
   });
-  collection.addEventListener("click", () => {});
+  collection.addEventListener("click", () => {
+    window.location.href = "./collection/view-all.html";
+  });
   outlet.addEventListener("click", () => {
     window.location.href = "./outlet";
   });

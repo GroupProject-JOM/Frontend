@@ -1,11 +1,14 @@
 document.cookie = "amount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    cTitle = body.querySelector(".collection-title"),
-    cText = body.querySelector(".collection-text"),
+    sTitle = body.querySelector(".stockmg-title"),
+    sText = body.querySelector(".stockmg-subtitle"),
+    map = body.querySelector(".map"),
+    rId = body.querySelector(".rId"),
     sName = body.querySelector(".sName"),
     sPhone = body.querySelector(".sPhone"),
     address = body.querySelector(".address"),
@@ -13,8 +16,9 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     time = body.querySelector(".time"),
     amount = body.querySelector(".amount"),
     pMethod = body.querySelector(".pMethod"),
-    btn = body.querySelector(".form-button"),
-    map = body.querySelector(".map");
+    cName = body.querySelector(".cName"),
+    cPhone = body.querySelector(".cPhone"),
+    btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
 
@@ -23,13 +27,13 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
-    cTitle.textContent = data["sin"]["cTitle"];
-    cText.innerHTML = data["sin"]["cText"];
+    sTitle.textContent = data["sin"]["sTitle"];
+    sText.textContent = data["sin"]["sText"];
     btn.textContent = data["sin"]["btn"];
+
     setGreeting();
   });
 
@@ -38,27 +42,25 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
-    cTitle.textContent = data["en"]["cTitle"];
-    cText.innerHTML = data["en"]["cText"];
+    sTitle.textContent = data["en"]["sTitle"];
+    sText.textContent = data["en"]["sText"];
     btn.textContent = data["en"]["btn"];
+
     setGreeting();
   });
 
   var data = {
     sin: {
-      cTitle: "එකතුව බලන්න",
-      cText:
-        "ඔබට ඔබේ එකතුවට අදාළ සියලුම තොරතුරු මෙතැනින් නැරඹිය හැක. <br /><br /> එකතුවක් සම්පූර්ණ කළ ලෙස සලකුණු කිරීමට, පහත බොත්තම ක්ලික් කරන්න",
+      sTitle: "ඉල්ලීම බලන්න",
+      sText: "තත්ත්වය: ලබා ගැනීමට සූදානම්",
       btn: "සම්පූර්ණ එකතුව",
     },
     en: {
-      cTitle: "View Collection",
-      cText:
-        "You can view all the information related to your collections here. <br /><br /> To mark a collection as completed, click the button below",
+      sTitle: "View Request",
+      sText: "Status: Ready to pickup",
       btn: "Complete Collection",
     },
   };
@@ -67,7 +69,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   fetch(
     backProxy +
-      "/pickup-collection?id=" +
+      "/supply-request?id=" +
       getCookie("id") +
       "&user=" +
       getCookie("user"),
@@ -82,16 +84,12 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          sName.textContent =
-            data.collection.name + " " + data.collection.last_name;
-          sPhone.textContent = data.collection.phone;
-          address.textContent = data.collection.address;
-          date.textContent = data.collection.date;
-          time.textContent = timeString(data.collection.time);
-          amount.textContent = data.collection.amount.toLocaleString("en-US");
-          pMethod.textContent = capitalize(data.collection.payment_method);
+          rId.textContent = data.request.id;
+          sName.textContent = data.request.name + " " + data.request.last_name;
+          sPhone.textContent = data.request.phone;
+          address.textContent = data.request.address;
 
-          var arr = data.collection.location.split(" ");
+          var arr = data.request.location.split(" ");
           map.innerHTML =
             `<iframe src='https://www.google.com/maps?q=` +
             arr[0] +
@@ -99,14 +97,22 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             arr[1] +
             `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
 
-          area = data.collection.area;
+          area = data.request.area;
+
+          date.textContent = data.request.date;
+          time.textContent = timeString(data.request.time);
+          amount.textContent = data.request.amount.toLocaleString("en-US");
+          pMethod.textContent = capitalize(data.request.payment_method);
+
+          cName.textContent = data.request.c_fName + " " + data.request.c_lName;
+          cPhone.textContent = data.request.c_phone;
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.collection);
+          console.log(data.request);
         });
-        if (lang == "sin") Command: toastr["error"]("එකතුවක් නැත");
-        else Command: toastr["error"]("No collection");
+        if (lang == "sin") Command: toastr["error"]("සැපයුම් ඉල්ලීම් නොමැත");
+        else Command: toastr["error"]("No Supply requests");
       } else if (response.status === 401) {
         response.json().then((data) => {
           console.log(data.message);

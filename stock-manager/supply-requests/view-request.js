@@ -91,8 +91,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     backProxy +
       "/supply-request?id=" +
       getCookie("id") +
-      "&sId=" +
-      getCookie("sId"),
+      "&user=" +
+      getCookie("user"),
     {
       method: "GET",
       headers: {

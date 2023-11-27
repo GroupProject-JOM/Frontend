@@ -1,10 +1,11 @@
+// sessionStorage.setItem("id", 0);
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    sTitle = body.querySelector(".stockmg-title"),
-    sText = body.querySelector(".stockmg-text"),
+    oTitle = body.querySelector(".outlet-title"),
+    oText = body.querySelector(".outlet-text"),
     tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
@@ -14,12 +15,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
-    sTitle.textContent = data["sin"]["sTitle"];
-    sText.textContent = data["sin"]["sText"];
+    oTitle.textContent = data["sin"]["oTitle"];
+    oText.innerHTML = data["sin"]["oText"];
     setGreeting();
   });
 
@@ -28,29 +28,28 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
-    sTitle.textContent = data["en"]["sTitle"];
-    sText.textContent = data["en"]["sText"];
+    oTitle.textContent = data["en"]["oTitle"];
+    oText.innerHTML = data["en"]["oText"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      sTitle: "සැපයුම් ඉල්ලීම්",
-      sText: "සැපයුම්කරුවන්ගේ ඉල්ලීම් බලන්න සහ අනුමත කරන්න",
+      oTitle: "අද පිකප්",
+      oText: "අද දිනට නියමිත පොල් පිකප් බලන්න",
     },
     en: {
-      sTitle: "Supply Requests",
-      sText: "View and approve supplier requests",
+      oTitle: "Today's Pickups",
+      oText: "View coconut pickups scheduled for today",
     },
   };
 
-  let row = "";
-
-  fetch(backProxy + "/supply-requests?user=" + getCookie("user"), {
+  var row = "";
+  
+  fetch(backProxy + "/today-pickups?user=" + getCookie("user"), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -64,39 +63,35 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            let status = "Pending Approval";
-            if (item.status == 2)
-              if (item.method == "yard") return;
-              else status = "Assign collector";
-
             row +=
-              "<tr data-href='./view-request.html' id=" +
-              item.id +
-              ">" +
-              "<td>" +
-              item.id +
-              "</td>" +
-              "<td>" +
-              item.name +
-              "</td>" +
-              "<td>" +
-              item.date +
-              "</td>" +
-              "<td>" +
-              item.amount.toLocaleString("en-US") +
-              "</td>" +
-              "<td>" +
-              capitalize(item.method) +
-              "</td>" +
-              "<td>" +
-              status +
-              "</td>" +
-              "</tr>";
+            `<tr data-href='./view.html' id=` +
+            item.id +
+            `>` +
+            `<td>` +
+            item.id +
+            `</td>` +
+            `<td>` +
+            item.name +
+            ` ` +
+            item.last_name +
+            `</td>` +
+            `<td>` +
+            timeString(item.time) +
+            `</td>` +
+            `<td>` +
+            item.amount.toLocaleString("en-US") +
+            `</td>` +
+            `<td>` +
+            item.c_fName +
+            ` ` +
+            item.c_lName +
+            `</td>` +
+            `</tr>`;
           }
-
           tbody.innerHTML = row;
 
           const rows = document.querySelectorAll("tr[data-href]");
+
           rows.forEach((r) => {
             r.addEventListener("click", () => {
               document.cookie = "id=" + r.id + "; path=/";
@@ -107,9 +102,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       } else if (response.status === 202) {
         response.json().then((data) => {
           console.log(data.size);
+          if (lang == "sin") Command: toastr["error"]("අද පිකප් නැත");
+          else Command: toastr["error"]("No Pickups today");
         });
-        if (lang == "sin") Command: toastr["info"]("සැපයුම් ඉල්ලීම් නොමැත");
-        else Command: toastr["info"]("No Supply requests");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
