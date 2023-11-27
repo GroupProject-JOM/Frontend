@@ -28,7 +28,8 @@
       l11 = body.querySelector(".l11"),
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
-      logout = document.querySelector(".logout");
+      logout = document.querySelector(".logout"),
+      bars = body.querySelector(".fa-bars");
 
     logout.addEventListener("click", () => {
       signout();
@@ -45,7 +46,11 @@
     }
 
     toggle.addEventListener("click", () => {
-      sidebar.classList.toggle("close");
+      if (window.innerWidth > 718) sidebar.classList.toggle("close");
+      else {
+        sidebar.classList.remove("sidebar-active");
+        bars.style.display = "block";
+      }
     });
 
     modeSwitch.addEventListener("click", () => {
@@ -91,6 +96,20 @@
         l11: "Dashboard",
       },
     };
+
+    bars.addEventListener("click", () => {
+      sidebar.classList.add("sidebar-active");
+      sidebar.style.display = "block";
+      bars.style.display = "none";
+      if (window.innerWidth <= 718) {
+        document.body.addEventListener("click", (e) => {
+          if (!sidebar.contains(e.target) && !bars.contains(e.target)) {
+            sidebar.classList.remove("sidebar-active");
+            bars.style.display = "block";
+          }
+        });
+      }
+    });
 
     setGreeting();
     checkLng();
