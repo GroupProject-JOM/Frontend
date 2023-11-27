@@ -28,13 +28,13 @@ function getGreetingTime(m) {
   if (!m || !m.isValid()) {
     return;
   } //if we can't find a valid or filled moment, we return.
-  
+
   var split_afternoon = 12; //24hr time to split the afternoon
   var split_evening = 17; //24hr time to split the evening
   var currentHour = parseFloat(m.format("HH"));
-  
+
   // const curLng = sessionStorage.getItem("lang");
-  
+
   const curLng = getCookie("lang");
 
   if (currentHour >= split_afternoon && currentHour <= split_evening) {
@@ -90,25 +90,46 @@ function modeTranslate() {
 
 window.addEventListener("resize", (e) => {
   const body = document.querySelector("body"),
-    sidebar = body.querySelector(".sidebar");
+    sidebar = body.querySelector(".sidebar"),
+    bars = body.querySelector(".fa-bars");
+
   if (!sidebar) return;
-  if (window.innerWidth <= 1010) {
+
+  if (window.innerWidth <= 1010 && window.innerWidth >= 718) {
     sidebar.classList.add("close");
+    sidebar.classList.remove("sidebar-active");
+    bars.style.display = "none";
+    sidebar.style.display = "block";
   } else {
     sidebar.classList.remove("close");
+    sidebar.style.display = "block";
+    if (window.innerWidth <= 718) {
+      sidebar.style.display = "none";
+      bars.style.display = "block";
+    }
   }
 });
 
 window.addEventListener("load", (e) => {
   const body = document.querySelector("body"),
-    sidebar = body.querySelector(".sidebar");
+    sidebar = body.querySelector(".sidebar"),
+    bars = body.querySelector(".fa-bars");
+
   if (!sidebar) return;
-  if (window.innerWidth <= 1010) {
+
+  if (window.innerWidth <= 1010 && window.innerWidth >= 718) {
     sidebar.classList.add("close");
+    sidebar.classList.remove("sidebar-active");
+    bars.style.display = "none";
+    sidebar.style.display = "block";
   } else {
     sidebar.classList.remove("close");
+    sidebar.style.display = "block";
+    if (window.innerWidth <= 718) {
+      sidebar.style.display = "none";
+      bars.style.display = "block";
+    }
   }
-  console.log(window.innerWidth);
 });
 
 function checkCookie(cName) {

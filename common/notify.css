@@ -89,3 +89,19 @@
   background-color: var(--primary-color-light);
   transition: var(--tran-03);
 }
+
+@media only screen and (max-device-width: 718px) {
+  .notification-window {
+    width: 80vw;
+    padding: 5px 20px;
+    margin-top: 50px;
+    top: 20px;
+    right: 20px;
+  }
+  .notification-window .title {
+    font-size: 1.2rem;
+  }
+  .notify-msg {
+    font-size: 14px;
+  }
+}

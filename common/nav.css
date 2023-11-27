@@ -113,8 +113,8 @@ header .welcome-text .header-text {
   background: var(--toggle-color);
 }
 
-.sidebar .active a{
-  background: var(--toggle-color); 
+.sidebar .active a {
+  background: var(--toggle-color);
 }
 
 .sidebar li a:hover .icon,
@@ -229,4 +229,22 @@ span.nav-head {
   left: 20px;
   bottom: 10px;
   font-size: 12px !important;
+}
+
+@media only screen and (max-device-width: 718px) {
+  .sidebar {
+    transform: translateX(-350px);
+    transition: transform 0.5s ease-in-out;
+    position: absolute;
+  }
+
+  .sidebar-active {
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (min-device-width: 718px) and (max-device-width: 1010px) {
+  .sidebar{
+    display: block;
+  }
 }
