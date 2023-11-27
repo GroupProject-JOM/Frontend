@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pending Requests</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <nav class="sidebar"></nav>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="collection-view-container container">
+        <div class="map"></div>
+
+        <div class="stockmg-content">
+          <div class="stockmg-heading table-heading">
+            <h2 class="stockmg-title"></h2>
+            <p class="stockmg-subtitle"></p>
+          </div>
+
+          <div>
+            <table class="collection-data-table overview-tables">
+              <tbody>
+                <tr>
+                  <td>Request ID</td>
+                  <td class="rId"></td>
+                </tr>
+                <tr>
+                  <td>Supplier Name</td>
+                  <td class="sName"></td>
+                </tr>
+                <tr>
+                  <td>Supplier Phone</td>
+                  <td class="sPhone"></td>
+                </tr>
+                <tr>
+                  <td>Estate Address</td>
+                  <td class="address"></td>
+                </tr>
+                <tr>
+                  <td>Collector Name</td>
+                  <td class="cName"></td>
+                </tr>
+                <tr>
+                  <td>Collector Phone</td>
+                  <td class="cPhone"></td>
+                </tr>
+                <tr>
+                  <td>Pickup Date</td>
+                  <td class="date"></td>
+                </tr>
+                <tr>
+                  <td>Pickup Time</td>
+                  <td class="time"></td>
+                </tr>
+                <tr>
+                  <td>Coconut Count</td>
+                  <td class="amount"></td>
+                </tr>
+                <tr>
+                  <td>Paymment Method</td>
+                  <td class="pMethod"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <a class="collection-button form-button"></a>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="./view.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./load-nav.js"></script>
+    <script src="./load-notifications.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../common/loader.js"></script>
+  </body>
+</html>
