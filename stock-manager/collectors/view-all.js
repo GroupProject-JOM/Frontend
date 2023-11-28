@@ -1,6 +1,7 @@
 document.cookie = "cId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "cName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "total=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
 (() => {
   const body = document.querySelector("body"),
