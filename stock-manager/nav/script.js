@@ -45,7 +45,7 @@
     });
 
     dashboard.href = frontProxy + "/stock-manager/";
-    track.href = frontProxy + "/stock-manager/track-collectors/view-all.html";
+    track.href = frontProxy + "/stock-manager/collectors/view-all.html";
     supply.href = frontProxy + "/stock-manager/supply-requests/";
     chat.href = frontProxy + "/stock-manager/chat/chat.html";
     stock.href = frontProxy + "/stock-manager/stock/view-all.html";
@@ -166,7 +166,7 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["supply-requests", "track-collectors", "chat", "stock", "index"];
+    const navItems = ["supply-requests", "collectors", "chat", "stock", "index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

@@ -1,3 +1,7 @@
+document.cookie = "cId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "cName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "total=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -63,7 +67,7 @@
           function data_to_table(item) {
             row +=
               `<tr data-href="./view.html" id=` +
-              item.id +
+              item.user_id +
               `>` +
               `<td>` +
               item.name +
@@ -87,7 +91,11 @@
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
             r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
+              document.cookie = "cId=" + r.id + "; path=/";
+              document.cookie =
+                "total=" + r.children[3].textContent + "; path=/";
+              document.cookie =
+                "cName=" + r.children[0].textContent + "; path=/";
               window.location.href = r.dataset.href;
             });
           });

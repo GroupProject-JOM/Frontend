@@ -234,37 +234,41 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   let loc = "",
     ar = "";
 
-  function getLocation() {
+  let lat = 6.9270786;
+  let long = 79.861243;
+  let location = "";
+
+  /* function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
-
-  let lat = 6.9270786;
-  let long = 79.861243;
-  let location = "";
 
   function showPosition(position) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
   }
 
-  getLocation();
+  getLocation(); */
 
   function initMap() {
     // console.log("lat " + lat);
     // console.log("lng " + long);
-    const live_loc = { lat: lat, lng: long };
+    navigator.geolocation.getCurrentPosition((position) => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      const live_loc = { lat: lat, lng: long };
 
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 15,
-      center: live_loc,
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: live_loc,
+      });
+      // This event listener will call addMarker() when the map is clicked.
+      map.addListener("click", (event) => {
+        addMarker(event.latLng);
+      });
+      addMarker(live_loc);
     });
-    // This event listener will call addMarker() when the map is clicked.
-    map.addListener("click", (event) => {
-      addMarker(event.latLng);
-    });
-    addMarker(live_loc);
   }
 
   // Adds a marker to the map and push to the array.

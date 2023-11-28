@@ -1,6 +1,4 @@
 (async () => {
-  // let loaded = false;
-  // const interval = setInterval(() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
@@ -18,11 +16,6 @@
     btn = body.querySelector(".form-button");
 
   let lop, bop, locWait, bankWait;
-
-  // if (!loaded && lop && bop) {
-  //   loaded = true;
-  //   clearInterval(interval);
-  // }
 
   var location_options =
       "<option value='' disabled selected hidden class='lop'></option>",
@@ -81,58 +74,56 @@
     });
 
   //Get bank accounts
-  bankWait = await fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
-    .then((response) => {
-      if (response.status == 200) {
-        response.json().then((data) => {
-          let arr = data.list;
-          arr.forEach(setter);
+  try {
+    bankWait = await fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
 
-          function setter(item) {
-            bank_options +=
-              "<option value=" + item.id + ">" + item.name + "</option>";
-          }
-          bank.innerHTML = bank_options;
-          bop = body.querySelector(".bop");
-        });
-      } else if (response.status === 202) {
-        response.json().then((data) => {
-          // data.size=0
-          if (lang == "sin") {
-            bank_options +=
-              "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
-            Command: toastr["info"]("බැංකු ගිණුම් නැත");
-          } else {
-            bank_options +=
-              "<option value='' disabled >No Bank Accounts</option>";
-            Command: toastr["info"]("No Bank Accounts");
-          }
-          bank.innerHTML = bank_options;
-          bop = body.querySelector(".bop");
-        });
-      } else {
-        console.error("Error:", response.status);
-        Command: toastr["error"](response.status, "Error");
-        if (lang == "sin")
+    if (bankWait.status == 200) {
+      bankWait.json().then((data) => {
+        let arr = data.list;
+        arr.forEach(setter);
+
+        function setter(item) {
           bank_options +=
-            "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
-        else
-          bank_options +=
-            "<option value='' disabled >No Bank Accounts</option>";
+            "<option value=" + item.id + ">" + item.name + "</option>";
+        }
         bank.innerHTML = bank_options;
         bop = body.querySelector(".bop");
-      }
-    })
-    .catch((error) => {
-      console.error("An error occurred:", error);
-      Command: toastr["error"](error);
-    });
+      });
+    } else if (bankWait.status === 202) {
+      bankWait.json().then((data) => {
+        // data.size=0
+        if (lang == "sin") {
+          bank_options +=
+            "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+          Command: toastr["info"]("බැංකු ගිණුම් නැත");
+        } else {
+          bank_options +=
+            "<option value='' disabled >No Bank Accounts</option>";
+          Command: toastr["info"]("No Bank Accounts");
+        }
+        bank.innerHTML = bank_options;
+        bop = body.querySelector(".bop");
+      });
+    } else {
+      console.error("Error:", bankWait.status);
+      Command: toastr["error"](bankWait.status, "Error");
+      if (lang == "sin")
+        bank_options += "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+      else
+        bank_options += "<option value='' disabled >No Bank Accounts</option>";
+      bank.innerHTML = bank_options;
+      bop = body.querySelector(".bop");
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+    Command: toastr["error"](error);
+  }
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
