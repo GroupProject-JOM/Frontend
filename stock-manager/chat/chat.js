@@ -93,6 +93,7 @@
   }
 
   function receive(msg) {
+    log(msg)
     chat.innerHTML +=
       `<div class="received">
         <div class="received-msg">
@@ -163,6 +164,13 @@
                   `</p>
                       </div>
                     </div>`;
+
+                const chats = document.querySelectorAll(".single-chat");
+                chats.forEach((c) => {
+                  if (c.id == getCookie("id"))
+                    c.childNodes[1].childNodes[1].textContent =
+                      "You:" + item.content;
+                });
               } else {
                 receive(item.content);
               }
