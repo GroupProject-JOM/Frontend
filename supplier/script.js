@@ -111,6 +111,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               if (item.status == 1) {
                 stat = "pending";
                 st = "Pending Approval";
+                if(window.innerWidth <= 718)st = "Pending";
                 count++;
               } else if (item.status == 2) {
                 stat = "accept";
@@ -119,6 +120,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               } else if (item.status == 3) {
                 stat = "ready";
                 st = "Ready to Pickup";
+                if(window.innerWidth <= 718)st = "Ready";
                 count++;
               } else if (item.status == 4) {
                 stat = "rejected";
@@ -131,7 +133,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<tr data-href='./supply-view.html' id=" +
                 item.id +
                 ">" +
-                "<td>" +
+                "<td class='hide'>" +
                 item.id +
                 "</td>" +
                 "<td>" +
@@ -140,7 +142,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<td>" +
                 timeString(item.time) +
                 "</td>" +
-                "<td>" +
+                "<td class='hide'>" +
                 item.amount.toLocaleString("en-US") +
                 "</td>" +
                 "<td>" +
@@ -156,6 +158,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               if (item.status == 5) {
                 stat = "pending";
                 st = "Pending Paymant";
+                if(window.innerWidth <= 718)st = "Pending";
               } else if (item.status == 6) {
                 stat = "paid";
                 st = "Paid";
@@ -170,7 +173,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<td>" +
                 item.id +
                 "</td>" +
-                "<td>" +
+                "<td class='hide'>" +
                 item.date +
                 "</td>" +
                 "<td>" +

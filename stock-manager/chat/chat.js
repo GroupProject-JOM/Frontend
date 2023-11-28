@@ -259,10 +259,12 @@
                     ` ` +
                     item.last_name +
                     `</p>` +
+                    `<div class="unseen-text">`+
                     `<p class="last-text">` +
                     item.content +
                     `</p>` +
                     `<div class="unseen"></div>` +
+                    `</div>` +
                     `</div>` +
                     `</div>`;
                 } else {
