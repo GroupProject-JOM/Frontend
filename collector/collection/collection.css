@@ -140,6 +140,8 @@
   padding: 10px 20px;
   font-size: 16px;
   margin-top: 10px;
+  display: flex;
+  margin-top: 30px;
 }
 
 .verification-button{
@@ -156,6 +158,8 @@
 
 .pending-container{
   padding: 0 4rem;
+  top: 50%;
+  transform: translate(0, 5vh);
 }
 
 .signup-form div {
@@ -228,7 +232,7 @@ input:focus {
     /* flex-direction: ; */
   }
   .collection-data .coco-amount{
-    gap: 0;
+    gap: 10px;
   }
 
   .collection-data input{
@@ -238,5 +242,71 @@ input:focus {
 
   .verify-button{
     margin-top: 20px;
+  }
+}
+
+@media only screen and (max-device-width: 718px) {
+  .collection-view-container{
+    width: 90vw;
+    padding-left: 0;
+    gap: 20px;
+  }
+
+  /* iframe{
+    width: 90vw;
+  } */
+
+  .map iframe{
+    width: 84vw;
+  }
+
+  .collection-button{
+    font-size: 0.9rem;
+    margin-left: 20vw;
+  }
+
+  .collection-content{
+    margin-right: 20px;
+  }
+  .collected-amount{
+    width: 40vw;
+  }
+
+  .collection-data>div{
+    align-items: flex-end;
+  }
+
+  .collection-container input{
+    margin-bottom: 0;
+  }
+
+  .collection-container .collection-button{
+    margin-top: 40px;
+    margin-left: 0;
+  }
+
+  .pending-heading{
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .optional-heading{
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .optional-verification{
+    padding: 2rem 2rem 1rem 2rem;
+    width: 82vw;
+  }
+  
+  .optional-button{
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+
+  .complete-text{
+    font-size: 1.3rem;
+    font-weight: 600;
   }
 }

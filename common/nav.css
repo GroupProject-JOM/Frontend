@@ -231,20 +231,89 @@ span.nav-head {
   font-size: 12px !important;
 }
 
+header i.fa-xmark{
+  display: none;
+}
+
+
+
+
+
 @media only screen and (max-device-width: 718px) {
   .sidebar {
     transform: translateX(-350px);
     transition: transform 0.5s ease-in-out;
-    position: absolute;
+    padding: 2.7rem 1rem 0 1rem;
+    width: 230px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
+
 
   .sidebar-active {
     transform: translateX(0);
   }
+
+  .header-text .greeting {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .header-text .name {
+    font-size: 16px;
+    padding-top: 0.4rem;
+  }
+
+  .sidebar .text {
+    font-size: 14px;
+  }
+
+  span.nav-head {
+    font-size: 10px !important;
+  }
+
+  .sidebar li {
+    height: 35px;
+  }
+
+  .sidebar li .icon {
+    min-width: 50px;
+    font-size: 15px;
+  }
+
+  .menu-bar .mode .moon-sun {
+    width: 50px;
+  }
+
+  .menu-bar .mode .toggle-switch {
+    right: 5px;
+  }
+
+  .sidebar header .toggle {
+    right: -30px;
+    display: none;
+  }
+
+  header i.fa-xmark{
+    display: block;
+    position: absolute;
+    top: -1.7rem;
+    right: 0;
+    background: var(--primary-color-light);
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: var(--sidebar-color);
+    z-index: 999;
+  }
+
 }
 
 @media only screen and (min-device-width: 718px) and (max-device-width: 1010px) {
-  .sidebar{
+  .sidebar {
     display: block;
   }
 }

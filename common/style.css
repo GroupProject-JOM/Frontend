@@ -378,6 +378,14 @@ body.dark {
   .w-value {
     font-size: 1.8rem;
   }
+
+  .ongoing-supply-table .th-time,.ongoing-supply-table .td-time{
+    display: none;
+  }
+  .hide{
+    display: none;
+  }
+
 }
 
 .form-button {
@@ -578,7 +586,7 @@ body.dark {
   position: absolute;
   margin: 1.5rem;
   font-size: 20px;
-  z-index: 999;
+  z-index: 1;
   display: none;
 }
 
@@ -644,6 +652,49 @@ body.dark {
   }
 
   .fa-bars {
+    transition: transform 0.5s;
     display: block;
+  }
+
+  .table-heading h2{
+    font-size: 1.3rem;
+  }
+
+  .table-heading p{
+    font-size: 0.9rem;
+  }
+
+  .layer{
+    margin-top: 1.8rem;
+  }
+
+  .overview-tables{
+    font-size: 0.7rem;
+  }
+
+  .overview-tables th{
+    font-weight: 600;
+  }
+
+  .status{
+    font-size: 0.7rem;
+  }
+
+  .overview-tables td{
+    padding: 12px 15px;
+  }
+
+  .reject-note {
+    font-size: 0.6rem;
+    padding-right: 1.7rem;
+  }
+
+  .form-button{
+    font-size: 0.9rem;
+    padding: 8px 25px;
+  }
+
+  label{
+    font-size: 0.9rem;
   }
 }
