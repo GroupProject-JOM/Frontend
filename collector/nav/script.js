@@ -29,7 +29,8 @@
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
-      bars = body.querySelector(".fa-bars");
+      bars = body.querySelector(".fa-bars"),
+      navHide = body.querySelector(".nav-hide");
 
     logout.addEventListener("click", () => {
       signout();

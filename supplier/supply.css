@@ -8,8 +8,13 @@
   background-color: var(--background-color);
   color: var(--wtext-color);
   /* width: 37rem; */
-  padding-top: 3rem;
+  padding-top: 0.6rem;
   margin-bottom: 0;
+}
+
+.coco-amount::placeholder {
+  color: var(--primary-color);
+  font-weight: 500;
 }
 
 .method {
@@ -56,10 +61,12 @@
 
 .method input[type="checkbox"] {
   accent-color: #5e5e5e;
+  /* align-self: center; */
 }
 
 .checkbox:checked + .supply-label {
   color: var(--primary-color);
+  /* bottom: 50%; */
 }
 
 .date-form {
@@ -156,10 +163,17 @@ select.dropdown {
 
 .dropdown {
   width: 40vw;
-  margin-top: 3rem;
+  margin-top: 10px;
+  padding-left: 0;
   font-size: 15px;
   background-color: var(--body-color);
   color: var(--input-border);
+}
+
+.supply-container {
+  width: 40vw;
+  margin-top: 3rem;
+  font-size: 15px;
 }
 
 /* .bankaccc-table .icon,
@@ -296,11 +310,11 @@ textarea {
   color: var(--primary-color);
   font-weight: 500;
   font-size: 15px;
-  
+
   /* color: red; */
 }
 
-.supply7-container textarea{
+.supply7-container textarea {
   width: 40vw;
 }
 
@@ -396,28 +410,32 @@ textarea::placeholder {
   justify-content: center;
 }
 
-.supply-edit-container label {
+.supply-edit-container label,
+.supply-container label {
   display: block;
   margin-top: 30px;
   color: var(--input-border);
 }
 
-.supply-edit-container input {
+.supply-edit-container input,
+.supply-container input {
   color: var(--primary-color);
   font-weight: 500;
   font-size: 15px;
-  margin: 10px 0 0 0;
+  margin: 6px 0 0 0;
 }
 
 .long {
   width: 40vw;
 }
 
-.supply-edit-container .dropdown {
+.supply-edit-container .dropdown,
+.spply3-container {
   color: var(--primary-color);
   font-weight: 500;
   padding-bottom: 5px;
-  margin-top: 15px;
+  margin-top: 0;
+  padding: p;
 }
 
 .supply-edit-container .collected-amount {
@@ -426,6 +444,10 @@ textarea::placeholder {
 
 .supply-edit-container .amount-label {
   margin-top: 60px;
+}
+
+.coco-amount-label {
+  font-size: 0.9rem;
 }
 
 @media only screen and (max-device-width: 800px) {
@@ -505,8 +527,7 @@ textarea::placeholder {
 }
 
 @media only screen and (max-device-width: 718px) {
-
-  .supply-container{
+  .supply-container {
     width: 90vw;
   }
 
@@ -516,7 +537,7 @@ textarea::placeholder {
     /* transform: translate(0, 3vh); */
   }
 
-  .supply4-container{
+  .supply4-container {
     padding-left: 0;
     gap: 1rem;
   }
@@ -561,7 +582,7 @@ textarea::placeholder {
     font-size: 0.9rem;
     margin: 10px 0 0 0;
   }
-  
+
   .supply7-container input {
     font-size: 0.9rem;
     margin: 10px 0 0 0;
@@ -572,7 +593,7 @@ textarea::placeholder {
     width: 85%;
   }
 
-  .add-button{
+  .add-button {
     font-size: 0.9rem;
     margin-left: 20vw;
     margin-top: 20px;
@@ -587,14 +608,12 @@ textarea::placeholder {
     margin-top: 2rem;
   }
 
-  .buttons{
+  .buttons {
     margin-top: 2rem;
-
   }
 
-  
-.supply7-container .add-label,
-.supply7-container .add-input{
+  .supply7-container .add-label,
+  .supply7-container .add-input {
     width: 100%;
     margin-top: 0;
   }
@@ -609,16 +628,15 @@ textarea::placeholder {
     margin-top: 10px;
   }
 
-  .supply7-container textarea{
+  .supply7-container textarea {
     width: 85%;
   }
 
-  .supply7-container .add-button{
+  .supply7-container .add-button {
     margin-left: 30vw;
   }
 
-  
-.location-pick-bt {
-  margin: 30px 0 0 5vw;
-}
+  .location-pick-bt {
+    margin: 30px 0 0 5vw;
+  }
 }

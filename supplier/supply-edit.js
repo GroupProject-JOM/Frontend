@@ -28,8 +28,8 @@
     amountLabel = body.querySelector(".amount-label"),
     methodLabel = body.querySelector(".method-label"),
     paymentLabel = body.querySelector(".payment-label"),
-    dateLabel = body.querySelector(".date-label"),
-    timeLabel = body.querySelector(".time-label");
+    dText = body.querySelector(".date-label"),
+    tText = body.querySelector(".time-label");
 
   var lang = getCookie("lang"); // current language
 
@@ -56,8 +56,7 @@
     amountLabel.textContent = data["sin"]["amountLabel"];
     methodLabel.textContent = data["sin"]["methodLabel"];
     paymentLabel.textContent = data["sin"]["paymentLabel"];
-    dateLabel.textContent = data["sin"]["dateLabel"];
-    timeLabel.textContent = data["sin"]["timeLabel"];
+    
 
     setGreeting();
   });
@@ -85,8 +84,7 @@
     amountLabel.textContent = data["en"]["amountLabel"];
     methodLabel.textContent = data["en"]["methodLabel"];
     paymentLabel.textContent = data["en"]["paymentLabel"];
-    dateLabel.textContent = data["en"]["dateLabel"];
-    timeLabel.textContent = data["en"]["timeLabel"];
+    
     setGreeting();
   });
 
@@ -107,8 +105,7 @@
       amountLabel: "පොල් ප්‍රමාණය",
       methodLabel: "සැපයුම් ක්රමය",
       paymentLabel: "ගෙවීම් ක්රමය",
-      dateLabel: "එකතු කිරීමේ දිනය",
-      timeLabel: "එකතු කිරීමේ වෙලාව",
+      
     },
     en: {
       sTitle: "Edit Supply",
@@ -126,8 +123,7 @@
       amountLabel: "Coconut Amount",
       methodLabel: "Supply Method",
       paymentLabel: "Payment Method",
-      dateLabel: "Collection Date",
-      timeLabel: "Collection Time",
+      
     },
   };
 
