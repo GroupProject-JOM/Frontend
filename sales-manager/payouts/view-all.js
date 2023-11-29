@@ -81,6 +81,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `</td>` +
                 `<td>` +
                 item.value.toLocaleString("en-US") +
+                " LKR" +
                 `</td>` +
                 `<td>` +
                 `<button class="payment-pending status">Pending</button>` +
@@ -104,6 +105,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `</td>` +
                 `<td>` +
                 item.value.toLocaleString("en-US") +
+                " LKR" +
                 `</td>` +
                 `<td>` +
                 `<button class="payment-paid status">Paid</button>` +
@@ -126,7 +128,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       } else if (response.status === 202) {
         response.json().then((data) => {
           log(data.size);
-        });if (lang == "sin") Command: toastr["error"]("ගෙවීම් නැත");
+        });
+        if (lang == "sin") Command: toastr["error"]("ගෙවීම් නැත");
         else Command: toastr["error"]("No payouts");
       } else if (response.status === 401) {
         response.json().then((data) => {
