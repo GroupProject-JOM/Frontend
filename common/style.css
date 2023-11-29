@@ -32,6 +32,11 @@
   --accept-yellow: #e9c66d;
   --input-border-focus: #484848;
   --hr-color: #f1f1f1;
+  --stock-table-text: #000000;
+  --stock-lv1: #fbffcc;
+  --stock-lv2: #ffe0e0;
+  --stock-lv3: #e9ffe8;
+  --stock-lv4: red;
 
   --tran-02: all 0.2s ease;
   --tran-03: all 0.3s ease;
@@ -55,7 +60,7 @@ body.dark {
   --shadow-color: rgb(57, 57, 57);
   --box-shadow: rgb(57, 57, 57);
   --wtext--color: #ccc;
-  --th-color: #242526;
+  --th-color: #6a6a6a;
   --table-color-hover: #343434;
   --tbicon-color: #ccc;
   --input-border: #a9a9a9;
@@ -63,6 +68,11 @@ body.dark {
   --button-color: #484848;
   --button-hover: #363535;
   --sidebar-color-text: #7e7e7e;
+  --stock-table-text: #ffffff;
+  --stock-lv1: #fbffcc;
+  --stock-lv2: #FBC02D;
+  --stock-lv3: #2E7D32;
+  --stock-lv4: #bb3737;
 
   color: var(--text-color);
 }
@@ -589,6 +599,11 @@ body.dark {
   z-index: 1;
   display: none;
 }
+
+.stock .overview-tables td{
+  color: var(--stock-table-text);  
+}
+
 
 @media only screen and (max-device-width: 718px) {
   .home {
