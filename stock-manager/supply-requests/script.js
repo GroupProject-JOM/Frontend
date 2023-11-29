@@ -74,7 +74,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<td>" +
               item.id +
               "</td>" +
-              "<td>" +
+              "<td class='hide'>" +
               item.name +
               "</td>" +
               "<td>" +
@@ -86,7 +86,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<td>" +
               capitalize(item.method) +
               "</td>" +
-              "<td>" +
+              "<td class='hide'>" +
               status +
               "</td>" +
               "</tr>";
