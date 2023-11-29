@@ -93,7 +93,6 @@
   }
 
   function receive(msg) {
-    log(msg)
     chat.innerHTML +=
       `<div class="received">
         <div class="received-msg">
@@ -254,17 +253,15 @@
                     `</span>` +
                     `</div>` +
                     `<div class="single-chat-content">` +
-                    `<p class="supplier-name">` +
+                    `<div><p class="supplier-name">` +
                     item.fist_name +
                     ` ` +
                     item.last_name +
                     `</p>` +
-                    `<div class="unseen-text">`+
+                    `<div class="unseen"></div></div>` +
                     `<p class="last-text">` +
                     item.content +
                     `</p>` +
-                    `<div class="unseen"></div>` +
-                    `</div>` +
                     `</div>` +
                     `</div>`;
                 } else {
@@ -320,8 +317,8 @@
                 bottom.style.display = "block";
                 loadChat();
                 chat.style.display = "block";
-                if (c.getElementsByTagName("*").length == 7)
-                  c.children[1].children[2].remove();
+                if (c.children[1].getElementsByTagName("*").length == 4)
+                  c.children[1].children[0].children[1].remove();
                 seen();
               });
             });
