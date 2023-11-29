@@ -32,7 +32,7 @@
   flex-wrap: wrap;
   align-items: center;
   top: 50%;
-  transform: translate(0, 5%);
+  transform: translate(0, 5vh);
 }
 
 .collection-data-table {
@@ -170,6 +170,8 @@ select.dropdown {
   }
 }
 
+
+
 @media only screen and (max-device-width: 718px){
   .stockmg-container{
     width: 90vw;
@@ -181,6 +183,7 @@ select.dropdown {
 
   .production-view-container{
     padding-left: 0;
+    
   }
 
   .collection-data-table {
@@ -195,12 +198,20 @@ select.dropdown {
   }
 
   .accept-decline{
-    margin-left: -10vw;
     justify-content: center;
   }
 
   .change{
     margin: 0;
+  }
+
+  .collection-view-container .reason{
+    margin-top: 1rem;
+  }
+
+  .collection-view-container .dropdown{
+    width: 85%;
+    align-self: center;
   }
   
 }

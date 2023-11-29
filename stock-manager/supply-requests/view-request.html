@@ -128,7 +128,7 @@
           <div class="accept-decline">
             <a class="stockmg-button form-button accept"></a>
             <a class="stockmg-button form-button decline"></a>
-            <a class="stockmg-button form-button change"></a>
+            <!-- <a class="stockmg-button form-button change"></a> -->
 
             <a
               class="stockmg-button form-button assign"
@@ -136,9 +136,12 @@
               href="./assign-collector.html"
             ></a>
           </div>
-          <div class="reason" style="display: none">
+          <div class="reason">
             <p class="reason-text"></p>
-            <select class="dropdown"></select>
+            <select class="dropdown" placeholder="Select reason for declining">
+              <option>Not enough coconut amount</option>
+              <option>Too far to pickup</option>
+            </select>
           </div>
         </div>
       </div>
