@@ -590,6 +590,48 @@ body.dark {
   display: none;
 }
 
+.rate-section{
+  width: 90%;
+  height: 10vh;
+  background-color: var(--body-color);
+  box-shadow: 0px 4px 40px 0px var(--box-shadow);
+  margin-top: 5vh;
+  border-radius: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rate-section .rate-text{
+  margin-left: 15px;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.rate-content{
+  display: flex;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  /* height: 50%; */
+  /* align-items: flex-end; */
+}
+
+
+
+
+
+
+
+
+.rate-button{
+  padding: 10px 30px;
+  margin: 0 20px;
+  font-size: 0.9rem;
+}
+
+
+
 @media only screen and (max-device-width: 718px) {
   .home {
     left: 0;

@@ -170,6 +170,8 @@ select.dropdown {
   }
 }
 
+
+
 @media only screen and (max-device-width: 718px){
   .stockmg-container{
     width: 90vw;
