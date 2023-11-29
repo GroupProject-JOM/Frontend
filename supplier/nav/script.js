@@ -39,7 +39,8 @@
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = body.querySelector(".logout"),
-      bars = body.querySelector(".fa-bars");
+      bars = body.querySelector(".fa-bars"),
+      navHide = body.querySelector(".nav-hide");
 
     newSupply.addEventListener("click", () => {
       pageLoading();
@@ -79,11 +80,12 @@
     }
 
     toggle.addEventListener("click", () => {
-      if (window.innerWidth > 718) sidebar.classList.toggle("close");
-      else {
-        sidebar.classList.remove("sidebar-active");
-        bars.style.display = "block";
-      }
+      sidebar.classList.toggle("close");
+    });
+
+    navHide.addEventListener("click", () => {
+      sidebar.classList.remove("sidebar-active");
+      bars.style.display = "block";
     });
 
     modeSwitch.addEventListener("click", () => {

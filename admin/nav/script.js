@@ -35,7 +35,8 @@
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
-      bars = body.querySelector(".fa-bars");
+      bars = body.querySelector(".fa-bars"),
+      navHide = body.querySelector(".nav-hide");
 
     logout.addEventListener("click", () => {
       signout();
@@ -54,11 +55,12 @@
     }
 
     toggle.addEventListener("click", () => {
-      if (window.innerWidth > 718) sidebar.classList.toggle("close");
-      else {
-        sidebar.classList.remove("sidebar-active");
-        bars.style.display = "block";
-      }
+      sidebar.classList.toggle("close");
+    });
+
+    navHide.addEventListener("click", () => {
+      sidebar.classList.remove("sidebar-active");
+      bars.style.display = "block";
     });
 
     modeSwitch.addEventListener("click", () => {

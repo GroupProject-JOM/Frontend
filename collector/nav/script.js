@@ -46,11 +46,12 @@
     }
 
     toggle.addEventListener("click", () => {
-      if (window.innerWidth > 718) sidebar.classList.toggle("close");
-      else {
-        sidebar.classList.remove("sidebar-active");
-        bars.style.display = "block";
-      }
+      sidebar.classList.toggle("close");
+    });
+
+    navHide.addEventListener("click", () => {
+      sidebar.classList.remove("sidebar-active");
+      bars.style.display = "block";
     });
 
     modeSwitch.addEventListener("click", () => {

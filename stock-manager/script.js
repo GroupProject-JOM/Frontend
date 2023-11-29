@@ -126,7 +126,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<td>" +
                 item.amount.toLocaleString("en-US") +
                 "</td>" +
-                "<td>" +
+                "<td class='hide'>" +
                 capitalize(item.method) +
                 "</td>" +
                 "</tr>";

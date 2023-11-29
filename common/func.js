@@ -163,7 +163,7 @@ function signout() {
   window.location.href = frontProxy;
 }
 
-const frontProxy = "http://127.0.0.1:5501";
+const frontProxy = "http://127.0.0.1:5502";
 const backProxy = "http://127.0.0.1:8090/JOM_war_exploded";
 
 // toast
