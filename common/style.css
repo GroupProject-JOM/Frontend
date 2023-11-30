@@ -70,8 +70,8 @@ body.dark {
   --sidebar-color-text: #7e7e7e;
   --stock-table-text: #ffffff;
   --stock-lv1: #fbffcc;
-  --stock-lv2: #FBC02D;
-  --stock-lv3: #2E7D32;
+  --stock-lv2: #fbc02d;
+  --stock-lv3: #2e7d32;
   --stock-lv4: #bb3737;
 
   color: var(--text-color);
@@ -389,13 +389,13 @@ body.dark {
     font-size: 1.8rem;
   }
 
-  .ongoing-supply-table .th-time,.ongoing-supply-table .td-time{
+  .ongoing-supply-table .th-time,
+  .ongoing-supply-table .td-time {
     display: none;
   }
-  .hide{
+  .hide {
     display: none;
   }
-
 }
 
 .form-button {
@@ -600,7 +600,7 @@ body.dark {
   display: none;
 }
 
-.rate-section{
+.rate-section {
   width: 90%;
   height: 10vh;
   background-color: var(--body-color);
@@ -612,13 +612,13 @@ body.dark {
   align-items: center;
 }
 
-.rate-section .rate-text{
+.rate-section .rate-text {
   margin-left: 15px;
   font-weight: 400;
   font-size: 0.9rem;
 }
 
-.rate-content{
+.rate-content {
   display: flex;
   gap: 10px;
   font-weight: 600;
@@ -627,14 +627,30 @@ body.dark {
   /* align-items: flex-end; */
 }
 
-.rate-button{
+.rate-button {
   padding: 10px 30px;
   margin: 0 20px;
   font-size: 0.9rem;
 }
 
-.stock .overview-tables td{
-  color: var(--stock-table-text);  
+.stock .overview-tables td {
+  color: var(--stock-table-text);
+}
+
+.stock-level4 {
+  background-color: var(--stock-lv4);
+}
+
+.stock-level3 {
+  background-color: var(--stock-lv3);
+}
+
+.stock-level2 {
+  background-color: var(--stock-lv2);
+}
+
+.stock-level1 {
+  background-color: var(--stock-lv1);
 }
 
 @media only screen and (max-device-width: 718px) {
@@ -703,32 +719,32 @@ body.dark {
     display: block;
   }
 
-  .table-heading h2{
+  .table-heading h2 {
     font-size: 1.3rem;
   }
 
-  .table-heading p{
+  .table-heading p {
     font-size: 0.9rem;
   }
 
-  .layer{
+  .layer {
     margin-top: 1.8rem;
   }
 
-  .overview-tables{
+  .overview-tables {
     font-size: 0.7rem;
   }
 
-  .overview-tables th{
+  .overview-tables th {
     font-weight: 600;
     padding-left: 10px;
   }
 
-  .status{
+  .status {
     font-size: 0.7rem;
   }
 
-  .overview-tables td{
+  .overview-tables td {
     padding: 12px 15px;
   }
 
@@ -737,12 +753,12 @@ body.dark {
     padding-right: 1.7rem;
   }
 
-  .form-button{
+  .form-button {
     font-size: 0.9rem;
     padding: 8px 25px;
   }
 
-  label{
+  label {
     font-size: 0.9rem;
   }
 }

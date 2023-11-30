@@ -155,12 +155,56 @@ function getCookie(name) {
 }
 
 function signout() {
-  // remove previous data
-  document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-  document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-  document.cookie = "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-  pageLoading();
-  window.location.href = frontProxy;
+  var lang = getCookie("lang");
+  if (lang == "sin") {
+    var title = "ඔයාට විශ්වාස ද?",
+      text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+      confirmButtonText = "ඔව්, වරනය වන්න!",
+      cancelButtonText = "අවලංගු කරන්න";
+  } else {
+    var title = "Are you sure?",
+      text = "You won't be able to revert this!",
+      confirmButtonText = "Yes, Sign out!",
+      cancelButtonText = "Cancel";
+  }
+  Swal.fire({
+    title: title,
+    text: text,
+    confirmButtonText: confirmButtonText,
+    cancelButtonText: cancelButtonText,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: confirmButtonColor,
+    cancelButtonColor: cancelButtonColor,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      if (lang == "sin") {
+        var title = "වරනය විය!",
+          text = "ඔබ ඔබේ පැතිකඩ සාර්ථකව වරනය විය.",
+          confirmButtonText = "හරි";
+      } else {
+        var title = "Signed out!",
+          text = "You signed out your profile successfully.",
+          confirmButtonText = "Ok";
+      }
+      // sweet alert
+      Swal.fire({
+        title: title,
+        text: text,
+        icon: "success",
+        confirmButtonText: confirmButtonText,
+        confirmButtonColor: confirmButtonColor,
+      }).then((response) => {
+        // remove previous data
+        document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie =
+          "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        pageLoading();
+        window.location.href = frontProxy;
+      });
+    }
+  });
 }
 
 const frontProxy = "http://127.0.0.1:5502";
