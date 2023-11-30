@@ -30,12 +30,15 @@
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
+      l12 = body.querySelector(".l12"),
       l11 = body.querySelector(".l11"),
       dashboard = body.querySelector(".dashboard"),
       track = body.querySelector(".track"),
       supply = body.querySelector(".supply"),
       chat = body.querySelector(".chat"),
       stock = body.querySelector(".stock"),
+      production = body.querySelector(".production"),
+      all = body.querySelector(".all"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
       bars = body.querySelector(".fa-bars"),
@@ -50,6 +53,8 @@
     supply.href = frontProxy + "/stock-manager/supply-requests/";
     chat.href = frontProxy + "/stock-manager/chat/chat.html";
     stock.href = frontProxy + "/stock-manager/stock/view-all.html";
+    production.href = frontProxy + "/stock-manager/production/view-all.html";
+    all.href = frontProxy + "/stock-manager/all-collections/";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -92,6 +97,7 @@
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
       l9.textContent = modeTranslate();
+      l12.textContent = data["sin"]["l12"];
       l11.textContent = data["sin"]["l11"];
     });
 
@@ -106,6 +112,7 @@
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
       l9.textContent = modeTranslate();
+      l12.textContent = data["en"]["l12"];
       l11.textContent = data["en"]["l11"];
     });
 
@@ -120,6 +127,7 @@
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
+        l12: "නිෂ්පාදන ඉල්ලීම්",
         l11: "උපකරණ පුවරුව",
       },
       en: {
@@ -132,6 +140,7 @@
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
+        l12: "Production Requests",
         l11: "Dashboard",
       },
     };
@@ -168,7 +177,7 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["supply-requests", "collectors", "chat", "stock", "index"];
+    const navItems = ["supply-requests", "collectors", "chat", "stock", "index", "production", "all-collections"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

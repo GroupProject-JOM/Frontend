@@ -145,9 +145,10 @@ select.dropdown {
   
 }
 
-.production-request-table{
+.production-request-table, .addresses-table{
   width: 90%;
 }
+
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {
@@ -172,6 +173,10 @@ select.dropdown {
     flex-direction: column;
     align-items: center;
   }
+}
+
+.collections-table{
+  width: 90%;
 }
 
 
