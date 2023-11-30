@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Profile</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <!-- <link rel="stylesheet" href="../signin.css" /> -->
+    <link rel="stylesheet" href="../supply.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+      <div class="text"></div>
+      <div class="profile-container supply-container">
+        <div class="supply-heading table-heading">
+          <h2 class="supply-title">View Profile</h2>
+        </div>
+        <div class="profile-info">
+
+        <div class="layer1">
+          <p class="personal-info supply-text"></p>
+          <table class="profile-table overview-tables">
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td class="Name"><b></b></td>
+              </tr>
+              <tr>
+                <td>Email Address</td>
+                <td class="email"><b>saumya@gmail.com</b></td>
+              </tr>
+              <tr>
+                <td>Contact Number</td>
+                <td class="phone"><b>0703012996</b></td>
+              </tr>
+              <tr>
+                <td>NIC Number</td>
+                <td class="nic"><b>3837383793247</b></td>
+              </tr>
+              <tr>
+                <td>Date of Birth</td>
+                <td class="dob"><b>16/05/2001</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="layer2">
+          <p class="profile-address supply-text"></p>
+          <table class="profile-table overview-tables">
+            <tbody>
+              <tr>
+                <td>Address Line 1</td>
+                <td class="address1"><b>22</b></td>
+              </tr>
+              <tr>
+                <td>Street</td>
+                <td class="street"><b>Artigala Road</b></td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td class="city"><b>jjdjdsj</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="layer3">
+          <p class="additional-info supply-text"></p>
+          <table class="profile-table overview-tables">
+            <tbody>
+              <tr>
+                <td>User Role</td>
+                <td class="role"><b>Supplier</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="./view.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./load-nav.js"></script>
+    <script src="./load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
+  </body>
+</html>
