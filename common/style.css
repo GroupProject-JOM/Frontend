@@ -258,7 +258,7 @@ body.dark {
   overflow: hidden;
   /* box-shadow: 0px 5px 10px var(--shadow-color); */
   box-shadow: 0px 4px 40px 0px var(--box-shadow);
-  width: 90%;
+  width: 100%;
 }
 
 .overview-tables th {

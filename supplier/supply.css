@@ -51,7 +51,7 @@
 .supply-container {
   /* position: absolute; */
   top: 50%;
-  /* transform: translate(0, 10%); */
+  transform: translate(0, 2vh);
   margin-left: 6vw;
 }
 
@@ -121,7 +121,7 @@
 
 .supply6-container,
 .supply8-container {
-  transform: translate(0, 20%);
+  transform: translate(0, 10%);
 }
 
 .supply7-container {
@@ -171,9 +171,10 @@ select.dropdown {
 }
 
 .supply-container {
-  width: 40vw;
-  margin-top: 3rem;
+  width: 85%;
+  /* margin-top: 3rem; */
   font-size: 15px;
+  /* border: 1px solid red; */
 }
 
 /* .bankaccc-table .icon,
@@ -448,6 +449,30 @@ textarea::placeholder {
 
 .coco-amount-label {
   font-size: 0.9rem;
+}
+
+/* .addresses-table{
+  width: 80vw;
+} */
+
+.profile-table {
+  margin-top: 10px;
+  width: 70%;
+}
+
+.profile-table td {
+  width: 50%;
+}
+
+.profile-container .supply-title {
+  padding: 0;
+  margin-bottom: -10px;
+}
+
+.profile-info .supply-text {
+  margin-top: 3rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 @media only screen and (max-device-width: 800px) {
