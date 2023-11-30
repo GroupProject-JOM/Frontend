@@ -18,7 +18,9 @@
     cLabel = body.querySelector(".cash-label"),
     bTransfer = body.querySelector(".bank-transfer"),
     bLabel = body.querySelector(".bank-label"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".form-button"),
+    amountLabel = body.querySelector(".coco-amount-label");
+   
 
   var lang = getCookie("lang"); // current language
 
@@ -41,6 +43,7 @@
     cLabel.textContent = data["sin"]["cLabel"];
     bLabel.textContent = data["sin"]["bLabel"];
     btn.textContent = data["sin"]["btn"];
+    amountLabel.textContent = data["sin"]["amountLabel"];
     setGreeting();
   });
 
@@ -63,6 +66,8 @@
     cLabel.textContent = data["en"]["cLabel"];
     bLabel.textContent = data["en"]["bLabel"];
     btn.textContent = data["en"]["btn"];
+    amountLabel.textContent = data["en"]["amountLabel"];
+
     setGreeting();
   });
 
@@ -84,13 +89,14 @@
       sTitle: "New Supply",
       sText:
         "Fill up the details correctly for your new supply request. <br /> Requests will be reviewed within 24 hours. You can check them inside your dashboard.",
-      amount: "Coconut Amount",
+      amount: "Enter Coconut Amount",
       cMethod: "Collection Method",
       pLabel: "Pickup at Estate",
       dLabel: "Delivered to Yard",
       pMethod: "Payment Method",
       cLabel: "Cash on Pickup",
       bLabel: "Bank Transfer",
+      amountLabel: "Coconut Amount",
       btn: "Next",
     },
   };
