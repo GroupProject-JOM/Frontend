@@ -244,6 +244,7 @@ function pageLoading() {
 
 function timeString(time) {
   var T = time.split(":");
+  log(T);
 
   if (T[0] > 12) {
     T[0] -= 12;
@@ -252,7 +253,9 @@ function timeString(time) {
     } else {
       return String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
     }
-  } else {
+  } else if (T[0] == 12) {
+    return String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
+  } else {``
     return String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
   }
 }
