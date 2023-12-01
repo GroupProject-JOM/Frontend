@@ -93,11 +93,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<tr id=" +
                 item.id +
                 ">" +
-                "<td data-href='./view.html'>" +
+                "<td>" +
                 item.account_number +
                 "</td>" +
-                "<td data-href='./view.html'>" +
+                "<td>" +
                 item.bank +
+                "</td>" +
+                "<td>" +
+                item.name +
                 "</td>" +
                 '<td class="edit"><i class="fa-solid fa-pen-to-square icon"></i></td>' +
                 '<td class="delete"><i class="fa-solid fa-trash-can icon"></i></td>' +
@@ -105,8 +108,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             }
             tbody.innerHTML = row;
 
-            const cols = document.querySelectorAll("td[data-href]"),
-              edits = document.querySelectorAll(".edit"),
+            const edits = document.querySelectorAll(".edit"),
               deletes = document.querySelectorAll(".delete");
 
             edits.forEach((edit) => {
@@ -193,13 +195,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                       });
                   }
                 });
-              });
-            });
-
-            cols.forEach((col) => {
-              col.addEventListener("click", () => {
-                document.cookie = "id=" + col.parentElement.id + "; path=/";
-                window.location.href = col.dataset.href;
               });
             });
           });
