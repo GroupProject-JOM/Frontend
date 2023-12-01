@@ -77,6 +77,7 @@
 
 .feasibility {
   width: 40vw;
+  margin: 2rem 0 3rem 0;
 }
 
 .feasibility input {
@@ -233,67 +234,11 @@ select.dropdown {
   padding-bottom: 5px;
 }
 
-.supply7-container input {
-  margin-top: 0;
-  color: var(--primary-color);
-  font-weight: 500;
-  font-size: 15px;
-  /* padding: 12px; */
-}
-
-.supply7-container label {
-  padding: 20px 20px 20px 0;
-  display: inline-block;
-}
-
-.supply7-container .add-label {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.supply7-container .add-input {
-  float: left;
-  width: 75%;
-  margin-top: 20px;
-  padding-top: 0;
-}
-
-.supply7-container .row::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.supply7-container .bank-form {
-  margin-top: 30px;
-}
-
-.supply7-container .socket-messages {
-  margin: 30px 0;
-  font-size: 14px;
-}
-
-.supply7-container .socket-messages button {
-  margin-top: 20px;
-}
-
 .map iframe {
   width: 30vw;
   height: 75vh;
   border: 0;
   border-radius: 30px;
-}
-
-.supply7-container .supply-view-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3vw;
-}
-
-.supply7-container .map {
-  width: 30vw;
-  margin: 0 30px;
 }
 
 .supply4-container .map {
@@ -313,10 +258,6 @@ textarea {
   font-size: 15px;
 
   /* color: red; */
-}
-
-.supply7-container textarea {
-  width: 40vw;
 }
 
 textarea::placeholder {
@@ -399,12 +340,6 @@ textarea::placeholder {
   margin-left: 2rem;
 }
 
-.supply7-container .error {
-  padding-top: 10px;
-  color: var(--input-border-focus);
-  font-size: 11px;
-}
-
 .address-view-content {
   display: flex;
   flex-direction: column;
@@ -430,7 +365,7 @@ textarea::placeholder {
   width: 40vw;
 }
 
-.supply-edit-container .dropdown,
+.supply-edit-container .dropdown, supply
 .spply3-container {
   color: var(--primary-color);
   font-weight: 500;
@@ -475,6 +410,99 @@ textarea::placeholder {
   font-weight: 500;
 }
 
+
+input [type=""]
+.supply7-container input {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 15px;
+  /* padding: 12px; */
+}
+
+.supply7-container label {
+  padding: 20px 20px 20px 0;
+  display: inline-block;
+}
+
+.supply7-container .add-label {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.supply7-container .add-input {
+  float: left;
+  width: 75%;
+  margin-top: 20px;
+  padding-top: 0;
+}
+
+.supply7-container .row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.supply7-container .bank-form {
+  margin-top: 30px;
+}
+
+.supply7-container .socket-messages {
+  margin: 30px 0;
+  font-size: 14px;
+}
+
+.supply7-container .socket-messages button {
+  margin-top: 20px;
+}
+.supply7-container .supply-view-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3vw;
+}
+
+.supply7-container .map {
+  width: 30vw;
+  margin: 0 30px;
+}
+
+.supply7-container textarea {
+  width: 40vw;
+}
+
+.supply7-container .error {
+  padding-top: 10px;
+  color: var(--input-border-focus);
+  font-size: 11px;
+}
+
+
+.supply7-container label {
+  color: var(--primary-color);
+  margin-top: 0;
+}
+
+.supply-container input[type="checkbox"] {
+margin-top: 0;
+}
+
+.supply-label{
+  margin-top: 0;
+}
+
+.supply-content label{
+  margin-top: 0;
+}
+
+
+.supply-content{
+  margin-top: 3rem;
+}
+
+.supply2-container{
+  /* Has to rum */
+}
 @media only screen and (max-device-width: 800px) {
   .report-container {
     grid-template-rows: 2fr 2fr 1fr 1fr;
