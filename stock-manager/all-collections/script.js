@@ -10,7 +10,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tx2 = body.querySelector(".stockmg-tx2"),
     t3 = body.querySelector(".stockmg-t3"),
     tx3 = body.querySelector(".stockmg-tx3"),
-    tbody = body.querySelector(".tbody");
+    tbody1 = body.querySelector(".tbody1"),
+    tbody2 = body.querySelector(".tbody2"),
+    tbody3 = body.querySelector(".tbody3");
 
   var lang = getCookie("lang"); // current language
 
@@ -19,7 +21,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -37,7 +38,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -68,4 +68,151 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       tx3: "All completed coconut collections",
     },
   };
+
+  let row1 = "",
+    row2 = "",
+    row3 = "";
+
+  fetch(backProxy + "/all-collections?user=" + getCookie("user"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          data.accepted.forEach((item) => {
+            var c_fName = "-",
+              c_lName = "-";
+
+            if (item.method == "pickup") {
+              c_fName = item.c_fName;
+              c_lName = item.c_lName;
+            }
+
+            var date_string = new Date(item.time);
+
+            row1 +=
+              `<tr id=` +
+              item.id +
+              ` data-href="../supply-requests/view-request.html">` +
+              `<td>` +
+              item.id +
+              `</td>` +
+              `<td>` +
+              item.name +
+              " " +
+              item.last_name +
+              `</td>` +
+              `<td>` +
+              date_string.toLocaleDateString() +
+              `</td>` +
+              `<td>` +
+              item.amount.toLocaleString("en-US") +
+              `</td>` +
+              `<td>` +
+              capitalize(item.method) +
+              `</td>` +
+              `<td>` +
+              c_fName +
+              " " +
+              c_lName +
+              `</td>` +
+              `</tr>`;
+          });
+
+          data.rejected.forEach((item) => {
+            row2 +=
+              `<tr id=` +
+              item.id +
+              ` data-href="../supply-requests/view-request.html">` +
+              `<td>` +
+              item.id +
+              `</td>` +
+              `<td>` +
+              item.name +
+              " " +
+              item.last_name +
+              `</td>` +
+              `<td>` +
+              item.date +
+              `</td>` +
+              `<td>` +
+              item.amount.toLocaleString("en-US") +
+              `</td>` +
+              `<td>` +
+              capitalize(item.method) +
+              `</td>` +
+              `</tr>`;
+          });
+
+          data.completed.forEach((item) => {
+            var c_fName = "-",
+              c_lName = "-";
+
+            if (item.method == "pickup") {
+              c_fName = item.c_fName;
+              c_lName = item.c_lName;
+            }
+
+            var date_string = new Date(item.time);
+
+            row3 +=
+              `<tr id=` +
+              item.id +
+              ` data-href="../supply-requests/view-request.html">` +
+              `<td>` +
+              item.id +
+              `</td>` +
+              `<td>` +
+              item.name +
+              " " +
+              item.last_name +
+              `</td>` +
+              `<td>` +
+              date_string.toLocaleDateString() +
+              `</td>` +
+              `<td>` +
+              item.amount.toLocaleString("en-US") +
+              `</td>` +
+              `<td>` +
+              capitalize(item.method) +
+              `</td>` +
+              `<td>` +
+              c_fName +
+              " " +
+              c_lName +
+              `</td>` +
+              `</tr>`;
+          });
+
+          tbody1.innerHTML = row1;
+          tbody2.innerHTML = row2;
+          tbody3.innerHTML = row3;
+
+          const rows = document.querySelectorAll("tr[data-href]");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id + "; path=/";
+              window.location.href = r.dataset.href;
+            });
+          });
+        });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
 })();
