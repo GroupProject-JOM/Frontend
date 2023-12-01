@@ -96,7 +96,13 @@
       date.focus();
     }
 
-    if (dateStatus && timeStatus) {
+    var dateTime = false;
+    var selected_time = new Date(date.value + " " + time.value);
+    var now = new Date();
+
+    if (selected_time > now) dateTime = true;
+
+    if (dateStatus && timeStatus && dateTime) {
       var formData = {
         // collection_id: sessionStorage.getItem("id"),
         // supplier_id: sessionStorage.getItem("sId"),
@@ -135,7 +141,7 @@
         });
     }
   });
-  
+
   function date_status_func() {
     if (typeof date.value === "string" && date.value.trim().length === 0) {
       if (lang == "sin") {

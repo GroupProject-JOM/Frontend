@@ -224,7 +224,13 @@
       location.focus();
     }
 
-    if (locationStatus && dateStatus && timeStatus && bankStatus) {
+    var dateTime = false;
+    var selected_time = new Date(date.value + " " + time.value);
+    var now = new Date();
+
+    if (selected_time > now) dateTime = true;
+
+    if (locationStatus && dateStatus && timeStatus && bankStatus && dateTime) {
       var formData = {
         collection_id: getCookie("id"),
         supplier_id: getCookie("sId"),

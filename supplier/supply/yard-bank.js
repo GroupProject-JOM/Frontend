@@ -159,7 +159,13 @@
       date.focus();
     }
 
-    if (bankStatus && dateStatus && timeStatus) {
+    var dateTime = false;
+    var selected_time = new Date(date.value + " " + time.value);
+    var now = new Date();
+
+    if (selected_time > now) dateTime = true;
+
+    if (bankStatus && dateStatus && timeStatus && dateTime) {
       var formData = {
         // collection_id: sessionStorage.getItem("id"),
         // supplier_id: sessionStorage.getItem("sId"),
