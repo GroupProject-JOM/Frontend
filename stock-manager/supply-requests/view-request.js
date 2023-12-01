@@ -21,12 +21,14 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept = body.querySelector(".accept"),
     decline = body.querySelector(".decline"),
     assign = body.querySelector(".assign"),
-    change = body.querySelector(".change"),
+    // change = body.querySelector(".change"),
     rtext = body.querySelector(".reason-text"),
     cNameRow = body.querySelector(".cName-row"),
     cName = body.querySelector(".cName"),
     cPhoneRow = body.querySelector(".cPhone-row"),
-    cPhone = body.querySelector(".cPhone");
+    cPhone = body.querySelector(".cPhone"),
+    collected = body.querySelector(".collected"),
+    cAmount = body.querySelector(".cAmount");
 
   var lang = getCookie("lang"); // current language
 
@@ -43,7 +45,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept.textContent = data["sin"]["accept"];
     decline.textContent = data["sin"]["decline"];
     assign.textContent = data["sin"]["assign"];
-    change.textContent = data["sin"]["change"];
+    // change.textContent = data["sin"]["change"];
     rtext.textContent = data["sin"]["rtext"];
 
     setGreeting();
@@ -62,7 +64,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept.textContent = data["en"]["accept"];
     decline.textContent = data["en"]["decline"];
     assign.textContent = data["en"]["assign"];
-    change.textContent = data["en"]["change"];
+    // change.textContent = data["en"]["change"];
     rtext.textContent = data["en"]["rtext"];
 
     setGreeting();
@@ -74,7 +76,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       accept: "පිළිගන්න",
       decline: "ප්රතික්ෂේප කරන්න",
       assign: "එකතුකරන්නා පවරන්න",
-      change: "දිනය/වේලාව වෙනස් කරන්න",
+      // change: "දිනය/වේලාව වෙනස් කරන්න",
       rtext: "ඉල්ලීම ප්‍රතික්ෂේප කිරීමට හේතුව තෝරන්න",
     },
     en: {
@@ -82,7 +84,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       accept: "Accept",
       decline: "Decline",
       assign: "Assign Collector",
-      change: "Change date or time",
+      // change: "Change date or time",
       rtext: "Select the reason for declining the request",
     },
   };
@@ -137,6 +139,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             else sText.textContent = "Status: Pending Approval";
             cNameRow.style.display = "none";
             cPhoneRow.style.display = "none";
+            collected.style.display = "none";
           } else if (
             data.request.status == 2 &&
             data.request.method == "pickup"
@@ -152,6 +155,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             document.cookie = "date=" + date.textContent + "; path=/";
             cNameRow.style.display = "none";
             cPhoneRow.style.display = "none";
+            collected.style.display = "none";
           } else if (
             data.request.status == 2 &&
             data.request.method == "yard"
@@ -167,6 +171,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             assign.disabled = true;
             cNameRow.style.display = "none";
             cPhoneRow.style.display = "none";
+            collected.style.display = "none";
           } else if (data.request.status == 3) {
             if (lang == "sin")
               sText.textContent = "තත්ත්වය: ලබා ගැනීමට සූදානම්";
@@ -178,8 +183,63 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             decline.disabled = true;
             assign.style.display = "none";
             assign.disabled = true;
-            cName.textContent=data.request.c_fName+" "+data.request.c_lName
-            cPhone.textContent=data.request.c_phone
+            cName.textContent =
+              data.request.c_fName + " " + data.request.c_lName;
+            cPhone.textContent = data.request.c_phone;
+            collected.style.display = "none";
+          } else if (data.request.status == 4) {
+            if (lang == "sin") sText.textContent = "තත්ත්වය: ප්‍රතික්ෂේප කළා";
+            else sText.textContent = "Status: Rejected";
+
+            accept.style.display = "none";
+            accept.disabled = true;
+            decline.style.display = "none";
+            decline.disabled = true;
+            assign.style.display = "none";
+            assign.disabled = true;
+            cNameRow.style.display = "none";
+            cPhoneRow.style.display = "none";
+            collected.style.display = "none";
+          } else if (data.request.status == 5) {
+            if (lang == "sin") sText.textContent = "තත්ත්වය: පොරොත්තු ගෙවීම";
+            else sText.textContent = "Status: Pending payment";
+
+            accept.style.display = "none";
+            accept.disabled = true;
+            decline.style.display = "none";
+            decline.disabled = true;
+            assign.style.display = "none";
+            assign.disabled = true;
+            cAmount.textContent = data.request.final_amount;
+
+            if (data.request.method == "pickup") {
+              cName.textContent =
+                data.request.c_fName + " " + data.request.c_lName;
+              cPhone.textContent = data.request.c_phone;
+            } else {
+              cNameRow.style.display = "none";
+              cPhoneRow.style.display = "none";
+            }
+          } else if (data.request.status == 6) {
+            if (lang == "sin") sText.textContent = "තත්ත්වය: ගෙවා ඇත";
+            else sText.textContent = "Status: Paid";
+
+            accept.style.display = "none";
+            accept.disabled = true;
+            decline.style.display = "none";
+            decline.disabled = true;
+            assign.style.display = "none";
+            assign.disabled = true;
+            cAmount.textContent = data.request.final_amount;
+
+            if (data.request.method == "pickup") {
+              cName.textContent =
+                data.request.c_fName + " " + data.request.c_lName;
+              cPhone.textContent = data.request.c_phone;
+            } else {
+              cNameRow.style.display = "none";
+              cPhoneRow.style.display = "none";
+            }
           }
         });
       } else if (response.status === 202) {

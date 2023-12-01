@@ -175,7 +175,7 @@
       } else {
         var title = "Incorrect!",
           text =
-            "The supplier denied that the quantity of coconut inserted was correct.",
+            "The supplier denied the enterd coconut quantity.",
           confirmButtonText = "Enter again";
       }
       // sweet alert
