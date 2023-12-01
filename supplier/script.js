@@ -99,101 +99,106 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          let arr = data.list;
-          arr.forEach(data_to_table);
-
-          function data_to_table(item) {
-            // console.log(item);
+          data.ongoing.forEach((item) => {
             var stat = "",
               st = "";
-            // Ongoing table
-            if (0 < item.status && item.status < 5) {
-              if (item.status == 1) {
-                stat = "pending";
-                st = "Pending Approval";
-                if(window.innerWidth <= 718)st = "Pending";
-                count++;
-              } else if (item.status == 2) {
-                stat = "accept";
-                st = "Accepted";
-                count++;
-              } else if (item.status == 3) {
-                stat = "ready";
-                st = "Ready to Pickup";
-                if(window.innerWidth <= 718)st = "Ready";
-                count++;
-              } else if (item.status == 4) {
-                stat = "rejected";
-                st = "Rejected";
-              } else {
-                return;
-              }
 
-              row1 +=
-                "<tr data-href='./supply-view.html' id=" +
-                item.id +
-                ">" +
-                "<td class='hide'>" +
-                item.id +
-                "</td>" +
-                "<td>" +
-                item.date +
-                "</td>" +
-                "<td>" +
-                timeString(item.time) +
-                "</td>" +
-                "<td class='hide'>" +
-                item.amount.toLocaleString("en-US") +
-                "</td>" +
-                "<td>" +
-                "<button class='" +
-                stat +
-                " status'>" +
-                st +
-                "</button>" +
-                "</td>" +
-                "</tr>";
-            } else if (4 < item.status && item.status < 7) {
-              // Past table
-              if (item.status == 5) {
-                stat = "pending";
-                st = "Pending Paymant";
-                if(window.innerWidth <= 718)st = "Pending";
-              } else if (item.status == 6) {
-                stat = "paid";
-                st = "Paid";
-              } else {
-                return;
-              }
-
-              row2 +=
-                "<tr data-href='./supply-view.html' id=" +
-                item.id +
-                ">" +
-                "<td>" +
-                item.id +
-                "</td>" +
-                "<td class='hide'>" +
-                item.date +
-                "</td>" +
-                "<td>" +
-                item.final_amount.toLocaleString("en-US") +
-                "</td>" +
-                "<td>" +
-                item.value.toLocaleString("en-US") +
-                "</td>" +
-                "<td>" +
-                "<button class='" +
-                stat +
-                " status'>" +
-                st +
-                "</button>" +
-                "</td>" +
-                "</tr>";
+            if (item.status == 1) {
+              stat = "pending";
+              st = "Pending Approval";
+              if (window.innerWidth <= 718) st = "Pending";
+              count++;
+            } else if (item.status == 2) {
+              stat = "accept";
+              st = "Accepted";
+              count++;
+            } else if (item.status == 3) {
+              stat = "ready";
+              st = "Ready to Pickup";
+              if (window.innerWidth <= 718) st = "Ready";
+              count++;
+            } else if (item.status == 4) {
+              stat = "rejected";
+              st = "Rejected";
             } else {
               return;
             }
-          }
+
+            row1 +=
+              "<tr data-href='./supply-view.html' id=" +
+              item.id +
+              ">" +
+              "<td class='hide'>" +
+              item.id +
+              "</td>" +
+              "<td>" +
+              item.date +
+              "</td>" +
+              "<td>" +
+              timeString(item.name) +
+              "</td>" +
+              "<td class='hide'>" +
+              item.amount.toLocaleString("en-US") +
+              "</td>" +
+              "<td>" +
+              capitalize(item.method) +
+              "</td>" +
+              "<td>" +
+              "<button class='" +
+              stat +
+              " status'>" +
+              st +
+              "</button>" +
+              "</td>" +
+              "</tr>";
+          });
+
+          // Past table
+          data.past.forEach((item) => {
+            var stat = "",
+              st = "";
+
+            if (item.status == 5) {
+              stat = "pending";
+              st = "Pending Paymant";
+              if (window.innerWidth <= 718) st = "Pending";
+            } else if (item.status == 6) {
+              stat = "paid";
+              st = "Paid";
+            } else {
+              return;
+            }
+
+            var date_string = new Date(item.date);
+
+            row2 +=
+              "<tr data-href='./supply-view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.id +
+              "</td>" +
+              "<td class='hide'>" +
+              date_string.toLocaleDateString() +
+              "</td>" +
+              "<td>" +
+              item.final_amount.toLocaleString("en-US") +
+              "</td>" +
+              "<td>" +
+              capitalize(item.method) +
+              "</td>" +
+              "<td>" +
+              item.value.toLocaleString("en-US") +
+              "</td>" +
+              "<td>" +
+              "<button class='" +
+              stat +
+              " status'>" +
+              st +
+              "</button>" +
+              "</td>" +
+              "</tr>";
+          });
 
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
@@ -212,10 +217,57 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         response.json().then((data) => {
           console.log(data.size);
           ongoingSupplyTable.style.display = "none";
-          pastSupplyTable.style.display = "none";
           c3.style.display = "none";
           ongoingError.style.display = "Block";
-          pastError.style.display = "Block";
+
+          // Past table
+          data.past.forEach((item) => {
+            var stat = "",
+              st = "";
+
+            if (item.status == 5) {
+              stat = "pending";
+              st = "Pending Paymant";
+              if (window.innerWidth <= 718) st = "Pending";
+            } else if (item.status == 6) {
+              stat = "paid";
+              st = "Paid";
+            } else {
+              return;
+            }
+
+            var date_string = new Date(item.date);
+
+            row2 +=
+              "<tr data-href='./supply-view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.id +
+              "</td>" +
+              "<td class='hide'>" +
+              date_string.toLocaleDateString() +
+              "</td>" +
+              "<td>" +
+              item.final_amount.toLocaleString("en-US") +
+              "</td>" +
+              "<td>" +
+              capitalize(item.method) +
+              "</td>" +
+              "<td>" +
+              item.value.toLocaleString("en-US") +
+              "</td>" +
+              "<td>" +
+              "<button class='" +
+              stat +
+              " status'>" +
+              st +
+              "</button>" +
+              "</td>" +
+              "</tr>";
+          });
+
+          tbody2.innerHTML = row2;
           income.textContent = data.income.toLocaleString("en-US") + " LKR";
         });
       } else {
