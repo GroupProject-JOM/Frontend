@@ -77,7 +77,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       if (response.status == 200) {
         response.json().then((data) => {
           data.yard1.forEach((item) => {
-            log(item)
             var status = "";
             if (item.days > 30) status = "stock-level4";
             else if (item.days > 25) status = "stock-level3";
