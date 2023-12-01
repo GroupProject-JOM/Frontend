@@ -244,7 +244,6 @@ function pageLoading() {
 
 function timeString(time) {
   var T = time.split(":");
-  log(T);
 
   if (T[0] > 12) {
     T[0] -= 12;

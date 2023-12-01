@@ -376,9 +376,9 @@
               "එකතුකරන්නා ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව ඔබ ප්‍රතික්ෂේප කර ඇත.",
             confirmButtonText = "හරි";
         } else {
-          var title = "Accepted!",
+          var title = "Denied!",
             text =
-              "You have denied that the amount of coconut entered by the collector is correct.",
+              "You have denied that the amount of coconut entered by the collector.",
             confirmButtonText = "Ok";
         }
         // sweet alert

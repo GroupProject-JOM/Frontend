@@ -2,4 +2,4 @@
 .vscode
 .metals
 
-./common/func.js
+common/func.js
