@@ -66,14 +66,7 @@
 
       <div class="text"></div>
 
-      <div class="collection-view-container container">
-        <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title"></h2>
-          <p class="productionmg-subtitle">
-            
-          </p>
-        </div>
-
+      <div class="stock-view-container container">
         <div class="production-stock-request">
           <div class="yard">
             <h3 class="yard-h3"></h3>
@@ -90,36 +83,39 @@
             </table>
           </div>
 
-          <div class="stock-details">
-            <table class="collection-data-table overview-tables">
-              <tbody>
-                <tr>
-                  <td>Yard</td>
-                  <td class="sYard"></td>
-                </tr>
-                <tr>
-                  <td>Block ID</td>
-                  <td class="yBlock"></td>
-                </tr>
-                <tr>
-                  <td>Amount</td>
-                  <td class="yAmount"></td>
-                </tr>
-                <tr>
-                  <td>Days</td>
-                  <td class="yDays"></td>
-                </tr>
-                
-              </tbody>
-            </table>
+          <div class="production-stock-content">
+            <div class="productionmg-heading table-heading">
+              <h2 class="productionmg-title"></h2>
+              <p class="productionmg-subtitle"></p>
+            </div>
 
-            <input
-              type="text"
-              class="request-amount"
-              placeholder=""
-            />
-            
-            <a class="productionmg-button form-button"></a>
+            <div class="stock-details">
+              <table class="collection-data-table overview-tables">
+                <tbody>
+                  <tr>
+                    <td>Yard</td>
+                    <td class="sYard"></td>
+                  </tr>
+                  <tr>
+                    <td>Block ID</td>
+                    <td class="yBlock"></td>
+                  </tr>
+                  <tr>
+                    <td>Amount</td>
+                    <td class="yAmount"></td>
+                  </tr>
+                  <tr>
+                    <td>Days</td>
+                    <td class="yDays"></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <label class="reqest-amount-label">Enter Requesting Coconut Amount</label>
+              <input type="text" class="request-amount" placeholder="" />
+
+              <a class="productionmg-button form-button"></a>
+            </div>
           </div>
         </div>
       </div>

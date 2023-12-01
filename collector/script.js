@@ -61,7 +61,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      w1: "අද එකතු කිරීම්",
+      w1: "පොල් මිල",
       w2: "අද ඉතිරිය",
       c1: "අද එකතු කිරීම්",
       c2: "සවිස්තරාත්මකව තොරතුරු බැලීමට එම සැපයුම තෝරන්න",
@@ -69,7 +69,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c5: "ඉදිරි දින 2 සඳහා ඉදිරි එකතු කිරීම් බලන්න",
     },
     en: {
-      w1: "Today's Collections",
+      w1: "Coconut Rate",
       w2: "Today's Remaining",
       c1: "Today's Collections",
       c2: "select a collection for a detailed view",

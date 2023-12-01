@@ -61,7 +61,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      w1: "අද මුළු එකතුව",
+      w1: "සැපයුම්කරු ඉල්ලීම්",
       w2: "අද ඉතිරිය",
       c1: "නිෂ්පාදන ඉල්ලීම්",
       c2: "නිෂ්පාදන කළමනාකරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
@@ -71,7 +71,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c7: "අද දිනට නියමිත පොල් එකතු කිරීම් බලන්න",
     },
     en: {
-      w1: "Today's Collections",
+      w1: "Supply Requests",
       w2: "Remaining Collections",
       c1: "Production Requests Overview",
       c2: "View and respond to production manager requests",

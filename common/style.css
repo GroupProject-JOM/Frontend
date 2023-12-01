@@ -234,6 +234,8 @@ body.dark {
   margin: 0;
 }
 
+
+
 .w-value {
   padding-top: 0.2rem;
   font-weight: 700;
@@ -602,14 +604,16 @@ body.dark {
 
 .rate-section {
   width: 90%;
-  height: 10vh;
+  height: 8vh;
   background-color: var(--body-color);
-  box-shadow: 0px 4px 40px 0px var(--box-shadow);
+  /* box-shadow: 0px 4px 40px 0px var(--box-shadow); */
   margin-top: 5vh;
   border-radius: 0.7rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid var(--box-shadow);
+  background-color: var(--th-color);
 }
 
 .rate-section .rate-text {
@@ -629,7 +633,7 @@ body.dark {
 
 .rate-button {
   padding: 10px 30px;
-  margin: 0 20px;
+  margin: 0 10px;
   font-size: 0.9rem;
 }
 
@@ -652,6 +656,16 @@ body.dark {
 .stock-level1 {
   background-color: var(--stock-lv1);
 }
+
+.ongoing-supply-table, .past-supply-table, .stockmg-request-table, .today-table, .upcoming-table, .productionmg-container .overview-tables{
+  width: 90%;
+}
+
+.today-table td, .today-table th{
+width: 25%;
+}
+
+
 
 @media only screen and (max-device-width: 718px) {
   .home {
@@ -702,16 +716,39 @@ body.dark {
 
   .widget {
     width: 90vw;
-    height: 6rem;
+    height: 5rem;
   }
 
   .widgets {
     gap: 10px;
+    margin-top: 1rem;
   }
 
   .w-value {
     font-weight: 700;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+  }
+
+  .w-value span{
+    font-size: 1.4rem;
+  }
+
+  .w-title {
+    font-size: 1rem;
+  }
+
+
+  .w-icon {
+    width: 3rem;
+    height: 3rem;
+    
+    margin: 1rem;
+    margin-right: 1.5rem;
+  }
+  
+  .w-icon span {
+    font-size: 1.5rem;
+    color: var(--text-color);
   }
 
   .fa-bars {

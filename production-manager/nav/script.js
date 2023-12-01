@@ -31,7 +31,7 @@
       l11 = body.querySelector(".l11"),
       dashboard = body.querySelector(".dashboard"),
       stockk = body.querySelector(".stockk"),
-      productionhistory = body.querySelector(".production-history"),
+      production = body.querySelector(".production"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
       bars = body.querySelector(".fa-bars"),
@@ -43,8 +43,7 @@
 
     dashboard.href = frontProxy + "/production-manager/";
     stockk.href = frontProxy + "/production-manager/stock/view.html";
-    productionhistory.href =
-      frontProxy + "/production-manager/production-history.html";
+    production.href = frontProxy + "/production-manager/production.html";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -152,7 +151,7 @@ window.addEventListener("load", (e) => {
 
     console.log(pathname);
     // pathname = pathname.replace(".html", "");
-    const navItems = ["stock", "production-history", "index"];
+    const navItems = ["stock", "production", "index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

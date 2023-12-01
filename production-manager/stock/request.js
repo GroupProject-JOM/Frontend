@@ -56,10 +56,10 @@
       btn: "තොග ඉල්ලන්න",
     },
     en: {
-      pTitle: "View Stock",
+      pTitle: "View Block",
       pText: "View and Request Stock for Production",
       yardH: "Yard " + getCookie("id").charAt(0),
-      rAmount: "Enter Requesting Amount",
+      rAmount: "",
       btn: "Request Stock",
     },
   };
