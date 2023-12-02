@@ -130,6 +130,11 @@
         </div>
       </div>
 
+      <div
+        id="chartDiv"
+        style="max-width: 250px; height: 250px; margin: 0px auto"
+      ></div>
+
       <div class="l-block5">
         <div class="l-heading">
           <h1>Contact Us</h1>
@@ -146,5 +151,142 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="./common/loader.js"></script>
+
+    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+    <script
+      type="text/javascript"
+      src="https://code.jscharting.com/latest/modules/types.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://code.jscharting.com/latest/modules/toolbar.js"
+    ></script>
+    <script>
+      // JS
+      var chart,
+        chartConfig = {
+          debug: true,
+          //Without data, a view must be specified.
+          type: "calendar month solid",
+          title_label_text: "January Room Availability",
+          yAxis_visible: false,
+          legend: {
+            //Add custom entries
+            template: "%icon %name",
+            position: "bottom",
+            customEntries: [
+              {
+                name: "Available",
+                icon_color: "#cbf2b7",
+              },
+              {
+                name: "Booked",
+                icon: {
+                  hatch: {
+                    style: "light-upward-diagonal",
+                    color: "#a2a2a2",
+                  },
+                },
+              },
+            ],
+          },
+          calendar: {
+            range: ["1/1/2023", "1/31/2023"],
+            defaultEdgePoint: {
+              mouseTracking: false,
+              label_visible: true,
+            },
+          },
+          defaultSeries: {
+            opacity: 0.6,
+            legendEntry_visible: true,
+            defaultPoint: {
+              outline_width: 0,
+              label_text: "<b>%name</b>",
+            },
+          },
+          toolbar_visible: true,
+        };
+
+      loadData(makeChart);
+
+      var arr = {
+        "1/1/2018": "a",
+        "1/2/2018": "a",
+        "1/3/2018": "a",
+        "1/4/2018": "a",
+        "1/5/2018": "r",
+        "1/6/2018": "r",
+        "1/7/2018": "r",
+        "1/8/2018": "r",
+        "1/9/2018": "r",
+        "1/10/2018": "a",
+        "1/11/2018": "a",
+        "1/12/2018": "r",
+        "1/13/2018": "r",
+        "1/14/2018": "r",
+        "1/15/2018": "r",
+        "1/16/2018": "r",
+      };
+      var arrr = [
+        ["1/1/2018", "a"],
+        ["1/2/2018", "a"],
+        ["1/3/2018", "a"],
+        ["1/4/2018", "a"],
+        ["1/5/2018", "r"],
+        ["1/6/2018", "r"],
+        ["1/7/2018", "r"],
+        ["1/8/2018", "r"],
+        ["1/9/2018", "r"],
+        ["1/10/2018", "a"],
+        ["1/11/2018", "a"],
+        ["1/12/2018", "r"],
+      ];
+      // console.log(arr);
+      // console.log(arrr);
+
+      
+
+      function loadData(cb) {
+        JSC.fetch("./bookingData.csv")
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (csv) {
+            cb(JSC.parseCsv(csv).data);
+          })
+          .catch(function (ex) {
+            console.error(ex);
+          });
+      }
+
+      // makeChart(arrr)
+
+      function makeChart(data) {
+        console.log(data);
+        chartConfig.series = [
+          {
+            points: data.map(function (row) {
+              var isAvailable = row[1] === "a";
+              return isAvailable
+                ? {
+                    date: row[0],
+                    color: "#cbf2b7",
+                    tooltip: "{%date:date d}<hr><b>Available</b>",
+                  }
+                : {
+                    date: row[0],
+                    tooltip: "{%date:date d}<hr><b>Booked</b>",
+                    hatch: {
+                      style: "light-upward-diagonal",
+                      color: "#a2a2a2",
+                    },
+                  };
+            }),
+          },
+        ];
+        chart = JSC.chart("chartDiv", chartConfig);
+      }
+    </script>
   </body>
 </html>
