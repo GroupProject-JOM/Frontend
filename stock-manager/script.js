@@ -272,6 +272,7 @@ const configLine = {
   type: "line",
   data: dataLine,
   options: {
+    maintainAspectRatio: false,
     responsive: true,
     plugins: {
       legend: {
