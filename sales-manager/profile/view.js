@@ -15,7 +15,11 @@
     address1 = body.querySelector(".address1"),
     street = body.querySelector(".street"),
     city = body.querySelector(".city"),
-    role = body.querySelector(".role");
+    role = body.querySelector(".role"),
+    edit = body.querySelector(".edit-button"),
+    change = body.querySelector(".change-password");
+
+
 
   var lang = getCookie("lang"); // current language
 
@@ -31,6 +35,8 @@
     tx1.innerHTML = data["sin"]["tx1"];
     tx2.innerHTML = data["sin"]["tx2"];
     tx3.innerHTML = data["sin"]["tx3"];
+    change.textContent = data["sin"]["change"];
+    edit.textContent = data["sin"]["edit"];
 
     setGreeting();
   });
@@ -47,6 +53,9 @@
     tx1.innerHTML = data["en"]["tx1"];
     tx2.innerHTML = data["en"]["tx2"];
     tx3.innerHTML = data["en"]["tx3"];
+    change.textContent = data["en"]["change"];
+    edit.textContent = data["en"]["edit"];
+
 
     setGreeting();
   });
@@ -57,12 +66,16 @@
       tx1: "පුද්ගලික තොරතුරු",
       tx2: "ලිපිනය",
       tx3: "අමතර තොරතුරු",
+      change: "මුරපදය වෙනස් කරන්න",
+      edit: "තොරතුරු සංස්කරණය කරන්න",
     },
     en: {
       sTitle: "Your Profile",
       tx1: "Personal Information",
       tx2: "Address",
       tx3: "Additional Information",
+      change: "Change Password",
+      edit: "Edit Profile",
     },
   };
 

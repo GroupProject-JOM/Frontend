@@ -113,3 +113,97 @@ input:focus {
   font-size: 1rem;
   font-weight: 500;
 }
+
+.profile-container .form-button{
+  margin-top: 3rem;
+}
+
+.password-window {
+  display: none;
+  width: 40vw;
+  height: 40vh;
+  margin: 0 auto;
+  background-color: var(--body-color);
+  padding: 10px 10px;
+  border-radius: 10px;
+  margin-top: 60px;
+  position: fixed;
+  top: 40%;
+  right: 35%;
+  box-shadow: 0 0 20px 0 var(--shadow-color);
+  z-index: 999;
+  transition: var(--tran-04);
+}
+
+
+.password-window .close-btn {
+  display: grid;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 24px;
+  color: gray;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.password-window .close-btn:hover {
+  color: var(--primary-color);
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-container{
+  margin: 30px 20px 20px 20px;
+}
+.password-window .passwords label{
+  display: block;
+}
+
+.password-window input{
+  padding: 0px;
+  margin: 0 10px;
+}
+
+.password-window input::placeholder{
+  font-size: 0.8rem;
+}
+
+.passwords{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  width: 30vw;
+}
+
+.password-window a{
+  font-size: 0.7rem;
+  color: var(--button-color);
+}
+
+.passwords input{
+  margin:10px 0;
+  padding-left: 3px;
+}
+
+.current-password{
+  width: 20vw;
+}
+
+.password-window .save{
+  font-size: 0.9rem;
+  padding: 6px 40px;
+  border-radius: 15px;
+  margin-top: 40px;
+}
