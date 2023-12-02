@@ -253,7 +253,7 @@
                     `</span>` +
                     `</div>` +
                     `<div class="single-chat-content">` +
-                    `<div><p class="supplier-name">` +
+                    `<div class="name-unseen"><p class="supplier-name">` +
                     item.fist_name +
                     ` ` +
                     item.last_name +
