@@ -7,9 +7,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sTitle = body.querySelector(".stockmg-title"),
     sText1 = body.querySelector(".stockmg-text1"),
     tbody = body.querySelector(".tbody"),
-  yText = body.querySelector(".yard-text"),
-  yValue = body.querySelector(".yard-value"),
-  btn = body.querySelector(".form-button");
+    yText = body.querySelector(".yard-text"),
+    yValue = body.querySelector(".yard-value"),
+    btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
   sTitle.textContent = getCookie("cName");
@@ -74,7 +74,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   )
     .then((response) => {
       if (response.status == 200) {
-        response.json().then((data) => {
+        response.json().then((data) => {          
+          makeChart(data.calender);
           let arr = data.collections;
           arr.forEach(data_to_table);
 
@@ -129,6 +130,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
+          makeChart(data.calender);
           console.log(data.collections);
         });
         if (lang == "sin") Command: toastr["info"]("එකතු කිරීම් නැත");
@@ -149,3 +151,93 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       Command: toastr["error"](error);
     });
 })();
+
+var chart,
+  chartConfig = {
+    debug: true,
+    //Without data, a view must be specified.
+    type: "calendar month solid",
+    title_label_text: "This month collections",
+    yAxis_visible: false,
+    legend: {
+      //Add custom entries
+      template: "%icon %name",
+      position: "bottom",
+      customEntries: [
+        {
+          name: "Available",
+          icon_color: "#cbf2b7",
+        },
+        {
+          name: "Free",
+          // icon: {
+          //   hatch: {
+          //     // style: "light-upward-diagonal",
+          //     // color: "#a2a2a2",
+          //   },
+          // },
+        },
+      ],
+    },
+    calendar: {
+      // range: ["12/1/2023", "12/31/2023"],
+      defaultEdgePoint: {
+        mouseTracking: false,
+        label_visible: true,
+      },
+    },
+    defaultSeries: {
+      opacity: 0.6,
+      legendEntry_visible: true,
+      defaultPoint: {
+        outline_width: 0,
+        label_text: "<b>%name</b>",
+      },
+    },
+    toolbar_visible: true,
+  };
+
+// loadData(makeChart);
+
+// function loadData(cb) {
+//   JSC.fetch("./bookingData.csv")
+//     .then(function (response) {
+//       return response.text();
+//     })
+//     .then(function (csv) {
+//       cb(JSC.parseCsv(csv).data);
+//     })
+//     .catch(function (ex) {
+//       console.error(ex);
+//     });
+// }
+
+// makeChart(arrr)
+
+function makeChart(data) {
+  // console.log(data);
+  chartConfig.series = [
+    {
+      points: data.map(function (row) {
+        var isAvailable = row.count != 0;
+        return isAvailable
+          ? {
+              date: row.date,
+              color: "#cbf2b7",
+              // tooltip: "{%date:date d}<hr><b>"+row.count+" Available</b>",
+              tooltip: false,
+            }
+          : {
+              date: row.date,
+              // tooltip: "{%date:date d}<hr><b>Free</b>",
+              tooltip:false
+              // hatch: {
+              //   style: "light-upward-diagonal",
+              //   color: "#a2a2a2",
+              // },
+            };
+      }),
+    },
+  ];
+  chart = JSC.chart("chartDiv", chartConfig);
+}
