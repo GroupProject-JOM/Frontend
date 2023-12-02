@@ -72,11 +72,15 @@
 .date-form {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 6vw;
+  /* justify-content: space-between; */
+  width: 90%;
 }
 
+
+
 .feasibility {
-  width: 40vw;
+  width: 90%;
   margin: 2rem 0 3rem 0;
 }
 
@@ -456,16 +460,21 @@ input [type=""]
 .supply7-container .socket-messages button {
   margin-top: 20px;
 }
-.supply7-container .supply-view-content {
+.supply-view-container .supply-view-content {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 3vw;
 }
 
-.supply7-container .map {
+.supply-view-container .map iframe{
+  height: 70vh;
+}
+
+/* .supply-view-container .map {
   width: 30vw;
   margin: 0 30px;
-}
+} */
 
 .supply7-container textarea {
   width: 40vw;
@@ -498,6 +507,10 @@ margin-top: 0;
 
 .supply-content{
   margin-top: 3rem;
+}
+
+.date-form input{
+  margin-right: 10px;
 }
 
 @media only screen and (max-device-width: 800px) {
