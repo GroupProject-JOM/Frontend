@@ -89,7 +89,10 @@
 
         <div class="rate-section">
           <div class="rate-content">
-            <p class="rate-text">As of <span>29/11/2023</span> the coconut rate for company suppliers is</p>
+            <p class="rate-text">
+              As of <span>29/11/2023</span> the coconut rate for company
+              suppliers is
+            </p>
             <p class="rate-value">LKR 35.25</p>
           </div>
           <div class="enter-rate">
@@ -100,11 +103,28 @@
         </div>
 
         <!-- coconut rate section starts-->
-        <div class="rate-window">
-          <p class="rate-window-text">Latest coconut rate as of <span>29/11/2023</span></p>
-          <p class="rate-value">LKR 35.25</p>
-          <p>Enter new coconut rate</p>
-          <input type="text">
+        <div class="overlay" id="overlay">
+          <div class="rate-window">
+            <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+            <div class="rate-container">
+              <div class="rate-chart">
+                <canvas id="coco-rate-chart"></canvas>
+              </div>
+              <div class="rate-window-content">
+                <p class="rate-window-text">
+                  Latest coconut rate as of <span><b>29/11/2023</b></span>
+                </p>
+                <p class="rate-value">LKR 35.25</p>
+                <br>
+                <label class="rate-label">New rate</label>
+                <input type="number" class="coco-rate" placeholder="Enter new coconut rate"/>
+
+                <button class="rate-confirm form-button">Confirm</button>
+              </div>
+
+              
+            </div>
+          </div>
         </div>
         <!-- coconut rate section ends -->
 
@@ -198,6 +218,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
     <script src="../common/func.js"></script>
     <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
