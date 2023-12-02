@@ -15,9 +15,29 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c6 = body.querySelector(".c6"),
     c7 = body.querySelector(".c7"),
     w1Value = body.querySelector(".w1-value"),
-    w2Value = body.querySelector(".w2-value");
+    w2Value = body.querySelector(".w2-value"),
+    closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay"),
+    rateBtn = body.querySelector(".rate-button");
 
   var lang = getCookie("lang"); // current language
+
+  rateBtn.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".rate-window").style.display = "block";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".rate-window").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".rate-window").style.display = "none";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
