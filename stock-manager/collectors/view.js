@@ -7,13 +7,34 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sTitle = body.querySelector(".stockmg-title"),
     sText1 = body.querySelector(".stockmg-text1"),
     tbody = body.querySelector(".tbody"),
-    yText = body.querySelector(".yard-text"),
-    yValue = body.querySelector(".yard-value"),
-    btn = body.querySelector(".form-button");
+  yText = body.querySelector(".yard-text"),
+  yValue = body.querySelector(".yard-value"),
+  btn = body.querySelector(".yard-button"),
+  mapBtn = body.querySelector(".map-button"),
+  closeBtn = body.querySelector(".close-btn"),
+  overlay = body.querySelector(".overlay");
+
 
   var lang = getCookie("lang"); // current language
   sTitle.textContent = getCookie("cName");
   yValue.textContent = getCookie("total");
+
+  mapBtn.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".collections-map").style.display = "block";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".collections-map").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".collections-map").style.display = "none";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -26,6 +47,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sText1.textContent = data["sin"]["sText1"];
     yText.textContent = data["sin"]["yText"];
     btn.textContent = data["sin"]["btn"];
+    mapBtn.textContent = data["sin"]["mapBtn"];
     setGreeting();
   });
 
@@ -40,6 +62,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sText1.innerHTML = data["en"]["sText1"];
     yText.innerHTML = data["en"]["yText"];
     btn.innerHTML = data["en"]["btn"];
+    mapBtn.innerHTML = data["en"]["mapBtn"];
     setGreeting();
   });
 
@@ -48,11 +71,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       sText1: "එක් එක් දිනයේ පොල් එකතු කිරීමේ විස්තර බලන්න",
       yText: "දැනට එකතුකරන්නා විසින් එකතු කරන ලද පොල් ප්‍රමාණය:",
       btn: "යාරවලට පවරන්න",
+      mapBtn: "සිතියමෙන් බලන්න",
     },
     en: {
       sText1: "View coconut collection details for each day",
       yText: "Currently collected coconut amount by the collector:",
       btn: "Assign To Yards",
+      mapBtn: "View in map",
     },
   };
 

@@ -232,8 +232,6 @@ p {
   color: #484848;
   /* padding: 7px 0; */
   margin-top: 20px;
-  /* margin: 20px 0; */
-  /* background-color: var(--body-color); */
 }
 
 .stockmg-chat-container input:focus {
@@ -242,54 +240,54 @@ p {
   transition: var(--tran-05);
 }
 
-.unseen {
-  background-color: rgb(49, 248, 49);
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  position: relative;
-  left: 190px;
-  bottom: 20px;
+.name-unseen {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+.unseen {
+  background-color: var(--button-color);
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 
-
-
-@media only screen and (max-device-width: 900px)  {
+@media only screen and (max-device-width: 900px) {
   .supplier-chat-container {
     width: 95%;
   }
 
-  .sent-msg p, .received-msg p{
+  .sent-msg p,
+  .received-msg p {
     font-size: 12px;
   }
 }
 
-
-@media only screen and (max-device-width: 718px){
-
-  .supplier-chat-container{
+@media only screen and (max-device-width: 718px) {
+  .supplier-chat-container {
     padding-left: 1rem;
     height: 87vh;
   }
 
-  .chat-content{
+  .chat-content {
     max-height: 64vh;
   }
 
-  .supplier-chat-container hr{
+  .supplier-chat-container hr {
     width: 90vw;
     margin: 10px 0 30px 0;
   }
 
-  .sent{
+  .sent {
     margin: 15px 10px;
   }
 
-  .received{
+  .received {
     margin: 15px 0;
   }
-  .msg-bottom{
-  width: 91%;
+  .msg-bottom {
+    width: 91%;
   }
 }

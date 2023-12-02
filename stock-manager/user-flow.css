@@ -54,10 +54,9 @@
 .supplyreq-container,
 .assign-collector-container,
 .track-collectors-container,
-.stock-container,
 .block-container {
   top: 50%;
-  transform: translate(0, 10%);
+  transform: translate(0, 5vh);
 }
 
 .production-view-container {
@@ -149,6 +148,25 @@ select.dropdown {
   width: 90%;
 }
 
+.map-button{
+  margin-top: 2rem;
+}
+
+.stock-container{
+  width: 95%;
+}
+
+.block-container{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  gap: 10vw;
+  margin-top: 25px;
+}
+
+.yard{
+  width: 30%;
+}
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {

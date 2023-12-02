@@ -1,4 +1,3 @@
-
 .req-tables {
   grid-template-areas: "left right";
   gap: 40px;
@@ -27,5 +26,119 @@
     display: inline-block;
     /* flex-wrap: wrap; */
   }
+}
 
+.rate-window,
+.collections-map {
+  display: none;
+  width: 50vw;
+  height: 44vh;
+  margin: 0 auto;
+  background-color: var(--body-color);
+  padding: 10px 10px;
+  border-radius: 10px;
+  margin-top: 60px;
+  position: fixed;
+  top: 20%;
+  right: 20%;
+  box-shadow: 0 0 20px 0 var(--shadow-color);
+  z-index: 999;
+  transition: var(--tran-04);
+}
+
+.rate-window .close-btn,
+.collections-map .close-btn {
+  display: grid;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 24px;
+  color: gray;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.rate-window .close-btn:hover,
+.collections-map .close-btn:hover {
+  color: var(--primary-color);
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.rate-container {
+  margin: 25px 10px 10px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.rate-window-content {
+  margin-top: 20px;
+  align-self: center;
+}
+
+.rate-container .rate-value {
+  font-weight: 500;
+}
+
+.rate-container input {
+  /* box-sizing: border-box; */
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  color: #484848;
+  padding: 3px 0;
+  margin: 10px 0 0 10px;
+  /* margin: 20px 0; */
+  background-color: var(--body-color);
+}
+
+.rate-container input:focus {
+  outline: none;
+}
+
+.rate-container .rate-value {
+  margin-top: 6px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.rate-chart {
+  height: 35vh;
+  box-shadow: 0px 4px 40px 0px var(--box-shadow);
+  border-radius: 10px;
+}
+
+#coco-rate-chart {
+  margin: 20px;
+}
+.rate-confirm {
+  padding: 6px 20px;
+  font-size: 0.9rem;
+  margin-top: 30px;
+}
+
+.collections-map {
+  width: 60vw;
+  height: 70vh;
+  top: 0;
+  right: 10%;
+}
+
+.collections-map .map iframe{
+  width: 50vw;
+  height: 60vh;
+  border: 0;
+  border-radius: 30px;
+  margin: 20px;
 }
