@@ -93,3 +93,23 @@ input:focus {
   margin-top: 30px;
   color: var(--input-border);
 }
+
+.profile-table {
+  margin-top: 10px;
+  width: 70%;
+}
+
+.profile-table td {
+  width: 50%;
+}
+
+.profile-container .supply-title {
+  padding: 0;
+  margin-bottom: -10px;
+}
+
+.profile-info .supply-text {
+  margin-top: 3rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
