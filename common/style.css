@@ -418,7 +418,10 @@ body.dark {
 .next,
 .skip {
   margin-top: 20px;
-  width: 12rem;
+  /* min-width: 12rem; */
+  width: fit-content;
+  /* padding-left: 10px;
+  padding-right: 10px; */
   font-size: 18px;
   display: flex;
   justify-content: center;
