@@ -10,11 +10,31 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   yText = body.querySelector(".yard-text"),
   yValue = body.querySelector(".yard-value"),
   btn = body.querySelector(".yard-button"),
-  mapBtn = body.querySelector(".map-button");
+  mapBtn = body.querySelector(".map-button"),
+  closeBtn = body.querySelector(".close-btn"),
+  overlay = body.querySelector(".overlay");
+
 
   var lang = getCookie("lang"); // current language
   sTitle.textContent = getCookie("cName");
   yValue.textContent = getCookie("total");
+
+  mapBtn.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".collections-map").style.display = "block";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".collections-map").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".collections-map").style.display = "none";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
