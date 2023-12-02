@@ -169,8 +169,8 @@ input:focus {
   margin-top: 50px;
 }
 
-.edit-employee-container input::placeholder,
-.outlet-edit-container input::placeholder {
+.edit-employee-container input,
+.outlet-edit-container input {
   color: var(--primary-color);
   font-weight: 500;
   /* color: red; */
@@ -208,10 +208,6 @@ input:focus {
 .outlet-table {
   width: 25vw;
   margin-top: 40px;
-}
-
-.smallbt {
-  width: 10vw;
 }
 
 .outlet-edit-container .savebt {
