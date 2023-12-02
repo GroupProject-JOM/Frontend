@@ -16,6 +16,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c7 = body.querySelector(".c7"),
     w1Value = body.querySelector(".w1-value"),
     w2Value = body.querySelector(".w2-value"),
+    rText = body.querySelector(".rate-text"),
+    rValue = body.querySelector(".rate-value"),
+    rwText = body.querySelector(".rate-window-text"),
+    rwValue = body.querySelector(".rate-window-value"),
+    rLabel = body.querySelector(".rate-label"),
+    rConfirm = body.querySelector(".rate-confirm"),
+    rate = body.querySelector(".coco-rate"),
+    rateError = body.querySelector(".coco-error"),
     closeBtn = body.querySelector(".close-btn"),
     overlay = body.querySelector(".overlay"),
     rateBtn = body.querySelector(".rate-button");
@@ -56,6 +64,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c5.textContent = data["sin"]["c5"];
     c6.textContent = data["sin"]["c6"];
     c7.textContent = data["sin"]["c7"];
+    rateBtn.textContent = data["sin"]["rateBtn"];
+    rate.placeholder = data["sin"]["rate"];
+    rLabel.textContent = data["sin"]["rLabel"];
+    rConfirm.textContent = data["sin"]["rConfirm"];
     setGreeting();
   });
 
@@ -76,6 +88,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c5.textContent = data["en"]["c5"];
     c6.textContent = data["en"]["c6"];
     c7.textContent = data["en"]["c7"];
+    rateBtn.textContent = data["en"]["rateBtn"];
+    rate.placeholder = data["en"]["rate"];
+    rLabel.textContent = data["en"]["rLabel"];
+    rConfirm.textContent = data["en"]["rConfirm"];
     setGreeting();
   });
 
@@ -89,6 +105,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c5: "සැපයුම්කරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
       c6: "අද එකතු කිරීම්",
       c7: "අද දිනට නියමිත පොල් එකතු කිරීම් බලන්න",
+      rateBtn: "අද පොල් මිල ඇතුලත් කරන්න",
+      rate: "නව පොල් මිල ඇතුළත් කරන්න",
+      rLabel: "නව අනුපාතය",
+      rConfirm: "තහවුරු කරන්න",
     },
     en: {
       w1: "Supply Requests",
@@ -99,6 +119,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c5: "View and update Supplier requests",
       c6: "Today's Collections",
       c7: "View coconut collections scheduled for today",
+      rateBtn: "Enter Today's Coconut Rate",
+      rate: "Enter new coconut rate",
+      rLabel: "New rate",
+      rConfirm: "Confirm",
     },
   };
 
@@ -232,42 +256,169 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       Command: toastr["error"](error);
     });
 
+  //get coco rate
+  getRate();
+  function getRate() {
+    fetch(backProxy + "/coco-rate?user=" + getCookie("user"), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.status == 200) {
+          response.json().then((data) => {
+            if (lang == "sin") {
+              rText.innerHTML =
+                "<span>" +
+                data.rate.date +
+                "</span> වන විට සමාගම් සැපයුම්කරුවන් සඳහා පොල් මිල";
+              rwText.innerHTML =
+                "<span>" + data.rate.date + "</span> වන විට නවතම පොල් මිල";
+              rValue.textContent = "රු. " + data.rate.price;
+              rwValue.textContent = "රු. " + data.rate.price;
+            } else {
+              rText.innerHTML =
+                "As of <span>" +
+                data.rate.date +
+                "</span> the coconut rate for company suppliers is";
+              rwText.innerHTML =
+                "Latest coconut rate as of <span>" + data.rate.date + "</span>";
+              rValue.textContent = data.rate.price + " LKR";
+              rwValue.textContent = data.rate.price + " LKR";
+            }
+          });
+        } else if (response.status === 401) {
+          response.json().then((data) => {
+            console.log(data.message);
+          });
+          if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+          else Command: toastr["error"]("Invalid User");
+        } else {
+          console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+        Command: toastr["error"](error);
+      });
+  }
 
-    let labels = [
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thurs",
-      "Fri",
-      "Sat",
-      "Sun",
-    ];
+  var rateStatus = false;
 
+  rate.addEventListener("input", () => {
+    rate_status_func();
+  });
 
-    let cocoRate = [
-      35, 40, 50, 29, 33, 30, 42,
-    ];
+  rConfirm.addEventListener("click", () => {
+    if (!rate_status_func()) {
+      rate.focus();
+    }
 
-    //coco rate chart design
-
-    const dataLine = {
-      labels: labels,
-      datasets: [
-        {
-          data: cocoRate,
-          //   fill: true,
-          borderColor: "#bb9056",
-          borderWidth: 2,
-          // hoverBorderColor: '#000000',
-          // backgroundColor:'#ffe0b6',
-          tension: 0.4,
-          pointRadius: 0,
-          hoverPointRadius: 0,
+    if (rateStatus) {
+      var formData = {
+        user: getCookie("user"),
+        price: rate.value,
+      };
+      fetch(backProxy + "/coco-rate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      ],
-    };
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+              Command: toastr["success"](data.message);
+              closeBtn.click();
+              getRate();
+            });
+          } else if (response.status === 400) {
+            response.json().then((data) => {
+              console.log(data.message);
+              Command: toastr["error"](data.message);
+            });
+          } else if (response.status === 401) {
+            response.json().then((data) => {
+              console.log(data.message);
+              Command: toastr["error"](data.message);
+            });
+          } else {
+            console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+          Command: toastr["error"](error);
+        });
+    }
+  });
 
-    //coco rate chart configuration
+  function rate_status_func() {
+    if (typeof rate.value === "string" && rate.value.trim().length === 0) {
+      if (lang == "sin") {
+        rateError.textContent = "පොල් මිල හිස් විය නොහැක";
+        Command: toastr["warning"]("පොල් මිල හිස් විය නොහැක");
+      } else {
+        rateError.textContent = "Coconut rate cannot be empty";
+        Command: toastr["warning"]("Coconut rate cannot be empty");
+      }
+      rateStatus = false;
+      return false;
+    } else if (!checkPositive(rate.value)) {
+      if (lang == "sin") {
+        rateError.textContent = "පොල් මිල ධනාත්මක විය යුතුය";
+        Command: toastr["warning"]("පොල් මිල ධනාත්මක විය යුතුය");
+      } else {
+        rateError.textContent = "Coconut rate must be positive";
+        Command: toastr["warning"]("Coconut rate must be positive");
+      }
+      rateStatus = false;
+      return false;
+    } else {
+      rateError.textContent = "";
+      rateStatus = true;
+      return true;
+    }
+  }
+
+  function checkPositive(num) {
+    if (+num > 0) return true;
+    return false;
+  }
+})();
+
+let labels = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+
+let cocoRate = [35, 40, 50, 29, 33, 30, 42];
+
+//coco rate chart design
+
+const dataLine = {
+  labels: labels,
+  datasets: [
+    {
+      data: cocoRate,
+      //   fill: true,
+      borderColor: "#bb9056",
+      borderWidth: 2,
+      // hoverBorderColor: '#000000',
+      // backgroundColor:'#ffe0b6',
+      tension: 0.4,
+      pointRadius: 0,
+      hoverPointRadius: 0,
+    },
+  ],
+};
+
+//coco rate chart configuration
 const configLine = {
   type: "line",
   data: dataLine,
@@ -288,7 +439,7 @@ const configLine = {
 };
 
 // coco rate chart visualizing
-const chartLine = new Chart(document.getElementById("coco-rate-chart"), configLine);
-
-
-})();
+const chartLine = new Chart(
+  document.getElementById("coco-rate-chart"),
+  configLine
+);
