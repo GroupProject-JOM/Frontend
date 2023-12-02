@@ -32,6 +32,7 @@
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
+      profile = body.querySelector(".profile"),
       bars = body.querySelector(".fa-bars"),
       navHide = body.querySelector(".nav-hide");
 
@@ -42,8 +43,9 @@
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
 
-    add.href = "./add.html";
-    dashboard.href = "./";
+    add.href = frontProxy + "/distributor/add.html";
+    profile.href = frontProxy + "/distributor/profile/view.html";
+    dashboard.href = frontProxy + "/distributor/";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -142,7 +144,7 @@ window.addEventListener("load", (e) => {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
     // pathname = pathname.replace(".html", "");
-    const navItems = ["add", "index"];
+    const navItems = ["add", "profile", "index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

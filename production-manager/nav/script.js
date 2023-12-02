@@ -34,6 +34,7 @@
       production = body.querySelector(".production"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
+      profile = body.querySelector(".profile"),
       bars = body.querySelector(".fa-bars"),
       navHide = body.querySelector(".nav-hide");
 
@@ -44,6 +45,7 @@
     dashboard.href = frontProxy + "/production-manager/";
     stockk.href = frontProxy + "/production-manager/stock/view.html";
     production.href = frontProxy + "/production-manager/production.html";
+    profile.href = frontProxy + "/production-manager/profile/view.html";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -151,7 +153,7 @@ window.addEventListener("load", (e) => {
 
     console.log(pathname);
     // pathname = pathname.replace(".html", "");
-    const navItems = ["stock", "production", "index"];
+    const navItems = ["stock", "production", "profile", "index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

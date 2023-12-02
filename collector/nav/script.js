@@ -29,6 +29,7 @@
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
+      profile = body.querySelector(".profile"),
       bars = body.querySelector(".fa-bars"),
       navHide = body.querySelector(".nav-hide");
 
@@ -37,6 +38,7 @@
     });
 
     dashboard.href = frontProxy + "/collector/";
+    profile.href = frontProxy + "/collector/profile/view.html";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -131,7 +133,7 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["index"];
+    const navItems = ["profile", "index"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
