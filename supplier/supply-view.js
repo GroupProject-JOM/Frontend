@@ -95,7 +95,6 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          log(data.collection);
           if (data.collection.sMethod == "pickup") {
             sMethod.textContent = "Pickup from estate";
             dateText.textContent = "Pickup Date";
@@ -261,6 +260,11 @@
                 }).then((response) => {
                   window.location.href = "./";
                 });
+              });
+            } else if (response.status === 202) {
+              response.json().then((data) => {
+                console.log(data.collection);
+                Command: toastr["error"](data.collection);
               });
             } else if (response.status === 400) {
               response.json().then((data) => {
