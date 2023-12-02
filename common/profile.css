@@ -1,0 +1,95 @@
+.profile-edit-container{
+  margin-left: 10vw;
+}
+
+.profile-edit-container .form-button{
+    margin-top: 50px;
+}
+
+.profile-edit-container input{
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.profile-edit-container .email-label {
+    margin-top: 40px;
+  }
+  
+  .profile-edit-container .address1-label{
+    margin-top: 10px;
+
+  }
+
+  .edit-form div{
+  display: flex;
+  width: 40vw;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.edit-name section {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .short {
+    width: 17vw;
+  }
+  
+  .long {
+    width: 40vw;
+  }
+  
+
+  
+select.dropdown {
+    border: 0;
+    border-bottom: 1px solid var(--input-border);
+    outline: 0;
+  }
+  
+  .dropdown {
+    width: 40vw;
+    margin-top: 20px;
+    font-size: 16px;
+    margin-bottom: 3rem;
+    background-color: var(--body-color);
+    color: var(--primary-color);
+    font-weight: 500;
+    padding-bottom: 5px;
+  }
+
+  .form-heading{
+    color: var(--primary-color);
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 20px;
+  }
+
+  textarea:focus,
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #484848;
+  transition: var(--tran-05);
+}
+
+.address {
+    color: var(--input-border);
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  input {
+    /* box-sizing: border-box; */
+    border: none;
+    border-bottom: 1px solid #a9a9a9;
+    padding: 7px 0;
+    margin: 10px 0 0 0;
+    font-size: 15px;
+  }
+
+  .edit-form label{
+  display: block;
+  margin-top: 30px;
+  color: var(--input-border);
+}
