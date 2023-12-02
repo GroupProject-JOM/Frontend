@@ -32,7 +32,7 @@
 .rate-window {
   display: none;
   width: 40vw;
-  height: 40vh;
+  height: 60vh;
   margin: 0 auto;
   background-color: var(--body-color);
   padding: 10px 10px;
@@ -73,4 +73,41 @@
   /* background: rgba(0, 0, 0, 0.5); */
   justify-content: center;
   align-items: center;
+}
+
+.rate-window-content{
+  margin: 25px 0 10px 10px;
+  
+}
+
+.rate-window-text{
+  display: inline;
+  
+}
+
+.rate-window-content .rate-value{
+  font-weight: 500;
+  display: inline;
+}
+
+
+.rate-window-content input {
+  /* box-sizing: border-box; */
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  color: #484848;
+  /* padding: 7px 0; */
+  margin: 20px 0 0 10px;
+  /* margin: 20px 0; */
+  background-color: var(--body-color);
+}
+
+
+.rate-window-content input:focus{
+  outline: none;
+}
+
+.rate-chart{
+  margin-top: 30px;
+  width: 37vw;
 }

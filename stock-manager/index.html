@@ -106,12 +106,19 @@
         <div class="overlay" id="overlay">
           <div class="rate-window">
             <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
-            <p class="rate-window-text">
-              Latest coconut rate as of <span>29/11/2023</span>
-            </p>
-            <p class="rate-value">LKR 35.25</p>
-            <p>Enter new coconut rate</p>
-            <input type="number" />
+            <div class="rate-window-content">
+              <p class="tx1 rate-window-text">
+                Latest coconut rate as of <span>29/11/2023</span> is
+              </p>
+              <p class="rate-value">LKR 35.25</p>
+              <br>
+              <label class="rate-label">Enter new coconut rate</label>
+              <input type="number" class="coco-rate"/>
+
+              <div class="rate-chart">
+                <canvas id="coco-rate-chart"></canvas>
+              </div>
+            </div>
           </div>
         </div>
         <!-- coconut rate section ends -->
@@ -206,6 +213,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
     <script src="../common/func.js"></script>
     <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>

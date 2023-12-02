@@ -231,4 +231,63 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
+
+
+    let labels = [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thurs",
+      "Fri",
+      "Sat",
+      "Sun",
+    ];
+
+
+    let cocoRate = [
+      35, 40, 50, 29, 33, 30, 42,
+    ];
+
+    //coco rate chart design
+
+    const dataLine = {
+      labels: labels,
+      datasets: [
+        {
+          data: cocoRate,
+          //   fill: true,
+          borderColor: "#bb9056",
+          borderWidth: 2,
+          // hoverBorderColor: '#000000',
+          // backgroundColor:'#ffe0b6',
+          tension: 0.4,
+          pointRadius: 0,
+          hoverPointRadius: 0,
+        },
+      ],
+    };
+
+    //coco rate chart configuration
+const configLine = {
+  type: "line",
+  data: dataLine,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Daily Coconut Rate",
+      },
+    },
+  },
+};
+
+// coco rate chart visualizing
+const chartLine = new Chart(document.getElementById("coco-rate-chart"), configLine);
+
+
 })();
