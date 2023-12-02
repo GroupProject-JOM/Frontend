@@ -500,9 +500,6 @@ margin-top: 0;
   margin-top: 3rem;
 }
 
-.supply2-container{
-  /* Has to rum */
-}
 @media only screen and (max-device-width: 800px) {
   .report-container {
     grid-template-rows: 2fr 2fr 1fr 1fr;
