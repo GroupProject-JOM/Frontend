@@ -88,10 +88,6 @@
   align-self: center;
 }
 
-.rate-container .rate-value {
-  font-weight: 500;
-}
-
 .rate-container input {
   /* box-sizing: border-box; */
   border: none;
@@ -107,7 +103,7 @@
   outline: none;
 }
 
-.rate-container .rate-value {
+.rate-container .rate-window-value {
   margin-top: 6px;
   font-size: 1.2rem;
   font-weight: 600;
@@ -135,7 +131,7 @@
   right: 10%;
 }
 
-.collections-map .map iframe{
+.collections-map .map iframe {
   width: 50vw;
   height: 60vh;
   border: 0;

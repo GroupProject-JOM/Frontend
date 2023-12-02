@@ -642,6 +642,10 @@ body.dark {
   font-size: 0.9rem;
 }
 
+.rate-section .rate-value{
+  font-size: 1rem;
+}
+
 .stock .overview-tables td {
   color: var(--stock-table-text);
 }
@@ -679,6 +683,10 @@ body.dark {
 .today-table td,
 .today-table th {
   width: 25%;
+}
+
+.bold{
+  font-weight: 600;
 }
 
 @media only screen and (max-device-width: 718px) {
