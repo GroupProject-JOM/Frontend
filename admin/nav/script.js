@@ -35,6 +35,7 @@
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
+      profile = body.querySelector(".profile"),
       bars = body.querySelector(".fa-bars"),
       navHide = body.querySelector(".nav-hide");
 
@@ -47,6 +48,7 @@
     employee.href = frontProxy + "/admin/employee/view-all.html";
     collection.href = frontProxy + "/admin/collection/view-all.html";
     outlet.href = frontProxy + "/admin/outlet";
+    profile.href = frontProxy + "/admin/profile/view.html";
     dashboard.href = frontProxy + "/admin";
 
     if (!loaded && toggle && modeSwitch) {
@@ -155,7 +157,14 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["index","employee","collection","outlet","collection"];
+    const navItems = [
+      "index",
+      "employee",
+      "collection",
+      "outlet",
+      "profile",
+      "collection",
+    ];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

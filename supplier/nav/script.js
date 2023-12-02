@@ -39,6 +39,7 @@
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = body.querySelector(".logout"),
+      profile = body.querySelector(".profile"),
       bars = body.querySelector(".fa-bars"),
       navHide = body.querySelector(".nav-hide");
 
@@ -60,6 +61,9 @@
     dashboard.addEventListener("click", () => {
       pageLoading();
     });
+    profile.addEventListener("click", () => {
+      pageLoading();
+    });
     logout.addEventListener("click", () => {
       signout();
     });
@@ -72,6 +76,7 @@
     payment.href = frontProxy + "/supplier/payment/view-all.html";
     chat.href = frontProxy + "/supplier/chat/chat.html";
     reports.href = frontProxy + "/supplier/reports/report.html";
+    profile.href = frontProxy + "/supplier/profile/view.html";
     dashboard.href = frontProxy + "/supplier/";
 
     if (!loaded && toggle && modeSwitch) {
@@ -195,6 +200,7 @@ window.addEventListener("load", (e) => {
       "reports",
       "chat",
       "index",
+      "profile",
     ];
     if (!loaded && pathname) {
       loaded = true;

@@ -138,7 +138,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<td class='hide'>" +
               item.amount.toLocaleString("en-US") +
               "</td>" +
-              "<td>" +
+              "<td class='hide'>" +
               capitalize(item.method) +
               "</td>" +
               "<td>" +
@@ -182,7 +182,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<td>" +
               item.final_amount.toLocaleString("en-US") +
               "</td>" +
-              "<td>" +
+              "<td class='hide'>" +
               capitalize(item.method) +
               "</td>" +
               "<td>" +

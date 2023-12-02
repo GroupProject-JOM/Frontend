@@ -142,7 +142,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          w1Value.textContent = data.completed + data.remaining;
+          w1Value.textContent = data.size;
           w2Value.innerHTML =
             data.remaining +
             `<span>/` +

@@ -38,6 +38,7 @@
       payouts = body.querySelector(".payouts"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
+      profile = body.querySelector(".profile"),
       bars = body.querySelector(".fa-bars"),
       navHide = body.querySelector(".nav-hide");
 
@@ -50,6 +51,7 @@
     outlet.href = frontProxy + "/sales-manager/outlet/";
     productions.href = frontProxy + "/sales-manager/productions/view-all.html";
     payouts.href = frontProxy + "/sales-manager/payouts/view-all.html";
+    profile.href = frontProxy + "/sales-manager/profile/view.html";
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -169,6 +171,7 @@ window.addEventListener("load", (e) => {
       "payouts",
       "outlet",
       "index",
+      "profile",
     ];
     if (!loaded && pathname) {
       loaded = true;

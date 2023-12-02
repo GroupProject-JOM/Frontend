@@ -41,6 +41,7 @@
       all = body.querySelector(".all"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
+      profile = body.querySelector(".profile"),
       bars = body.querySelector(".fa-bars"),
       navHide = body.querySelector(".nav-hide");
 
@@ -54,6 +55,7 @@
     chat.href = frontProxy + "/stock-manager/chat/chat.html";
     stock.href = frontProxy + "/stock-manager/stock/view-all.html";
     production.href = frontProxy + "/stock-manager/production/view-all.html";
+    profile.href = frontProxy + "/stock-manager/profile/view.html";
     all.href = frontProxy + "/stock-manager/all-collections/";
 
     // Uname.textContent = sessionStorage.getItem("name");
@@ -177,7 +179,16 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["supply-requests", "collectors", "chat", "stock", "index", "production", "all-collections"];
+    const navItems = [
+      "supply-requests",
+      "collectors",
+      "chat",
+      "stock",
+      "index",
+      "production",
+      "profile",
+      "all-collections",
+    ];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
