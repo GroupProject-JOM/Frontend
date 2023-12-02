@@ -156,9 +156,17 @@ select.dropdown {
   width: 95%;
 }
 
+.block-container{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  gap: 10vw;
+  margin-top: 25px;
+}
 
-
-
+.yard{
+  width: 30%;
+}
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {
