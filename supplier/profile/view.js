@@ -5,7 +5,17 @@
     sTitle = body.querySelector(".supply-title"),
     tx1 = body.querySelector(".personal-info"),
     tx2 = body.querySelector(".profile-address"),
-    tx3 = body.querySelector(".additional-info");
+    tx3 = body.querySelector(".additional-info"),
+    name = body.querySelector(".name"),
+    email = body.querySelector(".email"),
+    phone = body.querySelector(".phone"),
+    nic = body.querySelector(".nic"),
+    dob = body.querySelector(".dob"),
+    gender = body.querySelector(".gender"),
+    address1 = body.querySelector(".address1"),
+    street = body.querySelector(".street"),
+    city = body.querySelector(".city"),
+    role = body.querySelector(".role");
 
   var lang = getCookie("lang"); // current language
 
@@ -14,7 +24,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -31,7 +40,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -57,4 +65,40 @@
       tx3: "Additional Information",
     },
   };
+
+  fetch(backProxy + "/profile?user=" + getCookie("user"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          name.textContent = data.user.first_name + " " + data.user.last_name;
+          email.textContent = data.user.email;
+          phone.textContent = data.user.phone;
+          nic.textContent = data.user.nic;
+          dob.textContent = data.user.dob;
+          gender.textContent = data.user.gender;
+          address1.textContent = data.user.add_line_1;
+          street.textContent = data.user.add_line_2;
+          city.textContent = data.user.add_line_3;
+          role.textContent = data.user.role;
+        });
+      } else if (response.status === 400) {
+        response.json().then((data) => {
+          console.log(data.user);
+          Command: toastr["error"](data.user);
+        });
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
 })();
