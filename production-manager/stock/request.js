@@ -173,7 +173,7 @@
           console.log(response.status);
           if (response.status == 200) {
             response.json().then((data) => {
-              console.log(data.message);              
+              console.log(data.message);
             });
             if (lang == "sin") {
               var title = "සාර්ථකයි!",
@@ -235,6 +235,23 @@
         amountError.textContent = "Coconut amount must be positive integer";
         Command: toastr["warning"]("Coconut amount must be positive integer");
       }
+      amountStatus = false;
+      return false;
+    }
+    if (rAmount.value > +yAmount.textContent) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක";
+        Command: toastr["warning"](
+          "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක"
+        );
+      } else {
+        amountError.textContent =
+          "The amount of coconut cannot exceed the available amount";
+        Command: toastr["warning"](
+          "The amount of coconut cannot exceed the available amount"
+        );
+      }
+      log(rAmount.value, yAmount.textContent);
       amountStatus = false;
       return false;
     } else {
