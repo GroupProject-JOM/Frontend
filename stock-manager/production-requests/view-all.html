@@ -67,51 +67,32 @@
       <div class="text"></div>
 
       <div class="production-requests-container container">
+        <div class="stockmg-heading table-heading">
+          <h2 class="stockmg-title"></h2>
+          <p class="stockmg-subtitle"></p>
+        </div>
 
-        <!-- <div class="stockmg-content"> -->
-          <div class="stockmg-heading table-heading">
-            <h2 class="stockmg-title">Production Requests</h2>
-            <p class="stockmg-subtitle">Production requests sent by production manager</p>
-          </div>
+        <table class="production-request-table overview-tables">
+          <thead>
+            <tr>
+              <th>Request ID</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Yard</th>
+              <th>Block</th>
+              <th>Status</th>
+            </tr>
+          </thead>
 
-          <table class="production-request-table overview-tables">
-            <thead>
-              <tr>
-                <th>Request ID</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Yard</th>
-                <th>Block</th>
-                <th>Status</th>
-                <!-- <th>Status</th> -->
-              </tr>
-            </thead>
-  
-            <tbody>
-              <tr>
-                <td>E052</td>
-                <td>21/04/2023</td>
-                <td>2000</td>
-                <td>2</td>
-                <td>11</td>
-                <td><button class="status pending">pending</button></td>
-                <!-- <td>
-                  <button class="production-completed status">completed</button>
-                </td> -->
-              </tr>
-              
-              
-            </tbody>
-          </table>
-          
-        <!-- </div> -->
+          <tbody class="tbody"></tbody>
+        </table>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
-    <!-- <script src="./view-request.js"></script> -->
+    <script src="./view-all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
