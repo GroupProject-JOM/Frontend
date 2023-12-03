@@ -4,6 +4,12 @@
   margin-left: 6vw;
   /* width: ; */
 }
+
+.product-distribution-container{
+  width: 80%;
+  margin-left: 6vw;
+}
+
 input {
   /* box-sizing: border-box; */
   border: none;
@@ -104,4 +110,49 @@ input:focus {
 
 .distributor-container .bank-form{
   margin-top: 30px;
+}
+
+.product-distribute-form {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: flex-start; */
+}
+
+.product-distribution-container input[type=text]{
+  margin: 0 0 0 10px;
+  padding: 0;
+  width: 15vw;
+}
+
+.product-distribution-container input[type=checkbox]{
+  margin: 0 10px 0 0;
+  /* padding: 10px; */
+}
+
+.product-distribution-container label{
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.product-layer{
+  margin: 3rem 0;
+}
+
+.product-text, .product-distribution-container .price{
+  font-size: 0.8rem;
+  margin-left: 27px;
+  width: 14vw;
+}
+
+.product-text{
+  margin-top: 5px;
+}
+
+
+.product-distribution-container .price{
+  font-weight: 600;
+}
+
+.product-table{
+  width: 90%;
 }

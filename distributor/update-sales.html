@@ -65,39 +65,69 @@
 
       <div class="text"></div>
 
-      <div class="container">
-        <div class="outlet-heading table-heading">
-          <h2 class="outlet-title" style="margin-bottom: 2rem">Update Sales</h2>
+      <div class="product-distribution-container container">
+        <div class="distributor-heading table-heading">
+          <h2 class="distributor-title">
+            Outlet Name
+          </h2>
+          <p class="">Area</p>
         </div>
-        <div class="add-outlet-form">
-          <form>
-            <input
-              type="text"
-              class="long quantity"
-              placeholder="Sold Quantity"
-            />
-            <br />
-            <!-- <span class="form-error oname-error"></span> -->
-            <!-- <br /> -->
-            <input
-              type="text"
-              class="long batchNo"
-              placeholder="Batch Number"
-            />
-            <br />
-            <!-- <span class="form-error email-error"></span><br /> -->
-            <input
-              type="text"
-              class="long return"
-              placeholder="Returned Quantity"
-            />
-            <br />
-            <!-- <span class="form-error phone-error"></span><br /> -->
-            
+        <div class="product-layer">
+          <form class="product-distribute-form">
+            <div class="product">
+              <input type="checkbox" />
+              <label>product 01</label>
+              <p class="product-text">Description about what is this product</p>
+              <p class="price">LKR 500</p>
+            </div>
+            <div class="sold">
+              <label>Quantity</label>
+              <input type="text" placeholder="Provided Quantity" />
+            </div>
+            <div class="return">
+              <label>Return</label>
+              <input type="text" placeholder="Return Quantity" />
+            </div>
           </form>
         </div>
-        <br><br>
-        <button class="next form-button">Save</button>
+        <div class="product-layer">
+          <form class="product-distribute-form">
+            <div class="product">
+              <input type="checkbox" />
+              <label>product 01</label>
+              <p class="product-text">Description about what is this product</p>
+              <p class="price">LKR 500</p>
+            </div>
+            <div class="sold">
+              <label>Quantity</label>
+              <input type="text" placeholder="Enter Quantity" />
+            </div>
+            <div class="return">
+              <label>Return</label>
+              <input type="text" placeholder="Enter Quantity" />
+            </div>
+          </form>
+        </div>
+        <div class="product-layer">
+          <form class="product-distribute-form">
+            <div class="product">
+              <input type="checkbox" />
+              <label>product 01</label>
+              <p class="product-text">Description about what is this product</p>
+              <p class="price">LKR 500</p>
+            </div>
+            <div class="sold">
+              <label>Quantity</label>
+              <input type="text" placeholder="Enter Quantity" />
+            </div>
+            <div class="return">
+              <label>Return</label>
+              <input type="text" placeholder="Enter Quantity" />
+            </div>
+          </form>
+        </div>
+        <br />
+        <button class="next form-button">Submit</button>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
