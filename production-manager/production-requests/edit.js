@@ -274,8 +274,9 @@
           } else if (response.status === 401) {
             response.json().then((data) => {
               console.log(data.message);
-              Command: toastr["error"](data.message);
             });
+            if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+            else Command: toastr["error"]("Invalid User");
           } else {
             console.error("Error:", response.status);
             Command: toastr["error"](response.status, "Error");
