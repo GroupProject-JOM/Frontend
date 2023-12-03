@@ -2,8 +2,8 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    pTitle = body.querySelector(".productionmg-title"),
-    pText = body.querySelector(".productionmg-subtitle"),
+    sTitle = body.querySelector(".stockmg-title"),
+    sText = body.querySelector(".stockmg-subtitle"),
     yardH = body.querySelector(".yard-h3"),
     tbody = body.querySelector(".tbody"),
     sYard = body.querySelector(".sYard"),
@@ -11,8 +11,10 @@
     yAmount = body.querySelector(".yAmount"),
     yDays = body.querySelector(".yDays"),
     ystatus = body.querySelector(".ystatus"),
-    edit = body.querySelector(".edit"),
-    del = body.querySelector(".delete");
+    date = body.querySelector(".date"),
+    rId = body.querySelector(".rId"),
+    accept = body.querySelector(".accept"),
+    decline = body.querySelector(".decline");
 
   var lang = getCookie("lang"); // current language
 
@@ -24,10 +26,10 @@
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
-    pTitle.textContent = data["sin"]["pTitle"];
-    pText.textContent = data["sin"]["pText"];
-    edit.textContent = data["sin"]["edit"];
-    del.textContent = data["sin"]["del"];
+    sTitle.textContent = data["sin"]["sTitle"];
+    sText.textContent = data["sin"]["sText"];
+    accept.textContent = data["sin"]["accept"];
+    decline.textContent = data["sin"]["decline"];
     setGreeting();
   });
 
@@ -39,25 +41,25 @@
     document.cookie = "lang=en; path=/";
     lang = "en";
 
-    pTitle.textContent = data["en"]["pTitle"];
-    pText.textContent = data["en"]["pText"];
-    edit.textContent = data["en"]["edit"];
-    del.textContent = data["en"]["del"];
+    sTitle.textContent = data["en"]["sTitle"];
+    sText.textContent = data["en"]["sText"];
+    accept.textContent = data["en"]["accept"];
+    decline.textContent = data["en"]["decline"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      pTitle: "ඉල්ලීම බලන්න",
-      pText: "නිෂ්පාදනය සඳහා කොටස් ඉල්ලීම් විස්තර බලන්න",
-      edit: "සංස්කරණය කරන්න",
-      del: "මකන්න",
+      sTitle: "ඉල්ලීම බලන්න",
+      sText: "නිෂ්පාදනය සඳහා කොටස් ඉල්ලීම් විස්තර බලන්න",
+      accept: "පිළිගන්න",
+      decline: "ප්රතික්ෂේප කරන්න",
     },
     en: {
-      pTitle: "View Request",
-      pText: "View stock request details for Production",
-      edit: "Edit",
-      del: "Delete",
+      sTitle: "View Request",
+      sText: "View stock request details for Production",
+      accept: "Accept",
+      decline: "Decline",
     },
   };
 
@@ -83,16 +85,9 @@
           var stat = "";
 
           if (data.request.status == 1) stat = "Pending Approval";
-          else if (data.request.status == 2) stat = "Accepted";
-          else if (data.request.status == 3) stat = "Rejected";
-          else if (data.request.status == 4) {
-            stat = "Completed";
-            edit.style.display = "none";
-            edit.disabled = true;
-            del.style.display = "none";
-            del.disabled = true;
-          }
+          else stat = "Accepted";
 
+          rId.textContent = data.request.id;
           sYard.textContent = "Yard " + data.request.yard;
           yBlock.textContent = "Block " + data.request.block;
           yAmount.textContent = data.request.amount.toLocaleString("en-US");
@@ -168,6 +163,9 @@
 
             tbody.innerHTML = row;
             yDays.textContent = data.block.days + " days";
+
+            var req_date = new Date(data.block.date);
+            date.textContent = req_date.toLocaleDateString();
           });
         } else if (response.status === 202) {
           response.json().then((data) => {
@@ -191,86 +189,4 @@
         Command: toastr["error"](error);
       });
   }
-
-  del.addEventListener("click", () => {
-    if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
-        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
-        confirmButtonText = "ඔව්, එය මකන්න!",
-        cancelButtonText = "අවලංගු කරන්න";
-    } else {
-      var title = "Are you sure?",
-        text = "You won't be able to revert this!",
-        confirmButtonText = "Yes, delete it!",
-        cancelButtonText = "Cancel";
-    }
-    Swal.fire({
-      title: title,
-      text: text,
-      confirmButtonText: confirmButtonText,
-      cancelButtonText: cancelButtonText,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: confirmButtonColor,
-      cancelButtonColor: cancelButtonColor,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/production?user=" +
-            getCookie("user") +
-            "&id=" +
-            getCookie("id"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
-          .then((response) => {
-            if (response.status == 200) {
-              response.json().then((data) => {
-                console.log(data.message);
-                if (lang == "sin") {
-                  var title = "මකා දමන ලදී!",
-                    text = "ඔබගේ නිෂ්පාදන ඉල්ලීම මකා ඇත.";
-                } else {
-                  var title = "Deleted!",
-                    text = "Your production request has been deleted.";
-                }
-                // sweet alert
-                Swal.fire({
-                  title: title,
-                  text: text,
-                  icon: "success",
-                  confirmButtonColor: confirmButtonColor,
-                }).then((response) => {
-                  window.location.href = "../";
-                });
-              });
-            } else if (response.status === 401) {
-              response.json().then((data) => {
-                console.log(data.message);
-              });
-              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-              else Command: toastr["error"]("Invalid User");
-            } else if (response.status === 400) {
-              response.json().then((data) => {
-                console.log(data.message);
-                Command: toastr["error"](data.message);
-              });
-            } else {
-              console.error("Error:", response.status);
-              Command: toastr["error"](response.status, "Error");
-            }
-          })
-          .catch((error) => {
-            console.error("An error occurred:", error);
-            Command: toastr["error"](error);
-          });
-      }
-    });
-  });
 })();

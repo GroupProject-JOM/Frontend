@@ -54,7 +54,7 @@
     supply.href = frontProxy + "/stock-manager/supply-requests/";
     chat.href = frontProxy + "/stock-manager/chat/chat.html";
     stock.href = frontProxy + "/stock-manager/stock/view-all.html";
-    production.href = frontProxy + "/stock-manager/production/view-all.html";
+    production.href = frontProxy + "/stock-manager/production-requests/view-all.html";
     profile.href = frontProxy + "/stock-manager/profile/view.html";
     all.href = frontProxy + "/stock-manager/all-collections/";
 
@@ -185,7 +185,7 @@ window.addEventListener("load", (e) => {
       "chat",
       "stock",
       "index",
-      "production",
+      "production-requests",
       "profile",
       "all-collections",
     ];

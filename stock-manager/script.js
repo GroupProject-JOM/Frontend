@@ -10,6 +10,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c2 = body.querySelector(".c2"),
     c4 = body.querySelector(".c4"),
     c5 = body.querySelector(".c5"),
+    tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
     tbody3 = body.querySelector(".tbody3"),
     c6 = body.querySelector(".c6"),
@@ -126,7 +127,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  let row2 = "",
+  let row1 = "",
+    row2 = "",
     row3 = "";
 
   w1Value.textContent = 0;
@@ -148,6 +150,47 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             `<span>/` +
             (parseInt(data.completed) + parseInt(data.remaining)) +
             `</span>`;
+
+          if (data.p_request == 0) {
+            if (lang == "sin")
+              Command: toastr["info"]("අද නිෂ්පාදන ඉල්ලීම් නොමැත");
+            else Command: toastr["info"]("No production requests today");
+          } else {
+            data.production.forEach((item) => {
+              var date_string = new Date(item.date);
+
+              row1 +=
+                "<tr data-href='./production-requests/view-request.html' id=" +
+                item.id +
+                ">" +
+                "<td>" +
+                item.id +
+                "</td>" +
+                "<td>" +
+                date_string.toLocaleDateString() +
+                "</td>" +
+                "<td>" +
+                item.amount.toLocaleString("en-US") +
+                "</td>" +
+                "<td>Yard " +
+                item.yard +
+                "</td>" +
+                "<td>Block " +
+                item.block +
+                "</td>" +
+                "</tr>";
+            });
+
+            tbody1.innerHTML = row1;
+
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach((r) => {
+              r.addEventListener("click", () => {
+                document.cookie = "id=" + r.id + "; path=/";
+                window.location.href = r.dataset.href;
+              });
+            });
+          }
 
           if (data.size == 0) {
             if (lang == "sin") Command: toastr["info"]("සැපයුම් ඉල්ලීම් නොමැත");

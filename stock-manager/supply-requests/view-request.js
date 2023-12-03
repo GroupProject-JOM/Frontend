@@ -114,13 +114,15 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           dText.textContent = "Pickup Date";
           tText.textContent = "Pickup Time";
 
-          var arr = data.request.location.split(" ");
-          map.innerHTML =
-            `<iframe src='https://www.google.com/maps?q=` +
-            arr[0] +
-            `,` +
-            arr[1] +
-            `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
+          if (data.request.method == "pickup") {
+            var arr = data.request.location.split(" ");
+            map.innerHTML =
+              `<iframe src='https://www.google.com/maps?q=` +
+              arr[0] +
+              `,` +
+              arr[1] +
+              `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
+          }
 
           if (data.request.method != "pickup") {
             estate.style.display = "none";
