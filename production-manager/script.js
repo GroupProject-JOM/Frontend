@@ -1,8 +1,9 @@
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
