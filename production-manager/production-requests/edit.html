@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Request</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="request-edit-container container">
+        <div class="production-stock-request">
+          <div class="yard">
+            <h3 class="yard-h3"></h3>
+            <table class="overview-tables" style="margin-top: 0">
+              <thead>
+                <tr>
+                  <th>Block ID</th>
+                  <th>Day</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+
+              <tbody class="tbody"></tbody>
+            </table>
+          </div>
+
+          <div class="production-stock-content">
+            <div class="productionmg-heading table-heading">
+              <h2 class="productionmg-title"></h2>
+              <p class="productionmg-subtitle"></p>
+            </div>
+
+            <div class="stock-details">
+
+                <label class="yard-label">Yard</label>
+                <select class="dropdown">
+                    <option>Yard 01</option>
+                    <option>Yard 02</option>
+                    <option>Yard 03</option>
+                </select>
+                <label class="block-label">Block</label>
+                <select class="dropdown">
+                    <option>Block 01</option>
+                    <option>Block 02</option>
+                    <option>Block 03</option>
+                </select>
+
+
+              <label class="reqest-amount-label">Requested coconut amount</label>
+              <input type="text" class="request-amount" placeholder="1000" />
+
+              <button class="save form-button"></button>
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="./edit.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./load-nav.js"></script>
+    <script src="./load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
+  </body>
+</html>

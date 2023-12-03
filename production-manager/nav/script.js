@@ -24,6 +24,7 @@
       l0 = body.querySelector(".l0"),
       l1 = body.querySelector(".l1"),
       l2 = body.querySelector(".l2"),
+      l3 = body.querySelector(".l3"),
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
@@ -32,6 +33,7 @@
       dashboard = body.querySelector(".dashboard"),
       stockk = body.querySelector(".stockk"),
       production = body.querySelector(".production"),
+      requests = body.querySelector(".requests"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
       profile = body.querySelector(".profile"),
@@ -46,6 +48,8 @@
     stockk.href = frontProxy + "/production-manager/stock/view.html";
     production.href = frontProxy + "/production-manager/production.html";
     profile.href = frontProxy + "/production-manager/profile/view.html";
+    requests.href = frontProxy + "/production-manager/production-requests/view-all.html";
+    
 
     // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
@@ -81,6 +85,7 @@
       l0.textContent = data["sin"]["l0"];
       l1.textContent = data["sin"]["l1"];
       l2.textContent = data["sin"]["l2"];
+      l3.textContent = data["sin"]["l3"];
       l6.textContent = data["sin"]["l6"];
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
@@ -92,6 +97,7 @@
       l0.textContent = data["en"]["l0"];
       l1.textContent = data["en"]["l1"];
       l2.textContent = data["en"]["l2"];
+      l3.textContent = data["en"]["l3"];
       l6.textContent = data["en"]["l6"];
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
@@ -104,6 +110,7 @@
         l0: "පරිශීලක ක්‍රියා",
         l1: "ගබඩා සමාලෝචනය",
         l2: "නිෂ්පාදන ඉතිහාසය",
+        l3: "නිෂ්පාදන ඉල්ලීම්",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
@@ -113,6 +120,7 @@
         l0: "USER ACTIONS",
         l1: "Stock Overview",
         l2: "Production History",
+        l3: "Production Requests",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
@@ -153,7 +161,7 @@ window.addEventListener("load", (e) => {
 
     console.log(pathname);
     // pathname = pathname.replace(".html", "");
-    const navItems = ["stock", "production", "profile", "index"];
+    const navItems = ["stock", "production", "profile", "index", "production-requests"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
