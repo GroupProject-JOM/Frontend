@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../common/notify.css" />
     <!-- <link rel="stylesheet" href="../signin.css" /> -->
     <link rel="stylesheet" href="../supply.css" />
-    <link rel="stylesheet" href="../../common/profile.css">
+    <link rel="stylesheet" href="../../common/profile.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -69,77 +69,105 @@
         <div class="supply-heading table-heading">
           <h2 class="supply-title">View Profile</h2>
         </div>
+
+        <!-- change password lightbox start -->
+        <div class="overlay" id="overlay">
+          <div class="password-window">
+            <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+            <div class="password-container">
+              <label class="current-label"></label>
+              <input type="password" placeholder="" class="current-password" />
+              <br /><span class="form-error current-password-error"></span>
+              <br />
+              <a class="forgot" href="#"></a>
+
+              <div class="passwords">
+                <div class="new1-password">
+                  <label class="new1-label"></label>
+                  <input type="password" placeholder="" class="new1" />
+                  <br /><span class="form-error new1-password-error"></span>
+                </div>
+                <div class="new2-password">
+                  <label class="new2-label"></label>
+                  <input type="password" placeholder="" class="new2" />
+                  <br /><span class="form-error new2-password-error"></span>
+                </div>
+              </div>
+              <button class="save form-button"></button>
+            </div>
+          </div>
+        </div>
+        <!-- change password lightbox end -->
+
         <div class="profile-info">
+          <div class="layer1">
+            <p class="personal-info supply-text"></p>
+            <table class="profile-table overview-tables">
+              <tbody>
+                <tr>
+                  <td>Name</td>
+                  <td class="name bold"></td>
+                </tr>
+                <tr>
+                  <td>Email Address</td>
+                  <td class="email bold"></td>
+                </tr>
+                <tr>
+                  <td>Contact Number</td>
+                  <td class="phone bold"></td>
+                </tr>
+                <tr>
+                  <td>NIC Number</td>
+                  <td class="nic bold"></td>
+                </tr>
+                <tr>
+                  <td>Date of Birth</td>
+                  <td class="dob bold"></td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td class="gender bold"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="layer2">
+            <p class="profile-address supply-text"></p>
+            <table class="profile-table overview-tables">
+              <tbody>
+                <tr>
+                  <td>Address Line 1</td>
+                  <td class="address1 bold"></td>
+                </tr>
+                <tr>
+                  <td>Street</td>
+                  <td class="street bold"></td>
+                </tr>
+                <tr>
+                  <td>City</td>
+                  <td class="city bold"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <div class="layer1">
-          <p class="personal-info supply-text"></p>
-          <table class="profile-table overview-tables">
-            <tbody>
-              <tr>
-                <td>Name</td>
-                <td class="name bold"></td>
-              </tr>
-              <tr>
-                <td>Email Address</td>
-                <td class="email bold"></td>
-              </tr>
-              <tr>
-                <td>Contact Number</td>
-                <td class="phone bold"></td>
-              </tr>
-              <tr>
-                <td>NIC Number</td>
-                <td class="nic bold"></td>
-              </tr>
-              <tr>
-                <td>Date of Birth</td>
-                <td class="dob bold"></td>
-              </tr>
-              <tr>
-                <td>Gender</td>
-                <td class="gender bold"></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="layer3">
+            <p class="additional-info supply-text"></p>
+            <table class="profile-table overview-tables">
+              <tbody>
+                <tr>
+                  <td>User Role</td>
+                  <td class="role bold"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="layer2">
-          <p class="profile-address supply-text"></p>
-          <table class="profile-table overview-tables">
-            <tbody>
-              <tr>
-                <td>Address Line 1</td>
-                <td class="address1 bold"></td>
-              </tr>
-              <tr>
-                <td>Street</td>
-                <td class="street bold"></td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td class="city bold"></td>
-              </tr>
-            </tbody>
-          </table>
+
+        <div class="buttons">
+          <a href="./edit.html" class="edit-button form-button"></a>
+          <button class="change-password form-button"></button>
         </div>
-
-        <div class="layer3">
-          <p class="additional-info supply-text"></p>
-          <table class="profile-table overview-tables">
-            <tbody>
-              <tr>
-                <td>User Role</td>
-                <td class="role bold"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-    </div>
-
-    <div class="buttons">
-      <a href="./edit.html" class="edit-button form-button"></a>
-      <button class="change-password form-button"></button>
-    </div>
-
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
