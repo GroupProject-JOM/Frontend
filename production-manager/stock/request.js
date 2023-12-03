@@ -7,6 +7,8 @@
     yardH = body.querySelector(".yard-h3"),
     tbody = body.querySelector(".tbody"),
     rAmount = body.querySelector(".request-amount"),
+    amountError = body.querySelector(".coco-error"),
+    raLabel = body.querySelector(".reqest-amount-label"),
     sYard = body.querySelector(".sYard"),
     yBlock = body.querySelector(".yBlock"),
     yAmount = body.querySelector(".yAmount"),
@@ -27,6 +29,7 @@
     pText.textContent = data["sin"]["pText"];
     yardH.textContent = data["sin"]["yardH"];
     rAmount.placeholder = data["sin"]["rAmount"];
+    raLabel.textContent = data["sin"]["raLabel"];
     btn.textContent = data["sin"]["btn"];
     setGreeting();
   });
@@ -43,6 +46,7 @@
     pText.textContent = data["en"]["pText"];
     yardH.textContent = data["en"]["yardH"];
     rAmount.placeholder = data["en"]["rAmount"];
+    raLabel.textContent = data["en"]["raLabel"];
     btn.textContent = data["en"]["btn"];
     setGreeting();
   });
@@ -52,14 +56,16 @@
       pTitle: "කොටස් තොරතුරු",
       pText: "වර්ණ-කේතගත කොටස් තොරතුරු බලන්න",
       yardH: "අංගනය " + getCookie("id").charAt(0),
-      rAmount: "ඉල්ලන මුදල ඇතුලත් කරන්න",
+      rAmount: "ඉල්ලන පොල් ප්‍රමාණය ඇතුලත් කරන්න",
+      raLabel: "පොල් ප්‍රමාණය",
       btn: "තොග ඉල්ලන්න",
     },
     en: {
       pTitle: "View Block",
       pText: "View and Request Stock for Production",
       yardH: "Yard " + getCookie("id").charAt(0),
-      rAmount: "",
+      rAmount: "Enter Requesting Coconut Amount",
+      raLabel: "Coconut Amount",
       btn: "Request Stock",
     },
   };
@@ -136,4 +142,110 @@
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
+
+  var amountStatus = false;
+
+  rAmount.addEventListener("input", () => {
+    rAmount_status_func();
+  });
+
+  btn.addEventListener("click", () => {
+    if (!rAmount_status_func()) {
+      rAmount.focus();
+    }
+
+    if (amountStatus) {
+      var formData = {
+        user: getCookie("user"),
+        amount: rAmount.value,
+        block: getCookie("id").slice(1),
+        yard: getCookie("id").charAt(0),
+      };
+      fetch(backProxy + "/production", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);              
+            });
+            if (lang == "sin") {
+              var title = "සාර්ථකයි!",
+                text = "ඔබේ නිෂ්පාදන ඉල්ලීම සාර්ථකව යවා ඇත.";
+            } else {
+              var title = "Successful!",
+                text = "Your production request sent successfully.";
+            }
+            // sweet alert
+            Swal.fire({
+              title: title,
+              text: text,
+              icon: "success",
+              confirmButtonColor: confirmButtonColor,
+            }).then((response) => {
+              window.location.href = "../";
+            });
+          } else if (response.status === 400) {
+            response.json().then((data) => {
+              console.log(data.message);
+              Command: toastr["error"](data.message);
+            });
+          } else if (response.status === 401) {
+            response.json().then((data) => {
+              console.log(data.message);
+              Command: toastr["error"](data.message);
+            });
+          } else {
+            console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+          Command: toastr["error"](error);
+        });
+    }
+  });
+
+  function rAmount_status_func() {
+    if (
+      typeof rAmount.value === "string" &&
+      rAmount.value.trim().length === 0
+    ) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය හිස් විය නොහැක";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය හිස් විය නොහැක");
+      } else {
+        amountError.textContent = "Coconut amount cannot be empty";
+        Command: toastr["warning"]("Coconut amount cannot be empty");
+      }
+      amountStatus = false;
+      return false;
+    } else if (!checkInt(rAmount.value)) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+      } else {
+        amountError.textContent = "Coconut amount must be positive integer";
+        Command: toastr["warning"]("Coconut amount must be positive integer");
+      }
+      amountStatus = false;
+      return false;
+    } else {
+      amountError.textContent = "";
+      amountStatus = true;
+      return true;
+    }
+  }
 })();
+
+function checkInt(num) {
+  if (Number.isInteger(+num) && +num > 0) return true;
+  return false;
+}
