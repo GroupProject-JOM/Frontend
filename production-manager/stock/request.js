@@ -237,8 +237,7 @@
       }
       amountStatus = false;
       return false;
-    }
-    if (rAmount.value > +yAmount.textContent) {
+    } else if (rAmount.value > +yAmount.textContent) {
       if (lang == "sin") {
         amountError.textContent = "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක";
         Command: toastr["warning"](
@@ -251,7 +250,6 @@
           "The amount of coconut cannot exceed the available amount"
         );
       }
-      log(rAmount.value, yAmount.textContent);
       amountStatus = false;
       return false;
     } else {

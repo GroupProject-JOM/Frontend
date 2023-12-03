@@ -18,6 +18,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -86,33 +90,44 @@
             </div>
 
             <div class="stock-details">
+              <label class="yard-label"></label>
+              <select class="dropdown sYard">
+                <option value="1">Yard 01</option>
+                <option value="2">Yard 02</option>
+                <option value="3">Yard 03</option></select
+              ><br />
+              <span class="form-error yard-error"></span>
 
-                <label class="yard-label">Yard</label>
-                <select class="dropdown">
-                    <option>Yard 01</option>
-                    <option>Yard 02</option>
-                    <option>Yard 03</option>
-                </select>
-                <label class="block-label">Block</label>
-                <select class="dropdown">
-                    <option>Block 01</option>
-                    <option>Block 02</option>
-                    <option>Block 03</option>
-                </select>
+              <label class="block-label"></label>
+              <select class="dropdown yBlock">
+                <option value="1">Block 01</option>
+                <option value="2">Block 02</option>
+                <option value="3">Block 03</option>
+                <option value="4">Block 04</option>
+                <option value="5">Block 05</option>
+                <option value="6">Block 06</option>
+                <option value="7">Block 07</option>
+                <option value="8">Block 08</option>
+                <option value="9">Block 09</option>
+                <option value="10">Block 10</option></select
+              ><br />
+              <span class="form-error block-error"></span>
 
-
-              <label class="reqest-amount-label">Requested coconut amount</label>
-              <input type="text" class="request-amount" placeholder="1000" />
+              <label class="reqest-amount-label"></label>
+              <input
+                type="number"
+                class="request-amount"
+                placeholder=""
+              /><br />
+              <span class="form-error coco-error"></span>
 
               <button class="save form-button"></button>
-
-              
             </div>
           </div>
         </div>
       </div>
     </section>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>

@@ -105,7 +105,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             var date_string = new Date(item.date);
 
             row2 +=
-              "<tr data-href='./view.html' id=" +
+              "<tr data-href='./production-requests/view.html' id=" +
               item.id +
               ">" +
               "<td>" +

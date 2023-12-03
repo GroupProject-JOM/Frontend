@@ -1,58 +1,195 @@
 (() => {
-    const body = document.querySelector("body"),
+  const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     pTitle = body.querySelector(".productionmg-title"),
     pText = body.querySelector(".productionmg-subtitle"),
-    yardH = body.querySelector(".yard-h3");
+    yardH = body.querySelector(".yard-h3"),
+    tbody = body.querySelector(".tbody"),
+    sYard = body.querySelector(".sYard"),
+    yBlock = body.querySelector(".yBlock"),
+    yAmount = body.querySelector(".yAmount"),
+    yDays = body.querySelector(".yDays"),
+    ystatus = body.querySelector(".ystatus"),
+    edit = body.querySelector(".edit"),
+    del = body.querySelector(".delete");
 
-    var lang = getCookie("lang"); // current language
+  var lang = getCookie("lang"); // current language
 
-    sin.addEventListener("click", () => {
-        sin.classList.add("active");
-        en.classList.remove("active");
-    
-        document.documentElement.setAttribute("lang", "sin");
-        document.cookie = "lang=sin; path=/";
-        lang = "sin";
-    
-        pTitle.textContent = data["sin"]["pTitle"];
-        pText.textContent = data["sin"]["pText"];
-        yardH.textContent = data["sin"]["yardH"];
+  sin.addEventListener("click", () => {
+    sin.classList.add("active");
+    en.classList.remove("active");
 
-        setGreeting();
+    document.documentElement.setAttribute("lang", "sin");
+    document.cookie = "lang=sin; path=/";
+    lang = "sin";
+
+    pTitle.textContent = data["sin"]["pTitle"];
+    pText.textContent = data["sin"]["pText"];
+    edit.textContent = data["sin"]["edit"];
+    del.textContent = data["sin"]["del"];
+    setGreeting();
+  });
+
+  en.addEventListener("click", () => {
+    en.classList.add("active");
+    sin.classList.remove("active");
+
+    document.documentElement.setAttribute("lang", "en");
+    document.cookie = "lang=en; path=/";
+    lang = "en";
+
+    pTitle.textContent = data["en"]["pTitle"];
+    pText.textContent = data["en"]["pText"];
+    edit.textContent = data["en"]["edit"];
+    del.textContent = data["en"]["del"];
+    setGreeting();
+  });
+
+  var data = {
+    sin: {
+      pTitle: "ඉල්ලීම බලන්න",
+      pText: "නිෂ්පාදනය සඳහා කොටස් ඉල්ලීම් විස්තර බලන්න",
+      edit: "සංස්කරණය කරන්න",
+      del: "මකන්න",
+    },
+    en: {
+      pTitle: "View Request",
+      pText: "View stock request details for Production",
+      edit: "Edit",
+      del: "Delete",
+    },
+  };
+
+  fetch(
+    backProxy +
+      "/production?user=" +
+      getCookie("user") +
+      "&id=" +
+      getCookie("id"),
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  )
+    .then((response) => {
+      console.log(response.status);
+      if (response.status == 200) {
+        response.json().then((data) => {
+          getYard(data.request.block, data.request.yard);
+
+          var stat = "";
+
+          if (data.request.status == 1) stat = "Pending Approval";
+          else if (data.request.status == 2) stat = "Accepted";
+          else if (data.request.status == 3) stat = "Rejected";
+          else if (data.request.status == 4) {
+            stat = "Completed";
+            edit.style.display = "none";
+            edit.disabled = true;
+            del.style.display = "none";
+            del.disabled = true;
+          }
+
+          sYard.textContent = "Yard " + data.request.yard;
+          yBlock.textContent = "Block " + data.request.block;
+          yAmount.textContent = data.request.amount.toLocaleString("en-US");
+          ystatus.textContent = stat;
+
+          if (lang == "sin") yardH.textContent = "අංගනය " + data.request.yard;
+          else yardH.textContent = "Yard " + data.request.yard;
+        });
+      } else if (response.status === 400) {
+        response.json().then((data) => {
+          console.log(data.message);
+          Command: toastr["error"](data.message);
+        });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+          Command: toastr["error"](data.message);
+        });
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
+
+  function getYard(id, yard) {
+    let row = "";
+
+    var formData = {
+      user: getCookie("user"),
+      id: id,
+      yard: yard,
+    };
+
+    fetch(backProxy + "/yards?user=" + getCookie("user"), {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.status == 200) {
+          response.json().then((data) => {
+            data.yard.forEach((item) => {
+              var status = "";
+              if (item.days > 30) status = "stock-level4";
+              else if (item.days > 25) status = "stock-level3";
+              else if (item.days > 15) status = "stock-level2";
+              else status = "stock-level1";
+
+              row +=
+                `<tr id=` +
+                item.id +
+                ` class="` +
+                status +
+                `">` +
+                `<td>` +
+                item.id +
+                `</td>` +
+                `<td>` +
+                item.days +
+                `</td>` +
+                `<td>` +
+                item.count +
+                `</td>` +
+                `</tr>`;
+            });
+
+            tbody.innerHTML = row;
+            yDays.textContent = data.block.days + " days";
+          });
+        } else if (response.status === 202) {
+          response.json().then((data) => {
+            console.log(data.message);
+          });
+          if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
+          else Command: toastr["info"]("Something went wrong");
+        } else if (response.status === 401) {
+          response.json().then((data) => {
+            console.log(data.message);
+          });
+          if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+          else Command: toastr["error"]("Invalid User");
+        } else {
+          console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+        Command: toastr["error"](error);
       });
-    
-      en.addEventListener("click", () => {
-        en.classList.add("active");
-        sin.classList.remove("active");
-    
-        document.documentElement.setAttribute("lang", "en");
-        document.cookie = "lang=en; path=/";
-        lang = "en";
-    
-        pTitle.textContent = data["en"]["pTitle"];
-        pText.textContent = data["en"]["pText"];
-        yardH.textContent = data["en"]["yardH"];
-
-        
-        setGreeting();
-      });
-    
-      var data = {
-        sin: {
-          pTitle: "කොටස් තොරතුරු",
-          pText: "වර්ණ-කේතගත කොටස් තොරතුරු බලන්න",
-        //   yardH: "අංගනය " + getCookie("id").charAt(0),
-          
-        },
-        en: {
-          pTitle: "View Request",
-          pText: "View stock request details for Production",
-        //   yardH: "Yard " + getCookie("id").charAt(0),
-        yardH: "Yard 01",
-          
-        },
-      };
-    
+  }
 })();
