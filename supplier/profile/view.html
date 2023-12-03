@@ -65,34 +65,38 @@
       <div class="text"></div>
       <div class="profile-container supply-container">
         <div class="supply-heading table-heading">
-          <h2 class="supply-title">View Profile</h2>
+          <h2 class="supply-title"></h2>
         </div>
 
+        <!-- change password lightbox start -->
         <div class="overlay" id="overlay">
           <div class="password-window">
             <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
             <div class="password-container">
-              <label class="current-label">Current Password</label>
-              <input type="text" placeholder="Enter current password" class="current-password">
-              <br>
-              <a>Forgot password?</a>
+              <label class="current-label"></label>
+              <input type="password" placeholder="" class="current-password" />
+              <br /><span class="form-error current-password-error"></span>
+              <br />
+              <a class="forgot" href="#"></a>
 
               <div class="passwords">
                 <div class="new1-password">
-                  <label class="new1-label">New Password</label>
-                  <input type="text" placeholder="At least 8 characters">
+                  <label class="new1-label"></label>
+                  <input type="password" placeholder="" class="new1" />
+                  <br /><span class="form-error new1-password-error"></span>
                 </div>
                 <div class="new2-password">
-                  <label class="new2-label">Confirm Password</label>
-                  <input type="text" placeholder="At least 8 characters">
+                  <label class="new2-label"></label>
+                  <input type="password" placeholder="" class="new2" />
+                  <br /><span class="form-error new2-password-error"></span>
                 </div>
               </div>
-              <button class="save form-button">Save</button>
-              
+              <button class="save form-button"></button>
             </div>
           </div>
         </div>
-        
+        <!-- change password lightbox end -->
+
         <div class="profile-info">
           <div class="layer1">
             <p class="personal-info supply-text"></p>
