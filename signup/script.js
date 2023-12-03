@@ -29,6 +29,7 @@ var fname_status = false,
     email = body.querySelector(".email"),
     emailError = document.querySelector(".email-error"),
     password = body.querySelector(".password"),
+    confirm = body.querySelector(".confirm-password"),
     passwordError = body.querySelector(".password-error"),
     phone = body.querySelector(".phone"),
     phoneError = body.querySelector(".phone-error"),
@@ -46,6 +47,7 @@ var fname_status = false,
     lnameLabel = body.querySelector(".lname-label"),
     emailLabel = body.querySelector(".email-label"),
     passwordLabel = body.querySelector(".password-label"),
+    confirmLabel = body.querySelector(".confirm-label"),
     phoneLabel = body.querySelector(".phone-label"),
     address1Label = body.querySelector(".address1-label"),
     address2Label = body.querySelector(".address2-label"),
@@ -65,6 +67,7 @@ var fname_status = false,
     lname.placeholder = data["sin"]["lname"];
     email.placeholder = data["sin"]["email"];
     password.placeholder = data["sin"]["password"];
+    confirm.placeholder = data["sin"]["confirm"];
     phone.placeholder = data["sin"]["phone"];
     address.textContent = data["sin"]["address"];
     address1.placeholder = data["sin"]["address1"];
@@ -76,6 +79,7 @@ var fname_status = false,
     lnameLabel.textContent = data["sin"]["lnameLabel"];
     emailLabel.textContent = data["sin"]["emailLabel"];
     passwordLabel.textContent = data["sin"]["passwordLabel"];
+    confirmLabel.textContent = data["sin"]["confirmLabel"];
     phoneLabel.textContent = data["sin"]["phoneLabel"];
     address1Label.textContent = data["sin"]["address1Label"];
     address2Label.textContent = data["sin"]["address2Label"];
@@ -98,6 +102,7 @@ var fname_status = false,
     lname.placeholder = data["en"]["lname"];
     email.placeholder = data["en"]["email"];
     password.placeholder = data["en"]["password"];
+    confirm.placeholder = data["en"]["confirm"];
     phone.placeholder = data["en"]["phone"];
     address.textContent = data["en"]["address"];
     address1.placeholder = data["en"]["address1"];
@@ -109,6 +114,7 @@ var fname_status = false,
     lnameLabel.textContent = data["en"]["lnameLabel"];
     emailLabel.textContent = data["en"]["emailLabel"];
     passwordLabel.textContent = data["en"]["passwordLabel"];
+    confirmLabel.textContent = data["en"]["confirmLabel"];
     phoneLabel.textContent = data["en"]["phoneLabel"];
     address1Label.textContent = data["en"]["address1Label"];
     address2Label.textContent = data["en"]["address2Label"];
@@ -122,7 +128,8 @@ var fname_status = false,
       fname: "මුල් නම ඇතුලත් කරන්න",
       lname: "අවසන් නම ඇතුලත් කරන්න",
       email: "ඊතැපැල් ලිපිනය ඇතුලත් කරන්න",
-      password: "මුරපදය සාදන්න",
+      password: "අවම අක්ෂර 8 ක්",
+      confirm: "අවම අක්ෂර 8 ක්",
       phone: "දුරකථන අංකය ඇතුලත් කරන්න",
       address: "පුද්ගලික ලිපිනය",
       address1: "ලිපින පේළි 1 ඇතුලත් කරන්න",
@@ -134,6 +141,7 @@ var fname_status = false,
       lnameLabel: "අවසන් නම",
       emailLabel: "ඊතැපැල් ලිපිනය",
       passwordLabel: "මුරපදය",
+      confirmLabel: "මුරපදය තහවුරු කරන්න",
       phoneLabel: "දුරකථන අංකය",
       address1Label: "ලිපින පේළි 1",
       address2Label: "වීදිය",
@@ -144,7 +152,8 @@ var fname_status = false,
       fname: "Enter First Name",
       lname: "Enter Last Name",
       email: "Enter Email Address",
-      password: "Create Password",
+      password: "At least 8 characters",
+      confirm: "At least 8 characters",
       phone: "Enter Phone Number",
       address: "Personal Address",
       address1: "Enter Address Line 1",
@@ -155,7 +164,8 @@ var fname_status = false,
       fnameLabel: "First Name",
       lnameLabel: "Last Name",
       emailLabel: "Email Address",
-      passwordLabel: "Password",
+      passwordLabel: "Create Password",
+      confirmLabel: "Confirm Password",
       phoneLabel: "Phone Number",
       address1Label: "Address Line 1",
       address2Label: "Street",
