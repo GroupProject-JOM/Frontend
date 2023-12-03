@@ -74,6 +74,7 @@
 }
 
 .stock-details{
+  width: 25vw;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -121,11 +122,16 @@ background-color: var(--stock-lv4);
   width: 90%;
 }
 
-.reqest-amount-label{
+.reqest-amount-label, .request-edit-container label{
   font-size: 0.9rem;
   margin: 40px 0 0 0;
   font-weight: 500;
 }
+
+.request-edit-container label{
+  color: var(--input-border-focus);
+}
+
 
 .request-amount{
   margin-top: 0;
@@ -133,6 +139,40 @@ background-color: var(--stock-lv4);
   margin-bottom: 40px;
 }
 
+.buttons{
+  margin-top: 2rem;
+}
+.buttons .edit{
+  display: inline-block;
+}
+
+.buttons .edit, .buttons .delete{
+  width: 8rem;
+}
+
+.request-edit-container .save{
+  width: fit-content;
+}
+
+.request-edit-container input, .dropdown{
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+select.dropdown {
+  border: 0;
+  border-bottom: 1px solid var(--input-border);
+  outline: 0;
+}
+
+.dropdown {
+  /* width: 40vw; */
+  width: 100%;
+  margin-top: 10px;
+  padding-left: 0;
+  background-color: var(--body-color);
+}
 
 
 @media only screen and (max-device-width: 1260px) {

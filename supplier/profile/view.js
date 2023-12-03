@@ -10,9 +10,31 @@
     phone = body.querySelector(".phone"),
     address1 = body.querySelector(".address1"),
     street = body.querySelector(".street"),
-    city = body.querySelector(".city");
+    city = body.querySelector(".city"),
+    edit = body.querySelector(".edit-button"),
+    closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay"),
+    change = body.querySelector(".change-password");
 
   var lang = getCookie("lang"); // current language
+
+  change.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".password-window").style.display = "block";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".password-window").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".password-window").style.display = "none";
+  });
+
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -25,6 +47,8 @@
     sTitle.textContent = data["sin"]["sTitle"];
     tx1.innerHTML = data["sin"]["tx1"];
     tx2.innerHTML = data["sin"]["tx2"];
+    change.textContent = data["sin"]["change"];
+    edit.textContent = data["sin"]["edit"];
 
     setGreeting();
   });
@@ -40,6 +64,8 @@
     sTitle.textContent = data["en"]["sTitle"];
     tx1.innerHTML = data["en"]["tx1"];
     tx2.innerHTML = data["en"]["tx2"];
+    change.textContent = data["en"]["change"];
+    edit.textContent = data["en"]["edit"];
 
     setGreeting();
   });
@@ -49,11 +75,15 @@
       sTitle: "ගිණුම් තොරතුරු බලන්න",
       tx1: "පුද්ගලික තොරතුරු",
       tx2: "ලිපිනය",
+      change: "මුරපදය වෙනස් කරන්න",
+      edit: "තොරතුරු සංස්කරණය කරන්න",
     },
     en: {
       sTitle: "Your Profile",
       tx1: "Personal Information",
       tx2: "Address",
+      change: "Change Password",
+      edit: "Edit Profile",
     },
   };
 
