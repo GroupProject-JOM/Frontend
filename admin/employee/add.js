@@ -30,6 +30,16 @@ let gendr, bDay;
     op4 = body.querySelector(".op4"),
     op5 = body.querySelector(".op5"),
     btn = body.querySelector(".form-button");
+  (fnameLabel = body.querySelector(".fname-label")),
+    (lnameLabel = body.querySelector(".lname-label")),
+    (emailLabel = body.querySelector(".email-label")),
+    (nicLabel = body.querySelector(".nic-label")),
+    (roleLabel = body.querySelector(".role-label")),
+    (phoneLabel = body.querySelector(".phone-label")),
+    (address = body.querySelector(".address")),
+    (address1Label = body.querySelector(".address1-label")),
+    (address2Label = body.querySelector(".address2-label")),
+    (address3Label = body.querySelector(".address3-label"));
 
   var fnameStatus = false,
     lnameStatus = false,
@@ -66,6 +76,16 @@ let gendr, bDay;
     op4.textContent = data["sin"]["op4"];
     op5.textContent = data["sin"]["op5"];
     btn.textContent = data["sin"]["btn"];
+    fnameLabel.textContent = data["sin"]["fnameLabel"];
+    lnameLabel.textContent = data["sin"]["lnameLabel"];
+    emailLabel.textContent = data["sin"]["emailLabel"];
+    nicLabel.textContent = data["sin"]["nicLabel"];
+    roleLabel.textContent = data["sin"]["roleLabel"];
+    phoneLabel.textContent = data["sin"]["phoneLabel"];
+    address.textContent = data["sin"]["address"];
+    address1Label.textContent = data["sin"]["address1Label"];
+    address2Label.textContent = data["sin"]["address2Label"];
+    address3Label.textContent = data["sin"]["address3Label"];
     setGreeting();
   });
 
@@ -93,6 +113,16 @@ let gendr, bDay;
     op4.textContent = data["en"]["op4"];
     op5.textContent = data["en"]["op5"];
     btn.textContent = data["en"]["btn"];
+    fnameLabel.textContent = data["en"]["fnameLabel"];
+    lnameLabel.textContent = data["en"]["lnameLabel"];
+    emailLabel.textContent = data["en"]["emailLabel"];
+    nicLabel.textContent = data["en"]["nicLabel"];
+    roleLabel.textContent = data["en"]["roleLabel"];
+    phoneLabel.textContent = data["en"]["phoneLabel"];
+    address.textContent = data["en"]["address"];
+    address1Label.textContent = data["en"]["address1Label"];
+    address2Label.textContent = data["en"]["address2Label"];
+    address3Label.textContent = data["en"]["address3Label"];
     setGreeting();
   });
 
@@ -114,24 +144,43 @@ let gendr, bDay;
       op4: "නිෂ්පාදන කළමනාකරු",
       op5: "අලෙවි කළමනාකරු",
       btn: "සේවකයා එකතු කරන්න",
+      fnameLabel: "මුල් නම",
+      lnameLabel: "අවසන් නම",
+      emailLabel: "ඊතැපැල් ලිපිනය",
+      nicLabel: "ජාතික හැඳුනුම්පත් අංකය",
+      roleLabel: "තනතුරු",
+      phoneLabel: "දුරකථන අංකය",
+      address1Label: "ලිපින පේළි 1",
+      address2Label: "වීදිය",
+      address3Label: "නගරය",
     },
     en: {
       fh: "Register Employee",
-      fname: "First Name",
-      lname: "Last Name",
-      email: "Email Address",
-      phone: "Phone Number",
-      address1: "Address Line-1",
-      address2: "Street",
-      address3: "City",
+      fname: "Enter First Name",
+      lname: "Enter Last Name",
+      email: "Enter Email Address",
+      phone: "Enter Phone Number",
+      address1: "Enter Address Line-1",
+      address2: "Enter Street",
+      address3: "Enter City",
       nic: "NIC Number",
-      op0: "Designation",
+      op0: "Select Designation",
       op1: "Collector",
       op2: "Distributor",
       op3: "Stock Manager",
       op4: "Production Manager",
       op5: "Sales Manager",
       btn: "Add Employee",
+      fnameLabel: "First Name",
+      lnameLabel: "Last Name",
+      emailLabel: "Email Address",
+      nicLabel: "NIC Number",
+      roleLabel: "Designation",
+      phoneLabel: "Phone Number",
+      address: "Personal Address",
+      address1Label: "Address Line 1",
+      address2Label: "Street",
+      address3Label: "City",
     },
   };
 

@@ -20,19 +20,23 @@ select.dropdown {
   border: 0;
   border-bottom: 1px solid var(--input-border);
   outline: 0;
+  color: var(--input-border);
 }
 
 .dropdown {
   width: 40vw;
   margin-top: 20px;
-  font-size: 16px;
+  font-size: 0.8rem;
   margin-bottom: 3rem;
   background-color: var(--body-color);
-  color: var(--primary-color);
+  color: var(--input-border-focus);
   font-weight: 500;
-  padding-bottom: 5px;
+  padding: 0;
 }
-
+/* .dropdown option{
+  padding: 0;
+  color: var(--input-border);
+} */
 .employee-basic .next {
   margin-top: 40px;
 }
@@ -94,7 +98,12 @@ input {
   border-bottom: 1px solid #a9a9a9;
   padding: 7px 0;
   margin: 10px 0 0 0;
-  font-size: 15px;
+  /* font-size: 15px; */
+}
+
+.register-form input::placeholder{
+  color: var(--input-border);
+  font-size: 0.8rem;
 }
 
 textarea:focus,
@@ -105,14 +114,12 @@ input:focus {
 }
 
 .address {
-  color: var(--input-border);
+  color: var(--input-border-focus);
   font-weight: 600;
-  margin-top: 6px;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
-/* .register-form input{
-  font-size: 15px;
-} */
 
 .register-form div,
 .edit-outlet-form div {
@@ -180,11 +187,29 @@ input:focus {
   margin-top: 40px;
 }
 
-.register-form label,
 .outlet-edit-container label {
   display: block;
   margin-top: 30px;
   color: var(--input-border);
+}
+
+.register-form label{
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.register-form input {
+  margin-top: 10px;
+  color: var(--input-border);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0;
+}
+.register-form input:focus {
+  color: var(--input-border);
+  font-weight: 500;
+  background-color: white;
 }
 
 .edit-employee-container .address1-label,
