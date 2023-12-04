@@ -74,6 +74,7 @@
             <form autocomplete="on">
               <div class="register-name" style="margin: 0; padding: 0">
                 <section>
+                  <label class="fname-label"></label>
                   <input
                     type="text"
                     class="short fname"
@@ -84,7 +85,9 @@
                   <br />
                   <span class="form-error fname-error"></span>
                 </section>
+
                 <section>
+                  <label class="lname-label"></label>
                   <input
                     type="text"
                     class="short lname"
@@ -96,7 +99,9 @@
                   <span class="form-error lname-error"></span>
                 </section>
               </div>
+              <br /><br />
 
+              <label class="email-label"></label>
               <input
                 type="text"
                 class="long email"
@@ -107,6 +112,9 @@
               <br />
               <span class="form-error email-error"></span>
               <br />
+              <br />
+
+              <label class="phone-label"></label>
               <input
                 type="text"
                 name="phone"
@@ -114,15 +122,17 @@
                 placeholder=""
                 autocomplete="tel"
               />
-              <br /><span class="form-error phone-error"></span>
-              <br />
+              <br /><span class="form-error phone-error"></span> <br /><br />
+
+              <label class="nic-label"></label>
               <input
                 type="text"
                 class="long nic"
                 name="nic"
                 placeholder=""
-              /><br /><span class="form-error nic-error"></span>
-              <br />
+              /><br /><span class="form-error nic-error"></span> <br /><br />
+
+              <label class="role-label"></label>
               <select class="dropdown role">
                 <option value="" default hidden class="op0"></option>
                 <option value="collector" class="op1"></option>
@@ -131,7 +141,12 @@
                 <option value="production-manager" class="op4"></option>
                 <option value="sales-manager" class="op5"></option>
               </select>
-              <br /><span class="form-error dropdown-error"></span><br />
+              <br /><span class="form-error dropdown-error"></span>
+              
+              <p class="address"></p>
+              <br />
+
+              <label class="address1-label"></label>
               <input
                 type="text"
                 class="long address1"
@@ -140,8 +155,11 @@
                 autocomplete="address-line1"
               />
               <br /><span class="form-error address1-error"></span><br />
+              <br />
+
               <div class="register-name">
                 <section>
+                  <label class="address2-label"></label>
                   <input
                     type="text"
                     name="address2"
@@ -151,7 +169,9 @@
                   />
                   <br /><span class="form-error address2-error"></span>
                 </section>
+
                 <section>
+                  <label class="address3-label"></label>
                   <input
                     type="text"
                     name="address3"
