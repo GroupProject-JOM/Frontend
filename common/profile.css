@@ -76,7 +76,6 @@ input:focus {
 .address {
     color: var(--input-border);
     font-weight: 600;
-    margin-top: 6px;
   }
 
   input {
@@ -121,7 +120,7 @@ input:focus {
 .password-window {
   display: none;
   width: 40vw;
-  height: 40vh;
+  height: 45vh;
   margin: 0 auto;
   background-color: var(--body-color);
   padding: 10px 10px;
@@ -193,7 +192,7 @@ input:focus {
 }
 
 .passwords input{
-  margin:10px 0;
+  margin: 10px 0 0 0;
   padding-left: 3px;
 }
 
@@ -206,4 +205,12 @@ input:focus {
   padding: 6px 40px;
   border-radius: 15px;
   margin-top: 40px;
+}
+
+.password-window .current-password-error{
+margin-left: 150px;
+}
+
+.profile-edit-container .address{
+  margin-top: 26px;
 }

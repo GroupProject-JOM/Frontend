@@ -160,6 +160,10 @@ background-color: var(--stock-lv4);
   color: var(--primary-color);
 }
 
+.request-edit-container input, .request-edit-container .dropdown{
+  margin-bottom: 0;
+}
+
 select.dropdown {
   border: 0;
   border-bottom: 1px solid var(--input-border);

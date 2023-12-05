@@ -157,7 +157,7 @@
             response.json().then((data) => {
               console.log(data.message);
             });
-            window.location.href = "./view.html";
+            window.location.href = "./view-all.html";
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);

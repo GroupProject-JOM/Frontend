@@ -189,7 +189,7 @@
               icon: "success",
               confirmButtonColor: confirmButtonColor,
             }).then((response) => {
-              window.location.href = "../";
+              window.location.href = "../#table-heading";
             });
           } else if (response.status === 400) {
             response.json().then((data) => {

@@ -77,7 +77,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       sText1: "View coconut collection details for each day",
       yText: "Currently collected coconut amount by the collector:",
       btn: "Assign To Yards",
-      mapBtn: "View in map",
+      mapBtn: "View on map",
     },
   };
 
@@ -191,7 +191,7 @@ var chart,
       customEntries: [
         {
           name: "Available",
-          icon_color: "#cbf2b7",
+          icon_color: "#d6a360",
         },
         {
           name: "Free",
@@ -248,7 +248,7 @@ function makeChart(data) {
         return isAvailable
           ? {
               date: row.date,
-              color: "#cbf2b7",
+              color: "#d6a360",
               // tooltip: "{%date:date d}<hr><b>"+row.count+" Available</b>",
               tooltip: false,
             }

@@ -112,3 +112,7 @@ input:focus {
   font-size: 20px;
   font-weight: 600;
 }
+
+.salesmg-container{
+  width: 90%;
+}
