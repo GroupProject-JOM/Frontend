@@ -31,8 +31,8 @@
   /* justify-content: space-evenly; */
   flex-wrap: wrap;
   align-items: center;
-  top: 50%;
-  transform: translate(0, 5vh);
+  /* top: 50%; */
+  /* transform: translate(0, 5vh); */
 }
 
 .collection-data-table {
@@ -56,13 +56,9 @@
 .track-collectors-container,
 .block-container {
   top: 50%;
-  transform: translate(0, 5vh);
+  transform: translate(0, 3vh);
 }
 
-.production-view-container {
-  top: 50%;
-  transform: translate(0, 15vh);
-}
 
 select.dropdown {
   border: 0;
@@ -167,6 +163,13 @@ select.dropdown {
 .yard{
   width: 30%;
 }
+
+.track-collectors-container .calendar{
+display: flex;
+gap: 5rem;
+}
+
+
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {

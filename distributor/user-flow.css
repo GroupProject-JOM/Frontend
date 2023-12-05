@@ -65,6 +65,17 @@ input:focus {
   color: var(--input-border-focus);
 }
 
+
+.edit-outlet-form input, .add-outlet-form input{
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.edit-outlet-form label, .add-outlet-form label{
+  /* margin-bottom: 0; */
+  margin-top: 20px;
+}
+
 .update-sales {
   display: flex;
   display: flex;
@@ -76,11 +87,10 @@ input:focus {
   padding-bottom: 5px;
 }
 
-
+/* 
 .distributor-container input{
   margin-top: 0;
-  /* padding: 12px; */
-}
+} */
 
 .distributor-container label{
   padding: 20px 20px 0 0;
@@ -155,4 +165,8 @@ input:focus {
 
 .product-table{
   width: 90%;
+}
+
+.distributor-container .next{
+  margin-top: 50px;
 }

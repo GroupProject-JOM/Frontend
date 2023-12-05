@@ -689,6 +689,12 @@ body.dark {
   font-weight: 600;
 }
 
+.ongoing-error, .past-error{
+  font-size: 0.9rem;
+  color: var(--reject-red);
+  margin-top: 8px;
+}
+
 @media only screen and (max-device-width: 718px) {
   .home {
     left: 0;

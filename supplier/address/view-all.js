@@ -58,7 +58,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       th1: "වතුයායේ නම නම",
       th2: "ප්රදේශය/කලාපය",
       btn: "අලුතින් එකතු කරන්න",
-      tError: "ලිපිනයන් නැත",
+      tError: "**ලිපිනයන් නැත",
     },
     en: {
       sTitle: "Your Addresses",
@@ -66,7 +66,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       th1: "Estate Name",
       th2: "Area/Region",
       btn: "Add New",
-      tError: "No Addresses",
+      tError: "**No Addresses",
     },
   };
 

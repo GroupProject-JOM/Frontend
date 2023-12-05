@@ -260,7 +260,6 @@ textarea {
   color: var(--primary-color);
   font-weight: 500;
   font-size: 15px;
-
   /* color: red; */
 }
 
@@ -494,6 +493,13 @@ margin-top: 0;
 .date-form input{
   margin-right: 10px;
 }
+
+.supply6-container .error, .supply8-container .error{
+  font-size: 0.9rem;
+  color: var(--reject-red);
+  margin-top: 8px;
+}
+
 
 @media only screen and (max-device-width: 800px) {
   .report-container {

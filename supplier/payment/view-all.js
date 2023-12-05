@@ -58,7 +58,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       th1: "ගිණුම් අංකය",
       th2: "බැංකුව",
       btn: "අලුතින් එකතු කරන්න",
-      tError: "බැංකු ගිණුම් නැත",
+      tError: "**බැංකු ගිණුම් නැත",
     },
     en: {
       sTitle: "Your Bank Accounts",
@@ -66,7 +66,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       th1: "Account Number",
       th2: "Bank",
       btn: "Add New",
-      tError: "No Bank Accounts",
+      tError: "**No Bank Accounts",
     },
   };
 

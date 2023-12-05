@@ -57,6 +57,10 @@ input:focus {
   transition: var(--tran-05);
 }
 
+
+
+
+
 .login-form input {
   width: 25rem;
 }
@@ -113,8 +117,22 @@ input:focus {
 .address {
   color: var(--input-border-focus);
   font-weight: 600;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+textarea {
+  /* padding: 5px 5px; */
+  padding-top: 10px;
+  border: none;
+  resize: none;
+  height: 30px;
+  border-bottom: 1px solid var(--input-border);
+  color: var(--input-border-focus);
+  font-size: 0.8rem;
+  font-weight: 400 !important;
+  width: 25vw;
+
+  /* color: red; */
 }
 
 .address1 {
@@ -132,6 +150,11 @@ input:focus {
 .buttons .skip {
   margin-top: 50px;
 }
+.signup-basic .next{
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
 
 .short {
   width: 17vw;
@@ -157,7 +180,7 @@ input:focus {
   display: grid;
   /* grid-template-areas: "auto auto"; */
   grid-template-columns: 30vw 60vw;
-  gap: 10vw;
+  gap: 9vw;
 }
 
 .side {
@@ -166,7 +189,7 @@ input:focus {
   height: 100vh;
   text-align: center;
   color: var(--text-color);
-  position: absolute;
+  position: fixed;
 }
 
 .section-home {
@@ -282,7 +305,7 @@ input:focus {
 }
 
 .signup5-content {
-  top: 30%;
+  top: 30vh;
 }
 
 .menu-line6 {
@@ -354,9 +377,13 @@ input:focus {
   display: none;
 }
 
-.signup3-container .buttons,
+
 .signup4-container .buttons {
   margin-top: 60px;
+}
+
+.signup3-container .buttons{
+  margin-top: 2rem;
 }
 
 .signup3-container input,
@@ -447,6 +474,34 @@ margin-top: 10px;
 .signup4-container .form-heading, .signup3-container .form-heading{
   margin-bottom: 0;
 }
+
+.signup-basic .email-label{
+  margin-top: 10px;
+}
+
+/* textarea .address{
+  font-weight: 500;
+} */
+
+
+.location-pick-bt {
+  display: flex;
+  justify-content: center;
+  width: 17rem;
+  font-size: 13px;
+  border-radius: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.signup5-content .form-heading-text{
+  font-size: 15px;
+}
+
+.signup5-content .buttons .next{
+  margin-top: 20px;
+}
+
 
 @media only screen and (max-device-width: 900px) {
   .sidebar-photo {

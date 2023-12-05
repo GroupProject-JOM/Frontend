@@ -90,6 +90,7 @@
       msg +
       ` </p>
       </div>
+      <span>12.44 PM</span>
     </div>`;
     chat.scrollTop = chat.scrollHeight;
   }
@@ -134,6 +135,7 @@
                     <div class="sent-msg">
                       <p>` + item.content + `</p>
                     </div>
+                    <span>12.44 PM</span>
                   </div>`;
             }else{
               receive(item.content)
