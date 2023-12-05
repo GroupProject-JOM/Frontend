@@ -1,7 +1,14 @@
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
-    en = body.querySelector(".en");
+    en = body.querySelector(".en"),
+    w1Title = body.querySelector(".w1-title"),
+    w1Value = body.querySelector(".w1-value"),
+    w1Period = body.querySelector(".w1-period"),
+    w2Title = body.querySelector(".w2-title"),
+    w2Value = body.querySelector(".w2-value"),
+    w2Period = body.querySelector(".w2-period"),
+    btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
 
@@ -13,6 +20,10 @@
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
+    w1Title.textContent = data["sin"]["w1Title"];
+    w2Title.textContent = data["sin"]["w2Title"];
+    w2Period.textContent = data["sin"]["w2Period"];
+    btn.textContent = data["sin"]["btn"];
     setGreeting();
   });
 
@@ -24,9 +35,207 @@
     document.cookie = "lang=en; path=/";
     lang = "en";
 
+    w1Title.textContent = data["en"]["w1Title"];
+    w2Title.textContent = data["en"]["w2Title"];
+    w2Period.textContent = data["en"]["w2Period"];
+    btn.textContent = data["en"]["btn"];
     setGreeting();
   });
+
+  var data = {
+    sin: {
+      w1Title: "අද පොල් මිල",
+      w2Title: "සාමාන්‍ය පොල් මිල",
+      w2Period: "මෙම මාසය සඳහා",
+      btn: "වාර්තාව ජනනය කරන්න",
+    },
+    en: {
+      w1Title: "Today's Coconut Rate",
+      w2Title: "Average Coconut Rate",
+      w2Period: "For this month",
+      btn: "Generate Report",
+    },
+  };
+
+  let coco = [];
+
+  fetch(backProxy + "/report?user=" + getCookie("user"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          if (lang == "sin") {
+            w1Value.textContent = "රු. " + data.rate.price;
+            w1Period.textContent = data.rate.date + " වන විට";
+          } else {
+            w1Value.textContent = "Rs. " + data.rate.price;
+            w1Period.textContent = "As of " + data.rate.date;
+          }
+
+          data.last_six.forEach((item) => {
+            coco.push(parseFloat(item.price));
+          });
+          rateChart(coco);
+
+          var sum = coco.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue;
+          }, 0);
+
+          if (lang == "sin")
+            w2Value.textContent = "රු. " + data.avg[0].toFixed(2);
+          else w2Value.textContent = "Rs. " + data.avg[0].toFixed(2);
+
+          avgChart(data.avg);
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          // data.size=0
+          if (lang == "sin") Command: toastr["info"]("ගාස්තු නැත");
+          else Command: toastr["info"]("No rates");
+        });
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
 })();
+
+function rateChart(coco) {
+  //coco rate chart design
+  const dataLine3 = {
+    labels: coco,
+    datasets: [
+      {
+        data: coco,
+        //   fill: true,
+        borderColor: "#22C55E",
+        borderWidth: 2,
+        // hoverBorderColor: '#000000',
+        // backgroundColor:'#ffe0b6',
+        tension: 0.4,
+        pointRadius: 0,
+        hoverPointRadius: 0,
+      },
+    ],
+  };
+
+  //coco rate chart configuration
+  const configLine3 = {
+    type: "line",
+    data: dataLine3,
+    options: {
+      scales: {
+        x: {
+          ticks: {
+            display: false,
+          },
+          grid: {
+            display: false,
+            borderWidth: 0,
+          },
+        },
+        y: {
+          ticks: {
+            display: false,
+          },
+          grid: {
+            display: false,
+            borderWidth: 0,
+          },
+        },
+      },
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: "top",
+        },
+        title: {
+          display: false,
+        },
+      },
+    },
+  };
+
+  // coco rate chart visualizing
+  const chartLine3 = new Chart(
+    document.getElementById("coco-rate"),
+    configLine3
+  );
+}
+
+function avgChart(avg) {
+  //avg rate chart design
+  const dataLine4 = {
+    labels: avg,
+    datasets: [
+      {
+        data: avg,
+        //   fill: true,
+        borderColor: "#22C55E",
+        borderWidth: 2,
+        // hoverBorderColor: '#000000',
+        // backgroundColor:'#ffe0b6',
+        tension: 0.4,
+        pointRadius: 0,
+        hoverPointRadius: 0,
+      },
+    ],
+  };
+
+  //avg rate chart configuration
+  const configLine4 = {
+    type: "line",
+    data: dataLine4,
+    options: {
+      scales: {
+        x: {
+          ticks: {
+            display: false,
+          },
+          grid: {
+            display: false,
+            borderWidth: 0,
+          },
+        },
+        y: {
+          ticks: {
+            display: false,
+          },
+          grid: {
+            display: false,
+            borderWidth: 0,
+          },
+        },
+      },
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: "top",
+        },
+        title: {
+          display: false,
+        },
+      },
+    },
+  };
+
+  // average rate chart visualizing
+  const chartLine4 = new Chart(
+    document.getElementById("avg-rate"),
+    configLine4
+  );
+}
 
 //for all charts
 let labels = [
@@ -51,16 +260,6 @@ let sales2 = [23, 67, 12, 34, 54, 12, 34, 5, 55, 24, 67, 89];
 //earnings chart data
 let earning1 = [70, 50, 50, 30, 70, 11, 15, 10, 21, 30, 45, 12];
 let earning2 = [23, 67, 12, 34, 54, 12, 34, 5, 55, 24, 67, 89];
-
-//coco rate data
-let cocoRate = [
-  70, 50, 50, 30, 70, 11, 15, 10, 21, 30, 45, 12, 123, 234, 12, 312, 123, 23, 2,
-  34, 1, 312, 3, 234, 23, 42, 4, 234, 1, 234, 2, 4, 21, 4, 234, 12, 34, 123, 4,
-];
-//avg rate data
-let avgRate = [
-  70, 50, 50, 30, 70, 11, 15, 10, 21, 30, 45, 12, 123, 234, 12, 312, 123, 23, 2,
-];
 
 //sales chart design
 const dataLine1 = {
@@ -124,42 +323,6 @@ const dataLine2 = {
   ],
 };
 
-//coco rate chart design
-const dataLine3 = {
-  labels: cocoRate,
-  datasets: [
-    {
-      data: cocoRate,
-      //   fill: true,
-      borderColor: "#22C55E",
-      borderWidth: 2,
-      // hoverBorderColor: '#000000',
-      // backgroundColor:'#ffe0b6',
-      tension: 0.4,
-      pointRadius: 0,
-      hoverPointRadius: 0,
-    },
-  ],
-};
-
-//avg rate chart design
-const dataLine4 = {
-  labels: avgRate,
-  datasets: [
-    {
-      data: avgRate,
-      //   fill: true,
-      borderColor: "#22C55E",
-      borderWidth: 2,
-      // hoverBorderColor: '#000000',
-      // backgroundColor:'#ffe0b6',
-      tension: 0.4,
-      pointRadius: 0,
-      hoverPointRadius: 0,
-    },
-  ],
-};
-
 //sales chart configuration
 const configLine1 = {
   type: "line",
@@ -206,82 +369,6 @@ const configLine2 = {
   },
 };
 
-//coco rate chart configuration
-const configLine3 = {
-  type: "line",
-  data: dataLine3,
-  options: {
-    scales: {
-      x: {
-        ticks: {
-          display: false,
-        },
-        grid: {
-          display: false,
-          borderWidth: 0,
-        },
-      },
-      y: {
-        ticks: {
-          display: false,
-        },
-        grid: {
-          display: false,
-          borderWidth: 0,
-        },
-      },
-    },
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-        position: "top",
-      },
-      title: {
-        display: false,
-      },
-    },
-  },
-};
-
-//avg rate chart configuration
-const configLine4 = {
-  type: "line",
-  data: dataLine4,
-  options: {
-    scales: {
-      x: {
-        ticks: {
-          display: false,
-        },
-        grid: {
-          display: false,
-          borderWidth: 0,
-        },
-      },
-      y: {
-        ticks: {
-          display: false,
-        },
-        grid: {
-          display: false,
-          borderWidth: 0,
-        },
-      },
-    },
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-        position: "top",
-      },
-      title: {
-        display: false,
-      },
-    },
-  },
-};
-
 // sales chart visualizing
 const chartLine1 = new Chart(
   document.getElementById("sales-graph"),
@@ -293,8 +380,3 @@ const chartLine2 = new Chart(
   document.getElementById("earnings-graph"),
   configLine2
 );
-// coco rate chart visualizing
-const chartLine3 = new Chart(document.getElementById("coco-rate"), configLine3);
-
-// average rate chart visualizing
-const chartLine4 = new Chart(document.getElementById("avg-rate"), configLine4);
