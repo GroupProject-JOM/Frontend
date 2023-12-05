@@ -27,6 +27,10 @@
     edit = body.querySelector(".edit"),
     del = body.querySelector(".delete"),
     error = body.querySelector(".error"),
+    cName = body.querySelector(".cName"),
+    cNameBlock = body.querySelector(".cName-block"),
+    cPhone = body.querySelector(".cPhone"),
+    cPhoneBlock = body.querySelector(".cPhone-block"),
     map = body.querySelector(".map");
 
   var lang = getCookie("lang"); // current language
@@ -95,6 +99,7 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
+          log(data.collection);
           if (data.collection.sMethod == "pickup") {
             sMethod.textContent = "Pickup from estate";
             dateText.textContent = "Pickup Date";
@@ -102,6 +107,10 @@
             eName.textContent = data.collection.estate_name;
             eAddress.textContent = data.collection.estate_address;
             eArea.textContent = data.collection.estate_area;
+            cName.textContent =
+              data.collection.col_fname + " " + data.collection.col_lname;
+            cPhone.textContent = data.collection.col_phone;
+
             var arr = data.collection.estate_location.split(" ");
             map.innerHTML =
               `<iframe src='https://www.google.com/maps?q=` +
@@ -117,6 +126,8 @@
             eAddressText.style.display = "none";
             eAreaText.style.display = "none";
             map.style.display = "none";
+            cNameBlock.style.display = "none";
+            cPhoneBlock.style.display = "none";
           }
           date.textContent = data.collection.date;
           time.textContent = timeString(data.collection.time);
