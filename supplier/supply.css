@@ -461,11 +461,13 @@ input [type=""]
   width: 40vw;
 }
 
-.supply7-container .error {
+.supply7-container .error, .supply-view-container .error {
   padding-top: 10px;
   color: var(--input-border-focus);
   font-size: 11px;
 }
+
+
 
 
 .supply7-container label {

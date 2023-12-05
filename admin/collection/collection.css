@@ -9,16 +9,6 @@
   border-radius: 30px;
 }
 
-.collection-view-container {
-  padding-left: 20px;
-  display: flex;
-  gap: 65px;
-  /* justify-content: space-evenly; */
-  flex-wrap: wrap-reverse;
-  align-items: center;
-  top: 50%;
-  transform: translate(0, 5%);
-}
 
 .collection-data-table {
   margin-top: 40px;
@@ -139,7 +129,8 @@
   width: fit-content;
   padding: 10px 20px;
   font-size: 16px;
-  margin-top: 10px;
+  display: flex;
+  margin-top: 30px;
 }
 
 .verification-button{
