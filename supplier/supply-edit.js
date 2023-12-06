@@ -391,8 +391,9 @@
 
   fetch(
     backProxy +
-      "/collection?sId=" +
-      getCookie("sId") +
+      // "/collection?sId=" +
+      "/supply-request?user=" +
+      getCookie("user") +
       "&id=" +
       getCookie("id"),
     {
@@ -406,14 +407,13 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          log(data);
-          amount.value = data.collection.init_amount;
-          method.value = data.collection.sMethod;
-          payment.value = data.collection.pMethod;
-          date.value = data.collection.date;
-          time.value = data.collection.time;
+          amount.value = data.request.amount;
+          method.value = data.request.method;
+          payment.value = data.request.payment_method;
+          date.value = data.request.date;
+          time.value = data.request.time;
 
-          if (data.collection.sMethod == "pickup") {
+          if (data.request.method == "pickup") {
             if (lang == "sin") {
               dText.textContent = "රැගෙන යන දිනය";
               tText.textContent = "රැගෙන යන කාලය";
@@ -421,7 +421,7 @@
               dText.textContent = "Pickup Date";
               tText.textContent = "Pickup Time";
             }
-            location.value = data.collection.estate;
+            location.value = data.request.estate_id;
             location.style.display = "block";
           } else {
             if (lang == "sin") {
@@ -433,15 +433,15 @@
             }
           }
 
-          if (data.collection.pMethod == "bank") {
-            bank.value = data.collection.account;
+          if (data.request.payment_method == "bank") {
+            bank.value = data.request.account_id;
             bank.style.display = "block";
           }
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.collection);
-          Command: toastr["error"](data.collection);
+          console.log(data.request);
+          Command: toastr["error"](data.request);
         });
       } else {
         console.error("Error:", response.status);

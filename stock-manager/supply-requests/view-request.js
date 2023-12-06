@@ -21,7 +21,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept = body.querySelector(".accept"),
     decline = body.querySelector(".decline"),
     assign = body.querySelector(".assign"),
-    // decline = body.querySelector(".decline"),
     rtext = body.querySelector(".reason-text"),
     cNameRow = body.querySelector(".cName-row"),
     cName = body.querySelector(".cName"),
@@ -392,15 +391,12 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           var formData = {
             id: getCookie("id"),
             sId: getCookie("sId"),
-            rason: dropdown.value,
+            reason: dropdown.value,
           };
 
           fetch(
             backProxy +
-              "/accept-request?id=" +
-              getCookie("id") +
-              "&sId=" +
-              getCookie("sId"),
+              "/accept-request",
             {
               method: "PUT",
               headers: {
