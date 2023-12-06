@@ -132,24 +132,26 @@
           </div>
 
           <!-- decline reason light box starts -->
-
           <div class="overlay" id="overlay">
             <div class="decline-container">
               <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
               <div class="decline-content">
-                <p class="reason-text"></p>
+                <p class="reason-text bold"></p>
                 <select
                   class="dropdown"
                   placeholder="Select reason for declining"
                 >
-                  <option>Not enough coconut amount</option>
-                  <option>Too far to pickup</option>
+                <option value="" default hidden class="op0">Select Reason</option>
+                  <option value="1">Not enough coconut amount</option>
+                  <option value="2">Too far to pickup</option>
+                  <option value="3">Other</option>
                 </select>
-                <button class="form-button">Submit</button>
+                <label class="reason-label">If other</label>
+                <input type="text" placeholder="Type your reason here">
+                <button class="form-button submit">Submit</button>
               </div>
             </div>
           </div>
-
           <!-- decline reason lightbox ends -->
 
           <div class="accept-decline">

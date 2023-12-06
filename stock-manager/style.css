@@ -140,3 +140,41 @@
   border-radius: 30px;
   margin: 20px;
 }
+
+
+.decline-container{
+  height: 34vh;
+  width: 33vw;
+  top: 50%;
+  right: 10%;
+}
+
+.decline-content{
+  margin: 20px;
+  
+}
+
+.decline-container .submit{
+  display: block;
+  margin-top: 40px;
+  padding: 5px 30px;
+  float: right;
+}
+
+.decline-container .dropdown{
+color: var(--input-border-focus);
+font-size: 0.9rem;
+}
+
+.decline-container input[type=text]::placeholder{
+  color: var(--input-border-focus);
+}
+.decline-container input[type=text]{
+  width: 25vw;
+  margin-top: 8px;
+}
+
+.decline-container .reason-label{
+  display: block;
+  margin-top: 25px;
+}
