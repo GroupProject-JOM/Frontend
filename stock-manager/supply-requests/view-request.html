@@ -136,14 +136,22 @@
             <div class="decline-container">
               <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
               <div class="decline-content">
-                <p class="reason-text"></p>
+                <p class="reason-text bold"></p>
                 <select
                   class="dropdown"
                   placeholder="Select reason for declining"
                 >
-                  <option value="Not enough coconut amount">Not enough coconut amount</option>
+                  <option value="" default hidden class="op0">
+                    Select Reason
+                  </option>
+                  <option value="Not enough coconut amount">
+                    Not enough coconut amount
+                  </option>
                   <option value="Too far to pickup">Too far to pickup</option>
+                  <option value="Other">Other</option>
                 </select>
+                <label class="reason-label">If other</label>
+                <input type="text" placeholder="Type your reason here" />
                 <button class="form-button submit">Submit</button>
               </div>
             </div>
@@ -161,7 +169,6 @@
               href="./assign-collector.html"
             ></a>
           </div>
-
         </div>
       </div>
     </section>
