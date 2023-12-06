@@ -19,10 +19,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     ongoingError = body.querySelector(".ongoing-error"),
     pastError = body.querySelector(".past-error"),
     pastSupplyTable = body.querySelector(".past-supply-table"),
-    searchBar = body.querySelector(".search");
+    searchBar1 = body.querySelector(".search1"),
+    searchBar2 = body.querySelector(".search2");
 
-  searchBar.addEventListener("keyup", () => {
-    search(searchBar.value.toUpperCase(), ongoingSupplyTable);
+  searchBar1.addEventListener("keyup", () => {
+    search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
+  });
+
+  searchBar2.addEventListener("keyup", () => {
+    search(searchBar2.value.toUpperCase(), pastSupplyTable);
   });
 
   sin.addEventListener("click", () => {
