@@ -23,7 +23,6 @@
   </head>
 
   <body>
-    
     <!-- Loading screen -->
     <div class="loader-wrapper">
       <div class="logo-container">
@@ -44,10 +43,10 @@
         <div></div>
       </div>
     </div>
-    
+
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
-    
+
     <section class="home">
       <div class="notification">
         <span class="count">5</span>
@@ -88,6 +87,7 @@
         </div>
 
         <div class="layer">
+          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
           <div class="table-heading">
             <h2 class="c1"></h2>
             <p class="c2"></p>
@@ -106,7 +106,7 @@
 
             <tbody class="tbody1"></tbody>
           </table>
-          <p class="reject-note c3" style="display: none;"></p>
+          <p class="reject-note c3" style="display: none"></p>
           <p class="ongoing-error" style="display: none"></p>
         </div>
 
@@ -144,5 +144,36 @@
     <script src="./notifications/load-notifications.js"></script>
     <script src="script.js"></script>
     <script src="../common/loader.js"></script>
+
+    <script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, j;
+    
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.querySelector(".ongoing-supply-table");
+        tr = table.getElementsByTagName("tr");
+    
+        for (i = 1; i < tr.length; i++) {
+          var displayRow = false;
+          td = tr[i].getElementsByTagName("td");
+    
+          for (j = 0; j < td.length; j++) {
+            var txtValue = td[j].textContent || td[j].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              displayRow = true;
+              break; 
+            }
+          }
+    
+          if (displayRow) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+    
   </body>
 </html>

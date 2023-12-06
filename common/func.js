@@ -254,7 +254,7 @@ function timeString(time) {
     }
   } else if (T[0] == 12) {
     return String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
-  } else {``
+  } else {
     return String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
   }
 }
