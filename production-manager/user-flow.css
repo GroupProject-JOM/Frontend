@@ -179,6 +179,33 @@ select.dropdown {
 }
 
 
+.products-container .form-button, .products-add-container .save{
+  display: block;
+  width: fit-content;
+  margin-top: 40px;
+}
+
+.products-add-container{
+  margin-left: 4rem;
+}
+
+.products-add-container .add-product-form{
+margin-top: 3rem;
+}
+
+.products-add-container label{
+  display: block;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+} 
+
+.products-add-container input[type=text], .products-add-container input[type=number]{
+  width: 70%;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
 @media only screen and (max-device-width: 1260px) {
   .production-req {
     display: flex;
