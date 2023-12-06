@@ -21,14 +21,16 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept = body.querySelector(".accept"),
     decline = body.querySelector(".decline"),
     assign = body.querySelector(".assign"),
-    // change = body.querySelector(".change"),
+    // decline = body.querySelector(".decline"),
     rtext = body.querySelector(".reason-text"),
     cNameRow = body.querySelector(".cName-row"),
     cName = body.querySelector(".cName"),
     cPhoneRow = body.querySelector(".cPhone-row"),
     cPhone = body.querySelector(".cPhone"),
     collected = body.querySelector(".collected"),
-    cAmount = body.querySelector(".cAmount");
+    cAmount = body.querySelector(".cAmount"),
+    closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay");
 
   var lang = getCookie("lang"); // current language
 

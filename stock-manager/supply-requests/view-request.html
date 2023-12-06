@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../user-flow.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
@@ -129,6 +130,28 @@
               </tbody>
             </table>
           </div>
+
+          <!-- decline reason light box starts -->
+
+          <div class="overlay" id="overlay">
+            <div class="decline-container">
+              <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+              <div class="decline-content">
+                <p class="reason-text"></p>
+                <select
+                  class="dropdown"
+                  placeholder="Select reason for declining"
+                >
+                  <option>Not enough coconut amount</option>
+                  <option>Too far to pickup</option>
+                </select>
+                <button class="form-button">Submit</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- decline reason lightbox ends -->
+
           <div class="accept-decline">
             <a class="stockmg-button form-button accept"></a>
             <a class="stockmg-button form-button decline"></a>
@@ -140,13 +163,7 @@
               href="./assign-collector.html"
             ></a>
           </div>
-          <div class="reason" style="display: none;">
-            <p class="reason-text"></p>
-            <select class="dropdown" placeholder="Select reason for declining">
-              <option>Not enough coconut amount</option>
-              <option>Too far to pickup</option>
-            </select>
-          </div>
+
         </div>
       </div>
     </section>
