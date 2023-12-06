@@ -28,6 +28,7 @@
   }
 }
 
+.decline-container,
 .rate-window,
 .collections-map {
   display: none;
@@ -46,6 +47,7 @@
   transition: var(--tran-04);
 }
 
+.decline-container .close-btn,
 .rate-window .close-btn,
 .collections-map .close-btn {
   display: grid;
@@ -58,6 +60,7 @@
   cursor: pointer;
 }
 
+.decline-container .close-btn:hover,
 .rate-window .close-btn:hover,
 .collections-map .close-btn:hover {
   color: var(--primary-color);
