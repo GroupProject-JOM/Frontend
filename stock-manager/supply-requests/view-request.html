@@ -137,12 +137,9 @@
               <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
               <div class="decline-content">
                 <p class="reason-text bold"></p>
-                <select
-                  class="dropdown"
-                  placeholder="Select reason for declining"
-                >
+                <select class="dropdown">
                   <option value="" default hidden class="op0">
-                    Select Reason
+                    Select reason for declining
                   </option>
                   <option value="Not enough coconut amount">
                     Not enough coconut amount
@@ -150,8 +147,15 @@
                   <option value="Too far to pickup">Too far to pickup</option>
                   <option value="Other">Other</option>
                 </select>
-                <label class="reason-label">If other</label>
-                <input type="text" placeholder="Type your reason here" />
+                <label class="reason-label" style="display: none"
+                  >If other</label
+                >
+                <input
+                  class="other"
+                  type="text"
+                  placeholder="Type your reason here"
+                  style="display: none"
+                />
                 <button class="form-button submit">Submit</button>
               </div>
             </div>

@@ -31,7 +31,9 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     closeBtn = body.querySelector(".close-btn"),
     overlay = body.querySelector(".overlay"),
     dropdown = body.querySelector(".dropdown"),
-    submit = body.querySelector(".submit");
+    submit = body.querySelector(".submit"),
+    other = body.querySelector(".other"),
+    otherLabel = body.querySelector(".reason-label");
 
   var lang = getCookie("lang"); // current language
 
@@ -387,25 +389,26 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         confirmButtonColor: confirmButtonColor,
         cancelButtonColor: cancelButtonColor,
       }).then((result) => {
+        var reason = "";
+
+        if (dropdown.value == "Other") reason = other.value;
+        else reason = dropdown.value;
+
         if (result.isConfirmed) {
           var formData = {
             id: getCookie("id"),
             sId: getCookie("sId"),
-            reason: dropdown.value,
+            reason: reason,
           };
 
-          fetch(
-            backProxy +
-              "/accept-request",
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-              credentials: "include",
-            }
-          )
+          fetch(backProxy + "/accept-request", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+            credentials: "include",
+          })
             .then((response) => {
               if (response.status == 200) {
                 response.json().then((data) => {
@@ -446,5 +449,12 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         }
       });
     });
+  });
+
+  dropdown.addEventListener("input", () => {
+    if (dropdown.value == "Other") {
+      other.style.display = "";
+      otherLabel.style.display = "";
+    }
   });
 })();
