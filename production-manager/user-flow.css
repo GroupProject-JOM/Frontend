@@ -179,32 +179,55 @@ select.dropdown {
 }
 
 
-.products-container .form-button, .products-add-container .save{
+.products-container .form-button,
+.products-add-container .save,
+.products-edit-container .save
+{
   display: block;
   width: fit-content;
   margin-top: 40px;
 }
 
-.products-add-container{
+.products-add-container,
+.products-edit-container{
   margin-left: 4rem;
 }
 
-.products-add-container .add-product-form{
+.products-add-container .add-product-form, .products-edit-container .edit-product-form{
 margin-top: 3rem;
 }
 
-.products-add-container label{
+.products-add-container label, .products-edit-container label{
   display: block;
   margin-top: 2rem;
   font-size: 0.9rem;
   font-weight: 500;
 } 
 
-.products-add-container input[type=text], .products-add-container input[type=number]{
+.products-add-container input[type=text],
+.products-add-container input[type=number],
+.products-edit-container input[type=text],
+.products-edit-container input[type=number]
+{
   width: 70%;
   margin-top: 10px;
   font-size: 1rem;
 }
+
+.products-edit-container label{
+  color: var(--input-border);
+}
+
+.products-edit-container input{
+color: var(--primary-color);
+font-weight: 500;
+}
+
+/* .products-edit-container input::placeholder{
+  color: var(--primary-color);
+  font-weight: 500;
+  } */
+
 
 @media only screen and (max-device-width: 1260px) {
   .production-req {
