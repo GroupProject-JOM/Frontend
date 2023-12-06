@@ -20,6 +20,12 @@
     timeText = body.querySelector(".time-text"),
     time = body.querySelector(".time"),
     pMethod = body.querySelector(".pMethod"),
+    aNameText = body.querySelector(".aName-text"),
+    aName = body.querySelector(".aName"),
+    aNumText = body.querySelector(".aNum-text"),
+    aNum = body.querySelector(".aNum"),
+    bankText = body.querySelector(".bank-text"),
+    bank = body.querySelector(".bank"),
     ccount = body.querySelector(".ccount"),
     sstatus = body.querySelector(".sstatus"),
     val = body.querySelector(".val"),
@@ -84,8 +90,9 @@
 
   fetch(
     backProxy +
-      "/collection?sId=" +
-      getCookie("sId") +
+      // "/collection?sId=" +
+      "/supply-request?user=" +
+      getCookie("user") +
       "&id=" +
       getCookie("id"),
     {
@@ -99,26 +106,25 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          log(data.collection);
-          if (data.collection.sMethod == "pickup") {
+          if (data.request.method == "pickup") {
             sMethod.textContent = "Pickup from estate";
             dateText.textContent = "Pickup Date";
             timeText.textContent = "Pickup Time";
-            eName.textContent = data.collection.estate_name;
-            eAddress.textContent = data.collection.estate_address;
-            eArea.textContent = data.collection.estate_area;
+            eName.textContent = data.request.ename;
+            eAddress.textContent = data.request.address;
+            eArea.textContent = data.request.area;
             cName.textContent =
-              data.collection.col_fname + " " + data.collection.col_lname;
-            cPhone.textContent = data.collection.col_phone;
+              data.request.c_fName + " " + data.request.c_lName;
+            cPhone.textContent = data.request.c_phone;
 
-            var arr = data.collection.estate_location.split(" ");
+            var arr = data.request.location.split(" ");
             map.innerHTML =
               `<iframe src='https://www.google.com/maps?q=` +
               arr[0] +
               `,` +
               arr[1] +
               `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
-          } else if (data.collection.sMethod == "yard") {
+          } else if (data.request.method == "yard") {
             sMethod.textContent = "Delivered to Yard";
             dateText.textContent = "Delivery Date";
             timeText.textContent = "Delivery Time";
@@ -129,31 +135,43 @@
             cNameBlock.style.display = "none";
             cPhoneBlock.style.display = "none";
           }
-          date.textContent = data.collection.date;
-          time.textContent = timeString(data.collection.time);
+          date.textContent = data.request.date;
+          time.textContent = timeString(data.request.time);
 
-          if (data.collection.pMethod == "cash") {
+          if (data.request.payment_method == "cash") {
             pMethod.textContent = "Cash on Pickup";
-          } else if (data.collection.pMethod == "bank") {
+            aNameText.style.display = "none";
+            aNumText.style.display = "none";
+            bankText.style.display = "none";
+          } else if (data.request.payment_method == "bank") {
             pMethod.textContent = "Bank Transfer";
+            aName.textContent = data.request.h_name;
+            aNum.textContent = data.request.account;
+            bank.textContent = data.request.bank;
           }
 
-          if (0 < data.collection.status && data.collection.status < 5) {
-            if (data.collection.status == 1)
+          if (0 < data.request.status && data.request.status < 5) {
+            if (data.request.status == 1) {
               sstatus.textContent = "Pending Approval";
-            else if (data.collection.status == 2)
+              cNameBlock.style.display = "none";
+              cPhoneBlock.style.display = "none";
+            } else if (data.request.status == 2) {
               sstatus.textContent = "Accepted";
-            else if (data.collection.status == 3)
+              cNameBlock.style.display = "none";
+              cPhoneBlock.style.display = "none";
+            } else if (data.request.status == 3)
               sstatus.textContent = "Ready to Pickup";
-            else if (data.collection.status == 4)
+            else if (data.request.status == 4) {
               sstatus.textContent = "Rejected";
+              cNameBlock.style.display = "none";
+              cPhoneBlock.style.display = "none";
+            }
 
-            ccount.textContent =
-              data.collection.init_amount.toLocaleString("en-US");
+            ccount.textContent = data.request.amount.toLocaleString("en-US");
             val.style.display = "none";
 
             var selectedDate = new Date(
-              data.collection.date + " " + data.collection.time
+              data.request.date + " " + data.request.time
             );
             var now = new Date();
             now.setDate(now.getDate() + 1);
@@ -162,7 +180,7 @@
             var dDate = new Date();
             dDate.setDate(selectedDate.getDate() + 7);
 
-            if (selectedDate <= now || data.collection.final_amount != 0) {
+            if (selectedDate <= now || data.request.final_amount != 0) {
               edit.style.display = "none";
               edit.disabled = true;
               del.style.display = "none";
@@ -183,15 +201,15 @@
               del.style.display = "block";
               del.disabled = false;
             }
-          } else if (4 < data.collection.status && data.collection.status < 7) {
-            if (data.collection.status == 5)
+          } else if (4 < data.request.status && data.request.status < 7) {
+            if (data.request.status == 5)
               sstatus.textContent = "Pending Paymant";
-            else if (data.collection.status == 6) sstatus.textContent = "Paid";
+            else if (data.request.status == 6) sstatus.textContent = "Paid";
 
             ccount.textContent =
-              data.collection.final_amount.toLocaleString("en-US");
+              data.request.final_amount.toLocaleString("en-US");
             value.textContent =
-              data.collection.value.toLocaleString("en-US") + " LKR";
+              data.request.value.toLocaleString("en-US") + " LKR";
 
             edit.style.display = "none";
             edit.disabled = true;
@@ -201,7 +219,7 @@
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.collection);
+          console.log(data.request);
           Command: toastr["error"](data.collection);
         });
       } else {

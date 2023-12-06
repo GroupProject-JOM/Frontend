@@ -23,7 +23,6 @@
   </head>
 
   <body>
-    
     <!-- Loading screen -->
     <div class="loader-wrapper">
       <div class="logo-container">
@@ -44,10 +43,10 @@
         <div></div>
       </div>
     </div>
-    
+
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
-    
+
     <section class="home">
       <div class="notification">
         <span class="count">5</span>
@@ -88,6 +87,10 @@
         </div>
 
         <div class="layer">
+          <!-- Search Bar -->
+          <input type="text" class="search1" placeholder="Search..." />
+          <!-- Search Bar -->
+
           <div class="table-heading">
             <h2 class="c1"></h2>
             <p class="c2"></p>
@@ -106,11 +109,15 @@
 
             <tbody class="tbody1"></tbody>
           </table>
-          <p class="reject-note c3" style="display: none;"></p>
+          <p class="reject-note c3" style="display: none"></p>
           <p class="ongoing-error" style="display: none"></p>
         </div>
 
         <div class="layer">
+          <!-- Search Bar -->
+          <input type="text" class="search2" placeholder="Search..." />
+          <!-- Search Bar -->
+
           <div class="heading-button">
             <div class="table-heading">
               <h2 class="c4"></h2>
@@ -144,5 +151,14 @@
     <script src="./notifications/load-notifications.js"></script>
     <script src="script.js"></script>
     <script src="../common/loader.js"></script>
+
+    <script>
+      function myFunction() {
+        let filter = document.getElementById("myInput").value.toUpperCase();
+        let table = document.querySelector(".ongoing-supply-table");
+
+        search(filter, table);
+      }
+    </script>
   </body>
 </html>
