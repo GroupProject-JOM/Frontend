@@ -11,16 +11,29 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     th1 = body.querySelector(".th1"),
     th2 = body.querySelector(".th2"),
     tbody = body.querySelector(".tbody"),
-    btn = body.querySelector(".form-button");
+    closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay"),
+    btn = body.querySelector(".next");
 
   var lang = getCookie("lang"); // current language
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".view-bank-container").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".view-bank-container").style.display = "none";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -38,7 +51,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -74,7 +86,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function getData() {
     var row = "";
-    // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
     fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
       method: "GET",
       headers: {
@@ -93,13 +104,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<tr id=" +
                 item.id +
                 ">" +
-                "<td>" +
+                "<td class='view'>" +
                 item.account_number +
                 "</td>" +
-                "<td>" +
+                "<td class='view'>" +
                 item.bank +
                 "</td>" +
-                "<td>" +
+                "<td class='view'>" +
                 item.name +
                 "</td>" +
                 '<td class="edit"><i class="fa-solid fa-pen-to-square icon"></i></td>' +
@@ -108,8 +119,17 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             }
             tbody.innerHTML = row;
 
-            const edits = document.querySelectorAll(".edit"),
+            const cols = document.querySelectorAll(".view"),
+              edits = document.querySelectorAll(".edit"),
               deletes = document.querySelectorAll(".delete");
+
+            cols.forEach((col) => {
+              col.addEventListener("click", () => {
+                overlay.style.display = "flex";
+                document.querySelector(".view-bank-container").style.display =
+                  "block";
+              });
+            });
 
             edits.forEach((edit) => {
               edit.addEventListener("click", () => {
