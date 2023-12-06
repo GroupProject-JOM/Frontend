@@ -74,10 +74,46 @@
           <h2 class="c1"></h2>
           <p class="c2"></p>
         </div>
+
+        <!-- view bank-account light box starts -->
+
+        <div class="overlay" id="overlay" style="display: none;">
+          <div class="view-bank-container" style="display: none;">
+            <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+            <div class="view-bank-content">
+              <!-- <div class="table-heading">
+                <h3>Bank Account Details</h3>
+              </div> -->
+              <table class="acc-view-table overview-tables">
+                <tbody>
+                  <tr>
+                    <td>Account Holder</td>
+                    <td class="acc-holder bold">Saumya Sewwandi</td>
+                  </tr>
+                  <tr>
+                    <td>Account Number</td>
+                    <td class="acc-no bold">293294940403</td>
+                  </tr>
+                  <tr>
+                    <td>Bank</td>
+                    <td class="bank bold">NSB</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="buttons">
+                <a href="./edit.html" class="form-button edit">Edit</a>
+                <a class="form-button delete">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- view bank-account light box ends -->
+
+
         <table class="bankaccc-table overview-tables">
           <thead>
             <tr>
-              
               <th class="th1"></th>
               <th class="th2"></th>
               <th class="th3">Account Holder</th>
@@ -87,7 +123,7 @@
           </thead>
           <tbody class="tbody"></tbody>
         </table>
-        <p class="error" style="display: none;"></p>
+        <p class="error" style="display: none"></p>
 
         <a class="next form-button" href="./add.html"></a>
       </div>

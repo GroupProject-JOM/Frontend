@@ -56,7 +56,7 @@
     en: {
       aTitle: "Employee Details",
       edit: "Edit",
-      del: "Delete",
+      del: "Terminate",
     },
   };
 

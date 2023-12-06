@@ -502,6 +502,67 @@ margin-top: 0;
   margin-top: 8px;
 }
 
+.supply8-container .view-bank-container{
+  display: none;
+  width: 30vw;
+  height: 35vh;
+  margin: 0 auto;
+  background-color: var(--body-color);
+  padding: 10px 10px;
+  border-radius: 10px;
+  margin-top: 60px;
+  position: fixed;
+  top: 20%;
+  right: 30%;
+  box-shadow: 0 0 20px 0 var(--shadow-color);
+  z-index: 999;
+  transition: var(--tran-04);
+}
+
+.view-bank-container .close-btn {
+  display: grid;
+  position: absolute;
+  right: 13px;
+  top: 13px;
+  font-size: 24px;
+  color: gray;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.view-bank-container .close-btn:hover {
+  color: var(--primary-color);
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.view-bank-container .acc-view-table{
+  margin: 30px 30px 20px 30px;
+  width: 87%;
+}
+
+.view-bank-container .buttons .form-button{
+  margin-top: 0;
+  padding: 5px 0px;
+  width: 6rem;
+}
+.view-bank-container .buttons{
+  /* margin-left: 30px; */
+  justify-content: center;
+}
+
+.view-bank-container .table-heading{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+.view-bank-container .table-heading h3{
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
 
 @media only screen and (max-device-width: 800px) {
   .report-container {
