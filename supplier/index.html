@@ -87,7 +87,10 @@
         </div>
 
         <div class="layer">
-          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+          <!-- Search Bar -->
+          <input type="text" class="search" placeholder="Search..." />
+          <!-- Search Bar -->
+
           <div class="table-heading">
             <h2 class="c1"></h2>
             <p class="c2"></p>
@@ -147,33 +150,11 @@
 
     <script>
       function myFunction() {
-        var input, filter, table, tr, td, i, j;
-    
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.querySelector(".ongoing-supply-table");
-        tr = table.getElementsByTagName("tr");
-    
-        for (i = 1; i < tr.length; i++) {
-          var displayRow = false;
-          td = tr[i].getElementsByTagName("td");
-    
-          for (j = 0; j < td.length; j++) {
-            var txtValue = td[j].textContent || td[j].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              displayRow = true;
-              break; 
-            }
-          }
-    
-          if (displayRow) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }
+        let filter = document.getElementById("myInput").value.toUpperCase();
+        let table = document.querySelector(".ongoing-supply-table");
+
+        search(filter, table);
       }
     </script>
-    
   </body>
 </html>

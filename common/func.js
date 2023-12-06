@@ -263,4 +263,28 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+//table search
+function search(filter, table) {
+  var tr = table.getElementsByTagName("tr");
+
+  for (var i = 1; i < tr.length; i++) {
+    var displayRow = false,
+      td = tr[i].getElementsByTagName("td");
+
+    for (var j = 0; j < td.length; j++) {
+      var txtValue = td[j].textContent || td[j].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        displayRow = true;
+        break;
+      }
+    }
+
+    if (displayRow) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }
+}
+
 var log = console.log;

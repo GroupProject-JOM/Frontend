@@ -18,7 +18,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     ongoingSupplyTable = body.querySelector(".ongoing-supply-table"),
     ongoingError = body.querySelector(".ongoing-error"),
     pastError = body.querySelector(".past-error"),
-    pastSupplyTable = body.querySelector(".past-supply-table");
+    pastSupplyTable = body.querySelector(".past-supply-table"),
+    searchBar = body.querySelector(".search");
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), ongoingSupplyTable);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
