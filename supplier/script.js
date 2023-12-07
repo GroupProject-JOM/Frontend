@@ -30,6 +30,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     search(searchBar2.value.toUpperCase(), pastSupplyTable);
   });
 
+
+  var searchBox = document.querySelectorAll('.search-box input[type="text"] + span');
+
+  searchBox.forEach((elm) => {
+      elm.addEventListener('click', () => {
+          elm.previousElementSibling.value = '';
+      });
+  });
+  
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
