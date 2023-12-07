@@ -129,6 +129,7 @@
                 </tr>
               </tbody>
             </table>
+            <p class="reject-note" style="display: none"></p>
           </div>
 
           <!-- decline reason light box starts -->
@@ -138,25 +139,24 @@
               <div class="decline-content">
                 <p class="reason-text bold"></p>
                 <select class="dropdown">
-                  <option value="" default hidden class="op0">
-                    Select reason for declining
-                  </option>
-                  <option value="Not enough coconut amount">
-                    Not enough coconut amount
-                  </option>
-                  <option value="Too far to pickup">Too far to pickup</option>
-                  <option value="Other">Other</option>
-                </select>
-                <label class="reason-label" style="display: none"
-                  >If other</label
-                >
+                  <option value="" default hidden class="op0"></option>
+                  <option
+                    value="Not enough coconut amount"
+                    class="op1"
+                  ></option>
+                  <option value="Too far to pickup" class="op2"></option>
+                  <option value="Other" class="op3"></option></select
+                ><br />
+                <span class="form-error dropdown-error"></span>
+                <label class="reason-label" style="display: none"></label>
                 <input
                   class="other"
                   type="text"
-                  placeholder="Type your reason here"
+                  placeholder=""
                   style="display: none"
-                />
-                <button class="form-button submit">Submit</button>
+                /><br />
+                <span class="form-error other-error"></span>
+                <button class="form-button submit"></button>
               </div>
             </div>
           </div>
@@ -165,7 +165,6 @@
           <div class="accept-decline">
             <a class="stockmg-button form-button accept"></a>
             <a class="stockmg-button form-button decline"></a>
-            <!-- <a class="stockmg-button form-button change"></a> -->
 
             <a
               class="stockmg-button form-button assign"

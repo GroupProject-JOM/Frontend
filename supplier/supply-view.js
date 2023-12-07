@@ -167,7 +167,7 @@
               cNameBlock.style.display = "none";
               cPhoneBlock.style.display = "none";
               rNote.style.display = "block";
-              rNote.textContent = "Reason: "+data.request.reason;
+              rNote.textContent = "Reason: " + data.request.reason;
             }
 
             ccount.textContent = data.request.amount.toLocaleString("en-US");
