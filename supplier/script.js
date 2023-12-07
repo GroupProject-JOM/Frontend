@@ -22,6 +22,25 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     searchBar1 = body.querySelector(".search1"),
     searchBar2 = body.querySelector(".search2");
 
+  var searchBox1 = document.querySelectorAll(
+    '.search-box1 input[type="text"] + span'
+  );
+  var searchBox2 = document.querySelectorAll(
+    '.search-box2 input[type="text"] + span'
+  );
+
+  searchBox1.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
+    });
+  });
+  searchBox2.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar2.value.toUpperCase(), pastSupplyTable);
+    });
+  });
   searchBar1.addEventListener("keyup", () => {
     search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
   });
@@ -30,15 +49,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     search(searchBar2.value.toUpperCase(), pastSupplyTable);
   });
 
-
-  var searchBox = document.querySelectorAll('.search-box input[type="text"] + span');
-
-  searchBox.forEach((elm) => {
-      elm.addEventListener('click', () => {
-          elm.previousElementSibling.value = '';
-      });
-  });
-  
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
