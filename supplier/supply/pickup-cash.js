@@ -56,8 +56,10 @@
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
-        if (lang == "sin") location_options += "<option value='' disabled>වතු නැත</option>";
-          else location_options += "<option value='' disabled>No Estates</option>";
+        if (lang == "sin")
+          location_options += "<option value='' disabled>වතු නැත</option>";
+        else
+          location_options += "<option value='' disabled>No Estates</option>";
         location.innerHTML = location_options;
       }
     })
@@ -133,15 +135,15 @@
     dateStatus = false,
     timeStatus = false;
 
-    location.addEventListener("input", () => {
-      location_status_func();
-    });
-    date.addEventListener("input", () => {
-      date_status_func();
-    });
-    time.addEventListener("input", () => {
-      time_status_func();
-    });
+  location.addEventListener("input", () => {
+    location_status_func();
+  });
+  date.addEventListener("input", () => {
+    date_status_func();
+  });
+  time.addEventListener("input", () => {
+    time_status_func();
+  });
 
   btn.addEventListener("click", () => {
     if (!time_status_func()) {
@@ -159,11 +161,18 @@
     var now = new Date();
 
     if (selected_time > now) dateTime = true;
+    else {
+      if (lang == "sin") {
+        timeError.textContent = "කාලය අනාගතයේ විය යුතුය";
+        Command: toastr["error"]("කාලය අනාගතයේ විය යුතුය");
+      } else {
+        time.textContent = "Time must be in future";
+        Command: toastr["error"]("Time must be in future");
+      }
+    }
 
     if (locationStatus && dateStatus && timeStatus && dateTime) {
       var formData = {
-        //   collection_id: sessionStorage.getItem("id"),
-        //   supplier_id: sessionStorage.getItem("sId"),
         collection_id: getCookie("id"),
         supplier_id: getCookie("sId"),
         estate_id: location.value,
@@ -241,6 +250,16 @@
         dateError.textContent = "Date must be in the future";
         Command: toastr["warning"]("Date must be in the future");
       }
+    } else if (checkTwoWeeks(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය ඉදිරි සති දෙක තුළ විය යුතුය";
+        Command: toastr["warning"]("දිනය ඉදිරි සති දෙක තුළ විය යුතුය");
+      } else {
+        dateError.textContent = "The date should be within the next two weeks";
+        Command: toastr["warning"](
+          "The date should be within the next two weeks"
+        );
+      }
     } else {
       dateError.textContent = "";
       dateStatus = true;
@@ -283,6 +302,14 @@ function checkDate(date) {
   var selectedDate = new Date(date);
   var now = new Date();
   now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTwoWeeks(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() + 14);
   if (selectedDate > now) return true;
   else return false;
 }
