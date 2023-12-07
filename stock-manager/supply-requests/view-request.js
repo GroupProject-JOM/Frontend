@@ -31,9 +31,16 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     closeBtn = body.querySelector(".close-btn"),
     overlay = body.querySelector(".overlay"),
     dropdown = body.querySelector(".dropdown"),
+    dropdownError = body.querySelector(".dropdown-error"),
     submit = body.querySelector(".submit"),
     other = body.querySelector(".other"),
-    otherLabel = body.querySelector(".reason-label");
+    otherError = body.querySelector(".other-error"),
+    otherLabel = body.querySelector(".reason-label"),
+    op0 = body.querySelector(".op0"),
+    op1 = body.querySelector(".op1"),
+    op2 = body.querySelector(".op2"),
+    op3 = body.querySelector(".op3"),
+    rNote = body.querySelector(".reject-note");
 
   var lang = getCookie("lang"); // current language
 
@@ -42,7 +49,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -50,8 +56,14 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept.textContent = data["sin"]["accept"];
     decline.textContent = data["sin"]["decline"];
     assign.textContent = data["sin"]["assign"];
-    // change.textContent = data["sin"]["change"];
     rtext.textContent = data["sin"]["rtext"];
+    op0.textContent = data["sin"]["op0"];
+    op1.textContent = data["sin"]["op1"];
+    op2.textContent = data["sin"]["op2"];
+    op3.textContent = data["sin"]["op3"];
+    otherLabel.textContent = data["sin"]["otherLabel"];
+    other.placeholder = data["sin"]["other"];
+    submit.textContent = data["sin"]["submit"];
 
     setGreeting();
   });
@@ -61,7 +73,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -69,8 +80,14 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept.textContent = data["en"]["accept"];
     decline.textContent = data["en"]["decline"];
     assign.textContent = data["en"]["assign"];
-    // change.textContent = data["en"]["change"];
     rtext.textContent = data["en"]["rtext"];
+    op0.textContent = data["en"]["op0"];
+    op1.textContent = data["en"]["op1"];
+    op2.textContent = data["en"]["op2"];
+    op3.textContent = data["en"]["op3"];
+    otherLabel.textContent = data["en"]["otherLabel"];
+    other.placeholder = data["en"]["other"];
+    submit.textContent = data["en"]["submit"];
 
     setGreeting();
   });
@@ -81,16 +98,28 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       accept: "පිළිගන්න",
       decline: "ප්රතික්ෂේප කරන්න",
       assign: "එකතුකරන්නා පවරන්න",
-      // change: "දිනය/වේලාව වෙනස් කරන්න",
       rtext: "ඉල්ලීම ප්‍රතික්ෂේප කිරීමට හේතුව තෝරන්න",
+      op0: "පහත වැටීමට හේතුව තෝරන්න",
+      op1: "පොල් ප්‍රමාණය මදි",
+      op2: "රැගෙන යාමට බොහෝ දුරයි",
+      op3: "අනික්",
+      otherLabel: "වෙනත් නම්",
+      other: "ඔබේ හේතුව මෙහි ටයිප් කරන්න",
+      submit: "ඉදිරිපත් කරන්න",
     },
     en: {
       sTitle: "View Request",
       accept: "Accept",
       decline: "Decline",
       assign: "Assign Collector",
-      // change: "Change date or time",
       rtext: "Select the reason for declining the request",
+      op0: "Select reason for declining",
+      op1: "Not enough coconut amount",
+      op2: "Too far to pickup",
+      op3: "Other",
+      otherLabel: "If other",
+      other: "Type your reason here",
+      submit: "Submit",
     },
   };
 
@@ -111,6 +140,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
+          log(data.request);
           rId.textContent = data.request.id;
           sName.textContent = data.request.name + " " + data.request.last_name;
           sPhone.textContent = data.request.phone;
@@ -207,6 +237,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             cNameRow.style.display = "none";
             cPhoneRow.style.display = "none";
             collected.style.display = "none";
+            rNote.style.display = "block";
+            rNote.textContent = "Reason: " + data.request.reason;
           } else if (data.request.status == 5) {
             if (lang == "sin") sText.textContent = "තත්ත්වය: පොරොත්තු ගෙවීම";
             else sText.textContent = "Status: Pending payment";
@@ -351,6 +383,17 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     });
   });
 
+  var dropdownStatus = false,
+    otherStatus = false;
+
+  dropdown.addEventListener("input", () => {
+    dropdown_status_func();
+  });
+
+  other.addEventListener("input", () => {
+    other_status_func();
+  });
+
   decline.addEventListener("click", () => {
     overlay.style.display = "flex";
     document.querySelector(".decline-container").style.display = "block";
@@ -368,93 +411,140 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     });
 
     submit.addEventListener("click", () => {
-      if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
-          text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
-          confirmButtonText = "ඔව්, එය ප්රතික්ෂේප කරන්න!",
-          cancelButtonText = "අවලංගු කරන්න";
-      } else {
-        var title = "Are you sure?",
-          text = "You won't be able to revert this!",
-          confirmButtonText = "Yes, decline it!",
-          cancelButtonText = "Cancel";
-      }
-      Swal.fire({
-        title: title,
-        text: text,
-        confirmButtonText: confirmButtonText,
-        cancelButtonText: cancelButtonText,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: confirmButtonColor,
-        cancelButtonColor: cancelButtonColor,
-      }).then((result) => {
-        var reason = "";
+      if (!dropdown_status_func()) dropdown.focus();
 
-        if (dropdown.value == "Other") reason = other.value;
-        else reason = dropdown.value;
+      if (dropdown.value == "Other") {
+        if (!other_status_func()) other.focus();
 
-        if (result.isConfirmed) {
-          var formData = {
-            id: getCookie("id"),
-            sId: getCookie("sId"),
-            reason: reason,
-          };
+        if (dropdown && otherStatus) submit_decline();
+      } else if (dropdownStatus) submit_decline();
 
-          fetch(backProxy + "/accept-request", {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-            credentials: "include",
-          })
-            .then((response) => {
-              if (response.status == 200) {
-                response.json().then((data) => {
-                  console.log(data.message);
-                  if (lang == "sin") {
-                    var title = "ප්‍රතික්ෂේප කළා!",
-                      text = "සැපයුම් ඉල්ලීම ප්‍රතික්ෂේප විය.";
-                  } else {
-                    var title = "Declined!",
-                      text = "Supply request declined.";
-                  }
-                  // sweet alert
-                  Swal.fire({
-                    title: title,
-                    text: text,
-                    icon: "success",
-                    confirmButtonColor: confirmButtonColor,
-                  }).then((response) => {
-                    window.location.href = "./";
-                  });
-                });
-              } else if (response.status === 401) {
-                response.json().then((data) => {
-                  console.log(data.message);
-                });
-                if (lang == "sin")
-                  Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-                else Command: toastr["error"]("Invalid User");
-              } else {
-                console.error("Error:", response.status);
-                Command: toastr["error"](response.status, "Error");
-              }
-            })
-            .catch((error) => {
-              console.error("An error occurred:", error);
-              Command: toastr["error"](error);
-            });
+      function submit_decline() {
+        if (lang == "sin") {
+          var title = "ඔයාට විශ්වාස ද?",
+            text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+            confirmButtonText = "ඔව්, එය ප්රතික්ෂේප කරන්න!",
+            cancelButtonText = "අවලංගු කරන්න";
+        } else {
+          var title = "Are you sure?",
+            text = "You won't be able to revert this!",
+            confirmButtonText = "Yes, decline it!",
+            cancelButtonText = "Cancel";
         }
-      });
+        Swal.fire({
+          title: title,
+          text: text,
+          confirmButtonText: confirmButtonText,
+          cancelButtonText: cancelButtonText,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: confirmButtonColor,
+          cancelButtonColor: cancelButtonColor,
+        }).then((result) => {
+          var reason = "";
+
+          if (dropdown.value == "Other") reason = other.value;
+          else reason = dropdown.value;
+
+          if (result.isConfirmed) {
+            var formData = {
+              id: getCookie("id"),
+              sId: getCookie("sId"),
+              reason: reason,
+            };
+
+            fetch(backProxy + "/accept-request", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+              credentials: "include",
+            })
+              .then((response) => {
+                if (response.status == 200) {
+                  response.json().then((data) => {
+                    console.log(data.message);
+                    if (lang == "sin") {
+                      var title = "ප්‍රතික්ෂේප කළා!",
+                        text = "සැපයුම් ඉල්ලීම ප්‍රතික්ෂේප විය.";
+                    } else {
+                      var title = "Declined!",
+                        text = "Supply request declined.";
+                    }
+                    // sweet alert
+                    Swal.fire({
+                      title: title,
+                      text: text,
+                      icon: "success",
+                      confirmButtonColor: confirmButtonColor,
+                    }).then((response) => {
+                      window.location.href = "./";
+                    });
+                  });
+                } else if (response.status === 401) {
+                  response.json().then((data) => {
+                    console.log(data.message);
+                  });
+                  if (lang == "sin")
+                    Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+                  else Command: toastr["error"]("Invalid User");
+                } else {
+                  console.error("Error:", response.status);
+                  Command: toastr["error"](response.status, "Error");
+                }
+              })
+              .catch((error) => {
+                console.error("An error occurred:", error);
+                Command: toastr["error"](error);
+              });
+          }
+        });
+      }
     });
   });
 
-  dropdown.addEventListener("input", () => {
-    if (dropdown.value == "Other") {
-      other.style.display = "";
-      otherLabel.style.display = "";
+  function dropdown_status_func() {
+    if (
+      typeof dropdown.value === "string" &&
+      dropdown.value.trim().length === 0
+    ) {
+      if (lang == "sin") {
+        dropdownError.textContent = "හේතුව හිස් විය නොහැක";
+        Command: toastr["warning"]("හේතුව හිස් විය නොහැක");
+      } else {
+        dropdownError.textContent = "Reason cannot be empty";
+        Command: toastr["warning"]("Reason cannot be empty");
+      }
+      dropdownStatus = false;
+      return false;
+    } else {
+      if (dropdown.value == "Other") {
+        other.style.display = "";
+        otherLabel.style.display = "";
+      }
+
+      dropdownError.textContent = "";
+      dropdownStatus = true;
+      return true;
     }
-  });
+  }
+
+  function other_status_func() {
+    if (typeof other.value === "string" && other.value.trim().length === 0) {
+      if (lang == "sin") {
+        otherError.textContent = "හේතුව හිස් විය නොහැක";
+        Command: toastr["warning"]("හේතුව හිස් විය නොහැක");
+      } else {
+        otherError.textContent = "Reason cannot be empty";
+        Command: toastr["warning"]("Reason cannot be empty");
+      }
+      otherStatus = false;
+      return false;
+    } else {
+      otherError.textContent = "";
+      otherStatus = true;
+      return true;
+    }
+  }
 })();
