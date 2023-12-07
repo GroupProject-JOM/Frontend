@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
     <link rel="stylesheet" href="../common/notify.css" />
+    <link rel="stylesheet" href="../common/search.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -87,13 +88,24 @@
         </div>
 
         <div class="layer">
-          <!-- Search Bar -->
-          <input type="text" class="search1" placeholder="Search..." />
-          <!-- Search Bar -->
-
           <div class="table-heading">
             <h2 class="c1"></h2>
-            <p class="c2"></p>
+            <!-- Search Bar -->
+            <div>
+              <p class="c2"></p>
+              <div class="box">
+                <form name="search">
+                  <input
+                    type="text"
+                    class="search1"
+                    name="txt"
+                    onmouseout="this.value = ''; this.blur();"
+                  />
+                </form>
+                <i class="fas fa-search"></i>
+              </div>
+              <!-- Search Bar -->
+            </div>
           </div>
           <table class="overview-tables ongoing-supply-table">
             <thead class="thead">
@@ -114,14 +126,23 @@
         </div>
 
         <div class="layer">
-          <!-- Search Bar -->
-          <input type="text" class="search2" placeholder="Search..." />
-          <!-- Search Bar -->
-
-          <div class="heading-button">
-            <div class="table-heading">
-              <h2 class="c4"></h2>
+          <div class="table-heading">
+            <h2 class="c4"></h2>
+            <div>
               <p class="c5"></p>
+              <!-- Search Bar -->
+              <div class="box">
+                <form name="search">
+                  <input
+                    type="text"
+                    class="search2"
+                    name="txt"
+                    onmouseout="this.value = ''; this.blur();"
+                  />
+                </form>
+                <i class="fas fa-search"></i>
+              </div>
+              <!-- Search Bar -->
             </div>
           </div>
           <table class="overview-tables past-supply-table">
