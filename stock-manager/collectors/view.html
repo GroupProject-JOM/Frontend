@@ -16,6 +16,7 @@
     <!-- <link rel="stylesheet" href="../supply.css" /> -->
     <link rel="stylesheet" href="../user-flow.css" />
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../common/filter.css">
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -72,11 +73,19 @@
         <div class="heading-content">
           <div class="stockmg-heading table-heading">
             <h2 class="stockmg-title"></h2>
-            <p class="stockmg-text1 stockmg-text"></p>
-          </div>
-          <div class="filter"></div>
-        </div>
+            <div>
 
+              <p class="stockmg-text1 stockmg-text"></p>
+              <div class="filter">
+                <div id="searchBox">
+                  <i class="fas fa-filter" id="filter-icon"></i>
+                  <input type="date" placeholder="Select date to filter" />
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
         <!-- map starts -->
         <div class="overlay" id="overlay">
           <div class="collections-map">

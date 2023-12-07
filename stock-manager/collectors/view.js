@@ -7,17 +7,23 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sTitle = body.querySelector(".stockmg-title"),
     sText1 = body.querySelector(".stockmg-text1"),
     tbody = body.querySelector(".tbody"),
-  yText = body.querySelector(".yard-text"),
-  yValue = body.querySelector(".yard-value"),
-  btn = body.querySelector(".yard-button"),
-  mapBtn = body.querySelector(".map-button"),
-  closeBtn = body.querySelector(".close-btn"),
-  overlay = body.querySelector(".overlay");
-
+    yText = body.querySelector(".yard-text"),
+    yValue = body.querySelector(".yard-value"),
+    btn = body.querySelector(".yard-button"),
+    mapBtn = body.querySelector(".map-button"),
+    closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay");
 
   var lang = getCookie("lang"); // current language
   sTitle.textContent = getCookie("cName");
   yValue.textContent = getCookie("total");
+
+  const searchBox = document.getElementById("searchBox"),
+    googleIcon = document.getElementById("filter-icon");
+
+  googleIcon.onclick = function () {
+    searchBox.classList.toggle("active");
+  };
 
   mapBtn.addEventListener("click", () => {
     overlay.style.display = "flex";
@@ -99,7 +105,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   )
     .then((response) => {
       if (response.status == 200) {
-        response.json().then((data) => {          
+        response.json().then((data) => {
           makeChart(data.calender);
           let arr = data.collections;
           arr.forEach(data_to_table);
@@ -255,7 +261,7 @@ function makeChart(data) {
           : {
               date: row.date,
               // tooltip: "{%date:date d}<hr><b>Free</b>",
-              tooltip:false
+              tooltip: false,
               // hatch: {
               //   style: "light-upward-diagonal",
               //   color: "#a2a2a2",
