@@ -89,8 +89,19 @@
         <div class="layer">
           <div class="table-heading">
             <h2 class="c1"></h2>
+            
             <!-- Search Bar -->
+
             <div>
+              <p class="c2"></p>
+              <div class="search-box">
+                <input type="text" class="search1" placeholder=" " />
+                <span></span>
+              </div>
+              
+            </div>
+
+            <!-- <div>
               <p class="c2"></p>
               <div class="box">
                 <form name="search">
@@ -102,7 +113,8 @@
                   />
                 </form>
                 <i class="fas fa-search"></i>
-              </div>
+            </div> -->
+
               <!-- Search Bar -->
             </div>
           </div>
@@ -128,18 +140,13 @@
           <div class="table-heading">
             <h2 class="c4"></h2>
             <div>
+
               <p class="c5"></p>
-              <!-- Search Bar -->
-              <div class="box">
-                <form name="search">
-                  <input
-                    type="text"
-                    class="search2"
-                    name="txt"
-                    onmouseout="this.value = ''; this.blur();"
-                  />
-                </form>
-                <i class="fas fa-search"></i>
+              <div class="search-box">
+                <input type="text" class="search2" placeholder=" " />
+                <span></span>
+              </div>
+              
               </div>
               <!-- Search Bar -->
             </div>
@@ -172,13 +179,13 @@
     <script src="script.js"></script>
     <script src="../common/loader.js"></script>
 
-    <script>
+    <!-- <script>
       function myFunction() {
         let filter = document.getElementById("myInput").value.toUpperCase();
         let table = document.querySelector(".ongoing-supply-table");
 
         search(filter, table);
       }
-    </script>
+    </script> -->
   </body>
 </html>
