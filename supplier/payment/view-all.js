@@ -128,12 +128,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 overlay.style.display = "flex";
                 document.querySelector(".view-bank-container").style.display =
                   "block";
+                document.cookie = "id=" + col.parentElement.id + "; path=/";
               });
             });
 
             edits.forEach((edit) => {
               edit.addEventListener("click", () => {
-                console.log(edit.parentElement.id);
                 document.cookie = "id=" + edit.parentElement.id + "; path=/";
                 window.location.href = "./edit.html";
               });

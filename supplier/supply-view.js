@@ -37,7 +37,8 @@
     cNameBlock = body.querySelector(".cName-block"),
     cPhone = body.querySelector(".cPhone"),
     cPhoneBlock = body.querySelector(".cPhone-block"),
-    map = body.querySelector(".map");
+    map = body.querySelector(".map"),
+    rNote = body.querySelector(".reject-note");
 
   var lang = getCookie("lang"); // current language
 
@@ -165,6 +166,8 @@
               sstatus.textContent = "Rejected";
               cNameBlock.style.display = "none";
               cPhoneBlock.style.display = "none";
+              rNote.style.display = "block";
+              rNote.textContent = "Reason: "+data.request.reason;
             }
 
             ccount.textContent = data.request.amount.toLocaleString("en-US");
