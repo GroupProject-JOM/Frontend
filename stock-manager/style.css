@@ -169,3 +169,7 @@ font-size: 0.9rem;
   display: block;
   margin-top: 25px;
 }
+
+.decline-container input[type=text]:focus{
+  outline: none;
+}
