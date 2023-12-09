@@ -1,5 +1,5 @@
-if (getCookie("page") != null && getCookie("page").length != 0)
-  window.location.href = frontProxy + "/" + getCookie("page");
+if (getCookie("jwt") != null && getCookie("jwt").length != 0)
+  window.location.href = frontProxy + "/" + getPayload(getCookie("jwt")).page;
 
 var username_status = false,
   password_status = false,
@@ -25,7 +25,6 @@ var username_status = false,
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -44,7 +43,6 @@ var username_status = false,
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -103,10 +101,12 @@ var username_status = false,
         password: password.value,
       };
 
-      if(lang == "sin"){
-        var title = "සම්බන්ධ වෙමින්...",text = "කරුණාකර රැඳී සිටින්න..."
-      }else{
-        var title = "Connecting...",text="Please wait..."
+      if (lang == "sin") {
+        var title = "සම්බන්ධ වෙමින්...",
+          text = "කරුණාකර රැඳී සිටින්න...";
+      } else {
+        var title = "Connecting...",
+          text = "Please wait...";
       }
 
       Swal.fire({
@@ -137,12 +137,11 @@ var username_status = false,
                 if (lang == "sin")
                   Command: toastr["success"]("සාර්ථකව පුරනය වන්න");
                 else Command: toastr["success"]("Login successfully");
-                document.cookie = "name=" + data.name + "; path=/";
-                document.cookie = "page=" + data.page + "; path=/";
-                document.cookie = "sId=" + data.sId + "; path=/";
-                document.cookie = "user=" + data.user + "; path=/";
-                pageLoading();
-                window.location.href = frontProxy + "/" + data.page;
+
+                var payload = getPayload(getCookie("jwt"));
+
+                document.cookie = "name=" + payload.name + "; path=/";
+                window.location.href = frontProxy + "/" + payload.page;
               }
             });
           } else if (response.status === 400) {
@@ -203,7 +202,7 @@ var username_status = false,
           }
         })
         .catch((error) => {
-          Swal.close();          
+          Swal.close();
           // console.error("An error occurred:", error);
           Command: toastr["error"](error);
         });

@@ -3,7 +3,6 @@ function checkLng() {
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en");
   //reload language detecter
-  // const curLng = sessionStorage.getItem("lang");
   const curLng = getCookie("lang");
   if (curLng == "sin") {
     sin.click();
@@ -16,7 +15,6 @@ function checkMode() {
   const body = document.querySelector("body"),
     modeSwitch = body.querySelector(".toggle-switch");
   //reload mode detecter
-  // const curMode = sessionStorage.getItem("mode");
   const curMode = getCookie("mode");
   if (curMode == "dark") {
     modeSwitch.click();
@@ -199,7 +197,8 @@ function signout() {
         document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         document.cookie =
-          "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         pageLoading();
         window.location.href = frontProxy;
       });
@@ -285,6 +284,11 @@ function search(filter, table) {
       tr[i].style.display = "none";
     }
   }
+}
+
+//jwt
+function getPayload(token) {
+  return JSON.parse(atob(token.split(".")[1]));
 }
 
 var log = console.log;
