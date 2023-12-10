@@ -138,7 +138,7 @@
   //load chat
   function loadChat() {
     fetch(
-      backProxy + "/chat?user=" + getCookie("user") + "&to=" + getCookie("id"),
+      backProxy + "/chat?to=" + getCookie("id"),
       {
         method: "GET",
         headers: {
@@ -201,16 +201,11 @@
   //load chat list
   function loadChatList() {
     allChat.innerHTML = null;
-    var formData = {
-      user: getCookie("user"),
-    };
-
     fetch(backProxy + "/chat", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
       credentials: "include",
     })
       .then((response) => {

@@ -20,7 +20,7 @@
     lang = getCookie("lang"); // current language
 
   // Get estates
-  fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/estates", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -174,7 +174,6 @@
     if (locationStatus && dateStatus && timeStatus && dateTime) {
       var formData = {
         collection_id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         estate_id: location.value,
         date: date.value,
         time: time.value,

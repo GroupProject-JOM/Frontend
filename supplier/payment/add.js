@@ -139,8 +139,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     if (hnameStatus && accNumStatus && bankStatus) {
       var formData = {
-        // supplier_id: sessionStorage.getItem("sId"),
-        supplier_id: getCookie("sId"),
         name: hname.value,
         account_number: accNum.value,
         bank: bank.value,

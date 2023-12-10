@@ -60,7 +60,7 @@
   };
 
   fetch(
-    backProxy + "/estate?sId=" + getCookie("sId") + "&id=" + getCookie("id"),
+    backProxy + "/estate?id=" + getCookie("id"),
     {
       method: "GET",
       headers: {
@@ -123,9 +123,7 @@
       if (result.isConfirmed) {
         fetch(
           backProxy +
-            "/estate?sId=" +
-            getCookie("sId") +
-            "&id=" +
+            "/estate?id=" +
             getCookie("id"),
           {
             method: "DELETE",

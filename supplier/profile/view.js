@@ -129,7 +129,7 @@
     },
   };
 
-  fetch(backProxy + "/profile?user=" + getCookie("user"), {
+  fetch(backProxy + "/profile", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -204,7 +204,6 @@
     if (currentStatus && new1Status && new2Status && match) {
       // create form data object
       var formData = {
-        user: getCookie("user"),
         password: cPassword.value,
         new: n1.value,
       };

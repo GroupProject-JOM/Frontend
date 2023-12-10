@@ -113,7 +113,7 @@
     },
   };
 
-  fetch(backProxy + "/profile?user=" + getCookie("user"), {
+  fetch(backProxy + "/profile", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -205,7 +205,6 @@
     ) {
       // create form data object
       var formData = {
-        id: getCookie("user"),
         first_name: fname.value,
         last_name: lname.value,
         phone: phone.value,

@@ -178,7 +178,6 @@
     if (enameStatus && addressStatus && areaStatus) {
       var formData = {
         id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         estate_name: ename.value,
         estate_location: locate,
         estate_address: address.value,
@@ -228,7 +227,7 @@
   var backData = "";
   function getData() {
     fetch(
-      backProxy + "/estate?sId=" + getCookie("sId") + "&id=" + getCookie("id"),
+      backProxy + "/estate?id=" + getCookie("id"),
       {
         method: "GET",
         headers: {

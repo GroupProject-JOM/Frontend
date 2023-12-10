@@ -10,8 +10,17 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tError = body.querySelector(".error"),
     th1 = body.querySelector(".th1"),
     th2 = body.querySelector(".th2"),
+    th3 = body.querySelector(".th3"),
+    holderText = body.querySelector(".acc-holder-text"),
+    holder = body.querySelector(".acc-holder"),
+    numberText = body.querySelector(".acc-no-text"),
+    number = body.querySelector(".acc-no"),
+    bankText = body.querySelector(".acc-bank-text"),
+    bank = body.querySelector(".bank"),
+    editBtn = body.querySelector(".edit-btn"),
+    deleteBtn = body.querySelector(".delete-btn"),
     tbody = body.querySelector(".tbody"),
-    closeBtn = body.querySelector(".close-btn"),
+    closeBtn = body.querySelector(".close-btn-bank"),
     overlay = body.querySelector(".overlay"),
     btn = body.querySelector(".next");
 
@@ -41,8 +50,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sText.innerHTML = data["sin"]["sText"];
     th1.textContent = data["sin"]["th1"];
     th2.textContent = data["sin"]["th2"];
+    th3.textContent = data["sin"]["th3"];
     btn.textContent = data["sin"]["btn"];
     tError.textContent = data["sin"]["tError"];
+    holderText.textContent = data["sin"]["holderText"];
+    numberText.textContent = data["sin"]["numberText"];
+    bankText.textContent = data["sin"]["bankText"];
+    editBtn.textContent = data["sin"]["editBtn"];
+    deleteBtn.textContent = data["sin"]["deleteBtn"];
     setGreeting();
   });
 
@@ -58,8 +73,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sText.innerHTML = data["en"]["sText"];
     th1.textContent = data["en"]["th1"];
     th2.textContent = data["en"]["th2"];
+    th3.textContent = data["en"]["th3"];
     btn.textContent = data["en"]["btn"];
     tError.textContent = data["en"]["tError"];
+    holderText.textContent = data["en"]["holderText"];
+    numberText.textContent = data["en"]["numberText"];
+    bankText.textContent = data["en"]["bankText"];
+    editBtn.textContent = data["en"]["editBtn"];
+    deleteBtn.textContent = data["en"]["deleteBtn"];
     setGreeting();
   });
 
@@ -69,16 +90,28 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       sText: "ඔබගේ බැංකු ගිණුම් විස්තර බලන්න සහ සංස්කරණය කරන්න",
       th1: "ගිණුම් අංකය",
       th2: "බැංකුව",
+      th3: "ගිණුම් හිමියා",
       btn: "අලුතින් එකතු කරන්න",
       tError: "**බැංකු ගිණුම් නැත",
+      holderText: "ගිණුම් හිමියා",
+      numberText: "ගිණුම් අංකය",
+      bankText: "බැංකුව",
+      editBtn: "සංස්කරණය කරන්න",
+      deleteBtn: "මකන්න",
     },
     en: {
       sTitle: "Your Bank Accounts",
       sText: "View and Edit the your bank account details",
       th1: "Account Number",
       th2: "Bank",
+      th3: "Account Holder",
       btn: "Add New",
       tError: "**No Bank Accounts",
+      holderText: "Account Holder",
+      numberText: "Account Number",
+      bankText: "Bank",
+      editBtn: "Edit",
+      deleteBtn: "Delete",
     },
   };
 
@@ -86,7 +119,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function getData() {
     var row = "";
-    fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+    fetch(backProxy + "/accounts", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -128,7 +161,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 overlay.style.display = "flex";
                 document.querySelector(".view-bank-container").style.display =
                   "block";
+                number.textContent = col.parentNode.children[0].textContent;
+                bank.textContent = col.parentNode.children[1].textContent;
+                holder.textContent = col.parentNode.children[2].textContent;
                 document.cookie = "id=" + col.parentElement.id + "; path=/";
+
+                deleteBtn.addEventListener("click", () => {
+                  delete_account(col);
+                });
               });
             });
 
@@ -141,80 +181,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
             deletes.forEach((del) => {
               del.addEventListener("click", () => {
-                if (lang == "sin") {
-                  var title = "ඔයාට විශ්වාස ද?",
-                    text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
-                    confirmButtonText = "ඔව්, එය මකන්න!",
-                    cancelButtonText = "අවලංගු කරන්න";
-                } else {
-                  var title = "Are you sure?",
-                    text = "You won't be able to revert this!",
-                    confirmButtonText = "Yes, delete it!",
-                    cancelButtonText = "Cancel";
-                }
-                Swal.fire({
-                  title: title,
-                  text: text,
-                  confirmButtonText: confirmButtonText,
-                  cancelButtonText: cancelButtonText,
-                  icon: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: confirmButtonColor,
-                  cancelButtonColor: cancelButtonColor,
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    fetch(
-                      backProxy +
-                        "/account?sId=" +
-                        // sessionStorage.getItem("sId") +
-                        getCookie("sId") +
-                        "&id=" +
-                        del.parentElement.id,
-                      {
-                        method: "DELETE",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        credentials: "include",
-                      }
-                    )
-                      .then((response) => {
-                        if (response.status == 200) {
-                          response.json().then((data) => {
-                            console.log(data.message);
-                            if (lang == "sin") {
-                              var title = "මකා දමන ලදී!",
-                                text = "ඔබගේ ගිණුම මකා ඇත.";
-                            } else {
-                              var title = "Deleted!",
-                                text = "Your account has been deleted.";
-                            }
-                            // sweet alert
-                            Swal.fire({
-                              title: title,
-                              text: text,
-                              icon: "success",
-                              confirmButtonColor: confirmButtonColor,
-                            }).then((response) => {
-                              getData();
-                            });
-                          });
-                        } else if (response.status === 400) {
-                          response.json().then((data) => {
-                            console.log(data.message);
-                            Command: toastr["error"](data.message);
-                          });
-                        } else {
-                          console.error("Error:", response.status);
-                          Command: toastr["error"](response.status, "Error");
-                        }
-                      })
-                      .catch((error) => {
-                        console.error("An error occurred:", error);
-                        Command: toastr["error"](error);
-                      });
-                  }
-                });
+                delete_account(del);
               });
             });
           });
@@ -234,5 +201,74 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         console.error("An error occurred:", error);
         Command: toastr["error"](error);
       });
+  }
+
+  function delete_account(del) {
+    if (lang == "sin") {
+      var title = "ඔයාට විශ්වාස ද?",
+        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+        confirmButtonText = "ඔව්, එය මකන්න!",
+        cancelButtonText = "අවලංගු කරන්න";
+    } else {
+      var title = "Are you sure?",
+        text = "You won't be able to revert this!",
+        confirmButtonText = "Yes, delete it!",
+        cancelButtonText = "Cancel";
+    }
+    Swal.fire({
+      title: title,
+      text: text,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: confirmButtonColor,
+      cancelButtonColor: cancelButtonColor,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(backProxy + "/account?id=" + del.parentElement.id, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
+          .then((response) => {
+            if (response.status == 200) {
+              response.json().then((data) => {
+                console.log(data.message);
+                if (lang == "sin") {
+                  var title = "මකා දමන ලදී!",
+                    text = "ඔබගේ ගිණුම මකා ඇත.";
+                } else {
+                  var title = "Deleted!",
+                    text = "Your account has been deleted.";
+                }
+                // sweet alert
+                Swal.fire({
+                  title: title,
+                  text: text,
+                  icon: "success",
+                  confirmButtonColor: confirmButtonColor,
+                }).then((response) => {
+                  getData();
+                });
+              });
+            } else if (response.status === 400) {
+              response.json().then((data) => {
+                console.log(data.message);
+                Command: toastr["error"](data.message);
+              });
+            } else {
+              console.error("Error:", response.status);
+              Command: toastr["error"](response.status, "Error");
+            }
+          })
+          .catch((error) => {
+            console.error("An error occurred:", error);
+            Command: toastr["error"](error);
+          });
+      }
+    });
   }
 })();

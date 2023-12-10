@@ -135,7 +135,7 @@
       "<option value='' disabled selected hidden class='bop'></option>";
 
   // Get estates
-  fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/estates", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -186,7 +186,7 @@
 
   //Get bank accounts
   // bankWait = await
-  fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/accounts", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -296,7 +296,6 @@
             proceed = true;
             var formData = {
               id: getCookie("id"),
-              supplier_id: getCookie("sId"),
               initial_amount: amount.value,
               payment_method: payment.value,
               supply_method: method.value,
@@ -311,7 +310,6 @@
             proceed = true;
             var formData = {
               id: getCookie("id"),
-              supplier_id: getCookie("sId"),
               initial_amount: amount.value,
               payment_method: payment.value,
               supply_method: method.value,
@@ -327,7 +325,6 @@
             proceed = true;
             var formData = {
               id: getCookie("id"),
-              supplier_id: getCookie("sId"),
               initial_amount: amount.value,
               payment_method: payment.value,
               supply_method: method.value,
@@ -340,7 +337,6 @@
           proceed = true;
           var formData = {
             id: getCookie("id"),
-            supplier_id: getCookie("sId"),
             initial_amount: amount.value,
             payment_method: payment.value,
             supply_method: method.value,
@@ -391,10 +387,7 @@
 
   fetch(
     backProxy +
-      // "/collection?sId=" +
-      "/supply-request?user=" +
-      getCookie("user") +
-      "&id=" +
+      "/supply-request?id=" +
       getCookie("id"),
     {
       method: "GET",

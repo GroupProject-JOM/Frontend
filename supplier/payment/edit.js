@@ -135,10 +135,7 @@
 
     if (hnameStatus && accNumStatus && bankStatus) {
       var formData = {
-        // id: sessionStorage.getItem("id"),
-        // supplier_id: sessionStorage.getItem("sId"),
         id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         name: hname.value,
         account_number: accNum.value,
         bank: bank.value,
@@ -178,11 +175,7 @@
   //Get data
   fetch(
     backProxy +
-      "/account?sId=" +
-      // sessionStorage.getItem("sId") +
-      getCookie("sId") +
-      "&id=" +
-      // sessionStorage.getItem("id"),
+      "/account?id=" +
       getCookie("id"),
     {
       method: "GET",

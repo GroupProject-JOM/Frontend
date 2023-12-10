@@ -114,7 +114,6 @@
     if (dateStatus && timeStatus && dateTime) {
       var formData = {
         collection_id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         date: date.value,
         time: time.value,
       };

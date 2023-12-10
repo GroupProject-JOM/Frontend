@@ -179,11 +179,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       (pickup.checked || delivered.checked) &&
       (cash.checked || bTransfer.checked)
     ) {
-      // sessionStorage.setItem("amount", amount.value);
       document.cookie = "amount=" + amount.value;
       var formData = {
-        // supplier_id: sessionStorage.getItem("sId"),
-        supplier_id: getCookie("sId"),
         initial_amount: amount.value,
         payment_method: money,
         supply_method: collection,

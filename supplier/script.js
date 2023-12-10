@@ -216,7 +216,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</td>" +
               "<td>" +
               item.value.toLocaleString("en-US") +
-              "</td>" +
+              " LKR</td>" +
               "<td>" +
               "<button class='" +
               stat +
@@ -283,7 +283,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</td>" +
               "<td>" +
               item.value.toLocaleString("en-US") +
-              "</td>" +
+              " LKR</td>" +
               "<td>" +
               "<button class='" +
               stat +

@@ -18,7 +18,7 @@
   var bank_options =
     "<option value='' disabled selected hidden class='bop'></option>";
   // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
-  fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/accounts", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -177,7 +177,6 @@
     if (bankStatus && dateStatus && timeStatus && dateTime) {
       var formData = {
         collection_id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         date: date.value,
         time: time.value,
         account_id: bank.value,

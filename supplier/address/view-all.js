@@ -75,7 +75,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   function getData() {
     var row = "";
     // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
-    fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
+    fetch(backProxy + "/estates", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -142,9 +142,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   if (result.isConfirmed) {
                     fetch(
                       backProxy +
-                        "/estate?sId=" +
-                        getCookie("sId") +
-                        "&id=" +
+                        "/estate?id=" +
                         del.parentElement.id,
                       {
                         method: "DELETE",
