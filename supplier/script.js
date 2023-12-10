@@ -49,6 +49,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     search(searchBar2.value.toUpperCase(), pastSupplyTable);
   });
 
+  const searchBox = document.getElementById("searchBox"),
+    googleIcon = document.getElementById("filter-icon");
+
+  googleIcon.onclick = function () {
+    searchBox.classList.toggle("active");
+  };
+
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
