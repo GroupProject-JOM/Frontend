@@ -113,7 +113,6 @@
 
 .supply4-container {
   display: flex;
-  flex-wrap: wrap-reverse;
   gap: 65px;
   padding-left: 20px;
   align-items: center;
@@ -654,6 +653,7 @@ margin-top: 0;
   .supply4-container {
     padding-left: 0;
     gap: 1rem;
+    flex-wrap: wrap-reverse;
   }
 
   .map iframe {

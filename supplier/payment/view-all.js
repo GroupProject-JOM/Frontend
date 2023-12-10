@@ -106,7 +106,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       th2: "Bank",
       th3: "Account Holder",
       btn: "Add New",
-      tError: "**No Bank Accounts",
+      tError: "**You don't have any bank accounts saved",
       holderText: "Account Holder",
       numberText: "Account Number",
       bankText: "Bank",

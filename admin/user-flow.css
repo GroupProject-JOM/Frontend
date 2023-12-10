@@ -91,6 +91,8 @@ select.dropdown {
   .outlet-view-container{
     width: 90%;
   }
+
+
 @media only screen and (max-device-width: 900px) {
   .admin-container {
     margin-left: 0;
@@ -161,7 +163,8 @@ input:focus {
 
 
 .register-form div,
-.edit-outlet-form div {
+.edit-outlet-form div,
+.edit-employee-form div{
   display: flex;
   width: 40vw;
   gap: 20px;
@@ -216,10 +219,11 @@ input:focus {
 }
 
 .edit-employee-container input,
-.outlet-edit-container input {
+.outlet-edit-container input,
+.edit-employee-container select.dropdown{
   color: var(--primary-color);
-  font-weight: 500;
-  /* color: red; */
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .edit-employee-container .email-label {
@@ -236,6 +240,13 @@ input:focus {
   display: block;
   font-size: 0.8rem;
   font-weight: 500;
+}
+
+.edit-employee-form label{
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--input-border-focus);
 }
 
 .register-form input {
