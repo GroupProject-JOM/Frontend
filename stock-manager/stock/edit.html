@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>View Collector</title>
+    <title>Edit Stock Details</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
     ></script>
+
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
     <link rel="stylesheet" href="../user-flow.css" />
-    <link rel="stylesheet" href="../style.css">
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -66,85 +66,58 @@
 
       <div class="text"></div>
 
-      <div class="track-collectors-container container">
-        <div class="heading-content">
+      <div class="edit-stock-container stockmg-container">
+        <div class="yard">
+          <h3 class="yard-h3"></h3>
+          <table class="overview-tables" style="margin-top: 0">
+            <thead>
+              <tr>
+                <th>Block ID</th>
+                <th>Day</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+
+            <tbody class="tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="edit-stock-content">
           <div class="stockmg-heading table-heading">
             <h2 class="stockmg-title"></h2>
-            <div>
-
-              <p class="stockmg-text1 stockmg-text"></p>
-              <div class="filter">
-                <div id="searchBox">
-                  <i class="fas fa-filter" id="filter-icon"></i>
-                  <input type="date" placeholder="Select date to filter" />
-                </div>
-              </div>
-            </div>
           </div>
-          
-        </div>
-        <!-- map starts -->
-        <div class="overlay" id="overlay">
-          <div class="collections-map">
-          <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
-            <div class="map">
-            </div>
+
+          <div class="edit-stock-form">
+            <form>
+                <label class="amount-label"></label>
+                <input
+                type="number"
+                class="coco-amount"
+                placeholder=""
+                />
+                <span class="form-error coco-error"></span>
+                
+                <label class="period-label"></label>
+                <input
+                type="number"
+                class="period"
+                placeholder=""
+                />
+                <span class="form-error coco-error"></span>
+            </form>
           </div>
-        </div>
-        <!-- map ends -->
-
-        <table class="addresses-table overview-tables">
-          <thead>
-            <tr>
-              <th>Collection ID</th>
-              <th>Supplier</th>
-              <th>Phone No</th>
-              <th>Area</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-
-          <tbody class="tbody"></tbody>
-        </table>
-
-        <button class="map-button form-button"></button>
-
-        <div class="calendar">
-
-          <div class="to-yard">
-            <p class="yard-text"></p>
-            <p class="yard-value"></p>
-            <button class="yard-button form-button"></button>
-          </div>
-          
-          <div
-          id="chartDiv"
-          style="height: 300px;
-          width: 300px;
-         margin-top: -30px;
-         z-index: -1;"
-          ></div>
         </div>
       </div>
     </section>
-    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
-    <script
-      type="text/javascript"
-      src="https://code.jscharting.com/latest/modules/types.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://code.jscharting.com/latest/modules/toolbar.js"
-    ></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
+    <script src="./edit.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./load-nav.js"></script>
     <script src="./load-notifications.js"></script>
-    <script src="./view.js"></script>
     <script src="../../common/loader.js"></script>
   </body>
 </html>
