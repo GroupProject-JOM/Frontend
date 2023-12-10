@@ -114,8 +114,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c3: "*Supply ID S092 has been rejected due to the supply coconut amount not meeting the minimum required. <br/>This will be automatically deleted in 7 days",
       c4: "Past Supplies",
       c5: "Overview of past supplies at your estates",
-      ongoingError: "**You have not any Ongoing Supplies",
-      pastError: "**You have not any Past Supplies",
+      ongoingError: "**You don't have any ongoing supplies",
+      pastError: "**You don't have any past supplies",
     },
   };
 
