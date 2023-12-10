@@ -226,16 +226,13 @@
   //Get data
   var backData = "";
   function getData() {
-    fetch(
-      backProxy + "/estate?id=" + getCookie("id"),
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      }
-    )
+    fetch(backProxy + "/estate?id=" + getCookie("id"), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
       .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {

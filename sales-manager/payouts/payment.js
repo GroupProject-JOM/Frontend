@@ -57,16 +57,13 @@
     },
   };
 
-  fetch(
-    backProxy + "/payout?id=" + getCookie("id") + "&user=" + getCookie("user"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/payout?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -141,7 +138,6 @@
     }).then((result) => {
       if (result.isConfirmed) {
         var formData = {
-          user: getCookie("user"),
           id: getCookie("id"),
         };
         fetch(backProxy + "/payout", {

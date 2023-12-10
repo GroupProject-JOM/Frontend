@@ -48,8 +48,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   };
 
   var row = "";
-  
-  fetch(backProxy + "/today-pickups?user=" + getCookie("user"), {
+
+  fetch(backProxy + "/today-pickups", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -64,29 +64,29 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           function data_to_table(item) {
             row +=
-            `<tr data-href='./view.html' id=` +
-            item.id +
-            `>` +
-            `<td>` +
-            item.id +
-            `</td>` +
-            `<td>` +
-            item.name +
-            ` ` +
-            item.last_name +
-            `</td>` +
-            `<td>` +
-            timeString(item.time) +
-            `</td>` +
-            `<td>` +
-            item.amount.toLocaleString("en-US") +
-            `</td>` +
-            `<td>` +
-            item.c_fName +
-            ` ` +
-            item.c_lName +
-            `</td>` +
-            `</tr>`;
+              `<tr data-href='./view.html' id=` +
+              item.id +
+              `>` +
+              `<td>` +
+              item.id +
+              `</td>` +
+              `<td>` +
+              item.name +
+              ` ` +
+              item.last_name +
+              `</td>` +
+              `<td>` +
+              timeString(item.time) +
+              `</td>` +
+              `<td>` +
+              item.amount.toLocaleString("en-US") +
+              `</td>` +
+              `<td>` +
+              item.c_fName +
+              ` ` +
+              item.c_lName +
+              `</td>` +
+              `</tr>`;
           }
           tbody.innerHTML = row;
 

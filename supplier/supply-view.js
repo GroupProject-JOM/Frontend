@@ -87,18 +87,13 @@
     },
   };
 
-  fetch(
-    backProxy +
-      "/supply-request?id=" +
-      getCookie("id"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/supply-request?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -253,18 +248,13 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/collection?id=" +
-            getCookie("id"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/collection?id=" + getCookie("id"), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {
@@ -311,7 +301,8 @@
 
   // web socket
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" + getPayload(getCookie("jwt")).user
+    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" +
+      getPayload(getCookie("jwt")).user
   );
 
   socket.onmessage = function (event) {

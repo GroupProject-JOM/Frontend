@@ -73,7 +73,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     row2 = "",
     row3 = "";
 
-  fetch(backProxy + "/all-collections?user=" + getCookie("user"), {
+  fetch(backProxy + "/all-collections", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

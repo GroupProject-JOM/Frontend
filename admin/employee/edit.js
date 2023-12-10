@@ -39,7 +39,6 @@ let gendr, bDay;
     address2Label = body.querySelector(".address2-label"),
     address3Label = body.querySelector(".address3-label");
 
-
   var fnameStatus = false,
     lnameStatus = false,
     phoneStatus = false,
@@ -84,8 +83,6 @@ let gendr, bDay;
     address1Label.textContent = data["sin"]["address1Label"];
     address2Label.textContent = data["sin"]["address2Label"];
     address3Label.textContent = data["sin"]["address3Label"];
-
-
 
     setGreeting();
   });
@@ -147,14 +144,14 @@ let gendr, bDay;
       op5: "අලෙවි කළමනාකරු",
       btn: "වෙනස්කම් සුරකින්න",
       fnameLabel: "මුල් නම",
-    lnameLabel: "අවසන් නම",
-    emailLabel: "ඊතැපැල් ලිපිනය",
-    phoneLabel: "දුරකථන අංකය",
-    nicLabel: "ජාතික හැඳුනුම්පත් අංකය",
-    roleLabel: "තනතුරු",
-    address1Label: "ලිපින පේළි 1",
-    address2Label: "වීදිය",
-    address3Label: "නගරය",
+      lnameLabel: "අවසන් නම",
+      emailLabel: "ඊතැපැල් ලිපිනය",
+      phoneLabel: "දුරකථන අංකය",
+      nicLabel: "ජාතික හැඳුනුම්පත් අංකය",
+      roleLabel: "තනතුරු",
+      address1Label: "ලිපින පේළි 1",
+      address2Label: "වීදිය",
+      address3Label: "නගරය",
     },
     en: {
       fh: "Edit Employee Details",
@@ -175,14 +172,14 @@ let gendr, bDay;
       op5: "Sales Manager",
       btn: "Save Changes",
       fnameLabel: "First Name",
-    lnameLabel: "Last Name",
-    emailLabel: "Email Address",
-    phoneLabel: "Phone Number",
-    nicLabel: "NIC Number",
-    roleLabel: "Designation",
-    address1Label: "Address Line 1",
-    address2Label: "Street",
-    address3Label: "City",
+      lnameLabel: "Last Name",
+      emailLabel: "Email Address",
+      phoneLabel: "Phone Number",
+      nicLabel: "NIC Number",
+      roleLabel: "Designation",
+      address1Label: "Address Line 1",
+      address2Label: "Street",
+      address3Label: "City",
     },
   };
 
@@ -251,7 +248,6 @@ let gendr, bDay;
     ) {
       var formData = {
         eId: getCookie("id"),
-        emp: getCookie("user"),
         first_name: fname.value,
         last_name: lname.value,
         phone: phone.value,
@@ -375,16 +371,13 @@ let gendr, bDay;
     }
   });
 
-  fetch(
-    backProxy + "/employee?id=" + getCookie("id") + "&user=" + getCookie("user"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/employee?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {

@@ -1,8 +1,7 @@
 (() => {
     const body = document.querySelector("body"),
       sin = body.querySelector(".sin"),
-      en = body.querySelector(".en"),
-      
+      en = body.querySelector(".en"),      
       fh = body.querySelector(".form-heading"),
       fht = body.querySelector(".form-heading-text"),
       next = body.querySelector(".next");
@@ -13,9 +12,7 @@
       en.classList.remove("active");
   
       document.documentElement.setAttribute("lang", "sin");
-      // sessionStorage.setItem("lang", "sin");
-      document.cookie="lang=sin; path=/";
-  
+      document.cookie="lang=sin; path=/";  
       
       fh.textContent = data["sin"]["fh"];
       fht.innerHTML = data["sin"]["fht"];
@@ -27,9 +24,7 @@
       sin.classList.remove("active");
   
       document.documentElement.setAttribute("lang", "en");
-      // sessionStorage.setItem("lang", "en");
-      document.cookie="lang=en; path=/";
-  
+      document.cookie="lang=en; path=/";  
      
       fh.textContent = data["en"]["fh"];
       fht.innerHTML = data["en"]["fht"];

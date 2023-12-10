@@ -140,18 +140,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   cancelButtonColor: cancelButtonColor,
                 }).then((result) => {
                   if (result.isConfirmed) {
-                    fetch(
-                      backProxy +
-                        "/estate?id=" +
-                        del.parentElement.id,
-                      {
-                        method: "DELETE",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        credentials: "include",
-                      }
-                    )
+                    fetch(backProxy + "/estate?id=" + del.parentElement.id, {
+                      method: "DELETE",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      credentials: "include",
+                    })
                       .then((response) => {
                         if (response.status == 200) {
                           response.json().then((data) => {
@@ -168,7 +163,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                               title: title,
                               text: text,
                               icon: "success",
-                              confirmButtonColor : confirmButtonColor,
+                              confirmButtonColor: confirmButtonColor,
                             }).then((response) => {
                               getData();
                             });

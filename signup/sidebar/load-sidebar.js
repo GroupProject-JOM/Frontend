@@ -1,5 +1,5 @@
-if (getCookie("page") != null && getCookie("page").length != 0)
-  window.location.href = frontProxy + "/" + getCookie("page");
+if (getCookie("jwt") != null && getCookie("jwt").length != 0)
+  window.location.href = frontProxy + "/" + getPayload(getCookie("jwt")).page;
 
 (() => {
   const sidebar = document.querySelector(".side");
@@ -12,4 +12,4 @@ if (getCookie("page") != null && getCookie("page").length != 0)
   const sideScript = document.createElement("script");
   sideScript.setAttribute("src", "sidebar/script.js");
   document.body.appendChild(sideScript);
-})();  
+})();

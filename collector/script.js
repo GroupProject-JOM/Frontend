@@ -84,7 +84,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   let row1 = "",
     row2 = "";
 
-  fetch(backProxy + "/collector?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/collector", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -125,7 +125,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             if (lang == "sin") Command: toastr["info"]("එකතු කිරීම් නැත");
             else Command: toastr["info"]("No collections");
 
-            if ((data.count > 0)) {
+            if (data.count > 0) {
               fire.style.display = "block";
               greet.style.display = "block";
               todayTable.style.display = "none";
@@ -147,7 +147,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               });
             });
 
-            if ((data.count > 0)) {
+            if (data.count > 0) {
               fire.style.display = "block";
               greet.style.display = "block";
               todayTable.style.display = "none";

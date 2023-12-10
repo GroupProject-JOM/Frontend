@@ -67,20 +67,13 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   let area = "";
 
-  fetch(
-    backProxy +
-      "/supply-request?id=" +
-      getCookie("id") +
-      "&user=" +
-      getCookie("user"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/supply-request?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {

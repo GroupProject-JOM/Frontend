@@ -22,7 +22,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     bLabel = body.querySelector(".bank-label"),
     btn = body.querySelector(".form-button"),
     amountLabel = body.querySelector(".coco-amount-label");
-   
 
   var lang = getCookie("lang"); // current language
 

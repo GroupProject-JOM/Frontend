@@ -61,20 +61,13 @@
     },
   };
 
-  fetch(
-    backProxy +
-      "/production?user=" +
-      getCookie("user") +
-      "&id=" +
-      getCookie("id"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/production?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -125,12 +118,11 @@
     let row = "";
 
     var formData = {
-      user: getCookie("user"),
       id: id,
       yard: yard,
     };
 
-    fetch(backProxy + "/yards?user=" + getCookie("user"), {
+    fetch(backProxy + "/yards", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -215,20 +207,13 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/production?user=" +
-            getCookie("user") +
-            "&id=" +
-            getCookie("id"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/production?id=" + getCookie("id"), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {

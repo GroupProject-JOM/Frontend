@@ -313,7 +313,6 @@ function checkTwoWeeks(date) {
   else return false;
 }
 
-
 function checkTime(time) {
   var t = time.split(":");
   var hour = +t[0],

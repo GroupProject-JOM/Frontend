@@ -48,7 +48,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   };
 
   var row = "";
-  fetch(backProxy + "/distributors?user=" + getCookie("user"), {
+  fetch(backProxy + "/distributors", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -66,8 +66,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<tr data-href='./view.html' id=` +
               item.id +
               `>` +
-              `<td>`+ item.first_name+` `+item.last_name +`</td>` +
-              `<td>`+item.phone+`</td>` +
+              `<td>` +
+              item.first_name +
+              ` ` +
+              item.last_name +
+              `</td>` +
+              `<td>` +
+              item.phone +
+              `</td>` +
               `<td>5000</td>` +
               `<td>2000</td>` +
               `</tr>`;

@@ -55,8 +55,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   };
 
   var row = "";
-  
-  fetch(backProxy + "/employees?user=" + getCookie("user"), {
+
+  fetch(backProxy + "/employees", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

@@ -173,7 +173,6 @@
       address3_status
     ) {
       var formData = {
-        user: getCookie("user"),
         id: getCookie("id"),
         name: oname.value,
         email: email.value,
@@ -233,16 +232,13 @@
   });
 
   //Get data
-  fetch(
-    backProxy + "/outlet?id=" + getCookie("id") + "&user=" + getCookie("user"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/outlet?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {

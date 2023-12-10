@@ -56,7 +56,6 @@
     amountLabel.textContent = data["sin"]["amountLabel"];
     methodLabel.textContent = data["sin"]["methodLabel"];
     paymentLabel.textContent = data["sin"]["paymentLabel"];
-    
 
     setGreeting();
   });
@@ -84,7 +83,7 @@
     amountLabel.textContent = data["en"]["amountLabel"];
     methodLabel.textContent = data["en"]["methodLabel"];
     paymentLabel.textContent = data["en"]["paymentLabel"];
-    
+
     setGreeting();
   });
 
@@ -105,7 +104,6 @@
       amountLabel: "පොල් ප්‍රමාණය",
       methodLabel: "සැපයුම් ක්රමය",
       paymentLabel: "ගෙවීම් ක්රමය",
-      
     },
     en: {
       sTitle: "Edit Supply",
@@ -123,7 +121,6 @@
       amountLabel: "Coconut Amount",
       methodLabel: "Supply Method",
       paymentLabel: "Payment Method",
-      
     },
   };
 
@@ -385,18 +382,13 @@
     }
   });
 
-  fetch(
-    backProxy +
-      "/supply-request?id=" +
-      getCookie("id"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/supply-request?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {

@@ -84,8 +84,6 @@ var fname_status = false,
     address1Label.textContent = data["sin"]["address1Label"];
     address2Label.textContent = data["sin"]["address2Label"];
     address3Label.textContent = data["sin"]["address3Label"];
-
-
   });
 
   en.addEventListener("click", () => {
@@ -170,7 +168,6 @@ var fname_status = false,
       address1Label: "Address Line 1",
       address2Label: "Street",
       address3Label: "City",
-
     },
   };
 

@@ -242,7 +242,7 @@
               icon: "success",
               confirmButtonColor: confirmButtonColor,
             }).then((response) => {
-              window.location.href ="./view.html"
+              window.location.href = "./view.html";
             });
           } else if (response.status === 202) {
             response.json().then((data) => {
