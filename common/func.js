@@ -236,7 +236,7 @@ function pageLoading() {
   // const loader = document.querySelector(".loader-wrapper");
   // loader.style.display = "block";
   // loader.toggle()
-  // $(".loader-wrapper").toggle();
+  $(".loader-wrapper").toggle();
 }
 
 function timeString(time) {
