@@ -37,12 +37,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
     });
   });
+
   searchBox2.forEach((elm) => {
     elm.addEventListener("click", () => {
       elm.previousElementSibling.value = "";
       search(searchBar2.value.toUpperCase(), pastSupplyTable);
     });
   });
+  
   searchBar1.addEventListener("keyup", () => {
     search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
   });
@@ -59,12 +61,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     search(filter2.value.toUpperCase(), pastSupplyTable);
   });
 
-  const searchBox = document.getElementById("searchBox"),
-    googleIcon = document.getElementById("filter-icon");
+  const googleIcon = document.querySelectorAll("#filter-icon");
 
-  googleIcon.onclick = function () {
-    searchBox.classList.toggle("active");
-  };
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

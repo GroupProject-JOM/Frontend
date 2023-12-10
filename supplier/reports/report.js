@@ -57,7 +57,11 @@
     },
   };
 
-  let coco = [];
+  let coco = [],
+    this_year_value = [],
+    this_year_sales = [],
+    last_year_value = [],
+    last_year_sales = [];
 
   fetch(backProxy + "/report", {
     method: "GET",
@@ -80,23 +84,26 @@
           data.last_six.forEach((item) => {
             coco.push(parseFloat(item.price));
           });
-          rateChart(coco);
-
-          var sum = coco.reduce((accumulator, currentValue) => {
-            return accumulator + currentValue;
-          }, 0);
+          rateChart(coco.reverse());
 
           if (lang == "sin")
-            w2Value.textContent = "රු. " + data.avg[0].toFixed(2);
-          else w2Value.textContent = "Rs. " + data.avg[0].toFixed(2);
+            w2Value.textContent = "රු. " + data.avg.reverse()[0].toFixed(2);
+          else w2Value.textContent = "Rs. " + data.avg.reverse()[0].toFixed(2);
 
-          avgChart(data.avg);
-        });
-      } else if (response.status === 202) {
-        response.json().then((data) => {
-          // data.size=0
-          if (lang == "sin") Command: toastr["info"]("ගාස්තු නැත");
-          else Command: toastr["info"]("No rates");
+          avgChart(data.avg.reverse());
+
+          data.this.forEach((item) => {
+            this_year_value.push(parseFloat(item.date));
+            this_year_sales.push(parseFloat(item.price));
+          });
+
+          data.last.forEach((item) => {
+            last_year_value.push(parseFloat(item.date));
+            last_year_sales.push(parseFloat(item.price));
+          });
+
+          salesChart(this_year_value, last_year_value);
+          earningsChart(this_year_sales, last_year_sales);
         });
       } else {
         console.error("Error:", response.status);
@@ -253,130 +260,126 @@ let labels = [
   "Dec",
 ];
 
-// sales chart data
-let sales1 = [70, 50, 50, 30, 70, 11, 15, 10, 21, 30, 45, 12];
-let sales2 = [23, 67, 12, 34, 54, 12, 34, 5, 55, 24, 67, 89];
+function salesChart(this_year, last_year) {
+  //sales chart design
+  const dataLine1 = {
+    labels: labels,
+    datasets: [
+      {
+        label: "This year",
+        data: this_year,
+        // fill: true,
+        borderColor: "#BB9056",
+        borderWidth: 2,
+        // hoverBorderColor: '#000000',
+        // backgroundColor:'#ffe0b6'
+        tension: 0.1,
+        pointRadius: 0,
+        hoverPointRadius: 0,
+      },
+      {
+        label: "Last year",
+        data: last_year,
+        // fill: true,
+        borderColor: "#949494",
+        borderWidth: 2,
+        // hoverBorderColor: '#000000',
+        // backgroundColor:'#ffe0b6'
+        tension: 0.1,
+        pointRadius: 0,
+        hoverPointRadius: 0,
+      },
+    ],
+  };
 
-//earnings chart data
-let earning1 = [70, 50, 50, 30, 70, 11, 15, 10, 21, 30, 45, 12];
-let earning2 = [23, 67, 12, 34, 54, 12, 34, 5, 55, 24, 67, 89];
-
-//sales chart design
-const dataLine1 = {
-  labels: labels,
-  datasets: [
-    {
-      label: "This year",
-      data: sales1,
-      // fill: true,
-      borderColor: "#BB9056",
-      borderWidth: 2,
-      // hoverBorderColor: '#000000',
-      // backgroundColor:'#ffe0b6'
-      tension: 0.1,
-      pointRadius: 0,
-      hoverPointRadius: 0,
-    },
-    {
-      label: "Last year",
-      data: sales2,
-      // fill: true,
-      borderColor: "#949494",
-      borderWidth: 2,
-      // hoverBorderColor: '#000000',
-      // backgroundColor:'#ffe0b6'
-      tension: 0.1,
-      pointRadius: 0,
-      hoverPointRadius: 0,
-    },
-  ],
-};
-
-//earnings chart design
-const dataLine2 = {
-  labels: labels,
-  datasets: [
-    {
-      label: "This year",
-      data: earning1,
-      // fill: true,
-      borderColor: "#BB9056",
-      borderWidth: 2,
-      // hoverBorderColor: '#000000',
-      // backgroundColor:'#ffe0b6'
-      tension: 0.1,
-      pointRadius: 0,
-      hoverPointRadius: 0,
-    },
-    {
-      label: "Last year",
-      data: earning2,
-      // fill: true,
-      borderColor: "#949494",
-      borderWidth: 2,
-      // hoverBorderColor: '#000000',
-      // backgroundColor:'#ffe0b6'
-      tension: 0.1,
-      pointRadius: 0,
-      hoverPointRadius: 0,
-    },
-  ],
-};
-
-//sales chart configuration
-const configLine1 = {
-  type: "line",
-  data: dataLine1,
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        position: "top",
-        labels: {
-          boxWidth: 30,
-          boxHeight: 2,
+  //sales chart configuration
+  const configLine1 = {
+    type: "line",
+    data: dataLine1,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+          labels: {
+            boxWidth: 30,
+            boxHeight: 2,
+          },
+        },
+        title: {
+          display: true,
+          text: "Monthly Sales",
         },
       },
-      title: {
-        display: true,
-        text: "Monthly Sales",
-      },
     },
-  },
-};
+  };
 
-//earnings chart configuration
-const configLine2 = {
-  type: "line",
-  data: dataLine2,
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        position: "top",
-        labels: {
-          boxWidth: 30,
-          boxHeight: 2,
+  // sales chart visualizing
+  const chartLine1 = new Chart(
+    document.getElementById("sales-graph"),
+    configLine1
+  );
+}
+
+function earningsChart(this_year, last_year) {
+  //earnings chart design
+  const dataLine2 = {
+    labels: labels,
+    datasets: [
+      {
+        label: "This year",
+        data: this_year,
+        // fill: true,
+        borderColor: "#BB9056",
+        borderWidth: 2,
+        // hoverBorderColor: '#000000',
+        // backgroundColor:'#ffe0b6'
+        tension: 0.1,
+        pointRadius: 0,
+        hoverPointRadius: 0,
+      },
+      {
+        label: "Last year",
+        data: last_year,
+        // fill: true,
+        borderColor: "#949494",
+        borderWidth: 2,
+        // hoverBorderColor: '#000000',
+        // backgroundColor:'#ffe0b6'
+        tension: 0.1,
+        pointRadius: 0,
+        hoverPointRadius: 0,
+      },
+    ],
+  };
+
+  //earnings chart configuration
+  const configLine2 = {
+    type: "line",
+    data: dataLine2,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+          labels: {
+            boxWidth: 30,
+            boxHeight: 2,
+          },
+        },
+        title: {
+          display: true,
+          text: "Monthly Earnings",
         },
       },
-      title: {
-        display: true,
-        text: "Monthly Earnings",
-      },
     },
-  },
-};
+  };
 
-// sales chart visualizing
-const chartLine1 = new Chart(
-  document.getElementById("sales-graph"),
-  configLine1
-);
-
-// earning chart visualizing
-const chartLine2 = new Chart(
-  document.getElementById("earnings-graph"),
-  configLine2
-);
+  // earning chart visualizing
+  const chartLine2 = new Chart(
+    document.getElementById("earnings-graph"),
+    configLine2
+  );
+}
