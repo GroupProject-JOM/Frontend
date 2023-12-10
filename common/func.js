@@ -65,8 +65,6 @@ function setGreeting() {
 
 function modeTranslate() {
   var text = null;
-  // const curMode = sessionStorage.getItem("mode");
-  // const curLng = sessionStorage.getItem("lang");
   const curMode = getCookie("mode");
   const curLng = getCookie("lang");
 
