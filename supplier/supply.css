@@ -233,6 +233,11 @@ select.dropdown {
   width: 30vw;
 }
 
+.supply4-container{
+  display: flex;
+  gap: 6vw;
+}
+
 textarea {
   /* padding: 5px 5px; */
   padding-top: 10px;
@@ -428,7 +433,6 @@ input [type=""] .supply7-container input {
 }
 .supply-view-container .supply-view-content {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 3vw;
 }
@@ -618,6 +622,9 @@ input [type=""] .supply7-container input {
     margin-left: 0;
     margin-top: 10px;
     height: 50vh;
+  }
+  .supply-view-container{
+    flex-wrap: wrap;
   }
 }
 
