@@ -20,7 +20,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     pastError = body.querySelector(".past-error"),
     pastSupplyTable = body.querySelector(".past-supply-table"),
     searchBar1 = body.querySelector(".search1"),
-    searchBar2 = body.querySelector(".search2");
+    searchBar2 = body.querySelector(".search2"),
+    filter1 = body.querySelector(".filter-1"),
+    filter2 = body.querySelector(".filter-2");
 
   var searchBox1 = document.querySelectorAll(
     '.search-box1 input[type="text"] + span'
@@ -35,12 +37,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
     });
   });
+
   searchBox2.forEach((elm) => {
     elm.addEventListener("click", () => {
       elm.previousElementSibling.value = "";
       search(searchBar2.value.toUpperCase(), pastSupplyTable);
     });
   });
+  
   searchBar1.addEventListener("keyup", () => {
     search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
   });
@@ -49,12 +53,21 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     search(searchBar2.value.toUpperCase(), pastSupplyTable);
   });
 
-  const searchBox = document.getElementById("searchBox"),
-    googleIcon = document.getElementById("filter-icon");
+  filter1.addEventListener("input", () => {
+    search(filter1.value.toUpperCase(), ongoingSupplyTable);
+  });
 
-  googleIcon.onclick = function () {
-    searchBox.classList.toggle("active");
-  };
+  filter2.addEventListener("input", () => {
+    search(filter2.value.toUpperCase(), pastSupplyTable);
+  });
+
+  const googleIcon = document.querySelectorAll("#filter-icon");
+
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
