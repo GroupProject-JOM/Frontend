@@ -33,10 +33,10 @@
   --input-border-focus: #484848;
   --hr-color: #f1f1f1;
   --stock-table-text: #000000;
-  --stock-lv1: #FEFFD6;
-  --stock-lv2: #FFF8B8;
-  --stock-lv3: #CAF2C2;
-  --stock-lv4: #FFD6C9;
+  --stock-lv1: #feffd6;
+  --stock-lv2: #fff8b8;
+  --stock-lv3: #caf2c2;
+  --stock-lv4: #ffd6c9;
   /* --stock-lv1: #fbffcc;
   --stock-lv2: #ffe0e0;
   --stock-lv3: #e9ffe8;
@@ -290,7 +290,7 @@ body.dark {
   padding-bottom: 8px;
 }
 
-.table-heading{
+.table-heading {
   width: 87%;
 }
 
@@ -646,7 +646,7 @@ body.dark {
   font-size: 0.9rem;
 }
 
-.rate-section .rate-value{
+.rate-section .rate-value {
   font-size: 1rem;
 }
 
@@ -675,8 +675,7 @@ body.dark {
 .stockmg-request-table,
 .today-table,
 .upcoming-table,
-.productionmg-container .overview-tables
-{
+.productionmg-container .overview-tables {
   width: 90%;
 }
 
@@ -689,11 +688,12 @@ body.dark {
   width: 25%;
 }
 
-.bold{
+.bold {
   font-weight: 600;
 }
 
-.ongoing-error, .past-error{
+.ongoing-error,
+.past-error {
   font-size: 0.9rem;
   color: var(--reject-red);
   margin-top: 8px;
@@ -705,65 +705,73 @@ body.dark {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;  
+  height: 100%;
 }
-
 
 .table-heading > div {
   display: flex;
   justify-content: space-between;
 }
 
-.search-box{
+.table-heading p {
+  margin-right: 10vw;
+}
+
+.search-wrapper {
+  margin: 0 20px;
+}
+
+.search-box {
   display: inline-block;
   position: relative;
+  align-items: center;
+  margin-top: 1px;
   border-radius: 50px;
   border: 3px solid var(--button-color);
   /* padding-right: ; */
 }
 
-.search-box:hover{
+.search-box:hover {
   border-color: var(--button-hover);
 }
 .search-box span {
-width: 25px;
-height: 25px;
-display: flex;
-justify-content: center;
-align-items: center;
-position: absolute;
-bottom: -15px;
-right: -15px;
-transition: bottom 300ms ease-out 300ms, right 300ms ease-out 300ms;
+  width: 24px;
+  height: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -14px;
+  right: -14px;
+  transition: bottom 300ms ease-out 300ms, right 300ms ease-out 300ms;
 }
 
-
-.search-box span:before, .search-box span:after {
-  content: '';
+.search-box span:before,
+.search-box span:after {
+  content: "";
   height: 12px;
   border-left: solid 3px var(--button-color);
   position: absolute;
   transform: rotate(-45deg);
 }
 
-.search-box span:hover{
+.search-box span:hover {
   border-left-color: var(--primary-color);
 }
 
-
 .search-box span:after {
-transform: rotate(45deg);
-opacity: 0;
-top: -20px;
-right: -20px;
-transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
+  transform: rotate(45deg);
+  opacity: 0;
+  top: -20px;
+  right: -20px;
+  transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
 }
 .search-box input {
   /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   font-size: 15px;
   font-weight: bold;
-  width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 23px;
   padding: 5px 0px 5px 10px;
   border: none;
   box-sizing: border-box;
@@ -776,23 +784,25 @@ transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
 .search-box input:focus {
   outline: none;
 }
-.search-box input:focus, .search-box input:not(:placeholder-shown) {
+.search-box input:focus,
+.search-box input:not(:placeholder-shown) {
   width: 200px;
   transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 1.5);
 }
-.search-box input:focus + span, .search-box input:not(:placeholder-shown) + span {
-  bottom: -3px;
+.search-box input:focus + span,
+.search-box input:not(:placeholder-shown) + span {
+  bottom: 1px;
   right: -1px;
   transition: bottom 300ms ease-out 800ms, right 300ms ease-out 800ms;
 }
-.search-box input:focus + span:after, .search-box input:not(:placeholder-shown) + span:after {
-top: 7px;
-right: 12px;
-opacity: 1;
-transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300ms ease 1100ms;
+.search-box input:focus + span:after,
+.search-box input:not(:placeholder-shown) + span:after {
+  top: 6px;
+  right: 11px;
+  opacity: 1;
+  transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms,
+    opacity 300ms ease 1100ms;
 }
-
-
 
 .filter {
   display: flex;
@@ -802,35 +812,41 @@ transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300m
 
 #searchBox {
   border-radius: 55px;
-  padding: 10px;
+  padding: 5px;
   background: var(--body-color);
   display: flex;
   align-items: center;
-  border: 2px solid var(--button-color);
+  border: 3px solid var(--button-color);
 }
 
 #filter-icon {
   width: 20px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 17px;
+  margin-top: 2px;
+  margin-right: -2px;
   color: var(--button-color);
 }
 
-.filter input {
+.filter input,
+.filter .dropdown {
   font-size: 0.9rem;
   width: 0px;
   border: 0;
   background: transparent;
   outline: none;
-  transition: 2s;
+  transition: 1s;
 }
 
-.filter .active input {
+.filter .active input,
+.filter .active .dropdown {
   width: 200px;
   padding: 0px 16px;
 }
 
-
+.search-filter {
+  display: flex;
+}
 @media only screen and (max-device-width: 718px) {
   .home {
     left: 0;
