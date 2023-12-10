@@ -11,10 +11,76 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     t3 = body.querySelector(".stockmg-t3"),
     tx3 = body.querySelector(".stockmg-tx3"),
     tbody1 = body.querySelector(".tbody1"),
+    acceptedTable = body.querySelector(".accepted-table"),
     tbody2 = body.querySelector(".tbody2"),
-    tbody3 = body.querySelector(".tbody3");
+    declinedTable = body.querySelector(".declined-table"),
+    tbody3 = body.querySelector(".tbody3"),
+    completedTable = body.querySelector(".completed-table"),
+    searchBar1 = body.querySelector(".search1"),
+    filter1 = body.querySelector(".filter-1"),
+    searchBar2 = body.querySelector(".search2"),
+    filter2 = body.querySelector(".filter-2"),
+    searchBar3 = body.querySelector(".search3"),
+    filter3 = body.querySelector(".filter-3");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBox1 = document.querySelectorAll(
+    '.search-box1 input[type="text"] + span'
+  );
+  var searchBox2 = document.querySelectorAll(
+    '.search-box2 input[type="text"] + span'
+  );
+  var searchBox3 = document.querySelectorAll(
+    '.search-box3 input[type="text"] + span'
+  );
+
+  searchBox1.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar1.value.toUpperCase(), acceptedTable);
+    });
+  });
+  searchBox2.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar2.value.toUpperCase(), declinedTable);
+    });
+  });
+  searchBox3.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar3.value.toUpperCase(), completedTable);
+    });
+  });
+
+  searchBar1.addEventListener("keyup", () => {
+    search(searchBar1.value.toUpperCase(), acceptedTable);
+  });
+  searchBar2.addEventListener("keyup", () => {
+    search(searchBar2.value.toUpperCase(), declinedTable);
+  });
+  searchBar3.addEventListener("keyup", () => {
+    search(searchBar3.value.toUpperCase(), completedTable);
+  });
+
+  filter1.addEventListener("input", () => {
+    search(filter1.value.toUpperCase(), acceptedTable);
+  });
+  filter2.addEventListener("input", () => {
+    search(filter2.value.toUpperCase(), declinedTable);
+  });
+  filter3.addEventListener("input", () => {
+    search(filter3.value.toUpperCase(), completedTable);
+  });
+
+  const googleIcon = document.querySelectorAll("#filter-icon");
+
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
