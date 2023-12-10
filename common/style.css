@@ -714,9 +714,20 @@ body.dark {
   justify-content: space-between;
 }
 
+.table-heading p{
+  margin-right: 10vw;
+}
+
+.search-wrapper{
+  margin: 0 20px;
+}
+
+
 .search-box{
   display: inline-block;
   position: relative;
+  align-items: center;
+  margin-top: 2px;
   border-radius: 50px;
   border: 3px solid var(--button-color);
   /* padding-right: ; */
@@ -732,8 +743,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 position: absolute;
-bottom: -15px;
-right: -15px;
+bottom: -14px;
+right: -14px;
 transition: bottom 300ms ease-out 300ms, right 300ms ease-out 300ms;
 }
 
@@ -762,8 +773,8 @@ transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
   /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   font-size: 15px;
   font-weight: bold;
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
   padding: 5px 0px 5px 10px;
   border: none;
   box-sizing: border-box;
@@ -781,12 +792,12 @@ transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
   transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 1.5);
 }
 .search-box input:focus + span, .search-box input:not(:placeholder-shown) + span {
-  bottom: -3px;
+  bottom: 1px;
   right: -1px;
   transition: bottom 300ms ease-out 800ms, right 300ms ease-out 800ms;
 }
 .search-box input:focus + span:after, .search-box input:not(:placeholder-shown) + span:after {
-top: 7px;
+top: 6px;
 right: 12px;
 opacity: 1;
 transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300ms ease 1100ms;
@@ -802,35 +813,38 @@ transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300m
 
 #searchBox {
   border-radius: 55px;
-  padding: 10px;
+  padding: 7px;
   background: var(--body-color);
   display: flex;
   align-items: center;
-  border: 2px solid var(--button-color);
+  border: 3px solid var(--button-color);
 }
 
 #filter-icon {
   width: 20px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 19px;
+  margin-top: 2px;
   color: var(--button-color);
 }
 
-.filter input {
+.filter input, .filter .dropdown {
   font-size: 0.9rem;
   width: 0px;
   border: 0;
   background: transparent;
   outline: none;
-  transition: 2s;
+  transition: 1s;
 }
 
-.filter .active input {
+.filter .active input,  .filter .active .dropdown{
   width: 200px;
   padding: 0px 16px;
 }
 
-
+.search-filter{
+  display: flex;
+}
 @media only screen and (max-device-width: 718px) {
   .home {
     left: 0;
