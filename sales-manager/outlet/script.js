@@ -57,7 +57,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function getData() {
     var row = "";
-    fetch(backProxy + "/outlets?user=" + getCookie("user"), {
+    fetch(backProxy + "/outlets", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -129,20 +129,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   cancelButtonColor: cancelButtonColor,
                 }).then((result) => {
                   if (result.isConfirmed) {
-                    fetch(
-                      backProxy +
-                        "/outlet?id=" +
-                        del.parentElement.id +
-                        "&emp=" +
-                        getCookie("sId"),
-                      {
-                        method: "DELETE",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        credentials: "include",
-                      }
-                    )
+                    fetch(backProxy + "/outlet?id=" + del.parentElement.id, {
+                      method: "DELETE",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      credentials: "include",
+                    })
                       .then((response) => {
                         if (response.status == 200) {
                           response.json().then((data) => {

@@ -1,14 +1,3 @@
-// if (sessionStorage.getItem("page") != "supplier") {
-//   if (
-//     sessionStorage.getItem("page") == null ||
-//     sessionStorage.getItem("page").length === 0
-//   ) {
-//     window.location.href = frontProxy + "/signin.html";
-//   } else {
-//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-//   }
-// }
-
 (() => {
   let loaded = false;
 

@@ -56,7 +56,6 @@
     amountLabel.textContent = data["sin"]["amountLabel"];
     methodLabel.textContent = data["sin"]["methodLabel"];
     paymentLabel.textContent = data["sin"]["paymentLabel"];
-    
 
     setGreeting();
   });
@@ -84,7 +83,7 @@
     amountLabel.textContent = data["en"]["amountLabel"];
     methodLabel.textContent = data["en"]["methodLabel"];
     paymentLabel.textContent = data["en"]["paymentLabel"];
-    
+
     setGreeting();
   });
 
@@ -105,7 +104,6 @@
       amountLabel: "පොල් ප්‍රමාණය",
       methodLabel: "සැපයුම් ක්රමය",
       paymentLabel: "ගෙවීම් ක්රමය",
-      
     },
     en: {
       sTitle: "Edit Supply",
@@ -123,7 +121,6 @@
       amountLabel: "Coconut Amount",
       methodLabel: "Supply Method",
       paymentLabel: "Payment Method",
-      
     },
   };
 
@@ -135,7 +132,7 @@
       "<option value='' disabled selected hidden class='bop'></option>";
 
   // Get estates
-  fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/estates", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -186,7 +183,7 @@
 
   //Get bank accounts
   // bankWait = await
-  fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/accounts", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -296,7 +293,6 @@
             proceed = true;
             var formData = {
               id: getCookie("id"),
-              supplier_id: getCookie("sId"),
               initial_amount: amount.value,
               payment_method: payment.value,
               supply_method: method.value,
@@ -311,7 +307,6 @@
             proceed = true;
             var formData = {
               id: getCookie("id"),
-              supplier_id: getCookie("sId"),
               initial_amount: amount.value,
               payment_method: payment.value,
               supply_method: method.value,
@@ -327,7 +322,6 @@
             proceed = true;
             var formData = {
               id: getCookie("id"),
-              supplier_id: getCookie("sId"),
               initial_amount: amount.value,
               payment_method: payment.value,
               supply_method: method.value,
@@ -340,7 +334,6 @@
           proceed = true;
           var formData = {
             id: getCookie("id"),
-            supplier_id: getCookie("sId"),
             initial_amount: amount.value,
             payment_method: payment.value,
             supply_method: method.value,
@@ -389,21 +382,13 @@
     }
   });
 
-  fetch(
-    backProxy +
-      // "/collection?sId=" +
-      "/supply-request?user=" +
-      getCookie("user") +
-      "&id=" +
-      getCookie("id"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/supply-request?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {

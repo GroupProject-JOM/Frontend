@@ -47,7 +47,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -63,7 +62,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -89,21 +87,13 @@
     },
   };
 
-  fetch(
-    backProxy +
-      // "/collection?sId=" +
-      "/supply-request?user=" +
-      getCookie("user") +
-      "&id=" +
-      getCookie("id"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/supply-request?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -258,20 +248,13 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/collection?sId=" +
-            getCookie("sId") +
-            "&id=" +
-            getCookie("id"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/collection?id=" + getCookie("id"), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {
@@ -318,7 +301,8 @@
 
   // web socket
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" + getCookie("user")
+    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" +
+      getPayload(getCookie("jwt")).user
   );
 
   socket.onmessage = function (event) {
@@ -372,7 +356,7 @@
           confirmButtonText: confirmButtonText,
           confirmButtonColor: confirmButtonColor,
         }).then((response) => {
-          const senderId = getCookie("user");
+          const senderId = getPayload(getCookie("jwt")).user;
           const notification = "OK";
           const collection = getCookie("id");
 
@@ -425,7 +409,7 @@
           confirmButtonText: confirmButtonText,
           confirmButtonColor: confirmButtonColor,
         }).then((response) => {
-          const senderId = getCookie("user");
+          const senderId = getPayload(getCookie("jwt")).user;
           const notification = "Denied";
           const collection = getCookie("id");
 

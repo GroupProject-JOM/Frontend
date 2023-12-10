@@ -129,10 +129,11 @@
   });
 
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" + getCookie("user")
+    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" +
+      getPayload(getCookie("jwt")).user
   );
 
-  const senderId = getCookie("user");
+  const senderId = getPayload(getCookie("jwt")).user;
   const notification = "Collector Entered Amount is " + getCookie("final");
   const collection = getCookie("id");
 
@@ -174,8 +175,7 @@
           confirmButtonText = "නැවත ඇතුල් කරන්න";
       } else {
         var title = "Incorrect!",
-          text =
-            "The supplier denied the enterd coconut quantity.",
+          text = "The supplier denied the enterd coconut quantity.",
           confirmButtonText = "Enter again";
       }
       // sweet alert
@@ -209,7 +209,6 @@
     var formData = {
       amount: getCookie("final"),
       id: getCookie("id"),
-      user: getCookie("user"),
     };
 
     fetch(backProxy + "/optional-verification", {
@@ -298,7 +297,6 @@
       error.textContent = "";
       var formData = {
         otp: emailOTP.value,
-        id: getCookie("user"),
         oId: oId,
       };
       fetch(backProxy + "/verify-amount", {
@@ -361,7 +359,6 @@
 
   function completeCollection() {
     var formData = {
-      user: getCookie("user"),
       id: getCookie("id"),
       amount: getCookie("final"),
     };

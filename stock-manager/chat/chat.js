@@ -52,7 +52,7 @@
   if (getCookie("id") != null) loadChat();
   else bottom.style.display = "none";
 
-  const senderId = getCookie("user");
+  const senderId = getPayload(getCookie("jwt")).user;
 
   sentIcon.addEventListener("click", (e) => {
     if (getCookie("id") != null) send();
@@ -111,7 +111,8 @@
 
   // web socket
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/chat/" + getCookie("user")
+    "ws://127.0.0.1:8090/JOM_war_exploded/chat/" +
+      getPayload(getCookie("jwt")).user
   );
 
   socket.onmessage = function (event) {
@@ -137,16 +138,13 @@
 
   //load chat
   function loadChat() {
-    fetch(
-      backProxy + "/chat?user=" + getCookie("user") + "&to=" + getCookie("id"),
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      }
-    )
+    fetch(backProxy + "/chat?to=" + getCookie("id"), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
       .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {
@@ -154,7 +152,7 @@
             arr.forEach(data_to_table);
 
             function data_to_table(item) {
-              if (item.sender == getCookie("user")) {
+              if (item.sender == getPayload(getCookie("jwt")).user) {
                 chat.innerHTML +=
                   `<div class="sent">
                       <div class="sent-msg">
@@ -201,16 +199,11 @@
   //load chat list
   function loadChatList() {
     allChat.innerHTML = null;
-    var formData = {
-      user: getCookie("user"),
-    };
-
     fetch(backProxy + "/chat", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
       credentials: "include",
     })
       .then((response) => {
@@ -347,16 +340,13 @@
   }
 
   function seen() {
-    fetch(
-      backProxy + "/seen?user=" + getCookie("user") + "&id=" + getCookie("id"),
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      }
-    )
+    fetch(backProxy + "/seen?id=" + getCookie("id"), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
       .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {

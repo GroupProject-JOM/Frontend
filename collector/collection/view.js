@@ -1,5 +1,6 @@
 document.cookie = "amount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -65,20 +66,13 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   let area = "";
 
-  fetch(
-    backProxy +
-      "/pickup-collection?id=" +
-      getCookie("id") +
-      "&user=" +
-      getCookie("user"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/pickup-collection?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {

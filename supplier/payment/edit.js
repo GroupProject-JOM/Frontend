@@ -19,7 +19,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -37,7 +36,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -135,10 +133,7 @@
 
     if (hnameStatus && accNumStatus && bankStatus) {
       var formData = {
-        // id: sessionStorage.getItem("id"),
-        // supplier_id: sessionStorage.getItem("sId"),
         id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         name: hname.value,
         account_number: accNum.value,
         bank: bank.value,
@@ -176,22 +171,13 @@
   });
 
   //Get data
-  fetch(
-    backProxy +
-      "/account?sId=" +
-      // sessionStorage.getItem("sId") +
-      getCookie("sId") +
-      "&id=" +
-      // sessionStorage.getItem("id"),
-      getCookie("id"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/account?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {

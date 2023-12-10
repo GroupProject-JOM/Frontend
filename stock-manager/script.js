@@ -53,7 +53,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -77,7 +76,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -134,7 +132,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   w1Value.textContent = 0;
   w2Value.innerHTML = `0<span>/0</span>`;
 
-  fetch(backProxy + "/stock-manager?user=" + getCookie("user"), {
+  fetch(backProxy + "/stock-manager", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -302,7 +300,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   //get coco rate
   getRate();
   function getRate() {
-    fetch(backProxy + "/coco-rate?user=" + getCookie("user"), {
+    fetch(backProxy + "/coco-rate", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -362,7 +360,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     if (rateStatus) {
       var formData = {
-        user: getCookie("user"),
         price: rate.value,
       };
       fetch(backProxy + "/coco-rate", {

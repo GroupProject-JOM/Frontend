@@ -10,7 +10,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
 
     sTitle.textContent = data["sin"]["sTitle"];
@@ -22,7 +21,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
 
     sTitle.textContent = data["en"]["sTitle"];

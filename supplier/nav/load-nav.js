@@ -1,12 +1,12 @@
 (() => {
   const sidebar = document.querySelector(".sidebar");
-  fetch("nav/nav.html")
+  fetch(frontProxy + "/supplier/nav/nav.html")
     .then((res) => res.text())
     .then((data) => {
       sidebar.innerHTML = data;
     });
 
   const navScript = document.createElement("script");
-  navScript.setAttribute("src", "nav/script.js");
+  navScript.setAttribute("src", frontProxy + "/supplier/nav/script.js");
   document.body.appendChild(navScript);
 })();

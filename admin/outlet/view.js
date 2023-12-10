@@ -61,16 +61,13 @@
     },
   };
 
-  fetch(
-    backProxy + "/outlet?id=" + getCookie("id") + "&user=" + getCookie("user"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/outlet?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -131,20 +128,13 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/outlet?id=" +
-            getCookie("id") +
-            "&emp=" +
-            getCookie("sId"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/outlet?id=" + getCookie("id"), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {
@@ -162,7 +152,7 @@
                 title: title,
                 text: text,
                 icon: "success",
-                confirmButtonColor : confirmButtonColor,
+                confirmButtonColor: confirmButtonColor,
               }).then((response) => {
                 window.location.href = "./";
               });

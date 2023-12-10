@@ -78,20 +78,13 @@
     },
   };
 
-  fetch(
-    backProxy +
-      "/production?user=" +
-      getCookie("user") +
-      "&id=" +
-      getCookie("id"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/production?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       console.log(response.status);
       if (response.status == 200) {
@@ -128,12 +121,11 @@
     let row = "";
 
     var formData = {
-      user: getCookie("user"),
       id: id,
       yard: yard,
     };
 
-    fetch(backProxy + "/yards?user=" + getCookie("user"), {
+    fetch(backProxy + "/yards", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -229,7 +221,6 @@
 
     if (yardStatus && blockStatus && amountStatus) {
       var formData = {
-        user: getCookie("user"),
         id: getCookie("id"),
         amount: rAmount.value,
         block: yBlock.value,

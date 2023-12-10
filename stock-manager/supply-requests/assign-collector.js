@@ -52,20 +52,13 @@
 
   let row = "";
 
-  fetch(
-    backProxy +
-      "/assign-collector?sId=" +
-      getCookie("sId") +
-      "&date=" +
-      getCookie("date"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/assign-collector?date=" + getCookie("date"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -97,7 +90,6 @@
             assign.addEventListener("click", () => {
               var formData = {
                 id: getCookie("id"),
-                sId: getCookie("sId"),
                 emp: assign.parentElement.parentElement.id,
               };
               fetch(backProxy + "/assign-collector", {
@@ -128,8 +120,7 @@
                     response.json().then((data) => {
                       console.log(data.message);
                     });
-                    if (lang == "sin")
-                      Command: toastr["error"]("");
+                    if (lang == "sin") Command: toastr["error"]("");
                     else Command: toastr["error"]("No Collector assigned");
                   } else if (response.status === 401) {
                     response.json().then((data) => {

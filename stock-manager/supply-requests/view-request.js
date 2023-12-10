@@ -123,24 +123,16 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  fetch(
-    backProxy +
-      "/supply-request?id=" +
-      getCookie("id") +
-      "&user=" +
-      getCookie("user"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/supply-request?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          log(data.request);
           rId.textContent = data.request.id;
           sName.textContent = data.request.name + " " + data.request.last_name;
           sPhone.textContent = data.request.phone;
@@ -326,20 +318,13 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/accept-request?id=" +
-            getCookie("id") +
-            "&sId=" +
-            getCookie("sId"),
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/accept-request?id=" + getCookie("id"), {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {
@@ -449,7 +434,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           if (result.isConfirmed) {
             var formData = {
               id: getCookie("id"),
-              sId: getCookie("sId"),
               reason: reason,
             };
 

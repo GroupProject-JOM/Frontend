@@ -113,7 +113,7 @@
     },
   };
 
-  fetch(backProxy + "/profile?user=" + getCookie("user"), {
+  fetch(backProxy + "/profile", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -205,7 +205,6 @@
     ) {
       // create form data object
       var formData = {
-        id: getCookie("user"),
         first_name: fname.value,
         last_name: lname.value,
         phone: phone.value,
@@ -243,7 +242,7 @@
               icon: "success",
               confirmButtonColor: confirmButtonColor,
             }).then((response) => {
-              window.location.href ="./view.html"
+              window.location.href = "./view.html";
             });
           } else if (response.status === 202) {
             response.json().then((data) => {

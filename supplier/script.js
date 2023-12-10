@@ -123,7 +123,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     row2 = "",
     count = 0;
 
-  fetch(backProxy + "/collections?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/collections", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -223,7 +223,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</td>" +
               "<td>" +
               item.value.toLocaleString("en-US") +
-              "</td>" +
+              " LKR</td>" +
               "<td>" +
               "<button class='" +
               stat +
@@ -290,7 +290,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</td>" +
               "<td>" +
               item.value.toLocaleString("en-US") +
-              "</td>" +
+              " LKR</td>" +
               "<td>" +
               "<button class='" +
               stat +

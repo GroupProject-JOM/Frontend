@@ -137,7 +137,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       address3_status
     ) {
       var formData = {
-        user: getCookie("user"),
         name: oname.value,
         email: email.value,
         phone: phone.value,
@@ -165,7 +164,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               title: title,
               // text: "You clicked the button!",
               icon: "success",
-              confirmButtonColor : confirmButtonColor,
+              confirmButtonColor: confirmButtonColor,
             }).then((response) => {
               window.location.href = "./";
             });

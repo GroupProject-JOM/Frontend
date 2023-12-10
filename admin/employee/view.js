@@ -60,16 +60,13 @@
     },
   };
 
-  fetch(
-    backProxy + "/employee?id=" + getCookie("id") + "&user=" + getCookie("user"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/employee?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -85,7 +82,9 @@
             data.employee.add_line_3;
           eDob.textContent = data.employee.dob;
           eNic.textContent = data.employee.nic;
-          eRole.textContent = data.employee.role.charAt(0).toUpperCase() +data.employee.role.slice(1);
+          eRole.textContent =
+            data.employee.role.charAt(0).toUpperCase() +
+            data.employee.role.slice(1);
           eGender.textContent = data.employee.gender;
         });
       } else if (response.status === 202) {
@@ -133,20 +132,13 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/employee?id=" +
-            getCookie("id") +
-            "&user=" +
-            getCookie("user"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/employee?id=" + getCookie("id"), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {

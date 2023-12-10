@@ -73,12 +73,11 @@
   let row = "";
 
   var formData = {
-    user: getCookie("user"),
     id: getCookie("id").slice(1),
     yard: getCookie("id").charAt(0),
   };
 
-  fetch(backProxy + "/yards?user=" + getCookie("user"), {
+  fetch(backProxy + "/yards", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -156,7 +155,6 @@
 
     if (amountStatus) {
       var formData = {
-        user: getCookie("user"),
         amount: rAmount.value,
         block: getCookie("id").slice(1),
         yard: getCookie("id").charAt(0),

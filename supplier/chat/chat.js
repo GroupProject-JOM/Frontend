@@ -49,7 +49,7 @@
     },
   };
 
-  const senderId = getCookie("user");
+  const senderId = getPayload(getCookie("jwt")).user;
 
   sentIcon.addEventListener("click", (e) => {
     send();
@@ -97,7 +97,8 @@
 
   // web socket
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/chat/" + getCookie("user")
+    "ws://127.0.0.1:8090/JOM_war_exploded/chat/" +
+      getPayload(getCookie("jwt")).user
   );
 
   socket.onmessage = function (event) {
@@ -115,7 +116,7 @@
   };
 
   //load chat
-  fetch(backProxy + "/chat?user=" + getCookie("user") + "&to=3", {
+  fetch(backProxy + "/chat?to=3", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -129,18 +130,20 @@
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            if (item.sender == getCookie("user")) {
+            if (item.sender == getPayload(getCookie("jwt")).user) {
               chat.innerHTML +=
                 `<div class="sent">
                     <div class="sent-msg">
-                      <p>` + item.content + `</p>
+                      <p>` +
+                item.content +
+                `</p>
                     </div>
                     <span>12.44 PM</span>
                   </div>`;
-            }else{
-              receive(item.content)
+            } else {
+              receive(item.content);
             }
-          }          
+          }
           chat.scrollTop = chat.scrollHeight;
         });
       } else if (response.status === 202) {

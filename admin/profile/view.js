@@ -136,7 +136,7 @@
     },
   };
 
-  fetch(backProxy + "/profile?user=" + getCookie("user"), {
+  fetch(backProxy + "/profile", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

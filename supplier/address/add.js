@@ -180,7 +180,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     if (enameStatus && addressStatus && areaStatus) {
       var formData = {
-        supplier_id: getCookie("sId"),
         estate_name: ename.value,
         estate_location: location,
         estate_address: address.value,

@@ -59,7 +59,7 @@
   };
 
   var row = "";
-  fetch(backProxy + "/outlets?user=" + getCookie("user"), {
+  fetch(backProxy + "/outlets", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

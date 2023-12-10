@@ -59,7 +59,7 @@
 
   let coco = [];
 
-  fetch(backProxy + "/report?user=" + getCookie("user"), {
+  fetch(backProxy + "/report", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
