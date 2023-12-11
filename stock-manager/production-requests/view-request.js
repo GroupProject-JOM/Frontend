@@ -32,6 +32,24 @@
 
   var lang = getCookie("lang"); // current language
 
+  decline.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".decline-container").style.display = "block";
+  });
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target.id === "overlay") {
+        overlay.style.display = "none";
+        document.querySelector(".decline-container").style.display = "none";
+      }
+    });
+
+    closeBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+      document.querySelector(".decline-container").style.display = "none";
+    });
+
+
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
@@ -45,6 +63,8 @@
     accept.textContent = data["sin"]["accept"];
     decline.textContent = data["sin"]["decline"];
     rtext.textContent = data["sin"]["rtext"];
+    submit.textContent = data["sin"]["submit"];
+    otherLabel.textContent = data["sin"]["otherLabel"];
     op0.textContent = data["sin"]["op0"];
     op1.textContent = data["sin"]["op1"];
     op2.textContent = data["sin"]["op2"];
@@ -68,6 +88,8 @@
     accept.textContent = data["en"]["accept"];
     decline.textContent = data["en"]["decline"];
     rtext.textContent = data["en"]["rtext"];
+    otherLabel.textContent = data["en"]["otherLabel"];
+    submit.textContent = data["en"]["submit"];
     op0.textContent = data["en"]["op0"];
     op1.textContent = data["en"]["op1"];
     op2.textContent = data["en"]["op2"];
@@ -85,13 +107,13 @@
       accept: "පිළිගන්න",
       decline: "ප්රතික්ෂේප කරන්න",
       rtext: "ඉල්ලීම ප්‍රතික්ෂේප කිරීමට හේතුව තෝරන්න",
-      op0: "පහත වැටීමට හේතුව තෝරන්න",
-      op1: "පොල් ප්‍රමාණය මදි",
-      op2: "රැගෙන යාමට බොහෝ දුරයි",
-      op3: "අනික්",
       otherLabel: "වෙනත් නම්",
       other: "ඔබේ හේතුව මෙහි ටයිප් කරන්න",
       submit: "ඉදිරිපත් කරන්න",
+      op0: "ප්රතික්ෂේප කිරීමට හේතුව තෝරන්න",
+      op1: "පොල් ලබා ගත නොහැක",
+      op2: "පොල් භාවිතයට සුදුසු තත්ත්වයේ නැත",
+      op3: "වෙනත්",
     },
     en: {
       sTitle: "View Request",
@@ -99,13 +121,13 @@
       accept: "Accept",
       decline: "Decline",
       rtext: "Select the reason for declining the request",
-      op0: "Select reason for declining",
-      op1: "Not enough coconut amount",
-      op2: "Too far to pickup",
-      op3: "Other",
       otherLabel: "If other",
-      other: "Type your reason here",
+      otherLabel: "If other",
       submit: "Submit",
+      op0: "Select reason for declining",
+      op1: "Stock is not available",
+      op2: "Coconuts are not in usable condition",
+      op3: "Other",
     },
   };
 
