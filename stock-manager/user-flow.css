@@ -204,6 +204,10 @@ input[type=text], input[type=number]{
   color: var(--primary-color);
 }
 
+.search-filter input, .search-filter .dropdown{
+  margin-top: 0;
+}
+
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {
