@@ -14,9 +14,36 @@
     date = body.querySelector(".date"),
     rId = body.querySelector(".rId"),
     accept = body.querySelector(".accept"),
-    decline = body.querySelector(".decline");
+    decline = body.querySelector(".decline"),
+    rtext = body.querySelector(".reason-text"),
+    otherLabel = body.querySelector(".reason-label"),
+    closeBtn = body.querySelector(".close-btn"),
+    submit = body.querySelector(".submit"),
+    op0 = body.querySelector(".op0"),
+    op1 = body.querySelector(".op1"),
+    op2 = body.querySelector(".op2"),
+    op3 = body.querySelector(".op3"),
+    overlay = body.querySelector(".overlay");
 
   var lang = getCookie("lang"); // current language
+
+  decline.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".decline-container").style.display = "block";
+  });
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target.id === "overlay") {
+        overlay.style.display = "none";
+        document.querySelector(".decline-container").style.display = "none";
+      }
+    });
+
+    closeBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+      document.querySelector(".decline-container").style.display = "none";
+    });
+
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -30,6 +57,14 @@
     sText.textContent = data["sin"]["sText"];
     accept.textContent = data["sin"]["accept"];
     decline.textContent = data["sin"]["decline"];
+    rtext.textContent = data["sin"]["rtext"];
+    submit.textContent = data["sin"]["submit"];
+    otherLabel.textContent = data["sin"]["otherLabel"];
+    op0.textContent = data["sin"]["op0"];
+    op1.textContent = data["sin"]["op1"];
+    op2.textContent = data["sin"]["op2"];
+    op3.textContent = data["sin"]["op3"];
+
     setGreeting();
   });
 
@@ -45,6 +80,15 @@
     sText.textContent = data["en"]["sText"];
     accept.textContent = data["en"]["accept"];
     decline.textContent = data["en"]["decline"];
+    rtext.textContent = data["en"]["rtext"];
+    otherLabel.textContent = data["en"]["otherLabel"];
+    submit.textContent = data["en"]["submit"];
+    op0.textContent = data["en"]["op0"];
+    op1.textContent = data["en"]["op1"];
+    op2.textContent = data["en"]["op2"];
+    op3.textContent = data["en"]["op3"];
+
+
     setGreeting();
   });
 
@@ -54,12 +98,28 @@
       sText: "නිෂ්පාදනය සඳහා කොටස් ඉල්ලීම් විස්තර බලන්න",
       accept: "පිළිගන්න",
       decline: "ප්රතික්ෂේප කරන්න",
+      rtext: "ඉල්ලීම ප්‍රතික්ෂේප කිරීමට හේතුව තෝරන්න",
+      submit: "ඉදිරිපත් කරන්න",
+      op0: "ප්රතික්ෂේප කිරීමට හේතුව තෝරන්න",
+      op1: "පොල් ලබා ගත නොහැක",
+      op2: "පොල් භාවිතයට සුදුසු තත්ත්වයේ නැත",
+      op3: "වෙනත්",
+
     },
     en: {
       sTitle: "View Request",
       sText: "View stock request details for Production",
       accept: "Accept",
       decline: "Decline",
+      rtext: "Select the reason for declining the request",
+      otherLabel: "If other",
+      submit: "Submit",
+      op0: "Select reason for declining",
+      op1: "Stock is not available",
+      op2: "Coconuts are not in usable condition",
+      op3: "Other",
+
+
     },
   };
 
