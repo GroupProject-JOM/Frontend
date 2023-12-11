@@ -20,7 +20,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   datePicker.value = new Date().toJSON().slice(0, 10);
 
   datePicker.addEventListener("input", () => {
-    log(datePicker.value);
     fetchData(datePicker.value);
   });
 
