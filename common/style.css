@@ -290,7 +290,7 @@ body.dark {
   padding-bottom: 8px;
 }
 
-.supplier-container .table-heading {
+.supplier-container .table-heading, .stockmg-container .table-heading {
   width: 87%;
 }
 
@@ -800,8 +800,7 @@ body.dark {
   top: 6px;
   right: 11px;
   opacity: 1;
-  transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms,
-    opacity 300ms ease 1100ms;
+  transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300ms ease 1100ms;
 }
 
 .filter {
