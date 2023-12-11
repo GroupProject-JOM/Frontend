@@ -93,9 +93,12 @@
               stat = "pending";
               st = "Pending Approval";
               if (window.innerWidth <= 718) st = "Pending";
-            } else {
+            } else if(item.status == 2){
               stat = "accept";
               st = "Accepted";
+            }else if(item.status == 3){
+              stat = "rejected";
+              st = "Rejected";
             }
 
             var date_string = new Date(item.date);
