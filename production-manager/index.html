@@ -96,7 +96,29 @@
             <h2 class="c1"></h2>
             <p class="c2"></p>
           </div>
-          <table class="overview-tables">
+
+          <div class="search-filter">
+            <div class="search-wrapper">
+              <div class="search-box search-box1">
+                <input type="text" class="search1" placeholder=" " />
+                <span></span>
+              </div>
+            </div>
+
+            <div class="filter filter-dropdown">
+              <div id="searchBox">
+                <i class="fas fa-filter" id="filter-icon"></i>
+                <select class="dropdown filter-1">
+                  <option default hidden class="op0">Select Option</option>
+                  <option value="">All</option>
+                  <option value="waiting">Waiting</option>
+                  <option value="process">Processing</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <table class="overview-tables production-table">
             <thead>
               <tr>
                 <th>Batch ID</th>
@@ -153,7 +175,30 @@
             <h2 class="c4"></h2>
             <p class="c5"></p>
           </div>
-          <table class="overview-tables">
+
+          <div class="search-filter">
+            <div class="search-wrapper">
+              <div class="search-box search-box2">
+                <input type="text" class="search2" placeholder=" " />
+                <span></span>
+              </div>
+            </div>
+
+            <div class="filter filter-dropdown">
+              <div id="searchBox">
+                <i class="fas fa-filter" id="filter-icon"></i>
+                <select class="dropdown filter-2">
+                  <option default hidden class="op0">Select Option</option>
+                  <option value="">All</option>
+                  <option value="accept">Accepted</option>
+                  <option value="reject">Rejected</option>
+                  <option value="pending">Pending Approvel</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <table class="overview-tables request-table">
             <thead>
               <tr>
                 <th>Request ID</th>
