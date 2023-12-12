@@ -489,24 +489,37 @@ input [type=""] .supply7-container input {
   margin-top: 8px;
 }
 
-.supply8-container .view-bank-container {
+.light-box{
   display: none;
-  width: 30vw;
-  height: 35vh;
   margin: 0 auto;
   background-color: var(--body-color);
   padding: 10px 10px;
   border-radius: 10px;
-  margin-top: 60px;
   position: fixed;
-  top: 20%;
-  right: 30%;
   box-shadow: 0 0 20px 0 var(--shadow-color);
   z-index: 999;
   transition: var(--tran-04);
 }
 
-.view-bank-container .close-btn {
+.supply8-container .view-bank-container{
+  width: 30vw;
+  height: 35vh;
+  margin-top: 60px;
+  top: 20%;
+  right: 30%;
+  
+}
+
+.supply9-container .report-window {
+  width: 40vw;
+  height: 30vh;
+  margin-top: 60px;
+  top: 50%;
+  right: 33%;
+}
+
+
+.light-box .close-btn{
   display: grid;
   position: absolute;
   right: 13px;
@@ -517,7 +530,7 @@ input [type=""] .supply7-container input {
   cursor: pointer;
 }
 
-.view-bank-container .close-btn:hover {
+.light-box .close-btn:hover {
   color: var(--primary-color);
   scale: 1.1;
   cursor: pointer;
@@ -547,6 +560,39 @@ input [type=""] .supply7-container input {
 .view-bank-container .table-heading h3 {
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+.report-window .report-window-content{
+  margin: 10px;
+}
+
+.report-window .report-window-content p{
+  font-size: 1.1rem;
+}
+
+.report-window .report-window-content label{
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.report-window .report-window-content input{
+  margin-top: 0;
+  width: 15vw;
+}
+
+.report-window .report-dates{
+  display: flex;
+  gap: 5vw;
+  margin-top: 2rem;
+}
+
+.report-window .form-button{
+  font-size: 0.9rem;
+  padding: 5px 40px;
+  margin-left: 0;
+  margin-top: 2.5rem;
+  border-radius: 15px;
 }
 
 @media only screen and (max-device-width: 800px) {
