@@ -4,12 +4,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    sTitle = body.querySelector(".supply-title"),
-    sText = body.querySelector(".supply-text"),
-    addressTable = body.querySelector(".addresses-table"),
-    tError = body.querySelector(".error"),
-    th1 = body.querySelector(".th1"),
-    th2 = body.querySelector(".th2"),
+    pTitle = body.querySelector(".productionmg-title"),
+    pText = body.querySelector(".productionmg-text"),
+    productsTable = body.querySelector(".products-table"),
     tbody = body.querySelector(".tbody"),
     searchBar = body.querySelector(".search"),
     btn = body.querySelector(".form-button");
@@ -23,12 +20,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   searchBa.forEach((elm) => {
     elm.addEventListener("click", () => {
       elm.previousElementSibling.value = "";
-      search(searchBar.value.toUpperCase(), addressTable);
+      search(searchBar.value.toUpperCase(), productsTable);
     });
   });
 
   searchBar.addEventListener("keyup", () => {
-    search(searchBar.value.toUpperCase(), addressTable);
+    search(searchBar.value.toUpperCase(), productsTable);
   });
 
   sin.addEventListener("click", () => {
@@ -36,16 +33,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
-    sTitle.textContent = data["sin"]["sTitle"];
-    sText.innerHTML = data["sin"]["sText"];
-    th1.textContent = data["sin"]["th1"];
-    th2.textContent = data["sin"]["th2"];
+    pTitle.textContent = data["sin"]["pTitle"];
+    pText.innerHTML = data["sin"]["pText"];
     btn.textContent = data["sin"]["btn"];
-    tError.textContent = data["sin"]["tError"];
     setGreeting();
   });
 
@@ -54,43 +47,32 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
-    sTitle.textContent = data["en"]["sTitle"];
-    sText.innerHTML = data["en"]["sText"];
-    th1.textContent = data["en"]["th1"];
-    th2.textContent = data["en"]["th2"];
+    pTitle.textContent = data["en"]["pTitle"];
+    pText.innerHTML = data["en"]["pText"];
     btn.textContent = data["en"]["btn"];
-    tError.textContent = data["en"]["tError"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      sTitle: "ඔබගේ ලිපිනයන්",
-      sText: "ඔබගේ වතුයායන් වල ලිපිනයන් බලන්න සහ සංස්කරණය කරන්න",
-      th1: "වතුයායේ නම නම",
-      th2: "ප්රදේශය/කලාපය",
+      pTitle: "නිෂ්පාදන දළ විශ්ලේෂණය",
+      pText: "සමාගමේ නිෂ්පාදන විස්තර බලන්න",
       btn: "අලුතින් එකතු කරන්න",
-      tError: "**ලිපිනයන් නැත",
     },
     en: {
-      sTitle: "Your Addresses",
-      sText: "View and Edit the your estate location",
-      th1: "Estate Name",
-      th2: "Area/Region",
+      pTitle: "Product Overview",
+      pText: "View company product details",
       btn: "Add New",
-      tError: "**You don't have any locations saved",
     },
   };
 
-  getData();
+//   getData();
 
   function getData() {
     var row = "";
-    // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
     fetch(backProxy + "/estates", {
       method: "GET",
       headers: {
@@ -212,7 +194,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           });
         } else if (response.status === 202) {
           response.json().then((data) => {
-            tError.style.display = "block";
             addressTable.style.display = "none";
             if (lang == "sin") Command: toastr["info"]("ලිපිනයන් නැත");
             else Command: toastr["info"]("No Addresses");
