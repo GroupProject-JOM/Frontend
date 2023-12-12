@@ -5,11 +5,28 @@
     sTitle = body.querySelector(".stockmg-title"),
     sText = body.querySelector(".stockmg-text"),
     date = body.querySelector(".date"),
+    searchBar = body.querySelector(".search"),
+    addressTable = body.querySelector(".addresses-table"),
     tbody = body.querySelector(".tbody");
 
   date.textContent = getCookie("date");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), addressTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), addressTable);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
