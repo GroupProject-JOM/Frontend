@@ -86,7 +86,7 @@
 .received-msg p {
   background: var(--hr-color) none repeat scroll 0 0;
   border-radius: 10px;
-  color: var(--primary-color);
+  color: var(--stock-table-text);
   font-size: 14px;
   margin-left: 1rem;
   padding: 1.5rem 1rem 1rem 1rem;
@@ -103,7 +103,7 @@ p {
   margin: 9px 20px 9px 20px;
 }
 .sent-msg p {
-  background-color: var(--tbicon-color);
+  background-color: var(--button-color);
   border-radius: 10px;
   font-size: 14px;
   color: var(--text-color);
