@@ -293,9 +293,7 @@ body.dark {
   padding-bottom: 8px;
 }
 
-.supplier-container .table-heading,
-.stockmg-container .table-heading,
-.productionmg-container .table-heading {
+.table-heading {
   width: 87%;
 }
 
