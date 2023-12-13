@@ -30,23 +30,22 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     search(searchBar.value.toUpperCase(), productsTable);
   });
 
-
   btn.addEventListener("click", () => {
     overlay.style.display = "flex";
     document.querySelector(".add-product-container").style.display = "block";
   });
 
-    overlay.addEventListener("click", (e) => {
-      if (e.target.id === "overlay") {
-        overlay.style.display = "none";
-        document.querySelector(".add-product-container").style.display = "none";
-      }
-    });
-
-    closeBtn.addEventListener("click", () => {
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
       overlay.style.display = "none";
       document.querySelector(".add-product-container").style.display = "none";
-    });
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".add-product-container").style.display = "none";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -89,11 +88,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-//   getData();
+  getAllData();
 
-  function getData() {
+  function getAllData() {
     var row = "";
-    fetch(backProxy + "/estates", {
+    fetch(backProxy + "/products", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -108,22 +107,29 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
             function data_to_table(item) {
               row +=
-                "<tr id=" +
+                `<tr id=` +
                 item.id +
-                ">" +
-                "<td data-href='./view.html'>" +
-                item.estate_name +
-                "</td>" +
-                "<td data-href='./view.html'>" +
-                item.area +
-                "</td>" +
-                '<td class="edit"><i class="fa-solid fa-pen-to-square icon"></i></td>' +
-                '<td class="delete"><i class="fa-solid fa-trash-can icon"></i></td>' +
-                "</tr>";
+                `>` +
+                `<td class="col">` +
+                item.id +
+                `</td>` +
+                `<td class="col">` +
+                item.type +
+                `</td>` +
+                `<td class="col">` +
+                item.category +
+                `</td>` +
+                `<td class="col">` +
+                item.price.toLocaleString("en-US") +
+                " LKR" +
+                `</td>` +
+                `<td><i class="fa-solid fa-pen-to-square icon"></i></td>` +
+                `<td><i class="fa-solid fa-trash-can icon"></i></td>` +
+                `</tr>`;
             }
             tbody.innerHTML = row;
 
-            const cols = document.querySelectorAll("td[data-href]"),
+            const cols = document.querySelectorAll(".col"),
               edits = document.querySelectorAll(".edit"),
               deletes = document.querySelectorAll(".delete");
 
@@ -208,7 +214,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             cols.forEach((col) => {
               col.addEventListener("click", () => {
                 document.cookie = "id=" + col.parentElement.id + "; path=/";
-                window.location.href = col.dataset.href;
+                // window.location.href = col.dataset.href;
               });
             });
           });
@@ -227,5 +233,110 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         console.error("An error occurred:", error);
         Command: toastr["error"](error);
       });
+  }
+
+  btn.addEventListener("click", () => {
+    if (!address3_status_func()) {
+      address3.focus();
+    }
+    if (!address2_status_func()) {
+      address2.focus();
+    }
+    if (!address1_status_func()) {
+      address1.focus();
+    }
+    if (!phone_status_func()) {
+      phone.focus();
+    }
+    if (!email_status_func()) {
+      email.focus();
+    }
+    if (!oname_status_func()) {
+      oname.focus();
+    }
+
+    if (
+      oname_status &&
+      email_status &&
+      phone_status &&
+      address1_status &&
+      address2_status &&
+      address3_status
+    ) {
+      var formData = {
+        name: oname.value,
+        email: email.value,
+        phone: phone.value,
+        address1: address1.value,
+        street: address2.value,
+        city: address3.value,
+      };
+      fetch(backProxy + "/outlet", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") var title = "අලෙවිසැල සාර්ථකව එකතු කරන ලදී";
+            else var title = "Outlet added successfully";
+
+            Swal.fire({
+              title: title,
+              // text: "You clicked the button!",
+              icon: "success",
+              confirmButtonColor: confirmButtonColor,
+            }).then((response) => {
+              window.location.href = "./";
+            });
+          } else if (response.status === 400) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") Command: toastr["error"]("අලෙවිසැල එකතු කර නැත");
+            else Command: toastr["error"]("Outlet is not added");
+          } else if (response.status === 401) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+            else Command: toastr["error"]("Invalid User");
+          } else {
+            console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+          Command: toastr["error"](error);
+        });
+    }
+  });
+
+  function oname_status_func() {
+    if (typeof oname.value === "string" && oname.value.trim().length === 0) {
+      if (lang == "sin") onameError.textContent = "අලෙවිසැලේ නම හිස් විය නොහැක";
+      else onameError.textContent = "Outlet name cannot be empty";
+      oname_status = false;
+      return false;
+    } else if (!ValidateName(oname.value)) {
+      if (lang == "sin")
+        onameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
+      else
+        onameError.textContent =
+          "Name must contain only numbers, letters and ' '";
+      oname_status = false;
+      return false;
+    } else {
+      onameError.textContent = "";
+      oname_status = true;
+      return true;
+    }
   }
 })();
