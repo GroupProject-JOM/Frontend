@@ -1,5 +1,5 @@
-// sessionStorage.setItem("id", 0);
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -9,8 +9,19 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     productsTable = body.querySelector(".products-table"),
     tbody = body.querySelector(".tbody"),
     searchBar = body.querySelector(".search"),
-    closeBtn = body.querySelector(".close-btn"),
-    overlay = body.querySelector(".overlay"),
+    closeBtn1 = body.querySelector(".close-btn1"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    overlay1 = body.querySelector(".overlay1"),
+    overlay2 = body.querySelector(".overlay2"),
+    submit = body.querySelector(".submit"),
+    pCategory = body.querySelector(".product-category"),
+    pType = body.querySelector(".product-type"),
+    pCategoryError = body.querySelector(".category-error"),
+    pTypeError = body.querySelector(".type-error"),
+    type = body.querySelector(".type"),
+    category = body.querySelector(".category"),
+    price = body.querySelector(".price"),
+    deleteBtn = body.querySelector(".delete-btn"),
     btn = body.querySelector(".add");
 
   var lang = getCookie("lang"); // current language
@@ -30,20 +41,27 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     search(searchBar.value.toUpperCase(), productsTable);
   });
 
-  btn.addEventListener("click", () => {
-    overlay.style.display = "flex";
-    document.querySelector(".add-product-container").style.display = "block";
+  overlay1.addEventListener("click", (e) => {
+    if (e.target.id === "overlay1") {
+      overlay1.style.display = "none";
+      document.querySelector(".view-product-container").style.display = "none";
+    }
   });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target.id === "overlay") {
-      overlay.style.display = "none";
+  closeBtn1.addEventListener("click", () => {
+    overlay1.style.display = "none";
+    document.querySelector(".view-product-container").style.display = "none";
+  });
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay2") {
+      overlay2.style.display = "none";
       document.querySelector(".add-product-container").style.display = "none";
     }
   });
 
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
+  closeBtn2.addEventListener("click", () => {
+    overlay2.style.display = "none";
     document.querySelector(".add-product-container").style.display = "none";
   });
 
@@ -106,6 +124,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             arr.forEach(data_to_table);
 
             function data_to_table(item) {
+              var price = "0.0 LKR";
+              if (item.price != null) {
+                price = item.price.toLocaleString("en-US") + " LKR";
+              }
+
               row +=
                 `<tr id=` +
                 item.id +
@@ -120,8 +143,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 item.category +
                 `</td>` +
                 `<td class="col">` +
-                item.price.toLocaleString("en-US") +
-                " LKR" +
+                price +
                 `</td>` +
                 `<td><i class="fa-solid fa-pen-to-square icon"></i></td>` +
                 `<td><i class="fa-solid fa-trash-can icon"></i></td>` +
@@ -130,8 +152,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             tbody.innerHTML = row;
 
             const cols = document.querySelectorAll(".col"),
-              edits = document.querySelectorAll(".edit"),
-              deletes = document.querySelectorAll(".delete");
+              edits = document.querySelectorAll(".fa-pen-to-square"),
+              deletes = document.querySelectorAll(".fa-trash-can");
 
             edits.forEach((edit) => {
               edit.addEventListener("click", () => {
@@ -142,72 +164,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
             deletes.forEach((del) => {
               del.addEventListener("click", () => {
-                if (lang == "sin") {
-                  var title = "ඔයාට විශ්වාස ද?",
-                    text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
-                    confirmButtonText = "ඔව්, එය මකන්න!",
-                    cancelButtonText = "අවලංගු කරන්න";
-                } else {
-                  var title = "Are you sure?",
-                    text = "You won't be able to revert this!",
-                    confirmButtonText = "Yes, delete it!",
-                    cancelButtonText = "Cancel";
-                }
-                Swal.fire({
-                  title: title,
-                  text: text,
-                  confirmButtonText: confirmButtonText,
-                  cancelButtonText: cancelButtonText,
-                  icon: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: confirmButtonColor,
-                  cancelButtonColor: cancelButtonColor,
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    fetch(backProxy + "/estate?id=" + del.parentElement.id, {
-                      method: "DELETE",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      credentials: "include",
-                    })
-                      .then((response) => {
-                        if (response.status == 200) {
-                          response.json().then((data) => {
-                            console.log(data.message);
-                            if (lang == "sin") {
-                              var title = "මකා දමන ලදී!",
-                                text = "ඔබගේ ලිපිනය මකා ඇත.";
-                            } else {
-                              var title = "Deleted!",
-                                text = "Your address has been deleted.";
-                            }
-                            // sweet alert
-                            Swal.fire({
-                              title: title,
-                              text: text,
-                              icon: "success",
-                              confirmButtonColor: confirmButtonColor,
-                            }).then((response) => {
-                              getData();
-                            });
-                          });
-                        } else if (response.status === 400) {
-                          response.json().then((data) => {
-                            console.log(data.message);
-                            Command: toastr["error"](data.message);
-                          });
-                        } else {
-                          console.error("Error:", response.status);
-                          Command: toastr["error"](response.status, "Error");
-                        }
-                      })
-                      .catch((error) => {
-                        console.error("An error occurred:", error);
-                        Command: toastr["error"](error);
-                      });
-                  }
-                });
+                delete_account(del);
               });
             });
 
@@ -215,14 +172,26 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               col.addEventListener("click", () => {
                 document.cookie = "id=" + col.parentElement.id + "; path=/";
                 // window.location.href = col.dataset.href;
+                overlay1.style.display = "block";
+                document.querySelector(
+                  ".view-product-container"
+                ).style.display = "block";
+                type.textContent = col.parentNode.children[0].textContent;
+                category.textContent = col.parentNode.children[1].textContent;
+                price.textContent = col.parentNode.children[2].textContent;
+                document.cookie = "id=" + col.parentElement.id + "; path=/";
+
+                deleteBtn.addEventListener("click", () => {
+                  delete_account(col);
+                });
               });
             });
           });
         } else if (response.status === 202) {
           response.json().then((data) => {
             addressTable.style.display = "none";
-            if (lang == "sin") Command: toastr["info"]("ලිපිනයන් නැත");
-            else Command: toastr["info"]("No Addresses");
+            if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන නැත");
+            else Command: toastr["info"]("No Product");
           });
         } else {
           console.error("Error:", response.status);
@@ -235,107 +204,180 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       });
   }
 
-  btn.addEventListener("click", () => {
-    if (!address3_status_func()) {
-      address3.focus();
+  function delete_account(del) {
+    if (lang == "sin") {
+      var title = "ඔයාට විශ්වාස ද?",
+        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+        confirmButtonText = "ඔව්, එය මකන්න!",
+        cancelButtonText = "අවලංගු කරන්න";
+    } else {
+      var title = "Are you sure?",
+        text = "You won't be able to revert this!",
+        confirmButtonText = "Yes, delete it!",
+        cancelButtonText = "Cancel";
     }
-    if (!address2_status_func()) {
-      address2.focus();
-    }
-    if (!address1_status_func()) {
-      address1.focus();
-    }
-    if (!phone_status_func()) {
-      phone.focus();
-    }
-    if (!email_status_func()) {
-      email.focus();
-    }
-    if (!oname_status_func()) {
-      oname.focus();
-    }
-
-    if (
-      oname_status &&
-      email_status &&
-      phone_status &&
-      address1_status &&
-      address2_status &&
-      address3_status
-    ) {
-      var formData = {
-        name: oname.value,
-        email: email.value,
-        phone: phone.value,
-        address1: address1.value,
-        street: address2.value,
-        city: address3.value,
-      };
-      fetch(backProxy + "/outlet", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include",
-      })
-        .then((response) => {
-          if (response.status == 200) {
-            response.json().then((data) => {
-              console.log(data.message);
-            });
-            if (lang == "sin") var title = "අලෙවිසැල සාර්ථකව එකතු කරන ලදී";
-            else var title = "Outlet added successfully";
-
-            Swal.fire({
-              title: title,
-              // text: "You clicked the button!",
-              icon: "success",
-              confirmButtonColor: confirmButtonColor,
-            }).then((response) => {
-              window.location.href = "./";
-            });
-          } else if (response.status === 400) {
-            response.json().then((data) => {
-              console.log(data.message);
-            });
-            if (lang == "sin") Command: toastr["error"]("අලෙවිසැල එකතු කර නැත");
-            else Command: toastr["error"]("Outlet is not added");
-          } else if (response.status === 401) {
-            response.json().then((data) => {
-              console.log(data.message);
-            });
-            if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-            else Command: toastr["error"]("Invalid User");
-          } else {
-            console.error("Error:", response.status);
-            Command: toastr["error"](response.status, "Error");
-          }
+    Swal.fire({
+      title: title,
+      text: text,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: confirmButtonColor,
+      cancelButtonColor: cancelButtonColor,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(backProxy + "/product?id=" + del.parentElement.parentElement.id, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
         })
-        .catch((error) => {
-          console.error("An error occurred:", error);
-          Command: toastr["error"](error);
-        });
-    }
+          .then((response) => {
+            if (response.status == 200) {
+              response.json().then((data) => {
+                console.log(data.message);
+                if (lang == "sin") {
+                  var title = "මකා දමන ලදී!",
+                    text = "ඔබගේ නිෂ්පාදනය මකා ඇත.";
+                } else {
+                  var title = "Deleted!",
+                    text = "Your product has been deleted.";
+                }
+                // sweet alert
+                Swal.fire({
+                  title: title,
+                  text: text,
+                  icon: "success",
+                  confirmButtonColor: confirmButtonColor,
+                }).then((response) => {
+                  getAllData();
+                });
+              });
+            } else if (response.status === 400) {
+              response.json().then((data) => {
+                console.log(data.message);
+                Command: toastr["error"](data.message);
+              });
+            } else {
+              console.error("Error:", response.status);
+              Command: toastr["error"](response.status, "Error");
+            }
+          })
+          .catch((error) => {
+            console.error("An error occurred:", error);
+            Command: toastr["error"](error);
+          });
+      }
+    });
+  }
+
+  var pCategoryStatus = false,
+    pTypeStatus = false;
+
+  btn.addEventListener("click", () => {
+    overlay2.style.display = "block";
+    document.querySelector(".add-product-container").style.display = "block";
+
+    pCategory.addEventListener("input", () => {
+      pCategory_status_func();
+    });
+    pType.addEventListener("input", () => {
+      pType_status_func();
+    });
+
+    submit.addEventListener("click", () => {
+      if (!pType_status_func()) {
+        pType.focus();
+      }
+      if (!pCategory_status_func()) {
+        pCategory.focus();
+      }
+
+      if (pCategoryStatus && pTypeStatus) {
+        var formData = {
+          type: pType.value,
+          category: pCategory.value,
+        };
+        fetch(backProxy + "/product", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+          credentials: "include",
+        })
+          .then((response) => {
+            if (response.status == 200) {
+              response.json().then((data) => {
+                console.log(data.message);
+              });
+              if (lang == "sin") var title = "නිෂ්පාදන සාර්ථකව එකතු කරන ලදී";
+              else var title = "Product added successfully";
+
+              overlay2.click();
+
+              Swal.fire({
+                title: title,
+                // text: "You clicked the button!",
+                icon: "success",
+                confirmButtonColor: confirmButtonColor,
+              }).then((response) => {
+                getAllData();
+              });
+            } else if (response.status === 400) {
+              response.json().then((data) => {
+                console.log(data.message);
+              });
+              if (lang == "sin")
+                Command: toastr["error"]("නිෂ්පාදන එකතු කර නැත");
+              else Command: toastr["error"]("Product is not added");
+            } else if (response.status === 401) {
+              response.json().then((data) => {
+                console.log(data.message);
+              });
+              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+              else Command: toastr["error"]("Invalid User");
+            } else {
+              console.error("Error:", response.status);
+              Command: toastr["error"](response.status, "Error");
+            }
+          })
+          .catch((error) => {
+            console.error("An error occurred:", error);
+            Command: toastr["error"](error);
+          });
+      }
+    });
   });
 
-  function oname_status_func() {
-    if (typeof oname.value === "string" && oname.value.trim().length === 0) {
-      if (lang == "sin") onameError.textContent = "අලෙවිසැලේ නම හිස් විය නොහැක";
-      else onameError.textContent = "Outlet name cannot be empty";
-      oname_status = false;
-      return false;
-    } else if (!ValidateName(oname.value)) {
+  function pCategory_status_func() {
+    if (
+      typeof pCategory.value === "string" &&
+      pCategory.value.trim().length === 0
+    ) {
       if (lang == "sin")
-        onameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else
-        onameError.textContent =
-          "Name must contain only numbers, letters and ' '";
-      oname_status = false;
+        pCategoryError.textContent = "නිෂ්පාදන කාණ්ඩය හිස් විය නොහැක";
+      else pCategoryError.textContent = "Product category cannot be empty";
+      pCategoryStatus = false;
       return false;
     } else {
-      onameError.textContent = "";
-      oname_status = true;
+      pCategoryError.textContent = "";
+      pCategoryStatus = true;
+      return true;
+    }
+  }
+  function pType_status_func() {
+    if (typeof pType.value === "string" && pType.value.trim().length === 0) {
+      if (lang == "sin")
+        pTypeError.textContent = "නිෂ්පාදන වර්ගය හිස් විය නොහැක";
+      else pTypeError.textContent = "Product type cannot be empty";
+      pTypeStatus = false;
+      return false;
+    } else {
+      pTypeError.textContent = "";
+      pTypeStatus = true;
       return true;
     }
   }

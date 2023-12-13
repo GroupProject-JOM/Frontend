@@ -102,24 +102,24 @@
         </table>
 
         <!-- view product light box starts -->
-        <!-- <div class="overlay" id="overlay" style="display: none">
+        <div class="overlay1 overlay" id="overlay1" style="display: none">
           <div class="view-product-container light-box" style="display: none">
-            <p class="close-btn close-btn-bank"><i class="fas fa-xmark"></i></p>
+            <p class="close-btn close-btn1 close-btn-bank"><i class="fas fa-xmark"></i></p>
             <div class="view-product-content">
           
               <table class="product-view-table overview-tables">
                 <tbody>
                   <tr>
-                    <td class="type-text"></td>
+                    <td class="type-text">Type</td>
                     <td class="type bold"></td>
                   </tr>
                   <tr>
-                    <td class="category-text"></td>
+                    <td class="category-text">Category</td>
                     <td class="category bold"></td>
                   </tr>
                   <tr>
                     <td class="price-text"></td>
-                    <td class="price bold"></td>
+                    <td class="price bold">Price</td>
                   </tr>
                 </tbody>
               </table>
@@ -130,14 +130,13 @@
               </div>
             </div>
           </div>
-        </div> -->
-
+        </div>
         <!-- view product light box ends -->
 
         <!-- new product light box starts -->
-        <div class="overlay" id="overlay">
+        <div class="overlay2 overlay" id="overlay2">
           <div class="add-product-container light-box">
-            <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+            <p class="close-btn close-btn2 do-not"><i class="fas fa-xmark"></i></p>
 
             <div class="add-product-content">
               <h2>Add New Product</h2>
@@ -145,10 +144,12 @@
               <div class="add-product-form">
                 <form>
                   <label>Category</label>
-                  <input type="text" placeholder="Enter product category" />
+                  <input type="text"class="product-category" placeholder="Enter product category" />
+                  <br /><span class="form-error category-error"></span>
 
                   <label>Type</label>
-                  <input type="text" placeholder="Enter product type" />
+                  <input type="text" class="product-type" placeholder="Enter product type" />
+                  <br /><span class="form-error type-error"></span>
                 </form>
               </div>
               <button class="submit form-button">Submit</button>
