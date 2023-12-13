@@ -71,34 +71,36 @@
 
       <div class="text"></div>
 
-      <div class="container">
+      <div class="productionmg-container container">
         <div class="productionmg-heading table-heading">
           <h2 class="productionmg-title">Production Overview</h2>
-          <p class="production-history-text">
-            View past and ongoing production batches
-          </p>
-        </div>
+          <div>
+            <p class="production-history-text">
+              View past and ongoing production batches
+            </p>
 
-        <div class="search-filter">
-            <div class="search-wrapper">
-              <div class="search-box search-box1">
-                <input type="text" class="search1" placeholder=" " />
-                <span></span>
+            <div class="search-filter">
+              <div class="search-wrapper">
+                <div class="search-box search-box1">
+                  <input type="text" class="search1" placeholder=" " />
+                  <span></span>
+                </div>
               </div>
-            </div>
 
-            <div class="filter filter-dropdown">
-              <div id="searchBox">
-                <i class="fas fa-filter" id="filter-icon"></i>
-                <select class="dropdown filter-1">
-                  <option default hidden class="op0">Select Option</option>
-                  <option value="">All</option>
-                  <option value="waiting">Waiting</option>
-                  <option value="process">Processing</option>
-                </select>
+              <div class="filter filter-dropdown">
+                <div id="searchBox">
+                  <i class="fas fa-filter" id="filter-icon"></i>
+                  <select class="dropdown filter-1">
+                    <option default hidden class="op0">Select Option</option>
+                    <option value="">All</option>
+                    <option value="waiting">Waiting</option>
+                    <option value="process">Processing</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
         <table class="production-table overview-tables">
           <thead>
@@ -106,7 +108,7 @@
               <th>Batch ID</th>
               <th>Start Date</th>
               <th>End Date</th>
-              <th>Production Amount</th>
+              <th>Coconut Amount</th>
               <th>status</th>
             </tr>
           </thead>

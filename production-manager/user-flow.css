@@ -17,7 +17,7 @@
 }
 
 .stock table tr:hover, .yard .overview-tables tr:hover{
-  background-color: rgb(224, 224, 224) !important;
+  background-color: rgba(237, 173, 104, 0.699) !important;
 }
 
 .stock h3, .yard h3 {
@@ -42,7 +42,6 @@
   align-items: center;
   gap: 10vw;
   margin-top: 25px;
-  /* justify-content: space-between; */
 }
 
 .yard{
@@ -188,6 +187,8 @@ select.dropdown {
   margin-top: 40px;
 }
 
+
+
 .products-add-container,
 .products-edit-container{
   margin-left: 4rem;
@@ -223,10 +224,11 @@ color: var(--primary-color);
 font-weight: 500;
 }
 
-/* .products-edit-container input::placeholder{
-  color: var(--primary-color);
-  font-weight: 500;
-  } */
+.search-filter input, .search-filter .dropdown, .search-wrapper input{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 
 
 @media only screen and (max-device-width: 1260px) {
