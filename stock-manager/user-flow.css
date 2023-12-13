@@ -103,7 +103,7 @@ select.dropdown {
 }
 
 .stocks table tr:hover {
-  background-color: rgb(224, 224, 224) !important;
+  background-color: rgba(237, 173, 104, 0.699) !important;
 }
 
 .stocks h3 {
