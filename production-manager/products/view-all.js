@@ -9,7 +9,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     productsTable = body.querySelector(".products-table"),
     tbody = body.querySelector(".tbody"),
     searchBar = body.querySelector(".search"),
-    btn = body.querySelector(".form-button");
+    closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay"),
+    btn = body.querySelector(".add");
 
   var lang = getCookie("lang"); // current language
 
@@ -27,6 +29,24 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   searchBar.addEventListener("keyup", () => {
     search(searchBar.value.toUpperCase(), productsTable);
   });
+
+
+  btn.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".add-product-container").style.display = "block";
+  });
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target.id === "overlay") {
+        overlay.style.display = "none";
+        document.querySelector(".add-product-container").style.display = "none";
+      }
+    });
+
+    closeBtn.addEventListener("click", () => {
+      overlay.style.display = "none";
+      document.querySelector(".add-product-container").style.display = "none";
+    });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

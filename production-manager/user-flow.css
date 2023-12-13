@@ -229,7 +229,49 @@ font-weight: 500;
   margin-bottom: 0;
 }
 
+.add-product-container{
+  width: 40vw;
+  height: 47vh;
+  margin-top: 60px;
+  top: 20%;
+  right: 35%;
+}
 
+.add-product-container .add-product-content{
+  margin: 20px;
+}
+
+.add-product-container h2{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.add-product-container label{
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.add-product-container input{
+  font-size: 0.8rem;
+  margin-top: 0;
+  width: 33vw;
+
+}
+
+.add-product-container .add-product-form{
+  margin-top: 40px;
+
+}
+
+.add-product-container .submit{
+  font-size: 0.9rem;
+  padding: 5px 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+
+}
 
 @media only screen and (max-device-width: 1260px) {
   .production-req {

@@ -77,7 +77,6 @@
           <div>
             <p class="productionmg-text"></p>
 
-
             <div class="search-wrapper">
               <div class="search-box search-box">
                 <input type="text" class="search" placeholder=" " />
@@ -111,14 +110,12 @@
           </tbody>
         </table>
 
-
-        <div class="overlay" id="overlay" style="display: none">
+        <!-- view product light box starts -->
+        <!-- <div class="overlay" id="overlay" style="display: none">
           <div class="view-product-container light-box" style="display: none">
             <p class="close-btn close-btn-bank"><i class="fas fa-xmark"></i></p>
             <div class="view-product-content">
-              <!-- <div class="table-heading">
-                <h3>Bank Account Details</h3>
-              </div> -->
+          
               <table class="product-view-table overview-tables">
                 <tbody>
                   <tr>
@@ -142,9 +139,34 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <a class="add form-button" href="./add.html"></a>
+        <!-- view product light box ends -->
+
+        <!-- new product light box starts -->
+        <div class="overlay" id="overlay">
+          <div class="add-product-container light-box">
+            <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+
+            <div class="add-product-content">
+              <h2>Add New Product</h2>
+
+              <div class="add-product-form">
+                <form>
+                  <label>Category</label>
+                  <input type="text" placeholder="Enter product category" />
+
+                  <label>Type</label>
+                  <input type="text" placeholder="Enter product type" />
+                </form>
+              </div>
+              <button class="submit form-button">Submit</button>
+            </div>
+          </div>
+        </div>
+        <!-- new product light box ends -->
+
+        <a class="add form-button"></a>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
