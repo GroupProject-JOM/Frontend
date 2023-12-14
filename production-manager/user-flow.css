@@ -86,7 +86,7 @@ input {
   border-bottom: 1px solid var(--input-border);
   color: #484848;
   padding: 7px 0;
-  margin: 20px 0;
+  /* margin: 20px 0; */
   background-color: var(--body-color);
 }
 
@@ -121,7 +121,11 @@ background-color: var(--stock-lv4);
   width: 90%;
 }
 
-.reqest-amount-label, .request-edit-container label{
+.reqest-amount-label,
+.request-edit-container label,
+.new-production-container .request-label,
+.new-production-container .coco-label
+{
   font-size: 0.9rem;
   margin: 40px 0 0 0;
   font-weight: 500;
@@ -153,7 +157,7 @@ background-color: var(--stock-lv4);
   width: fit-content;
 }
 
-.request-edit-container input, .dropdown{
+.request-edit-container input, .dropdown, .new-production-container .dropdown{
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--primary-color);
@@ -208,7 +212,9 @@ margin-top: 3rem;
 .products-add-container input[type=text],
 .products-add-container input[type=number],
 .products-edit-container input[type=text],
-.products-edit-container input[type=number]
+.products-edit-container input[type=number],
+.new-production-container input[type=number],
+.new-production-container .dropdown
 {
   width: 70%;
   margin-top: 10px;
@@ -271,6 +277,26 @@ font-weight: 500;
   border-radius: 20px;
   margin-top: 30px;
 
+}
+
+.new-production-form .request-label,
+.new-production-form .coco-label
+{
+  display: block;
+}
+
+/* .new-production-container .request-label{
+  margin-bottom: 20px;
+} */
+
+.new-production-container select{
+  border: none;
+  outline: none;
+}
+
+.new-production-container .save{
+  margin-top: 60px;
+  width: 10rem;
 }
 
 @media only screen and (max-device-width: 1260px) {
