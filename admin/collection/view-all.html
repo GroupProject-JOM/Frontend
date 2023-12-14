@@ -76,14 +76,39 @@
           <p class="outlet-text"></p>
         </div>
 
-        <table class="outlets-table overview-tables">
+        <div class="search-filter">
+          <!-- <p class="stockmg-text1 stockmg-text"></p> -->
+
+          <!-- Search Bar -->
+          <div class="search-wrapper">
+            <div class="search-box search-box">
+              <input type="text" class="search" placeholder=" " />
+              <span></span>
+            </div>
+          </div>
+          <!-- Search Bar -->
+
+          <div class="filter">
+            <div id="searchBox">
+              <i class="fas fa-filter" id="filter-icon"></i>
+              <input
+                type="date"
+                placeholder="Select date to filter"
+                id="datePicker"
+              />
+            </div>
+          </div>
+        </div>
+
+        <table class="today-collections-table overview-tables">
           <thead>
             <tr>
               <th>Collection ID</th>
               <th>Supplier</th>
               <th>Time</th>
-              <th>Amount</th>
               <th>Collector</th>
+              <th class="hide">Amount</th>
+              <th>Method</th>
             </tr>
           </thead>
 

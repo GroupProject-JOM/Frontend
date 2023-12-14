@@ -1,12 +1,43 @@
-// sessionStorage.setItem("id", 0);
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     oTitle = body.querySelector(".outlet-title"),
     oText = body.querySelector(".outlet-text"),
-    tbody = body.querySelector(".tbody");
+    tbody = body.querySelector(".tbody"),
+    searchBar = body.querySelector(".search"),
+    todayTable = body.querySelector(".today-collections-table"),
+    datePicker = body.querySelector("#datePicker");
+
+  datePicker.value = new Date().toJSON().slice(0, 10);
+
+  datePicker.addEventListener("input", () => {
+    getCollectionsByDate(datePicker.value);
+  });
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), todayTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), todayTable);
+  });
+
+  const searchBox = document.getElementById("searchBox"),
+    googleIcon = document.getElementById("filter-icon");
+
+  googleIcon.onclick = function () {
+    searchBox.classList.toggle("active");
+  };
 
   var lang = getCookie("lang"); // current language
 
@@ -47,77 +78,89 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  var row = "";
+  getCollectionsByDate(new Date().toJSON().slice(0, 10));
+  function getCollectionsByDate(date) {
+    var row = "";
+    tbody.innerHTML = "";
 
-  fetch(backProxy + "/today-pickups", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
-    .then((response) => {
-      if (response.status == 200) {
-        response.json().then((data) => {
-          let arr = data.list;
-          arr.forEach(data_to_table);
+    fetch(backProxy + "/collection-by-date?date=" + date, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.status == 200) {
+          response.json().then((data) => {
+            data.list.forEach((item) => {
+              var fName = "-",
+                lName = "-";
 
-          function data_to_table(item) {
-            row +=
-              `<tr data-href='./view.html' id=` +
-              item.id +
-              `>` +
-              `<td>` +
-              item.id +
-              `</td>` +
-              `<td>` +
-              item.name +
-              ` ` +
-              item.last_name +
-              `</td>` +
-              `<td>` +
-              timeString(item.time) +
-              `</td>` +
-              `<td>` +
-              item.amount.toLocaleString("en-US") +
-              `</td>` +
-              `<td>` +
-              item.c_fName +
-              ` ` +
-              item.c_lName +
-              `</td>` +
-              `</tr>`;
-          }
-          tbody.innerHTML = row;
+              if (item.method == "pickup") {
+                fName = item.c_fName;
+                lName = item.c_lName;
+              }
 
-          const rows = document.querySelectorAll("tr[data-href]");
+              row +=
+                `<tr data-href='./view.html' id=` +
+                item.id +
+                `>` +
+                `<td>` +
+                item.id +
+                `</td>` +
+                `<td>` +
+                item.name +
+                ` ` +
+                item.last_name +
+                `</td>` +
+                `<td>` +
+                timeString(item.time) +
+                `</td>` +
+                `<td>` +
+                fName +
+                ` ` +
+                lName +
+                `</td>` +
+                `<td>` +
+                item.amount.toLocaleString("en-US") +
+                `</td>` +
+                `<td>` +
+                capitalize(item.method) +
+                `</td>` +
+                `</tr>`;
+            });
 
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
+            tbody.innerHTML = row;
+
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach((r) => {
+              r.addEventListener("click", () => {
+                document.cookie = "id=" + r.id + "; path=/";
+                window.location.href = r.dataset.href;
+              });
             });
           });
-        });
-      } else if (response.status === 202) {
-        response.json().then((data) => {
-          console.log(data.size);
-          if (lang == "sin") Command: toastr["error"]("අද පිකප් නැත");
-          else Command: toastr["error"]("No Pickups today");
-        });
-      } else if (response.status === 401) {
-        response.json().then((data) => {
-          console.log(data.message);
-        });
-        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-        else Command: toastr["error"]("Invalid User");
-      } else {
-        console.error("Error:", response.status);
-        Command: toastr["error"](response.status, "Error");
-      }
-    })
-    .catch((error) => {
-      console.error("An error occurred:", error);
-      Command: toastr["error"](error);
-    });
+        } else if (response.status === 401) {
+          response.json().then((data) => {
+            console.log(data.message);
+          });
+          if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+          else Command: toastr["error"]("Invalid User");
+        } else if (response.status === 202) {
+          response.json().then((data) => {
+            console.log(data.size);
+          });
+          if (lang == "sin") Command: toastr["info"]("එකතු කිරීම් නැත");
+          else Command: toastr["info"]("No collections");
+        } else {
+          console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+        Command: toastr["error"](error);
+      });
+  }
 })();
