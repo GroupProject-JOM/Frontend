@@ -125,8 +125,8 @@
               </table>
 
               <div class="buttons">
-                <a class="form-button edit-btn" href="./edit.html"></a>
-                <a class="form-button delete-btn"></a>
+                <a class="form-button edit-btn">Edit</a>
+                <a class="form-button delete-btn">Delete</a>
               </div>
             </div>
           </div>
@@ -157,6 +157,34 @@
           </div>
         </div>
         <!-- new product light box ends -->
+
+        <!-- Edit product light box starts -->
+        <div class="overlay3 overlay" id="overlay3">
+          <div class="edit-product-container light-box">
+            <p class="close-btn close-btn3 do-not"><i class="fas fa-xmark"></i></p>
+
+            <div class="edit-product-content">
+              <h2>Edit Product</h2>
+
+              <div class="edit-product-form">
+                <form>
+                  <label>Category</label>
+                  <input type="text"class="edit-product-category" placeholder="Enter product category" />
+                  <br /><span class="form-error edit-category-error"></span>
+
+                  <label>Type</label>
+                  <input type="text" class="edit-product-type" placeholder="Enter product type" />
+                  <br /><span class="form-error edit-type-error"></span>
+
+                  <label>Price</label>
+                  <input type="text" class="edit-product-price" disabled/>
+                </form>
+              </div>
+              <button class="edit-submit form-button">Submit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Edit product light box ends -->
 
         <a class="add form-button"></a>
       </div>
