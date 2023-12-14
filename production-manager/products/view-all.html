@@ -77,7 +77,6 @@
           <div>
             <p class="productionmg-text"></p>
 
-
             <div class="search-wrapper">
               <div class="search-box search-box">
                 <input type="text" class="search" placeholder=" " />
@@ -99,52 +98,95 @@
             </tr>
           </thead>
 
-          <tbody class="tbody">
-            <tr>
-              <td>E052</td>
-              <td>Virgin coconut oil</td>
-              <td>1l bottle</td>
-              <td>2000</td>
-              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
-              <td><i class="fa-solid fa-trash-can icon"></i></td>
-            </tr>
-          </tbody>
+          <tbody class="tbody"></tbody>
         </table>
 
-
-        <div class="overlay" id="overlay" style="display: none">
+        <!-- view product light box starts -->
+        <div class="overlay1 overlay" id="overlay1" style="display: none">
           <div class="view-product-container light-box" style="display: none">
-            <p class="close-btn close-btn-bank"><i class="fas fa-xmark"></i></p>
+            <p class="close-btn close-btn1 close-btn-bank"><i class="fas fa-xmark"></i></p>
             <div class="view-product-content">
-              <!-- <div class="table-heading">
-                <h3>Bank Account Details</h3>
-              </div> -->
+          
               <table class="product-view-table overview-tables">
                 <tbody>
                   <tr>
-                    <td class="type-text"></td>
+                    <td class="type-text">Type</td>
                     <td class="type bold"></td>
                   </tr>
                   <tr>
-                    <td class="category-text"></td>
+                    <td class="category-text">Category</td>
                     <td class="category bold"></td>
                   </tr>
                   <tr>
                     <td class="price-text"></td>
-                    <td class="price bold"></td>
+                    <td class="price bold">Price</td>
                   </tr>
                 </tbody>
               </table>
 
               <div class="buttons">
-                <a class="form-button edit-btn" href="./edit.html"></a>
-                <a class="form-button delete-btn"></a>
+                <a class="form-button edit-btn">Edit</a>
+                <a class="form-button delete-btn">Delete</a>
               </div>
             </div>
           </div>
         </div>
+        <!-- view product light box ends -->
 
-        <a class="add form-button" href="./add.html"></a>
+        <!-- new product light box starts -->
+        <div class="overlay2 overlay" id="overlay2">
+          <div class="add-product-container light-box">
+            <p class="close-btn close-btn2 do-not"><i class="fas fa-xmark"></i></p>
+
+            <div class="add-product-content">
+              <h2>Add New Product</h2>
+
+              <div class="add-product-form">
+                <form>
+                  <label>Category</label>
+                  <input type="text"class="product-category" placeholder="Enter product category" />
+                  <br /><span class="form-error category-error"></span>
+
+                  <label>Type</label>
+                  <input type="text" class="product-type" placeholder="Enter product type" />
+                  <br /><span class="form-error type-error"></span>
+                </form>
+              </div>
+              <button class="submit form-button">Submit</button>
+            </div>
+          </div>
+        </div>
+        <!-- new product light box ends -->
+
+        <!-- Edit product light box starts -->
+        <div class="overlay3 overlay" id="overlay3">
+          <div class="edit-product-container light-box">
+            <p class="close-btn close-btn3 do-not"><i class="fas fa-xmark"></i></p>
+
+            <div class="edit-product-content">
+              <h2>Edit Product</h2>
+
+              <div class="edit-product-form">
+                <form>
+                  <label>Category</label>
+                  <input type="text"class="edit-product-category" placeholder="Enter product category" />
+                  <br /><span class="form-error edit-category-error"></span>
+
+                  <label>Type</label>
+                  <input type="text" class="edit-product-type" placeholder="Enter product type" />
+                  <br /><span class="form-error edit-type-error"></span>
+
+                  <label>Price</label>
+                  <input type="text" class="edit-product-price" disabled/>
+                </form>
+              </div>
+              <button class="edit-submit form-button">Submit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Edit product light box ends -->
+
+        <a class="add form-button"></a>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
