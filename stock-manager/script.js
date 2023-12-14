@@ -563,7 +563,7 @@ function getLastSevenDays() {
   const currentDate = new Date();
   const lastSevenDays = [];
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 1; i <= 7; i++) {
     const day = new Date(currentDate);
     day.setDate(currentDate.getDate() - i);
     const dayOfWeek = daysOfWeek[day.getDay()];
