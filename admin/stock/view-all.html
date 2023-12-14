@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Stock Details</title>
+    <title>Stock Overview</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
@@ -22,6 +22,7 @@
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
       rel="stylesheet"
     />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
@@ -70,46 +71,62 @@
 
       <div class="text"></div>
 
-      <div class="edit-stock-container stockmg-container">
-        <div class="yard">
-          <h3 class="yard-h3"></h3>
-          <table class="overview-tables" style="margin-top: 0">
-            <thead>
-              <tr>
-                <th>Block ID</th>
-                <th>Day</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-
-            <tbody class="tbody"></tbody>
-          </table>
+      <div class="stock-container container">
+        <div class="stockmg-heading table-heading">
+          <h2 class="stockmg-title"></h2>
+          <p class="stockmg-text"></p>
         </div>
 
-        <div class="edit-stock-content">
-          <div class="stockmg-heading table-heading">
-            <h2 class="stockmg-title"></h2>
+        <div class="stocks">
+          <div class="yard1 center">
+            <h3 class="yard1-h3"></h3>
+            <table class="overview-tables" style="margin-top: 0">
+              <thead>
+                <tr>
+                  <th>Block ID</th>
+                  <th>Day</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+
+              <tbody class="tbody1"></tbody>
+            </table>
           </div>
 
-          <div class="edit-stock-form">
-            <p class="block">Block</p>
+          <div class="yard2 center">
+            <h3 class="yard2-h3"></h3>
+            <table class="overview-tables" style="margin-top: 0">
+              <thead>
+                <tr>
+                  <th>Block ID</th>
+                  <th>Day</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
 
-            <label class="amount-label"></label>
-            <input type="number" class="coco-amount" placeholder="" />
-            <span class="form-error coco-error"></span>
+              <tbody class="tbody2"></tbody>
+            </table>
+          </div>
 
-            <label class="period-label"></label>
-            <input type="number" class="period" placeholder="" />
-            <span class="form-error period-error"></span>
-
-            <button class="save form-button">Save</button>
+          <div class="yard3 center">
+            <h3 class="yard3-h3"></h3>
+            <table class="overview-tables" style="margin-top: 0">
+              <thead>
+                <tr>
+                  <th>Block ID</th>
+                  <th>Day</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody class="tbody3"></tbody>
+            </table>
           </div>
         </div>
       </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <script src="./edit.js"></script>
+    <script src="./view-all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>
