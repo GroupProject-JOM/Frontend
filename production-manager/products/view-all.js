@@ -196,7 +196,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             deletes.forEach((del) => {
               del.addEventListener("click", () => {
                 document.cookie =
-                  "id=" + edit.parentElement.parentNode.id + "; path=/";
+                  "id=" + del.parentElement.parentNode.id + "; path=/";
                 delete_product();
               });
             });
@@ -223,8 +223,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                     ".edit-product-container"
                   ).style.display = "block";
                   editType.value = col.parentNode.children[1].textContent;
-                  editCategory.value = col.parentNode.children[1].textContent;
-                  editPrice.value = col.parentNode.children[1].textContent;
+                  editCategory.value = col.parentNode.children[2].textContent;
+                  editPrice.value = col.parentNode.children[3].textContent;
                 });
               });
             });
@@ -294,6 +294,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   icon: "success",
                   confirmButtonColor: confirmButtonColor,
                 }).then((response) => {
+                  closeBtn1.click();
                   getAllData();
                 });
               });
@@ -321,77 +322,78 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   btn.addEventListener("click", () => {
     overlay2.style.display = "block";
     document.querySelector(".add-product-container").style.display = "block";
+  });
 
-    pCategory.addEventListener("input", () => {
-      pCategory_status_func();
-    });
-    pType.addEventListener("input", () => {
-      pType_status_func();
-    });
+  pCategory.addEventListener("input", () => {
+    pCategory_status_func();
+  });
+  pType.addEventListener("input", () => {
+    pType_status_func();
+  });
 
-    submit.addEventListener("click", () => {
-      if (!pType_status_func()) {
-        pType.focus();
-      }
-      if (!pCategory_status_func()) {
-        pCategory.focus();
-      }
+  submit.addEventListener("click", () => {
+    if (!pType_status_func()) {
+      pType.focus();
+    }
+    if (!pCategory_status_func()) {
+      pCategory.focus();
+    }
 
-      if (pCategoryStatus && pTypeStatus) {
-        var formData = {
-          type: pType.value,
-          category: pCategory.value,
-        };
-        fetch(backProxy + "/product", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-          credentials: "include",
+    if (pCategoryStatus && pTypeStatus) {
+      var formData = {
+        type: pType.value,
+        category: pCategory.value,
+      };
+      fetch(backProxy + "/product", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+              pType.value = "";
+              pCategory.value = "";
+            });
+            if (lang == "sin") var title = "නිෂ්පාදන සාර්ථකව එකතු කරන ලදී";
+            else var title = "Product added successfully";
+
+            closeBtn2.click();
+
+            Swal.fire({
+              title: title,
+              // text: "You clicked the button!",
+              icon: "success",
+              confirmButtonColor: confirmButtonColor,
+            }).then((response) => {
+              getAllData();
+            });
+          } else if (response.status === 400) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") Command: toastr["error"]("නිෂ්පාදන එකතු කර නැත");
+            else Command: toastr["error"]("Product is not added");
+          } else if (response.status === 401) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+            else Command: toastr["error"]("Invalid User");
+          } else {
+            console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
+          }
         })
-          .then((response) => {
-            if (response.status == 200) {
-              response.json().then((data) => {
-                console.log(data.message);
-              });
-              if (lang == "sin") var title = "නිෂ්පාදන සාර්ථකව එකතු කරන ලදී";
-              else var title = "Product added successfully";
-
-              overlay2.click();
-
-              Swal.fire({
-                title: title,
-                // text: "You clicked the button!",
-                icon: "success",
-                confirmButtonColor: confirmButtonColor,
-              }).then((response) => {
-                getAllData();
-              });
-            } else if (response.status === 400) {
-              response.json().then((data) => {
-                console.log(data.message);
-              });
-              if (lang == "sin")
-                Command: toastr["error"]("නිෂ්පාදන එකතු කර නැත");
-              else Command: toastr["error"]("Product is not added");
-            } else if (response.status === 401) {
-              response.json().then((data) => {
-                console.log(data.message);
-              });
-              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-              else Command: toastr["error"]("Invalid User");
-            } else {
-              console.error("Error:", response.status);
-              Command: toastr["error"](response.status, "Error");
-            }
-          })
-          .catch((error) => {
-            console.error("An error occurred:", error);
-            Command: toastr["error"](error);
-          });
-      }
-    });
+        .catch((error) => {
+          console.error("An error occurred:", error);
+          Command: toastr["error"](error);
+        });
+    }
   });
 
   var editCategoryStatus = false,
@@ -436,7 +438,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             if (lang == "sin") var title = "නිෂ්පාදනය සාර්ථකව සංස්කරණය කරන ලදී";
             else var title = "Product edited successfully";
 
-            overlay3.click();
+            closeBtn3.click();
 
             Swal.fire({
               title: title,
