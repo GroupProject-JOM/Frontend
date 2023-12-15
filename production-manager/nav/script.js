@@ -46,7 +46,7 @@
 
     dashboard.href = frontProxy + "/production-manager/";
     stockk.href = frontProxy + "/production-manager/stock/view.html";
-    production.href = frontProxy + "/production-manager/production.html";
+    production.href = frontProxy + "/production-manager/production/";
     profile.href = frontProxy + "/production-manager/profile/view.html";
     products.href = frontProxy + "/production-manager/products/view-all.html";
     
