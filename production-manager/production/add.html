@@ -304,13 +304,47 @@
         </div>
         <div class="new-production-form">
             <form>
-                <label class="coco-label">Coconut Amount</label>
-                <input type="number" placeholder="Enter used coconut amount">
-<br><br>
-                <label class="request-label">Production Requests</label>
+              <div class="requests">
+                <div>
+
+                  <p>Select production requests and enter used coconut amounts from each request</p>
+                  
+                  <div class="row">
+                    <div class="add-label request-label"><input type="checkbox"><label class="ename-label">Request R17</label></div>
+                    <div class="add-input">
+                      <input
+                      type="text"
+                      class="estate-name"
+                      placeholder="Enter Coconut Amount"
+                      /><br /><span class="form-error ename-error"></span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="add-label"><input type="checkbox"><label class="ename-label">Request R17</label></div>
+                    <div class="add-input">
+                      <input
+                      type="text"
+                      class="estate-name"
+                      placeholder="Enter Coconut Amount"
+                      /><br /><span class="form-error ename-error"></span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="add-label"><input type="checkbox"><label class="ename-label">Request R17</label></div>
+                    <div class="add-input">
+                      <input
+                      type="text"
+                      class="estate-name"
+                      placeholder="Enter Coconut Amount"
+                      /><br /><span class="form-error ename-error"></span>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                
+                <label class="product-label">Expected Products</label>
                 <select class="dropdown" name="select" multiple multiselect-search="true" multiselect-select-all="true">
-                    <!-- <option default hidden class="op0">Select production requests used for the batch</option> -->
-                    <option value="1">R16</option>
+                    <option value="1">Virgin Coconut Oil</option>
                     <option value="2">R18</option>
                     <option value="2">R18</option>
                     <option value="2">R18</option>

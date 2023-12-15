@@ -4,7 +4,7 @@ style.setAttribute("id","multiselect_dropdown_styles");
 style.innerHTML = `
 .multiselect-dropdown{
   display: inline-block;
-  padding: 2px 5px 0px 0px;
+  padding: 0px 5px 0px 0px;
   border-bottom: 1px solid #a9a9a9;
   background-color: white;
   position: relative;
@@ -12,7 +12,7 @@ style.innerHTML = `
   background-repeat: no-repeat;
   background-position: right .75rem center;
   background-size: 16px 12px;
-  margin-top: 20px;
+  margin-bottom: 30px;
 }
 .multiselect-dropdown span.optext, .multiselect-dropdown span.placeholder{
   margin-right:0.5em; 
@@ -70,17 +70,17 @@ style.innerHTML = `
 }
 
 .multiselect-dropdown-list div{
-  padding: 13px;
+  padding: 13px 0;
 }
 .multiselect-dropdown-list input{
   height: 1.15em;
-  width: 1.15em;
+  width: 2.15em;
   margin-right: 0.35em;  
 }
 .multiselect-dropdown-list div.checked{
 }
 .multiselect-dropdown-list div:hover{
-  background-color: #ced4da;
+  background-color: #ffe0b6;
 }
 .multiselect-dropdown span.maxselected {width:100%;}
 .multiselect-dropdown-all-selector {border-bottom:solid 1px #999;}
