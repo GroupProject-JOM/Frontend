@@ -614,8 +614,7 @@ body.dark {
   z-index: 1;
   display: none;
 }
-
-.rate-section {
+.action-bar {
   width: 90%;
   height: 8vh;
   background-color: var(--body-color);
@@ -629,13 +628,13 @@ body.dark {
   background-color: var(--th-color);
 }
 
-.rate-section .rate-text {
+.action-bar .action-text {
   margin-left: 15px;
   font-weight: 400;
   font-size: 0.9rem;
 }
 
-.rate-content {
+.action-content {
   display: flex;
   gap: 10px;
   font-weight: 600;
@@ -644,11 +643,16 @@ body.dark {
   /* align-items: flex-end; */
 }
 
-.rate-button {
+.action-button {
   padding: 10px 30px;
   margin: 0 10px;
   font-size: 0.9rem;
 }
+
+.action-bar .action-value {
+  font-size: 1rem;
+}
+
 
 .rate-section .rate-value {
   font-size: 1rem;
