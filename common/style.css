@@ -34,10 +34,12 @@
   --input-border-focus: #484848;
   --hr-color: #f1f1f1;
   --stock-table-text: #000000;
+  --background-grey: #f0efef;
   --stock-lv1: #feffd6;
   --stock-lv2: #fff8b8;
   --stock-lv3: #caf2c2;
   --stock-lv4: #ffd6c9;
+
   /* --stock-lv1: #fbffcc;
   --stock-lv2: #ffe0e0;
   --stock-lv3: #e9ffe8;

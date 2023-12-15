@@ -286,6 +286,24 @@ p {
   margin-bottom: 5px;
 }
 
+.chat-search input:focus{
+  border: none;
+}
+
+.chat-search input:focus ~ .chat-search{
+  border-bottom: 2px solid var(--input-border-focus);
+  background-color: red;
+}
+
+.chat-search:hover{
+  border-bottom: 2px solid var(--input-border-focus);
+}
+/* 
+.chat-search input:focus,
+.chat-search input:not(:placeholder-shown){
+  border-bottom: 2px solid var(--input-border-focus);
+} */
+
 @media only screen and (max-device-width: 900px) {
   .supplier-chat-container {
     width: 95%;
