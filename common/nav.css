@@ -52,7 +52,7 @@
 }
 
 .sidebar li .icon{
-  color: var(--button-color);
+  color: var(--sidebar-icon);
   transition: var(--tran-02);
 }
 
