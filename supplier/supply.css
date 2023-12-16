@@ -564,6 +564,13 @@ input [type=""] .supply7-container input {
   border-radius: 15px;
 }
 
+.search-filter input{
+  margin: 0;
+}
+
+.supply6-container .table-heading, .supply8-container .table-heading{
+  width: 95%;
+}
 @media only screen and (max-device-width: 800px) {
   .report-container {
     grid-template-rows: 2fr 2fr 1fr 1fr;
