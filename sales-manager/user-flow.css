@@ -56,7 +56,7 @@
 }
 
 .payment-pending {
-  background-color: var(--sidebar-color);
+  background-color: var(--pending-color);
 }
 
 .payment-paid {
