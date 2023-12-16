@@ -284,25 +284,18 @@ p {
   border: none;
   margin-top: 0;
   margin-bottom: 5px;
+  width: 90%;
 }
 
 .chat-search input:focus{
   border: none;
 }
 
-.chat-search input:focus ~ .chat-search{
+.chat-search:has(input:focus){
   border-bottom: 2px solid var(--input-border-focus);
-  background-color: red;
+
 }
 
-.chat-search:hover{
-  border-bottom: 2px solid var(--input-border-focus);
-}
-/* 
-.chat-search input:focus,
-.chat-search input:not(:placeholder-shown){
-  border-bottom: 2px solid var(--input-border-focus);
-} */
 
 @media only screen and (max-device-width: 900px) {
   .supplier-chat-container {
