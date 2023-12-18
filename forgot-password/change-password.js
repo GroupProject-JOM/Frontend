@@ -1,3 +1,9 @@
+if (getCookie("jwt") != null && getCookie("jwt").length != 0)
+  window.location.href = frontProxy + "/signin.html";
+
+if (getCookie("jwt-forgot") == null || getCookie("jwt-forgot").length == 0)
+  window.location.href = frontProxy + "/signin.html";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -9,6 +15,8 @@
     tx2 = body.querySelector(".text2"),
     tx3 = body.querySelector(".text3"),
     btn = body.querySelector(".form-button"),
+    confirmError = body.querySelector(".confirm-password-error"),
+    passwordError = body.querySelector(".new-password-error"),
     confirm = body.querySelector(".confirm-password"),
     password = body.querySelector(".new-password");
 
@@ -75,4 +83,115 @@
       confirm: "Confirm password",
     },
   };
+
+  var passwordStatus = false,
+    confirmStatus = false,
+    match = false;
+
+  password.addEventListener("input", () => {
+    password_status_func();
+  });
+  confirm.addEventListener("input", () => {
+    confirm_status_func();
+  });
+
+  btn.addEventListener("click", () => {
+    if (!password_status_func()) {
+      password.focus();
+    }
+    if (!confirm_status_func()) {
+      confirm.focus();
+    }
+
+    if (password.value === confirm.value) {
+      match = true;
+    } else {
+      if (lang == "sin") {
+        passwordError.textContent = "මුර පද ගැලපෙන්නේ නැත";
+        confirmError.textContent = "මුර පද ගැලපෙන්නේ නැත";
+      } else {
+        passwordError.textContent = "Passwords do not match";
+        confirmError.textContent = "Passwords do not match";
+      }
+      password.focus();
+      match = false;
+    }
+
+    if (passwordStatus && confirmStatus && match) {
+      fetch(backProxy + "/forgot-password?password=" + password.value, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
+        .then((response) => {
+          if (response.status == 200) {
+            response.json().then((data) => {
+              log(data.message);
+            });
+            if (lang == "sin") {
+              var title = "සාර්ථකයි!",
+                text = "ඔබගේ මුරපදය සාර්ථකව වෙනස් කර ඇත.";
+            } else {
+              var title = "Successful!",
+                text = "Your password is changed successfully.";
+            }
+            // sweet alert
+            Swal.fire({
+              title: title,
+              text: text,
+              icon: "success",
+              confirmButtonColor: confirmButtonColor,
+            }).then((response) => {
+              document.cookie = "jwt-forgot=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+              window.location.href = "../signin.html";
+            });
+          } else if (response.status === 401) {
+            if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+            else Command: toastr["error"]("Invalid User");
+          } else {
+            console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+          Command: toastr["error"](error);
+        });
+    }
+  });
+
+  function password_status_func() {
+    if (
+      typeof password.value === "string" &&
+      password.value.trim().length === 0
+    ) {
+      if (lang == "sin") passwordError.textContent = "නව මුරපදය හිස් විය නොහැක";
+      else passwordError.textContent = "New password cannot be empty";
+      passwordStatus = false;
+      return false;
+    } else {
+      passwordStatus = true;
+      passwordError.textContent = "";
+      return true;
+    }
+  }
+
+  function confirm_status_func() {
+    if (
+      typeof confirm.value === "string" &&
+      confirm.value.trim().length === 0
+    ) {
+      if (lang == "sin")
+        confirmError.textContent = "තහවුරු මුරපදය හිස් විය නොහැක";
+      else confirmError.textContent = "Confirm password cannot be empty";
+      confirmStatus = false;
+      return false;
+    } else {
+      confirmStatus = true;
+      confirmError.textContent = "";
+      return true;
+    }
+  }
 })();

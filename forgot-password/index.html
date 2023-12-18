@@ -62,8 +62,26 @@
               <p class="text2 form-text"></p>
               <div class="email-input password-input">
                 <input type="text" class="email" placeholder="" />
+                <div class="lds-ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div id="counter"></div>
                 <button class="send-otp form-button"></button>
+                <br />
+                <span class="form-error email-error"></span>
               </div>
+              <p
+                  class="error"
+                  style="
+                    font-weight: 600;
+                    font-size: smaller;
+                    margin-top: 1rem;
+                    color: red;
+                  "
+                ></p>
             </div>
 
             <div class="otp-content password-content">
@@ -73,6 +91,15 @@
                 <input type="text" class="otp" placeholder="" />
                 <button class="verify-otp form-button"></button>
               </div>
+              <p
+                  class="otp-error"
+                  style="
+                    font-weight: 600;
+                    font-size: smaller;
+                    margin-top: 1rem;
+                    color: red;
+                  "
+                ></p>
             </div>
 
           </div>
@@ -81,7 +108,6 @@
     </div>
     <script src="./load-sidebar.js"></script>
     <script src="./script.js"></script>
-    <script src="./sidebar.js"></script>
     <script src="../common/loader.js"></script>
   </body>
 </html>
