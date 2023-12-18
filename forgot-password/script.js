@@ -1,3 +1,6 @@
+if (getCookie("jwt") != null && getCookie("jwt").length != 0)
+  window.location.href = frontProxy + "/signin.html";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -15,6 +18,7 @@
     emailRing = body.querySelector(".lds-ring"),
     error = body.querySelector(".error"),
     otp = body.querySelector(".otp"),
+    otpError = body.querySelector(".otp-error"),
     verify = body.querySelector(".verify-otp");
 
   var lang = getCookie("lang"); // current language
@@ -90,8 +94,7 @@
 
   email.value = getCookie("email");
 
-  var email_status = false,
-    oId;
+  var email_status = false;
 
   email.addEventListener("input", () => {
     email_status_func();
@@ -129,8 +132,6 @@
                 error.textContent = "OTP sent";
                 Command: toastr["info"]("OTP sent");
               }
-              oId = data.oId;
-              log(data)
             });
             emailRing.style.display = "none";
             sendOTP.textContent = "Resend";
@@ -180,11 +181,74 @@
     }
   });
 
+  verify.addEventListener("click", () => {
+    sendOTP.disabled = true;
+    if (typeof otp.value === "string" && otp.value.trim().length === 0) {
+      sendOTP.disabled = false;
+      if (lang == "sin") {
+        otpError.textContent = "OTP හිස් විය නොහැක";
+        Command: toastr["warning"]("OTP හිස් විය නොහැක");
+      } else {
+        otpError.textContent = "OTP cannot be empty";
+        Command: toastr["warning"]("OTP cannot be empty");
+      }
+      otp.focus();
+    } else {
+      otpError.textContent = "";
+      var formData = {
+        otp: otp.value,
+      };
+      fetch(backProxy + "/forgot-password", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          if (response.status == 200) {
+            response.json().then((data) => {
+              log(data.message);
+            });
+            window.location.href = "./change-password.html";
+          } else if (response.status === 401) {
+            sendOTP.disabled = false;
+            console.log("Invalid User");
+            if (lang == "sin") {
+              otpError.textContent = "වලංගු නොවන පරිශීලක";
+              Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+            } else {
+              otpError.textContent = "Invalid user";
+              Command: toastr["error"]("Invalid user");
+            }
+          } else if (response.status === 409) {
+            sendOTP.disabled = false;
+            console.log("Invalid OTP");
+            if (lang == "sin") {
+              otpError.textContent = "වලංගු නොවන OTP";
+              Command: toastr["errror"]("වලංගු නොවන OTP");
+            } else {
+              otpError.textContent = "Invalid OTP";
+              Command: toastr["error"]("Invalid OTP");
+            }
+            otp.focus();
+          } else {
+            sendOTP.disabled = false;
+            console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
+          }
+        })
+        .catch((error) => {
+          sendOTP.disabled = false;
+          console.error("An error occurred:", error);
+          Command: toastr["error"](error);
+        });
+    }
+  });
+
   function email_status_func() {
-    if (
-      typeof email.value === "string" &&
-      email.value.trim().length === 0
-    ) {
+    if (typeof email.value === "string" && email.value.trim().length === 0) {
       if (lang == "sin")
         emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
       else emailError.textContent = "Email cannot be empty";
