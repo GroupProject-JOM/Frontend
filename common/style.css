@@ -157,14 +157,17 @@ body.dark {
   margin-top: 2.4rem;
   font-weight: 500;
   cursor: pointer;
+  z-index:1;
 }
 
 .lng-picker .sin {
   padding: 0 8px 0 20px;
+  z-index:1;
 }
 
 .lng-picker .en {
   padding: 0 20px 0 12px;
+  z-index:1;
 }
 
 .lng-picker .active {
@@ -177,6 +180,7 @@ body.dark {
   justify-content: center;
   color: white;
   padding: 0;
+  z-index:1;
 }
 
 .notification .bell {
