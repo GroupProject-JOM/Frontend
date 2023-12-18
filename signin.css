@@ -366,6 +366,7 @@ textarea {
   position: relative;
   top: -8px;
   color: #484848;
+  float: right;
 }
 
 .validate {
@@ -524,6 +525,8 @@ margin-bottom: 8vh;
 .change-password-content .form-text{
 font-size: 0.9rem;
 color: #626262;
+/* width: 70%; */
+
 }
 
 .change-password-content .password-content .form-text{

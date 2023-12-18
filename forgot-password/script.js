@@ -135,17 +135,16 @@ if (getCookie("jwt") != null && getCookie("jwt").length != 0)
             });
             emailRing.style.display = "none";
             sendOTP.textContent = "Resend";
-            sendOTP.style.display = "block";
             sendOTP.disabled = true;
             counter.style.display = "block";
-
-            var count = 59,
+            var count = 59, // Oya vs code ekt github eka link krl ndd
               timer = setInterval(() => {
                 counter.innerHTML = "00:" + count--;
                 if (count == 0) {
                   clearInterval(timer);
                   sendOTP.disabled = false;
                   counter.style.display = "none";
+                  sendOTP.style.display = "block";
                 }
               }, 1000);
           } else if (response.status === 409) {
