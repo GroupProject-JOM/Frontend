@@ -137,7 +137,7 @@ if (getCookie("jwt") != null && getCookie("jwt").length != 0)
             sendOTP.textContent = "Resend";
             sendOTP.disabled = true;
             counter.style.display = "block";
-            var count = 59, // Oya vs code ekt github eka link krl ndd
+            var count = 59,
               timer = setInterval(() => {
                 counter.innerHTML = "00:" + count--;
                 if (count == 0) {

@@ -596,6 +596,13 @@ color: #626262;
     margin-top: 70px;
 }
 
+.forgot-password-container .lds-ring{
+  float: right;
+  right: 40px;
+  margin-top: 35px;
+  
+}
+
 
 @media only screen and (max-device-width: 900px) {
   .sidebar-photo {
