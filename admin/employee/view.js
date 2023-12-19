@@ -51,12 +51,12 @@
     sin: {
       aTitle: "සේවක විස්තර",
       edit: "සංස්කරණය කරන්න",
-      del: "මකන්න",
+      del: "ඉවත් කරන්න",
     },
     en: {
       aTitle: "Employee Details",
       edit: "Edit",
-      del: "Terminate",
+      del: "Remove",
     },
   };
 
