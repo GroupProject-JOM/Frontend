@@ -13,6 +13,7 @@
   --primary-color: #000000;
   --primary-color-light: #ffe0b6;
   --toggle-color: #ddd;
+  --toggle-button: #ffe0b6;
   --text-color: #ffffff;
   --mode-color: #6a6a6a;
   --shadow-color: lightgray;
@@ -92,6 +93,7 @@ body.dark {
     --primary-color: #ccc;
     --primary-color-light: #7e7e7e;
     --toggle-color: #9d9387;
+    --toggle-button: #9d9387;
   --text-color: #ccc;
   --shadow-color: rgb(57, 57, 57);
   --box-shadow: rgb(50, 45, 42);

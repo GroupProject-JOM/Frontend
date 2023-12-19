@@ -56,7 +56,7 @@
 .track-collectors-container,
 .block-container {
   top: 50%;
-  transform: translate(0, 3vh);
+  transform: translate(0, 0vh);
 }
 
 select.dropdown {
@@ -105,10 +105,10 @@ select.dropdown {
   background-color: rgba(237, 173, 104, 0.699) !important;
 }
 
-.stocks h3 {
+.stocks h3,
+.block-container h3{
   padding-bottom: 0.8rem;
   margin-top: 1rem;
-  /* padding-left: 25px; */
   font-weight: 600;
   font-size: 19px;
 }
@@ -203,6 +203,7 @@ input[type="number"] {
   font-weight: 500;
   color: var(--input-border-focus);
 }
+
 .edit-stock-container input {
   font-size: 1.1rem;
   margin: 15px 0 0 0;
@@ -227,6 +228,8 @@ input[type="number"] {
 .edit-stock-container .save {
   margin-top: 40px;
 }
+
+
 @media only screen and (max-device-width: 1260px) {
   .yard2 {
     /* display: flex;

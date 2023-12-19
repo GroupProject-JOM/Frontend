@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -69,13 +70,25 @@
 
       <div class="text"></div>
 
-      <div class="container">
-        <div class="outlet-heading table-heading">
+      <div class="admin-container container">
+        <div class="admin-heading table-heading">
           <h2 class="outlet-title"></h2>
           <p class="outlet-text"></p>
         </div>
+        <div class="add-employee">
+          <a class="add-button form-button" href="./add.html"></a>
 
-        <table class="outlets-table overview-tables">
+          <div class="search-filter">
+            <div class="search-wrapper">
+              <div class="search-box search-box">
+                <input type="text" class="search" placeholder=" " />
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table class="employees-table overview-tables">
           <thead>
             <tr>
               <th>Employee Name</th>
@@ -87,13 +100,35 @@
 
           <tbody class="tbody"></tbody>
         </table>
-        <br /><br />
+<br><br><br><br>
+        <div class="outlet-heading table-heading">
+          <h2 class="outlet-title">Previous Employees</h2>
+          <div>
+            <p class="outlet-text">View past employee details of the company</p>
 
-        <a
-          class="outlet-button form-button"
-          href="./add.html"
-          style="margin-top: 2rem"
-        ></a>
+            <div class="search-filter">
+              <div class="search-wrapper">
+                <div class="search-box search-box">
+                  <input type="text" class="search" placeholder=" " />
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table class="employees-table overview-tables">
+          <thead>
+            <tr>
+              <th>Employee Name</th>
+              <th>Designation</th>
+              <th>Phone</th>
+              <th>City</th>
+            </tr>
+          </thead>
+
+          <tbody class="tbody"></tbody>
+        </table>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
