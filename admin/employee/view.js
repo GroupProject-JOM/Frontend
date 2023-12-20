@@ -86,6 +86,13 @@
             data.employee.role.charAt(0).toUpperCase() +
             data.employee.role.slice(1);
           eGender.textContent = data.employee.gender;
+
+          if (data.employee.delete == 1) {
+            edit.disabled = true;
+            edit.style.display = "none";
+            del.disabled = true;
+            del.style.display = "none";
+          }
         });
       } else if (response.status === 202) {
         response.json().then((data) => {

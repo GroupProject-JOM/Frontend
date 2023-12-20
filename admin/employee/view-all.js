@@ -6,7 +6,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en = body.querySelector(".en"),
     oTitle = body.querySelector(".outlet-title"),
     oText = body.querySelector(".outlet-text"),
-    tbody = body.querySelector(".tbody"),
+    tbody1 = body.querySelector(".tbody1"),
+    tbody2 = body.querySelector(".tbody2"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
@@ -54,7 +55,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  var row = "";
+  var row1 = "",
+    row2 = "";
 
   fetch(backProxy + "/employees", {
     method: "GET",
@@ -70,7 +72,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            row +=
+            row1 +=
               "<tr data-href='./view.html' id=" +
               item.id +
               ">" +
@@ -89,7 +91,29 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</td>" +
               "</tr>";
           }
-          tbody.innerHTML = row;
+          tbody1.innerHTML = row1;
+
+          data.previous.forEach((item) => {
+            row2 +=
+              "<tr data-href='./view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.first_name +
+              "</td>" +
+              "<td>" +
+              item.role.charAt(0).toUpperCase() +
+              item.role.slice(1) +
+              "</td>" +
+              "<td>" +
+              item.phone +
+              "</td>" +
+              "<td>" +
+              item.add_line_3 +
+              "</td>" +
+              "</tr>";
+          });
+          tbody2.innerHTML = row2;
 
           const rows = document.querySelectorAll("tr[data-href]");
 
