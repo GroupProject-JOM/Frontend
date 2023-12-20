@@ -220,11 +220,15 @@ width: 25vw;
   font-size: 0.9rem;
   border: 1px solid var(--sidebar-color);
   margin-bottom: 30px;
+  cursor: pointer;
 }
+
+.split1-window .to-yard-text:hover{
+  scale: 1.03;
+}
+
 .split1-window .add-yard{
-  /* text-align: center; */
-  /* color: var(--sidebar-color); */
-  /* background-color: var(--table-color-hover); */
+  
   width: 100%;
   display: flex;
   justify-content: center;
