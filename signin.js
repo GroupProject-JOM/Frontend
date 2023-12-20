@@ -88,10 +88,10 @@ var username_status = false,
     },
   };
 
-  ll3.addEventListener("click", ()=>{
-    document.cookie = "email=" + username.value+"; path=/";
-    window.location.href = "./forgot-password"
-  })
+  ll3.addEventListener("click", () => {
+    document.cookie = "email=" + username.value + "; path=/";
+    window.location.href = "./forgot-password";
+  });
 
   checkLng();
 
@@ -180,13 +180,14 @@ var username_status = false,
                 if (lang == "sin") {
                   passwordError.textContent = "වලංගු නොවන මුරපදයක්!";
                   Command: toastr["warning"]("වලංගු නොවන මුරපදයක්!");
-                  ll3.style.color="red"
+                  ll3.style.color = "red";
                 } else {
                   passwordError.textContent = "Invalid Password!";
                   Command: toastr["warning"]("Invalid Password!");
-                  ll3.style.color="red"
+                  ll3.style.color = "red";
                 }
                 password.focus();
+                ll3.classList.add("blink");
               }
             });
           } else if (response.status === 401) {
@@ -210,6 +211,7 @@ var username_status = false,
                 }
                 username.focus();
                 validate.style.display = "block";
+                validate.classList.add("blink");
               }
             });
           } else {

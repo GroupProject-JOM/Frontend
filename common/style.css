@@ -63,30 +63,7 @@ body {
 }
 
 body.dark {
-  /* --body-color: #18191a;
-  --sidebar-color: #242526;
-  --primary-color: #ccc;
-  --primary-color-light: #7e7e7e;
-  --toggle-color: #fff;
-  --text-color: #ccc;
-  --shadow-color: rgb(57, 57, 57);
-  --box-shadow: rgb(57, 57, 57);
-  --wtext--color: #ccc;
-  --th-color: #6a6a6a;
-  --table-color-hover: #343434;
-  --tbicon-color: #ccc;
-  --input-border: #a9a9a9;
-  --label-selected: #ccc;
-  --button-color: #484848;
-  --button-hover: #363535;
-  --sidebar-color-text: #7e7e7e;
-  --stock-table-text: #ffffff;
-  --pending-color: #9a7748;
-  --hr-color: #6a6a6a;
-  --stock-lv1: #cf970a;
-  --stock-lv2: #79a519;
-  --stock-lv3: #527d2e;
-  --stock-lv4: #bb3737; */
+  
 
     --body-color: #242526;
     --sidebar-color: #18191a;

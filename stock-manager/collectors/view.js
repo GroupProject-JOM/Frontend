@@ -11,8 +11,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     yValue = body.querySelector(".yard-value"),
     btn = body.querySelector(".yard-button"),
     mapBtn = body.querySelector(".map-button"),
-    closeBtn = body.querySelector(".close-btn"),
-    overlay = body.querySelector(".overlay"),
+    closeBtn1 = body.querySelector(".close-btn1"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    yard = body.querySelector(".yard-button"),
+    overlay1 = body.querySelector(".overlay1"),
+    overlay2 = body.querySelector(".overlay2"),
     searchBar = body.querySelector(".search"),
     addressTable = body.querySelector(".addresses-table"),
     datePicker = body.querySelector("#datePicker");
@@ -21,6 +24,23 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   datePicker.addEventListener("input", () => {
     fetchData(datePicker.value);
+  });
+
+  yard.addEventListener("click", () => {
+    overlay2.style.display = "flex";
+    document.querySelector(".split1-window").style.display = "block";
+  });
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay2") {
+      overlay2.style.display = "none";
+      document.querySelector(".split1-window").style.display = "none";
+    }
+  });
+
+  closeBtn2.addEventListener("click", () => {
+    overlay2.style.display = "none";
+    document.querySelector(".split1-window").style.display = "none";
   });
 
   var lang = getCookie("lang"); // current language
@@ -50,19 +70,19 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   };
 
   mapBtn.addEventListener("click", () => {
-    overlay.style.display = "flex";
+    overlay1.style.display = "flex";
     document.querySelector(".collections-map").style.display = "block";
   });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target.id === "overlay") {
-      overlay.style.display = "none";
+  overlay1.addEventListener("click", (e) => {
+    if (e.target.id === "overlay1") {
+      overlay1.style.display = "none";
       document.querySelector(".collections-map").style.display = "none";
     }
   });
 
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
+  closeBtn1.addEventListener("click", () => {
+    overlay1.style.display = "none";
     document.querySelector(".collections-map").style.display = "none";
   });
 

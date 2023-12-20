@@ -36,6 +36,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     other = body.querySelector(".other"),
     otherError = body.querySelector(".other-error"),
     otherLabel = body.querySelector(".reason-label"),
+    yard = body.querySelector(".to-yard-button"),
     op0 = body.querySelector(".op0"),
     op1 = body.querySelector(".op1"),
     op2 = body.querySelector(".op2"),
@@ -56,6 +57,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept.textContent = data["sin"]["accept"];
     decline.textContent = data["sin"]["decline"];
     assign.textContent = data["sin"]["assign"];
+    yard.textContent = data["sin"]["yard"];
     rtext.textContent = data["sin"]["rtext"];
     op0.textContent = data["sin"]["op0"];
     op1.textContent = data["sin"]["op1"];
@@ -80,6 +82,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accept.textContent = data["en"]["accept"];
     decline.textContent = data["en"]["decline"];
     assign.textContent = data["en"]["assign"];
+    yard.textContent = data["en"]["yard"];
     rtext.textContent = data["en"]["rtext"];
     op0.textContent = data["en"]["op0"];
     op1.textContent = data["en"]["op1"];
@@ -98,6 +101,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       accept: "පිළිගන්න",
       decline: "ප්රතික්ෂේප කරන්න",
       assign: "එකතුකරන්නා පවරන්න",
+      yard: "අංගනයට එකතු කරන්න",
       rtext: "ඉල්ලීම ප්‍රතික්ෂේප කිරීමට හේතුව තෝරන්න",
       op0: "ප්රතික්ෂේප කිරීමට හේතුව තෝරන්න",
       op1: "පොල් ප්‍රමාණය මදි",
@@ -112,6 +116,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       accept: "Accept",
       decline: "Decline",
       assign: "Assign Collector",
+      yard: "Add To Yard",
       rtext: "Select the reason for declining the request",
       op0: "Select reason for declining",
       op1: "Not enough coconut amount",
@@ -201,6 +206,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             cNameRow.style.display = "none";
             cPhoneRow.style.display = "none";
             collected.style.display = "none";
+            yardstyle.display = "";
           } else if (data.request.status == 3) {
             if (lang == "sin")
               sText.textContent = "තත්ත්වය: ලබා ගැනීමට සූදානම්";

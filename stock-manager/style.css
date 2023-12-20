@@ -49,8 +49,9 @@
 
 
 .decline-container .close-btn,
-.rate-window .close-btn,
-.collections-map .close-btn {
+.rate-window .close-btn
+/* .collections-map .close-btn  */
+{
   display: grid;
   position: absolute;
   right: 20px;
@@ -62,8 +63,9 @@
 }
 
 .decline-container .close-btn:hover,
-.rate-window .close-btn:hover,
-.collections-map .close-btn:hover {
+.rate-window .close-btn:hover
+/* .collections-map .close-btn:hover */
+ {
   color: var(--primary-color);
   scale: 1.1;
   cursor: pointer;
@@ -175,3 +177,70 @@ width: 25vw;
 .decline-container input[type=text]:focus{
   outline: none;
 }
+
+.split1-window{
+  width: 25vw;
+  height: 40vh;
+  margin-top: 60px;
+  top: 20%;
+  right: 50%;
+}
+
+.split-content{
+  margin: 10px;
+}
+
+.split1-window .name{
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.split1-window .collections{
+  
+  margin-bottom: 20px;
+}
+
+
+
+.split1-window .coco-amount span{
+  font-size: 2.7rem;
+  font-weight: 600;
+}
+.split1-window .coco-amount{
+  margin-bottom: 10px;
+  text-align: center;
+}
+.split1-window .to-yard-text{
+  text-align: center;
+  color: var(--sidebar-color);
+  background-color: var(--table-color-hover);
+  width: 30%;
+  border-radius: 20px;
+  padding: 3px 5px;
+  font-size: 0.9rem;
+  border: 1px solid var(--sidebar-color);
+  margin-bottom: 30px;
+}
+.split1-window .add-yard{
+  /* text-align: center; */
+  /* color: var(--sidebar-color); */
+  /* background-color: var(--table-color-hover); */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.split1-window .buttons{
+  width: 100%;
+  display: flex;
+  gap: 10px;
+justify-content: center;
+margin-top: 20px;
+}
+
+.split1-window .form-button{
+
+  padding: 7px 0px;
+  width: 30%;
+}
+

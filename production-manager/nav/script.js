@@ -109,7 +109,7 @@
       sin: {
         l0: "පරිශීලක ක්‍රියා",
         l1: "ගබඩා සමාලෝචනය",
-        l2: "නිෂ්පාදන ඉතිහාසය",
+        l2: "නිෂ්පාදන විශ්ලේෂණය",
         l3: "නිෂ්පාදන",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
@@ -119,7 +119,7 @@
       en: {
         l0: "USER ACTIONS",
         l1: "Stock Overview",
-        l2: "Production History",
+        l2: "Production Overview",
         l3: "Products",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
