@@ -88,7 +88,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               ` type="number"` +
               `class="coco-amount" ` +
               `value="` +
-              item.amount +
+              item.actual +
               `" ` +
               `disabled ` +
               `placeholder="Enter Coconut Amount"` +
@@ -125,7 +125,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 );
               requests.forEach((request) => {
                 if (request.id == rId) {
-                  if (coco.value > request.amount) {
+                  if (coco.value > request.actual) {
                     if (lang == "sin") {
                       Command: toastr["warning"](
                         "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක"
@@ -211,7 +211,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   btn.addEventListener("click", () => {
     var arr2 = [],
       requestIds = [],
-      requestAmounts = [];
+      requestAmounts = [],
+      actual = [];
+
     arrList.forEach((el) => {
       arr2.push(el.value);
     });
@@ -240,7 +242,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
         requests.forEach((request) => {
           if (request.id == rId) {
-            if (coco.value > request.amount) {
+            if (coco.value > request.actual) {
               if (lang == "sin") {
                 Command: toastr["warning"](
                   "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක"
@@ -271,6 +273,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               requestStatus = true;
               requestIds.push(rId);
               requestAmounts.push(coco.value);
+              actual.push(request.actual);
             }
           }
         });
@@ -295,6 +298,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       var formData = {
         requests: requestIds,
         amounts: requestAmounts,
+        actual: actual,
         products: arr2,
       };
       fetch(backProxy + "/production-batch", {
@@ -324,13 +328,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               text: text,
               icon: "success",
               confirmButtonColor: confirmButtonColor,
+            }).then((response) => {
+              window.location.href = "./";
             });
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
             });
-            if (lang == "sin") Command: toastr["error"]("නිෂ්පාදන කණ්ඩායම නිර්මාණය කර නැත");
-              else Command: toastr["error"]("Production batch is not created");
+            if (lang == "sin")
+              Command: toastr["error"]("නිෂ්පාදන කණ්ඩායම නිර්මාණය කර නැත");
+            else Command: toastr["error"]("Production batch is not created");
           } else if (response.status === 401) {
             response.json().then((data) => {
               console.log(data.message);

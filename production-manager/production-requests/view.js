@@ -77,8 +77,13 @@
           var stat = "";
 
           if (data.request.status == 1) stat = "Pending Approval";
-          else if (data.request.status == 2) stat = "Accepted";
-          else if (data.request.status == 3) {
+          else if (data.request.status == 2) {
+            stat = "Accepted";
+            edit.style.display = "none";
+            edit.disabled = true;
+            del.style.display = "none";
+            del.disabled = true;
+          } else if (data.request.status == 3) {
             stat = "Rejected";
             rNote.textContent = data.request.reason;
             rNote.style.display = "";
