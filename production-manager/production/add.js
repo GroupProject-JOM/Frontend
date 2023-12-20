@@ -209,12 +209,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     });
 
   btn.addEventListener("click", () => {
-    var arr2 = [];
+    var arr2 = [],
+      requestIds = [],
+      requestAmounts = [];
     arrList.forEach((el) => {
       arr2.push(el.value);
     });
-
-    log(arr2);
 
     if (arr2.length < 1) {
       if (lang == "sin") {
@@ -236,7 +236,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       if (element.classList.contains("disable")) count++;
       else {
         var rId = element.childNodes[0].childNodes[1].textContent.slice(9);
-
         var coco = element.childNodes[1].childNodes[0];
 
         requests.forEach((request) => {
@@ -270,27 +269,83 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             } else {
               coco.nextSibling.nextSibling.textContent = "";
               requestStatus = true;
+              requestIds.push(rId);
+              requestAmounts.push(coco.value);
             }
           }
         });
       }
-      if (count == requests.length) {
-        if (lang == "sin") {
-          pRError.textContent = "නිෂ්පාදන ඉල්ලීමක් තෝරාගත යුතුය";
-          Command: toastr["warning"]("නිෂ්පාදන ඉල්ලීමක් තෝරාගත යුතුය");
-        } else {
-          pRError.textContent = "Must be select a production request";
-          Command: toastr["warning"]("Must be select a production request");
-        }
-        productStatus = false;
-      } else {
-        pRError.textContent = "";
-        productStatus = true;
-      }
-
-      if (productStatus && requestStatus) {
-        log("OK");
-      }
     });
+
+    if (count == requests.length) {
+      if (lang == "sin") {
+        pRError.textContent = "නිෂ්පාදන ඉල්ලීමක් තෝරාගත යුතුය";
+        Command: toastr["warning"]("නිෂ්පාදන ඉල්ලීමක් තෝරාගත යුතුය");
+      } else {
+        pRError.textContent = "Must be select a production request";
+        Command: toastr["warning"]("Must be select a production request");
+      }
+      requestStatus = false;
+    } else {
+      pRError.textContent = "";
+      requestStatus = true;
+    }
+
+    if (productStatus && requestStatus) {
+      var formData = {
+        requests: requestIds,
+        amounts: requestAmounts,
+        products: arr2,
+      };
+      fetch(backProxy + "/production-batch", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status == 200) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") {
+              var title = "සාර්ථකයි!",
+                text = "නිෂ්පාදන කණ්ඩායම සාර්ථකව නිර්මාණය කරන ලදී.";
+            } else {
+              var title = "Successful!",
+                text = "Production batch created successfully.";
+            }
+            // sweet alert
+            Swal.fire({
+              title: title,
+              text: text,
+              icon: "success",
+              confirmButtonColor: confirmButtonColor,
+            });
+          } else if (response.status === 400) {
+            response.json().then((data) => {
+              console.log(data.message);
+            });
+            if (lang == "sin") Command: toastr["error"]("නිෂ්පාදන කණ්ඩායම නිර්මාණය කර නැත");
+              else Command: toastr["error"]("Production batch is not created");
+          } else if (response.status === 401) {
+            response.json().then((data) => {
+              console.log(data.message);
+              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+              else Command: toastr["error"]("Invalid User");
+            });
+          } else {
+            console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
+          }
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error);
+          Command: toastr["error"](error);
+        });
+    }
   });
 })();
