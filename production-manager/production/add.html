@@ -166,7 +166,7 @@
                 "' /></div><div>" +
                 $(this).text() +
                 "</div></div>"
-            );
+            );            
           });
 
           multiCheckBoxDetailBody.css(
@@ -309,7 +309,8 @@
 
               <p class="productionmg-text"></p>
 
-              <div class="row product-list"></div>
+              <div class="product-list"></div>
+              <br /><span class="form-error production-request-error"></span>
 
               </div>
             </div>
@@ -323,17 +324,18 @@
               multiselect-select-all="true"
             >
             </select>
+            <br /><span class="form-error dropdown-error"></span>
           </form>
         </div>
         <button class="save form-button"></button>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="./multiselect.js"></script>
     <script src="./add.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>
     <script src="../../common/loader.js"></script>
-    <script src="./multiselect.js"></script>
   </body>
 </html>

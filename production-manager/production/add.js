@@ -8,8 +8,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     pText = body.querySelector(".productionmg-text"),
     pLabel = body.querySelector(".product-label"),
     pList = body.querySelector(".product-list"),
+    pRError = body.querySelector(".production-request-error"),
     dropdown = body.querySelector(".dropdown"),
+    dropdownError = body.querySelector(".dropdown-error"),
     btn = body.querySelector(".form-button");
+
+  var requests = [],
+    requestStatus = false,
+    productStatus = false;
 
   var lang = getCookie("lang"); // current language
 
@@ -71,9 +77,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
+          requests = data.accepted;
           data.accepted.forEach((item) => {
             row1 +=
-              `<div class="add-label request-label"><input type="checkbox" /><label class="ename-label">Request R` +
+              `<div class="row disable"><div class="add-label request-label"><input class="radio" type="checkbox" /><label class="ename-label">Request R` +
               item.id +
               `</label></div>` +
               `<div class="add-input">` +
@@ -83,15 +90,81 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `value="` +
               item.amount +
               `" ` +
+              `disabled ` +
               `placeholder="Enter Coconut Amount"` +
-              `/><br /><span class="form-error ename-error"></span>` +
-              `</div>`;
+              `/><br /><span class="form-error coco-error"></span>` +
+              `</div></div>`;
           });
 
           pList.innerHTML = row1;
 
+          const row = document.querySelectorAll(".row"),
+            radio = document.querySelectorAll(".radio"),
+            cocoAmount = document.querySelectorAll(".coco-amount");
+
+          radio.forEach((r) => {
+            r.addEventListener("input", () => {
+              if (r.checked) {
+                // log(r.parentElement.nextSibling.childNodes[2]);
+                r.parentElement.nextSibling.firstChild.disabled = false;
+                r.parentElement.nextSibling.childNodes[2].style.display = "";
+              } else {
+                r.parentElement.nextSibling.firstChild.disabled = true;
+                r.parentElement.nextSibling.childNodes[2].style.display =
+                  "none";
+              }
+              r.parentElement.parentElement.classList.toggle("disable");
+            });
+          });
+
+          cocoAmount.forEach((coco) => {
+            coco.addEventListener("input", () => {
+              var rId =
+                coco.parentElement.previousSibling.childNodes[1].textContent.slice(
+                  9
+                );
+              requests.forEach((request) => {
+                if (request.id == rId) {
+                  if (coco.value > request.amount) {
+                    if (lang == "sin") {
+                      Command: toastr["warning"](
+                        "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක"
+                      );
+                      coco.nextSibling.nextSibling.textContent =
+                        "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක";
+                    } else {
+                      Command: toastr["warning"](
+                        "The amount of coconut cannot exceed the available amount"
+                      );
+                      coco.nextSibling.nextSibling.textContent =
+                        "The amount of coconut cannot exceed the available amount";
+                    }
+                    requestStatus = false;
+                  } else if (coco.value == 0 || coco.value == null) {
+                    if (lang == "sin") {
+                      coco.nextSibling.nextSibling.textContent =
+                        "පොල් ප්‍රමාණය හිස් විය නොහැක";
+                      Command: toastr["warning"](
+                        "පොල් ප්‍රමාණය හිස් විය නොහැක"
+                      );
+                    } else {
+                      coco.nextSibling.nextSibling.textContent =
+                        "Coconut amount cannot be empty";
+                      Command: toastr["warning"](
+                        "Coconut amount cannot be empty"
+                      );
+                    }
+                    requestStatus = false;
+                  } else {
+                    coco.nextSibling.nextSibling.textContent = "";
+                    requestStatus = true;
+                  }
+                }
+              });
+            });
+          });
+
           data.products.forEach((item) => {
-            log(item);
             row2 +=
               `<option value="` +
               item.id +
@@ -106,8 +179,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       } else if (response.status === 400) {
         response.json().then((data) => {
           data.products.forEach((item) => {
-            log(item);
+            row2 +=
+              `<option value="` +
+              item.id +
+              `">` +
+              item.type +
+              ` - ` +
+              item.category +
+              `</option>`;
           });
+          dropdown.innerHTML = row2;
         });
         if (lang == "sin") Command: toastr["info"]("පිළිගත් ඉල්ලීම් නැත");
         else Command: toastr["info"]("No accepted requests");
@@ -126,4 +207,90 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
+
+  btn.addEventListener("click", () => {
+    var arr2 = [];
+    arrList.forEach((el) => {
+      arr2.push(el.value);
+    });
+
+    log(arr2);
+
+    if (arr2.length < 1) {
+      if (lang == "sin") {
+        dropdownError.textContent = "නිෂ්පාදන හිස් විය නොහැක";
+        Command: toastr["warning"]("නිෂ්පාදන හිස් විය නොහැක");
+      } else {
+        dropdownError.textContent = "Products cannot be empty";
+        Command: toastr["warning"]("Products cannot be empty");
+      }
+      productStatus = false;
+    } else {
+      dropdownError.textContent = "";
+      productStatus = true;
+    }
+
+    const row = document.querySelectorAll(".row");
+    var count = 0;
+    row.forEach((element) => {
+      if (element.classList.contains("disable")) count++;
+      else {
+        var rId = element.childNodes[0].childNodes[1].textContent.slice(9);
+
+        var coco = element.childNodes[1].childNodes[0];
+
+        requests.forEach((request) => {
+          if (request.id == rId) {
+            if (coco.value > request.amount) {
+              if (lang == "sin") {
+                Command: toastr["warning"](
+                  "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක"
+                );
+                coco.nextSibling.nextSibling.textContent =
+                  "පොල් ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක";
+              } else {
+                Command: toastr["warning"](
+                  "The amount of coconut cannot exceed the available amount"
+                );
+                coco.nextSibling.nextSibling.textContent =
+                  "The amount of coconut cannot exceed the available amount";
+              }
+              requestStatus = false;
+            } else if (coco.value == 0 || coco.value == null) {
+              if (lang == "sin") {
+                coco.nextSibling.nextSibling.textContent =
+                  "පොල් ප්‍රමාණය හිස් විය නොහැක";
+                Command: toastr["warning"]("පොල් ප්‍රමාණය හිස් විය නොහැක");
+              } else {
+                coco.nextSibling.nextSibling.textContent =
+                  "Coconut amount cannot be empty";
+                Command: toastr["warning"]("Coconut amount cannot be empty");
+              }
+              requestStatus = false;
+            } else {
+              coco.nextSibling.nextSibling.textContent = "";
+              requestStatus = true;
+            }
+          }
+        });
+      }
+      if (count == requests.length) {
+        if (lang == "sin") {
+          pRError.textContent = "නිෂ්පාදන ඉල්ලීමක් තෝරාගත යුතුය";
+          Command: toastr["warning"]("නිෂ්පාදන ඉල්ලීමක් තෝරාගත යුතුය");
+        } else {
+          pRError.textContent = "Must be select a production request";
+          Command: toastr["warning"]("Must be select a production request");
+        }
+        productStatus = false;
+      } else {
+        pRError.textContent = "";
+        productStatus = true;
+      }
+
+      if (productStatus && requestStatus) {
+        log("OK");
+      }
+    });
+  });
 })();
