@@ -229,6 +229,11 @@ input[type="number"] {
   margin-top: 40px;
 }
 
+.to-yard-button{
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {

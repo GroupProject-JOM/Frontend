@@ -389,7 +389,7 @@ textarea {
 
 @keyframes blink{
   0%{color:var(--input-border);}
-  50%{color:red;}
+  50%{color:var(--reject-red);}
   100%{color:var(--input-border);}
 }
 
