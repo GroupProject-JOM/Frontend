@@ -33,14 +33,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   overlay2.addEventListener("click", (e) => {
     if (e.target.id === "overlay2") {
-      overlay2.style.display = "none";
-      document.querySelector(".split1-window").style.display = "none";
+      // overlay2.style.display = "none";
+      // document.querySelector(".split1-window").style.display = "none";
     }
   });
 
   closeBtn2.addEventListener("click", () => {
-    overlay2.style.display = "none";
-    document.querySelector(".split1-window").style.display = "none";
+    // overlay2.style.display = "none";
+    // document.querySelector(".split1-window").style.display = "none";
   });
 
   var lang = getCookie("lang"); // current language

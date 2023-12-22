@@ -106,7 +106,8 @@ select.dropdown {
 }
 
 .stocks h3,
-.block-container h3{
+.block-container h3,
+.split2-window h3{
   padding-bottom: 0.8rem;
   margin-top: 1rem;
   font-weight: 600;
