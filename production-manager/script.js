@@ -6,6 +6,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en = body.querySelector(".en"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
+    w2Value = body.querySelector(".w2-value"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     c3 = body.querySelector(".c3"),
@@ -13,6 +14,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c5 = body.querySelector(".c5"),
     productionTable = body.querySelector(".production-table"),
     requestTable = body.querySelector(".request-table"),
+    tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
     searchBar1 = body.querySelector(".search1"),
     searchBar2 = body.querySelector(".search2"),
@@ -200,6 +202,84 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         response.json().then((data) => {
           console.log(data.size);
         });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
+
+  w2Value.textContent = 0;
+
+  //get ongoing batch data
+  fetch(backProxy + "/batches", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          w2Value.textContent = data.ongoing.length;
+          data.ongoing.forEach((item) => {
+            var date_string = new Date(item.create_date);
+            var arr = item.products.split(",");
+
+            row1 +=
+              "<tr data-href='./production/view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.id +
+              "</td>" +
+              "<td>" +
+              date_string.toLocaleDateString() +
+              "</td>" +
+              "<td>" +
+              item.amount.toLocaleString("en-US") +
+              "</td>" +
+              "<td>" +
+              arr.length +
+              "</td>" +
+              "<td>" +
+              "<button class='pending status'>Ongoing</button>" +
+              "</td>" +
+              "</tr>";
+          });
+
+          tbody1.innerHTML = row1;
+
+          const rows = document.querySelectorAll("tr[data-href]");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id + "; path=/";
+              window.location.href = r.dataset.href;
+            });
+          });
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන කණ්ඩායම් නොමැත");
+        else Command: toastr["info"]("No production batches");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
