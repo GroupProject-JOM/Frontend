@@ -407,7 +407,8 @@ select.dropdown {
   margin-right: 10px;
 }
 
-.requests input[type="text"] {
+
+.requests input[type="number"] {
   margin-top: 3px;
   padding: 3px;
   font-size: 0.9rem;
@@ -456,6 +457,12 @@ select.dropdown {
   margin-bottom: 1.5rem;
 }
 
+.view-production-container input[type="number"]{
+  margin-left: 30px;
+  background-color: var(--background-grey);
+  padding: 0;
+  width: 40%;
+}
 @media only screen and (max-device-width: 1260px) {
   .production-req {
     display: flex;
