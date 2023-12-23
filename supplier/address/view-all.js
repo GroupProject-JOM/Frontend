@@ -11,9 +11,25 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     th1 = body.querySelector(".th1"),
     th2 = body.querySelector(".th2"),
     tbody = body.querySelector(".tbody"),
+    searchBar = body.querySelector(".search"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), addressTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), addressTable);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

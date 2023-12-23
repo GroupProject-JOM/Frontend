@@ -6,16 +6,32 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     tbody = body.querySelector(".tbody"),
+    outletsTable = body.querySelector(".overview-tables"),
+    searchBar = body.querySelector(".search"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), outletsTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), outletsTable);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -30,7 +46,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 

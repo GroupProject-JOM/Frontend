@@ -12,7 +12,8 @@
     yDays = body.querySelector(".yDays"),
     ystatus = body.querySelector(".ystatus"),
     edit = body.querySelector(".edit"),
-    del = body.querySelector(".delete");
+    del = body.querySelector(".delete"),
+    rNote = body.querySelector(".reject-note");
 
   var lang = getCookie("lang"); // current language
 
@@ -76,9 +77,17 @@
           var stat = "";
 
           if (data.request.status == 1) stat = "Pending Approval";
-          else if (data.request.status == 2) stat = "Accepted";
-          else if (data.request.status == 3) stat = "Rejected";
-          else if (data.request.status == 4) {
+          else if (data.request.status == 2) {
+            stat = "Accepted";
+            edit.style.display = "none";
+            edit.disabled = true;
+            del.style.display = "none";
+            del.disabled = true;
+          } else if (data.request.status == 3) {
+            stat = "Rejected";
+            rNote.textContent = data.request.reason;
+            rNote.style.display = "";
+          } else if (data.request.status == 4) {
             stat = "Completed";
             edit.style.display = "none";
             edit.disabled = true;

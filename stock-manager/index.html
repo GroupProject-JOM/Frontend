@@ -92,13 +92,13 @@
           </div>
         </div>
 
-        <div class="rate-section">
-          <div class="rate-content">
-            <p class="rate-text"></p>
-            <p class="rate-value bold"></p>
+        <div class="rate-section action-bar">
+          <div class="rate-content action-content">
+            <p class="rate-text action-text"></p>
+            <p class="rate-value action-value bold"></p>
           </div>
           <div class="enter-rate">
-            <button class="rate-button form-button"></button>
+            <button class="rate-button action-button form-button"></button>
           </div>
         </div>
 
@@ -168,9 +168,34 @@
         <div class="layer" style="margin-top: 4rem">
           <div class="table-heading">
             <h2 class="c6"></h2>
-            <p class="c7"></p>
-          </div>
+            <div>
+              <p class="c7"></p>
 
+              <div class="search-filter">
+                <!-- <p class="stockmg-text1 stockmg-text"></p> -->
+
+                <!-- Search Bar -->
+                <div class="search-wrapper">
+                  <div class="search-box search-box">
+                    <input type="text" class="search" placeholder=" " />
+                    <span></span>
+                  </div>
+                </div>
+                <!-- Search Bar -->
+
+                <div class="filter">
+                  <div id="searchBox">
+                    <i class="fas fa-filter" id="filter-icon"></i>
+                    <input
+                      type="date"
+                      placeholder="Select date to filter"
+                      id="datePicker"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <table class="today-collections-table overview-tables">
             <thead>
               <tr>
@@ -190,8 +215,8 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
-    <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./script.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
     <script src="../common/loader.js"></script>

@@ -43,7 +43,7 @@
   width: 90%;
 }
 
-.chat-container input {
+.msg-bottom input {
   background-color: var(--hr-color);
   width: 100%;
   padding: 5px 0 10px 15px;
@@ -86,7 +86,7 @@
 .received-msg p {
   background: var(--hr-color) none repeat scroll 0 0;
   border-radius: 10px;
-  color: var(--primary-color);
+  color: var(--stock-table-text);
   font-size: 14px;
   margin-left: 1rem;
   padding: 1.5rem 1rem 1rem 1rem;
@@ -103,7 +103,7 @@ p {
   margin: 9px 20px 9px 20px;
 }
 .sent-msg p {
-  background-color: var(--tbicon-color);
+  background-color: var(--button-color);
   border-radius: 10px;
   font-size: 14px;
   color: var(--text-color);
@@ -269,6 +269,31 @@ p {
   /* bottom: 0px; */
   color: var(--input-border);
 }
+.chat-search{
+  margin: 0 20px;
+  border-bottom: 1px solid var(--input-border);
+  margin-bottom: 20px;
+}
+.chat-search i{
+  float: right;
+}
+
+.chat-search input{
+  border: none;
+  margin-top: 0;
+  margin-bottom: 5px;
+  width: 90%;
+}
+
+.chat-search input:focus{
+  border: none;
+}
+
+.chat-search:has(input:focus){
+  border-bottom: 2px solid var(--input-border-focus);
+
+}
+
 
 @media only screen and (max-device-width: 900px) {
   .supplier-chat-container {

@@ -10,9 +10,25 @@
     form = body.querySelector(".form"),
     message = body.querySelector(".message"),
     bottom = body.querySelector(".msg-bottom"),
+    searchBar = body.querySelector(".search"),
     sentIcon = body.querySelector(".sent-icon");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      searchChat(searchBar.value.toUpperCase(), allChat);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    searchChat(searchBar.value.toUpperCase(), allChat);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -371,3 +387,18 @@
       });
   }
 })();
+
+function searchChat(filter, list) {
+  var chat = list.querySelectorAll(".single-chat");
+
+  for (var i = 0; i < chat.length; i++) {
+    row = chat[i].querySelector(".supplier-name");
+
+    var txtValue = row.textContent;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      chat[i].style.display = "";
+    } else {
+      chat[i].style.display = "none";
+    }
+  }
+}

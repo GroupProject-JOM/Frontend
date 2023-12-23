@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Production History</title>
+    <title>Production Overview</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/notify.css" />
-    <link rel="stylesheet" href="./user-flow.css" />
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -25,15 +25,15 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="../common/func.js"></script>
-    <script src="./auth.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="../auth.js"></script>
   </head>
 
   <body>
     <!-- Loading screen -->
     <div class="loader-wrapper">
       <div class="logo-container">
-        <img src="../common/JOM logo 1.png" alt="" />
+        <img src="../../common/JOM logo 1.png" alt="" />
       </div>
       <div class="lds-spinner">
         <div></div>
@@ -71,12 +71,35 @@
 
       <div class="text"></div>
 
-      <div class="container">
+      <div class="productionmg-container container">
         <div class="productionmg-heading table-heading">
           <h2 class="productionmg-title">Production Overview</h2>
-          <p class="production-history-text">
-            View past and ongoing production batches
-          </p>
+          <div>
+            <p class="production-history-text">
+              View past and ongoing production batches
+            </p>
+
+            <div class="search-filter">
+              <div class="search-wrapper">
+                <div class="search-box search-box1">
+                  <input type="text" class="search1" placeholder=" " />
+                  <span></span>
+                </div>
+              </div>
+
+              <div class="filter filter-dropdown">
+                <div id="searchBox">
+                  <i class="fas fa-filter" id="filter-icon"></i>
+                  <select class="dropdown filter-1">
+                    <option default hidden class="op0">Select Option</option>
+                    <option value="">All</option>
+                    <option value="waiting">Waiting</option>
+                    <option value="process">Processing</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <table class="production-table overview-tables">
@@ -85,7 +108,7 @@
               <th>Batch ID</th>
               <th>Start Date</th>
               <th>End Date</th>
-              <th>Production Amount</th>
+              <th>Coconut Amount</th>
               <th>status</th>
             </tr>
           </thead>
@@ -107,14 +130,16 @@
             </tr>
           </tbody>
         </table>
+        <br /><br /><br />
+        <a href="./add.html" class="new form-button">New Production</a>
       </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <!-- <script src="script.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./nav/load-nav.js"></script>
-    <script src="./notifications/load-notifications.js"></script>
-    <script src="../common/loader.js"></script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
   </body>
 </html>

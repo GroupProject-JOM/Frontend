@@ -5,9 +5,39 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en = body.querySelector(".en"),
     sTitle = body.querySelector(".stockmg-title"),
     sText = body.querySelector(".stockmg-text"),
+    addressTable = body.querySelector(".addresses-table"),
+    searchBar1 = body.querySelector(".search1"),
+    filter1 = body.querySelector(".filter-1"),
     tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBox1 = document.querySelectorAll(
+    '.search-box1 input[type="text"] + span'
+  );
+
+  searchBox1.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar1.value.toUpperCase(), addressTable);
+    });
+  });
+
+  searchBar1.addEventListener("keyup", () => {
+    search(searchBar1.value.toUpperCase(), addressTable);
+  });
+
+  filter1.addEventListener("input", () => {
+    search(filter1.value.toUpperCase(), addressTable);
+  });
+
+  const googleIcon = document.querySelectorAll("#filter-icon");
+
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

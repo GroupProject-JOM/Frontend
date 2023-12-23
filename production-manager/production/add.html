@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Production</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="../auth.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#test").CreateMultiCheckBox({
+          width: "70%",
+          defaultText: "Select Below",
+          height: "250px",
+          border: "0",
+        });
+      });
+
+      $(document).ready(function () {
+        $(document).on("click", ".MultiCheckBox", function () {
+          var detail = $(this).next();
+          detail.show();
+        });
+
+        $(document).on(
+          "click",
+          ".MultiCheckBoxDetailHeader input",
+          function (e) {
+            e.stopPropagation();
+            var hc = $(this).prop("checked");
+            $(this)
+              .closest(".MultiCheckBoxDetail")
+              .find(".MultiCheckBoxDetailBody input")
+              .prop("checked", hc);
+            $(this).closest(".MultiCheckBoxDetail").next().UpdateSelect();
+          }
+        );
+
+        $(document).on("click", ".MultiCheckBoxDetailHeader", function (e) {
+          var inp = $(this).find("input");
+          var chk = inp.prop("checked");
+          inp.prop("checked", !chk);
+          $(this)
+            .closest(".MultiCheckBoxDetail")
+            .find(".MultiCheckBoxDetailBody input")
+            .prop("checked", !chk);
+          $(this).closest(".MultiCheckBoxDetail").next().UpdateSelect();
+        });
+
+        $(document).on(
+          "click",
+          ".MultiCheckBoxDetail .cont input",
+          function (e) {
+            e.stopPropagation();
+            $(this).closest(".MultiCheckBoxDetail").next().UpdateSelect();
+
+            var val =
+              $(".MultiCheckBoxDetailBody input:checked").length ==
+              $(".MultiCheckBoxDetailBody input").length;
+            $(".MultiCheckBoxDetailHeader input").prop("checked", val);
+          }
+        );
+
+        $(document).on("click", ".MultiCheckBoxDetail .cont", function (e) {
+          var inp = $(this).find("input");
+          var chk = inp.prop("checked");
+          inp.prop("checked", !chk);
+
+          var multiCheckBoxDetail = $(this).closest(".MultiCheckBoxDetail");
+          var multiCheckBoxDetailBody = $(this).closest(
+            ".MultiCheckBoxDetailBody"
+          );
+          multiCheckBoxDetail.next().UpdateSelect();
+
+          var val =
+            $(".MultiCheckBoxDetailBody input:checked").length ==
+            $(".MultiCheckBoxDetailBody input").length;
+          $(".MultiCheckBoxDetailHeader input").prop("checked", val);
+        });
+
+        $(document).mouseup(function (e) {
+          var container = $(".MultiCheckBoxDetail");
+          if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.hide();
+          }
+        });
+      });
+
+      var defaultMultiCheckBoxOption = {
+        width: "220px",
+        defaultText: "Select Below",
+        height: "200px",
+      };
+
+      jQuery.fn.extend({
+        CreateMultiCheckBox: function (options) {
+          var localOption = {};
+          localOption.width =
+            options != null &&
+            options.width != null &&
+            options.width != undefined
+              ? options.width
+              : defaultMultiCheckBoxOption.width;
+          localOption.defaultText =
+            options != null &&
+            options.defaultText != null &&
+            options.defaultText != undefined
+              ? options.defaultText
+              : defaultMultiCheckBoxOption.defaultText;
+          localOption.height =
+            options != null &&
+            options.height != null &&
+            options.height != undefined
+              ? options.height
+              : defaultMultiCheckBoxOption.height;
+
+          this.hide();
+          this.attr("multiple", "multiple");
+          var divSel = $(
+            "<div class='MultiCheckBox'>" +
+              localOption.defaultText +
+              "<span class='k-icon k-i-arrow-60-down'><svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='sort-down' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' class='svg-inline--fa fa-sort-down fa-w-10 fa-2x'><path fill='currentColor' d='M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z' class=''></path></svg></span></div>"
+          ).insertBefore(this);
+          divSel.css({ width: localOption.width });
+
+          var detail = $(
+            "<div class='MultiCheckBoxDetail'><div class='MultiCheckBoxDetailHeader'><input type='checkbox' class='mulinput' value='-1982' /><div>Select All</div></div><div class='MultiCheckBoxDetailBody'></div></div>"
+          ).insertAfter(divSel);
+          detail.css({
+            width: parseInt(options.width) + 10,
+            "max-height": localOption.height,
+          });
+          var multiCheckBoxDetailBody = detail.find(".MultiCheckBoxDetailBody");
+
+          this.find("option").each(function () {
+            var val = $(this).attr("value");
+
+            if (val == undefined) val = "";
+
+            multiCheckBoxDetailBody.append(
+              "<div class='cont'><div><input type='checkbox' class='mulinput' value='" +
+                val +
+                "' /></div><div>" +
+                $(this).text() +
+                "</div></div>"
+            );            
+          });
+
+          multiCheckBoxDetailBody.css(
+            "max-height",
+            parseInt($(".MultiCheckBoxDetail").css("max-height")) - 28 + "px"
+          );
+        },
+        UpdateSelect: function () {
+          var arr = [];
+
+          this.prev()
+            .find(".mulinput:checked")
+            .each(function () {
+              arr.push($(this).val());
+            });
+
+          this.val(arr);
+        },
+      });
+    </script>
+
+    <style>
+      .MultiCheckBox {
+        border: 1px solid #e2e2e2;
+        padding: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .MultiCheckBox .k-icon {
+        font-size: 15px;
+        float: right;
+        font-weight: bolder;
+        margin-top: -7px;
+        height: 10px;
+        width: 14px;
+        color: #787878;
+      }
+
+      .MultiCheckBoxDetail {
+        display: none;
+        position: absolute;
+        border: 1px solid #e2e2e2;
+        overflow-y: hidden;
+      }
+
+      .MultiCheckBoxDetailBody {
+        overflow-y: scroll;
+      }
+
+      .MultiCheckBoxDetail .cont {
+        clear: both;
+        overflow: hidden;
+        padding: 2px;
+      }
+
+      .MultiCheckBoxDetail .cont:hover {
+        background-color: #cfcfcf;
+      }
+
+      .MultiCheckBoxDetailBody > div > div {
+        float: left;
+      }
+
+      /* .MultiCheckBoxDetail > div > div:nth-child(1) {
+      } */
+
+      .MultiCheckBoxDetailHeader {
+        overflow: hidden;
+        position: relative;
+        height: 28px;
+        background-color: #3d3d3d;
+      }
+
+      .MultiCheckBoxDetailHeader > input {
+        position: absolute;
+        top: 4px;
+        left: 3px;
+      }
+
+      .MultiCheckBoxDetailHeader > div {
+        position: absolute;
+        top: 5px;
+        left: 24px;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
+
+    <section class="home">
+      <div class="notification">
+        <span class="count">10</span>
+        <span class="bell do-not"
+          ><i class="fa-regular fa-bell do-not"></i
+        ></span>
+      </div>
+
+      <div class="notification-window do-not" id="notify"></div>
+
+      <div class="lng-picker">
+        <div class="sin">සිං</div>
+        <div class="en active">En</div>
+      </div>
+
+      <div class="text"></div>
+
+      <div class="new-production-container container">
+        <div class="productionmg-heading table-heading">
+          <h2 class="productionmg-title"></h2>
+        </div>
+        <div class="new-production-form">
+          <form>
+            <div class="requests">
+              <div>
+
+              <p class="productionmg-text"></p>
+
+              <div class="product-list"></div>
+              <br /><span class="form-error production-request-error"></span>
+
+              </div>
+            </div>
+
+            <label class="product-label"></label>
+            <select
+              class="dropdown"
+              name="select"
+              multiple
+              multiselect-search="true"
+              multiselect-select-all="true"
+            >
+            </select>
+            <br /><span class="form-error dropdown-error"></span>
+          </form>
+        </div>
+        <button class="save form-button"></button>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="./multiselect.js"></script>
+    <script src="./add.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
+  </body>
+</html>

@@ -8,9 +8,29 @@
     w2Title = body.querySelector(".w2-title"),
     w2Value = body.querySelector(".w2-value"),
     w2Period = body.querySelector(".w2-period"),
-    btn = body.querySelector(".form-button");
+    closeBtn = body.querySelector(".close-btn-bank"),
+    overlay = body.querySelector(".overlay"),
+    btn = body.querySelector(".generate-button1");
 
   var lang = getCookie("lang"); // current language
+
+
+  btn.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".report-window").style.display = "block";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".report-window").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".report-window").style.display = "none";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -53,7 +73,7 @@
       w1Title: "Today's Coconut Rate",
       w2Title: "Average Coconut Rate",
       w2Period: "For this month",
-      btn: "Generate Report",
+      btn: "Generate Invoice",
     },
   };
 

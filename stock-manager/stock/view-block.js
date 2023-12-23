@@ -10,7 +10,10 @@
     yBlock = body.querySelector(".yBlock"),
     yAmount = body.querySelector(".yAmount"),
     date = body.querySelector(".date"),
+    edit = body.querySelector(".edit"),
     yDays = body.querySelector(".yDays");
+    
+  var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

@@ -22,9 +22,25 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tbody = body.querySelector(".tbody"),
     closeBtn = body.querySelector(".close-btn-bank"),
     overlay = body.querySelector(".overlay"),
+    searchBar = body.querySelector(".search"),
     btn = body.querySelector(".next");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), bankTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), bankTable);
+  });
 
   overlay.addEventListener("click", (e) => {
     if (e.target.id === "overlay") {

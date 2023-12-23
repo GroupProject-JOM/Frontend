@@ -2,6 +2,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "area=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "amount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -78,7 +79,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  w1Value.textContent = 0;
+  w1Value.textContent = 0 + " LKR";
   w2Value.innerHTML = `0<span>/0</span>`;
 
   let row1 = "",
@@ -101,7 +102,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
-          w1Value.textContent = data.count - data.size;
+          w1Value.textContent = data.rate.price + " LKR";
           w2Value.innerHTML = data.size + `<span>/` + data.count + `</span>`;
 
           if ((data.size = 0 && data.count > 0)) {
@@ -120,7 +121,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data);
           if (data.size == -2) {
             if (lang == "sin") Command: toastr["info"]("එකතු කිරීම් නැත");
             else Command: toastr["info"]("No collections");
@@ -130,7 +130,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               greet.style.display = "block";
               todayTable.style.display = "none";
             }
-            w1Value.textContent = data.count;
+            w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
           } else if (data.size == -1) {
             let arr2 = data.upcoming;
@@ -152,13 +152,13 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               greet.style.display = "block";
               todayTable.style.display = "none";
             }
-            w1Value.textContent = data.count;
+            w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
           } else {
             let arr1 = data.today;
             arr1.forEach(data_to_table1);
             tbody1.innerHTML = row1;
-            w1Value.textContent = data.count - data.size;
+            w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = data.size + `<span>/` + data.count + `</span>`;
             if (lang == "sin")
               Command: toastr["info"]("ඉදිරියට එන එකතු කිරීම් නැත");

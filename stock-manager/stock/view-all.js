@@ -12,6 +12,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
     tbody3 = body.querySelector(".tbody3");
+    
+  var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

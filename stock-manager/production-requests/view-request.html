@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
     <link rel="stylesheet" href="../user-flow.css" />
+    <link rel="stylesheet" href="../style.css">
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -126,7 +127,39 @@
                 </tr>
               </tbody>
             </table>
+            <p class="reject-note" style="display: none"></p>
           </div>
+          
+          <!-- decline reason light box starts -->
+          <div class="overlay" id="overlay">
+            <div class="decline-container">
+              <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+              <div class="decline-content">
+                <p class="reason-text bold"></p>
+                <select class="dropdown">
+                  <option value="" default hidden class="op0"></option>
+                  <option
+                    value="Not enough coconut amount"
+                    class="op1"
+                  ></option>
+                  <option value="Too far to pickup" class="op2"></option>
+                  <option value="Other" class="op3"></option></select
+                ><br />
+                <span class="form-error dropdown-error"></span>
+                <label class="reason-label" style="display: none"></label>
+                <input
+                  class="other"
+                  type="text"
+                  placeholder=""
+                  style="display: none"
+                /><br />
+                <span class="form-error other-error"></span>
+                <button class="form-button submit"></button>
+              </div>
+            </div>
+          </div>
+          <!-- decline reason lightbox ends -->
+
           <div class="accept-decline">
             <a class="stockmg-button form-button accept"></a>
             <a class="stockmg-button form-button decline"></a>

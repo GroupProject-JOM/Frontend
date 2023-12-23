@@ -1,6 +1,6 @@
 .distributor-container {
   top: 50%;
-  transform: translate(0, 10%);
+  transform: translate(0, 3vh);
   margin-left: 6vw;
   /* width: ; */
 }
@@ -15,6 +15,7 @@ input {
   border: none;
   border-bottom: 1px solid #a9a9a9;
   color: #484848;
+  background-color: var(--body-color);
   padding: 7px 0;
   margin: 20px 0 0 0;
   font-size: 15px;
@@ -58,12 +59,15 @@ input:focus {
 }
 
 .outlet-edit-container .savebt {
-  margin-top: 30px;
+  margin-top: 60px;
 }
 
-.edit-outlet-form input::placeholder {
-  color: var(--input-border-focus);
+.edit-outlet-form input{
+  color: var(--primary-color);
 }
+
+
+
 
 
 .edit-outlet-form input, .add-outlet-form input{
@@ -169,4 +173,8 @@ input:focus {
 
 .distributor-container .next{
   margin-top: 50px;
+}
+
+.outlet-heading{
+  margin-bottom: 1rem;
 }

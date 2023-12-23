@@ -11,12 +11,56 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     yValue = body.querySelector(".yard-value"),
     btn = body.querySelector(".yard-button"),
     mapBtn = body.querySelector(".map-button"),
-    closeBtn = body.querySelector(".close-btn"),
-    overlay = body.querySelector(".overlay");
+    closeBtn1 = body.querySelector(".close-btn1"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    yard = body.querySelector(".yard-button"),
+    overlay1 = body.querySelector(".overlay1"),
+    overlay2 = body.querySelector(".overlay2"),
+    searchBar = body.querySelector(".search"),
+    addressTable = body.querySelector(".addresses-table"),
+    datePicker = body.querySelector("#datePicker");
+
+  datePicker.value = new Date().toJSON().slice(0, 10);
+
+  datePicker.addEventListener("input", () => {
+    fetchData(datePicker.value);
+  });
+
+  yard.addEventListener("click", () => {
+    overlay2.style.display = "flex";
+    document.querySelector(".split1-window").style.display = "block";
+  });
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay2") {
+      // overlay2.style.display = "none";
+      // document.querySelector(".split1-window").style.display = "none";
+    }
+  });
+
+  closeBtn2.addEventListener("click", () => {
+    // overlay2.style.display = "none";
+    // document.querySelector(".split1-window").style.display = "none";
+  });
 
   var lang = getCookie("lang"); // current language
   sTitle.textContent = getCookie("cName");
   yValue.textContent = getCookie("total");
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), addressTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), addressTable);
+  });
 
   const searchBox = document.getElementById("searchBox"),
     googleIcon = document.getElementById("filter-icon");
@@ -26,19 +70,19 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   };
 
   mapBtn.addEventListener("click", () => {
-    overlay.style.display = "flex";
+    overlay1.style.display = "flex";
     document.querySelector(".collections-map").style.display = "block";
   });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target.id === "overlay") {
-      overlay.style.display = "none";
+  overlay1.addEventListener("click", (e) => {
+    if (e.target.id === "overlay1") {
+      overlay1.style.display = "none";
       document.querySelector(".collections-map").style.display = "none";
     }
   });
 
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
+  closeBtn1.addEventListener("click", () => {
+    overlay1.style.display = "none";
     document.querySelector(".collections-map").style.display = "none";
   });
 
@@ -87,93 +131,104 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  let row = "";
+  fetchData(new Date().toJSON().slice(0, 10));
+  function fetchData(date) {
+    let row = "";
+    tbody.innerHTML = "";
 
-  fetch(backProxy + "/pickup-collections?id=" + getCookie("cId"), {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
-    .then((response) => {
-      if (response.status == 200) {
-        response.json().then((data) => {
-          makeChart(data.calender);
-          let arr = data.collections;
-          arr.forEach(data_to_table);
+    fetch(
+      backProxy +
+        "/pickup-collections?id=" +
+        getCookie("cId") +
+        "&date=" +
+        date,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    )
+      .then((response) => {
+        if (response.status == 200) {
+          response.json().then((data) => {
+            makeChart(data.calender);
+            let arr = data.collections;
+            arr.forEach(data_to_table);
 
-          function data_to_table(item) {
-            var status = "",
-              amount = "";
+            function data_to_table(item) {
+              var status = "",
+                amount = "";
 
-            if (item.status < 4) status = "pending";
-            else {
-              status = "completed";
-              amount = item.amount.toLocaleString("en-US");
+              if (item.status < 4) status = "pending";
+              else {
+                status = "completed";
+                amount = item.amount.toLocaleString("en-US");
+              }
+
+              row +=
+                `<tr data-href="../supply-requests/view-request.html" id=` +
+                item.id +
+                `>` +
+                `<td>` +
+                item.id +
+                `</td>` +
+                `<td>` +
+                item.name +
+                ` ` +
+                item.last_name +
+                `</td>` +
+                `<td>` +
+                item.phone +
+                `</td>` +
+                `<td>` +
+                item.area +
+                `</td>` +
+                `<td>` +
+                amount +
+                `</td>` +
+                `<td><button class="` +
+                status +
+                ` status">` +
+                capitalize(status) +
+                `</button></td>` +
+                `</tr>`;
             }
 
-            row +=
-              `<tr data-href="../supply-requests/view-request.html" id=` +
-              item.id +
-              `>` +
-              `<td>` +
-              item.id +
-              `</td>` +
-              `<td>` +
-              item.name +
-              ` ` +
-              item.last_name +
-              `</td>` +
-              `<td>` +
-              item.phone +
-              `</td>` +
-              `<td>` +
-              item.area +
-              `</td>` +
-              `<td>` +
-              amount +
-              `</td>` +
-              `<td><button class="` +
-              status +
-              ` status">` +
-              capitalize(status) +
-              `</button></td>` +
-              `</tr>`;
-          }
+            tbody.innerHTML = row;
 
-          tbody.innerHTML = row;
-
-          const rows = document.querySelectorAll("tr[data-href]");
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
+            const rows = document.querySelectorAll("tr[data-href]");
+            rows.forEach((r) => {
+              r.addEventListener("click", () => {
+                document.cookie = "id=" + r.id + "; path=/";
+                window.location.href = r.dataset.href;
+              });
             });
           });
-        });
-      } else if (response.status === 202) {
-        response.json().then((data) => {
-          makeChart(data.calender);
-          console.log(data.collections);
-        });
-        if (lang == "sin") Command: toastr["info"]("එකතු කිරීම් නැත");
-        else Command: toastr["info"]("No collections");
-      } else if (response.status === 401) {
-        response.json().then((data) => {
-          console.log(data.message);
-        });
-        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-        else Command: toastr["error"]("Invalid User");
-      } else {
-        console.error("Error:", response.status);
-        Command: toastr["error"](response.status, "Error");
-      }
-    })
-    .catch((error) => {
-      console.error("An error occurred:", error);
-      Command: toastr["error"](error);
-    });
+        } else if (response.status === 202) {
+          response.json().then((data) => {
+            makeChart(data.calender);
+            console.log(data.collections);
+          });
+          if (lang == "sin") Command: toastr["info"]("එකතු කිරීම් නැත");
+          else Command: toastr["info"]("No collections");
+        } else if (response.status === 401) {
+          response.json().then((data) => {
+            console.log(data.message);
+          });
+          if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+          else Command: toastr["error"]("Invalid User");
+        } else {
+          console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
+        Command: toastr["error"](error);
+      });
+  }
 })();
 
 var chart,

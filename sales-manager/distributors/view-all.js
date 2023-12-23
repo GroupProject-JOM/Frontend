@@ -6,9 +6,26 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en = body.querySelector(".en"),
     sTitle = body.querySelector(".salesmg-title"),
     sText = body.querySelector(".salesmg-text"),
+    collectorsTable = body.querySelector(".track-collectors-table"),
+    searchBar = body.querySelector(".search"),
     tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), collectorsTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), collectorsTable);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

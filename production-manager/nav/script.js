@@ -46,7 +46,7 @@
 
     dashboard.href = frontProxy + "/production-manager/";
     stockk.href = frontProxy + "/production-manager/stock/view.html";
-    production.href = frontProxy + "/production-manager/production.html";
+    production.href = frontProxy + "/production-manager/production/";
     profile.href = frontProxy + "/production-manager/profile/view.html";
     products.href = frontProxy + "/production-manager/products/view-all.html";
     
@@ -109,7 +109,7 @@
       sin: {
         l0: "පරිශීලක ක්‍රියා",
         l1: "ගබඩා සමාලෝචනය",
-        l2: "නිෂ්පාදන ඉතිහාසය",
+        l2: "නිෂ්පාදන විශ්ලේෂණය",
         l3: "නිෂ්පාදන",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
@@ -119,7 +119,7 @@
       en: {
         l0: "USER ACTIONS",
         l1: "Stock Overview",
-        l2: "Production History",
+        l2: "Production Overview",
         l3: "Products",
         l6: "MAIN ACTIONS",
         l7: "View Profile",

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Products</title>
+    <title>Block details</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
@@ -71,43 +71,62 @@
 
       <div class="text"></div>
 
-      <div class="products-add-container productionmg-container">
-        <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title">New Product</h2>
-          <p class="productionmg-text">
-            Fill the form to add a new company product
-          </p>
-        </div>
-        <div class="add-product-content">
-          <form class="add-product-form">
-            <label class="name-label">Product Name</label>
-            <input type="text" placeholder="Enter product name" />
-            <br /><span
-              class="form-error name-error"
-              style="display: none"
-            ></span>
+      <div class="block-container container">
+        <div class="yard">
+          <h3 class="yard-h3"></h3>
+          <table class="overview-tables" style="margin-top: 0">
+            <thead>
+              <tr>
+                <th>Block ID</th>
+                <th>Day</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
 
-            <label class="description-label">Product Description</label>
-            <input type="text" placeholder="Enter product description" />
-            <br /><span
-              class="form-error description-error"
-              style="display: none"
-            ></span>
-
-            <label class="price-label">Unit Price</label>
-            <input type="number" placeholder="Enter unit price" />
-            <br /><span
-              class="form-error price-error"
-              style="display: none"
-            ></span>
-          </form>
+            <tbody class="tbody"></tbody>
+          </table>
         </div>
 
-        <a class="save form-button">Save</a>
+        <div class="stockmg-block-content">
+          <div class="stockmg-heading table-heading">
+            <h2 class="stockmg-title"></h2>
+            <p class="stockmg-text"></p>
+          </div>
+
+          <div>
+            <table class="block-view-table overview-tables">
+              <tbody>
+                <tr>
+                  <td>Block ID</td>
+                  <td class="yBlock"></td>
+                </tr>
+                <tr>
+                  <td>Yard</td>
+                  <td class="sYard"></td>
+                </tr>
+
+                <tr>
+                  <td>Stored Date</td>
+                  <td class="date"></td>
+                </tr>
+
+                <tr>
+                  <td>Coconut Count</td>
+                  <td class="yAmount"></td>
+                </tr>
+                <tr>
+                  <td>Stored period</td>
+                  <td class="yDays"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <!-- <script src="./view.js"></script> -->
+    <script src="./view-block.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>

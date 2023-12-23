@@ -68,6 +68,7 @@
         <div class="en active">En</div>
       </div>
       <div class="text"></div>
+
       <div class="supply9-container">
         <div class="report-container">
           <div class="sales-graph">
@@ -98,7 +99,33 @@
             </div>
           </div>
         </div>
-        <button class="form-button"></button>
+
+        <!-- report light box starts -->
+
+        <div class="overlay" id="overlay">
+          <div class="report-window light-box">
+            <p class="close-btn close-btn-bank"><i class="fas fa-xmark"></i></p>
+            <div class="report-window-content">
+              <p>Select time duration to generate your invoice</p>
+              <div class="report-dates">
+                <div>
+                  <label class="from-label">From</label>
+                  <input type="date" placeholder="Enter starting date" />
+                </div>
+                <div>
+                  <label class="to-label">To</label>
+                  <input type="date" class="Enter ending date" />
+                </div>
+              </div>
+              <button class="generate-button2 form-button">
+                Generate Invoice
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- report light box ends -->
+        <button class="generate-button1 form-button"></button>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>

@@ -11,7 +11,60 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c3 = body.querySelector(".c3"),
     c4 = body.querySelector(".c4"),
     c5 = body.querySelector(".c5"),
-    tbody2 = body.querySelector(".tbody2");
+    productionTable = body.querySelector(".production-table"),
+    requestTable = body.querySelector(".request-table"),
+    tbody2 = body.querySelector(".tbody2"),
+    searchBar1 = body.querySelector(".search1"),
+    searchBar2 = body.querySelector(".search2"),
+    filter1 = body.querySelector(".filter-1"),
+    filter2 = body.querySelector(".filter-2");
+
+  var lang = getCookie("lang"); // current language
+
+  var searchBox1 = document.querySelectorAll(
+    '.search-box1 input[type="text"] + span'
+  );
+  var searchBox2 = document.querySelectorAll(
+    '.search-box2 input[type="text"] + span'
+  );
+
+  searchBox1.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar1.value.toUpperCase(), productionTable);
+    });
+  });
+
+  searchBox2.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar2.value.toUpperCase(), requestTable);
+    });
+  });
+
+  searchBar1.addEventListener("keyup", () => {
+    search(searchBar1.value.toUpperCase(), productionTable);
+  });
+
+  searchBar2.addEventListener("keyup", () => {
+    search(searchBar2.value.toUpperCase(), requestTable);
+  });
+
+  filter1.addEventListener("input", () => {
+    search(filter1.value.toUpperCase(), productionTable);
+  });
+
+  filter2.addEventListener("input", () => {
+    search(filter2.value.toUpperCase(), requestTable);
+  });
+
+  const googleIcon = document.querySelectorAll("#filter-icon");
+
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

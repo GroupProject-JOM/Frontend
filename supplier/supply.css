@@ -233,7 +233,7 @@ select.dropdown {
   width: 30vw;
 }
 
-.supply4-container{
+.supply4-container {
   display: flex;
   gap: 6vw;
 }
@@ -490,37 +490,19 @@ input [type=""] .supply7-container input {
 }
 
 .supply8-container .view-bank-container {
-  display: none;
   width: 30vw;
   height: 35vh;
-  margin: 0 auto;
-  background-color: var(--body-color);
-  padding: 10px 10px;
-  border-radius: 10px;
   margin-top: 60px;
-  position: fixed;
   top: 20%;
   right: 30%;
-  box-shadow: 0 0 20px 0 var(--shadow-color);
-  z-index: 999;
-  transition: var(--tran-04);
 }
 
-.view-bank-container .close-btn {
-  display: grid;
-  position: absolute;
-  right: 13px;
-  top: 13px;
-  font-size: 24px;
-  color: gray;
-  transition: 0.5s;
-  cursor: pointer;
-}
-
-.view-bank-container .close-btn:hover {
-  color: var(--primary-color);
-  scale: 1.1;
-  cursor: pointer;
+.supply9-container .report-window {
+  width: 40vw;
+  height: 30vh;
+  margin-top: 60px;
+  top: 50%;
+  right: 33%;
 }
 
 .view-bank-container .acc-view-table {
@@ -533,8 +515,8 @@ input [type=""] .supply7-container input {
   padding: 5px 0px;
   width: 6rem;
 }
+
 .view-bank-container .buttons {
-  /* margin-left: 30px; */
   justify-content: center;
 }
 
@@ -549,6 +531,46 @@ input [type=""] .supply7-container input {
   font-weight: 600;
 }
 
+.report-window .report-window-content {
+  margin: 10px;
+}
+
+.report-window .report-window-content p {
+  font-size: 1.1rem;
+}
+
+.report-window .report-window-content label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.report-window .report-window-content input {
+  margin-top: 0;
+  width: 15vw;
+}
+
+.report-window .report-dates {
+  display: flex;
+  gap: 5vw;
+  margin-top: 2rem;
+}
+
+.report-window .form-button {
+  font-size: 0.9rem;
+  padding: 5px 40px;
+  margin-left: 0;
+  margin-top: 2.5rem;
+  border-radius: 15px;
+}
+
+.search-filter input{
+  margin: 0;
+}
+
+.supply6-container .table-heading, .supply8-container .table-heading{
+  width: 95%;
+}
 @media only screen and (max-device-width: 800px) {
   .report-container {
     grid-template-rows: 2fr 2fr 1fr 1fr;
@@ -623,7 +645,7 @@ input [type=""] .supply7-container input {
     margin-top: 10px;
     height: 50vh;
   }
-  .supply-view-container{
+  .supply-view-container {
     flex-wrap: wrap;
   }
 }
