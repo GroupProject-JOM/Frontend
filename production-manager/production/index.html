@@ -73,11 +73,9 @@
 
       <div class="productionmg-container container">
         <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title">Production Overview</h2>
+          <h2 class="productionmg-title"></h2>
           <div>
-            <p class="production-history-text">
-              View past and ongoing production batches
-            </p>
+            <p class="production-history-text"></p>
 
             <div class="search-filter">
               <div class="search-wrapper">
@@ -93,8 +91,8 @@
                   <select class="dropdown filter-1">
                     <option default hidden class="op0">Select Option</option>
                     <option value="">All</option>
-                    <option value="waiting">Waiting</option>
-                    <option value="process">Processing</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="complete">Completed</option>
                   </select>
                 </div>
               </div>
@@ -105,38 +103,23 @@
         <table class="production-table overview-tables">
           <thead>
             <tr>
-              <th>Batch ID</th>
+              <th>Batch Num</th>
               <th>Start Date</th>
-              <th>End Date</th>
               <th>Coconut Amount</th>
-              <th>status</th>
+              <th>Product Count</th>
+              <th>Status</th>
             </tr>
           </thead>
 
-          <tbody>
-            <tr>
-              <td>E052</td>
-              <td>21/04/2023</td>
-              <td>22/04/2023</td>
-              <td>2000</td>
-              <td><button class="pending status">Ongoing</button></td>
-            </tr>
-            <tr>
-              <td>E052</td>
-              <td>21/04/2023</td>
-              <td>22/04/2023</td>
-              <td>2000</td>
-              <td><button class="completed status">Completed</button></td>
-            </tr>
-          </tbody>
+          <tbody class="tbody"></tbody>
         </table>
         <br /><br /><br />
-        <a href="./add.html" class="new form-button">New Production</a>
+        <a href="./add.html" class="new form-button"></a>
       </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>

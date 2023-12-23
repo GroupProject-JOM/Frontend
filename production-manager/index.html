@@ -86,7 +86,7 @@
             </div>
             <div class="w-text">
               <p class="w-title w2"></p>
-              <p class="w-value">12</p>
+              <p class="w-value w2-value">12</p>
             </div>
           </div>
         </div>
@@ -111,8 +111,8 @@
                     <select class="dropdown filter-1">
                       <option default hidden class="op0">Select Option</option>
                       <option value="">All</option>
-                      <option value="waiting">Waiting</option>
-                      <option value="process">Processing</option>
+                      <option value="ongoing">Ongoing</option>
+                      <option value="complete">Completed</option>
                     </select>
                   </div>
                 </div>
@@ -123,52 +123,15 @@
           <table class="overview-tables production-table">
             <thead>
               <tr>
-                <th>Batch ID</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Processing Time</th>
+                <th>Batch Num</th>
+                <th>Start Date</th>
+                <th>Coconut Amount</th>
+                <th>Product Count</th>
                 <th>Status</th>
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>B091</td>
-                <td>21/10/2023</td>
-                <td>200</td>
-                <td>5 Hours</td>
-                <td>
-                  <button class="processing status">Processing</button>
-                </td>
-              </tr>
-              <tr>
-                <td>B092</td>
-                <td>02/01/2023</td>
-                <td>2000</td>
-                <td>13 Hours</td>
-                <td>
-                  <button class="processing status">Processing</button>
-                </td>
-              </tr>
-              <tr>
-                <td>B093</td>
-                <td>09/04/2023</td>
-                <td>300</td>
-                <td>0</td>
-                <td>
-                  <button class="waiting status">Waiting</button>
-                </td>
-              </tr>
-              <tr>
-                <td>B094</td>
-                <td>21/02/2023</td>
-                <td>900</td>
-                <td>0</td>
-                <td>
-                  <button class="waiting status">Waiting</button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody class="tbody1"></tbody>
           </table>
         </div>
 
@@ -221,7 +184,7 @@
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>

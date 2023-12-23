@@ -206,7 +206,7 @@
     },
     stamp: {
       inAllPages: true, //by default = false, just in the last page
-      src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
+      src: "../common/home.png",
       type: "JPG", //optional, when src= data:uri (nodejs case)
       width: 20, //aspect ratio = width/height
       height: 20,
@@ -229,12 +229,12 @@
       address: "NO 858, Pannala, Kuliyapitiya",
       phone: "(+94) 71 22 22 222",
       email: "kamal@gmail.com",
-      otherInfo: "www.jom.com",
+      // otherInfo: "www.jom.com",
     },
     invoice: {
-      label: "Invoice #: ",
+      // label: "Invoice #: ",
       num: 19,
-      invDate: "Payment Date: 25/10/2023 18:12",
+      invDate: "Start Date: 25/10/2023 18:12",
       invGenDate: "Invoice Date: 26/10/2023 10:17",
       headerBorder: false,
       tableBodyBorder: false,
@@ -246,60 +246,67 @@
           },
         },
         {
-          title: "Title",
+          title: "Date",
           style: {
             width: 30,
           },
         },
         {
-          title: "Description",
+          title: "Supply Method",
           style: {
-            width: 80,
+            width: 40,
           },
         },
-        { title: "Price" },
+        {
+          title: "Payment Method",
+          style: {
+            width: 50,
+          },
+        },
         { title: "Quantity" },
+        // { title: "Quantity" },
         { title: "Unit" },
         { title: "Total" },
       ],
-      table: Array.from(Array(10), (item, index) => [
+      table: Array.from(Array(15), (item, index) => [
         index + 1,
-        "There are many variations ",
-        "Lorem Ipsum is simply dummy text dummy text ",
-        200.5,
-        4.5,
-        "m2",
-        400.5,
+        "2023-12-13",
+        "Pickup from estate",
+        "Transfer to Bank\n",
+        200,
+        "50.00",
+        // "m2",
+        "10000.00",
       ]),
       additionalRows: [
         {
           col1: "Total:",
           col2: "145,250.50",
-          col3: "ALL",
+          col3: "LKR",
           style: {
             fontSize: 14, //optional, default 12
           },
         },
-        {
-          col1: "VAT:",
-          col2: "20",
-          col3: "%",
-          style: {
-            fontSize: 10, //optional, default 12
-          },
-        },
-        {
-          col1: "SubTotal:",
-          col2: "116,199.90",
-          col3: "ALL",
-          style: {
-            fontSize: 10, //optional, default 12
-          },
-        },
+        // {
+        //   col1: "VAT:",
+        //   col2: "20",
+        //   col3: "%",
+        //   style: {
+        //     fontSize: 10, //optional, default 12
+        //   },
+        // },
+        // {
+        //   col1: "SubTotal:",
+        //   col2: "116,199.90",
+        //   col3: "ALL",
+        //   style: {
+        //     fontSize: 10, //optional, default 12
+        //   },
+        // },
       ],
       invDescLabel: "Invoice Note",
       invDesc:
-        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
+        "Thank you for your recent supply of materials to Jayasinghe Oil Mills Pvt. Ltd. Enclosed, please find the attached invoice providing a comprehensive overview of all supplied items during the specified time period. We sincerely appreciate your consistent reliability, which is paramount to our operations. For any further assistance or inquiries, please do not hesitate to contact us either via email or telephone. Your satisfaction is our priority, and we look forward to continuing our mutually beneficial partnership.",
     },
     footer: {
       text: "The invoice is created on a computer and is valid without the signature and stamp.",

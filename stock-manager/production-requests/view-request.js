@@ -37,18 +37,17 @@
     document.querySelector(".decline-container").style.display = "block";
   });
 
-    overlay.addEventListener("click", (e) => {
-      if (e.target.id === "overlay") {
-        overlay.style.display = "none";
-        document.querySelector(".decline-container").style.display = "none";
-      }
-    });
-
-    closeBtn.addEventListener("click", () => {
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
       overlay.style.display = "none";
       document.querySelector(".decline-container").style.display = "none";
-    });
+    }
+  });
 
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".decline-container").style.display = "none";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -155,6 +154,14 @@
             decline.disabled = true;
           } else if (data.request.status == 3) {
             stat = "Rejected";
+            accept.style.display = "none";
+            accept.disabled = true;
+            decline.style.display = "none";
+            decline.disabled = true;
+            rNote.textContent = data.request.reason;
+            rNote.style.display = "";
+          } else {
+            stat = "Accepted";
             accept.style.display = "none";
             accept.disabled = true;
             decline.style.display = "none";
