@@ -309,10 +309,23 @@
     // Handle messages received from the server
     const message = event.data;
     if (message.length != 0) {
-      cMessage.innerHTML += message + "<br />";
-      sMessage.style.display = "block";
+      var arr = message.split(":");
+      sessionStorage.setItem("amount", arr[0]);
+      sessionStorage.setItem("id", arr[1]);
+
+      actionVerifyDecline();
     }
   };
+
+  actionVerifyDecline();
+  function actionVerifyDecline() {
+    if (getCookie("id") == sessionStorage.getItem("id")) {
+      cMessage.textContent =
+        "Collecter entered amount is " +
+        sessionStorage.getItem("amount");
+      sMessage.style.display = "block";
+    }
+  }
 
   accept.addEventListener("click", () => {
     if (lang == "sin") {
@@ -356,6 +369,9 @@
           confirmButtonText: confirmButtonText,
           confirmButtonColor: confirmButtonColor,
         }).then((response) => {
+          sessionStorage.removeItem("id");
+          sessionStorage.removeItem("amount");
+
           const senderId = getPayload(getCookie("jwt")).user;
           const notification = "OK";
           const collection = getCookie("id");
@@ -409,6 +425,9 @@
           confirmButtonText: confirmButtonText,
           confirmButtonColor: confirmButtonColor,
         }).then((response) => {
+          sessionStorage.removeItem("id");
+          sessionStorage.removeItem("amount");
+
           const senderId = getPayload(getCookie("jwt")).user;
           const notification = "Denied";
           const collection = getCookie("id");

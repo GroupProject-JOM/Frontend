@@ -870,7 +870,7 @@ body.dark {
 }
 
 .overlay {
-  /* display: none; */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -879,7 +879,7 @@ body.dark {
 }
 
 .light-box {
-  /* display: none; */
+  display: none;
   margin: 0 auto;
   background-color: var(--body-color);
   padding: 10px 10px;

@@ -22,7 +22,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     searchBar1 = body.querySelector(".search1"),
     searchBar2 = body.querySelector(".search2"),
     filter1 = body.querySelector(".filter-1"),
-    filter2 = body.querySelector(".filter-2");
+    filter2 = body.querySelector(".filter-2"),
+    aBar = body.querySelector(".action-bar"),
+    aId = body.querySelector(".action-id"),
+    aAmount = body.querySelector(".action-amount"),
+    aBtn = body.querySelector(".action-button");
 
   var searchBox1 = document.querySelectorAll(
     '.search-box1 input[type="text"] + span'
@@ -44,7 +48,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       search(searchBar2.value.toUpperCase(), pastSupplyTable);
     });
   });
-  
+
   searchBar1.addEventListener("keyup", () => {
     search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
   });
@@ -329,4 +333,49 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   ongoing.textContent = count;
   income.textContent = 0 + " LKR";
+
+  // web socket
+  const socket = new WebSocket(
+    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" +
+      getPayload(getCookie("jwt")).user
+  );
+
+  socket.onmessage = function (event) {
+    // Handle messages received from the server
+    const message = event.data;
+    if (message.length != 0) {
+      var arr = message.split(":");
+      sessionStorage.setItem("amount", arr[0]);
+      sessionStorage.setItem("id", arr[1]);
+
+      actionBar();
+    }
+  };
+
+  actionBar();
+  function actionBar() {
+    if (
+      sessionStorage.getItem("id") != null &&
+      sessionStorage.getItem("amount") != null
+    ) {
+      aId.textContent = sessionStorage.getItem("id");
+      aAmount.textContent = sessionStorage.getItem("amount");
+      aBar.style.display = "";
+    }
+  }
+
+  socket.onclose = function (event) {
+    console.log("WebSocket closed:", event);
+    Command: toastr["error"]("WebSocket closed");
+  };
+
+  socket.onerror = function (error) {
+    console.error("WebSocket error:", error);
+    Command: toastr["error"]("WebSocket error");
+  };
+
+  aBtn.addEventListener("click", () => {
+    document.cookie = "id=" + aId.textContent + "; path=/";
+    window.location.href = "./supply-view.html";
+  });
 })();

@@ -134,71 +134,91 @@
   );
 
   const senderId = getPayload(getCookie("jwt")).user;
-  const notification = "Collector Entered Amount is " + getCookie("final");
+  const socket_amount = getCookie("final");
   const collection = getCookie("id");
 
   socket.onopen = function (event) {
-    socket.send(`${senderId}:${notification}:${collection}`);
+    socket.send(`${senderId}:${socket_amount}:${collection}`);
     log("Sent");
   };
 
   socket.onmessage = function (event) {
     const message = event.data;
-    if (message === "OK") {
-      if (lang == "sin") {
-        var title = "සම්පූර්ණයි!",
-          text = "ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව සැපයුම්කරු තහවුරු කළේය.",
-          confirmButtonText = "හරි";
-      } else {
-        var title = "Completed!",
-          text =
-            "The supplier confirmed that the amount of coconut entered was correct.",
-          confirmButtonText = "Ok";
-      }
-      // sweet alert
-      Swal.fire({
-        title: title,
-        text: text,
-        icon: "success",
-        confirmButtonText: confirmButtonText,
-        confirmButtonColor: confirmButtonColor,
-      }).then((response) => {
-        completeCollection();
-      });
+    if (message.length != 0) {
+      var arr = message.split(":");
+      sessionStorage.setItem("msg", arr[0]);
+      sessionStorage.setItem("id", arr[1]);
+
+      actionVerifyDecline();
     }
 
-    if (message === "Denied") {
-      if (lang == "sin") {
-        var title = "වැරදියි!",
-          text =
-            "ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව සැපයුම්කරු ප්‍රතික්ෂේප කළේය.",
-          confirmButtonText = "නැවත ඇතුල් කරන්න";
-      } else {
-        var title = "Incorrect!",
-          text = "The supplier denied the enterd coconut quantity.",
-          confirmButtonText = "Enter again";
+    socket.onclose = function (event) {
+      console.log("WebSocket closed:", event);
+      Command: toastr["error"]("WebSocket closed");
+    };
+
+    socket.onerror = function (error) {
+      console.error("WebSocket error:", error);
+      Command: toastr["error"]("WebSocket error");
+    };
+
+    actionVerifyDecline();
+
+    //Socket on message action
+    function actionVerifyDecline() {
+      if (getCookie("id") == sessionStorage.getItem("id")) {
+        if (sessionStorage.getItem("msg") === "OK") {
+          if (lang == "sin") {
+            var title = "සම්පූර්ණයි!",
+              text =
+                "ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව සැපයුම්කරු තහවුරු කළේය.",
+              confirmButtonText = "හරි";
+          } else {
+            var title = "Completed!",
+              text =
+                "The supplier confirmed that the amount of coconut entered was correct.",
+              confirmButtonText = "Ok";
+          }
+          // sweet alert
+          Swal.fire({
+            title: title,
+            text: text,
+            icon: "success",
+            confirmButtonText: confirmButtonText,
+            confirmButtonColor: confirmButtonColor,
+          }).then((response) => {
+            sessionStorage.removeItem("msg");
+            sessionStorage.removeItem("id");
+            completeCollection();
+          });
+        }
+
+        if (sessionStorage.getItem("msg") === "Denied") {
+          if (lang == "sin") {
+            var title = "වැරදියි!",
+              text =
+                "ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව සැපයුම්කරු ප්‍රතික්ෂේප කළේය.",
+              confirmButtonText = "නැවත ඇතුල් කරන්න";
+          } else {
+            var title = "Incorrect!",
+              text = "The supplier denied the enterd coconut quantity.",
+              confirmButtonText = "Enter again";
+          }
+          // sweet alert
+          Swal.fire({
+            title: title,
+            text: text,
+            icon: "error",
+            confirmButtonText: confirmButtonText,
+            confirmButtonColor: confirmButtonColor,
+          }).then((response) => {
+            sessionStorage.removeItem("msg");
+            sessionStorage.removeItem("id");
+            window.location.href = "./enter-amount.html";
+          });
+        }
       }
-      // sweet alert
-      Swal.fire({
-        title: title,
-        text: text,
-        icon: "error",
-        confirmButtonText: confirmButtonText,
-        confirmButtonColor: confirmButtonColor,
-      }).then((response) => {
-        window.location.href = "./enter-amount.html";
-      });
     }
-  };
-
-  socket.onclose = function (event) {
-    console.log("WebSocket closed:", event);
-    Command: toastr["error"]("WebSocket closed");
-  };
-
-  socket.onerror = function (error) {
-    console.error("WebSocket error:", error);
-    Command: toastr["error"]("WebSocket error");
   };
 
   // Optional verification methods
