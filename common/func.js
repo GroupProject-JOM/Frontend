@@ -195,7 +195,7 @@ function signout() {
         document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         document.cookie =
-        "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+          "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         pageLoading();
         window.location.href = frontProxy;
@@ -289,4 +289,5 @@ function getPayload(token) {
   return JSON.parse(atob(token.split(".")[1]));
 }
 
+// framework
 var log = console.log;
