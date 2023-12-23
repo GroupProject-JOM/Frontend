@@ -106,19 +106,23 @@
           <div class="report-window light-box">
             <p class="close-btn close-btn-bank"><i class="fas fa-xmark"></i></p>
             <div class="report-window-content">
-              <p>Select time duration to generate your invoice</p>
+              <p class="report-window-heading"></p>
               <div class="report-dates">
                 <div>
-                  <label class="from-label">From</label>
-                  <input type="date" placeholder="Enter starting date" />
+                  <label class="from-label"></label>
+                  <input type="date" class="starting-date" placeholder="Enter starting date" />
+                  <br />
+                  <span class="form-error starting-date-error"></span>
                 </div>
                 <div>
-                  <label class="to-label">To</label>
-                  <input type="date" class="Enter ending date" />
+                  <label class="to-label"></label>
+                  <input type="date" class="ending-date" placeholder="Enter ending date" />
+                  <br />
+                  <span class="form-error ending-date-error"></span>
                 </div>
               </div>
               <button class="generate-button2 form-button">
-                Generate Invoice
+                
               </button>
             </div>
           </div>
