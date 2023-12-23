@@ -144,14 +144,17 @@
 
           var stat = "";
 
-          if (data.request.status == 1) {
+          if (data.request.status == 1) 
             stat = "Pending Approval";
-          } else if (data.request.status == 2) {
+           else if (data.request.status == 2) {
             stat = "Accepted";
             accept.style.display = "none";
             accept.disabled = true;
             decline.style.display = "none";
             decline.disabled = true;
+            tbody.parentElement.style.display = "none";
+            yardH.parentElement.style.display = "none";
+            yDays.textContent = data.request.days + " days";
           } else if (data.request.status == 3) {
             stat = "Rejected";
             accept.style.display = "none";
@@ -160,6 +163,9 @@
             decline.disabled = true;
             rNote.textContent = data.request.reason;
             rNote.style.display = "";
+            tbody.parentElement.style.display = "none";
+            yardH.parentElement.style.display = "none";
+            yDays.textContent = data.request.days + " days";
           } else {
             stat = "Accepted";
             accept.style.display = "none";
@@ -168,6 +174,9 @@
             decline.disabled = true;
             rNote.textContent = data.request.reason;
             rNote.style.display = "";
+            tbody.parentElement.style.display = "none";
+            yardH.parentElement.style.display = "none";
+            yDays.textContent = data.request.days + " days";
           }
 
           rId.textContent = data.request.id;
@@ -244,7 +253,8 @@
             });
 
             tbody.innerHTML = row;
-            yDays.textContent = data.block.days + " days";
+            if (yDays.textContent == null || yDays.textContent.length == 0)
+              yDays.textContent = data.block.days + " days";
 
             var req_date = new Date(data.block.date);
             date.textContent = req_date.toLocaleDateString();
