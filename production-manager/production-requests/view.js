@@ -83,16 +83,25 @@
             edit.disabled = true;
             del.style.display = "none";
             del.disabled = true;
+            tbody.parentElement.style.display = "none";
+            yardH.parentElement.style.display = "none";
+            yDays.textContent = data.request.days + " days";
           } else if (data.request.status == 3) {
             stat = "Rejected";
             rNote.textContent = data.request.reason;
             rNote.style.display = "";
+            tbody.parentElement.style.display = "none";
+            yardH.parentElement.style.display = "none";
+            yDays.textContent = data.request.days + " days";
           } else if (data.request.status == 4) {
             stat = "Completed";
             edit.style.display = "none";
             edit.disabled = true;
             del.style.display = "none";
             del.disabled = true;
+            tbody.parentElement.style.display = "none";
+            yardH.parentElement.style.display = "none";
+            yDays.textContent = data.request.days + " days";
           }
 
           sYard.textContent = "Yard " + data.request.yard;
@@ -168,7 +177,8 @@
             });
 
             tbody.innerHTML = row;
-            yDays.textContent = data.block.days + " days";
+            if (yDays.textContent == null || yDays.textContent.length == 0)
+              yDays.textContent = data.block.days + " days";
           });
         } else if (response.status === 202) {
           response.json().then((data) => {

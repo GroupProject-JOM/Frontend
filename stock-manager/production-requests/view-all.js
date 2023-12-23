@@ -94,7 +94,7 @@
               st = "Pending Approval";
               if (window.innerWidth <= 718) st = "Pending";
             } else if (item.status == 2 || item.status == 4) {
-              stat = "accept";
+              stat = "accepted";
               st = "Accepted";
             } else if (item.status == 3) {
               stat = "rejected";
