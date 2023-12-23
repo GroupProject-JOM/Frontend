@@ -151,11 +151,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         response.json().then((data) => {
           data.accepted.forEach((item) => {
             var c_fName = "-",
-              c_lName = "-";
+              c_lName = "-",
+              stat = "pending";
 
             if (item.method == "pickup") {
               c_fName = item.c_fName;
               c_lName = item.c_lName;
+              stat = "accepted";
             }
 
             var date_string = new Date(item.time);
@@ -178,9 +180,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td>` +
               item.amount.toLocaleString("en-US") +
               `</td>` +
-              `<td>` +
+              `<td><button class="status `+stat+`">` +
               capitalize(item.method) +
-              `</td>` +
+              `</button></td>` +
               `<td>` +
               c_fName +
               " " +
@@ -190,6 +192,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           });
 
           data.rejected.forEach((item) => {
+            var stat = "pending";
+
+            if (item.method == "pickup") stat = "accepted";
+            
             row2 +=
               `<tr id=` +
               item.id +
@@ -207,20 +213,22 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `</td>` +
               `<td>` +
               item.amount.toLocaleString("en-US") +
-              `</td>` +
-              `<td>` +
+              `</td>` +              
+              `<td><button class="status `+stat+`">` +
               capitalize(item.method) +
-              `</td>` +
+              `</button></td>` +
               `</tr>`;
           });
 
           data.completed.forEach((item) => {
             var c_fName = "-",
-              c_lName = "-";
+              c_lName = "-",
+              stat = "pending";
 
             if (item.method == "pickup") {
               c_fName = item.c_fName;
               c_lName = item.c_lName;
+              stat = "accepted";
             }
 
             var date_string = new Date(item.time);
@@ -243,9 +251,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td>` +
               item.amount.toLocaleString("en-US") +
               `</td>` +
-              `<td>` +
+              `<td><button class="status `+stat+`">` +
               capitalize(item.method) +
-              `</td>` +
+              `</button></td>` +
               `<td>` +
               c_fName +
               " " +
