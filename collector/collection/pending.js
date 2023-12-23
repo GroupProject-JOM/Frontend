@@ -139,7 +139,6 @@
 
   socket.onopen = function (event) {
     socket.send(`${senderId}:${socket_amount}:${collection}`);
-    log("Sent");
   };
 
   socket.onmessage = function (event) {
@@ -151,75 +150,74 @@
 
       actionVerifyDecline();
     }
+  };
 
-    socket.onclose = function (event) {
-      console.log("WebSocket closed:", event);
-      Command: toastr["error"]("WebSocket closed");
-    };
+  socket.onclose = function (event) {
+    console.log("WebSocket closed:", event);
+    Command: toastr["error"]("WebSocket closed");
+  };
 
-    socket.onerror = function (error) {
-      console.error("WebSocket error:", error);
-      Command: toastr["error"]("WebSocket error");
-    };
+  socket.onerror = function (error) {
+    console.error("WebSocket error:", error);
+    Command: toastr["error"]("WebSocket error");
+  };
 
-    actionVerifyDecline();
+  actionVerifyDecline();
 
-    //Socket on message action
-    function actionVerifyDecline() {
-      if (getCookie("id") == sessionStorage.getItem("id")) {
-        if (sessionStorage.getItem("msg") === "OK") {
-          if (lang == "sin") {
-            var title = "සම්පූර්ණයි!",
-              text =
-                "ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව සැපයුම්කරු තහවුරු කළේය.",
-              confirmButtonText = "හරි";
-          } else {
-            var title = "Completed!",
-              text =
-                "The supplier confirmed that the amount of coconut entered was correct.",
-              confirmButtonText = "Ok";
-          }
-          // sweet alert
-          Swal.fire({
-            title: title,
-            text: text,
-            icon: "success",
-            confirmButtonText: confirmButtonText,
-            confirmButtonColor: confirmButtonColor,
-          }).then((response) => {
-            sessionStorage.removeItem("msg");
-            sessionStorage.removeItem("id");
-            completeCollection();
-          });
+  //Socket on message action
+  function actionVerifyDecline() {
+    if (getCookie("id") == sessionStorage.getItem("id")) {
+      if (sessionStorage.getItem("msg") === "OK") {
+        if (lang == "sin") {
+          var title = "සම්පූර්ණයි!",
+            text = "ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව සැපයුම්කරු තහවුරු කළේය.",
+            confirmButtonText = "හරි";
+        } else {
+          var title = "Completed!",
+            text =
+              "The supplier confirmed that the amount of coconut entered was correct.",
+            confirmButtonText = "Ok";
         }
+        // sweet alert
+        Swal.fire({
+          title: title,
+          text: text,
+          icon: "success",
+          confirmButtonText: confirmButtonText,
+          confirmButtonColor: confirmButtonColor,
+        }).then((response) => {
+          sessionStorage.removeItem("msg");
+          sessionStorage.removeItem("id");
+          completeCollection();
+        });
+      }
 
-        if (sessionStorage.getItem("msg") === "Denied") {
-          if (lang == "sin") {
-            var title = "වැරදියි!",
-              text =
-                "ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව සැපයුම්කරු ප්‍රතික්ෂේප කළේය.",
-              confirmButtonText = "නැවත ඇතුල් කරන්න";
-          } else {
-            var title = "Incorrect!",
-              text = "The supplier denied the enterd coconut quantity.",
-              confirmButtonText = "Enter again";
-          }
-          // sweet alert
-          Swal.fire({
-            title: title,
-            text: text,
-            icon: "error",
-            confirmButtonText: confirmButtonText,
-            confirmButtonColor: confirmButtonColor,
-          }).then((response) => {
-            sessionStorage.removeItem("msg");
-            sessionStorage.removeItem("id");
-            window.location.href = "./enter-amount.html";
-          });
+      if (sessionStorage.getItem("msg") === "Denied") {
+        if (lang == "sin") {
+          var title = "වැරදියි!",
+            text =
+              "ඇතුළු කළ පොල් ප්‍රමාණය නිවැරදි බව සැපයුම්කරු ප්‍රතික්ෂේප කළේය.",
+            confirmButtonText = "නැවත ඇතුල් කරන්න";
+        } else {
+          var title = "Incorrect!",
+            text = "The supplier denied the enterd coconut quantity.",
+            confirmButtonText = "Enter again";
         }
+        // sweet alert
+        Swal.fire({
+          title: title,
+          text: text,
+          icon: "error",
+          confirmButtonText: confirmButtonText,
+          confirmButtonColor: confirmButtonColor,
+        }).then((response) => {
+          sessionStorage.removeItem("msg");
+          sessionStorage.removeItem("id");
+          window.location.href = "./enter-amount.html";
+        });
       }
     }
-  };
+  }
 
   // Optional verification methods
   sendEmail.addEventListener("click", () => {
@@ -353,6 +351,8 @@
               confirmButtonText: confirmButtonText,
               confirmButtonColor: confirmButtonColor,
             }).then((response) => {
+              sessionStorage.removeItem("msg");
+              sessionStorage.removeItem("id");
               completeCollection();
             });
           } else if (response.status === 401) {
