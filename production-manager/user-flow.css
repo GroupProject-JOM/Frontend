@@ -407,7 +407,8 @@ select.dropdown {
   margin-right: 10px;
 }
 
-.requests input[type="text"] {
+
+.requests input[type="number"] {
   margin-top: 3px;
   padding: 3px;
   font-size: 0.9rem;
@@ -430,6 +431,38 @@ select.dropdown {
   margin-bottom: 10px;
 }
 
+.view-production-container .tables{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  width: 85%;
+  margin-bottom: 3rem;
+}
+
+.view-production-container .batch-data{
+  width: 30vw;
+}
+.view-production-container .request-data{
+  width: 30vw;
+}
+
+.view-production-container .products-data{
+  background-color: #d9d9d961;
+  border-radius: 10px;
+  padding: 30px 2rem 20px 40px;
+  width: 65%;
+  margin: 4rem 0;
+}
+
+.view-production-container .products-data h3{
+  margin-bottom: 1.5rem;
+}
+
+.view-production-container input[type="number"]{
+  margin-left: 30px;
+  background-color: var(--background-grey);
+  padding: 0;
+  width: 40%;
+}
 @media only screen and (max-device-width: 1260px) {
   .production-req {
     display: flex;

@@ -915,6 +915,9 @@ body.dark {
   cursor: pointer;
 }
 
+input[type="checkbox"]{
+  accent-color: var(--wtext--color);
+}
 @media only screen and (max-device-width: 718px) {
   .home {
     left: 0;
