@@ -431,6 +431,7 @@ input [type=""] .supply7-container input {
 .supply7-container .socket-messages button {
   margin-top: 20px;
 }
+
 .supply-view-container .supply-view-content {
   display: flex;
   align-items: center;
@@ -441,10 +442,22 @@ input [type=""] .supply7-container input {
   height: 70vh;
 }
 
-/* .supply-view-container .map {
-  width: 30vw;
-  margin: 0 30px;
-} */
+.supply-view-container .table-heading p{
+  margin-right: 0;
+  margin-bottom: 30px;
+}
+
+.supply-view-container .socket-messages button{
+  margin-top: 20px;
+  padding: 5px 30px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+.supply-view-container .socket-messages {
+  background-color: var(--background-grey);
+  padding: 20px;
+  border-radius: 10px;
+}
 
 .supply7-container textarea {
   width: 40vw;
