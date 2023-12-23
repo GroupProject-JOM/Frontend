@@ -105,22 +105,23 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           radio.forEach((r) => {
             r.addEventListener("input", () => {
               if (r.checked) {
-                // log(r.parentElement.nextSibling.childNodes[2]);
-                r.parentElement.nextSibling.firstChild.disabled = false;
-                r.parentElement.nextSibling.childNodes[2].style.display = "";
+                // log(r.parentElement.parentElement.nextSibling.firstChild);
+                r.parentElement.parentElement.nextSibling.firstChild.disabled = false;
+                r.parentElement.parentElement.nextSibling.childNodes[2].style.display =
+                  "";
               } else {
-                r.parentElement.nextSibling.firstChild.disabled = true;
-                r.parentElement.nextSibling.childNodes[2].style.display =
+                r.parentElement.parentElement.nextSibling.firstChild.disabled = true;
+                r.parentElement.parentElement.nextSibling.childNodes[2].style.display =
                   "none";
               }
-              r.parentElement.parentElement.classList.toggle("disable");
+              r.parentElement.parentElement.parentElement.classList.toggle("disable");
             });
           });
 
           cocoAmount.forEach((coco) => {
             coco.addEventListener("input", () => {
               var rId =
-                coco.parentElement.previousSibling.childNodes[1].textContent.slice(
+                coco.parentElement.previousSibling.childNodes[0].textContent.slice(
                   9
                 );
               requests.forEach((request) => {
@@ -212,7 +213,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     var arr2 = [],
       requestIds = [],
       requestAmounts = [],
-      actual = [];
+      actual = [],
+      days = [];
 
     arrList.forEach((el) => {
       arr2.push(el.value);
@@ -237,7 +239,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     row.forEach((element) => {
       if (element.classList.contains("disable")) count++;
       else {
-        var rId = element.childNodes[0].childNodes[1].textContent.slice(9);
+        var rId = element.childNodes[0].childNodes[0].textContent.slice(9);
         var coco = element.childNodes[1].childNodes[0];
 
         requests.forEach((request) => {
@@ -274,6 +276,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               requestIds.push(rId);
               requestAmounts.push(coco.value);
               actual.push(request.actual);
+              days.push(request.days);
             }
           }
         });
@@ -300,6 +303,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         amounts: requestAmounts,
         actual: actual,
         products: arr2,
+        days: days,
       };
       fetch(backProxy + "/production-batch", {
         method: "POST",
