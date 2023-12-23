@@ -44,7 +44,6 @@
   --stock-lv3: #caf2c2;
   --stock-lv4: #ffd6c9;
 
-
   /* --stock-lv1: #fbffcc;
   --stock-lv2: #ffe0e0;
   --stock-lv3: #e9ffe8;
@@ -63,14 +62,12 @@ body {
 }
 
 body.dark {
-  
-
-    --body-color: #242526;
-    --sidebar-color: #18191a;
-    --primary-color: #ccc;
-    --primary-color-light: #7e7e7e;
-    --toggle-color: #9d9387;
-    --toggle-button: #9d9387;
+  --body-color: #242526;
+  --sidebar-color: #18191a;
+  --primary-color: #ccc;
+  --primary-color-light: #7e7e7e;
+  --toggle-color: #9d9387;
+  --toggle-button: #9d9387;
   --text-color: #ccc;
   --shadow-color: rgb(57, 57, 57);
   --box-shadow: rgb(50, 45, 42);
@@ -94,10 +91,6 @@ body.dark {
   --stock-lv2: #79a519;
   --stock-lv3: #527d2e;
   --stock-lv4: #bb3737;
-
-
-
-
 
   color: var(--text-color);
 }
@@ -136,17 +129,17 @@ body.dark {
   margin-top: 2.4rem;
   font-weight: 500;
   cursor: pointer;
-  z-index:1;
+  z-index: 1;
 }
 
 .lng-picker .sin {
   padding: 0 8px 0 20px;
-  z-index:1;
+  z-index: 1;
 }
 
 .lng-picker .en {
   padding: 0 20px 0 12px;
-  z-index:1;
+  z-index: 1;
 }
 
 .lng-picker .active {
@@ -159,7 +152,7 @@ body.dark {
   justify-content: center;
   color: white;
   padding: 0;
-  z-index:1;
+  z-index: 1;
 }
 
 .notification .bell {
@@ -319,7 +312,7 @@ body.dark {
   width: 87%;
 }
 
-.req-tables .table-heading{
+.req-tables .table-heading {
   width: 100%;
 }
 
@@ -677,7 +670,6 @@ body.dark {
   font-size: 1rem;
 }
 
-
 .rate-section .rate-value {
   font-size: 1rem;
 }
@@ -915,8 +907,26 @@ body.dark {
   cursor: pointer;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
   accent-color: var(--wtext--color);
+}
+
+.back-to-top {
+  border: 3px solid var(--pending-color);
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--body-color);
+  float: right;
+  margin: 30px;
+}
+
+.back-to-top i {
+  font-size: 1.5rem;
+  color: var(--pending-color);
 }
 @media only screen and (max-device-width: 718px) {
   .home {
