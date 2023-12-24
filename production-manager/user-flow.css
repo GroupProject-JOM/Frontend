@@ -463,6 +463,25 @@ select.dropdown {
   padding: 0;
   width: 40%;
 }
+
+.table-top{
+  display: flex;
+  justify-content: space-between;
+  width: 87%;
+  margin-top: 40px;
+  margin-bottom: -10px;
+}
+
+.table-top .form-button{
+  padding: 5px 30px;
+  font-size: 0.9rem;
+  border-radius: 20px;
+}
+
+.table-top #searchBox{
+  margin-bottom: 10px;
+}
+
 @media only screen and (max-device-width: 1260px) {
   .production-req {
     display: flex;
