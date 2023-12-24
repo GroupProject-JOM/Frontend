@@ -73,9 +73,7 @@
       <div class="salesmg-container container">
         <div class="productionmg-heading table-heading">
           <h2 class="productionmg-title"></h2>
-          <p class="productionmg-text">
-            View the edit company product details
-          </p>
+          <p class="productionmg-text">View the edit company product details</p>
         </div>
 
         <table class="product-table overview-tables">
@@ -111,17 +109,17 @@
               <td>1L</td>
               <td>1000.00</td>
             </tr>
-            
           </tbody>
         </table>
 
-                <!-- view product light box starts -->
+        <!-- view product light box starts -->
 
         <div class="overlay1 overlay" id="overlay1" style="display: none">
           <div class="view-product-container light-box" style="display: none">
-            <p class="close-btn close-btn1 close-btn-bank"><i class="fas fa-xmark"></i></p>
+            <p class="close-btn close-btn1 close-btn-bank">
+              <i class="fas fa-xmark"></i>
+            </p>
             <div class="view-product-content">
-          
               <table class="product-view-table overview-tables">
                 <tbody>
                   <tr>
@@ -138,7 +136,7 @@
                   </tr>
                 </tbody>
               </table>
-              
+
               <div class="buttons">
                 <a class="form-button edit-btn">Edit</a>
                 <a class="form-button delete-btn">Delete</a>
@@ -147,10 +145,11 @@
           </div>
         </div>
         <!-- view product light box ends -->
-<br><br>
+
+        <br /><br />
         <button class="add form-button">Add New</button>
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>
@@ -161,5 +160,14 @@
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>
     <script src="../../common/loader.js"></script>
+    <script>
+      const rows = document.querySelectorAll("tr");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.querySelector(".overlay1").style.display = "block";
+              document.querySelector(".view-product-container").style.display = "block";
+            });
+          });
+    </script>
   </body>
 </html>

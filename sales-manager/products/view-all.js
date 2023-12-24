@@ -4,21 +4,21 @@
     en = body.querySelector(".en"),
     pTitle = body.querySelector(".productionmg-title"),
     pText = body.querySelector(".productionmg-text"),
-    closeBtn = body.querySelector(".close-btn-bank"),
-    overlay = body.querySelector(".overlay"),
+    closeBtn1 = body.querySelector(".close-btn1"),
+    overlay1 = body.querySelector(".overlay1"),
     add = body.querySelector(".add");
 
   var lang = getCookie("lang"); // current language
 
-  overlay.addEventListener("click", (e) => {
+  overlay1.addEventListener("click", (e) => {
     if (e.target.id === "overlay") {
-      overlay.style.display = "none";
+      overlay1.style.display = "none";
       document.querySelector(".view-product-container").style.display = "none";
     }
   });
 
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
+  closeBtn1.addEventListener("click", () => {
+    overlay1.style.display = "none";
     document.querySelector(".view-product-container").style.display = "none";
   });
 
