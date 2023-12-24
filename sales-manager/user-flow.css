@@ -187,3 +187,36 @@ input:focus {
 .outlet-heading{
   margin-bottom: 1rem;
 }
+
+.view-product-container{
+  width: 33vw;
+  height: 38vh;
+  margin-top: 60px;
+  top: 20%;
+  right: 30%;
+}
+
+.view-product-content {
+  margin: 20px;
+}
+
+.view-product-container .buttons {
+  display: flex;
+  gap: 1vw;
+  justify-content: center;
+  margin-top: 0;
+}
+.view-product-container .buttons a {
+  padding: 5px 20px;
+  width: 8rem;
+  margin-top: 40px;
+}
+
+
+.view-product-container .overview-tables{
+  width: 90%;
+}
+
+.product-view-table {
+  margin-left: 1rem;
+}
