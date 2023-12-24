@@ -114,7 +114,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 r.parentElement.parentElement.nextSibling.childNodes[2].style.display =
                   "none";
               }
-              r.parentElement.parentElement.parentElement.classList.toggle("disable");
+              r.parentElement.parentElement.parentElement.classList.toggle(
+                "disable"
+              );
             });
           });
 
@@ -305,58 +307,85 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         products: arr2,
         days: days,
       };
-      fetch(backProxy + "/production-batch", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include",
-      })
-        .then((response) => {
-          console.log(response.status);
-          if (response.status == 200) {
-            response.json().then((data) => {
-              console.log(data.message);
+
+      if (lang == "sin") {
+        var title = "ඔයාට විශ්වාස ද?",
+          text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+          confirmButtonText = "ඔව්, එය නිර්මාණය කරන්න!",
+          cancelButtonText = "අවලංගු කරන්න";
+      } else {
+        var title = "Are you sure?",
+          text = "You won't be able to revert this!",
+          confirmButtonText = "Yes, create it!",
+          cancelButtonText = "Cancel";
+      }
+      Swal.fire({
+        title: title,
+        text: text,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: confirmButtonColor,
+        cancelButtonColor: cancelButtonColor,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(backProxy + "/production-batch", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+            credentials: "include",
+          })
+            .then((response) => {
+              console.log(response.status);
+              if (response.status == 200) {
+                response.json().then((data) => {
+                  console.log(data.message);
+                });
+                if (lang == "sin") {
+                  var title = "සාර්ථකයි!",
+                    text = "නිෂ්පාදන කණ්ඩායම සාර්ථකව නිර්මාණය කරන ලදී.";
+                } else {
+                  var title = "Successful!",
+                    text = "Production batch created successfully.";
+                }
+                // sweet alert
+                Swal.fire({
+                  title: title,
+                  text: text,
+                  icon: "success",
+                  confirmButtonColor: confirmButtonColor,
+                }).then((response) => {
+                  window.location.href = "./";
+                });
+              } else if (response.status === 400) {
+                response.json().then((data) => {
+                  console.log(data.message);
+                });
+                if (lang == "sin")
+                  Command: toastr["error"]("නිෂ්පාදන කණ්ඩායම නිර්මාණය කර නැත");
+                else
+                  Command: toastr["error"]("Production batch is not created");
+              } else if (response.status === 401) {
+                response.json().then((data) => {
+                  console.log(data.message);
+                  if (lang == "sin")
+                    Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+                  else Command: toastr["error"]("Invalid User");
+                });
+              } else {
+                console.error("Error:", response.status);
+                Command: toastr["error"](response.status, "Error");
+              }
+            })
+            .catch((error) => {
+              console.error("An error occurred:", error);
+              Command: toastr["error"](error);
             });
-            if (lang == "sin") {
-              var title = "සාර්ථකයි!",
-                text = "නිෂ්පාදන කණ්ඩායම සාර්ථකව නිර්මාණය කරන ලදී.";
-            } else {
-              var title = "Successful!",
-                text = "Production batch created successfully.";
-            }
-            // sweet alert
-            Swal.fire({
-              title: title,
-              text: text,
-              icon: "success",
-              confirmButtonColor: confirmButtonColor,
-            }).then((response) => {
-              window.location.href = "./";
-            });
-          } else if (response.status === 400) {
-            response.json().then((data) => {
-              console.log(data.message);
-            });
-            if (lang == "sin")
-              Command: toastr["error"]("නිෂ්පාදන කණ්ඩායම නිර්මාණය කර නැත");
-            else Command: toastr["error"]("Production batch is not created");
-          } else if (response.status === 401) {
-            response.json().then((data) => {
-              console.log(data.message);
-              if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-              else Command: toastr["error"]("Invalid User");
-            });
-          } else {
-            console.error("Error:", response.status);
-            Command: toastr["error"](response.status, "Error");
-          }
-        })
-        .catch((error) => {
-          console.error("An error occurred:", error);
-          Command: toastr["error"](error);
-        });
+        }
+      });
     }
   });
 })();
