@@ -11,7 +11,7 @@
   var lang = getCookie("lang"); // current language
 
   overlay1.addEventListener("click", (e) => {
-    if (e.target.id === "overlay") {
+    if (e.target.id === "overlay1") {
       overlay1.style.display = "none";
       document.querySelector(".view-product-container").style.display = "none";
     }
