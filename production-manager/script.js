@@ -253,7 +253,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               arr.length +
               "</td>" +
               "<td>" +
-              "<button class='pending status'>Ongoing</button>" +
+              "<button class='pending status'>Processing</button>" +
               "</td>" +
               "</tr>";
           });
