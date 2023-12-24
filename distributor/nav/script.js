@@ -1,14 +1,3 @@
-// if (sessionStorage.getItem("page") != "distributor") {
-//   if (
-//     sessionStorage.getItem("page") == null ||
-//     sessionStorage.getItem("page").length === 0
-//   ) {
-//     window.location.href = frontProxy + "/signin.html";
-//   } else {
-//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-//   }
-// }
-
 (() => {
   let loaded = false;
 
@@ -103,7 +92,7 @@
       sin: {
         l0: "පරිශීලක ක්‍රියා",
         l1: "නව අලෙවිසැල්",
-        l2: "Products",
+        l2: "නිෂ්පාදන බලන්න",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",

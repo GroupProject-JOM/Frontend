@@ -12,7 +12,6 @@
     date = body.querySelector(".date"),
     yDays = body.querySelector(".yDays");
 
-    
   var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
@@ -105,7 +104,7 @@
           sYard.textContent = "Yard " + getCookie("id").charAt(0);
           yBlock.textContent = data.block.id;
           yAmount.textContent = data.block.count;
-          yDays.textContent = data.block.days;
+          yDays.textContent = data.block.days + " days";
 
           var added_date = new Date(data.block.date);
           date.textContent = added_date.toLocaleDateString();
