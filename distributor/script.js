@@ -7,9 +7,26 @@
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
+    searchBar = body.querySelector(".search"),
+    ovTable = body.querySelector(".overview-tables"),
     tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), ovTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), ovTable);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

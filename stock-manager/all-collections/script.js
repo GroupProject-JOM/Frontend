@@ -193,6 +193,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           data.rejected.forEach((item) => {
             var stat = "pending";
+            
+            var date_string = new Date(item.date);
 
             if (item.method == "pickup") stat = "accepted";
             
@@ -209,7 +211,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               item.last_name +
               `</td>` +
               `<td>` +
-              item.date +
+              date_string.toLocaleDateString() +
               `</td>` +
               `<td>` +
               item.amount.toLocaleString("en-US") +

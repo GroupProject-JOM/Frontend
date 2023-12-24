@@ -157,7 +157,7 @@
           address1.textContent = data.user.add_line_1;
           street.textContent = data.user.add_line_2;
           city.textContent = data.user.add_line_3;
-          role.textContent = data.user.role;
+          role.textContent = capitalize(data.user.role);
         });
       } else if (response.status === 400) {
         response.json().then((data) => {

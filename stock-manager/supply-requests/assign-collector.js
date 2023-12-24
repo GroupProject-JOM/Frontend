@@ -89,7 +89,9 @@
               ">" +
               "<td>" +
               item.name +
-              "</td>" +
+              " " +
+              item.last_name;
+            "</td>" +
               "<td>" +
               item.row_count +
               "</td>" +

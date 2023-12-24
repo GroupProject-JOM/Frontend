@@ -117,8 +117,8 @@
 
           sYard.textContent = "Yard " + getCookie("id").charAt(0);
           yBlock.textContent = data.block.id;
-          yAmount.textContent = data.block.count;
-          yDays.textContent = data.block.days;
+          yAmount.textContent = data.block.count.toLocaleString('en-US');
+          yDays.textContent = data.block.days + " days";
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
