@@ -164,6 +164,7 @@ width: 25vw;
 .decline-container input[type=text]::placeholder{
   color: var(--input-border-focus);
 }
+
 .decline-container input[type=text]{
   width: 25vw;
   margin-top: 8px;
@@ -181,9 +182,9 @@ width: 25vw;
 .split{
   width: 30vw;
   height: 75vh;
+  /* height: auto; */
   margin-top: 40px;
   top: 0;
-
 }
 
 .split1-window{
@@ -201,7 +202,7 @@ width: 25vw;
 .split1-window .split-content{
   /* height: 100%; */
   top: 50%;
-  transform: translate(0, 50%);
+  transform: translate(0, 10%);
   align-content: center;
 }
 
@@ -210,12 +211,10 @@ width: 25vw;
   font-weight: 500;
   margin-bottom: 3px;
 }
-.split1-window .collections{
-  
-  margin-bottom: 20px;
+
+.split1-window .collections{ 
+  margin-bottom: 40px;
 }
-
-
 
 .split1-window .coco-amount span{
   font-size: 2.7rem;
@@ -286,6 +285,11 @@ margin-top: 30px;
   margin-left: 20px;
 }
 
-/* .split2-window input[type="text"]{
-  background-color: red;
-} */
+.split1-window .split-text span{
+color: var(--sidebar-color);
+cursor: pointer;
+}
+.split1-window .split-text{
+  font-size: 1.1rem;
+  text-align: center;
+}

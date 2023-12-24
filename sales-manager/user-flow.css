@@ -110,7 +110,7 @@ input:focus {
   font-weight: 600;
 }
 
-.salesmg-container .distributors-table, .outlets-table, .production-table{
+.salesmg-container .distributors-table, .outlets-table, .production-table, .product-table{
   width: 90%;
 }
 
