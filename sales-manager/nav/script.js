@@ -1,14 +1,3 @@
-// if (sessionStorage.getItem("page") != "sales-manager") {
-//   if (
-//     sessionStorage.getItem("page") == null ||
-//     sessionStorage.getItem("page").length === 0
-//   ) {
-//     window.location.href = frontProxy + "/signin.html";
-//   } else {
-//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-//   }
-// }
-
 (() => {
   let loaded = false;
 
@@ -26,6 +15,7 @@
       l2 = body.querySelector(".l2"),
       l3 = body.querySelector(".l3"),
       l4 = body.querySelector(".l4"),
+      l5 = body.querySelector(".l5"),
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
@@ -36,6 +26,7 @@
       outlet = body.querySelector(".outlet"),
       productions = body.querySelector(".productions"),
       payouts = body.querySelector(".payouts"),
+      products = body.querySelector(".products"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
       profile = body.querySelector(".profile"),
@@ -51,9 +42,9 @@
     outlet.href = frontProxy + "/sales-manager/outlet/";
     productions.href = frontProxy + "/sales-manager/productions/view-all.html";
     payouts.href = frontProxy + "/sales-manager/payouts/view-all.html";
+    products.href = frontProxy + "/sales-manager/products/view-all.html";
     profile.href = frontProxy + "/sales-manager/profile/view.html";
 
-    // Uname.textContent = sessionStorage.getItem("name");
     Uname.textContent = getCookie("name");
 
     if (!loaded && toggle && modeSwitch) {
@@ -73,11 +64,9 @@
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
-        // sessionStorage.setItem("mode", "dark");
         document.cookie = "mode=dark; path=/";
         modeText.innerHTML = modeTranslate();
       } else {
-        // sessionStorage.setItem("mode", "light");
         document.cookie = "mode=light; path=/";
         modeText.innerHTML = modeTranslate();
       }
@@ -88,7 +77,8 @@
       l1.textContent = data["sin"]["l1"];
       l2.textContent = data["sin"]["l2"];
       l3.textContent = data["sin"]["l3"];
-      l4.textContent = data["sin"]["l4"];
+      l4.textContent = data["sin"]["l4"]; 
+      l5.textContent = data["sin"]["l5"]; 
       l6.textContent = data["sin"]["l6"];
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
@@ -102,6 +92,7 @@
       l2.textContent = data["en"]["l2"];
       l3.textContent = data["en"]["l3"];
       l4.textContent = data["en"]["l4"];
+      l5.textContent = data["en"]["l5"];
       l6.textContent = data["en"]["l6"];
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
@@ -116,6 +107,7 @@
         l2: "අලෙවිසැල්",
         l3: "නිෂ්පාදන",
         l4: "ගෙවීම්",
+        l5: "නිෂ්පාදන",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
@@ -127,6 +119,7 @@
         l2: "Outlets",
         l3: "Productions",
         l4: "Payouts",
+        l5: "Products",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
@@ -170,6 +163,7 @@ window.addEventListener("load", (e) => {
       "productions",
       "payouts",
       "outlet",
+      "products",
       "index",
       "profile",
     ];
