@@ -74,9 +74,98 @@
         response.json().then((data) => {
           batchNo.textContent = data.batch.id;
 
-          if (data.batch.status == 1) status.textContent = "Processing";
-          else if (data.batch.status == 2) status.textContent = "Completed";
-          else if (data.batch.status == 3) status.textContent = "Terminated";
+          if (data.batch.status == 1) {
+            status.textContent = "Processing";
+
+            data.products.forEach((product) => {
+              row2 +=
+                `<label>` +
+                product.type +
+                ` - ` +
+                product.category +
+                `</label>` +
+                `<input type="number" class="product-amount" style="display:none" disabled/>` +
+                `<br /><span class="form-error amount-error"></span>` +
+                `<br /><br />`;
+            });
+
+            finalProducts.innerHTML = row2;
+
+            const pAmount = document.querySelectorAll(".product-amount"),
+              amountError = document.querySelectorAll(".amount-error");
+
+            pAmount.forEach((pA) => {
+              pA.addEventListener("input", () => {
+                if (
+                  typeof pA.value === "string" &&
+                  pA.value.trim().length === 0
+                ) {
+                  if (lang == "sin")
+                    pA.nextSibling.nextSibling.textContent =
+                      "මුදල හිස් විය නොහැක!";
+                  else
+                    pA.nextSibling.nextSibling.textContent =
+                      "Amount cannot be empty";
+                  amountStatus = false;
+                } else if (pA.value < 1) {
+                  if (lang == "sin")
+                    pA.nextSibling.nextSibling.textContent =
+                      "මුදල ධන නිඛිල විය යුතුය!";
+                  else
+                    pA.nextSibling.nextSibling.textContent =
+                      "Amount must be positive integer";
+                  amountStatus = false;
+                } else {
+                  pA.nextSibling.nextSibling.textContent = "";
+                }
+              });
+            });
+          } else if (data.batch.status == 2) {
+            status.textContent = "Completed";
+            var arr = data.batch.products_count.split(",");
+
+            data.products.forEach((product, index) => {
+              row2 +=
+                `<label>` +
+                product.type +
+                ` - ` +
+                product.category +
+                `</label>` +
+                `<input type="number" value="` +
+                arr[index] +
+                `" class="product-amount" disabled/>` +
+                `<br /><span class="form-error amount-error"></span>` +
+                `<br /><br />`;
+            });
+
+            finalProducts.innerHTML = row2;
+
+            btn.style.display = "none";
+            btn.disabled = true;
+            complete.style.display = "none";
+            complete.disabled = true;
+          } else if (data.batch.status == 3) {
+            status.textContent = "Terminated";
+
+            data.products.forEach((product) => {
+              row2 +=
+                `<label>` +
+                product.type +
+                ` - ` +
+                product.category +
+                `</label>` +
+                `<input type="number" class="product-amount" style="display:none" disabled/>` +
+                `<br /><span class="form-error amount-error"></span>` +
+                `<br /><br />`;
+            });
+
+            finalProducts.innerHTML = row2;
+
+            btn.style.display = "none";
+            btn.disabled = true;
+            complete.style.display = "none";
+            complete.disabled = true;
+          }
 
           start.textContent = new Date(
             data.batch.create_date
@@ -101,50 +190,6 @@
           });
 
           tbody.innerHTML = row1;
-
-          data.products.forEach((product) => {
-            row2 +=
-              `<label>` +
-              product.type +
-              ` - ` +
-              product.category +
-              `</label>` +
-              `<input type="number" class="product-amount" style="display:none" disabled/>` +
-              `<br /><span class="form-error amount-error"></span>` +
-              `<br /><br />`;
-          });
-
-          finalProducts.innerHTML = row2;
-
-          const pAmount = document.querySelectorAll(".product-amount"),
-            amountError = document.querySelectorAll(".amount-error");
-
-          pAmount.forEach((pA) => {
-            pA.addEventListener("input", () => {
-              if (
-                typeof pA.value === "string" &&
-                pA.value.trim().length === 0
-              ) {
-                if (lang == "sin")
-                  pA.nextSibling.nextSibling.textContent =
-                    "මුදල හිස් විය නොහැක!";
-                else
-                  pA.nextSibling.nextSibling.textContent =
-                    "Amount cannot be empty";
-                amountStatus = false;
-              } else if (pA.value < 1) {
-                if (lang == "sin")
-                  pA.nextSibling.nextSibling.textContent =
-                    "මුදල ධන නිඛිල විය යුතුය!";
-                else
-                  pA.nextSibling.nextSibling.textContent =
-                    "Amount must be positive integer";
-                amountStatus = false;
-              } else {
-                pA.nextSibling.nextSibling.textContent = "";
-              }
-            });
-          });
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -209,7 +254,7 @@
 
     if (amountStatus) {
       var formData = {
-        id:getCookie("id"),
+        id: getCookie("id"),
         count: products_count,
       };
 
