@@ -181,7 +181,7 @@ width: 25vw;
 
 .split{
   width: 30vw;
-  height: 75vh;
+  height: 78vh;
   /* height: auto; */
   margin-top: 40px;
   top: 0;
@@ -189,7 +189,7 @@ width: 25vw;
 
 .split1-window{
   /* right: 63%; */
-  right: 40%;
+  right: 35%;
 }
 
 .split2-window{
@@ -197,18 +197,18 @@ width: 25vw;
 }
 
 .split-content{
-  margin: 10px;
+  margin: 0 5px;
 }
 
 .split1-window .split-content{
   /* height: 100%; */
   top: 50%;
-  transform: translate(0, 10%);
+  transform: translate(0, 5%);
   align-content: center;
 }
 
 .split1-window .name{
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 3px;
 }
@@ -225,11 +225,12 @@ width: 25vw;
   margin-bottom: 10px;
   text-align: center;
 }
+
 .split1-window .to-yard-text{
   text-align: center;
   color: var(--sidebar-color);
   background-color: var(--table-color-hover);
-  width: 30%;
+  width: 50%;
   border-radius: 20px;
   padding: 3px 5px;
   font-size: 0.9rem;
@@ -245,6 +246,8 @@ width: 25vw;
 
 .split1-window .yards{
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   justify-content: space-around;
 }
@@ -252,12 +255,13 @@ width: 25vw;
 .split1-window .to-yards{
 text-align: center;
 margin-bottom: 20px;
-margin-top: 30px;
+margin-top: 50px;
+font-weight: 500;
 
 }
 
 .split2-window input[type="text"]{
-  width: 6rem;
+  width: 4rem;
   margin-top: 0;
 }
 
@@ -293,4 +297,59 @@ cursor: pointer;
 .split1-window .split-text{
   font-size: 1.1rem;
   text-align: center;
+}
+
+
+
+.circular-progress {
+  position: relative;
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  background-color: var(--pending-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.progress-value {
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.split-chart{
+  display: flex;
+  justify-content: space-around;
+}
+
+.split1-window .remaining{
+  font-size: 0.9rem;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.split1-window .remaining span{
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+
+.split1-window .save{
+  font-size: 0.9rem;
+  padding: 5px 30px;
+  /* border-radius: 20px; */
+  margin-top: 20px;
+  float: right;
+  margin: 10px;
+  /* margin-bottom: 20px; */
 }

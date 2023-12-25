@@ -41,7 +41,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     let progress = setInterval(() => {
       startValue++;
       progressValue.textContent = `${startValue}%`;
-      circularProgress.style.background = `conic-gradient(#7d2ae8 ${
+      circularProgress.style.background = `conic-gradient(#bb9056 ${
         startValue * 3.6
       }deg, #ededed 0deg)`;
 
