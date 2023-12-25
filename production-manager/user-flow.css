@@ -188,7 +188,7 @@ select.dropdown {
   background-color: var(--body-color);
 }
 
-.products-container .form-button,
+.view-product-container .form-button,
 .products-add-container .save,
 .products-edit-container .save {
   display: block;

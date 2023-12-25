@@ -71,9 +71,12 @@
       <div class="text"></div>
 
       <div class="salesmg-container container">
-        <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title"></h2>
-          <p class="productionmg-text">View the edit company product details</p>
+        <div class="salesmg-heading table-heading">
+          <h2 class="salesmg-title"></h2>
+          <p class="salesmg-text">View the edit company product details</p>
+        </div>
+        <div class="table-top">
+        <button class="add form-button">Add New</button>
         </div>
 
         <table class="product-table overview-tables">
@@ -82,8 +85,9 @@
               <th>Product ID</th>
               <th>Category</th>
               <th>Type</th>
-              <th>Volume</th>
               <th>Unit Price</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
 
@@ -92,22 +96,25 @@
               <td>E052</td>
               <td>Virgin Coconut Oil</td>
               <td>1 liter bottle</td>
-              <td>1L</td>
               <td>1000.00</td>
+              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></td>
             </tr>
             <tr>
               <td>E052</td>
               <td>Virgin Coconut Oil</td>
               <td>1 liter bottle</td>
-              <td>1L</td>
               <td>1000.00</td>
+              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></td>
             </tr>
             <tr>
               <td>E052</td>
               <td>Virgin Coconut Oil</td>
               <td>1 liter bottle</td>
-              <td>1L</td>
               <td>1000.00</td>
+              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
+              <td><i class="fa-solid fa-trash-can icon"></td>
             </tr>
           </tbody>
         </table>
@@ -146,8 +153,64 @@
         </div>
         <!-- view product light box ends -->
 
+        <!-- new product light box starts -->
+        <div class="overlay2 overlay" id="overlay2">
+          <div class="add-product-container light-box">
+            <p class="close-btn close-btn2 do-not"><i class="fas fa-xmark"></i></p>
+
+            <div class="add-product-content">
+              <h2>Add New Product</h2>
+
+              <div class="add-product-form">
+                <form>
+                  <label>Category</label>
+                  <input type="text"class="product-category" placeholder="Enter product category" />
+                  <br /><span class="form-error category-error"></span>
+
+                  <label>Type</label>
+                  <input type="text" class="product-type" placeholder="Enter product type" />
+                  <br /><span class="form-error type-error"></span>
+
+                  <label>Unit Price</label>
+                  <input type="number" class="unit-price" placeholder="Enter Unit price" />
+                  <br /><span class="form-error type-error"></span>
+                </form>
+              </div>
+              <button class="submit form-button">Submit</button>
+            </div>
+          </div>
+        </div>
+        <!-- new product light box ends -->
+        
+        <!-- Edit product light box starts -->
+        <div class="overlay3 overlay" id="overlay3">
+          <div class="edit-product-container light-box">
+            <p class="close-btn close-btn3 do-not"><i class="fas fa-xmark"></i></p>
+
+            <div class="edit-product-content">
+              <h2>Edit Product</h2>
+
+              <div class="edit-product-form">
+                <form>
+                  <label>Category</label>
+                  <input type="text"class="edit-product-category" placeholder="Enter product category" />
+                  <br /><span class="form-error edit-category-error"></span>
+
+                  <label>Type</label>
+                  <input type="text" class="edit-product-type" placeholder="Enter product type" />
+                  <br /><span class="form-error edit-type-error"></span>
+
+                  <label>Price</label>
+                  <input type="text" class="edit-product-price"/>
+                </form>
+              </div>
+              <button class="edit-submit form-button">Submit</button>
+            </div>
+          </div>
+        </div>
+        <!-- Edit product light box ends -->
+
         <br /><br />
-        <button class="add form-button">Add New</button>
       </div>
 
       <div class="back-to-top">
