@@ -1,14 +1,3 @@
-// if (sessionStorage.getItem("page") != "collector") {
-//   if (
-//     sessionStorage.getItem("page") == null ||
-//     sessionStorage.getItem("page").length === 0
-//   ) {
-//     window.location.href = frontProxy + "/signin.html";
-//   } else {
-//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-//   }
-// }
-
 (() => {
   let loaded = false;
 
@@ -40,8 +29,12 @@
     dashboard.href = frontProxy + "/collector/";
     profile.href = frontProxy + "/collector/profile/view.html";
 
-    // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie("name");
+    if (getCookie("name") != null) Uname.textContent = getCookie("name");
+    else {
+      document.cookie =
+        "name=" + getPayload(getCookie("jwt")).name + "; path=/";
+      Uname.textContent = getCookie("name");
+    }
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;

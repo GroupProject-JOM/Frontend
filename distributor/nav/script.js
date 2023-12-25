@@ -31,8 +31,12 @@
       signout();
     });
 
-    // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie("name");
+    if (getCookie("name") != null) Uname.textContent = getCookie("name");
+    else {
+      document.cookie =
+        "name=" + getPayload(getCookie("jwt")).name + "; path=/";
+      Uname.textContent = getCookie("name");
+    }
 
     add.href = frontProxy + "/distributor/add.html";
     profile.href = frontProxy + "/distributor/profile/view.html";

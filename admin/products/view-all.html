@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>View Products</title>
+    <title>Products</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
@@ -71,32 +71,32 @@
 
       <div class="text"></div>
 
-      <div class="products-container productionmg-container">
-        <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title"></h2>
-          <p class="productionmg-text"></p>
+      <div class="salesmg-container container">
+        <div class="salesmg-heading table-heading">
+          <h2 class="salesmg-title"></h2>
+          <p class="salesmg-text">View the edit company product details</p>
         </div>
-          
-          <div class="table-top">
-            <a class="add form-button"></a>
+        <div class="table-top">
+        <button class="add form-button">Add New</button>
+        </div>
 
-            <div class="search-filter">
+        <div class="search-filter">
 
-              <div class="search-wrapper">
-                <div class="search-box search-box">
-                  <input type="text" class="search" placeholder=" " />
-                  <span></span>
-                </div>
-              </div>
+          <div class="search-wrapper">
+            <div class="search-box search-box">
+              <input type="text" class="search" placeholder=" " />
+              <span></span>
             </div>
           </div>
+        </div>
+      </div>
 
         <table class="products-table overview-tables">
           <thead>
             <tr>
               <th>Product ID</th>
-              <th>Type</th>
               <th>Category</th>
+              <th>Type</th>
               <th>Price</th>
               <th></th>
               <th></th>
@@ -107,11 +107,13 @@
         </table>
 
         <!-- view product light box starts -->
+
         <div class="overlay1 overlay" id="overlay1" style="display: none">
           <div class="view-product-container light-box" style="display: none">
-            <p class="close-btn close-btn1 close-btn-bank"><i class="fas fa-xmark"></i></p>
+            <p class="close-btn close-btn1 close-btn-bank">
+              <i class="fas fa-xmark"></i>
+            </p>
             <div class="view-product-content">
-          
               <table class="product-view-table overview-tables">
                 <tbody>
                   <tr>
@@ -155,6 +157,10 @@
                   <label>Type</label>
                   <input type="text" class="product-type" placeholder="Enter product type" />
                   <br /><span class="form-error type-error"></span>
+
+                  <label>Unit Price</label>
+                  <input type="number" class="product-price" placeholder="Enter Unit price" />
+                  <br /><span class="form-error price-error"></span>
                 </form>
               </div>
               <button class="submit form-button">Submit</button>
@@ -162,7 +168,7 @@
           </div>
         </div>
         <!-- new product light box ends -->
-
+        
         <!-- Edit product light box starts -->
         <div class="overlay3 overlay" id="overlay3">
           <div class="edit-product-container light-box">
@@ -182,7 +188,8 @@
                   <br /><span class="form-error edit-type-error"></span>
 
                   <label>Price</label>
-                  <input type="text" class="edit-product-price" disabled/>
+                  <input type="number" class="edit-product-price" placeholder="Enter Unit price"/>
+                  <br /><span class="form-error edit-price-error"></span>
                 </form>
               </div>
               <button class="edit-submit form-button">Submit</button>
@@ -191,8 +198,9 @@
         </div>
         <!-- Edit product light box ends -->
 
+        <br /><br />
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>

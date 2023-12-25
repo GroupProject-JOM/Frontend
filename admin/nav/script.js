@@ -1,14 +1,3 @@
-// if (sessionStorage.getItem("page") != "admin") {
-//   if (
-//     sessionStorage.getItem("page") == null ||
-//     sessionStorage.getItem("page").length === 0
-//   ) {
-//     window.location.href = frontProxy + "/signin.html";
-//   } else {
-//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-//   }
-// }
-
 (() => {
   let loaded = false;
 
@@ -25,6 +14,7 @@
       l2 = body.querySelector(".l2"),
       l3 = body.querySelector(".l3"),
       l4 = body.querySelector(".l4"),
+      l5 = body.querySelector(".l5"),
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
@@ -34,6 +24,7 @@
       collection = body.querySelector(".collection"),
       outlet = body.querySelector(".outlet"),
       stock = body.querySelector(".stock"),
+      products = body.querySelector(".products"),
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
@@ -45,13 +36,19 @@
       signout();
     });
 
-    Uname.textContent = getCookie("name");
+    if (getCookie("name") != null) Uname.textContent = getCookie("name");
+    else {
+      document.cookie =
+        "name=" + getPayload(getCookie("jwt")).name + "; path=/";
+      Uname.textContent = getCookie("name");
+    }
 
     employee.href = frontProxy + "/admin/employee/view-all.html";
     collection.href = frontProxy + "/admin/collection/view-all.html";
     outlet.href = frontProxy + "/admin/outlet";
     profile.href = frontProxy + "/admin/profile/view.html";
     stock.href = frontProxy + "/admin/stock/view-all.html";
+    products.href = frontProxy + "/admin/products/view-all.html";
     dashboard.href = frontProxy + "/admin";
 
     if (!loaded && toggle && modeSwitch) {
@@ -87,6 +84,7 @@
       l2.textContent = data["sin"]["l2"];
       l3.textContent = data["sin"]["l3"];
       l4.textContent = data["sin"]["l4"];
+      l5.textContent = data["sin"]["l5"];
       l6.textContent = data["sin"]["l6"];
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
@@ -100,6 +98,7 @@
       l2.textContent = data["en"]["l2"];
       l3.textContent = data["en"]["l3"];
       l4.textContent = data["en"]["l4"];
+      l5.textContent = data["en"]["l5"];
       l6.textContent = data["en"]["l6"];
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
@@ -114,6 +113,7 @@
         l2: "එකතු කිරීමේ කළමනාකරණය",
         l3: "අලෙවිසැල කළමනාකරණය",
         l4: "ගබඩා සමාලෝචනය",
+        l5: "නිෂ්පාදන",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
@@ -125,6 +125,7 @@
         l2: "Collection Management",
         l3: "Outlet Management",
         l4: "Stock Overview",
+        l5: "Products",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
@@ -170,6 +171,7 @@ window.addEventListener("load", (e) => {
       "collection",
       "outlet",
       "stock",
+      "products",
       "profile",
       "collection",
     ];
