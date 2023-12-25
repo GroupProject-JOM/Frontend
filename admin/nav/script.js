@@ -1,14 +1,3 @@
-// if (sessionStorage.getItem("page") != "admin") {
-//   if (
-//     sessionStorage.getItem("page") == null ||
-//     sessionStorage.getItem("page").length === 0
-//   ) {
-//     window.location.href = frontProxy + "/signin.html";
-//   } else {
-//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-//   }
-// }
-
 (() => {
   let loaded = false;
 
@@ -45,7 +34,12 @@
       signout();
     });
 
-    Uname.textContent = getCookie("name");
+    if (getCookie("name") != null) Uname.textContent = getCookie("name");
+    else {
+      document.cookie =
+        "name=" + getPayload(getCookie("jwt")).name + "; path=/";
+      Uname.textContent = getCookie("name");
+    }
 
     employee.href = frontProxy + "/admin/employee/view-all.html";
     collection.href = frontProxy + "/admin/collection/view-all.html";

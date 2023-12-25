@@ -185,7 +185,7 @@
               days[index] +
               ` days</td>` +
               `<td>` +
-              amounts[index] +
+              (+amounts[index]).toLocaleString("en-US") +
               `</td></tr>`;
           });
 

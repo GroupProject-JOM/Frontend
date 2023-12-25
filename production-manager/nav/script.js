@@ -40,8 +40,12 @@
     products.href = frontProxy + "/production-manager/products/view-all.html";
     
 
-    // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie("name");
+    if (getCookie("name") != null) Uname.textContent = getCookie("name");
+    else {
+      document.cookie =
+        "name=" + getPayload(getCookie("jwt")).name + "; path=/";
+      Uname.textContent = getCookie("name");
+    }
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;

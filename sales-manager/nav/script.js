@@ -45,7 +45,12 @@
     products.href = frontProxy + "/sales-manager/products/view-all.html";
     profile.href = frontProxy + "/sales-manager/profile/view.html";
 
-    Uname.textContent = getCookie("name");
+    if (getCookie("name") != null) Uname.textContent = getCookie("name");
+    else {
+      document.cookie =
+        "name=" + getPayload(getCookie("jwt")).name + "; path=/";
+      Uname.textContent = getCookie("name");
+    }
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
