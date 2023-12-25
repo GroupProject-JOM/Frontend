@@ -188,7 +188,6 @@ width: 25vw;
 }
 
 .split1-window{
-  /* right: 63%; */
   right: 35%;
 }
 
@@ -223,7 +222,7 @@ width: 25vw;
 }
 .split1-window .coco-amount{
   margin-bottom: 10px;
-  text-align: center;
+  text-align: right;
 }
 
 .split1-window .to-yard-text{
@@ -232,8 +231,8 @@ width: 25vw;
   background-color: var(--table-color-hover);
   width: 50%;
   border-radius: 20px;
-  padding: 3px 5px;
-  font-size: 0.9rem;
+  padding: 5px 5px;
+  font-size: 1rem;
   border: 1px solid var(--sidebar-color);
   margin-bottom: 30px;
   cursor: pointer;
@@ -249,7 +248,8 @@ width: 25vw;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  justify-content: space-around;
+  /* justify-self: center; */
+  /* justify-content: space-around; */
 }
 
 .split1-window .to-yards{
@@ -294,11 +294,11 @@ font-weight: 500;
 color: var(--sidebar-color);
 cursor: pointer;
 }
+
 .split1-window .split-text{
   font-size: 1.1rem;
   text-align: center;
 }
-
 
 
 .circular-progress {

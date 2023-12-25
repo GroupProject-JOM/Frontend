@@ -888,7 +888,7 @@ body.dark {
   border-radius: 10px;
   position: fixed;
   box-shadow: 0 0 20px 0 var(--shadow-color);
-  z-index: 999;
+  /* z-index:999; */
   transition: var(--tran-04);
 }
 
