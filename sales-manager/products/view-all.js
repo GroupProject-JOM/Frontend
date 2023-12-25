@@ -2,11 +2,17 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    pTitle = body.querySelector(".productionmg-title"),
-    pText = body.querySelector(".productionmg-text"),
+    pTitle = body.querySelector(".salesmg-title"),
+    pText = body.querySelector(".salesmg-text"),
     closeBtn1 = body.querySelector(".close-btn1"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    closeBtn3 = body.querySelector(".close-btn3"),
     overlay1 = body.querySelector(".overlay1"),
+    overlay2 = body.querySelector(".overlay2"),
+    overlay3 = body.querySelector(".overlay3"),
+    edit = body.querySelector(".edit-btn"),
     add = body.querySelector(".add");
+
 
   var lang = getCookie("lang"); // current language
 
@@ -21,6 +27,42 @@
     overlay1.style.display = "none";
     document.querySelector(".view-product-container").style.display = "none";
   });
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay2") {
+      overlay2.style.display = "none";
+      document.querySelector(".add-product-container").style.display = "none";
+    }
+  });
+
+  closeBtn2.addEventListener("click", () => {
+    overlay2.style.display = "none";
+    document.querySelector(".add-product-container").style.display = "none";
+  });
+
+  add.addEventListener("click", () => {
+    overlay2.style.display = "block";
+    document.querySelector(".add-product-container").style.display = "block";
+  });
+  
+  edit.addEventListener("click", () => {
+    overlay3.style.display = "block";
+    document.querySelector(".edit-product-container").style.display = "block";
+  });
+  
+  overlay3.addEventListener("click", (e) => {
+    if (e.target.id === "overlay3") {
+      overlay3.style.display = "none";
+      document.querySelector(".edit-product-container").style.display = "none";
+    }
+  });
+  
+  closeBtn3.addEventListener("click", () => {
+    overlay3.style.display = "none";
+    document.querySelector(".edit-product-container").style.display = "none";
+  });
+  
+  
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
