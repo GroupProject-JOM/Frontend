@@ -54,6 +54,27 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <!-- Map window start -->
+    <div class="overlay" id="overlay">
+      <div class="location-pick">
+        <div class="location-container">
+          <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+          <div class="pick-map">
+            <div id="map"></div>
+          </div>
+          <div class="pick-address">
+            <h2 class="table-heading t1"></h2>
+            <div>
+              <textarea class="loc-add" rows="6" style="width: 20vw"></textarea>
+            </div>
+            <p class="pick-text"></p>
+            <button class="confirm form-button"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Map window end -->
+
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
@@ -78,29 +99,6 @@
         </div>
         <div class="supply-content">
           <form class="loaction-form supply edit">
-            <!-- Map window start -->
-            <div class="location-pick">
-              <div class="location-container">
-                <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
-                <div class="pick-map">
-                  <div id="map"></div>
-                </div>
-                <div class="pick-address">
-                  <h2 class="table-heading t1"></h2>
-                  <div>
-                    <textarea
-                      class="loc-add"
-                      rows="6"
-                      style="width: 20vw"
-                    ></textarea>
-                  </div>
-                  <p class="pick-text"></p>
-                  <button class="confirm form-button"></button>
-                </div>
-              </div>
-            </div>
-            <!-- Map window end -->
-
             <div class="row">
               <div class="add-label"><label class="ename-label"></label></div>
               <div class="add-input">
@@ -135,7 +133,7 @@
           <button class="add-button form-button"></button>
         </div>
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>
