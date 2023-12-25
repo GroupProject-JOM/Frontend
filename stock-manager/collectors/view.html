@@ -27,6 +27,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
     <script src="../auth.js"></script>
+
+    <style>
+      .circular-progress {
+        position: relative;
+        height: 250px;
+        width: 250px;
+        border-radius: 50%;
+        background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .circular-progress::before {
+        content: "";
+        position: absolute;
+        height: 210px;
+        width: 210px;
+        border-radius: 50%;
+        background-color: #fff;
+      }
+
+      .progress-value {
+        position: relative;
+        font-size: 50px;
+        font-weight: 600;
+      }
+    </style>
   </head>
 
   <body>
@@ -102,8 +130,9 @@
             </div>
           </div>
         </div>
+
         <!-- map starts -->
-        <div class="overlay1 overlay" id="overlay">
+        <div class="overlay1 overlay" id="overlay1">
           <div class="collections-map close-btn">
             <p class="close-btn1 close-btn do-not">
               <i class="fas fa-xmark"></i>
@@ -124,6 +153,13 @@
                 <p class="name">Saumya Sewwandi</p>
                 <p class="collections"><span>25</span> collections</p>
                 <p class="coco-amount"><span>10000</span> Coconuts</p>
+
+                <div class="progress-container">
+                  <div class="circular-progress">
+                    <span class="progress-value">10%</span>
+                  </div>
+                </div>
+
                 <p class="to-yards">Add to yards</p>
                 <!-- <div class="add-yard"> -->
                 <div class="yards">
@@ -136,6 +172,9 @@
                   <span>equally</span> or <span>custom</span>.
                 </p>
                 <!-- </div> -->
+
+                
+
               </div>
             </div>
           </div>

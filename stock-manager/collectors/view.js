@@ -20,7 +20,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     searchBar = body.querySelector(".search"),
     addressTable = body.querySelector(".addresses-table"),
     datePicker = body.querySelector("#datePicker"),
-    toYardText = body.querySelectorAll(".to-yard-text");
+    toYardText = body.querySelectorAll(".to-yard-text"),
+    circularProgress = body.querySelector(".circular-progress"),
+    progressValue = body.querySelector(".progress-value");
 
   datePicker.value = new Date().toJSON().slice(0, 10);
 
@@ -31,12 +33,26 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   yard.addEventListener("click", () => {
     overlay2.style.display = "flex";
     document.querySelector(".split1-window").style.display = "block";
+
+    let startValue = 0,
+      endValue = 100,
+      speed = 50;
+
+    let progress = setInterval(() => {
+      startValue++;
+      progressValue.textContent = `${startValue}%`;
+      circularProgress.style.background = `conic-gradient(#7d2ae8 ${
+        startValue * 3.6
+      }deg, #ededed 0deg)`;
+
+      if (startValue == endValue) clearInterval(progress);
+    }, speed);
   });
 
   overlay2.addEventListener("click", (e) => {
     if (e.target.id === "overlay2") {
       overlay2.style.display = "none";
-      document.querySelector(".split1-window").style.right = "40%" ;
+      document.querySelector(".split1-window").style.right = "40%";
       document.querySelector(".split1-window").style.display = "none";
       document.querySelector(".split2-window").style.display = "none";
     }
@@ -44,20 +60,20 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   closeBtn2.addEventListener("click", () => {
     overlay2.style.display = "none";
-    document.querySelector(".split1-window").style.right = "40%" ;
+    document.querySelector(".split1-window").style.right = "40%";
     document.querySelector(".split1-window").style.display = "none";
     document.querySelector(".split2-window").style.display = "none";
   });
 
   toYardText.forEach((elm) => {
     elm.addEventListener("click", () => {
-      document.querySelector(".split1-window").style.right = "62%" ;
+      document.querySelector(".split1-window").style.right = "62%";
       document.querySelector(".split2-window").style.display = "block";
     });
   });
 
   closeBtn3.addEventListener("click", () => {
-    document.querySelector(".split1-window").style.right = "40%" ;
+    document.querySelector(".split1-window").style.right = "40%";
     document.querySelector(".split2-window").style.display = "none";
   });
 
