@@ -9,6 +9,7 @@
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
     ></script>
+
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
@@ -79,44 +80,30 @@
         <button class="add form-button">Add New</button>
         </div>
 
-        <table class="product-table overview-tables">
+        <div class="search-filter">
+
+          <div class="search-wrapper">
+            <div class="search-box search-box">
+              <input type="text" class="search" placeholder=" " />
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <table class="products-table overview-tables">
           <thead>
             <tr>
               <th>Product ID</th>
               <th>Category</th>
               <th>Type</th>
-              <th>Unit Price</th>
+              <th>Price</th>
               <th></th>
               <th></th>
             </tr>
           </thead>
 
-          <tbody>
-            <tr>
-              <td>E052</td>
-              <td>Virgin Coconut Oil</td>
-              <td>1 liter bottle</td>
-              <td>1000.00</td>
-              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
-              <td><i class="fa-solid fa-trash-can icon"></td>
-            </tr>
-            <tr>
-              <td>E052</td>
-              <td>Virgin Coconut Oil</td>
-              <td>1 liter bottle</td>
-              <td>1000.00</td>
-              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
-              <td><i class="fa-solid fa-trash-can icon"></td>
-            </tr>
-            <tr>
-              <td>E052</td>
-              <td>Virgin Coconut Oil</td>
-              <td>1 liter bottle</td>
-              <td>1000.00</td>
-              <td><i class="fa-solid fa-pen-to-square icon"></i></td>
-              <td><i class="fa-solid fa-trash-can icon"></td>
-            </tr>
-          </tbody>
+          <tbody class="tbody"></tbody>
         </table>
 
         <!-- view product light box starts -->
@@ -172,8 +159,8 @@
                   <br /><span class="form-error type-error"></span>
 
                   <label>Unit Price</label>
-                  <input type="number" class="unit-price" placeholder="Enter Unit price" />
-                  <br /><span class="form-error type-error"></span>
+                  <input type="number" class="product-price" placeholder="Enter Unit price" />
+                  <br /><span class="form-error price-error"></span>
                 </form>
               </div>
               <button class="submit form-button">Submit</button>
@@ -201,7 +188,8 @@
                   <br /><span class="form-error edit-type-error"></span>
 
                   <label>Price</label>
-                  <input type="text" class="edit-product-price"/>
+                  <input type="number" class="edit-product-price" placeholder="Enter Unit price"/>
+                  <br /><span class="form-error edit-price-error"></span>
                 </form>
               </div>
               <button class="edit-submit form-button">Submit</button>
@@ -223,14 +211,5 @@
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>
     <script src="../../common/loader.js"></script>
-    <script>
-      const rows = document.querySelectorAll("tr");
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.querySelector(".overlay1").style.display = "block";
-              document.querySelector(".view-product-container").style.display = "block";
-            });
-          });
-    </script>
   </body>
 </html>
