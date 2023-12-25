@@ -91,7 +91,7 @@
               item.name +
               " " +
               item.last_name +
-            "</td>" +
+              "</td>" +
               "<td>" +
               item.row_count +
               "</td>" +
