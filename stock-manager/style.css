@@ -188,7 +188,8 @@ width: 25vw;
 }
 
 .split1-window{
-  right: 63%;
+  /* right: 63%; */
+  right: 40%;
 }
 
 .split2-window{

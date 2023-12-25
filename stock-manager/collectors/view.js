@@ -13,12 +13,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     mapBtn = body.querySelector(".map-button"),
     closeBtn1 = body.querySelector(".close-btn1"),
     closeBtn2 = body.querySelector(".close-btn2"),
+    closeBtn3 = body.querySelector(".close-btn3"),
     yard = body.querySelector(".yard-button"),
     overlay1 = body.querySelector(".overlay1"),
     overlay2 = body.querySelector(".overlay2"),
     searchBar = body.querySelector(".search"),
     addressTable = body.querySelector(".addresses-table"),
-    datePicker = body.querySelector("#datePicker");
+    datePicker = body.querySelector("#datePicker"),
+    toYardText = body.querySelectorAll(".to-yard-text");
 
   datePicker.value = new Date().toJSON().slice(0, 10);
 
@@ -34,13 +36,29 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   overlay2.addEventListener("click", (e) => {
     if (e.target.id === "overlay2") {
       overlay2.style.display = "none";
+      document.querySelector(".split1-window").style.right = "40%" ;
       document.querySelector(".split1-window").style.display = "none";
+      document.querySelector(".split2-window").style.display = "none";
     }
   });
 
   closeBtn2.addEventListener("click", () => {
     overlay2.style.display = "none";
+    document.querySelector(".split1-window").style.right = "40%" ;
     document.querySelector(".split1-window").style.display = "none";
+    document.querySelector(".split2-window").style.display = "none";
+  });
+
+  toYardText.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      document.querySelector(".split1-window").style.right = "62%" ;
+      document.querySelector(".split2-window").style.display = "block";
+    });
+  });
+
+  closeBtn3.addEventListener("click", () => {
+    document.querySelector(".split1-window").style.right = "40%" ;
+    document.querySelector(".split2-window").style.display = "none";
   });
 
   var lang = getCookie("lang"); // current language
