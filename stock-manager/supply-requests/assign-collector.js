@@ -90,7 +90,7 @@
               "<td>" +
               item.name +
               " " +
-              item.last_name;
+              item.last_name +
             "</td>" +
               "<td>" +
               item.row_count +
