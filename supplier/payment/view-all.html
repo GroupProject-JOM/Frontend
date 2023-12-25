@@ -53,6 +53,39 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <!-- view bank-account light box starts -->
+
+    <div class="overlay" id="overlay" style="display: none">
+      <div class="view-bank-container light-box" style="display: none">
+        <p class="close-btn close-btn-bank"><i class="fas fa-xmark"></i></p>
+        <div class="view-bank-content">
+          
+          <table class="acc-view-table overview-tables">
+            <tbody>
+              <tr>
+                <td class="acc-holder-text"></td>
+                <td class="acc-holder bold"></td>
+              </tr>
+              <tr>
+                <td class="acc-no-text"></td>
+                <td class="acc-no bold"></td>
+              </tr>
+              <tr>
+                <td class="acc-bank-text"></td>
+                <td class="bank bold"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttons">
+            <a class="form-button edit-btn" href="./edit.html"></a>
+            <a class="form-button delete-btn"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- view bank-account light box ends -->
+
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
@@ -74,10 +107,6 @@
           <div>
             <p class="supply-text"></p>
 
-            <!-- <div class="table-heading">
-              <h2 class="c1"></h2>
-              <p class="c2"></p>
-            </div> -->
 
             <div class="search-filter">
               <div class="search-wrapper">
@@ -89,40 +118,7 @@
             </div>
           </div>
         </div>
-        <!-- view bank-account light box starts -->
-
-        <div class="overlay" id="overlay" style="display: none">
-          <div class="view-bank-container light-box" style="display: none">
-            <p class="close-btn close-btn-bank"><i class="fas fa-xmark"></i></p>
-            <div class="view-bank-content">
-              <!-- <div class="table-heading">
-        <h3>Bank Account Details</h3>
-      </div> -->
-              <table class="acc-view-table overview-tables">
-                <tbody>
-                  <tr>
-                    <td class="acc-holder-text"></td>
-                    <td class="acc-holder bold"></td>
-                  </tr>
-                  <tr>
-                    <td class="acc-no-text"></td>
-                    <td class="acc-no bold"></td>
-                  </tr>
-                  <tr>
-                    <td class="acc-bank-text"></td>
-                    <td class="bank bold"></td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="buttons">
-                <a class="form-button edit-btn" href="./edit.html"></a>
-                <a class="form-button delete-btn"></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- view bank-account light box ends -->
+        
 
         <table class="bankaccc-table overview-tables">
           <thead>
