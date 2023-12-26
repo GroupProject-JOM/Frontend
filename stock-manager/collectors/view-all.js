@@ -98,7 +98,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td>` +
               item.collection_count +
               `</td>` +
-              `<td>` +
+              `<td id=${item.collections}>` +
               item.today_total +
               `</td>` +
               `</tr>`;
@@ -114,6 +114,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "total=" + r.children[3].textContent + "; path=/";
               document.cookie =
                 "cName=" + r.children[0].textContent + "; path=/";
+              document.cookie =
+                "collections=" + r.children[3].id + "; path=/";
               window.location.href = r.dataset.href;
             });
           });
