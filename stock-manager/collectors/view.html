@@ -85,17 +85,18 @@
         </p>
         <div class="split-content">
           <div>
-            <p class="name">Saumya Sewwandi</p>
-            <p class="collections"><span>25</span> collections</p>
+            <p class="collector-name name">Saumya Sewwandi</p>
+            <p class="collections"><span class="collection-count"></span> collections</p>
             <div class="split-chart">
               <div class="progress-container">
                 <div class="circular-progress">
-                  <span class="progress-value">10%</span>
+                  <span class="progress-value"></span>
                 </div>
               </div>
               <div>
-                <p class="coco-amount"><span>10000</span><br />Coconuts</p>
-                <p class="remaining">Remaining Amount: <span><br>5000</span></p>
+                <p class="coco-amount"><span class="total-count"></span><br />Coconuts</p>
+                <p class="remaining">Remaining Amount: <br><span class="remaining-count"></span></p>
+                <span class="form-error remaining-error"></span>
               </div>
             </div>
 
@@ -132,173 +133,10 @@
                 </tr>
               </thead>
 
-              <tbody class="">
-                <tr style="background-color: var(--stock-lv4)">
-                  <td>
-                    <input type="checkbox" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv4)"
-                    />
-                  </td>
-                  <td><input
-                    type="text"
-                    style="background-color: var(--stock-lv4)"
-                    placeholder="877"
-                  /></td>
-                </tr>
-                <tr style="background-color: var(--stock-lv4)">
-                  <td>
-                    <input type="checkbox" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv4)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-                <tr style="background-color: var(--stock-lv4)">
-                  <td>
-                    <input type="checkbox" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv4)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-                <tr style="background-color: var(--stock-lv3)">
-                  <td>
-                    <input type="checkbox" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv3)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-                <tr style="background-color: var(--stock-lv3)">
-                  <td>
-                    <input type="checkbox" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv3)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-                <tr style="background-color: var(--stock-lv2)">
-                  <td>
-                    <input type="checkbox" class="stock-day" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv2)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-                <tr style="background-color: var(--stock-lv2)">
-                  <td>
-                    <input type="checkbox" class="stock-day" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv2)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-                <tr style="background-color: var(--stock-lv1)">
-                  <td>
-                    <input type="checkbox" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv1)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-                <tr style="background-color: var(--stock-lv1)">
-                  <td>
-                    <input type="checkbox" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv1)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-                <tr style="background-color: var(--stock-lv1)">
-                  <td>
-                    <input type="checkbox" />
-                    <label>B1</label>
-                  </td>
-                  <td>10</td>
-                  <td>3000</td>
-                  <td>
-                    <input
-                      type="text"
-                      style="background-color: var(--stock-lv1)"
-                    />
-                  </td>
-                  <td>988</td>
-
-                </tr>
-              </tbody>
+              <tbody class="tbody2"></tbody>
             </table>
-
+            <span class="form-error add-error"></span>
+            <br /><span class="form-error total-error"  style="display:none"><i class="fa-solid fa-triangle-exclamation"></i></span>
           </div>
         </div>
       </div>
