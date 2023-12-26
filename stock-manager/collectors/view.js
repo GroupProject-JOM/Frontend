@@ -58,6 +58,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       endValue = Math.floor((remainigAmount * 100) / totalAmount),
       speed = 50;
 
+    if (totalAmount == 0 || endValue == 0) {
+      progressValue.textContent = `${0}%`;
+      circularProgress.style.background = `conic-gradient(#bb9056 ${
+        0 * 3.6
+      }deg, #ededed 0deg)`;
+      return
+    }
+
     let progress = setInterval(() => {
       progressValue.textContent = `${startValue}%`;
       circularProgress.style.background = `conic-gradient(#bb9056 ${
@@ -696,6 +704,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       endValue = end,
       speed = 50;
 
+      if (totalAmount == 0 || endValue == 0 || remainigAmount == 0) {
+        progressValue.textContent = `${0}%`;
+        circularProgress.style.background = `conic-gradient(#bb9056 ${
+          0 * 3.6
+        }deg, #ededed 0deg)`;
+        return
+      }
+
     let progress = setInterval(() => {
       progressValue.textContent = `${startValue}%`;
       circularProgress.style.background = `conic-gradient(#bb9056 ${
@@ -711,6 +727,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     let startValue = start,
       endValue = end,
       speed = 50;
+
+      if (totalAmount == 0 || endValue == 0 || remainigAmount == 0) {
+        progressValue.textContent = `${0}%`;
+        circularProgress.style.background = `conic-gradient(#bb9056 ${
+          0 * 3.6
+        }deg, #ededed 0deg)`;
+        return
+      }
 
     let progress = setInterval(() => {
       progressValue.textContent = `${startValue}%`;
