@@ -286,7 +286,7 @@ font-weight: 500;
   width: 60%;
 }
 .split2-window .overview-tables td i {
-  color: var(--reject-red);
+  color: red;
   padding: 0 5px;
 }
 
@@ -295,6 +295,7 @@ height: fit-content;
 margin-bottom: 0;
 }
 .split2-window .table-top{
+  margin-top: 20px;
   align-items: center;
 width: 100%;
 }
@@ -382,4 +383,5 @@ cursor: pointer;
 .errors{
   display:flex;
   flex-direction: column;
+  margin-top: 10px;
 }
