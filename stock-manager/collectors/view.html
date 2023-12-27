@@ -27,7 +27,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
     <script src="../auth.js"></script>
-
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <style></style>
   </head>
 
@@ -107,14 +110,11 @@
             </div>
 
             <p class="to-yards">Add to yards</p>
-            <!-- <div class="add-yard"> -->
             <div class="yards">
               <p class="yard1 to-yard-text">yard 01</p>
               <p class="yard2 to-yard-text">yard 02</p>
               <p class="yard3 to-yard-text">yard 03</p>
             </div>
-
-            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -126,8 +126,10 @@
           <!-- <div> -->
 
           <div class="yard">
-            <h3 class="yard-h3"></h3>
-            <button class="save form-button">Save</button>
+            <div class="table-top">
+              <h3 class="yard-h3"></h3>
+              <button class="save form-button">Save</button>
+            </div>
             <table class="stock-table overview-tables" style="margin-top: 0">
               <thead>
                 <tr>
@@ -141,10 +143,11 @@
 
               <tbody class="tbody2"></tbody>
             </table>
-            <span class="form-error add-error"></span>
-            <br /><span class="form-error total-error"></span> <br /><span
-              class="form-error days-error"
-            ></span>
+            <div class="errors">
+              <span class="form-error add-error"></span>
+              <span class="form-error total-error"></span>
+              <span class="form-error days-error"></span>
+            </div>
           </div>
         </div>
       </div>

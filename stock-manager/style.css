@@ -255,7 +255,7 @@ width: 25vw;
 .split1-window .to-yards{
 text-align: center;
 margin-bottom: 20px;
-margin-top: 50px;
+margin-top: 30px;
 font-weight: 500;
 
 }
@@ -266,29 +266,51 @@ font-weight: 500;
 }
 
 .split2-window .yard{
-  width: 90%;
+  width: 95%;
+  margin-left: 10px;
 }
 
 
+.split2-window .overview-tables {
+  margin-bottom: 0px;
+}
 .split2-window .overview-tables th {
-  padding: 15px 0 15px 15px;
+  padding: 9px 0 10px 9px;
 }
 
 .split2-window .overview-tables td {
-  padding: 10px 15px;
+  padding: 9px 0 9px 10px;
 }
+.split2-window .overview-tables input[type="number"] {
+  margin-top: 0;
+  width: 60%;
+}
+.split2-window .overview-tables td i {
+  color: var(--reject-red);
+  padding: 0 5px;
+}
+
+.split2-window .table-top .form-button{
+height: fit-content;
+margin-bottom: 0;
+}
+.split2-window .table-top{
+  align-items: center;
+width: 100%;
+}
+
+
+
+
 
 .split2-window .yard-h3{
   padding-bottom: 15px;
   font-size: 1.2rem;
   font-weight: 500;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 
 }
 
-.split2-window .stock-table{
-  margin-left: 20px;
-}
 
 .split1-window .split-text span{
 color: var(--sidebar-color);
@@ -318,7 +340,7 @@ cursor: pointer;
   height: 120px;
   width: 120px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--background-grey);
 }
 
 .progress-value {
@@ -330,12 +352,15 @@ cursor: pointer;
 .split-chart{
   display: flex;
   justify-content: space-around;
+  background-color: var(--background-grey);
+  padding:20px 0;
+  border-radius: 10px;
 }
 
 .split1-window .remaining{
   font-size: 0.9rem;
   margin-top: 20px;
-  text-align: center;
+  text-align: right;
 }
 
 .split1-window .remaining span{
@@ -344,12 +369,17 @@ cursor: pointer;
 }
 
 
-.split1-window .save{
-  font-size: 0.9rem;
-  padding: 5px 30px;
-  /* border-radius: 20px; */
-  margin-top: 20px;
-  float: right;
-  margin: 10px;
-  /* margin-bottom: 20px; */
+
+.form-error{
+  color: var(--reject-red);
+  margin: 2px;
+}
+
+.split2-window input[type="checkbox"]:checked{
+  accent-color: var(--body-color);
+}
+
+.errors{
+  display:flex;
+  flex-direction: column;
 }
