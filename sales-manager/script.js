@@ -2,14 +2,16 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     w2Value = body.querySelector(".w2-value"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     c4 = body.querySelector(".c4"),
-    c5 = body.querySelector(".c5");
+    c5 = body.querySelector(".c5"),
+    aBar = body.querySelector(".action-bar"),
+    aText = body.querySelector(".action-text"),
+    aBtn = body.querySelector(".action-button");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -24,6 +26,8 @@
     c2.textContent = data["sin"]["c2"];
     c4.textContent = data["sin"]["c4"];
     c5.textContent = data["sin"]["c5"];
+    aText.textContent = data["sin"]["aText"];
+    aBtn.textContent = data["sin"]["aBtn"];
     setGreeting();
   });
 
@@ -40,6 +44,8 @@
     c2.textContent = data["en"]["c2"];
     c4.textContent = data["en"]["c4"];
     c5.textContent = data["en"]["c5"];
+    aText.textContent = data["en"]["aText"];
+    aBtn.textContent = data["en"]["aBtn"];
     setGreeting();
   });
 
@@ -51,6 +57,9 @@
       c2: "මාසික විකුණුම් දත්ත සාරාංශය",
       c4: "බෙදාහරින්නාගේ විකුණුම්",
       c5: "එක් එක් බෙදාහරින්නා සඳහා විකුණුම් දත්ත සාරාංශය",
+      aText:
+        "නිෂ්පාදන දෙපාර්තමේන්තුව නව සමාගම් නිෂ්පාදන එකතු කර ඇත. ඒවායේ ඒකක මිල යාවත්කාලීන කරන්න.",
+      aBtn: "ඒකක මිල යාවත්කාලීන කරන්න",
     },
     en: {
       w1: "Total Sales Volume",
@@ -59,6 +68,9 @@
       c2: "Monthly Sales Data Visualisation",
       c4: "Disributor Sales",
       c5: "Sales Data Visualisation for each distributor",
+      aText:
+        "Production department has added new company products. Update the unit price of them.",
+      aBtn: "Update Unit Price",
     },
   };
 
@@ -73,6 +85,8 @@
       if (response.status == 200) {
         response.json().then((data) => {
           w2Value.textContent = data.payouts;
+
+          if (data.unverified == true) aBar.style.display = "";
         });
       } else if (response.status === 401) {
         response.json().then((data) => {
