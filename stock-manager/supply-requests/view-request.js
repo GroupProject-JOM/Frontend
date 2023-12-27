@@ -41,7 +41,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op1 = body.querySelector(".op1"),
     op2 = body.querySelector(".op2"),
     op3 = body.querySelector(".op3"),
-    rNote = body.querySelector(".reject-note");
+    rNote = body.querySelector(".reject-note"),
+    chnageCollecteor = body.querySelector(".change-collector");
 
   var lang = getCookie("lang"); // current language
 
@@ -66,6 +67,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     otherLabel.textContent = data["sin"]["otherLabel"];
     other.placeholder = data["sin"]["other"];
     submit.textContent = data["sin"]["submit"];
+    chnageCollecteor.textContent = data["sin"]["chnageCollecteor"];
 
     setGreeting();
   });
@@ -91,6 +93,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     otherLabel.textContent = data["en"]["otherLabel"];
     other.placeholder = data["en"]["other"];
     submit.textContent = data["en"]["submit"];
+    chnageCollecteor.textContent = data["en"]["chnageCollecteor"];
 
     setGreeting();
   });
@@ -110,6 +113,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       otherLabel: "වෙනත් හේතුවක් නම්",
       other: "ඔබේ හේතුව මෙහි ටයිප් කරන්න",
       submit: "ඉදිරිපත් කරන්න",
+      chnageCollecteor: "එකතුකරන්නා වෙනස් කරන්න",
     },
     en: {
       sTitle: "View Request",
@@ -125,6 +129,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       otherLabel: "If other",
       other: "Type your reason here",
       submit: "Submit",
+      chnageCollecteor: "Change Collector",
     },
   };
 
@@ -222,6 +227,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               data.request.c_fName + " " + data.request.c_lName;
             cPhone.textContent = data.request.c_phone;
             collected.style.display = "none";
+            chnageCollecteor.style.display = "";
+            document.cookie = "date=" + date.textContent + "; path=/";
           } else if (data.request.status == 4) {
             if (lang == "sin") sText.textContent = "තත්ත්වය: ප්‍රතික්ෂේප කළා";
             else sText.textContent = "Status: Rejected";
