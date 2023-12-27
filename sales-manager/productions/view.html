@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Productions</title>
+    <title>Production Batch</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
@@ -70,64 +70,48 @@
 
       <div class="text"></div>
 
-      <div class="salesmg-container container">
+      <div class="production-container salesmg-container">
         <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title">Productions</h2>
+          <h2 class="productionmg-title">Batch Number</h2>
           <p class="production-history-text">
-            View the completed and ongoing production details
+            View the history of production batches
           </p>
         </div>
 
-        <table class="production-table overview-tables">
-          <thead>
-            <tr>
-              <th>Batch No.</th>
-              <th>Released Date</th>
-              <th>No of Products</th>
-              <th>Status</th>
-            </tr>
-          </thead>
+        <div class="production-content">
+          <div class="batch-data">
+            <table class="view-production-table overview-tables">
+              <!-- <thead></thead> -->
+              <tbody>
+                <tr>
+                  <td>Batch No</td>
+                  <td class="batch-no"></td>
+                </tr>
+                <tr>
+                  <td>Current Status</td>
+                  <td class="batch-status"></td>
+                </tr>
+                <tr>
+                  <td>Created Date</td>
+                  <td class="start-date"></td>
+                </tr>
+                <tr>
+                  <td>Completed Date</td>
+                  <td class="start-date"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-          <tbody>
-            <tr>
-              <td>E052</td>
-              <td>21/04/2023</td>
-              <td>2000</td>
-              <td>
-                <button class="production-ongoing status">Ongoing</button>
-              </td>
-            </tr>
-            <tr>
-              <td>E052</td>
-              <td>21/04/2023</td>
-              <td>2000</td>
-              <td>
-                <button class="production-completed status">Completed</button>
-              </td>
-            </tr>
-            <tr>
-              <td>E052</td>
-              <td>21/04/2023</td>
-              <td>2000</td>
-              <td>
-                <button class="production-distributed status">
-                  Distributed
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>E052</td>
-              <td>21/04/2023</td>
-              <td>1000</td>
-              <!-- <td>
-                <button class="production-ongoing status">500/1000</button>
-              </td> -->
-              <td>500/1000</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="products">
+            <h3>Select a Product</h3>
+            <button>Virgin Coconut Oil</button>
+            <button>Coconut Oil</button>
+            <button>bla bla bla bla</button>
+          </div>
+        </div>
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>

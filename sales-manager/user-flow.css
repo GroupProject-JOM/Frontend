@@ -282,3 +282,30 @@ input:focus {
   color: var(--primary-color);
   font-weight: 600;
 }
+
+
+.production-container .view-production-table{
+  width: 30vw;
+  margin-top: 50px;
+  /* margin-bottom: 70px; */
+}
+
+.products button{
+  display: block;
+  margin: 20px 0;
+  padding: 5px 40px;
+  border-radius: 20px;
+  background-color: var(--background-grey);
+  border: 1px solid var(--input-border-focus);
+}
+
+.production-container .production-content{
+  display: flex;
+  gap: 10vw;
+  align-items: center;
+}
+
+.production-container{
+  /* top: 50%; */
+  transform: translate(0, 10vh);
+}
