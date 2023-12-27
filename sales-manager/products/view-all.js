@@ -5,7 +5,8 @@
     pTitle = body.querySelector(".salesmg-title"),
     pText = body.querySelector(".salesmg-text"),
     productsTable = body.querySelector(".products-table"),
-    tbody = body.querySelector(".tbody"),
+    tbody1 = body.querySelector(".tbody1"),
+    tbody2 = body.querySelector(".tbody2"),
     searchBar = body.querySelector(".search"),
     closeBtn1 = body.querySelector(".close-btn1"),
     closeBtn2 = body.querySelector(".close-btn2"),
@@ -138,7 +139,8 @@
   getAllData();
 
   function getAllData() {
-    var row = "";
+    var row1 = "",
+      row2 = "";
     fetch(backProxy + "/products", {
       method: "GET",
       headers: {
@@ -158,29 +160,51 @@
                 price = item.price + " LKR";
               }
 
-              row +=
-                `<tr id=` +
-                item.id +
-                `>` +
-                `<td class="col">` +
-                item.id +
-                `</td>` +
-                `<td class="col">` +
-                item.type +
-                `</td>` +
-                `<td class="col">` +
-                item.category +
-                `</td>` +
-                `<td class="col">` +
-                price +
-                `</td>` +
-                `<td><i class="fa-solid fa-pen-to-square icon"></i></td>` +
-                `<td><i class="fa-solid fa-trash-can icon"></i></td>` +
-                `</tr>`;
+              if (item.status == 0) {
+                row1 +=
+                  `<tr id=` +
+                  item.id +
+                  `>` +
+                  `<td class="col1">` +
+                  item.id +
+                  `</td>` +
+                  `<td class="col1">` +
+                  item.type +
+                  `</td>` +
+                  `<td class="col1">` +
+                  item.category +
+                  `</td>` +
+                  `<td class="col status pending">Pending</td>` +
+                  `<td><i class="fa-solid fa-pen-to-square icon"></i></td>` +
+                  `<td><i class="fa-solid fa-trash-can icon"></i></td>` +
+                  `</tr>`;
+              } else {
+                row2 +=
+                  `<tr id=` +
+                  item.id +
+                  `>` +
+                  `<td class="col">` +
+                  item.id +
+                  `</td>` +
+                  `<td class="col">` +
+                  item.type +
+                  `</td>` +
+                  `<td class="col">` +
+                  item.category +
+                  `</td>` +
+                  `<td class="col">` +
+                  price +
+                  `</td>` +
+                  `<td><i class="fa-solid fa-pen-to-square icon"></i></td>` +
+                  `<td><i class="fa-solid fa-trash-can icon"></i></td>` +
+                  `</tr>`;
+              }
             }
-            tbody.innerHTML = row;
+            tbody1.innerHTML = row1;
+            tbody2.innerHTML = row2;
 
             const cols = document.querySelectorAll(".col"),
+             col1s = document.querySelectorAll(".col1"),
               edits = document.querySelectorAll(".fa-pen-to-square"),
               deletes = document.querySelectorAll(".fa-trash-can");
 
@@ -250,6 +274,34 @@
                     editPrice.value =
                       col.parentNode.children[3].textContent.slice(0, -4);
                 });
+              });
+            });
+
+            col1s.forEach((col1) => {
+              col1.addEventListener("click", () => {
+                overlay3.style.display = "block";
+                document.querySelector(
+                  ".edit-product-container"
+                ).style.display = "block";
+                editType.value =
+                  col1.parentNode.parentNode.children[1].textContent;
+                editCategory.value =
+                  col1.parentNode.parentNode.children[2].textContent;
+
+                if (
+                  col1.parentNode.parentNode.children[3].textContent ==
+                  "0.0 LKR"
+                )
+                  editPrice.value = null;
+                else
+                  editPrice.value =
+                    col1.parentNode.parentNode.children[3].textContent.slice(
+                      0,
+                      -4
+                    );
+
+                document.cookie =
+                  "id=" + edit.parentElement.parentNode.id + "; path=/";
               });
             });
           });
