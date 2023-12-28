@@ -26,116 +26,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
     <script src="../auth.js"></script>
-
-    <style>
-      .circular-progress {
-        position: relative;
-        height: 140px;
-        width: 140px;
-        border-radius: 50%;
-        background-color: var(--pending-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .circular-progress::before {
-        content: "";
-        position: absolute;
-        height: 120px;
-        width: 120px;
-        border-radius: 50%;
-        background-color: #fff;
-      }
-
-      .progress-value {
-        position: relative;
-        font-size: 18px;
-        font-weight: 600;
-      }
-
-      .container .skill-box{
-        width: 100%;
-        margin: 25px 0;
-      }
-
-      .skill-box .title{
-        display: block;
-        font-size: 14px;
-        font-weight: 600;
-        color: #333;
-      }
-
-      .skill-box .skill-bar{
-        height: 8px;
-        width: 100%;
-        border-radius: 6px;
-        margin-top: 6px;
-        background: rgba(0,0,0,0.1);
-      }
-
-      .skill-bar .skill-per{
-        position: relative;
-        display: block;
-        height: 100%;
-        width: 100%;
-        background: #bb9056;
-        border-radius: 6px;
-        animation: progress 1s ease-in-out forwards;
-        opacity: 0;
-      }
-
-      .skill-per.p1{
-        width: 90%;
-      }
-      .skill-per.p2{
-        width: 70%;
-        animation-delay: 0.2s;
-      }
-      .skill-per.p3{
-        width: 50%;
-        animation-delay: 0.4s;
-      }
-      .skill-per.p4{
-        width: 30%;
-        animation-delay: 0.6s;
-      }
-
-      @keyframes progress {
-        0%{
-          width: 0;
-          opacity: 0;
-        }
-        100%{
-          opacity: 1;
-        }
-      }
-
-      .skill-per .tooltip{
-        position: absolute;
-        right: -14px;
-        top: -28px;
-        font-size: 9px;
-        font-weight: 500;
-        color: #fff;
-        padding: 2px 6px;
-        border-radius: 3px;
-        background-color: #bb9056;
-        z-index: 1;
-      }
-
-      .tooltip::before{
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: -2px;
-        height: 10px;
-        width: 10px;
-        z-index: -1;
-        background-color: #bb9056;
-        transform: translateX(-50%) rotate(45deg);
-      }
-    </style>
   </head>
 
   <body>
@@ -172,46 +62,17 @@
         <div class="split-content">
           <div>
             <p class="category">Virgin Coconut Oil</p>
-
+            <p class="type">1l bottles</p>
             <p class="batch-no">Batch B17</p>
-            <div class="charts">charts</div>
-
-            <div class="container">
-              <div class="skill-box">
-                <span class="title">Product 1</span>
-                <div class="skill-bar">
-                  <span class="skill-per p1">
-                    <span class="tooltip">90%</span>
-                  </span>
-                </div>
-              </div>
-              <div class="skill-box">
-                <span class="title">Product 2</span>
-                <div class="skill-bar">
-                  <span class="skill-per p2">
-                    <span class="tooltip">70%</span>
-                  </span>
-                </div>
-              </div>
-              <div class="skill-box">
-                <span class="title">Product 3</span>
-                <div class="skill-bar">
-                  <span class="skill-per p3">
-                    <span class="tooltip">50%</span>
-                  </span>
-                </div>
-              </div>
-              <div class="skill-box">
-                <span class="title">Product 4</span>
-                <div class="skill-bar">
-                  <span class="skill-per p4">
-                    <span class="tooltip">30%</span>
-                  </span>
-                </div>
-              </div>
+            <div class="charts">
+                doughnut
             </div>
-
-            <button><p>Distribute Products</p></button>
+            <div class="amounts">
+                <p class="released-amount"><span>10000</span><br>Bottles</p>
+                <p class="remaining-amount">Remaining Amount: <br> <span>7000</span></p>
+            </div>
+            
+            <p class="distribute"><button>Distribute Products</button></p>
           </div>
         </div>
       </div>
@@ -227,10 +88,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Progress</th>
+                  <th>Remaining</th>
                   <th>Add</th>
-                  <!-- <th>Add</th>
-                  <th>Total</th> -->
+                  <th>Total</th>
                 </tr>
               </thead>
 
@@ -299,7 +159,9 @@
             <div class="progress-container">
               <div class="circular-progress">
                 <span class="progress-value"></span>
-              </div>
+                <!-- <br> -->
+            </div>
+            <p>distributed</p>
             </div>
           </div>
 
@@ -311,7 +173,7 @@
                   <th>Category</th>
                   <th>Type</th>
                   <th>Amount</th>
-                  <th>Allocated Amount</th>
+                  <th>Distributed Amount</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -321,15 +183,61 @@
                   <td>Virgin Coconut Oil</td>
                   <td>1L bottle</td>
                   <td>2000</td>
-                  <td></td>
+                  <td>
+                    <div class="skill-box">
+                      <div class="skill-bar">
+                        <span class="skill-per p1">
+                          <span class="tooltip">100%</span>
+                        </span>
+                      </div>
+                    </div>
+                  </td>
                   <td><button class="completed status">Completed</button></td>
                 </tr>
                 <tr class="row">
                   <td>Virgin Coconut Oil</td>
                   <td>1L bottle</td>
                   <td>2000</td>
-                  <td></td>
-                  <td><button class="completed status">Completed</button></td>
+                  <td>
+                    <div class="skill-box">
+                      <div class="skill-bar">
+                        <span class="skill-per p2">
+                          <span class="tooltip">70%</span>
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td><button class="pending status">Pending</button></td>
+                </tr>
+                <tr class="row">
+                  <td>Virgin Coconut Oil</td>
+                  <td>1L bottle</td>
+                  <td>2000</td>
+                  <td>
+                    <div class="skill-box">
+                      <div class="skill-bar">
+                        <span class="skill-per p3">
+                          <span class="tooltip">50%</span>
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td><button class="pending status">Pending</button></td>
+                </tr>
+                <tr class="row">
+                  <td>Virgin Coconut Oil</td>
+                  <td>1L bottle</td>
+                  <td>2000</td>
+                  <td>
+                    <div class="skill-box">
+                      <div class="skill-bar">
+                        <span class="skill-per p4">
+                          <span class="tooltip">30%</span>
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td><button class="pending status">Pending</button></td>
                 </tr>
               </tbody>
             </table>
@@ -351,9 +259,14 @@
       const tbody2 = document.querySelector(".tbody2"),
         rows = document.querySelectorAll(".row"),
         overlay = document.querySelector(".overlay"),
+        distribute = document.querySelector(".distribute"),
         closeBtn1 = document.querySelector(".close-btn1"),
         circularProgress = document.querySelector(".circular-progress"),
-        progressValue = document.querySelector(".progress-value");
+        circularProgress2 = document.querySelector(".circular-progress"),
+        circularProgress3 = document.querySelector(".circular-progress"),
+        progressValue = document.querySelector(".progress-value"),
+        progressValue2 = document.querySelector(".progress-value2"),
+        progressValue3 = document.querySelector(".progress-valu3");
 
       rows.forEach((r) => {
         r.addEventListener("click", () => {
@@ -375,7 +288,11 @@
       });
 
       let startValue = 0,
+        startValue2 = 0,
+        startValue3 = 0,
         endValue = 100,
+        endValue2 = 100,
+        endValue3 = 100,
         speed = 50;
 
       let progress = setInterval(() => {
