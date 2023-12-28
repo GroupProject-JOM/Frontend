@@ -7,6 +7,8 @@
     batchNo = body.querySelector(".batch-no"),
     status = body.querySelector(".batch-status"),
     start = body.querySelector(".start-date"),
+    release = body.querySelector(".release"),
+    end = body.querySelector(".end-date"),
     amount = body.querySelector(".amount"),
     tbody = body.querySelector(".tbody"),
     finalProducts = body.querySelector(".final-products"),
@@ -77,6 +79,8 @@
           if (data.batch.status == 1) {
             status.textContent = "Processing";
 
+            release.style.display = "none";
+
             data.products.forEach((product) => {
               row2 +=
                 `<label>` +
@@ -120,7 +124,28 @@
                 }
               });
             });
-          } else if (data.batch.status == 2) {
+          } else if (data.batch.status == 3) {
+            status.textContent = "Terminated";
+
+            data.products.forEach((product) => {
+              row2 +=
+                `<label>` +
+                product.type +
+                ` - ` +
+                product.category +
+                `</label>` +
+                `<input type="number" class="product-amount" style="display:none" disabled/>` +
+                `<br /><span class="form-error amount-error"></span>` +
+                `<br /><br />`;
+            });
+
+            finalProducts.innerHTML = row2;
+
+            btn.style.display = "none";
+            btn.disabled = true;
+            complete.style.display = "none";
+            complete.disabled = true;
+          } else {
             status.textContent = "Completed";
             var arr = data.batch.products_count.split(",");
 
@@ -144,32 +169,12 @@
             btn.disabled = true;
             complete.style.display = "none";
             complete.disabled = true;
-          } else if (data.batch.status == 3) {
-            status.textContent = "Terminated";
-
-            data.products.forEach((product) => {
-              row2 +=
-                `<label>` +
-                product.type +
-                ` - ` +
-                product.category +
-                `</label>` +
-                `<input type="number" class="product-amount" style="display:none" disabled/>` +
-                `<br /><span class="form-error amount-error"></span>` +
-                `<br /><br />`;
-            });
-
-            finalProducts.innerHTML = row2;
-
-            btn.style.display = "none";
-            btn.disabled = true;
-            complete.style.display = "none";
-            complete.disabled = true;
           }
 
           start.textContent = new Date(
             data.batch.create_date
           ).toLocaleDateString();
+          end.textContent = new Date(data.batch.end_date).toLocaleDateString();
           amount.textContent = data.batch.amount.toLocaleString("en-US");
 
           var requests = data.batch.requests.split(",");
