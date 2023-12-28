@@ -174,7 +174,7 @@
                   `<td class="col1">` +
                   item.category +
                   `</td>` +
-                  `<td class="col status pending">Pending</td>` +
+                  `<td class="col"><button class="status pending">Pending</button></td>` +
                   `<td><i class="fa-solid fa-pen-to-square icon"></i></td>` +
                   `<td><i class="fa-solid fa-trash-can icon"></i></td>` +
                   `</tr>`;
