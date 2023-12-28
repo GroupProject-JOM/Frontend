@@ -324,6 +324,13 @@ input:focus {
   justify-content: center;
 }
 
+.circular-progress-2,
+.circular-progress-3{
+  height: 130px;
+  width: 130px;
+}
+
+
 .circular-progress::before {
   content: "";
   position: absolute;
@@ -333,9 +340,21 @@ input:focus {
   background-color: #fff;
 }
 
+.circular-progress-2::before,
+.circular-progress-3::before{
+  height: 110px;
+  width: 110px;
+  background-color: var(--background-grey);
+
+}
 .progress-value {
   position: relative;
   font-size: 40px;
+  font-weight: 600;
+}
+.progress-value-2,
+.progress-value-3{
+  font-size: 25px;
   font-weight: 600;
 }
 
@@ -343,6 +362,11 @@ input:focus {
   position: relative;
   font-size: 20px;
   font-weight: 600;
+}
+.progress-title-2,
+.progress-title-3 {
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .skill-box {
@@ -428,17 +452,22 @@ input:focus {
 }
 
 .split {
-  width: 30vw;
+  width: 35vw;
   height: 78vh;
   margin-top: 40px;
-  top: 0;
+  top: 12%;
 }
 
 .split1-window {
-  right: 35%;
+  right: 25%;
 }
 .split1-window .charts {
   display: flex;
+  justify-content: space-between;
+  margin: 30px 0 40px 0;
+  background-color: var(--background-grey);
+  padding: 30px 50px;
+  border-radius: 10px;
 }
 
 .split-content {
@@ -451,13 +480,15 @@ input:focus {
 }
 .split-content .type {
   font-size: 1.3rem;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 7px;
+  margin-top: 5px;
 }
 
 .split-content .amounts {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .split-content .released-amount span {
@@ -484,4 +515,26 @@ input:focus {
   border: 2px solid var(--pending-color);
   background-color: #fde9ce;
   color: var(--pending-color);
+}
+
+.split-content .distributors-table{
+  margin-top: 0;
+}
+
+.split-content input[type="number"]{
+  width: 3vw;
+  margin: 0;
+  padding: 0;
+}
+.split-content input[type="checkbox"]{
+  margin: 0;
+  margin-right: 3px;
+}
+
+.split2-window .distributor-name{
+  font-size: 0.7rem;
+}
+
+.split2-window .table-top{
+  width: 98%;
 }

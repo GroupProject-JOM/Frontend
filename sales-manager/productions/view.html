@@ -63,16 +63,17 @@
           <div>
             <p class="category">Virgin Coconut Oil</p>
             <p class="type">1l bottles</p>
-            <p class="batch-no">Batch B17</p>
             <div class="charts">
               <div class="progress-container">
                 <div class="circular-progress circular-progress-2">
                   <span class="progress-value progress-value-2"></span>
+                  <p class="progress-title progress-title-2">Distributed</p>
                 </div>
               </div>
               <div class="progress-container">
                 <div class="circular-progress circular-progress-3">
                   <span class="progress-value progress-value-3"></span>
+                  <p class="progress-title progress-title-3">Sold</p>
                 </div>
               </div>
             </div>
@@ -94,8 +95,10 @@
         </p>
         <div class="split-content">
           <div class="distributors">
-            <h3 class="distributors-h3">Distributors</h3>
-            <button class="save form-button">Save</button>
+            <div class="table-top">
+              <h3 class="distributors-h3">Distributors</h3>
+              <button class="save form-button">Save</button>
+            </div>
             <table class="distributors-table overview-tables">
               <thead>
                 <tr>
@@ -106,7 +109,59 @@
                 </tr>
               </thead>
 
-              <tbody class="tbody2"></tbody>
+              <tbody class="tbody2">
+                <tr>
+                  <td class="distributor-name">
+                    <label>
+                      <input type="checkbox" />
+                      Saumya Sewwandi
+                    </label>
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="distributor-name">
+                    <label>
+                      <input type="checkbox" />
+                      Saumya Sewwandi
+                    </label>
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="distributor-name">
+                    <label>
+                      <input type="checkbox" />
+                      Saumya Sewwandi
+                    </label>
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                  <td>
+                    <input type="number" />
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -338,8 +393,7 @@
         speed = 50;
 
       let progress1 = setInterval(() => {
-        progressValue1.textContent =
-          `${startValue1}%`;
+        progressValue1.textContent = `${startValue1}%`;
         circularProgress1.style.background = `conic-gradient(#bb9056 ${
           startValue1 * 3.6
         }deg, #ededed 0deg)`;
