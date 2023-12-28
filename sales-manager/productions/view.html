@@ -109,7 +109,7 @@
                 </tr>
               </thead>
 
-              <tbody class="tbody2">
+              <tbody class="tbody3">
                 <tr>
                   <td class="distributor-name">
                     <label>
@@ -189,8 +189,8 @@
 
       <div class="production-container salesmg-container">
         <div class="salesmg-heading table-heading">
-          <h2 class="salesmg-title">Batch Number</h2>
-          <p class="salesmg-text">View production batche details</p>
+          <h2 class="salesmg-title"></h2>
+          <p class="salesmg-text"></p>
         </div>
 
         <div class="production-content">
@@ -209,15 +209,15 @@
                   </tr>
                   <tr>
                     <td>No of Products</td>
-                    <td class="batch-status"></td>
+                    <td class="batch-products"></td>
                   </tr>
                   <tr>
                     <td>Created Date</td>
                     <td class="start-date"></td>
                   </tr>
-                  <tr>
-                    <td>Completed Date</td>
-                    <td class="start-date"></td>
+                  <tr class="release">
+                    <td>Released Date</td>
+                    <td class="end-date"></td>
                   </tr>
                 </tbody>
               </table>
@@ -226,13 +226,13 @@
             <div class="progress-container">
               <div class="circular-progress circular-progress-1">
                 <span class="progress-value progress-value-1"></span>
-                <p class="progress-title">Distributed</p>
+                <p class="progress-title progress-title-1"></p>
               </div>
             </div>
           </div>
 
           <div class="products-data">
-            <h3>Select a Product</h3>
+            <h3 class="products-data-h3"></h3>
             <table class="products-data-table overview-tables">
               <thead>
                 <tr>
@@ -244,68 +244,7 @@
                 </tr>
               </thead>
 
-              <tbody class="tbody2">
-                <tr class="row">
-                  <td>Virgin Coconut Oil</td>
-                  <td>1L bottle</td>
-                  <td>2000</td>
-                  <td>
-                    <div class="skill-box">
-                      <div class="skill-bar">
-                        <span class="skill-per p1">
-                          <span class="tooltip">100%</span>
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  <td><button class="completed status">Completed</button></td>
-                </tr>
-                <tr class="row">
-                  <td>Virgin Coconut Oil</td>
-                  <td>1L bottle</td>
-                  <td>2000</td>
-                  <td>
-                    <div class="skill-box">
-                      <div class="skill-bar">
-                        <span class="skill-per p2">
-                          <span class="tooltip">70%</span>
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  <td><button class="pending status">Pending</button></td>
-                </tr>
-                <tr class="row">
-                  <td>Virgin Coconut Oil</td>
-                  <td>1L bottle</td>
-                  <td>2000</td>
-                  <td>
-                    <div class="skill-box">
-                      <div class="skill-bar">
-                        <span class="skill-per p3">
-                          <span class="tooltip">50%</span>
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  <td><button class="pending status">Pending</button></td>
-                </tr>
-                <tr class="row">
-                  <td>Virgin Coconut Oil</td>
-                  <td>1L bottle</td>
-                  <td>2000</td>
-                  <td>
-                    <div class="skill-box">
-                      <div class="skill-bar">
-                        <span class="skill-per p4">
-                          <span class="tooltip">30%</span>
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  <td><button class="pending status">Pending</button></td>
-                </tr>
-              </tbody>
+              <tbody class="tbody2"></tbody>
             </table>
           </div>
         </div>
@@ -321,85 +260,5 @@
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>
     <script src="../../common/loader.js"></script>
-    <script>
-      const tbody2 = document.querySelector(".tbody2"),
-        rows = document.querySelectorAll(".row"),
-        overlay = document.querySelector(".overlay"),
-        distribute = document.querySelector(".distribute"),
-        closeBtn1 = document.querySelector(".close-btn1"),
-        closeBtn2 = document.querySelector(".close-btn2"),
-        circularProgress1 = document.querySelector(".circular-progress-1"),
-        circularProgress2 = document.querySelector(".circular-progress-2"),
-        circularProgress3 = document.querySelector(".circular-progress-3"),
-        progressValue1 = document.querySelector(".progress-value-1"),
-        progressValue2 = document.querySelector(".progress-value-2"),
-        progressValue3 = document.querySelector(".progress-value-3");
-
-      rows.forEach((r) => {
-        r.addEventListener("click", () => {
-          overlay.style.display = "block";
-          document.querySelector(".split1-window").style.display = "block";
-
-          let startValue2 = 0,
-            startValue3 = 0,
-            endValue2 = 60,
-            endValue3 = 75,
-            speed = 50;
-
-          let progress2 = setInterval(() => {
-            progressValue2.innerHTML = `${startValue2}%`;
-            circularProgress2.style.background = `conic-gradient(#bb9056 ${
-              startValue2 * 3.6
-            }deg, #ededed 0deg)`;
-            if (startValue2 == endValue2) clearInterval(progress2);
-            startValue2++;
-          }, speed);
-
-          let progress3 = setInterval(() => {
-            progressValue3.innerHTML = `${startValue3}%`;
-            circularProgress3.style.background = `conic-gradient(#bb9056 ${
-              startValue3 * 3.6
-            }deg, #ededed 0deg)`;
-            if (startValue3 == endValue3) clearInterval(progress3);
-            startValue3++;
-          }, speed);
-        });
-      });
-
-      overlay.addEventListener("click", (e) => {
-        if (e.target.id === "overlay") {
-          overlay.style.display = "none";
-          document.querySelector(".split1-window").style.display = "none";
-          document.querySelector(".split2-window").style.display = "none";
-        }
-      });
-
-      closeBtn1.addEventListener("click", () => {
-        overlay.style.display = "none";
-        document.querySelector(".split1-window").style.display = "none";
-        document.querySelector(".split2-window").style.display = "none";
-      });
-
-      distribute.addEventListener("click", () => {
-        document.querySelector(".split2-window").style.display = "block";
-      });
-
-      closeBtn2.addEventListener("click", () => {
-        document.querySelector(".split2-window").style.display = "none";
-      });
-
-      let startValue1 = 0,
-        endValue1 = 90,
-        speed = 50;
-
-      let progress1 = setInterval(() => {
-        progressValue1.textContent = `${startValue1}%`;
-        circularProgress1.style.background = `conic-gradient(#bb9056 ${
-          startValue1 * 3.6
-        }deg, #ededed 0deg)`;
-        if (startValue1 == endValue1) clearInterval(progress1);
-        startValue1++;
-      }, speed);
-    </script>
   </body>
 </html>
