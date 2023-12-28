@@ -319,6 +319,7 @@ input:focus {
   border-radius: 50%;
   background-color: var(--pending-color);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -338,7 +339,11 @@ input:focus {
   font-weight: 600;
 }
 
-
+.progress-title {
+  position: relative;
+  font-size: 20px;
+  font-weight: 600;
+}
 
 .skill-box {
   width: 100%;
@@ -422,7 +427,6 @@ input:focus {
   transform: translateX(-50%) rotate(45deg);
 }
 
-
 .split {
   width: 30vw;
   height: 78vh;
@@ -437,44 +441,43 @@ input:focus {
   display: flex;
 }
 
-
-.split-content{
+.split-content {
   margin: 10px;
 }
 
-.split-content .category{
+.split-content .category {
   font-size: 1.4rem;
   font-weight: 500;
 }
-.split-content .type{
+.split-content .type {
   font-size: 1.3rem;
   font-weight: 400;
   margin-bottom: 7px;
 }
 
-.split-content .amounts{
+.split-content .amounts {
   display: flex;
   justify-content: space-between;
 }
 
-.split-content .released-amount span{
+.split-content .released-amount span {
   font-size: 3rem;
   font-weight: 600;
 }
-.split-content .remaining-amount{
+.split-content .remaining-amount {
   margin-top: 10px;
 }
 
-.split-content .remaining-amount span{
+.split-content .remaining-amount span {
   float: right;
   font-size: 2rem;
   font-weight: 500;
 }
 
-.split-content .distribute{
+.split-content .distribute {
   text-align: center;
 }
-.split-content .distribute button{
+.split-content .distribute button {
   padding: 5px 40px;
   font-size: 1.1rem;
   border-radius: 20px;

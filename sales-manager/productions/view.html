@@ -65,13 +65,25 @@
             <p class="type">1l bottles</p>
             <p class="batch-no">Batch B17</p>
             <div class="charts">
-                doughnut
+              <div class="progress-container">
+                <div class="circular-progress circular-progress-2">
+                  <span class="progress-value progress-value-2"></span>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="circular-progress circular-progress-3">
+                  <span class="progress-value progress-value-3"></span>
+                </div>
+              </div>
             </div>
             <div class="amounts">
-                <p class="released-amount"><span>10000</span><br>Bottles</p>
-                <p class="remaining-amount">Remaining Amount: <br> <span>7000</span></p>
+              <p class="released-amount"><span>10000</span><br />Bottles</p>
+              <p class="remaining-amount">
+                Remaining Amount: <br />
+                <span>7000</span>
+              </p>
             </div>
-            
+
             <p class="distribute"><button>Distribute Products</button></p>
           </div>
         </div>
@@ -157,11 +169,10 @@
             </div>
 
             <div class="progress-container">
-              <div class="circular-progress">
-                <span class="progress-value"></span>
-                <!-- <br> -->
-            </div>
-            <p>distributed</p>
+              <div class="circular-progress circular-progress-1">
+                <span class="progress-value progress-value-1"></span>
+                <p class="progress-title">Distributed</p>
+              </div>
             </div>
           </div>
 
@@ -261,17 +272,42 @@
         overlay = document.querySelector(".overlay"),
         distribute = document.querySelector(".distribute"),
         closeBtn1 = document.querySelector(".close-btn1"),
-        circularProgress = document.querySelector(".circular-progress"),
-        circularProgress2 = document.querySelector(".circular-progress"),
-        circularProgress3 = document.querySelector(".circular-progress"),
-        progressValue = document.querySelector(".progress-value"),
-        progressValue2 = document.querySelector(".progress-value2"),
-        progressValue3 = document.querySelector(".progress-valu3");
+        closeBtn2 = document.querySelector(".close-btn2"),
+        circularProgress1 = document.querySelector(".circular-progress-1"),
+        circularProgress2 = document.querySelector(".circular-progress-2"),
+        circularProgress3 = document.querySelector(".circular-progress-3"),
+        progressValue1 = document.querySelector(".progress-value-1"),
+        progressValue2 = document.querySelector(".progress-value-2"),
+        progressValue3 = document.querySelector(".progress-value-3");
 
       rows.forEach((r) => {
         r.addEventListener("click", () => {
           overlay.style.display = "block";
           document.querySelector(".split1-window").style.display = "block";
+
+          let startValue2 = 0,
+            startValue3 = 0,
+            endValue2 = 60,
+            endValue3 = 75,
+            speed = 50;
+
+          let progress2 = setInterval(() => {
+            progressValue2.innerHTML = `${startValue2}%`;
+            circularProgress2.style.background = `conic-gradient(#bb9056 ${
+              startValue2 * 3.6
+            }deg, #ededed 0deg)`;
+            if (startValue2 == endValue2) clearInterval(progress2);
+            startValue2++;
+          }, speed);
+
+          let progress3 = setInterval(() => {
+            progressValue3.innerHTML = `${startValue3}%`;
+            circularProgress3.style.background = `conic-gradient(#bb9056 ${
+              startValue3 * 3.6
+            }deg, #ededed 0deg)`;
+            if (startValue3 == endValue3) clearInterval(progress3);
+            startValue3++;
+          }, speed);
         });
       });
 
@@ -279,29 +315,36 @@
         if (e.target.id === "overlay") {
           overlay.style.display = "none";
           document.querySelector(".split1-window").style.display = "none";
+          document.querySelector(".split2-window").style.display = "none";
         }
       });
 
       closeBtn1.addEventListener("click", () => {
         overlay.style.display = "none";
-        document.querySelector(".split1-window").style.right = "none";
+        document.querySelector(".split1-window").style.display = "none";
+        document.querySelector(".split2-window").style.display = "none";
       });
 
-      let startValue = 0,
-        startValue2 = 0,
-        startValue3 = 0,
-        endValue = 100,
-        endValue2 = 100,
-        endValue3 = 100,
+      distribute.addEventListener("click", () => {
+        document.querySelector(".split2-window").style.display = "block";
+      });
+
+      closeBtn2.addEventListener("click", () => {
+        document.querySelector(".split2-window").style.display = "none";
+      });
+
+      let startValue1 = 0,
+        endValue1 = 90,
         speed = 50;
 
-      let progress = setInterval(() => {
-        progressValue.textContent = `${startValue}%`;
-        circularProgress.style.background = `conic-gradient(#bb9056 ${
-          startValue * 3.6
+      let progress1 = setInterval(() => {
+        progressValue1.textContent =
+          `${startValue1}%`;
+        circularProgress1.style.background = `conic-gradient(#bb9056 ${
+          startValue1 * 3.6
         }deg, #ededed 0deg)`;
-        if (startValue == endValue) clearInterval(progress);
-        startValue++;
+        if (startValue1 == endValue1) clearInterval(progress1);
+        startValue1++;
       }, speed);
     </script>
   </body>
