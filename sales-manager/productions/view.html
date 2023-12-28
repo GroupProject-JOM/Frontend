@@ -26,6 +26,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
     <script src="../auth.js"></script>
+
+    <style>
+      .circular-progress {
+        position: relative;
+        height: 140px;
+        width: 140px;
+        border-radius: 50%;
+        background-color: var(--pending-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .circular-progress::before {
+        content: "";
+        position: absolute;
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        background-color: #fff;
+      }
+
+      .progress-value {
+        position: relative;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    </style>
   </head>
 
   <body>
@@ -64,9 +92,7 @@
             <p class="category">Virgin Coconut Oil</p>
 
             <p class="batch-no">Batch B17</p>
-            <div class="charts">
-              charts
-            </div>
+            <div class="charts">charts</div>
 
             <button><p>Distribute Products</p></button>
           </div>
@@ -91,11 +117,8 @@
                 </tr>
               </thead>
 
-              <tbody class="tbody2">
-
-              </tbody>
+              <tbody class="tbody2"></tbody>
             </table>
-            
           </div>
         </div>
       </div>
@@ -156,7 +179,11 @@
               </table>
             </div>
 
-            <div>doughnut</div>
+            <div class="progress-container">
+              <div class="circular-progress">
+                <span class="progress-value"></span>
+              </div>
+            </div>
           </div>
 
           <div class="products-data">
@@ -172,8 +199,15 @@
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
+              <tbody class="tbody2">
+                <tr class="row">
+                  <td>Virgin Coconut Oil</td>
+                  <td>1L bottle</td>
+                  <td>2000</td>
+                  <td></td>
+                  <td><button class="completed status">Completed</button></td>
+                </tr>
+                <tr class="row">
                   <td>Virgin Coconut Oil</td>
                   <td>1L bottle</td>
                   <td>2000</td>
@@ -196,5 +230,45 @@
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>
     <script src="../../common/loader.js"></script>
+    <script>
+      const tbody2 = document.querySelector(".tbody2"),
+        rows = document.querySelectorAll(".row"),
+        overlay = document.querySelector(".overlay"),
+        closeBtn1 = document.querySelector(".close-btn1"),
+        circularProgress = document.querySelector(".circular-progress"),
+        progressValue = document.querySelector(".progress-value");
+
+      rows.forEach((r) => {
+        r.addEventListener("click", () => {
+          overlay.style.display = "block";
+          document.querySelector(".split1-window").style.display = "block";
+        });
+      });
+
+      overlay.addEventListener("click", (e) => {
+        if (e.target.id === "overlay") {
+          overlay.style.display = "none";
+          document.querySelector(".split1-window").style.display = "none";
+        }
+      });
+
+      closeBtn1.addEventListener("click", () => {
+        overlay.style.display = "none";
+        document.querySelector(".split1-window").style.right = "none";
+      });
+
+      let startValue = 0,
+        endValue = 100,
+        speed = 50;
+
+      let progress = setInterval(() => {
+        progressValue.textContent = `${startValue}%`;
+        circularProgress.style.background = `conic-gradient(#bb9056 ${
+          startValue * 3.6
+        }deg, #ededed 0deg)`;
+        if (startValue == endValue) clearInterval(progress);
+        startValue++;
+      }, speed);
+    </script>
   </body>
 </html>
