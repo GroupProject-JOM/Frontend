@@ -96,7 +96,8 @@
   };
 
   var row2 = "",
-    total_percentage = 0;
+    total_percentage = 0,
+    arrayOfArrays = [];
 
   fetch(backProxy + "/batch?id=" + getCookie("id"), {
     method: "GET",
@@ -218,8 +219,9 @@
 
           const rows = document.querySelectorAll(".row");
 
-          rows.forEach((r) => {
+          rows.forEach((r, index) => {
             r.addEventListener("click", () => {
+              log(arrayOfArrays[index])
               overlay.style.display = "block";
               document.querySelector(".split1-window").style.display = "block";
 
@@ -255,6 +257,42 @@
         });
         if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන කණ්ඩායම නොමැත");
         else Command: toastr["info"]("No production batch");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
+
+  fetch(backProxy + "/distribution?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          data.distributions.forEach((distribution) => {
+            arrayOfArrays.push(distribution);
+          });
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["info"]("බෙදාහැරීම් නැත");
+        else Command: toastr["info"]("No distributions");
       } else if (response.status === 401) {
         response.json().then((data) => {
           console.log(data.message);
