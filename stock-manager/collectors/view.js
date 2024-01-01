@@ -63,7 +63,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       circularProgress.style.background = `conic-gradient(#bb9056 ${
         0 * 3.6
       }deg, #ededed 0deg)`;
-      return
+      return;
     }
 
     let progress = setInterval(() => {
@@ -482,9 +482,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             //handle add error
             handleAdd(add);
           } else {
-            totalError.innerHTML = null;
-            elm.nextSibling.style.display = "none";
-
             if (remainigAmount < 0) {
               elm.nextSibling.style.display = "";
               totalError.style.display = "";
@@ -496,6 +493,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 remainingError.textContent = `Remaining amount cannot be less than zero`;
                 totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Remaining amount cannot be less than zero`;
               }
+
+              totalStatus = false;
             } else {
               remainingError.textContent = "";
 
@@ -704,13 +703,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       endValue = end,
       speed = 50;
 
-      if (totalAmount == 0 || endValue == 0 || remainigAmount == 0) {
-        progressValue.textContent = `${0}%`;
-        circularProgress.style.background = `conic-gradient(#bb9056 ${
-          0 * 3.6
-        }deg, #ededed 0deg)`;
-        return
-      }
+    if (totalAmount == 0 || endValue == 0 || remainigAmount == 0) {
+      progressValue.textContent = `${0}%`;
+      circularProgress.style.background = `conic-gradient(#bb9056 ${
+        0 * 3.6
+      }deg, #ededed 0deg)`;
+      return;
+    }
 
     let progress = setInterval(() => {
       progressValue.textContent = `${startValue}%`;
@@ -728,13 +727,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       endValue = end,
       speed = 50;
 
-      if (totalAmount == 0 || endValue == 0 || remainigAmount == 0) {
-        progressValue.textContent = `${0}%`;
-        circularProgress.style.background = `conic-gradient(#bb9056 ${
-          0 * 3.6
-        }deg, #ededed 0deg)`;
-        return
-      }
+    if (totalAmount == 0 || endValue == 0 || remainigAmount == 0) {
+      progressValue.textContent = `${0}%`;
+      circularProgress.style.background = `conic-gradient(#bb9056 ${
+        0 * 3.6
+      }deg, #ededed 0deg)`;
+      return;
+    }
 
     let progress = setInterval(() => {
       progressValue.textContent = `${startValue}%`;
