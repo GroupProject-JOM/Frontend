@@ -619,7 +619,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     // start < end
     let startValue = start,
       endValue = end,
-      speed = 50;
+      speed = 25;
 
     if (end == 0) {
       progressValue.textContent = `${0}%`;
@@ -643,7 +643,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     // start > end
     let startValue = start,
       endValue = end,
-      speed = 50;
+      speed = 25;
 
     if (end == 0) {
       progressValue.textContent = `${0}%`;
@@ -732,7 +732,6 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     var amounts = [],
       distributors = [],
-      tots = [],
       addTotal = 0,
       remainigStatus = false,
       countStatus = false,
@@ -749,7 +748,6 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         if (add_status && total_status) {
           distributors.push(r.parentElement.parentElement.parentElement.id);
           amounts.push(add[index].value);
-          tots.push(total[index].value);
         }
 
         addTotal += +add[index].value;
@@ -786,8 +784,8 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       var formData = {
         distributors: distributors,
         amounts: amounts,
-        tots: tots,
         product: getCookie("product"),
+        id: getCookie("id"),
       };
 
       if (lang == "sin") {
@@ -812,8 +810,6 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         cancelButtonColor: cancelButtonColor,
       }).then((result) => {
         if (result.isConfirmed) {
-          log(JSON.stringify(formData));
-
           fetch(backProxy + "/distribution", {
             method: "POST",
             headers: {
