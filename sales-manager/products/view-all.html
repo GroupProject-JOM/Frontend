@@ -54,6 +54,127 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <!-- view product light box starts -->
+
+    <div class="overlay1 overlay" id="overlay1" style="display: none">
+      <div class="view-product-container light-box" style="display: none">
+        <p class="close-btn close-btn1 close-btn-bank">
+          <i class="fas fa-xmark"></i>
+        </p>
+        <div class="view-product-content">
+          <table class="product-view-table overview-tables">
+            <tbody>
+              <tr>
+                <td class="type-text">Type</td>
+                <td class="type bold"></td>
+              </tr>
+              <tr>
+                <td class="category-text">Category</td>
+                <td class="category bold"></td>
+              </tr>
+              <tr>
+                <td class="price-text">Price</td>
+                <td class="price bold"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttons">
+            <a class="form-button edit-btn">Edit</a>
+            <a class="form-button delete-btn">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- view product light box ends -->
+
+<!-- new product light box starts -->
+<div class="overlay2 overlay" id="overlay2">
+  <div class="add-product-container light-box">
+    <p class="close-btn close-btn2 do-not">
+      <i class="fas fa-xmark"></i>
+    </p>
+
+    <div class="add-product-content">
+      <h2>Add New Product</h2>
+
+      <div class="add-product-form">
+        <form>
+          <label>Category</label>
+          <input
+            type="text"
+            class="product-category"
+            placeholder="Enter product category"
+          />
+          <br /><span class="form-error category-error"></span>
+
+          <label>Type</label>
+          <input
+            type="text"
+            class="product-type"
+            placeholder="Enter product type"
+          />
+          <br /><span class="form-error type-error"></span>
+
+          <label>Unit Price</label>
+          <input
+            type="number"
+            class="product-price"
+            placeholder="Enter Unit price"
+          />
+          <br /><span class="form-error price-error"></span>
+        </form>
+      </div>
+      <button class="submit form-button">Submit</button>
+    </div>
+  </div>
+</div>
+<!-- new product light box ends -->
+
+
+<!-- Edit product light box starts -->
+<div class="overlay3 overlay" id="overlay3">
+  <div class="edit-product-container light-box">
+    <p class="close-btn close-btn3 do-not">
+      <i class="fas fa-xmark"></i>
+    </p>
+
+    <div class="edit-product-content">
+      <h2>Edit Product</h2>
+
+      <div class="edit-product-form">
+        <form>
+          <label>Category</label>
+          <input
+            type="text"
+            class="edit-product-category"
+            placeholder="Enter product category"
+          />
+          <br /><span class="form-error edit-category-error"></span>
+
+          <label>Type</label>
+          <input
+            type="text"
+            class="edit-product-type"
+            placeholder="Enter product type"
+          />
+          <br /><span class="form-error edit-type-error"></span>
+
+          <label>Price</label>
+          <input
+            type="number"
+            class="edit-product-price"
+            placeholder="Enter Unit price"
+          />
+          <br /><span class="form-error edit-price-error"></span>
+        </form>
+      </div>
+      <button class="edit-submit form-button">Submit</button>
+    </div>
+  </div>
+</div>
+<!-- Edit product light box ends -->
+
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
@@ -71,11 +192,31 @@
 
       <div class="text"></div>
 
-      <div class="salesmg-container container">
+      <div class="salesmg-container products-container">
         <div class="salesmg-heading table-heading">
           <h2 class="salesmg-title"></h2>
-          <p class="salesmg-text">View the edit company product details</p>
         </div>
+
+        <div>
+          <p class="pending-products-text">Enter Unit Price for pending products</p>
+          <table class="pending-products-table overview-tables">
+            <thead>
+              <tr>
+                <th>Product ID</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+  
+            <tbody class="tbody1"></tbody>
+          </table>
+  <br><br><br><br>
+</div>
+
+<p class="salesmg-text">View the edit company product details</p>
         <div class="table-top">
           <button class="add form-button">Add New</button>
 
@@ -89,6 +230,7 @@
           </div>
         </div>
 
+
         <table class="products-table overview-tables">
           <thead>
             <tr>
@@ -101,145 +243,9 @@
             </tr>
           </thead>
 
-          <tbody class="tbody"></tbody>
+          <tbody class="tbody2"></tbody>
         </table>
-        
-        <table class="products-table overview-tables">
-          <thead>
-            <tr>
-              <th>Product ID</th>
-              <th>Category</th>
-              <th>Type</th>
-              <th>Price</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody class="tbody"></tbody>
-        </table>
-
-        <!-- view product light box starts -->
-
-        <div class="overlay1 overlay" id="overlay1" style="display: none">
-          <div class="view-product-container light-box" style="display: none">
-            <p class="close-btn close-btn1 close-btn-bank">
-              <i class="fas fa-xmark"></i>
-            </p>
-            <div class="view-product-content">
-              <table class="product-view-table overview-tables">
-                <tbody>
-                  <tr>
-                    <td class="type-text">Type</td>
-                    <td class="type bold"></td>
-                  </tr>
-                  <tr>
-                    <td class="category-text">Category</td>
-                    <td class="category bold"></td>
-                  </tr>
-                  <tr>
-                    <td class="price-text">Price</td>
-                    <td class="price bold"></td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="buttons">
-                <a class="form-button edit-btn">Edit</a>
-                <a class="form-button delete-btn">Delete</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- view product light box ends -->
-
-        <!-- new product light box starts -->
-        <div class="overlay2 overlay" id="overlay2">
-          <div class="add-product-container light-box">
-            <p class="close-btn close-btn2 do-not">
-              <i class="fas fa-xmark"></i>
-            </p>
-
-            <div class="add-product-content">
-              <h2>Add New Product</h2>
-
-              <div class="add-product-form">
-                <form>
-                  <label>Category</label>
-                  <input
-                    type="text"
-                    class="product-category"
-                    placeholder="Enter product category"
-                  />
-                  <br /><span class="form-error category-error"></span>
-
-                  <label>Type</label>
-                  <input
-                    type="text"
-                    class="product-type"
-                    placeholder="Enter product type"
-                  />
-                  <br /><span class="form-error type-error"></span>
-
-                  <label>Unit Price</label>
-                  <input
-                    type="number"
-                    class="product-price"
-                    placeholder="Enter Unit price"
-                  />
-                  <br /><span class="form-error price-error"></span>
-                </form>
-              </div>
-              <button class="submit form-button">Submit</button>
-            </div>
-          </div>
-        </div>
-        <!-- new product light box ends -->
-
-        <!-- Edit product light box starts -->
-        <div class="overlay3 overlay" id="overlay3">
-          <div class="edit-product-container light-box">
-            <p class="close-btn close-btn3 do-not">
-              <i class="fas fa-xmark"></i>
-            </p>
-
-            <div class="edit-product-content">
-              <h2>Edit Product</h2>
-
-              <div class="edit-product-form">
-                <form>
-                  <label>Category</label>
-                  <input
-                    type="text"
-                    class="edit-product-category"
-                    placeholder="Enter product category"
-                  />
-                  <br /><span class="form-error edit-category-error"></span>
-
-                  <label>Type</label>
-                  <input
-                    type="text"
-                    class="edit-product-type"
-                    placeholder="Enter product type"
-                  />
-                  <br /><span class="form-error edit-type-error"></span>
-
-                  <label>Price</label>
-                  <input
-                    type="number"
-                    class="edit-product-price"
-                    placeholder="Enter Unit price"
-                  />
-                  <br /><span class="form-error edit-price-error"></span>
-                </form>
-              </div>
-              <button class="edit-submit form-button">Submit</button>
-            </div>
-          </div>
-        </div>
-        <!-- Edit product light box ends -->
-
-        <br /><br />
+      
       </div>
 
       <div class="back-to-top">

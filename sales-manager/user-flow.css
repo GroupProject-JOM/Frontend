@@ -112,7 +112,8 @@ input:focus {
 .salesmg-container .distributors-table,
 .outlets-table,
 .production-table,
-.products-table {
+.products-table,
+.pending-products-table {
   width: 90%;
 }
 
@@ -525,4 +526,28 @@ input:focus {
 
 .split2-window .table-top{
   width: 98%;
+}
+
+.production-container{
+  /* top: 50%; */
+  transform: translate(0, 10vh);
+}
+
+.pending-products-text,
+.products-container .salesmg-text{
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.pending-products-text{
+  margin-top: 30px;
+
+}
+
+.pending-products-table{
+  margin-top: 15px;
+}
+
+.products-container .table-top{
+  margin-top: 20px;
 }
