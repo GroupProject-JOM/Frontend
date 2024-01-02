@@ -28,8 +28,10 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     cPhone = body.querySelector(".cPhone"),
     collected = body.querySelector(".collected"),
     cAmount = body.querySelector(".cAmount"),
-    closeBtn = body.querySelector(".close-btn"),
-    overlay = body.querySelector(".overlay"),
+    closeBtn1 = body.querySelector(".close-btn1"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    overlay1 = body.querySelector(".overlay1"),
+    overlay2 = body.querySelector(".overlay2"),
     dropdown = body.querySelector(".dropdown"),
     dropdownError = body.querySelector(".dropdown-error"),
     submit = body.querySelector(".submit"),
@@ -45,6 +47,23 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     chnageCollecteor = body.querySelector(".change-collector");
 
   var lang = getCookie("lang"); // current language
+
+  yard.addEventListener("click", () => {
+    overlay2.style.display = "flex";
+    document.querySelector(".split1-window").style.display = "block";
+  });
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay2") {
+      overlay1.style.display = "none";
+      document.querySelector(".split1-window").style.display = "none";
+    }
+  });
+
+  closeBtn2.addEventListener("click", () => {
+    overlay2.style.display = "none";
+    document.querySelector(".split1-window").style.display = "none";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -393,18 +412,18 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   });
 
   decline.addEventListener("click", () => {
-    overlay.style.display = "flex";
+    overlay1.style.display = "flex";
     document.querySelector(".decline-container").style.display = "block";
 
-    overlay.addEventListener("click", (e) => {
-      if (e.target.id === "overlay") {
-        overlay.style.display = "none";
+    overlay1.addEventListener("click", (e) => {
+      if (e.target.id === "overlay1") {
+        overlay1.style.display = "none";
         document.querySelector(".decline-container").style.display = "none";
       }
     });
 
-    closeBtn.addEventListener("click", () => {
-      overlay.style.display = "none";
+    closeBtn1.addEventListener("click", () => {
+      overlay1.style.display = "none";
       document.querySelector(".decline-container").style.display = "none";
     });
 
