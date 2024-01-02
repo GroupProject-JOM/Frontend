@@ -1,45 +1,12 @@
-document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     pTitle = body.querySelector(".productionmg-title"),
     pText = body.querySelector(".production-history-text"),
-    btn = body.querySelector(".form-button"),
-    productionTable = body.querySelector(".production-table"),
-    tbody = body.querySelector(".tbody"),
-    searchBar = body.querySelector(".search1"),
-    filter = body.querySelector(".filter-1");
+    tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
-
-  var searchBox = document.querySelectorAll(
-    '.search-box1 input[type="text"] + span'
-  );
-
-  searchBox.forEach((elm) => {
-    elm.addEventListener("click", () => {
-      elm.previousElementSibling.value = "";
-      search(searchBar.value.toUpperCase(), productionTable);
-    });
-  });
-
-  searchBar.addEventListener("keyup", () => {
-    search(searchBar.value.toUpperCase(), productionTable);
-  });
-
-  filter.addEventListener("input", () => {
-    search(filter.value.toUpperCase(), productionTable);
-  });
-
-  const googleIcon = document.querySelectorAll("#filter-icon");
-
-  googleIcon.forEach((icon) => {
-    icon.addEventListener("click", () => {
-      icon.parentElement.classList.toggle("active");
-    });
-  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -50,7 +17,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     pTitle.textContent = data["sin"]["pTitle"];
     pText.textContent = data["sin"]["pText"];
-    btn.textContent = data["sin"]["btn"];
     setGreeting();
   });
 
@@ -63,20 +29,17 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     pTitle.textContent = data["en"]["pTitle"];
     pText.textContent = data["en"]["pText"];
-    btn.textContent = data["en"]["btn"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      pTitle: "නිෂ්පාදන දළ විශ්ලේෂණය",
-      pText: "අතීත සහ දැනට පවතින නිෂ්පාදන කාණ්ඩ බලන්න",
-      btn: "නව නිෂ්පාදනය",
+      pTitle: "නිෂ්පාදන",
+      pText: "සම්පුර්ණ කරන ලද සහ දැනට පවතින නිෂ්පාදන විස්තර බලන්න",
     },
     en: {
-      pTitle: "Production Overview",
-      pText: "View past and ongoing production batches",
-      btn: "New Production",
+      pTitle: "Productions",
+      pText: "View the completed and ongoing production details",
     },
   };
 
@@ -96,24 +59,28 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             var stat = "",
               st = "";
 
+            var date_string2 = new Date(item.end_date);
+            var end_date = date_string2.toLocaleDateString();
+
             if (item.status == 1) {
+              stat = "accept";
+              st = "Pending";
+              end_date = "-";
+            } else if (item.status == 2) {
               stat = "pending";
-              st = "Processing";
+              st = "Ready";
             } else if (item.status == 3) {
               stat = "rejected";
               st = "Terminated";
-            } else {
-              stat = "completed";
+            } else if (item.status == 4) {
+              stat = "pending";
+              st = "Ongoing";
+            } else if (item.status == 5) {
+              stat = "complete";
               st = "Completed";
             }
 
             var date_string1 = new Date(item.create_date);
-            var end_date = "-";
-
-            if (item.end_date != null) {
-              var date_string2 = new Date(item.end_date);
-              end_date = date_string2.toLocaleDateString();
-            }
 
             var arr = item.products.split(",");
 
@@ -129,9 +96,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</td>" +
               "<td>" +
               end_date +
-              "</td>" +
-              "<td>" +
-              item.amount.toLocaleString("en-US") +
               "</td>" +
               "<td>" +
               arr.length +

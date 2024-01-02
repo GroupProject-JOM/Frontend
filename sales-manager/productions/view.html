@@ -53,6 +53,77 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <!-- to yard light box starts -->
+    <div class="overlay" id="overlay">
+      <div class="split1-window split light-box">
+        <p class="close-btn1 close-btn do-not">
+          <i class="fas fa-xmark"></i>
+        </p>
+        <div class="split-content">
+          <div>
+            <p class="category">Virgin Coconut Oil</p>
+            <p class="type">1l bottles</p>
+            <div class="charts">
+              <div class="progress-container">
+                <div class="circular-progress circular-progress-2">
+                  <span class="progress-value progress-value-2"></span>
+                  <p class="progress-title progress-title-2">Distributed</p>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="circular-progress circular-progress-3">
+                  <span class="progress-value progress-value-3"></span>
+                  <p class="progress-title progress-title-3">Sold</p>
+                </div>
+              </div>
+            </div>
+            <div class="amounts">
+              <p class="released-amount">
+                <span class="released-amount-value"></span><br />Bottles
+              </p>
+              <p class="remaining-amount">
+                Remaining Amount: <br />
+                <span class="remaining-amount-value"></span>
+              </p>
+              <span class="form-error remaining-error"></span>
+            </div>
+
+            <p class="distribute"><button>Distribute Products</button></p>
+          </div>
+        </div>
+      </div>
+      <div class="split2-window split light-box">
+        <p class="close-btn2 close-btn do-not">
+          <i class="fas fa-xmark"></i>
+        </p>
+        <div class="split-content">
+          <div class="distributors">
+            <div class="table-top">
+              <h3 class="distributors-h3">Distributors</h3>
+              <button class="save form-button">Save</button>
+            </div>
+            <table class="distributors-table overview-tables">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Remaining</th>
+                  <th>Add</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+
+              <tbody class="tbody3"></tbody>
+            </table>
+            <span class="form-error add-error"></span> <br /><span
+              class="form-error total-error"
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- to yard light box ends -->
+
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
@@ -71,43 +142,64 @@
       <div class="text"></div>
 
       <div class="production-container salesmg-container">
-        <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title">Batch Number</h2>
-          <p class="production-history-text">
-            View the history of production batches
-          </p>
+        <div class="salesmg-heading table-heading">
+          <h2 class="salesmg-title"></h2>
+          <p class="salesmg-text"></p>
         </div>
 
         <div class="production-content">
           <div class="batch-data">
-            <table class="view-production-table overview-tables">
-              <!-- <thead></thead> -->
-              <tbody>
-                <tr>
-                  <td>Batch No</td>
-                  <td class="batch-no"></td>
-                </tr>
-                <tr>
-                  <td>Current Status</td>
-                  <td class="batch-status"></td>
-                </tr>
-                <tr>
-                  <td>Created Date</td>
-                  <td class="start-date"></td>
-                </tr>
-                <tr>
-                  <td>Completed Date</td>
-                  <td class="start-date"></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="batch-data-table">
+              <table class="view-production-table overview-tables">
+                <!-- <thead></thead> -->
+                <tbody>
+                  <tr>
+                    <td>Batch No</td>
+                    <td class="batch-no"></td>
+                  </tr>
+                  <tr>
+                    <td>Current Status</td>
+                    <td class="batch-status"></td>
+                  </tr>
+                  <tr>
+                    <td>No of Products</td>
+                    <td class="batch-products"></td>
+                  </tr>
+                  <tr>
+                    <td>Created Date</td>
+                    <td class="start-date"></td>
+                  </tr>
+                  <tr class="release">
+                    <td>Released Date</td>
+                    <td class="end-date"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="progress-container">
+              <div class="circular-progress circular-progress-1">
+                <span class="progress-value progress-value-1"></span>
+                <p class="progress-title progress-title-1"></p>
+              </div>
+            </div>
           </div>
 
-          <div class="products">
-            <h3>Select a Product</h3>
-            <button>Virgin Coconut Oil</button>
-            <button>Coconut Oil</button>
-            <button>bla bla bla bla</button>
+          <div class="products-data">
+            <h3 class="products-data-h3"></h3>
+            <table class="products-data-table overview-tables">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Distributed Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody class="tbody2"></tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -117,7 +209,7 @@
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <script src="./view.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>
