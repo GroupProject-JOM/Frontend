@@ -55,6 +55,114 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <!-- to yard light box starts -->
+    <div class="overlay2 overlay" id="overlay2">
+      <div class="split1-window split light-box">
+        <p class="close-btn2 close-btn do-not">
+          <i class="fas fa-xmark"></i>
+        </p>
+        <div class="split-content">
+          <div>
+            <p class="collector-name name">Saumya Sewwandi</p>
+            <p class="collections">
+              <span class="collection-count"></span> collections
+            </p>
+            <div class="split-chart">
+              <div class="progress-container">
+                <div class="circular-progress">
+                  <span class="progress-value"></span>
+                </div>
+              </div>
+              <div>
+                <p class="coco-amount">
+                  <span class="total-count"></span><br />Coconuts
+                </p>
+                <p class="remaining">
+                  Remaining Amount: <br /><span class="remaining-count"></span>
+                </p>
+                <span class="form-error remaining-error"></span>
+              </div>
+            </div>
+
+            <p class="to-yards">Add to yards</p>
+            <div class="yards">
+              <p class="yard1 to-yard-text">yard 01</p>
+              <p class="yard2 to-yard-text">yard 02</p>
+              <p class="yard3 to-yard-text">yard 03</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="split2-window split light-box">
+        <p class="close-btn3 close-btn do-not">
+          <i class="fas fa-xmark"></i>
+        </p>
+        <div class="split-content">
+          <!-- <div> -->
+
+          <div class="yard">
+            <div class="table-top">
+              <h3 class="yard-h3"></h3>
+              <button class="save form-button">Save</button>
+            </div>
+            <table class="stock-table overview-tables" style="margin-top: 0">
+              <thead>
+                <tr>
+                  <th>Block ID</th>
+                  <th>period</th>
+                  <th>Amount</th>
+                  <th>Add</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+
+              <tbody class="tbody2"></tbody>
+            </table>
+            <div class="errors">
+              <span class="form-error add-error"></span>
+              <span class="form-error total-error"></span>
+              <span class="form-error days-error"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+
+    <!-- to yard light box ends -->
+
+
+
+    <!-- decline reason light box starts -->
+    <div class="overlay1 overlay" id="overlay1">
+      <div class="decline-container">
+        <p class="close-btn1 close-btn do-not"><i class="fas fa-xmark"></i></p>
+        <div class="decline-content">
+          <p class="reason-text bold"></p>
+          <select class="dropdown">
+            <option value="" default hidden class="op0"></option>
+            <option
+              value="Not enough coconut amount"
+              class="op1"
+            ></option>
+            <option value="Too far to pickup" class="op2"></option>
+            <option value="Other" class="op3"></option></select
+          ><br />
+          <span class="form-error dropdown-error"></span>
+          <label class="reason-label" style="display: none"></label>
+          <input
+            class="other"
+            type="text"
+            placeholder=""
+            style="display: none"
+          /><br />
+          <span class="form-error other-error"></span>
+          <button class="form-button submit"></button>
+        </div>
+      </div>
+    </div>
+    <!-- decline reason lightbox ends -->
+
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
@@ -137,35 +245,7 @@
             <p class="reject-note" style="display: none"></p>
           </div>
 
-          <!-- decline reason light box starts -->
-          <div class="overlay" id="overlay">
-            <div class="decline-container">
-              <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
-              <div class="decline-content">
-                <p class="reason-text bold"></p>
-                <select class="dropdown">
-                  <option value="" default hidden class="op0"></option>
-                  <option
-                    value="Not enough coconut amount"
-                    class="op1"
-                  ></option>
-                  <option value="Too far to pickup" class="op2"></option>
-                  <option value="Other" class="op3"></option></select
-                ><br />
-                <span class="form-error dropdown-error"></span>
-                <label class="reason-label" style="display: none"></label>
-                <input
-                  class="other"
-                  type="text"
-                  placeholder=""
-                  style="display: none"
-                /><br />
-                <span class="form-error other-error"></span>
-                <button class="form-button submit"></button>
-              </div>
-            </div>
-          </div>
-          <!-- decline reason lightbox ends -->
+          
 
           <div class="accept-decline">
             <a class="stockmg-button form-button accept"></a>
@@ -178,7 +258,6 @@
             ></a>
             <a
               class="to-yard-button stockmg-button stockmg-button form-button"
-              style="display: none"
             ></a>
             <a
               class="change-collector stockmg-button form-button"
