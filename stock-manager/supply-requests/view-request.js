@@ -230,7 +230,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             cNameRow.style.display = "none";
             cPhoneRow.style.display = "none";
             collected.style.display = "none";
-            yardstyle.display = "";
+            yard.style.display = "";
           } else if (data.request.status == 3) {
             if (lang == "sin")
               sText.textContent = "තත්ත්වය: ලබා ගැනීමට සූදානම්";
