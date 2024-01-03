@@ -301,6 +301,7 @@ input:focus {
 
 .production-container .products-data-table {
   width: 90%;
+  margin-bottom: 3rem;
 }
 
 .production-container .products-data {
@@ -372,7 +373,7 @@ input:focus {
 
 .skill-box {
   width: 100%;
-  margin: 25px 0;
+  margin:  25px 0 15px 0;
 }
 
 .skill-box .title {
@@ -453,9 +454,10 @@ input:focus {
 .split1-window .charts {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 30px 0 40px 0;
   background-color: var(--background-grey);
-  padding: 30px 50px;
+  padding: 30px 20px;
   border-radius: 10px;
 }
 
@@ -474,18 +476,19 @@ input:focus {
   margin-top: 5px;
 }
 
-.split-content .amounts {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 40px;
-}
-
 .split-content .released-amount span {
   font-size: 3rem;
   font-weight: 600;
 }
+
+.split-content .released-amount{
+  text-align: right;
+  margin-bottom: 2rem;
+
+}
 .split-content .remaining-amount {
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  align-items: center;
 }
 
 .split-content .remaining-amount span {
@@ -496,6 +499,7 @@ input:focus {
 
 .split-content .distribute {
   text-align: center;
+  margin-top: 20px;
 }
 .split-content .distribute button {
   padding: 5px 40px;
@@ -504,6 +508,12 @@ input:focus {
   border: 2px solid var(--pending-color);
   background-color: #fde9ce;
   color: var(--pending-color);
+  cursor: pointer;
+}
+
+
+.split-content .distribute button:hover{
+  scale: 1.03;
 }
 
 .split-content .distributors-table{
@@ -550,4 +560,18 @@ input:focus {
 
 .products-container .table-top{
   margin-top: 20px;
+}
+
+.amounts p{
+  margin: 4px 0;
+}
+
+.amounts{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+.split2-window .search-box{
+  margin: 0;
 }
