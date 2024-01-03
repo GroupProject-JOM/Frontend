@@ -606,7 +606,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   }
 
   function donut(circularProgress, progressValue, previous, remainig, total) {
-    if (previousAmount == remainig) return;
+    if (previousAmount == remainig && remainig == 0) return;
 
     let start = Math.floor((previous * 100) / total),
       end = Math.floor((remainig * 100) / total);
