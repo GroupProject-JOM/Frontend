@@ -62,7 +62,7 @@
         <div class="split-content">
           <div>
             <p class="category">Virgin Coconut Oil</p>
-            <p class="type">1l bottles</p>
+            <!-- <p class="type">1l bottles</p> -->
             <div class="charts">
               <div class="progress-container">
                 <div class="circular-progress circular-progress-2">
@@ -70,22 +70,28 @@
                   <p class="progress-title progress-title-2">Distributed</p>
                 </div>
               </div>
-              <div class="progress-container">
-                <div class="circular-progress circular-progress-3">
-                  <span class="progress-value progress-value-3"></span>
-                  <p class="progress-title progress-title-3">Sold</p>
-                </div>
+
+              <div>
+
+                <p class="remaining-amount">
+                  Remaining Amount:<br />
+                  <span class="remaining-amount-value"></span>
+                </p>
+                <span class="form-error remaining-error"></span>
               </div>
+             
             </div>
             <div class="amounts">
-              <p class="released-amount">
-                <span class="released-amount-value"></span><br />Bottles
-              </p>
-              <p class="remaining-amount">
-                Remaining Amount: <br />
-                <span class="remaining-amount-value"></span>
-              </p>
-              <span class="form-error remaining-error"></span>
+              <div>
+                <p>Released Date: <span class="bold">12/03/2012</span></p>
+                <p>Type: <span class="bold">1l bottles</span></p>
+                <p>Batch Number: <span class="bold">B13</span></p>
+              </div>
+              <div>
+                <p class="released-amount">
+                  <span class="released-amount-value"></span><br>Pieces
+                </p>
+              </div>
             </div>
 
             <p class="distribute"><button>Distribute Products</button></p>
@@ -100,7 +106,15 @@
           <div class="distributors">
             <div class="table-top">
               <h3 class="distributors-h3">Distributors</h3>
-              <button class="save form-button">Save</button>
+              <div class="search-filter">
+                <div class="search-wrapper">
+                  <div class="search-box search-box">
+                    <input type="text" class="search" placeholder=" " />
+                    <span></span>
+                  </div>
+                </div>
+                <button class="save form-button">Save</button>
+              </div>
             </div>
             <table class="distributors-table overview-tables">
               <thead>
