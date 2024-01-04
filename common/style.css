@@ -699,7 +699,8 @@ body.dark {
 .stockmg-request-table,
 .today-table,
 .upcoming-table,
-.productionmg-container .overview-tables {
+.productionmg-container .overview-tables,
+.products-table{
   width: 90%;
 }
 

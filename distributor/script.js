@@ -70,74 +70,74 @@
     en: {
       w1: "Allocated Products",
       w2: "Today's Sales",
-      c1: "Outlets",
-      c2: "View and update Outlet Information",
+      c1: "Products Overview",
+      c2: "Currently available company products",
     },
   };
 
-  var row = "";
-  fetch(backProxy + "/outlets", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
-    .then((response) => {
-      if (response.status == 200) {
-        response.json().then((data) => {
-          let arr = data.list;
-          arr.forEach(data_to_table);
+  // var row = "";
+  // fetch(backProxy + "/outlets", {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   credentials: "include",
+  // })
+  //   .then((response) => {
+  //     if (response.status == 200) {
+  //       response.json().then((data) => {
+  //         let arr = data.list;
+  //         arr.forEach(data_to_table);
 
-          function data_to_table(item) {
-            row +=
-              "<tr data-href='./view.html' id=" +
-              item.id +
-              ">" +
-              "<td>" +
-              item.id +
-              "</td>" +
-              "<td>" +
-              item.name +
-              "</td>" +
-              "<td>" +
-              item.city +
-              "</td>" +
-              "<td>" +
-              item.phone +
-              "</td>" +
-              "</tr>";
-          }
-          tbody.innerHTML = row;
+  //         function data_to_table(item) {
+  //           row +=
+  //             "<tr data-href='./view.html' id=" +
+  //             item.id +
+  //             ">" +
+  //             "<td>" +
+  //             item.id +
+  //             "</td>" +
+  //             "<td>" +
+  //             item.name +
+  //             "</td>" +
+  //             "<td>" +
+  //             item.city +
+  //             "</td>" +
+  //             "<td>" +
+  //             item.phone +
+  //             "</td>" +
+  //             "</tr>";
+  //         }
+  //         tbody.innerHTML = row;
 
-          const rows = document.querySelectorAll("tr[data-href]");
+  //         const rows = document.querySelectorAll("tr[data-href]");
 
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
-            });
-          });
-        });
-      } else if (response.status === 202) {
-        response.json().then((data) => {
-          console.log(data.size);
-        });
-        if (lang == "sin") Command: toastr["info"]("අලෙවිසැල් නැත");
-        else Command: toastr["info"]("No outlets");
-      } else if (response.status === 401) {
-        response.json().then((data) => {
-          console.log(data.message);
-        });
-        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-        else Command: toastr["error"]("Invalid User");
-      } else {
-        console.error("Error:", response.status);
-        Command: toastr["error"](response.status, "Error");
-      }
-    })
-    .catch((error) => {
-      console.error("An error occurred:", error);
-      Command: toastr["error"](error);
-    });
+  //         rows.forEach((r) => {
+  //           r.addEventListener("click", () => {
+  //             document.cookie = "id=" + r.id + "; path=/";
+  //             window.location.href = r.dataset.href;
+  //           });
+  //         });
+  //       });
+  //     } else if (response.status === 202) {
+  //       response.json().then((data) => {
+  //         console.log(data.size);
+  //       });
+  //       if (lang == "sin") Command: toastr["info"]("අලෙවිසැල් නැත");
+  //       else Command: toastr["info"]("No outlets");
+  //     } else if (response.status === 401) {
+  //       response.json().then((data) => {
+  //         console.log(data.message);
+  //       });
+  //       if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+  //       else Command: toastr["error"]("Invalid User");
+  //     } else {
+  //       console.error("Error:", response.status);
+  //       Command: toastr["error"](response.status, "Error");
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error("An error occurred:", error);
+  //     Command: toastr["error"](error);
+  //   });
 })();
