@@ -1,5 +1,7 @@
-// sessionStorage.setItem("id", 0);
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "dName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "dContact=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -102,6 +104,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           rows.forEach((r) => {
             r.addEventListener("click", () => {
               document.cookie = "id=" + r.id + "; path=/";
+              document.cookie = "dName=" + r.children[0].textContent + "; path=/";
+              document.cookie = "dContact=" + r.children[1].textContent + "; path=/";
               window.location.href = r.dataset.href;
             });
           });
