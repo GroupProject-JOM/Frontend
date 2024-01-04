@@ -10,6 +10,9 @@
 
   var lang = getCookie("lang"); // current language
 
+  sTitle.textContent = getCookie("dName")
+  sText.textContent = getCookie("dContact")
+
   var searchBa = document.querySelectorAll(
     '.search-box input[type="text"] + span'
   );
