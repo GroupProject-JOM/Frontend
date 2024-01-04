@@ -9,7 +9,6 @@
       modeText = body.querySelector(".mode-text"),
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
-      greeting = body.querySelector(".greeting"),
       l0 = body.querySelector(".l0"),
       l1 = body.querySelector(".l1"),
       l2 = body.querySelector(".l2"),
@@ -60,11 +59,9 @@
     modeSwitch.addEventListener("click", () => {
       body.classList.toggle("dark");
       if (body.classList.contains("dark")) {
-        // sessionStorage.setItem("mode", "dark");
         document.cookie = "mode=dark; path=/";
         modeText.innerHTML = modeTranslate();
       } else {
-        // sessionStorage.setItem("mode", "light");
         document.cookie = "mode=light; path=/";
         modeText.innerHTML = modeTranslate();
       }
@@ -95,8 +92,8 @@
     var data = {
       sin: {
         l0: "පරිශීලක ක්‍රියා",
-        l1: "නව අලෙවිසැල්",
-        l2: "නිෂ්පාදන බලන්න",
+        l1: "අලෙවිසැල්",
+        l2: "නිෂ්පාදන",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
@@ -105,7 +102,7 @@
       en: {
         l0: "USER ACTIONS",
         l1: "Outlets",
-        l2: "View Products",
+        l2: "Products",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
@@ -144,7 +141,7 @@ window.addEventListener("load", (e) => {
       document.querySelector(`#nav-item-index`).classList.add("active");
     }
     // pathname = pathname.replace(".html", "");
-    const navItems = ["add", "profile", "index", "products"];
+    const navItems = ["outlets", "profile", "index", "products"];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
