@@ -27,10 +27,12 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     closeBtn2 = document.querySelector(".close-btn2"),
     circularProgress1 = document.querySelector(".circular-progress-1"),
     circularProgress2 = document.querySelector(".circular-progress-2"),
-    circularProgress3 = document.querySelector(".circular-progress-3"),
     progressValue1 = document.querySelector(".progress-value-1"),
     progressValue2 = document.querySelector(".progress-value-2"),
-    progressValue3 = document.querySelector(".progress-value-3"),
+    releaseDate = document.querySelector(".release-date"),
+    releaseDateValue = document.querySelector(".release-date-value"),
+    type = document.querySelector(".type"),
+    batch = document.querySelector(".batch"),
     save = body.querySelector(".save");
 
   var lang = getCookie("lang"); // current language
@@ -136,6 +138,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               status.textContent = "Processing";
 
               release.style.display = "none";
+              releaseDate.style.display = "none";
 
               data.products.forEach((product, index) => {
                 row2 +=
@@ -157,6 +160,9 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               });
             } else if (data.batch.status == 3) {
               status.textContent = "Terminated";
+
+              release.style.display = "none";
+              releaseDate.style.display = "none";
 
               data.products.forEach((product, index) => {
                 row2 +=
@@ -234,12 +240,15 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             end.textContent = new Date(
               data.batch.end_date
             ).toLocaleDateString();
+            releaseDateValue.textContent = end.textContent;
 
             const rows = document.querySelectorAll(".row");
 
             rows.forEach((r, index) => {
               r.addEventListener("click", () => {
                 document.cookie = "product=" + r.id + "; path=/";
+                type.textContent = r.children[1].textContent;
+                batch.textContent = "B" + data.batch.id;
 
                 totalAmount = p_count_arr[index];
                 ActualAmount = p_count_arr[index] - d_count_arr[index];
@@ -514,9 +523,6 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   totalAmount
                 );
                 previousAmount = totalAmount - remainigAmount;
-
-                //for distribution
-                donut(circularProgress3, progressValue3, 0, 75, 100);
               });
             });
           });
