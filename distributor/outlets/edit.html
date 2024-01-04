@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Outlet</title>
+    <title>Edit Outlet Details</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/notify.css" />
-    <link rel="stylesheet" href="./user-flow.css" />
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -24,8 +24,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="../common/func.js"></script>
-    <script src="./auth.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="../auth.js"></script>
   </head>
 
   <body>
@@ -70,18 +70,18 @@
 
       <div class="text"></div>
 
-      <div class="distributor-container">
+      <div class="outlet-edit-container distributor-container">
         <div class="outlet-heading table-heading">
           <h2 class="outlet-title"></h2>
         </div>
-        <div class="add-outlet-form">
+        <div class="edit-outlet-form">
           <form autocomplete="on">
             <div class="row">
               <div class="add-label"><label>Outlet Name</label></div>
               <div class="add-input">
                 <input
                   type="text"
-                  class="long oname"
+                  class="long oname bold"
                   placeholder=""
                   autocomplete="given-name"
                 />
@@ -95,7 +95,7 @@
               <div class="add-input">
                 <input
                   type="text"
-                  class="long email"
+                  class="long email bold"
                   placeholder=""
                   autocomplete="email"
                 />
@@ -109,7 +109,7 @@
               <div class="add-input">
                 <input
                   type="text"
-                  class="long phone"
+                  class="long phone bold"
                   placeholder=""
                   autocomplete="tel"
                 />
@@ -123,7 +123,7 @@
               <div class="add-input">
                 <input
                   type="text"
-                  class="long address1"
+                  class="long address1 bold"
                   placeholder=""
                   autocomplete="address-line1"
                 />
@@ -137,10 +137,11 @@
                 <input
                   type="text"
                   name="address2"
-                  class="long address2"
+                  class="long address2 bold"
                   placeholder=""
                   autocomplete="address-line2"
-                /><br /><span class="form-error address2-error"></span>
+                /><br />
+                <span class="form-error address2-error"></span>
               </div>
             </div>
 
@@ -150,15 +151,16 @@
                 <input
                   type="text"
                   name="address3"
-                  class="long address3"
+                  class="long address3 bold"
                   placeholder=""
                   autocomplete="address-line3"
-                /><br /><span class="form-error address3-error"></span>
+                /><br />
+                <span class="form-error address3-error"></span>
               </div>
             </div>
           </form>
         </div>
-        <button class="next form-button"></button>
+        <button class="savebt form-button"></button>
       </div>
       
       <div class="back-to-top">
@@ -166,10 +168,10 @@
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <script src="./add.js"></script>
+    <script src="./edit.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./nav/load-nav.js"></script>
-    <script src="./notifications/load-notifications.js"></script>
-    <script src="../common/loader.js"></script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
   </body>
 </html>

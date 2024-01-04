@@ -18,7 +18,7 @@
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
       l11 = body.querySelector(".l11"),
-      add = body.querySelector(".add"),
+      outlets = body.querySelector(".outlets"),
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
@@ -38,7 +38,7 @@
       Uname.textContent = getCookie("name");
     }
 
-    add.href = frontProxy + "/distributor/add.html";
+    outlets.href = frontProxy + "/distributor/outlets/view-all.html";
     profile.href = frontProxy + "/distributor/profile/view.html";
     dashboard.href = frontProxy + "/distributor/";
     products.href = frontProxy + "/distributor/products/view-all.html";
@@ -104,7 +104,7 @@
       },
       en: {
         l0: "USER ACTIONS",
-        l1: "Add Outlets",
+        l1: "Outlets",
         l2: "View Products",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
