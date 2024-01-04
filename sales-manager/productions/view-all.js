@@ -4,9 +4,39 @@
     en = body.querySelector(".en"),
     pTitle = body.querySelector(".productionmg-title"),
     pText = body.querySelector(".production-history-text"),
+    productionTable = body.querySelector(".production-table"),
+    searchBar1 = body.querySelector(".search1"),
+    filter1 = body.querySelector(".filter-1"),
     tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBox1 = document.querySelectorAll(
+    '.search-box1 input[type="text"] + span'
+  );
+
+  searchBox1.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar1.value.toUpperCase(), productionTable);
+    });
+  });
+
+  searchBar1.addEventListener("keyup", () => {
+    search(searchBar1.value.toUpperCase(), productionTable);
+  });
+
+  filter1.addEventListener("input", () => {
+    search(filter1.value.toUpperCase(), productionTable);
+  });
+
+  const googleIcon = document.querySelectorAll("#filter-icon");
+
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");

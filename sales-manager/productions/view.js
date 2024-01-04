@@ -33,9 +33,26 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     releaseDateValue = document.querySelector(".release-date-value"),
     type = document.querySelector(".type"),
     batch = document.querySelector(".batch"),
+    distributorsTable = body.querySelector(".distributors-table"),
+    searchBar = body.querySelector(".search"),
     save = body.querySelector(".save");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), distributorsTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), distributorsTable);
+  });
 
   overlay.addEventListener("click", (e) => {
     if (e.target.id === "overlay") {
