@@ -1,7 +1,7 @@
 .distributor-container {
   top: 50%;
   transform: translate(0, 3vh);
-  margin-left: 6vw;
+  /* margin-left: 6vw; */
   /* width: ; */
 }
 
@@ -167,7 +167,8 @@ input:focus {
   font-weight: 600;
 }
 
-.product-table{
+.product-table,
+.view-outlet-table{
   width: 90%;
 }
 
@@ -177,4 +178,9 @@ input:focus {
 
 .outlet-heading{
   margin-bottom: 1rem;
+}
+
+.search-filter input{
+  margin-top: 0;
+  margin-bottom: 0;
 }
