@@ -25,6 +25,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../common/func.js"></script>
     <script src="./auth.js"></script>
+
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="./jquery.glanceyear.js"></script>
+    <link rel="stylesheet" href="./glanceyear.css" />
+
+    <style>
+      #debug {
+        color: #000;
+        font-weight: bold;
+      }
+    </style>
   </head>
 
   <body>
@@ -92,24 +103,44 @@
         </div>
 
         <div class="layer">
+          <div class="glanceyear-container">
+            <h1 class="glanceyear-header">
+              Last Year Distributions
+              <span class="glanceyear-quantity"></span>
+            </h1>
+            <div class="glanceyear-content" id="js-glanceyear"></div>
+
+            <div class="glanceyear-summary">
+              <div class="glanceyear-legend">
+                Less&nbsp;
+                <span style="background-color: #eee"></span>
+                <span style="background-color: #ffd6c9"></span>
+                <span style="background-color: #e9c66d"></span>
+                <span style="background-color: #bb9056"></span>
+                &nbsp;More
+              </div>
+              Visualization of daily distributions <br />
+              <span id="debug"></span>
+            </div>
+          </div>
+
           <div class="table-heading">
             <h2 class="c1"></h2>
             <div>
-
               <p class="c2"></p>
-              
+
               <!-- Search Bar -->
-              
+
               <div class="search-wrapper">
                 <div class="search-box search-box">
-                <input type="text" class="search" placeholder=" " />
-                <span></span>
+                  <input type="text" class="search" placeholder=" " />
+                  <span></span>
+                </div>
               </div>
             </div>
-          </div>
             <!-- Search Bar -->
           </div>
-          
+
           <table class="products-table overview-tables">
             <thead>
               <tr>
@@ -133,7 +164,7 @@
           </table>
         </div>
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>
@@ -144,5 +175,35 @@
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
     <script src="../common/loader.js"></script>
+
+    <script>
+      $(function () {
+        var massive = [
+          { date: "2023-8-3", value: "1" },
+          { date: "2023-8-4", value: "2" },
+          { date: "2023-9-3", value: "3" },
+          { date: "2023-10-14", value: "2" },
+          { date: "2023-10-13", value: "8" },
+          { date: "2023-7-3", value: "1" },
+          { date: "2023-7-4", value: "2" },
+          { date: "2023-7-7", value: "3" },
+          { date: "2023-7-14", value: "2" },
+          { date: "2023-6-3", value: "1" },
+          { date: "2023-6-4", value: "2" },
+          { date: "2023-6-5", value: "3" },
+          { date: "2023-6-14", value: "2" },
+          { date: "2024-1-1", value: "1" },
+        ];
+
+        $("#js-glanceyear")
+          .empty()
+          .glanceyear(massive, {
+            eventClick: function (e) {
+              $("#debug").html("Date: " + e.date + ", Count: " + e.count);
+            },
+            showToday: false,
+          });
+      });
+    </script>
   </body>
 </html>
