@@ -6,8 +6,7 @@
 }
 
 .product-distribution-container{
-  width: 80%;
-  margin-left: 6vw;
+  width: 100%;
 }
 
 input {
@@ -21,6 +20,7 @@ input {
   font-size: 15px;
   margin: 20px 0;
 }
+
 input::placeholder {
   color: #a9a9a9;
 }
@@ -126,11 +126,11 @@ input:focus {
   margin-top: 30px;
 }
 
+/* 
 .product-distribute-form {
   display: flex;
   justify-content: space-between;
-  /* align-items: flex-start; */
-}
+} */
 
 .product-distribution-container input[type=text]{
   margin: 0 0 0 10px;
@@ -138,29 +138,6 @@ input:focus {
   width: 15vw;
 }
 
-.product-distribution-container input[type=checkbox]{
-  margin: 0 10px 0 0;
-  /* padding: 10px; */
-}
-
-.product-distribution-container label{
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.product-layer{
-  margin: 3rem 0;
-}
-
-.product-text, .product-distribution-container .price{
-  font-size: 0.8rem;
-  margin-left: 27px;
-  width: 14vw;
-}
-
-.product-text{
-  margin-top: 5px;
-}
 
 
 .product-distribution-container .price{
@@ -183,4 +160,64 @@ input:focus {
 .search-filter input{
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.view-outlet-window {
+  width: 35vw;
+  height: auto;
+  margin-top: 60px;
+  top: 20%;
+  right: 35%;
+}
+
+.view-product-container{
+  width: 30vw;
+  height: auto;
+  margin-top: 60px;
+  top: 30%;
+  right: 35%;
+}
+
+.view-outlet-content,
+.view-product-content
+{
+  margin: 20px;
+}
+
+.view-outlet-content .oName{
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* .product-layer{
+  display: grid;
+  width: 90%;
+  grid-template-columns: repeat(6, 1fr);
+  background-color: var(--background-grey);
+  border-radius: 10px;
+  padding: 15px;
+
+} */
+
+.sales-update-table{
+  width: 90%;
+
+}
+
+.sales-update-table th{
+  background-color: var(--body-color);
+}
+
+.product-distribution-container label{
+  padding: 0;
+}
+.product-distribution-container input[type="text"]{
+  width: 7vw;
+}
+.product-distribution-container input[type="checkbox"]:checked{
+  accent-color: var(--body-color);
+}
+.product-distribution-container input[type="checkbox"]{
+  margin-right: 3px;
 }

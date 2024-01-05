@@ -6,6 +6,7 @@ body {
   border-radius: 5px;
   /* margin: 0 auto; */
   max-width: 683px;
+  margin-bottom: 40px;
 }
 .glanceyear-header {
   position: relative;
