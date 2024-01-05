@@ -118,9 +118,9 @@
 
           rows.forEach((r) => {
             r.addEventListener("click", () => {
-                type.textContent = r.children[1].textContent;
-                category.textContent = r.children[2].textContent;
-                price.textContent = r.children[3].textContent;
+              type.textContent = r.children[1].textContent;
+              category.textContent = r.children[2].textContent;
+              price.textContent = r.children[3].textContent;
 
               overlay.style.display = "block";
               document.querySelector(".view-product-container").style.display =

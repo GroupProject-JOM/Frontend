@@ -2,13 +2,18 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     searchBar = body.querySelector(".search"),
-    ovTable = body.querySelector(".overview-tables"),
+    productTable = body.querySelector(".products-table"),
+    closeBtn = body.querySelector(".close-btn-product"),
+    overlay = body.querySelector(".overlay"),
+    type = body.querySelector(".type"),
+    category = body.querySelector(".category"),
+    price = body.querySelector(".price"),
+    remaining = body.querySelector(".remaining"),
     tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
@@ -20,12 +25,24 @@
   searchBa.forEach((elm) => {
     elm.addEventListener("click", () => {
       elm.previousElementSibling.value = "";
-      search(searchBar.value.toUpperCase(), ovTable);
+      search(searchBar.value.toUpperCase(), productTable);
     });
   });
 
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".view-product-container").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".view-product-container").style.display = "none";
+  });
+
   searchBar.addEventListener("keyup", () => {
-    search(searchBar.value.toUpperCase(), ovTable);
+    search(searchBar.value.toUpperCase(), productTable);
   });
 
   sin.addEventListener("click", () => {
@@ -33,7 +50,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -49,7 +65,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -75,69 +90,94 @@
     },
   };
 
-  // var row = "";
-  // fetch(backProxy + "/outlets", {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   credentials: "include",
-  // })
-  //   .then((response) => {
-  //     if (response.status == 200) {
-  //       response.json().then((data) => {
-  //         let arr = data.list;
-  //         arr.forEach(data_to_table);
+  var row = "";
+  fetch(backProxy + "/distributor", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.list;
+          arr.forEach(data_to_table);
 
-  //         function data_to_table(item) {
-  //           row +=
-  //             "<tr data-href='./view.html' id=" +
-  //             item.id +
-  //             ">" +
-  //             "<td>" +
-  //             item.id +
-  //             "</td>" +
-  //             "<td>" +
-  //             item.name +
-  //             "</td>" +
-  //             "<td>" +
-  //             item.city +
-  //             "</td>" +
-  //             "<td>" +
-  //             item.phone +
-  //             "</td>" +
-  //             "</tr>";
-  //         }
-  //         tbody.innerHTML = row;
+          function data_to_table(item) {
+            row +=
+              `<tr class="rem-row">` +
+              `<td>${item.product}</td>` +
+              `<td>${item.category}</td>` +
+              `<td>${item.type}</td>` +
+              `<td>${item.remaining.toLocaleString("en-US")}</td>` +
+              `<td>${(+item.price).toLocaleString("en-US")} LKR</td>` +
+              `</tr>`;
+          }
+          tbody.innerHTML = row;
 
-  //         const rows = document.querySelectorAll("tr[data-href]");
+          const rows = document.querySelectorAll(".rem-row");
 
-  //         rows.forEach((r) => {
-  //           r.addEventListener("click", () => {
-  //             document.cookie = "id=" + r.id + "; path=/";
-  //             window.location.href = r.dataset.href;
-  //           });
-  //         });
-  //       });
-  //     } else if (response.status === 202) {
-  //       response.json().then((data) => {
-  //         console.log(data.size);
-  //       });
-  //       if (lang == "sin") Command: toastr["info"]("අලෙවිසැල් නැත");
-  //       else Command: toastr["info"]("No outlets");
-  //     } else if (response.status === 401) {
-  //       response.json().then((data) => {
-  //         console.log(data.message);
-  //       });
-  //       if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-  //       else Command: toastr["error"]("Invalid User");
-  //     } else {
-  //       console.error("Error:", response.status);
-  //       Command: toastr["error"](response.status, "Error");
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.error("An error occurred:", error);
-  //     Command: toastr["error"](error);
-  //   });
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              type.textContent = r.children[1].textContent;
+              category.textContent = r.children[2].textContent;
+              price.textContent = r.children[3].textContent;
+              remaining.textContent = r.children[4].textContent;
+
+              overlay.style.display = "block";
+              document.querySelector(".view-product-container").style.display =
+                "block";
+            });
+          });
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.size);
+        });
+        if (lang == "sin") Command: toastr["info"]("ඉතිරි නිෂ්පාදන නොමැත");
+        else Command: toastr["info"]("No remaining products");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
+
+  $(function () {
+    var massive = [
+      { date: "2023-8-3", value: "1" },
+      { date: "2023-8-4", value: "2" },
+      { date: "2023-9-3", value: "3" },
+      { date: "2023-10-14", value: "2" },
+      { date: "2023-10-13", value: "8" },
+      { date: "2023-7-3", value: "1" },
+      { date: "2023-7-4", value: "2" },
+      { date: "2023-7-7", value: "3" },
+      { date: "2023-7-14", value: "2" },
+      { date: "2023-6-3", value: "1" },
+      { date: "2023-6-4", value: "2" },
+      { date: "2023-6-5", value: "3" },
+      { date: "2023-6-14", value: "2" },
+      { date: "2024-1-1", value: "1" },
+    ];
+
+    $("#js-glanceyear")
+      .empty()
+      .glanceyear(massive, {
+        eventClick: function (e) {
+          $("#debug").html("Date: " + e.date + ", Count: " + e.count);
+        },
+        showToday: false,
+      });
+  });
 })();
