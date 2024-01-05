@@ -1,9 +1,4 @@
-.distributor-container {
-  top: 50%;
-  transform: translate(0, 3vh);
-  /* margin-left: 6vw; */
-  /* width: ; */
-}
+
 
 .product-distribution-container{
   width: 100%;
@@ -205,9 +200,6 @@ input:focus {
 
 }
 
-.sales-update-table th{
-  background-color: var(--body-color);
-}
 
 .product-distribution-container label{
   padding: 0;
@@ -215,9 +207,33 @@ input:focus {
 .product-distribution-container input[type="text"]{
   width: 7vw;
 }
-.product-distribution-container input[type="checkbox"]:checked{
-  accent-color: var(--body-color);
-}
+
 .product-distribution-container input[type="checkbox"]{
-  margin-right: 3px;
+  margin: 10px 5px 10px 0;
+  padding: 0;
+}
+
+.product-distribution-container .overview-tables tbody tr.disable{
+  color: var(--input-border);
+}
+
+.product-distribution-container .view-outlet .form-button{
+  font-size: 0.9rem;
+  padding: 5px 30px;
+  border-radius: 20px;
+  margin: 0;
+}
+
+.sub-total{
+  width: 90%;
+  /* float: right; */
+}
+.sub-total p{
+  float: right;
+  font-size: 1.2rem;
+  margin: 40px 0;
+}
+.sub-total p span{
+  font-size: 1.8rem;
+  font-weight: 500;
 }
