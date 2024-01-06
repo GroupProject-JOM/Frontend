@@ -3,7 +3,9 @@
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     w1 = body.querySelector(".w1"),
+    w1Value = body.querySelector(".w1-value"),
     w2 = body.querySelector(".w2"),
+    w2Value = body.querySelector(".w2-value"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     searchBar = body.querySelector(".search"),
@@ -78,13 +80,13 @@
   var data = {
     sin: {
       w1: "වෙන් කළ නිෂ්පාදන",
-      w2: "අද විකුණුම්",
+      w2: "අද සංචාරයන්",
       c1: "අලෙවිසැල්",
       c2: "අලෙවිසැල් තොරතුරු බලන්න සහ යාවත්කාලීන කරන්න",
     },
     en: {
       w1: "Allocated Products",
-      w2: "Today's Sales",
+      w2: "Today's Visits",
       c1: "Products Overview",
       c2: "Currently available company products",
     },
@@ -116,6 +118,8 @@
           }
           tbody.innerHTML = row;
 
+          w1Value.innerHTML = `${data.allocated}<span>/${data.accepted}</span>`;
+
           const rows = document.querySelectorAll(".rem-row");
 
           rows.forEach((r) => {
@@ -134,6 +138,7 @@
       } else if (response.status === 202) {
         response.json().then((data) => {
           console.log(data.size);
+          w1Value.innerHTML = `${data.allocated}<span>/${data.accepted}</span>`;
         });
         if (lang == "sin") Command: toastr["info"]("ඉතිරි නිෂ්පාදන නොමැත");
         else Command: toastr["info"]("No remaining products");
