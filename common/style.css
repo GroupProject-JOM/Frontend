@@ -955,6 +955,16 @@ input[type="checkbox"] {
   margin-bottom: 10px;
 }
 
+.product-container{
+  width: 33vw;
+  height: auto;
+  top: 30%;
+  right: 35%;
+}
+
+.product-container .product-content{
+  margin: 20px;
+}
 @media only screen and (max-device-width: 718px) {
   .home {
     left: 0;

@@ -35,12 +35,12 @@
 
   <body>
     <!-- view product light box starts -->
-    <div class="overlay" id="overlay" style="display: none">
-      <div class="view-product-container light-box" style="display: none">
+    <div class="overlay" id="overlay">
+      <div class="product-container light-box" style="display: none">
         <p class="close-btn close-btn-product">
           <i class="fas fa-xmark"></i>
         </p>
-        <div class="view-product-content">
+        <div class="product-content">
           <table class="product-view-table overview-tables">
             <tbody>
               <tr>
@@ -129,27 +129,46 @@
           </div>
         </div>
 
-        <div class="layer">
+        <div class="layer1 layer">
+          
           <div class="glanceyear-container">
             <h1 class="glanceyear-header">
               Last Year Distributions
               <span class="glanceyear-quantity"></span>
-            </h1>
-            <div class="glanceyear-content" id="js-glanceyear"></div>
-
-            <div class="glanceyear-summary">
-              <div class="glanceyear-legend">
-                Less&nbsp;
-                <span style="background-color: #eee"></span>
-                <span style="background-color: #ffd6c9"></span>
-                <span style="background-color: #e9c66d"></span>
-                <span style="background-color: #bb9056"></span>
-                &nbsp;More
-              </div>
+              </h1>
+              <div class="glanceyear-content" id="js-glanceyear"></div>
+              
+              <div class="glanceyear-summary">
+                <div class="glanceyear-legend">
+                  Less&nbsp;
+                  <span style="background-color: #eee"></span>
+                  <span style="background-color: #FFE6C6"></span>
+                  <span style="background-color: #EDC999"></span>
+                  <span style="background-color: #bb9056"></span>
+                  &nbsp;More
+                </div>
               Visualization of daily distributions <br />
               <span id="debug"></span>
             </div>
           </div>
+
+          <div class="year-summary">
+            <table class="year-summary-table" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Summary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>bla bla</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="layer">
 
           <div class="table-heading">
             <h2 class="c1"></h2>
