@@ -21,16 +21,13 @@
 }
 
 .add-container {
-  /* position: absolute; */
-  /* top: 50%; */
-  /* transform: translate(0, 30%); */
+  
   margin-left: 6rem;
 }
 
 .container {
   top: 50%;
-  /* transform: translate(0, 10%); */
-  /* margin-left: 10rem;    */
+  
 }
 
 .payment-container {
@@ -121,11 +118,7 @@ input:focus {
   margin: 0;
 }
 
-.salesmg-container {
-  top: 50%;
-  transform: translate(0, 3vh);
-  /* margin-left: 6vw; */
-}
+
 
 .add-outlet-form {
   padding: 0;
@@ -574,4 +567,78 @@ input:focus {
 
 .split2-window .search-box{
   margin: 0;
+}
+
+.revenue-container{
+  background-color: var(--background-grey);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 40px 0 10px 0;
+  width: 40%;
+  height: 18vh;
+}
+
+.distributor-container .search-filter{
+display: flex;
+justify-content: flex-end;
+width: 87%;
+}
+
+.distributor-container .dvalue{
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.distributor-container .revenue-text1,
+.distributor-container .revenue-text2
+{
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--input-border-focus);
+}
+
+
+.revenue-container .form-button{
+  padding: 5px 30px;
+  border-radius: 20px;
+  margin-top: -5px;
+  
+  float: right;
+  
+}
+
+.revenue-container .visits{
+  color: var(--primary-color);
+}
+
+.collect-revenue-container {
+  width: 25vw;
+  height: 25vh;
+  left: 30%;
+  top: 20%;
+}
+
+.collect-revenue-content{
+  margin: 10px;
+  display: flex;
+flex-direction: column;
+}
+.collect-revenue-container p{
+  font-weight: 500;
+}
+
+.collect-revenue-container input{
+  width: 100%;
+  font-size: 1rem;
+}
+
+.collect-revenue-container .confirm{
+  align-self: flex-end;
+  width: fit-content;
+  padding: 5px 30px;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  margin-top: 10px;
+  
 }
