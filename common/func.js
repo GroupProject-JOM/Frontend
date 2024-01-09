@@ -172,6 +172,7 @@ function signout() {
     showCancelButton: true,
     confirmButtonColor: confirmButtonColor,
     cancelButtonColor: cancelButtonColor,
+    // buttonsStyling: false,
   }).then((result) => {
     if (result.isConfirmed) {
       if (lang == "sin") {
@@ -227,9 +228,9 @@ toastr.options = {
 };
 
 // Sweet alerts colors
-var confirmButtonColor = "#3085d6",
+var confirmButtonColor = "#d4ac77",
   cancelButtonColor = "#d33",
-  confirmButtonColor = "#3085d6",
+  confirmButtonColor = "#d4ac77",
   denyButtonColor = "#dd6b55";
 
 function pageLoading() {
