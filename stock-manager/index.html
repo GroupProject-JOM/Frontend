@@ -53,6 +53,29 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <!-- coconut rate section starts-->
+    <div class="overlay" id="overlay">
+      <div class="rate-window">
+        <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+        <div class="rate-container">
+          <div class="rate-chart">
+            <canvas id="coco-rate-chart"></canvas>
+          </div>
+          <div class="rate-window-content">
+            <p class="rate-window-text"></p>
+            <p class="rate-window-value"></p>
+            <br />
+            <label class="rate-label"></label>
+            <input type="number" class="coco-rate" placeholder="" /><br />
+            <span class="form-error coco-error"></span>
+
+            <button class="rate-confirm form-button"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- coconut rate section ends -->
+    
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
@@ -101,29 +124,6 @@
             <button class="rate-button action-button form-button"></button>
           </div>
         </div>
-
-        <!-- coconut rate section starts-->
-        <div class="overlay" id="overlay">
-          <div class="rate-window">
-            <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
-            <div class="rate-container">
-              <div class="rate-chart">
-                <canvas id="coco-rate-chart"></canvas>
-              </div>
-              <div class="rate-window-content">
-                <p class="rate-window-text"></p>
-                <p class="rate-window-value"></p>
-                <br />
-                <label class="rate-label"></label>
-                <input type="number" class="coco-rate" placeholder="" /><br />
-                <span class="form-error coco-error"></span>
-
-                <button class="rate-confirm form-button"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- coconut rate section ends -->
 
         <div class="layer req-tables">
           <div class="production-req">
@@ -212,7 +212,7 @@
           </table>
         </div>
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>

@@ -92,6 +92,7 @@
     },
   };
 
+
   var row = "";
   fetch(backProxy + "/distributor", {
     method: "GET",
