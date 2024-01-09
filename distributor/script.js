@@ -34,13 +34,13 @@
   overlay.addEventListener("click", (e) => {
     if (e.target.id === "overlay") {
       overlay.style.display = "none";
-      document.querySelector(".view-product-container").style.display = "none";
+      document.querySelector(".product-container").style.display = "none";
     }
   });
 
   closeBtn.addEventListener("click", () => {
     overlay.style.display = "none";
-    document.querySelector(".view-product-container").style.display = "none";
+    document.querySelector(".product-container").style.display = "none";
   });
 
   searchBar.addEventListener("keyup", () => {
@@ -130,7 +130,7 @@
               remaining.textContent = r.children[4].textContent;
 
               overlay.style.display = "block";
-              document.querySelector(".view-product-container").style.display =
+              document.querySelector(".product-container").style.display =
                 "block";
             });
           });

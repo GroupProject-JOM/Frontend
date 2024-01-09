@@ -64,34 +64,34 @@ svg rect.day[data-count] {
   fill: #bb9056;
 }
 svg rect.day[data-count="1"] {
-  fill: #ffd6c9;
+  fill: #FFE6C6;
 }
 svg rect.day[data-count="2"] {
-  fill: #ffd6c9;
+  fill: #FFE6C6;
 }
 svg rect.day[data-count="3"] {
-  fill: #ffd6c9;
+  fill: #FFE6C6;
 }
 svg rect.day[data-count="4"] {
-  fill: #ffd6c9;
+  fill: #FFE6C6;
 }
 svg rect.day[data-count="5"] {
-  fill: #ffd6c9;
+  fill: #FFE6C6;
 }
 svg rect.day[data-count="6"] {
-  fill: #e9c66d;
+  fill: #EDC999;
 }
 svg rect.day[data-count="7"] {
-  fill: #e9c66d;
+  fill: #EDC999;
 }
 svg rect.day[data-count="8"] {
-  fill: #e9c66d;
+  fill: #EDC999;
 }
 svg rect.day[data-count="9"] {
-  fill: #e9c66d;
+  fill: #EDC999;
 }
 svg rect.day[data-count="10"] {
-  fill: #e9c66d;
+  fill: #EDC999;
 }
 svg rect.day[data-count="11"] {
   fill: #bb9056;
@@ -133,3 +133,36 @@ svg text.month {
   color: #000;
   font-weight: bold;
 }
+
+.layer1{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.year-summary-table{
+  /* border: 1px solid black; */
+  width: 18vw;
+  /* border-collapse: collapse; */
+  
+  border-radius: 5px;
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+.year-summary-table th{
+background-color: #f5f5f5;
+border: 1px solid #d8d8d8;
+border-radius: 5px 5px 0 0;
+padding: 7px 0 7px 7px;
+font-size: 15px;
+text-align: left;
+
+}
+
+.year-summary-table td{
+  border: 1px solid #d8d8d8;
+  border-radius: 0 0 5px 5px;
+  height: 100%;
+}
+
