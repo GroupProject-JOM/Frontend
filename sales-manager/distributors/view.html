@@ -53,6 +53,18 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <div class="overlay" id="overlay">
+      <div class="collect-revenue-container light-box">
+        <div class="collect-revenue-content">
+          <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+          <p>Collecting Amount</p>
+          <input type="number" placeholder="100000">
+          <button class="confirm form-button">Confirm</button>
+        </div>
+
+      </div>
+    </div>
+
     <section class="home">
       <div class="notification">
         <span class="count">10</span>
@@ -70,18 +82,25 @@
 
       <div class="text"></div>
 
-      <div class="salesmg-container container">
+      <div class="distributor-container salesmg-container">
         <div class="salesmg-heading table-heading">
           <h2 class="salesmg-title"></h2>
-          <div>
-            <p class="salesmg-text"></p>
-            <div class="search-filter">
-              <div class="search-wrapper">
-                <div class="search-box search-box">
-                  <input type="text" class="search" placeholder=" " />
-                  <span></span>
-                </div>
-              </div>
+          <p class="salesmg-text"></p>
+        </div>
+
+        <div class="revenue-container">
+          <p class="revenue-text1">Distributor <span class="dname">name</span> is currenty holding <span class="dvalue">Rs 100,000</span></p>
+          <p class="revenue-text2">From <span class="bold visits">25</span> outlet visits.</p>
+          <br>
+          <button class="collect form-button">Collect</button>
+        </div>
+
+
+        <div class="search-filter">
+          <div class="search-wrapper">
+            <div class="search-box search-box">
+              <input type="text" class="search" placeholder=" " />
+              <span></span>
             </div>
           </div>
         </div>

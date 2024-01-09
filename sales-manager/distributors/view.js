@@ -6,9 +6,31 @@
     sText = body.querySelector(".salesmg-text"),
     distributorsTable = body.querySelector(".distributors-table"),
     searchBar = body.querySelector(".search"),
+    collect = body.querySelector(".collect"),
+    overlay = body.querySelector(".overlay"),
+    closeBtn = body.querySelector(".close-btn"),
     tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
+
+
+
+  collect.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".collect-revenue-container").style.display = "block";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".collect-revenue-container").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".collect-revenue-container").style.display = "none";
+  });
 
   sTitle.textContent = getCookie("dName")
   sText.textContent = getCookie("dContact")
