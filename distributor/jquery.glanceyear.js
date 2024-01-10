@@ -31,7 +31,7 @@
     );
 
     var svgElement = createElementSvg("svg", {
-      width: 54 * 12 + 15,
+      width: 55 * 12 + 15,
       height: 7 * 12 + 15,
     });
 
