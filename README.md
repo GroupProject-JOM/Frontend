@@ -1,4 +1,109 @@
-# Frontend
+# JOM Business and Manufacturing Process Management System
+
+![JOM Logo](https://github.com/GroupProject-JOM/Frontend/blob/main/common/JOM%20logo%201.png)
+
+Presenting a web application to manage and automate the business and manufacturing processes of Jayasinghe Oil Mills Pvt. Ltd., a local virgin coconut oil manufacturer. This solution is designed to make their operations smoother and boost efficiency.
+
+## Project Structure
+
+### Root Directory
+- **.gitignore:** Governs files and directories excluded from Git version control.
+- **README.md:** This current file, illuminating the project's structure and setup.
+- **index.html:** The primary entry point for the web application.
+- **site.webmanifest:** A manifest file empowering features like home screen installation.
+
+### Common Directory
+Houses common assets and functionalities shared across the application:
+- JavaScript files for common scripts.
+- Global CSS stylesheets applicable to the entire application.
+- Images and other static assets utilized throughout the application.
+
+### Feature-Specific Directories
+Each pivotal feature aligns with a dedicated directory, named based on its respective actor:
+- admin
+- collector
+- distributor
+- production-manager
+- sales-manager
+- stock-manager
+- supplier
+
+These directories encapsulate code, components, styles, and assets specific to their designated features, fostering modular development and upkeep.
+
+### Common Functionalities
+- The sign-in and forgot-password functionalities, accessible to all users, reside within their respective directories, ensuring clear separation from actor-specific features.
+- **Signup Access:** The signup functionality is exclusively available for the supplier. Other actors cannot directly sign up by themselves as company employees to this system.
+
+## Features
+
+### Universal User Features
+- **Basic Functionalities:** Login, logout, edit/update/view profile.
+- **Personalization:** Dark and light mode options.
+- **Multilingual Support:** Both Sinhala and English languages are available.
+- **Real-Time Validation:** Validating user actions as inputs, button clicks, etc.
+
+### Supplier-Specific Features
+- **Real-Time Communication (powered by WebSockets):** Engage in live chat with stock managers to coordinate pickup times, ensuring smooth communication and timely responses.
+- **Location Services (via Google Maps):** Share live locations and select locations via an interactive map interface, facilitating accurate and efficient coordination.
+- **Request Collection:** Initiate requests for harvest pickup.
+- ...
+
+### Collector-Specific Features
+- **Navigation (powered by Google Maps):** Obtain precise directions to estates directly from the map, optimizing travel routes and reducing navigation uncertainties.
+- **Amount Editing:** Edit or update collected coconut amounts with real-time supplier verification.
+- **Optional Verification:** Offer OTP verification via email for added security.
+- ...
+
+### Stock Manager-Specific Features
+- **Real-Time Communication (powered by WebSockets):** Engage in live chat with suppliers to discuss pickup times, streamlining communication and enhancing responsiveness.
+- **Collection Visualization (powered by Google Maps):** View allocated collections and routes on a map, enabling proactive monitoring and efficient resource allocation.
+- **Request Handling:** Respond to supplier and production manager requests, assigning collectors to supply pickups.
+- ...
+
+### Production Manager-Specific Features
+- **Stock Visualization:** Access color-coded stock lists for a quick overview.
+- **Stock Requests:** Request needed coconut amounts from stocks.
+- **Production Creation:** Initiate new productions based on requests.
+- ...
+
+### Sales Manager-Specific Features
+- **Product Management:** Add, edit, and delete products.
+- **Distribution Management:** Update product quantities allocated to distributors.
+- **Inventory Tracking:** View remaining product quantities for each distributor and product.
+- ...
+
+### Distributor-Specific Features
+- **Outlet Management:** Add, edit, and delete outlets.
+- **Sales Records:** Update sales records for each outlet.
+- **Inventory View:** View allocated product amounts.
+- ...
+
+### System Admin-Specific Features
+- **Employee Management:** Manage employee accounts and permissions.
+- **Outlet Management:** Oversee outlet information.
+- **Stock Overview:** View comprehensive stock information.
+- ...
+
+## Installation and Usage
+
+To run the application locally, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
+2. Open `index.html` in your preferred web browser.
+
+For additional setup and deployment instructions, refer to [Installation Guide](path/to/installation/guide.md).
+
+## Contributing
+
+Contributions are welcome! Please follow our [Contribution Guidelines](path/to/contribution/guide.md).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+
 <p align="center">
     <a href="https://github.com/GroupProject-JOM/Frontend">
       <img alt="Hits" src="https://hits.sh/github.com/GroupProject-JOM/Frontend.svg?label=Views"/>
