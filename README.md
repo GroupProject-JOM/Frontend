@@ -1,6 +1,6 @@
 # JOM Business and Manufacturing Process Management System
 
-![JOM Logo](https://github.com/GroupProject-JOM/Frontend/blob/Buddhikanip-patch-1/common/img/Jayasinghe-Oil-Mils-Logo.jpg)
+![JOM Logo](https://github.com/GroupProject-JOM/Frontend/blob/Buddhikanip-patch-1/common/img/Home.jpg)
 
 Presenting a web application to manage and automate the business and manufacturing processes of Jayasinghe Oil Mills Pvt. Ltd., a local virgin coconut oil manufacturer. This solution is designed to make their operations smoother and boost efficiency.
 
