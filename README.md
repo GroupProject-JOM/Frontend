@@ -100,7 +100,7 @@ These directories encapsulate code, components, styles, and assets specific to t
 
 To run the application locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
+1. Clone the repository: `git clone https://github.com/GroupProject-JOM/Frontend.git`
 2. Open `index.html` in your preferred web browser.
 
 For additional setup and deployment instructions, refer to [Installation Guide](path/to/installation/guide.md).
