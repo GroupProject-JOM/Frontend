@@ -96,19 +96,6 @@ These directories encapsulate code, components, styles, and assets specific to t
 - **Product Management:** Manage product details.
 - **Emergency Data Entry:** Update coconut amounts when collectors are unable to access the system.
 
-## Installation and Usage
-
-To run the application locally, follow these steps:
-
-1. Clone the repository: `git clone https://github.com/GroupProject-JOM/Frontend.git`
-2. Open `index.html` in your preferred web browser.
-
-For additional setup and deployment instructions, refer to [Installation Guide](path/to/installation/guide.md).
-
-## Contributing
-
-Contributions are welcome! Please follow our [Contribution Guidelines](path/to/contribution/guide.md).
-
 ## License
 
 This project is licensed under the [GNU General Public License v3.0](LICENSE).
