@@ -117,6 +117,9 @@ This project is licensed under the [GNU General Public License v3.0](LICENSE).
 
 
 <p align="center">
+    <a href="https://github.com/GroupProject-JOM/Frontend/blob/main/LICENSE">
+      <img alt="License: GNU" src="https://img.shields.io/badge/License-GPLv3-blue.svg">
+   </a>
     <a href="https://github.com/GroupProject-JOM/Frontend">
       <img alt="Hits" src="https://hits.sh/github.com/GroupProject-JOM/Frontend.svg?label=Views"/>
     </a>
