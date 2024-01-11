@@ -7,10 +7,10 @@ Presenting a web application to manage and automate the business and manufacturi
 ## Project Structure
 
 ### Root Directory
-- **.gitignore:** Governs files and directories excluded from Git version control.
-- **README.md:** This current file, illuminating the project's structure and setup.
-- **index.html:** The primary entry point for the web application.
-- **site.webmanifest:** A manifest file empowering features like home screen installation.
+- **[.gitignore](https://github.com/GroupProject-JOM/Frontend/blob/main/.gitignore):** Governs files and directories excluded from Git version control.
+- **[README.md](https://github.com/GroupProject-JOM/Frontend/blob/main/README.md):** This current file, illuminating the project's structure and setup.
+- **[index.html](https://github.com/GroupProject-JOM/Frontend/blob/main/index.html):** The primary entry point for the web application.
+- **[site.webmanifest](https://github.com/GroupProject-JOM/Frontend/blob/main/site.webmanifest):** A manifest file empowering features like home screen installation.
 
 ### Common Directory
 Houses common assets and functionalities shared across the application:
