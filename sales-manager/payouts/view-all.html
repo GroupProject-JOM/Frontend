@@ -13,10 +13,45 @@
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
     <link rel="stylesheet" href="../user-flow.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="../auth.js"></script>
   </head>
 
   <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
 
     <section class="home">
       <div class="notification">
@@ -35,130 +70,106 @@
 
       <div class="text"></div>
 
-      <div class="container">
-        <div class="productionmg-heading table-heading">
-          <h2 class="productionmg-title">Payouts</h2>
-          <p class="production-history-text">
-            View the history of payments for the suppliers
-          </p>
+      <div class="payouts-container container">
+        <div class="pending-payments payouts-layer">
+          <div class="productionmg-heading table-heading">
+            <h2 class="productionmg-title t1"></h2>
+
+          <div>
+
+            <p></p>
+            <div class="search-filter">
+              <div class="search-wrapper">
+                <div class="search-box search-box1">
+                  <input type="text" class="search1" placeholder=" " />
+                  <span></span>
+                </div>
+              </div>
+              
+              <div class="filter filter-dropdown">
+                <div id="searchBox">
+                  <i class="fas fa-filter" id="filter-icon"></i>
+                  <select class="dropdown filter-1">
+                    <option default hidden class="op0">Select Option</option>
+                    <option value="">All</option>
+                    <option value="bank">Bank</option>
+                    <option value="cash">Cash</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+
+          <table class="production-table pending-table overview-tables">
+            <thead>
+              <tr>
+                <th>Collection ID</th>
+                <th>Supplier Name</th>
+                <th>Payment Method</th>
+                <th>Payment</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody class="tbody1"></tbody>
+          </table>
         </div>
+        <div class="paid-payments payouts-layer">
+          <div class="productionmg-heading table-heading">
+            <h2 class="productionmg-title t2"></h2>
+            <div>
 
-        <table class="production-table overview-tables">
-          <thead>
-            <tr>
-              <th>Transaction ID</th>
-              <th>Payment Method</th>
-              <th>Supplier Name</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
+              <p></p>
+              
+              <div class="search-filter">
+                <div class="search-wrapper">
+                  <div class="search-box search-box2">
+                    <input type="text" class="search2" placeholder=" " />
+                    <span></span>
+                  </div>
+                </div>
+                
+                <div class="filter filter-dropdown">
+                  <div id="searchBox">
+                    <i class="fas fa-filter" id="filter-icon"></i>
+                    <select class="dropdown filter-2">
+                      <option default hidden class="op0">Select Option</option>
+                      <option value="">All</option>
+                      <option value="bank">Bank</option>
+                      <option value="cash">Cash</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <tbody>
-            <tr data-href='./payment.html'>
-              <td>T0006</td>
-              <td>Cash</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-pending status">Pending</button>
-              </td>
-            </tr>
+          <table class="production-table completed-table overview-tables">
+            <thead>
+              <tr>
+                <th>Collection ID</th>
+                <th>Supplier Name</th>
+                <th>Payment Method</th>
+                <th>Payment</th>
+                <th>Status</th>
+              </tr>
+            </thead>
 
-            <tr data-href='./payment.html'>
-              <td>T0007</td>
-              <td>Cash</td>
-              <td>Nimal</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-pending status">Pending</button>
-              </td>
-            </tr>
-
-            <tr data-href='./payment.html'>
-              <td>T0008</td>
-              <!-- <td>21/04/2023</td> -->
-              <td>Cash</td>
-              <td>Kamal</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-pending status">Pending</button>
-              </td>
-            </tr>
-
-            <tr data-href='./payment.html'>
-              <td>T0009</td>
-              <td>Cash</td>
-              <td>Amara</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-pending status">Pending</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0001</td>
-              <td>Bank Transfer</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0002</td>
-              <td>Bank Transfer</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0003</td>
-              <td>Bank Transfer</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0004</td>
-              <td>Cash</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-            <tr data-href='./payment.html'>
-              <td>T0005</td>
-              <td>Cash</td>
-              <td>Saman</td>
-              <td>2000</td>
-              <td>
-                <button class="payment-paid status">Paid</button>
-              </td>
-            </tr>
-
-            
-          </tbody>
-        </table>
+            <tbody class="tbody2"></tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
       </div>
     </section>
-    <script src="../../common/func.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="./view-all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./load-nav.js"></script>
-    <script src="./load-notifications.js"></script>
-    <script>
-      const rows = document.querySelectorAll("tr[data-href]");
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
-            });
-          });
-    </script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
   </body>
 </html>

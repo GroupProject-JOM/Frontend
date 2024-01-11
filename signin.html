@@ -6,46 +6,105 @@
     <title>SignIn</title>
 
     <link rel="stylesheet" href="./common/style.css" />
-    <link rel="stylesheet" href="./signin.css">
+    <link rel="stylesheet" href="./signin.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="./common/func.js"></script>
   </head>
 
   <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="./common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <nav class="sidebar-photo">
-        <img
+      <img
         src="./common/signininImage.png"
         alt="login photo"
-        style="max-width: 100%;height: 100vh;"
-       />
+        style="max-width: 100%; height: 100vh"
+      />
     </nav>
     <div class="home">
-      <div class="lng-picker" style="margin-right: 3vw;">
+      <div class="lng-picker" style="margin-right: 3vw">
         <div class="sin">සිං</div>
         <div class="en active">En</div>
       </div>
     </div>
 
-    <section class="home" style="left: 47vw; width: calc(100% - 47vw);position:fixed;padding-right: 4rem;">
+    <section
+      class="home"
+      style="
+        left: 47vw;
+        width: calc(100% - 47vw);
+        position: fixed;
+        padding-right: 4rem;
+      "
+    >
       <div class="container">
         <div class="login-content">
-            <img src="./common/JOM logo 1.png" class="logo" />
-            <p class="login-line1 login-text"></p>
-            <p class="login-line2 login-text"></p>
-            <div class="login-form">
-              <form>
-                <input class="username" type="text" id="username" name="username" placeholder="" /><br />
-                <span class="form-error username-error"></span><br>
-                <input class="password" type="password" id="login-password" name="password" placeholder="" /><br />
-                <span class="form-error password-error"></span>
-              </form>
-            </div>
-            <button class="login-button form-button"></button>
-            <a class="login-line3 login-text"></a>
-            <p class="login-line4 login-text"></p>
-            <p class="validate login-text"></p>
-          </div>        
+          <img src="./common/JOM logo 1.png" class="logo" />
+          <p class="login-line1 login-text"></p>
+          <p class="login-line2 login-text"></p>
+          <div class="login-form">
+            <form>
+              <input
+                class="username"
+                type="text"
+                id="username"
+                name="username"
+                placeholder=""
+              /><br />
+              <span class="form-error username-error"></span><br />
+              <input
+                class="password"
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder=""
+              /><br />
+              <span class="form-error password-error"></span>
+            </form>
+          </div>
+          <button class="login-button form-button"></button>
+          <a class="login-line3 login-text"></a>
+          <p class="login-line4 login-text"></p>
+         
+          <p class="validate login-text"></p>
+        </div>
+      </div>
+      
+      <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
       </div>
     </section>
-    <script src="./common/func.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="./signin.js"></script>
+    <script src="./common/loader.js"></script>
   </body>
 </html>
