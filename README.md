@@ -46,43 +46,55 @@ These directories encapsulate code, components, styles, and assets specific to t
 - **Real-Time Communication (powered by WebSockets):** Engage in live chat with stock managers to coordinate pickup times, ensuring smooth communication and timely responses.
 - **Location Services (via Google Maps):** Share live locations and select locations via an interactive map interface, facilitating accurate and efficient coordination.
 - **Request Collection:** Initiate requests for harvest pickup.
-- ...
+- **Request Management:** Edit or cancel existing requests.
+- **Request Tracking:** Monitor pending, accepted, rejected, and completed requests.
+- **Sales Reporting:** Generate sales reports for specified time periods and create invoices using JS PDF templates.
+- **Real-Time Verification:** Validate collected coconut amounts with collectors in real time.
+- **Search and Filters:** Easily locate and filter relevant information.
 
 ### Collector-Specific Features
 - **Navigation (powered by Google Maps):** Obtain precise directions to estates directly from the map, optimizing travel routes and reducing navigation uncertainties.
 - **Amount Editing:** Edit or update collected coconut amounts with real-time supplier verification.
 - **Optional Verification:** Offer OTP verification via email for added security.
-- ...
+- **Date Filtering:** Filter coconut collections by specific dates.
 
 ### Stock Manager-Specific Features
 - **Real-Time Communication (powered by WebSockets):** Engage in live chat with suppliers to discuss pickup times, streamlining communication and enhancing responsiveness.
 - **Collection Visualization (powered by Google Maps):** View allocated collections and routes on a map, enabling proactive monitoring and efficient resource allocation.
 - **Request Handling:** Respond to supplier and production manager requests, assigning collectors to supply pickups.
-- ...
+- **Driver Allocation:** Assign drivers to jobs.
+- **Stock Management:** View and update material stocks.
+- **Inventory Visualization:** Utilize color-coded stock lists for efficient overview.
+- **Collection Assignment:** Assign collected coconuts to yards, using doughnut charts and progress bars for clear visualization.
+- **Filtering and Searching:** Effortlessly locate and filter relevant information.
 
 ### Production Manager-Specific Features
 - **Stock Visualization:** Access color-coded stock lists for a quick overview.
 - **Stock Requests:** Request needed coconut amounts from stocks.
 - **Production Creation:** Initiate new productions based on requests.
-- ...
+- **Product Management:** Add, edit, and delete products.
+- **Production Updates:** Update final product status for each production batch.
 
 ### Sales Manager-Specific Features
 - **Product Management:** Add, edit, and delete products.
 - **Distribution Management:** Update product quantities allocated to distributors.
 - **Inventory Tracking:** View remaining product quantities for each distributor and product.
-- ...
+- **Sales Monitoring:** Track sold amounts and visited outlets for each distributor.
+- **Revenue Collection:** Collect revenue from distributors.
+- **Supplier Payment Management:** Update supplier payment status.
+- **Outlet Management:** Add, edit, and delete outlets.
 
 ### Distributor-Specific Features
 - **Outlet Management:** Add, edit, and delete outlets.
 - **Sales Records:** Update sales records for each outlet.
 - **Inventory View:** View allocated product amounts.
-- ...
 
 ### System Admin-Specific Features
 - **Employee Management:** Manage employee accounts and permissions.
 - **Outlet Management:** Oversee outlet information.
 - **Stock Overview:** View comprehensive stock information.
-- ...
+- **Product Management:** Manage product details.
+- **Emergency Data Entry:** Update coconut amounts when collectors are unable to access the system.
 
 ## Installation and Usage
 
