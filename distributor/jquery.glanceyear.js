@@ -180,8 +180,8 @@
       for (var m in massive) {
         $_this
           .find('rect.day[data-date="' + massive[m].date + '"]')
-          .attr("data-count", massive[m].value);
-        scoreCount += parseInt(massive[m].value);
+          .attr("data-count", massive[m].distributions);
+        scoreCount += parseInt(massive[m].distributions);
       }
       $(settings.targetQuantity).text(
         massive.length + " days, " + scoreCount + " distributions"

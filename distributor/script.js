@@ -20,6 +20,8 @@
 
   var lang = getCookie("lang"); // current language
 
+  var massive = [];
+
   var searchBa = document.querySelectorAll(
     '.search-box input[type="text"] + span'
   );
@@ -92,7 +94,6 @@
     },
   };
 
-
   var row = "";
   fetch(backProxy + "/distributor", {
     method: "GET",
@@ -107,6 +108,13 @@
           let arr = data.list;
           arr.forEach(data_to_table);
 
+          massive = data.distributions;
+          massive.forEach((item) => {
+            item.date = formatDateString(item.date);
+          });
+
+          setDistribution();
+
           function data_to_table(item) {
             row +=
               `<tr class="rem-row">` +
@@ -120,6 +128,7 @@
           tbody.innerHTML = row;
 
           w1Value.innerHTML = `${data.allocated}<span>/${data.accepted}</span>`;
+          w2Value.innerHTML = `${data.visits}<span>/${data.outlets}</span>`;
 
           const rows = document.querySelectorAll(".rem-row");
 
@@ -140,6 +149,14 @@
         response.json().then((data) => {
           console.log(data.size);
           w1Value.innerHTML = `${data.allocated}<span>/${data.accepted}</span>`;
+          w2Value.innerHTML = `${data.visits}<span>/${data.outlets}</span>`;
+
+          massive = data.distributions;
+          massive.forEach((item) => {
+            item.date = formatDateString(item.date);
+          });
+
+          setDistribution();
         });
         if (lang == "sin") Command: toastr["info"]("ඉතිරි නිෂ්පාදන නොමැත");
         else Command: toastr["info"]("No remaining products");
@@ -159,31 +176,28 @@
       Command: toastr["error"](error);
     });
 
-  $(function () {
-    var massive = [
-      { date: "2023-8-3", value: "1" },
-      { date: "2023-8-4", value: "2" },
-      { date: "2023-9-3", value: "3" },
-      { date: "2023-10-14", value: "2" },
-      { date: "2023-10-13", value: "8" },
-      { date: "2023-7-3", value: "1" },
-      { date: "2023-7-4", value: "2" },
-      { date: "2023-7-7", value: "3" },
-      { date: "2023-7-14", value: "2" },
-      { date: "2023-6-3", value: "1" },
-      { date: "2023-6-4", value: "2" },
-      { date: "2023-6-5", value: "3" },
-      { date: "2023-6-14", value: "2" },
-      { date: "2024-1-1", value: "1" },
-    ];
-
-    $("#js-glanceyear")
-      .empty()
-      .glanceyear(massive, {
-        eventClick: function (e) {
-          $("#debug").html("Date: " + e.date + ", Count: " + e.count);
-        },
-        showToday: false,
-      });
-  });
+  function setDistribution() {
+    $(function () {
+      $("#js-glanceyear")
+        .empty()
+        .glanceyear(massive, {
+          eventClick: function (e) {
+            $("#debug").html("Date: " + e.date + ", Count: " + e.count);
+          },
+          showToday: false,
+        });
+    });
+  }
 })();
+
+function formatDateString(inputDateString) {
+  const dateObject = new Date(inputDateString);
+
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+
+  const formattedDateString = `${year}-${month}-${day}`;
+
+  return formattedDateString;
+}
