@@ -144,6 +144,12 @@
                 "block";
             });
           });
+
+          let visits = [];
+            data.last_seven.forEach((item) => {
+              visits.push(parseFloat(item.visits));
+            });
+            visitsChart(getLastSevenDays().reverse(), visits);
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -200,4 +206,72 @@ function formatDateString(inputDateString) {
   const formattedDateString = `${year}-${month}-${day}`;
 
   return formattedDateString;
+}
+
+function visitsChart(days, visits) {
+  const dataLine = {
+    labels: days,
+    datasets: [
+      {
+        data: visits,
+        //   fill: true,
+        borderColor: "#bb9056",
+        borderWidth: 2,
+        // hoverBorderColor: '#000000',
+        // backgroundColor:'#ffe0b6',
+        tension: 0.4,
+        pointRadius: 0,
+        hoverPointRadius: 0,
+      },
+    ],
+  };
+
+  //coco rate chart configuration
+  const configLine = {
+    type: "line",
+    data: dataLine,
+    options: {
+      maintainAspectRatio: false,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "Daily Coconut Rate",
+        },
+      },
+    },
+  };
+
+  const chartLine = new Chart(
+    document.getElementById("monthly-visit-chart"),
+    configLine
+  );
+}
+
+function getLastSevenDays() {
+  const daysOfWeek = [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun",
+  ];
+
+  const currentDate = new Date();
+  const lastSevenDays = [];
+
+  for (let i = 1; i <= 7; i++) {
+    const day = new Date(currentDate);
+    day.setDate(currentDate.getDate() - i);
+    const dayOfWeek = daysOfWeek[day.getDay()];
+    lastSevenDays.push(`${dayOfWeek}`);
+  }
+
+  return lastSevenDays;
 }
