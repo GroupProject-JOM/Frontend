@@ -976,6 +976,18 @@ button:where(.swal2-styled) {
 .forgot{
   display: none;
 }
+
+.layer{
+  flex-wrap: wrap;
+}
+
+#monthly-visit-chart{
+  height: 200px;
+  width: 300px;
+}
+
+
+
 @media only screen and (max-device-width: 718px) {
   .home {
     left: 0;
