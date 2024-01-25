@@ -7,6 +7,8 @@
     viewData = body.querySelector(".view-data"),
     tbody = body.querySelector(".tbody"),
     subTotal = body.querySelector(".sub-total-value"),
+    closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay"),
     btn = body.querySelector(".next");
 
   sin.addEventListener("click", () => {
@@ -34,6 +36,24 @@
     viewData.textContent = data["en"]["viewData"];
     setGreeting();
   });
+
+  viewData.addEventListener("click", () => {
+    overlay.style.display = "flex";
+    document.querySelector(".view-outlet-container").style.display = "block";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".view-outlet-container").style.display = "none";
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+    document.querySelector(".view-outlet-container").style.display = "none";
+  });
+
 
   var data = {
     sin: {
