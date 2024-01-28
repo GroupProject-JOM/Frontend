@@ -9,6 +9,11 @@
     subTotal = body.querySelector(".sub-total-value"),
     closeBtn = body.querySelector(".close-btn"),
     overlay = body.querySelector(".overlay"),
+    oId = body.querySelector(".oId"),
+    oName = body.querySelector(".oName"),
+    oEmail = body.querySelector(".oEmail"),
+    oPhone = body.querySelector(".oPhone"),
+    oAddress = body.querySelector(".oAddress"),
     btn = body.querySelector(".next");
 
   sin.addEventListener("click", () => {
@@ -54,7 +59,6 @@
     document.querySelector(".view-outlet-container").style.display = "none";
   });
 
-
   var data = {
     sin: {
       btn: "ඉදිරිපත් කරන්න",
@@ -80,10 +84,16 @@
           dTitle.textContent = data.outlet.name;
           oArea.textContent = data.outlet.city;
 
-          // email.value = data.outlet.email;
-          // phone.value = data.outlet.phone;
-          // address1.value = data.outlet.address1;
-          // address2.value = data.outlet.street;
+          oId.textContent = data.outlet.id;
+          oName.textContent = data.outlet.name;
+          oEmail.textContent = data.outlet.email;
+          oPhone.textContent = data.outlet.phone;
+          oAddress.textContent =
+            data.outlet.address1 +
+            ", " +
+            data.outlet.street +
+            ", " +
+            data.outlet.city;
         });
       } else if (response.status === 400) {
         response.json().then((data) => {
