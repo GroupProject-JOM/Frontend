@@ -986,6 +986,15 @@ button:where(.swal2-styled) {
   width: 300px;
 }
 
+.greet-text{
+  display: flex;
+  justify-content: center;
+}
+
+.greet-text div{
+  background-color: var(--background-grey);
+  width: fit-content;
+}
 
 
 @media only screen and (max-device-width: 718px) {

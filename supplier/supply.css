@@ -72,8 +72,8 @@
 .date-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 6vw;
-  width: 90%;
+  /* gap: 6vw; */
+  width: 100%;
 }
 
 .feasibility {
@@ -81,7 +81,8 @@
 }
 
 .feasibility input {
-  width: 16rem;
+  /* width: 16rem; */
+  width: 100%;
   /* margin-bottom: 30px; */
 }
 
@@ -432,6 +433,10 @@ input [type=""] .supply7-container input {
   margin-top: 20px;
 }
 
+.supply-view-container{
+  margin-left: 0;
+}
+
 .supply-view-container .supply-view-content {
   display: flex;
   align-items: center;
@@ -584,6 +589,22 @@ input [type=""] .supply7-container input {
 .supply6-container .table-heading, .supply8-container .table-heading{
   width: 95%;
 }
+
+.location{
+  width: 90%;
+}
+
+.supply2-container .date-form div,
+.supply4-container .date-form div
+{
+ width: 40%;
+}
+
+.supply2-container .date-form,
+.supply4-container .date-form{
+  justify-content: space-between;
+}
+
 @media only screen and (max-device-width: 800px) {
   .report-container {
     grid-template-rows: 2fr 2fr 1fr 1fr;
