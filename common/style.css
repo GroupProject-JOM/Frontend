@@ -995,6 +995,11 @@ button:where(.swal2-styled) {
 .greet-text div{
   background-color: var(--background-grey);
   width: fit-content;
+  padding: 20px;
+  border: 2px solid var(--input-border);
+  border-radius: 10px;
+  margin-left: -8rem;
+  margin-bottom: 20px;
 }
 
 

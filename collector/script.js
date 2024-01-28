@@ -74,8 +74,8 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "සවිස්තරාත්මකව තොරතුරු බැලීමට එම සැපයුම තෝරන්න",
       c4: "ඉදිරියට එන එකතු කිරීම්",
       c5: "ඉදිරි දින 2 සඳහා ඉදිරි එකතු කිරීම් බලන්න",
-      greet1: "සුභ පැතුම්",
-      greet2: "ඔබ අද දින එකතු කිරීම් සියල්ල සම්පූර්ණ කර ඇත!",
+      greet1: "සුභ පැතුම්!",
+      greet2: "ඔබ අද දින එකතු කිරීම් සියල්ල සම්පූර්ණ කර ඇත",
     },
     en: {
       w1: "Coconut Rate",
@@ -84,8 +84,8 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "select a collection for a detailed view",
       c4: "Upcoming Collections",
       c5: "View upcoming collections for next 2 days",
-      greet1: "Good Job",
-      greet2: "You completed all of today's collections!"
+      greet1: "Good Job!",
+      greet2: "You completed all of today's collections"
     },
   };
 
