@@ -68,20 +68,13 @@
               <span class="collection-count"></span> collections
             </p>
             <div class="split-chart">
-              <!-- <div class="progress-container">
-                <div class="circular-progress">
-                  <span class="progress-value"></span>
-                </div>
-              </div> -->
-              <!-- <div> -->
-                <p class="coco-amount">
-                  <span class="total-count"></span><br />Coconuts
-                </p>
-                <p class="remaining">
-                  Actual Amount: <br /><span class="remaining-count"></span>
-                </p>
-                <span class="form-error remaining-error"></span>
-              <!-- </div> -->
+              <p class="coco-amount">
+                <span class="total-count"></span><br />Coconuts
+              </p>
+              <p class="remaining">
+                Delivered Amount: <br /><span class="remaining-count"></span>
+              </p>
+              <span class="form-error remaining-error"></span>
             </div>
 
             <p class="to-yards">Add to yards</p>
@@ -179,85 +172,189 @@
         <div class="map"></div>
 
         <div class="stockmg-content">
+          <div class="yard-supply-tables">
+            <div>
           <div class="stockmg-heading table-heading">
             <h2 class="stockmg-title"></h2>
             <p class="stockmg-subtitle"></p>
           </div>
 
-          <div>
-            <table class="collection-data-table overview-tables">
-              <tbody>
-                <tr>
-                  <td>Request ID</td>
-                  <td class="rId"></td>
-                </tr>
-                <tr>
-                  <td>Supplier Name</td>
-                  <td class="sName"></td>
-                </tr>
-                <tr>
-                  <td>Supplier Phone</td>
-                  <td class="sPhone"></td>
-                </tr>
-                <tr>
-                  <td>Supply Method</td>
-                  <td class="sMethod"></td>
-                </tr>
-                <tr class="estate">
-                  <td>Estate Address</td>
-                  <td class="address"></td>
-                </tr>
-                <tr class="cName-row">
-                  <td>Collector Name</td>
-                  <td class="cName"></td>
-                </tr>
-                <tr class="cPhone-row">
-                  <td>Collector Phone</td>
-                  <td class="cPhone"></td>
-                </tr>
-                <tr>
-                  <td class="date-text"></td>
-                  <td class="date"></td>
-                </tr>
-                <tr>
-                  <td class="time-text"></td>
-                  <td class="time"></td>
-                </tr>
-                <tr>
-                  <td>Coconut Count</td>
-                  <td class="amount"></td>
-                </tr>
-                <tr class="collected">
-                  <td>Collected Count</td>
-                  <td class="cAmount"></td>
-                </tr>
-                <tr>
-                  <td>Paymment Method</td>
-                  <td class="pMethod"></td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="reject-note" style="display: none"></p>
-          </div>
+              <div>
+                <table class="collection-data-table overview-tables">
+                  <tbody>
+                    <tr>
+                      <td>Request ID</td>
+                      <td class="rId"></td>
+                    </tr>
+                    <tr>
+                      <td>Supplier Name</td>
+                      <td class="sName"></td>
+                    </tr>
+                    <tr>
+                      <td>Supplier Phone</td>
+                      <td class="sPhone"></td>
+                    </tr>
+                    <tr>
+                      <td>Supply Method</td>
+                      <td class="sMethod"></td>
+                    </tr>
+                    <tr class="estate">
+                      <td>Estate Address</td>
+                      <td class="address"></td>
+                    </tr>
+                    <tr class="cName-row">
+                      <td>Collector Name</td>
+                      <td class="cName"></td>
+                    </tr>
+                    <tr class="cPhone-row">
+                      <td>Collector Phone</td>
+                      <td class="cPhone"></td>
+                    </tr>
+                    <tr>
+                      <td class="date-text"></td>
+                      <td class="date"></td>
+                    </tr>
+                    <tr>
+                      <td class="time-text"></td>
+                      <td class="time"></td>
+                    </tr>
+                    <tr>
+                      <td>Initial Coconut Count</td>
+                      <td class="amount"></td>
+                    </tr>
+                    <tr class="collected">
+                      <td>Collected Count</td>
+                      <td class="cAmount"></td>
+                    </tr>
+                    <tr>
+                      <td>Paymment Method</td>
+                      <td class="pMethod"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="reject-note" style="display: none"></p>
+              </div>
 
-          <div class="accept-decline">
-            <a class="stockmg-button form-button accept"></a>
-            <a class="stockmg-button form-button decline"></a>
+              <div class="accept-decline">
+                <a class="stockmg-button form-button accept"></a>
+                <a class="stockmg-button form-button decline"></a>
 
-            <a
-              class="stockmg-button form-button assign"
-              style="display: none"
-              href="./assign-collector.html"
-            ></a>
-            <a
-              class="to-yard-button stockmg-button stockmg-button form-button"
-              style="display: none"
-            ></a>
-            <a
-              class="change-collector stockmg-button form-button"
-              style="display: none"
-              href="./assign-collector.html"
-            ></a>
+                <a
+                  class="stockmg-button form-button assign"
+                  style="display: none"
+                  href="./assign-collector.html"
+                ></a>
+                <a
+                  class="to-yard-button stockmg-button stockmg-button form-button"
+                  style="display: none"
+                ></a>
+                <a class="stockmg-button form-button complete-button"
+                  >Complete Collection</a
+                >
+                <a
+                  class="change-collector stockmg-button form-button"
+                  style="display: none"
+                  href="./assign-collector.html"
+                ></a>
+              </div>
+            </div>
+            <div class="yard-data-container" style="display: none;">
+              <h2>Yard Allocations</h2>
+              <br />
+              <br />
+              <div>
+                <h3 class="yard-h3">Yard 01</h3>
+                <table class="yard-data-table overview-tables">
+                  <thead>
+                    <tr>
+                      <th>Yard</th>
+                      <th>Block</th>
+                      <th>Days</th>
+                      <th>Added Amount</th>
+                      <th>Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>01</td>
+                      <td>09</td>
+                      <td>27</td>
+                      <td>1000</td>
+                      <td>2000</td>
+                    </tr>
+                    <tr>
+                      <td>01</td>
+                      <td>09</td>
+                      <td>27</td>
+                      <td>1000</td>
+                      <td>2000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br /><br />
+              <div>
+                <h3 class="yard-h3">Yard 02</h3>
+                <table class="yard-data-table overview-tables">
+                  <thead>
+                    <tr>
+                      <th>Yard</th>
+                      <th>Block</th>
+                      <th>Days</th>
+                      <th>Added Amount</th>
+                      <th>Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>01</td>
+                      <td>09</td>
+                      <td>27</td>
+                      <td>1000</td>
+                      <td>2000</td>
+                    </tr>
+                    <tr>
+                      <td>01</td>
+                      <td>09</td>
+                      <td>27</td>
+                      <td>1000</td>
+                      <td>2000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br /><br />
+              <div>
+                <h3 class="yard-h3">Yard 03</h3>
+                <table class="yard-data-table overview-tables">
+                  <thead>
+                    <tr>
+                      <th>Yard</th>
+                      <th>Block</th>
+                      <th>Days</th>
+                      <th>Added Amount</th>
+                      <th>Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>01</td>
+                      <td>09</td>
+                      <td>27</td>
+                      <td>1000</td>
+                      <td>2000</td>
+                    </tr>
+                    <tr>
+                      <td>01</td>
+                      <td>09</td>
+                      <td>27</td>
+                      <td>1000</td>
+                      <td>2000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

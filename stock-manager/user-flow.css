@@ -235,6 +235,19 @@ input[type="number"] {
   padding-right: 60px;
 }
 
+.collection-view-container .yard-supply-tables{
+  width: 110%; 
+  display: flex;
+  justify-content: space-between;
+}
+
+.collection-view-container .yard-supply-tables .yard-data-table{
+  width: 30vw;
+}
+
+.collection-view-container .yard-h3{
+  color: var(--sub-title-color);
+}
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {
