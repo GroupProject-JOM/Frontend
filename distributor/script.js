@@ -240,7 +240,7 @@ function visitsChart(days, visits) {
         },
         title: {
           display: true,
-          text: "Daily Coconut Rate",
+          text: "Daily Distributions",
         },
       },
     },
