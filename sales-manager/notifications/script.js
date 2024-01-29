@@ -116,7 +116,6 @@
   const notifications = document.querySelector("#notifications"),
     count = document.querySelector(".count");
 
-  const interval1 = setInterval(() => {
     fetch(backProxy + "/notification", {
       method: "GET",
       headers: {
@@ -166,5 +165,4 @@
         console.error("An error occurred:", error);
         Command: toastr["error"](error);
       });
-  }, 300000);
 })();
