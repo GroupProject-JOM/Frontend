@@ -1,6 +1,8 @@
 (() => {
   let loaded = false;
 
+  var lang = getCookie("lang"); // current language
+
   const interval = setInterval(() => {
     const body = document.querySelector("body"),
       sin = body.querySelector(".sin"),
