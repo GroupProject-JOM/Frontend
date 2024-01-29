@@ -52,8 +52,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op3 = body.querySelector(".op3"),
     rNote = body.querySelector(".reject-note"),
     chnageCollecteor = body.querySelector(".change-collector"),
-    circularProgress = body.querySelector(".circular-progress"),
-    progressValue = body.querySelector(".progress-value"),
     yardH = body.querySelector(".yard-h3"),
     tbody2 = body.querySelector(".tbody2"),
     addError = body.querySelector(".add-error"),
@@ -65,34 +63,13 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var totalAmount = 0,
     remainigAmount = 0,
-    previous = remainigAmount;
+    previous = 0;
 
   var lang = getCookie("lang"); // current language
 
   yard.addEventListener("click", () => {
     overlay2.style.display = "flex";
     document.querySelector(".split1-window").style.display = "block";
-
-    let startValue = 0,
-      endValue = Math.floor((remainigAmount * 100) / totalAmount),
-      speed = 50;
-
-    if (totalAmount == 0 || endValue == 0) {
-      progressValue.textContent = `${0}%`;
-      circularProgress.style.background = `conic-gradient(#bb9056 ${
-        0 * 3.6
-      }deg, #ededed 0deg)`;
-      return;
-    }
-
-    let progress = setInterval(() => {
-      progressValue.textContent = `${startValue}%`;
-      circularProgress.style.background = `conic-gradient(#bb9056 ${
-        startValue * 3.6
-      }deg, #ededed 0deg)`;
-      if (startValue == endValue) clearInterval(progress);
-      startValue++;
-    }, speed);
   });
 
   overlay2.addEventListener("click", (e) => {
@@ -102,9 +79,9 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       document.querySelector(".split1-window").style.display = "none";
       document.querySelector(".split2-window").style.display = "none";
 
-      remainigAmount = +totalAmount;
-      previous = remainigAmount;
-      remainingCount.textContent = remainigAmount;
+      // remainigAmount = +totalAmount;
+      // previous = remainigAmount;
+      // remainingCount.textContent = remainigAmount;
     }
   });
 
@@ -114,19 +91,18 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.querySelector(".split1-window").style.display = "none";
     document.querySelector(".split2-window").style.display = "none";
 
-    remainigAmount = +totalAmount;
-    previous = remainigAmount;
-    remainingCount.textContent = remainigAmount;
+    // remainigAmount = +totalAmount;
+    // previous = remainigAmount;
+    // remainingCount.textContent = remainigAmount;
   });
 
   closeBtn3.addEventListener("click", () => {
     document.querySelector(".split1-window").style.right = "35%";
     document.querySelector(".split2-window").style.display = "none";
 
-    remainigAmount = +totalAmount;
-    donut();
-    previous = remainigAmount;
-    remainingCount.textContent = remainigAmount;
+    // remainigAmount = +totalAmount;
+    // previous = remainigAmount;
+    // remainingCount.textContent = remainigAmount;
   });
 
   sin.addEventListener("click", () => {
@@ -257,10 +233,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           amount.textContent = data.request.amount.toLocaleString("en-US");
 
           totalAmount = data.request.amount;
-          remainigAmount = data.request.amount;
-
           totalCount.textContent = totalAmount;
-          remainingCount.textContent = remainigAmount;
 
           pMethod.textContent = capitalize(data.request.payment_method);
           if (data.request.status == 1) {
@@ -642,9 +615,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     elm.addEventListener("click", () => {
       document.querySelector(".split1-window").style.right = "46%";
 
-      remainigAmount = +totalAmount;
-      donut();
-      previous = remainigAmount;
+      remainigAmount = 0;
+      // previous = remainigAmount;
       remainingCount.textContent = remainigAmount;
 
       if (index === 0) {
@@ -698,7 +670,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           }
 
           calculateRemainingAmount();
-          donut();
           r.parentElement.parentElement.classList.toggle("disable");
         });
       });
@@ -712,14 +683,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           add.value = +elm.value - +amount;
           calculateRemainingAmount();
-
-          // handle remaing error
-          if (remainigAmount > totalAmount)
-            if (lang == "sin")
-              remainingError.textContent = `ඉතිරි මුදල පවතින මුදල ඉක්මවිය නොහැක`;
-            else
-              remainingError.textContent = `Remaining amount cannot exceed the available amount`;
-          else remainingError.textContent = null;
 
           if (elm.value == 0 || elm.value == null || elm.value < +amount) {
             totalError.style.display = "";
@@ -742,14 +705,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be positive integer`;
             elm.nextSibling.style.display = "";
 
-            //handle remaining error
-            if (remainigAmount < 0)
-              if (lang == "sin")
-                remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-              else
-                remainingError.textContent = `Remaining amount cannot be less than zero`;
-            else remainingError.textContent = "";
-
             totalStatus = false;
 
             //handle add error
@@ -762,45 +717,18 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               totalError.innerHTML = `<i class="bx bx-error"></i> Coconuts amount cannot exceed the maximum capacity of the block`;
             elm.nextSibling.style.display = "";
 
-            //handle remaining error
-            if (remainigAmount < 0)
-              if (lang == "sin")
-                remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-              else
-                remainingError.textContent = `Remaining amount cannot be less than zero`;
-            else remainingError.textContent = "";
-
             totalStatus = false;
 
             //handle add error
             handleAdd(add);
           } else {
-            if (remainigAmount < 0) {
-              elm.nextSibling.style.display = "";
-              totalError.style.display = "";
+            totalError.innerHTML = null;
+            elm.nextSibling.style.display = "none";
 
-              if (lang == "sin") {
-                remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-                totalError.innerHTML = `<i class="bx bx-error"></i> ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-              } else {
-                remainingError.textContent = `Remaining amount cannot be less than zero`;
-                totalError.innerHTML = `<i class="bx bx-error"></i> Remaining amount cannot be less than zero`;
-              }
+            totalStatus = true;
 
-              totalStatus = false;
-            } else {
-              remainingError.textContent = "";
-
-              totalError.innerHTML = null;
-              elm.nextSibling.style.display = "none";
-
-              totalStatus = true;
-
-              //handle add error
-              handleAdd(add);
-
-              if (totalStatus && addStatus) donut();
-            }
+            //handle add error
+            handleAdd(add);
           }
         });
       });
@@ -814,14 +742,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           total.value = +elm.value + +amount;
           calculateRemainingAmount();
-
-          // handle remaing error
-          if (remainigAmount > totalAmount)
-            if (lang == "sin")
-              remainingError.textContent = `ඉතිරි මුදල පවතින මුදල ඉක්මවිය නොහැක`;
-            else
-              remainingError.textContent = `Remaining amount cannot exceed the available amount`;
-          else remainingError.textContent = null;
 
           if (elm.value == 0 || elm.value == null) {
             addError.style.display = "";
@@ -840,14 +760,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be positive integer`;
             elm.nextSibling.style.display = "";
 
-            //handle remaining error
-            if (remainigAmount < 0)
-              if (lang == "sin")
-                remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-              else
-                remainingError.textContent = `Remaining amount cannot be less than zero`;
-            else remainingError.textContent = "";
-
             addStatus = false;
 
             //handle total error
@@ -856,30 +768,13 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             addError.innerHTML = null;
             elm.nextSibling.style.display = "none";
 
-            if (remainigAmount < 0) {
-              elm.nextSibling.style.display = "";
-              addError.style.display = "";
+            addError.innerHTML = null;
+            elm.nextSibling.style.display = "none";
 
-              if (lang == "sin") {
-                remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-                addError.innerHTML = `<i class="bx bx-error-circle""></i> ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-              } else {
-                remainingError.textContent = `Remaining amount cannot be less than zero`;
-                addError.innerHTML = `<i class="bx bx-error-circle""></i> Remaining amount cannot be less than zero`;
-              }
-            } else {
-              remainingError.textContent = "";
+            addStatus = true;
 
-              addError.innerHTML = null;
-              elm.nextSibling.style.display = "none";
-
-              addStatus = true;
-
-              //handle total error
-              handleTotal(total, amount);
-
-              if (totalStatus && addStatus) donut();
-            }
+            //handle total error
+            handleTotal(total, amount);
           }
         });
       });
@@ -920,7 +815,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         value += +elm.value;
       }
     });
-    remainigAmount = +totalAmount - value;
+    remainigAmount = value;
     remainingCount.textContent = remainigAmount;
   }
 
@@ -978,64 +873,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       total.nextSibling.style.display = "none";
       totalStatus = true;
     }
-  }
-
-  function donut() {
-    let top = Math.floor((previous * 100) / totalAmount),
-      bottom = Math.floor((remainigAmount * 100) / totalAmount);
-
-    if (top < bottom) clockwise(top, bottom);
-    else antiClockwise(top, bottom);
-
-    previous = remainigAmount;
-  }
-
-  function clockwise(start, end) {
-    // start < end
-    let startValue = start,
-      endValue = end,
-      speed = 50;
-
-    if (totalAmount == 0 || endValue == 0 || remainigAmount == 0) {
-      progressValue.textContent = `${0}%`;
-      circularProgress.style.background = `conic-gradient(#bb9056 ${
-        0 * 3.6
-      }deg, #ededed 0deg)`;
-      return;
-    }
-
-    let progress = setInterval(() => {
-      progressValue.textContent = `${startValue}%`;
-      circularProgress.style.background = `conic-gradient(#bb9056 ${
-        startValue * 3.6
-      }deg, #ededed 0deg)`;
-      if (startValue == endValue) clearInterval(progress);
-      startValue++;
-    }, speed);
-  }
-
-  function antiClockwise(start, end) {
-    // start > end
-    let startValue = start,
-      endValue = end,
-      speed = 50;
-
-    if (totalAmount == 0 || endValue == 0 || remainigAmount == 0) {
-      progressValue.textContent = `${0}%`;
-      circularProgress.style.background = `conic-gradient(#bb9056 ${
-        0 * 3.6
-      }deg, #ededed 0deg)`;
-      return;
-    }
-
-    let progress = setInterval(() => {
-      progressValue.textContent = `${startValue}%`;
-      circularProgress.style.background = `conic-gradient(#bb9056 ${
-        startValue * 3.6
-      }deg, #ededed 0deg)`;
-      if (startValue == endValue) clearInterval(progress);
-      startValue--;
-    }, speed);
   }
 
   function viewYard(yard) {
@@ -1195,7 +1032,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       day = [],
       amounts = [],
       addTotal = 0,
-      remainigStatus = false,
       countStatus = false,
       count = 0;
 
@@ -1220,32 +1056,12 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       }
     });
 
-    // handle remaing
-    if (remainigAmount > totalAmount) {
-      if (lang == "sin")
-        remainingError.textContent = `ඉතිරි මුදල පවතින මුදල ඉක්මවිය නොහැක`;
-      else
-        remainingError.textContent = `Remaining amount cannot exceed the available amount`;
-      remainigStatus = false;
-    } else if (remainigAmount < 0) {
-      if (lang == "sin")
-        remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-      else
-        remainingError.textContent = `Remaining amount cannot be less than zero`;
-      remainigStatus = false;
-    } else if (totalAmount - remainigAmount != addTotal) {
-      if (lang == "sin") remainingError.textContent = `මොකක්හරි වැරැද්දක් වෙලා`;
-      else remainingError.textContent = `Something went wrong`;
-      remainigStatus = false;
-    } else {
-      remainingError.textContent = "";
-      remainigStatus = true;
-    }
-
     if (count == blocks.length) countStatus = true;
     else countStatus = false;
 
-    if (countStatus && remainigStatus) {
+    log(countStatus)
+
+    if (countStatus) {
       var formData = {
         yard: yardH.textContent.slice(5),
         blocks: blocks,
@@ -1277,6 +1093,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         cancelButtonColor: cancelButtonColor,
       }).then((result) => {
         if (result.isConfirmed) {
+          log(formData);
           // fetch(backProxy + "/yard-data", {
           //   method: "POST",
           //   headers: {
