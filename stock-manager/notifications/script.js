@@ -116,53 +116,53 @@
   const notifications = document.querySelector("#notifications"),
     count = document.querySelector(".count");
 
-    fetch(backProxy + "/notification", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then((response) => {
-        if (response.status == 200) {
-          response.json().then((data) => {
-            let arr = data.notifications;
-            arr.forEach(data_to_table);
+  fetch(backProxy + "/notification", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          let arr = data.notifications;
+          arr.forEach(data_to_table);
 
-            function data_to_table(item) {
-              if (item.status == 0) {
-                unseenCount++;
-                unSeenArray.push(item.id);
-              }
-              row += ` <div id=${item.id} class="notify-msg do-not">${
-                item.message
-              }<span>${formatTimeDifference(item.time)}</span></div>`;
+          function data_to_table(item) {
+            if (item.status == 0) {
+              unseenCount++;
+              unSeenArray.push(item.id);
             }
+            row += ` <div id=${item.id} class="notify-msg do-not">${
+              item.message
+            }<span>${formatTimeDifference(item.time)}</span></div>`;
+          }
 
-            notifications.innerHTML = row;
-            count.textContent = unseenCount;
+          notifications.innerHTML = row;
+          count.textContent = unseenCount;
 
-            if (unseenCount == 0) count.textContent = null;
-          });
-        } else if (response.status === 202) {
-          response.json().then((data) => {
-            console.log(data.notifications);
-          });
-          if (lang == "sin") Command: toastr["info"]("දැනුම්දීම් නැත");
-          else Command: toastr["info"]("No notifications");
-        } else if (response.status === 401) {
-          response.json().then((data) => {
-            console.log(data.message);
-          });
-          if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-          else Command: toastr["error"]("Invalid User");
-        } else {
-          console.error("Error:", response.status);
-          Command: toastr["error"](response.status, "Error");
-        }
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error);
-        Command: toastr["error"](error);
-      });
+          if (unseenCount == 0) count.textContent = null;
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.notifications);
+        });
+        if (lang == "sin") Command: toastr["info"]("දැනුම්දීම් නැත");
+        else Command: toastr["info"]("No notifications");
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
 })();
