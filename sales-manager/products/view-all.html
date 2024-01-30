@@ -88,92 +88,91 @@
     </div>
     <!-- view product light box ends -->
 
-<!-- new product light box starts -->
-<div class="overlay2 overlay" id="overlay2">
-  <div class="add-product-container light-box">
-    <p class="close-btn close-btn2 do-not">
-      <i class="fas fa-xmark"></i>
-    </p>
+    <!-- new product light box starts -->
+    <div class="overlay2 overlay" id="overlay2">
+      <div class="add-product-container light-box">
+        <p class="close-btn close-btn2 do-not">
+          <i class="fas fa-xmark"></i>
+        </p>
 
-    <div class="add-product-content">
-      <h2>Add New Product</h2>
+        <div class="add-product-content">
+          <h2>Add New Product</h2>
 
-      <div class="add-product-form">
-        <form>
-          <label>Category</label>
-          <input
-            type="text"
-            class="product-category"
-            placeholder="Enter product category"
-          />
-          <br /><span class="form-error category-error"></span>
+          <div class="add-product-form">
+            <form>
+              <label>Category</label>
+              <input
+                type="text"
+                class="product-category"
+                placeholder="Enter product category"
+              />
+              <br /><span class="form-error category-error"></span>
 
-          <label>Type</label>
-          <input
-            type="text"
-            class="product-type"
-            placeholder="Enter product type"
-          />
-          <br /><span class="form-error type-error"></span>
+              <label>Type</label>
+              <input
+                type="text"
+                class="product-type"
+                placeholder="Enter product type"
+              />
+              <br /><span class="form-error type-error"></span>
 
-          <label>Unit Price</label>
-          <input
-            type="number"
-            class="product-price"
-            placeholder="Enter Unit price"
-          />
-          <br /><span class="form-error price-error"></span>
-        </form>
+              <label>Unit Price</label>
+              <input
+                type="number"
+                class="product-price"
+                placeholder="Enter Unit price"
+              />
+              <br /><span class="form-error price-error"></span>
+            </form>
+          </div>
+          <button class="submit form-button">Submit</button>
+        </div>
       </div>
-      <button class="submit form-button">Submit</button>
     </div>
-  </div>
-</div>
-<!-- new product light box ends -->
+    <!-- new product light box ends -->
 
+    <!-- Edit product light box starts -->
+    <div class="overlay3 overlay" id="overlay3">
+      <div class="edit-product-container light-box">
+        <p class="close-btn close-btn3 do-not">
+          <i class="fas fa-xmark"></i>
+        </p>
 
-<!-- Edit product light box starts -->
-<div class="overlay3 overlay" id="overlay3">
-  <div class="edit-product-container light-box">
-    <p class="close-btn close-btn3 do-not">
-      <i class="fas fa-xmark"></i>
-    </p>
+        <div class="edit-product-content">
+          <h2>Edit Product</h2>
 
-    <div class="edit-product-content">
-      <h2>Edit Product</h2>
+          <div class="edit-product-form">
+            <form>
+              <label>Category</label>
+              <input
+                type="text"
+                class="edit-product-category"
+                placeholder="Enter product category"
+              />
+              <br /><span class="form-error edit-category-error"></span>
 
-      <div class="edit-product-form">
-        <form>
-          <label>Category</label>
-          <input
-            type="text"
-            class="edit-product-category"
-            placeholder="Enter product category"
-          />
-          <br /><span class="form-error edit-category-error"></span>
+              <label>Type</label>
+              <input
+                type="text"
+                class="edit-product-type"
+                placeholder="Enter product type"
+              />
+              <br /><span class="form-error edit-type-error"></span>
 
-          <label>Type</label>
-          <input
-            type="text"
-            class="edit-product-type"
-            placeholder="Enter product type"
-          />
-          <br /><span class="form-error edit-type-error"></span>
-
-          <label>Price</label>
-          <input
-            type="number"
-            class="edit-product-price"
-            placeholder="Enter Unit price"
-          />
-          <br /><span class="form-error edit-price-error"></span>
-        </form>
+              <label>Price</label>
+              <input
+                type="number"
+                class="edit-product-price"
+                placeholder="Enter Unit price"
+              />
+              <br /><span class="form-error edit-price-error"></span>
+            </form>
+          </div>
+          <button class="edit-submit form-button">Submit</button>
+        </div>
       </div>
-      <button class="edit-submit form-button">Submit</button>
     </div>
-  </div>
-</div>
-<!-- Edit product light box ends -->
+    <!-- Edit product light box ends -->
 
     <section class="home">
       <div class="notification">
@@ -198,7 +197,9 @@
         </div>
 
         <div>
-          <p class="pending-products-text">Enter Unit Price for pending products</p>
+          <p class="pending-products-text">
+            Enter Unit Price for pending products
+          </p>
           <table class="pending-products-table overview-tables">
             <thead>
               <tr>
@@ -210,13 +211,13 @@
                 <th></th>
               </tr>
             </thead>
-  
+
             <tbody class="tbody1"></tbody>
           </table>
-  <br><br><br><br>
-</div>
+          <br /><br /><br /><br />
+        </div>
 
-<p class="salesmg-text">View the edit company product details</p>
+        <p class="salesmg-text">View the edit company product details</p>
         <div class="table-top">
           <button class="add form-button">Add New</button>
 
@@ -229,7 +230,6 @@
             </div>
           </div>
         </div>
-
 
         <table class="products-table overview-tables">
           <thead>
@@ -245,7 +245,6 @@
 
           <tbody class="tbody2"></tbody>
         </table>
-      
       </div>
 
       <div class="back-to-top">

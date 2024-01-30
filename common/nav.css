@@ -239,7 +239,15 @@ header i.fa-xmark{
   display: none;
 }
 
-
+.indicator{
+  width: 10px;
+  height: 10px;
+  background-color: var(--toggle-color);
+  border-radius: 50%;
+  position: absolute;
+  left: 80%;
+  font-size: 12px;
+}
 
 
 

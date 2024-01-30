@@ -531,10 +531,6 @@ input:focus {
   width: 98%;
 }
 
-.production-container{
-  /* top: 50%; */
-  transform: translate(0, 10vh);
-}
 
 .pending-products-text,
 .products-container .salesmg-text{
@@ -555,6 +551,7 @@ input:focus {
   margin-top: 20px;
 }
 
+
 .amounts p{
   margin: 4px 0;
 }
@@ -574,7 +571,7 @@ input:focus {
   border-radius: 10px;
   padding: 15px;
   margin: 40px 0 10px 0;
-  width: 40%;
+  width: 55%;
   height: 18vh;
 }
 
@@ -602,9 +599,9 @@ width: 87%;
 .revenue-container .form-button{
   padding: 5px 30px;
   border-radius: 20px;
-  margin-top: -5px;
-  
+  /* margin-top: -5px; */
   float: right;
+  margin: 0;
   
 }
 
@@ -631,6 +628,7 @@ flex-direction: column;
 .collect-revenue-container input{
   width: 100%;
   font-size: 1rem;
+  margin-bottom: 0;
 }
 
 .collect-revenue-container .confirm{

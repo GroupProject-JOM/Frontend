@@ -104,7 +104,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      w1: "මාසික පරිමාව",
+      w1: "සමාගම් නිෂ්පාදන",
       w2: "දැනට පවතින නිෂ්පාදන",
       c1: "දැනට පවතින නිෂ්පාදන",
       c2: "දැනට පවතින නිෂ්පාදන වල තත්ත්වය බලන්න",
@@ -113,7 +113,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c3: "*සැපයුම් පොල් ප්‍රමාණය අවශ්‍ය අවම මට්ටමට නොපැමිණීම හේතුවෙන් සැපයුම් හැඳුනුම්පත P092 ප්‍රතික්ෂේප කර ඇත. <br/>මෙය දින 7කින් ස්වයංක්‍රීයව මැකෙනු ඇත",
     },
     en: {
-      w1: "Monthly Volume",
+      w1: "Company Products",
       w2: "Ongoing Production",
       c1: "Ongoing Productions",
       c2: "View ongoing production status",
