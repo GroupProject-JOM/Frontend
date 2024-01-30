@@ -133,8 +133,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "නිෂ්පාදන කළමනාකරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
       c4: "සැපයුම්කරු ඉල්ලීම්",
       c5: "සැපයුම්කරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
-      c6: "අද එකතු කිරීම්",
-      c7: "අද දිනට නියමිත පොල් එකතු කිරීම් බලන්න",
+      c6: "පොල් එකතු කිරීම්",
+      c7: "සෑම දිනකම පොල් එකතු කිරීම් තෝරා බලන්න",
       rateBtn: "අද පොල් මිල ඇතුලත් කරන්න",
       rate: "නව පොල් මිල ඇතුළත් කරන්න",
       rLabel: "නව අනුපාතය",
@@ -147,8 +147,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "View and respond to production manager requests",
       c4: "Supplier Requests Overview",
       c5: "View and update Supplier requests",
-      c6: "Today's Collections",
-      c7: "View coconut collections scheduled for today",
+      c6: "Coconut Collections",
+      c7: "Filter and view coconut collections for each day",
       rateBtn: "Enter Today's Coconut Rate",
       rate: "Enter new coconut rate",
       rLabel: "New rate",
@@ -444,10 +444,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message);
-              Command: toastr["success"](data.message);
               closeBtn.click();
               getRate();
             });
+            if (lang == "sin")
+              Command: toastr["success"]("පොල් මිල සාර්ථකව යාවත්කාලීන කරන ලදී");
+            else Command: toastr["success"]("Coconut rate updated successfully");
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);

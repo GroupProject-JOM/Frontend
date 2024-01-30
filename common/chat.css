@@ -253,12 +253,14 @@ p {
   margin-right: 10px;
 }
 .sent span {
-  float: right;
+  /* float: right; */
   font-size: 0.6rem;
   position: relative;
-  top: 5px;
-  right: -140px;
+  margin-top: 5px;
+  right: -95%;
+  /* margin-right: 10vw; */
   color: var(--text-color);
+
 }
 
 .received span{
@@ -293,6 +295,7 @@ p {
   border-bottom: 2px solid var(--input-border-focus);
 
 }
+
 
 
 @media only screen and (max-device-width: 900px) {

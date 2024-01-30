@@ -88,6 +88,7 @@ body.dark {
   --actionbar-color: #45423e;
   --sidebar-icon: #bb9056;
   --mode-color: #45423e;
+  --background-grey: #242526;
   --stock-lv1: #cf970a;
   --stock-lv2: #79a519;
   --stock-lv3: #527d2e;
@@ -950,11 +951,13 @@ input[type="checkbox"] {
   padding: 5px 30px;
   font-size: 0.9rem;
   border-radius: 20px;
+  margin: 0;
 }
 
 .table-top #searchBox {
   margin-bottom: 10px;
 }
+
 
 .product-container {
   width: 33vw;
@@ -1001,6 +1004,7 @@ button:where(.swal2-styled) {
   margin-left: -8rem;
   margin-bottom: 20px;
 }
+
 
 
 @media only screen and (max-device-width: 718px) {
