@@ -116,13 +116,17 @@
           setDistribution();
 
           function data_to_table(item) {
+            var price = "--"
+            if((item.price > 0)){
+              price = (+item.price).toLocaleString("en-US") + " LKR"
+            }
             row +=
               `<tr class="rem-row">` +
               `<td>${item.product}</td>` +
               `<td>${item.category}</td>` +
               `<td>${item.type}</td>` +
               `<td>${item.remaining.toLocaleString("en-US")}</td>` +
-              `<td>${(+item.price).toLocaleString("en-US")} LKR</td>` +
+              `<td>${price}</td>` +
               `</tr>`;
           }
           tbody.innerHTML = row;
@@ -136,8 +140,8 @@
             r.addEventListener("click", () => {
               type.textContent = r.children[1].textContent;
               category.textContent = r.children[2].textContent;
-              price.textContent = r.children[3].textContent;
-              remaining.textContent = r.children[4].textContent;
+              remaining.textContent = r.children[3].textContent;
+              price.textContent = r.children[4].textContent;
 
               overlay.style.display = "block";
               document.querySelector(".product-container").style.display =
