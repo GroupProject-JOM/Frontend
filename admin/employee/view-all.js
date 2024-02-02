@@ -78,6 +78,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               ">" +
               "<td>" +
               item.first_name +
+              " " +
+              item.last_name +
               "</td>" +
               "<td>" +
               item.role.charAt(0).toUpperCase() +
@@ -100,6 +102,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               ">" +
               "<td>" +
               item.first_name +
+              " " +
+              item.last_name +
               "</td>" +
               "<td>" +
               item.role.charAt(0).toUpperCase() +
