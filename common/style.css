@@ -702,7 +702,8 @@ body.dark {
 .today-table,
 .upcoming-table,
 .productionmg-container .overview-tables,
-.products-table {
+.products-table,
+.reject-supply-table {
   width: 90%;
 }
 
