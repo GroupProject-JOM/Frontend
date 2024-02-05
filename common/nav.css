@@ -240,12 +240,11 @@ header i.fa-xmark{
 }
 
 .indicator{
-  width: 10px;
-  height: 10px;
-  background-color: var(--toggle-color);
+  width: 8px;
+  height: 8px;
+  background-color: rgb(248, 234, 50);
   border-radius: 50%;
-  position: absolute;
-  left: 80%;
+  align-self: flex-start;
   font-size: 12px;
 }
 

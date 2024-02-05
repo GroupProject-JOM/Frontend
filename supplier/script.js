@@ -12,6 +12,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c3 = body.querySelector(".c3"),
     c4 = body.querySelector(".c4"),
     c5 = body.querySelector(".c5"),
+    c6 = body.querySelector(".c6"),
+    c7 = body.querySelector(".c7"),
     tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
     income = body.querySelector(".income"),
@@ -87,6 +89,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c3.innerHTML = data["sin"]["c3"];
     c4.textContent = data["sin"]["c4"];
     c5.textContent = data["sin"]["c5"];
+    c6.textContent = data["sin"]["c6"];
+    c7.textContent = data["sin"]["c7"];
     ongoingError.textContent = data["sin"]["ongoingError"];
     pastError.textContent = data["sin"]["pastError"];
     setGreeting();
@@ -106,6 +110,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c3.innerHTML = data["en"]["c3"];
     c4.textContent = data["en"]["c4"];
     c5.textContent = data["en"]["c5"];
+    c6.textContent = data["en"]["c6"];
+    c7.textContent = data["en"]["c7"];
     ongoingError.textContent = data["en"]["ongoingError"];
     pastError.textContent = data["en"]["pastError"];
     setGreeting();
@@ -120,6 +126,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c3: "*සැපයුම් පොල් ප්‍රමාණය අවශ්‍ය අවම මට්ටමට නොපැමිණීම හේතුවෙන් සැපයුම් හැඳුනුම්පත S092 ප්‍රතික්ෂේප කර ඇත. <br/>මෙය දින 7කින් ස්වයංක්‍රීයව මැකෙනු ඇත",
       c4: "අතීත සැපයුම්",
       c5: "ඔබේ වතුවල අතීත සැපයුම් පිළිබඳ දළ විශ්ලේෂණය",
+      c6: "Rejected Supplies",
+      c7: "ඔබේ වතුවල ප්‍රතික්ෂේප වූ සැපයුම් පිළිබඳ දළ විශ්ලේෂණය",
       ongoingError: "**ඔබට අඛණ්ඩ සැපයුම් කිසිවක් නොමැත",
       pastError: "**ඔබට අතීත සැපයුම් කිසිවක් නොමැත",
     },
@@ -131,6 +139,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c3: "*Supply ID S092 has been rejected due to the supply coconut amount not meeting the minimum required. <br/>This will be automatically deleted in 7 days",
       c4: "Past Supplies",
       c5: "Overview of past supplies at your estates",
+      c6: "Rejected Supplies",
+      c7: "Overview of rejected supplies at your estates",
       ongoingError: "**You don't have any ongoing supplies",
       pastError: "**You don't have any past supplies",
     },

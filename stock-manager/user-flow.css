@@ -249,6 +249,35 @@ input[type="number"] {
   color: var(--sub-title-color);
 }
 
+.tabs-container{
+  width: 90%;
+}
+
+.tabs{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 7vw;
+  height: 8vh;
+  margin-bottom: 6vh;
+}
+
+.tab{
+  background-color: var(--body-color);
+  border: 3px solid #9c743e;
+  border-radius: 15px;
+  display: grid;
+  place-content: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  /* box-shadow: 0 0 1px 3px #000 inset; */
+}
+
+.tab:hover{
+  box-shadow: -1px 1px 15px 1px rgba(0,0,0,0.20) inset;
+
+}
+
+
 @media only screen and (max-device-width: 1260px) {
   .yard2 {
     /* display: flex;
