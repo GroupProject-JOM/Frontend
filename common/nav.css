@@ -242,8 +242,7 @@ header i.fa-xmark{
 .indicator{
   width: 8px;
   height: 8px;
-  /* background-color: rgb(248, 234, 50); */
-  background-color: red;
+  background-color: rgb(248, 234, 50);
   border-radius: 50%;
   align-self: flex-start;
   font-size: 12px;
