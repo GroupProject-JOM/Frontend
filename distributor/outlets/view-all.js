@@ -106,7 +106,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             log(item);
             row +=
               `<tr id=${item.id}>` +
-              `<td class="col">OD${item.id}</td>` +
+              `<td class="col">O/D/${item.id}</td>` +
               `<td class="col">${item.name}</td>` +
               `<td class="col">${item.city}</td>` +
               `<td class="col">${item.phone}</td>` +
@@ -137,7 +137,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           views.forEach((view, index) => {
             view.addEventListener("click", () => {
-              oId.textContent = "OD"+arr[index].id;
+              oId.textContent = "O/D/"+arr[index].id;
               oName.textContent = arr[index].name;
               oEmail.textContent = arr[index].email;
               oPhone.textContent = arr[index].phone;

@@ -163,7 +163,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./production-requests/view.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td> P/R/" +
               item.id +
               "</td>" +
               "<td>" +
@@ -240,7 +240,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./production/view.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td> P/B/" +
               item.id +
               "</td>" +
               "<td>" +

@@ -149,7 +149,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {
-            batchNo.textContent = data.batch.id;
+            batchNo.textContent ="P/B/" + data.batch.id;
 
             if (data.batch.status == 1) {
               status.textContent = "Processing";
