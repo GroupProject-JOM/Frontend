@@ -105,7 +105,7 @@
           }
 
           sYard.textContent = "Yard " + data.request.yard;
-          yBlock.textContent = "Block " + data.request.block;
+          yBlock.textContent = "B/" + data.request.block;
           yAmount.textContent = data.request.amount.toLocaleString("en-US");
           ystatus.textContent = stat;
 
@@ -164,7 +164,7 @@
                 ` class="` +
                 status +
                 `">` +
-                `<td>` +
+                `<td> B/` +
                 item.id +
                 `</td>` +
                 `<td>` +

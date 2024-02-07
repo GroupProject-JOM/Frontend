@@ -80,7 +80,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           requests = data.accepted;
           data.accepted.forEach((item) => {
             row1 +=
-              `<div class="row disable"><div class="add-label request-label"><label class="ename-label"><input class="radio" type="checkbox" />Request R` +
+              `<div class="row disable"><div class="add-label request-label"><label class="ename-label"><input class="radio" type="checkbox" />Request P/R/` +
               item.id +
               `</label></div>` +
               `<div class="add-input">` +

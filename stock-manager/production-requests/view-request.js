@@ -179,7 +179,7 @@
             yDays.textContent = data.request.days + " days";
           }
 
-          rId.textContent = data.request.id;
+          rId.textContent = "P/R/" + data.request.id;
           sYard.textContent = "Yard " + data.request.yard;
           yBlock.textContent = "Block " + data.request.block;
           yAmount.textContent = data.request.amount.toLocaleString("en-US");
@@ -240,7 +240,7 @@
                 ` class="` +
                 status +
                 `">` +
-                `<td>` +
+                `<td> B/` +
                 item.id +
                 `</td>` +
                 `<td>` +

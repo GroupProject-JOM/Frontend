@@ -118,7 +118,7 @@
               "<tr data-href='./view.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td> P/B/" +
               item.id +
               "</td>" +
               "<td>" +

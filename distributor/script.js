@@ -122,7 +122,7 @@
             }
             row +=
               `<tr class="rem-row">` +
-              `<td>${item.product}</td>` +
+              `<td>P/I/${item.product}</td>` +
               `<td>${item.category}</td>` +
               `<td>${item.type}</td>` +
               `<td>${item.remaining.toLocaleString("en-US")}</td>` +

@@ -88,7 +88,7 @@
               ` class="` +
               status +
               `">` +
-              `<td>` +
+              `<td> B/` +
               item.id +
               `</td>` +
               `<td>` +
@@ -103,7 +103,7 @@
           tbody.innerHTML = row;
 
           sYard.textContent = "Yard " + getCookie("id").charAt(0);
-          yBlock.textContent = data.block.id;
+          yBlock.textContent = "B/" + data.block.id;
           yAmount.textContent = data.block.count;
           yDays.textContent = data.block.days;
 
