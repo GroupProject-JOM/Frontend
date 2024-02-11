@@ -106,7 +106,7 @@
               `<tr id=` +
               item.id +
               `>` +
-              `<td> P/B/` +
+              `<td> P/I/` +
               item.id +
               `</td>` +
               `<td>` +
