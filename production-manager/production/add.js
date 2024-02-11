@@ -80,7 +80,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           requests = data.accepted;
           data.accepted.forEach((item) => {
             row1 +=
-              `<div class="row disable"><div class="add-label request-label"><label class="ename-label"><input class="radio" type="checkbox" />Request P/R/` +
+              `<div class="row disable" id=${item.id}><div class="add-label request-label"><label class="ename-label"><input class="radio" type="checkbox" />Request P/R/` +
               item.id +
               `</label></div>` +
               `<div class="add-input">` +
@@ -241,7 +241,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     row.forEach((element) => {
       if (element.classList.contains("disable")) count++;
       else {
-        var rId = element.childNodes[0].childNodes[0].textContent.slice(9);
+        var rId = element.id;
         var coco = element.childNodes[1].childNodes[0];
 
         requests.forEach((request) => {
@@ -280,7 +280,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               actual.push(request.actual);
               days.push(request.days);
             }
-          }
+          } else requestStatus = false;
         });
       }
     });
