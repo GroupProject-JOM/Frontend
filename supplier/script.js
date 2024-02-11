@@ -16,6 +16,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c7 = body.querySelector(".c7"),
     tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
+    tbody3 = body.querySelector(".tbody3"),
     income = body.querySelector(".income"),
     ongoingSupplyTable = body.querySelector(".ongoing-supply-table"),
     ongoingError = body.querySelector(".ongoing-error"),
@@ -148,6 +149,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   let row1 = "",
     row2 = "",
+    row3 = "",
     count = 0;
 
   fetch(backProxy + "/collections", {
@@ -162,7 +164,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         response.json().then((data) => {
           data.ongoing.forEach((item) => {
             var stat = "",
-              st = "";
+              st = "",
+              oTable = true;
 
             if (item.status == 1) {
               stat = "pending";
@@ -181,37 +184,63 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             } else if (item.status == 4) {
               stat = "rejected";
               st = "Rejected";
+              oTable = checkDate(item.date);
             } else {
               return;
             }
 
-            row1 +=
-              "<tr data-href='./supply-view.html' id=" +
-              item.id +
-              ">" +
-              "<td class='hide'>" +
-              item.id +
-              "</td>" +
-              "<td>" +
-              item.date +
-              "</td>" +
-              "<td>" +
-              timeString(item.name) +
-              "</td>" +
-              "<td class='hide'>" +
-              item.amount.toLocaleString("en-US") +
-              "</td>" +
-              "<td class='hide'>" +
-              capitalize(item.method) +
-              "</td>" +
-              "<td>" +
-              "<button class='" +
-              stat +
-              " status'>" +
-              st +
-              "</button>" +
-              "</td>" +
-              "</tr>";
+            if (oTable) {
+              row1 +=
+                "<tr data-href='./supply-view.html' id=" +
+                item.id +
+                ">" +
+                "<td class='hide'>" +
+                item.id +
+                "</td>" +
+                "<td>" +
+                item.date +
+                "</td>" +
+                "<td>" +
+                timeString(item.name) +
+                "</td>" +
+                "<td class='hide'>" +
+                item.amount.toLocaleString("en-US") +
+                "</td>" +
+                "<td class='hide'>" +
+                capitalize(item.method) +
+                "</td>" +
+                "<td>" +
+                "<button class='" +
+                stat +
+                " status'>" +
+                st +
+                "</button>" +
+                "</td>" +
+                "</tr>";
+            } else {
+              prefix =
+                "<tr data-href='./supply-view.html' id=" +
+                item.id +
+                ">" +
+                "<td class='hide'>" +
+                item.id +
+                "</td>" +
+                "<td>" +
+                item.date +
+                "</td>" +
+                "<td class='hide'>" +
+                item.amount.toLocaleString("en-US") +
+                "</td>" +
+                "<td class='hide'>" +
+                capitalize(item.method) +
+                "</td>" +
+                "<td>" +
+                "<button class='rejected status'>Rejected</button>" +
+                "</td>" +
+                "</tr>";
+
+              row3 = prefix + row3;
+            }
           });
 
           // Past table
@@ -263,6 +292,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
+          tbody3.innerHTML = row3;
           ongoing.textContent = count;
           income.textContent = data.income.toLocaleString("en-US") + " LKR";
 
@@ -389,3 +419,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     window.location.href = "./supply-view.html";
   });
 })();
+
+function checkDate(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}

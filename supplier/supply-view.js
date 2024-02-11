@@ -158,6 +158,11 @@
               cPhoneBlock.style.display = "none";
               rNote.style.display = "block";
               rNote.textContent = "Reason: " + data.request.reason;
+
+              edit.style.display = "none";
+              edit.disabled = true;
+              del.style.display = "none";
+              del.disabled = true;
             }
 
             ccount.textContent = data.request.amount.toLocaleString("en-US");
@@ -191,8 +196,11 @@
 
             if (selectedDate < week) {
               error.style.display = "none";
-              del.style.display = "block";
-              del.disabled = false;
+              
+              if (data.request.status != 4) {
+                del.style.display = "block";
+                del.disabled = false;
+              }
             }
           } else if (4 < data.request.status && data.request.status < 7) {
             if (data.request.status == 5)
@@ -321,8 +329,7 @@
   function actionVerifyDecline() {
     if (getCookie("id") == sessionStorage.getItem("id")) {
       cMessage.textContent =
-        "Collecter entered amount is " +
-        sessionStorage.getItem("amount");
+        "Collecter entered amount is " + sessionStorage.getItem("amount");
       sMessage.style.display = "block";
     }
   }
