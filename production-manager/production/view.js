@@ -74,7 +74,7 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          batchNo.textContent = data.batch.id;
+          batchNo.textContent = "P/B/" + data.batch.id;
 
           if (data.batch.status == 1) {
             status.textContent = "Processing";
@@ -183,7 +183,7 @@
 
           requests.forEach((item, index) => {
             row1 +=
-              `<tr><td>` +
+              `<tr><td>P/R/` +
               item +
               `</td>` +
               `<td>` +

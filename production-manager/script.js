@@ -175,7 +175,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<td>Yard " +
               item.yard +
               "</td>" +
-              "<td>Block " +
+              "<td>B/" +
               item.block +
               "</td>" +
               "<td>" +
