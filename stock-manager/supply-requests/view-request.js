@@ -56,6 +56,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tbody2 = body.querySelector(".tbody2"),
     addError = body.querySelector(".add-error"),
     totalError = body.querySelector(".total-error"),
+    completeBtn = body.querySelector(".complete-button"),
     save = body.querySelector(".save");
 
   totalCount.textContent = 0;
@@ -242,6 +243,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             cNameRow.style.display = "none";
             cPhoneRow.style.display = "none";
             collected.style.display = "none";
+            completeBtn.style.display = "none";
+            completeBtn.disabled = true;
           } else if (
             data.request.status == 2 &&
             data.request.method == "pickup"
@@ -253,6 +256,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             accept.disabled = true;
             decline.style.display = "none";
             decline.disabled = true;
+            completeBtn.style.display = "none";
+            completeBtn.disabled = true;
             assign.style.display = "block";
             document.cookie = "date=" + date.textContent + "; path=/";
             cNameRow.style.display = "none";
@@ -286,6 +291,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             decline.disabled = true;
             assign.style.display = "none";
             assign.disabled = true;
+            completeBtn.style.display = "none";
+            completeBtn.disabled = true;
             cName.textContent =
               data.request.c_fName + " " + data.request.c_lName;
             cPhone.textContent = data.request.c_phone;
@@ -302,6 +309,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             decline.disabled = true;
             assign.style.display = "none";
             assign.disabled = true;
+            completeBtn.style.display = "none";
+            completeBtn.disabled = true;
             cNameRow.style.display = "none";
             cPhoneRow.style.display = "none";
             collected.style.display = "none";
@@ -317,6 +326,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             decline.disabled = true;
             assign.style.display = "none";
             assign.disabled = true;
+            completeBtn.style.display = "none";
+            completeBtn.disabled = true;
             cAmount.textContent = data.request.final_amount;
 
             if (data.request.method == "pickup") {
@@ -337,6 +348,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             decline.disabled = true;
             assign.style.display = "none";
             assign.disabled = true;
+            completeBtn.style.display = "none";
+            completeBtn.disabled = true;
             cAmount.textContent = data.request.final_amount;
 
             if (data.request.method == "pickup") {
