@@ -18,64 +18,84 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tbody2 = body.querySelector(".tbody2"),
     tbody3 = body.querySelector(".tbody3"),
     income = body.querySelector(".income"),
-    ongoingSupplyTable = body.querySelector(".ongoing-supply-table"),
     ongoingError = body.querySelector(".ongoing-error"),
     pastError = body.querySelector(".past-error"),
+    ongoingSupplyTable = body.querySelector(".ongoing-supply-table"),
     pastSupplyTable = body.querySelector(".past-supply-table"),
+    rejectSupplyTable = body.querySelector(".reject-supply-table"),
     searchBar1 = body.querySelector(".search1"),
     searchBar2 = body.querySelector(".search2"),
+    searchBar3 = body.querySelector(".search3"),
     filter1 = body.querySelector(".filter-1"),
     filter2 = body.querySelector(".filter-2"),
+    filter3 = body.querySelector(".filter-3"),
     aBar = body.querySelector(".action-bar"),
     aId = body.querySelector(".action-id"),
     aAmount = body.querySelector(".action-amount"),
     aBtn = body.querySelector(".action-button");
 
+  // initalize serach boxes
   var searchBox1 = document.querySelectorAll(
     '.search-box1 input[type="text"] + span'
   );
   var searchBox2 = document.querySelectorAll(
     '.search-box2 input[type="text"] + span'
   );
+  var searchBox3 = document.querySelectorAll(
+    '.search-box3 input[type="text"] + span'
+  );
 
+  // search box search function on click
   searchBox1.forEach((elm) => {
     elm.addEventListener("click", () => {
       elm.previousElementSibling.value = "";
       search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
     });
   });
-
   searchBox2.forEach((elm) => {
     elm.addEventListener("click", () => {
       elm.previousElementSibling.value = "";
       search(searchBar2.value.toUpperCase(), pastSupplyTable);
     });
   });
+  searchBox3.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar3.value.toUpperCase(), rejectSupplyTable);
+    });
+  });
 
+  // search box search function on input
   searchBar1.addEventListener("keyup", () => {
     search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
   });
-
   searchBar2.addEventListener("keyup", () => {
     search(searchBar2.value.toUpperCase(), pastSupplyTable);
   });
+  searchBar3.addEventListener("keyup", () => {
+    search(searchBar3.value.toUpperCase(), rejectSupplyTable);
+  });
 
+  // filters filter functions
   filter1.addEventListener("input", () => {
     search(filter1.value.toUpperCase(), ongoingSupplyTable);
   });
-
   filter2.addEventListener("input", () => {
     search(filter2.value.toUpperCase(), pastSupplyTable);
   });
+  filter3.addEventListener("input", () => {
+    search(filter3.value.toUpperCase(), rejectSupplyTable);
+  });
 
+  // toggle view hide filter on click
   const googleIcon = document.querySelectorAll("#filter-icon");
-
   googleIcon.forEach((icon) => {
     icon.addEventListener("click", () => {
       icon.parentElement.classList.toggle("active");
     });
   });
 
+  // translate to sinhala on click sin
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
@@ -97,6 +117,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     setGreeting();
   });
 
+  // translate to en on click en
   en.addEventListener("click", () => {
     en.classList.add("active");
     sin.classList.remove("active");
@@ -118,6 +139,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     setGreeting();
   });
 
+  // trasnslation and page text contents
   var data = {
     sin: {
       w1: "දැනට පවතින සැපයුම්",
@@ -147,11 +169,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
+  // initallize rows for data handling
   let row1 = "",
     row2 = "",
     row3 = "",
     count = 0;
 
+  // retrive data from backend and assign to tbodies
   fetch(backProxy + "/collections", {
     method: "GET",
     headers: {
@@ -163,10 +187,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       if (response.status == 200) {
         response.json().then((data) => {
           data.ongoing.forEach((item) => {
+            // inialize default values for status
             var stat = "",
               st = "",
               oTable = true;
 
+            // set status for supplies
             if (item.status == 1) {
               stat = "pending";
               st = "Pending Approval";
@@ -189,6 +215,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               return;
             }
 
+            // appent to relevant row
             if (oTable) {
               row1 +=
                 "<tr data-href='./supply-view.html' id=" +
@@ -243,7 +270,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             }
           });
 
-          // Past table
+          // Past supplies table
           data.past.forEach((item) => {
             var stat = "",
               st = "";
@@ -290,12 +317,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</tr>";
           });
 
+          // assign tobodies
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
           tbody3.innerHTML = row3;
           ongoing.textContent = count;
           income.textContent = data.income.toLocaleString("en-US") + " LKR";
 
+          // row click to view page
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
             r.addEventListener("click", () => {
@@ -303,6 +332,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               window.location.href = r.dataset.href;
             });
           });
+
+          // pagination for 3 tables
+          pagination("table1", 15);
+          pagination("table2", 10);
+          pagination("table3", 10);
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -360,6 +394,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           tbody2.innerHTML = row2;
           income.textContent = data.income.toLocaleString("en-US") + " LKR";
+
+          // pagination for table 2
+          pagination("table2", 10);
         });
       } else {
         console.error("Error:", response.status);
