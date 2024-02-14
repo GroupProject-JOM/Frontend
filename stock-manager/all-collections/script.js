@@ -268,6 +268,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           tbody2.innerHTML = row2;
           tbody3.innerHTML = row3;
 
+          // pagination for 3 tables
+          pagination("table1", 10);
+          pagination("table2", 10);
+          pagination("table3", 10);
+
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
             r.addEventListener("click", () => {

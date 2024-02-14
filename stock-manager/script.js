@@ -249,6 +249,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
             tbody2.innerHTML = row2;
 
+            // pagination for supply requests tables
+            pagination("table2", 4);
+
             const rows = document.querySelectorAll("tr[data-href]");
             rows.forEach((r) => {
               r.addEventListener("click", () => {
@@ -449,7 +452,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             });
             if (lang == "sin")
               Command: toastr["success"]("පොල් මිල සාර්ථකව යාවත්කාලීන කරන ලදී");
-            else Command: toastr["success"]("Coconut rate updated successfully");
+            else
+              Command: toastr["success"]("Coconut rate updated successfully");
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
@@ -552,15 +556,7 @@ function rateChart(days, rate) {
 }
 
 function getLastSevenDays() {
-  const daysOfWeek = [
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun",
-  ];
+  const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   const currentDate = new Date();
   const lastSevenDays = [];

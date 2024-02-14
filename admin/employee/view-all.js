@@ -95,6 +95,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           }
           tbody1.innerHTML = row1;
 
+          // pagination for table 1
+          pagination("table1", 10);
+
           data.previous.forEach((item) => {
             row2 +=
               "<tr data-href='./view.html' id=" +
