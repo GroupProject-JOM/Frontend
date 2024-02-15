@@ -959,7 +959,6 @@ input[type="checkbox"] {
   margin-bottom: 10px;
 }
 
-
 .product-container {
   width: 33vw;
   height: auto;
@@ -977,26 +976,25 @@ button:where(.swal2-styled) {
   }
 }
 
-
-.forgot{
+.forgot {
   display: none;
 }
 
-.layer{
+.layer {
   flex-wrap: wrap;
 }
 
-#monthly-visit-chart{
+#monthly-visit-chart {
   height: 200px;
   width: 300px;
 }
 
-.greet-text{
+.greet-text {
   display: flex;
   justify-content: center;
 }
 
-.greet-text div{
+.greet-text div {
   background-color: var(--background-grey);
   width: fit-content;
   padding: 20px;
@@ -1007,100 +1005,90 @@ button:where(.swal2-styled) {
 }
 
 .forgot-password-content,
-.change-password-content{
-    position: relative;
-    top: 10vh;
+.change-password-content {
+  position: relative;
+  top: 10vh;
 }
 
 .forgot-password-content .form-heading,
-.change-password-content .form-heading{
-margin-bottom: 0;
+.change-password-content .form-heading {
+  margin-bottom: 0;
 }
 .forgot-password-content .heading,
-.change-password-content .heading
-{
-margin-bottom: 8vh;
+.change-password-content .heading {
+  margin-bottom: 8vh;
 }
 .forgot-password-content .form-text,
-.change-password-content .form-text{
-font-size: 0.9rem;
-color: #626262;
-/* width: 70%; */
-
+.change-password-content .form-text {
+  font-size: 0.9rem;
+  color: #626262;
+  /* width: 70%; */
 }
 
-.change-password-content .password-content .form-text{
-    color: var(--primary-color);
-    font-weight: 500;
-    margin-bottom: 0;
-    font-size: 0.9rem;
+.change-password-content .password-content .form-text {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 0;
+  font-size: 0.9rem;
 }
 
-.forgot-password-content .password-content .form-heading{
-font-size: 22px;
-color: #626262;
+.forgot-password-content .password-content .form-heading {
+  font-size: 22px;
+  color: #626262;
 }
 
 .forgot-password-content input[type="text"],
-.change-password-content input[type="text"]
-{
-    border-bottom: none;
-    margin-bottom: 0;
-    width: 80%;
+.change-password-content input[type="text"] {
+  border-bottom: none;
+  margin-bottom: 0;
+  width: 80%;
 }
 
-.change-password-content input[type="text"]{
-    margin-top: 0;
+.change-password-content input[type="text"] {
+  margin-top: 0;
 }
 .forgot-password-content input[type="text"]:focus,
-.change-password-content input[type="text"]:focus
-{
-    border-bottom: none;
+.change-password-content input[type="text"]:focus {
+  border-bottom: none;
 }
 .forgot-password-content .password-input,
-.change-password-content .password-input
-{
-    width: 70%;
-    border-bottom: 1px solid var(--input-border);
-    margin-top: 15px;
-    
+.change-password-content .password-input {
+  width: 70%;
+  border-bottom: 1px solid var(--input-border);
+  margin-top: 15px;
 }
 
 .forgot-password-content .password-input .form-button,
-.change-password-content .password-input .form-button
-{
-    float: right;
-    padding: 5px 25px;
-    font-size: 0.8rem;
-    border-radius: 20px;
-    margin-top: 15px;
-    
+.change-password-content .password-input .form-button {
+  float: right;
+  padding: 5px 25px;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  margin-top: 15px;
 }
 
-.password-input:has(input:focus){
-    border-bottom: 2px solid var(--input-border-focus);
-  
-  }
+.password-input:has(input:focus) {
+  border-bottom: 2px solid var(--input-border-focus);
+}
 
-.email-content{
-    margin-bottom: 15vh;
+.email-content {
+  margin-bottom: 15vh;
 }
 
 .forgot-password-container .signup-menu-top,
-.change-password-container .signup-menu-top{
-    position: relative;
-    top: 25%;
+.change-password-container .signup-menu-top {
+  position: relative;
+  top: 25%;
 }
 
-.change-password-content .form-button{
-    margin-top: 70px;
+.change-password-content .form-button {
+  margin-top: 70px;
 }
 
-.forgot-password-container .lds-ring{
+.forgot-password-container .lds-ring {
   float: right;
   right: 40px;
   margin-top: 35px;
-  
 }
 
 /* pagination css start */
@@ -1109,14 +1097,21 @@ color: #626262;
   margin-top: 20px;
 }
 
-.pagination button,
-.previous {
+.pagination button {
   padding: 5px 10px;
   margin: 0 5px;
   cursor: pointer;
-  outline: 1px solid #494a4f;
-  border-radius: 1px;
+  position: relative;
+  left: 30%;
+  /* display: inline-flex; */
+  /* margin-left: 80%; */
+
+  /* align-self: flex-end; */
+  /* outline: 1px solid #494a4f; */
+  border-radius: 50px;
   border: none;
+  border: 3px solid var(--background-grey);
+  background-color: var(--background-grey);
 }
 
 .hidden {
@@ -1130,8 +1125,10 @@ color: #626262;
 }
 
 .pagination button.active {
-  background-color: #007bff;
-  color: white;
+  /* background-color: var(--button-color); */
+  border: 3px solid var(--button-color);
+  color: var(--primary-color);
+  background-color: var(--background-grey);
 }
 /* pagination css end */
 
