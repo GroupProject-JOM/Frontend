@@ -3,7 +3,8 @@
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     cTitle = body.querySelector(".collection-title"),
-    cSubTitle = body.querySelector(".collection-text");
+    cSubTitle = body.querySelector(".collection-text"),
+    tbody1 = body.querySelector(".tbody1");
 
   var lang = getCookie("lang"); // current language
 
@@ -43,4 +44,49 @@
       cSubTitle: "Detailed view of your completed coconut collections",
     },
   };
+
+  var row = "";
+  fetch(backProxy + "/collector", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          data.list.forEach((item) => {
+            row +=
+              `<tr id=${item.id}>` +
+              `<td>${item.area}</td>` +
+              `<td>${item.date}</td>` +
+              `<td>${timeString(item.time)}</td>` +
+              `<td>${item.amount.toLocaleString("en-US")}</td>` +
+              `<td>${item.name} ${item.last_name}</td>` +
+              `</tr>`;
+          });
+          tbody1.innerHTML = row;
+        });
+      } else if (response.status === 202) {
+        response.json().then((data) => {
+          console.log(data.message);
+          if (lang == "sin") Command: toastr["info"]("ඉදිරියට එන එකතුවක් නැත");
+          else Command: toastr["info"]("No upcoming collection");
+        });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
 })();
