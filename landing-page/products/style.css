@@ -1,0 +1,174 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: sans-serif; 
+}
+
+/* Hero Banner Styling */
+.hero-banner {
+    background-image: url("img/products-banner.jpg");
+    background-size: cover;
+    
+    padding: 10%;
+
+    text-align: center;
+}
+
+.hero-text {
+    text-align: left;   
+    color: white;     /* Ensure contrast with your image */
+}
+
+.hero-text h1 {
+    font-weight: bold;  
+    font-size: 36px;   /* Adjust size as needed */
+}
+
+.hero-text p {
+    max-width: 300px;
+    margin-top: 0px;
+}
+
+
+/* Container Styling */
+.products-table {
+    width: 90%;
+    margin: 0 auto;
+    
+}
+
+
+
+
+.products-table-head {
+    height: 50px; /* Adjust height as needed */
+    margin-bottom: 20px;
+    margin: 0 auto; /* Center the boxes horizontally */
+    
+}
+
+.products-table-body {
+    height: 650px; /* Adjust height as needed */
+    margin-bottom: 20px;
+    margin: 0 auto; /* Center the boxes horizontally */
+    
+}
+
+.products-table-row3{
+    height: 33%;
+    
+    display: flex;        /* Enable flexbox */
+    flex-direction: row;  /* Arrange items in a row */
+}
+
+.products-table-row2{
+    height: 34%;
+    
+    display: flex;        /* Enable flexbox */
+    flex-direction: row;  /* Arrange items in a row */
+}
+
+.product-box{
+    width: 33.33%;
+    padding: 10px;
+    
+    
+}
+
+.product-box-long{
+    width: 50%;
+    padding: 10px;
+    
+}
+
+.product-image{
+    height: 80%;
+    background-color: #F2F0F3;
+    display: flex;           
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden;  /* Optionally added as a safeguard */
+    
+    
+
+}
+
+.product-data{
+    height: 20%;
+    
+    display:flex;
+    flex-direction: row;
+
+}
+
+
+.product-info{
+    width: 70%;
+   
+}
+
+.product-name{
+    height: 50%;
+    
+    align-items: center;     
+
+}
+
+.product-size{
+    margin-top: 0px;
+    height: 50%;
+    
+}
+
+.product-other{
+
+    width: 30%;
+    
+}
+
+.product-price{
+    height: 50%;
+    text-align: right;
+    
+
+}
+
+.product-empty{
+    height: 50%;
+    
+
+}
+
+
+
+.image-container { 
+    display: flex;           
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden;  /* Optionally added as a safeguard */
+} 
+
+.image-container img {
+    max-width: 100%;    
+    height: auto;    
+    width: 160px;    
+}
+
+.product-name p5 {
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.product-size p6 {
+    font-weight: 100;
+    font-size: 9px;
+    color: #676767;
+}
+
+.product-price p6 {
+    
+    margin-top: 0px;
+    font-weight: 100;
+    font-size: 9px;
+}
