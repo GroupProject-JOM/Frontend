@@ -281,20 +281,33 @@ function formatTimeDifference(timestampString) {
   const timestamp = new Date(timestampString);
   const diffInSeconds = Math.floor((now - timestamp) / 1000);
 
-  if (diffInSeconds < 60) {
+  minInSeconds = 60;
+  hourInSeconds = 3600;
+  dayInSeconds = 86400;
+  weekInSeconds = 604800;
+  monthInSeconds = 2419200;
+  yearInSeconds = 29030400;
+
+  if (diffInSeconds < minInSeconds) {
     return diffInSeconds + " secs ago";
-  } else if (diffInSeconds < 3600) {
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
-    return diffInMinutes + " mins ago";
-  } else if (diffInSeconds < 86400) {
-    const diffInHours = Math.floor(diffInSeconds / 3600);
-    return diffInHours === 1 ? "one day ago" : diffInHours + " days ago";
-  } else if (diffInSeconds < 2592000) {
-    const diffInWeeks = Math.floor(diffInSeconds / 604800);
+  } else if (diffInSeconds < hourInSeconds) {
+    const diffInMinutes = Math.floor(diffInSeconds / minInSeconds);
+    return diffInMinutes === 1 ? "one min ago" : diffInMinutes + " mins ago";
+  } else if (diffInSeconds < dayInSeconds) {
+    const diffInHours = Math.floor(diffInSeconds / hourInSeconds);
+    return diffInHours === 1 ? "one hour ago" : diffInHours + " hours ago";
+  } else if (diffInSeconds < weekInSeconds) {
+    const diffInDays = Math.floor(diffInSeconds / dayInSeconds);
+    return diffInDays === 1 ? "one day ago" : diffInDays + " days ago";
+  } else if (diffInSeconds < yearInSeconds) {
+    const diffInWeeks = Math.floor(diffInSeconds / weekInSeconds);
     return diffInWeeks === 1 ? "one week ago" : diffInWeeks + " weeks ago";
-  } else {
-    const diffInMonths = Math.floor(diffInSeconds / 2592000);
+  } else if (diffInSeconds < yearInSeconds) {
+    const diffInMonths = Math.floor(diffInSeconds / yearInSeconds);
     return diffInMonths === 1 ? "one month ago" : diffInMonths + " months ago";
+  } else {
+    const diffInYears = Math.floor(diffInSeconds / yearInSeconds);
+    return diffInYears === 1 ? "one year ago" : diffInYears + " years ago";
   }
 }
 
