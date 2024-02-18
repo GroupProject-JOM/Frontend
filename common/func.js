@@ -29,7 +29,7 @@ function getGreetingTime(m) {
   //if we can't find a valid or filled moment, we return.
 
   var split_afternoon = 12; //24hr time to split the afternoon
-  var split_evening = 17; //24hr time to split the evening
+  var split_evening = 16; //24hr time to split the evening
   var currentHour = parseFloat(m.format("HH"));
 
   // const curLng = sessionStorage.getItem("lang");
@@ -341,18 +341,13 @@ function updateActiveButtonStates(currentPage, content) {
   });
 }
 
-function pagination(container,ipp){
-  const content = document.querySelector("."+container);
+function pagination(container, ipp) {
+  const content = document.querySelector("." + container);
   const itemsPerPage = ipp;
   let currentPage = 0;
   const items = Array.from(content.getElementsByTagName("tr")).slice(1);
 
-  currentPage = createPageButtons(
-    content,
-    currentPage,
-    itemsPerPage,
-    items
-  );
+  currentPage = createPageButtons(content, currentPage, itemsPerPage, items);
   showPage(currentPage, itemsPerPage, items, currentPage, content);
 }
 
