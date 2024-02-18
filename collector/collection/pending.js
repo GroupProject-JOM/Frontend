@@ -200,7 +200,7 @@
             confirmButtonText = "නැවත ඇතුල් කරන්න";
         } else {
           var title = "Incorrect!",
-            text = "The supplier denied the enterd coconut quantity.",
+            text = "The supplier denied the entered coconut quantity.",
             confirmButtonText = "Enter again";
         }
         // sweet alert
@@ -397,8 +397,7 @@
             console.log(data.message);
             window.location.href = "./complete.html";
           });
-          window.location.href = "../";
-        } else if (response.status === 400) {
+        } else if (response.status === 409) {
           response.json().then((data) => {
             console.log(data.message);
             Command: toastr["error"](data.message);
