@@ -35,12 +35,12 @@
 
   var data = {
     sin: {
-      cTitle: "අතීත එකතු කිරීම්",
-      cSubTitle: "ඔබගේ සම්පුර්ණ කරන ලද පොල් එකතුවේ සවිස්තරාත්මක දසුන",
+      cTitle: "ඉදිරියට එන එකතු කිරීම්",
+      cSubTitle: "ඉදිරි දිනවලදී ඔබට පවරා ඇති පොල් එකතු කිරීම් පිළිබඳ සවිස්තරාත්මක දසුනක්",
     },
     en: {
-      cTitle: "Past Collections",
-      cSubTitle: "Detailed view of your completed coconut collections",
+      cTitle: "Upcoming Collections",
+      cSubTitle: "Detailed view of coconut collections assigned to yourself in upcoming days",
     },
   };
 })();

@@ -95,8 +95,8 @@
     var data = {
       sin: {
         l0: "පරිශීලක ක්‍රියා",
-        l1: "",
-        l2: "",
+        l1: "ඉදිරියට එන එකතු කිරීම්",
+        l2: "එකතු කිරීමේ ඉතිහාසය",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
         l7: "පැතිකඩ බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
@@ -145,7 +145,12 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["profile", "index", "upcoming-collections", "collection-history"];
+    const navItems = [
+      "profile",
+      "index",
+      "upcoming-collections",
+      "collection-history",
+    ];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);
