@@ -210,6 +210,11 @@ input:focus {
   width: 20vw;
 }
 
+.overview-tables{
+  width: 90%;
+}
+
+
 @media only screen and (max-device-width: 900px) {
   .map iframe {
     width: 50vw;

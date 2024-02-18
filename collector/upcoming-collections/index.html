@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>collection completed</title>
+    <title>Upcoming Collection</title>
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
@@ -53,7 +53,7 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
-    <section class="home" style="padding-bottom: 0">
+    <section class="home">
       <div class="notification">
         <span class="count"></span>
         <span class="bell do-not"
@@ -67,38 +67,57 @@
         <div class="sin">සිං</div>
         <div class="en active">En</div>
       </div>
-
       <div class="text"></div>
+      <div class="upcoming-collection-container collector-container">
+        <div class="collection-heading table-heading">
+          <h2 class="collection-title">Upcoming Collections</h2>
+          <div>
+            <p class="collection-text">
+              Detailed view of coconut collections assigned to yourself in
+              upcoming days
+            </p>
+            <div class="search-filter">
+              <div class="search-wrapper">
+                <div class="search-box search-box1">
+                  <input type="text" class="search1" placeholder=" " />
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div class="complete-container collection-container">
         <div class="collection-content">
-          <div class="collection-heading table-heading">
-            <h2 class="collection-title"></h2>
-            <p class="collection-subtitle"></p>
-          </div>
+          <table class="overview-tables upcoming-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th class="hide">Supplier</th>
+              </tr>
+            </thead>
 
-          <div class="collection-data">
-            <div class="collection-text t1"></div>
-            <div class="initial-amount collection-text"></div>
-            <div class="collection-text t2"></div>
-            <div class="collected-amount collection-text"></div>
-          </div>
-
-          <div class="complete-text t3"></div>
-          <a
-            class="form-button"
-            href="../"
-            style="display: flex; width: 14rem"
-          ></a>
+            <tbody class="tbody1">
+              <tr>
+                <td>Piliyandala</td>
+                <td>16/05/2001</td>
+                <td>10.30</td>
+                <td>2000</td>
+                <td>Saumya Sewwandi</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <script src="./complete.js"></script>
+    <!-- <script src="./view.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="../nav/load-nav.js"></script>
     <script src="../notifications/load-notifications.js"></script>
