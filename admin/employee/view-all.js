@@ -6,8 +6,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en = body.querySelector(".en"),
     oTitle = body.querySelector(".outlet-title"),
     oText = body.querySelector(".outlet-text"),
-    tbody = body.querySelector(".tbody"),
+    tbody1 = body.querySelector(".tbody1"),
+    tbody2 = body.querySelector(".tbody2"),
     btn = body.querySelector(".form-button");
+
+  var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -16,10 +19,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.documentElement.setAttribute("lang", "sin");
     // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     oTitle.textContent = data["sin"]["oTitle"];
     oText.innerHTML = data["sin"]["oText"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -29,10 +34,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.documentElement.setAttribute("lang", "en");
     // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     oTitle.textContent = data["en"]["oTitle"];
     oText.innerHTML = data["en"]["oText"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {
@@ -48,8 +55,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  var row = "";
-  // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
+  var row1 = "",
+    row2 = "";
+
   fetch(backProxy + "/employees", {
     method: "GET",
     headers: {
@@ -64,7 +72,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            row +=
+            row1 +=
               "<tr data-href='./view.html' id=" +
               item.id +
               ">" +
@@ -72,7 +80,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               item.first_name +
               "</td>" +
               "<td>" +
-              item.role +
+              item.role.charAt(0).toUpperCase() +
+              item.role.slice(1) +
               "</td>" +
               "<td>" +
               item.phone +
@@ -82,9 +91,31 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</td>" +
               "</tr>";
           }
-          tbody.innerHTML = row;
+          tbody1.innerHTML = row1;
 
-          const rows = document.querySelectorAll("tr[data-href]");       
+          data.previous.forEach((item) => {
+            row2 +=
+              "<tr data-href='./view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.first_name +
+              "</td>" +
+              "<td>" +
+              item.role.charAt(0).toUpperCase() +
+              item.role.slice(1) +
+              "</td>" +
+              "<td>" +
+              item.phone +
+              "</td>" +
+              "<td>" +
+              item.add_line_3 +
+              "</td>" +
+              "</tr>";
+          });
+          tbody2.innerHTML = row2;
+
+          const rows = document.querySelectorAll("tr[data-href]");
 
           rows.forEach((r) => {
             r.addEventListener("click", () => {
@@ -96,12 +127,22 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       } else if (response.status === 202) {
         response.json().then((data) => {
           console.log(data.size);
+          if (lang == "sin") Command: toastr["error"]("සේවකයන් නැත");
+          else Command: toastr["error"]("No employees");
         });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
 })();

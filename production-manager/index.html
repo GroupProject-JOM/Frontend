@@ -11,11 +11,46 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/notify.css">
+    <link rel="stylesheet" href="../common/notify.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../common/func.js"></script>
+    <script src="./auth.js"></script>
   </head>
 
   <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
 
     <section class="home">
       <div class="notification">
@@ -34,7 +69,7 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container">
+      <div class="productionmg-container container">
         <div class="widgets">
           <div class="widget-left widget">
             <div class="w-icon">
@@ -51,7 +86,7 @@
             </div>
             <div class="w-text">
               <p class="w-title w2"></p>
-              <p class="w-value">12</p>
+              <p class="w-value w2-value">12</p>
             </div>
           </div>
         </div>
@@ -59,66 +94,79 @@
         <div class="layer">
           <div class="table-heading">
             <h2 class="c1"></h2>
-            <p class="c2"></p>
+            <div>
+              <p class="c2"></p>
+
+              <div class="search-filter">
+                <div class="search-wrapper">
+                  <div class="search-box search-box1">
+                    <input type="text" class="search1" placeholder=" " />
+                    <span></span>
+                  </div>
+                </div>
+
+                <div class="filter filter-dropdown">
+                  <div id="searchBox">
+                    <i class="fas fa-filter" id="filter-icon"></i>
+                    <select class="dropdown filter-1">
+                      <option default hidden class="op0">Select Option</option>
+                      <option value="">All</option>
+                      <option value="ongoing">Ongoing</option>
+                      <option value="complete">Completed</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <table class="overview-tables">
+
+          <table class="overview-tables production-table">
             <thead>
               <tr>
-                <th>Batch ID</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Processing Time</th>
+                <th>Batch Num</th>
+                <th>Start Date</th>
+                <th>Coconut Amount</th>
+                <th>Product Count</th>
                 <th>Status</th>
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>B091</td>
-                <td>21/10/2023</td>
-                <td>200</td>
-                <td>5 Hours</td>
-                <td>
-                  <button class="processing status">Processing</button>
-                </td>
-              </tr>
-              <tr>
-                <td>B092</td>
-                <td>02/01/2023</td>
-                <td>2000</td>
-                <td>13 Hours</td>
-                <td>
-                  <button class="processing status">Processing</button>
-                </td>
-              </tr>
-              <tr>
-                <td>B093</td>
-                <td>09/04/2023</td>
-                <td>300</td>
-                <td>0</td>
-                <td>
-                  <button class="waiting status">Waiting</button>
-                </td>
-              </tr>
-              <tr>
-                <td>B094</td>
-                <td>21/02/2023</td>
-                <td>900</td>
-                <td>0</td>
-                <td>
-                  <button class="waiting status">Waiting</button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody class="tbody1"></tbody>
           </table>
         </div>
 
         <div class="layer">
           <div class="table-heading">
             <h2 class="c4"></h2>
-            <p class="c5"></p>
+            <div>
+              <p class="c5"></p>
+
+              <div class="search-filter">
+                <div class="search-wrapper">
+                  <div class="search-box search-box2">
+                    <input type="text" class="search2" placeholder=" " />
+                    <span></span>
+                  </div>
+                </div>
+
+                <div class="filter filter-dropdown">
+                  <div id="searchBox">
+                    <i class="fas fa-filter" id="filter-icon"></i>
+                    <select class="dropdown filter-2">
+                      <option default hidden class="op0">Select Option</option>
+                      <option value="">All</option>
+                      <option value="accept">Accepted</option>
+                      <option value="reject">Rejected</option>
+                      <option value="pending">Pending Approvel</option>
+                      <option value="complete">Completed</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <table class="overview-tables">
+
+          <table class="overview-tables request-table">
             <thead>
               <tr>
                 <th>Request ID</th>
@@ -130,50 +178,21 @@
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>P091</td>
-                <td>21/10/2023</td>
-                <td>200</td>
-                <td>2</td>
-                <td>1</td>
-                <td><button class="accepted status">Accepted</button></td>
-              </tr>
-              <tr>
-                <td>P092</td>
-                <td>21/02/2023</td>
-                <td>100</td>
-                <td>1</td>
-                <td>1</td>
-                <td><button class="accepted status">Accepted</button></td>
-              </tr>
-              <tr>
-                <td>P093</td>
-                <td>22/09/2023</td>
-                <td>400</td>
-                <td>1</td>
-                <td>1</td>
-                <td><button class="accepted status">Accepted</button></td>
-              </tr>
-              <tr>
-                <td>P094</td>
-                <td>09/10/2023</td>
-                <td>290</td>
-                <td>2</td>
-                <td>1</td>
-                <td><button class="rejected status">Rejected</button></td>
-              </tr>
-            </tbody>
+            <tbody class="tbody2"></tbody>
           </table>
-          <p class="reject-note c3"></p>
+          <p class="reject-note c3" style="display: none"></p>
         </div>
       </div>
+      
+      <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+      </div>
     </section>
-    <script src="../common/func.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
-    
+    <script src="../common/loader.js"></script>
   </body>
 </html>

@@ -1,13 +1,13 @@
 (() => {
     const notification = document.querySelector(".notification-window");
-    fetch("notifications/notifications.html")
+    fetch(frontProxy + "/sales-manager/notifications/notifications.html")
       .then((res) => res.text())
       .then((data) => {
         notification.innerHTML = data;
       });
   
     const notifyScript = document.createElement("script");
-    notifyScript.setAttribute("src", "notifications/script.js");
+    notifyScript.setAttribute("src", frontProxy + "/sales-manager/notifications/script.js");
     document.body.appendChild(notifyScript);
   })();
   

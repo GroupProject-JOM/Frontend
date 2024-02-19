@@ -2,20 +2,22 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
+    w2Value = body.querySelector(".w2-value"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     c4 = body.querySelector(".c4"),
-    c5 = body.querySelector(".c5");
+    c5 = body.querySelector(".c5"),
+    aBar = body.querySelector(".action-bar"),
+    aText = body.querySelector(".action-text"),
+    aBtn = body.querySelector(".action-button");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
 
     w1.textContent = data["sin"]["w1"];
@@ -24,6 +26,8 @@
     c2.textContent = data["sin"]["c2"];
     c4.textContent = data["sin"]["c4"];
     c5.textContent = data["sin"]["c5"];
+    aText.textContent = data["sin"]["aText"];
+    aBtn.textContent = data["sin"]["aBtn"];
     setGreeting();
   });
 
@@ -32,7 +36,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
 
     w1.textContent = data["en"]["w1"];
@@ -41,6 +44,8 @@
     c2.textContent = data["en"]["c2"];
     c4.textContent = data["en"]["c4"];
     c5.textContent = data["en"]["c5"];
+    aText.textContent = data["en"]["aText"];
+    aBtn.textContent = data["en"]["aBtn"];
     setGreeting();
   });
 
@@ -52,6 +57,9 @@
       c2: "මාසික විකුණුම් දත්ත සාරාංශය",
       c4: "බෙදාහරින්නාගේ විකුණුම්",
       c5: "එක් එක් බෙදාහරින්නා සඳහා විකුණුම් දත්ත සාරාංශය",
+      aText:
+        "නිෂ්පාදන දෙපාර්තමේන්තුව නව සමාගම් නිෂ්පාදන එකතු කර ඇත. ඒවායේ ඒකක මිල යාවත්කාලීන කරන්න.",
+      aBtn: "ඒකක මිල යාවත්කාලීන කරන්න",
     },
     en: {
       w1: "Total Sales Volume",
@@ -60,8 +68,41 @@
       c2: "Monthly Sales Data Visualisation",
       c4: "Disributor Sales",
       c5: "Sales Data Visualisation for each distributor",
+      aText:
+        "Production department has added new company products. Update the unit price of them.",
+      aBtn: "Update Unit Price",
     },
   };
+
+  fetch(backProxy + "/sales-manager", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 200) {
+        response.json().then((data) => {
+          w2Value.textContent = data.payouts;
+
+          if (data.unverified == true) aBar.style.display = "";
+        });
+      } else if (response.status === 401) {
+        response.json().then((data) => {
+          console.log(data.message);
+        });
+        if (lang == "sin") Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+        else Command: toastr["error"]("Invalid User");
+      } else {
+        console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+      }
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      Command: toastr["error"](error);
+    });
 
   let labels1 = [
     "Jan",
@@ -97,7 +138,7 @@
       },
     ],
   };
-  const dataLine2 = {
+  const dataBar = {
     labels: labels2,
     datasets: [
       {
@@ -131,9 +172,9 @@
       },
     },
   };
-  const configLine2 = {
+  const configBar = {
     type: "bar",
-    data: dataLine2,
+    data: dataBar,
     options: {
       responsive: true,
       plugins: {
@@ -154,7 +195,7 @@
   );
   const chartLine2 = new Chart(
     document.getElementById("distributor-sales"),
-    configLine2
+    configBar
   );
 
   //pdf generate code
@@ -179,7 +220,7 @@
     },
     stamp: {
       inAllPages: true, //by default = false, just in the last page
-      src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
+      src: "../common/home.png",
       type: "JPG", //optional, when src= data:uri (nodejs case)
       width: 20, //aspect ratio = width/height
       height: 20,
@@ -202,12 +243,12 @@
       address: "NO 858, Pannala, Kuliyapitiya",
       phone: "(+94) 71 22 22 222",
       email: "kamal@gmail.com",
-      otherInfo: "www.jom.com",
+      // otherInfo: "www.jom.com",
     },
     invoice: {
-      label: "Invoice #: ",
+      // label: "Invoice #: ",
       num: 19,
-      invDate: "Payment Date: 25/10/2023 18:12",
+      invDate: "Start Date: 25/10/2023 18:12",
       invGenDate: "Invoice Date: 26/10/2023 10:17",
       headerBorder: false,
       tableBodyBorder: false,
@@ -219,60 +260,67 @@
           },
         },
         {
-          title: "Title",
+          title: "Date",
           style: {
             width: 30,
           },
         },
         {
-          title: "Description",
+          title: "Supply Method",
           style: {
-            width: 80,
+            width: 40,
           },
         },
-        { title: "Price" },
+        {
+          title: "Payment Method",
+          style: {
+            width: 50,
+          },
+        },
         { title: "Quantity" },
+        // { title: "Quantity" },
         { title: "Unit" },
         { title: "Total" },
       ],
-      table: Array.from(Array(10), (item, index) => [
+      table: Array.from(Array(15), (item, index) => [
         index + 1,
-        "There are many variations ",
-        "Lorem Ipsum is simply dummy text dummy text ",
-        200.5,
-        4.5,
-        "m2",
-        400.5,
+        "2023-12-13",
+        "Pickup from estate",
+        "Transfer to Bank\n",
+        200,
+        "50.00",
+        // "m2",
+        "10000.00",
       ]),
       additionalRows: [
         {
           col1: "Total:",
           col2: "145,250.50",
-          col3: "ALL",
+          col3: "LKR",
           style: {
             fontSize: 14, //optional, default 12
           },
         },
-        {
-          col1: "VAT:",
-          col2: "20",
-          col3: "%",
-          style: {
-            fontSize: 10, //optional, default 12
-          },
-        },
-        {
-          col1: "SubTotal:",
-          col2: "116,199.90",
-          col3: "ALL",
-          style: {
-            fontSize: 10, //optional, default 12
-          },
-        },
+        // {
+        //   col1: "VAT:",
+        //   col2: "20",
+        //   col3: "%",
+        //   style: {
+        //     fontSize: 10, //optional, default 12
+        //   },
+        // },
+        // {
+        //   col1: "SubTotal:",
+        //   col2: "116,199.90",
+        //   col3: "ALL",
+        //   style: {
+        //     fontSize: 10, //optional, default 12
+        //   },
+        // },
       ],
       invDescLabel: "Invoice Note",
       invDesc:
-        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
+        "Thank you for your recent supply of materials to Jayasinghe Oil Mills Pvt. Ltd. Enclosed, please find the attached invoice providing a comprehensive overview of all supplied items during the specified time period. We sincerely appreciate your consistent reliability, which is paramount to our operations. For any further assistance or inquiries, please do not hesitate to contact us either via email or telephone. Your satisfaction is our priority, and we look forward to continuing our mutually beneficial partnership.",
     },
     footer: {
       text: "The invoice is created on a computer and is valid without the signature and stamp.",

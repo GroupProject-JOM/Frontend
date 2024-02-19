@@ -13,10 +13,45 @@
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
     <link rel="stylesheet" href="../user-flow.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="../auth.js"></script>
   </head>
 
   <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
 
     <section class="home">
       <div class="notification">
@@ -35,66 +70,44 @@
 
       <div class="text"></div>
 
-      <div class="container">
+      <div class="salesmg-container container">
         <div class="salesmg-heading table-heading">
-          <h2 class="salesmg-title">View Distributors</h2>
-          <p class="salesmg-text">View Distributor Details</p>
+          <h2 class="salesmg-title"></h2>
+          <div>
+            <p class="salesmg-text"></p>
+            <div class="search-filter">
+              <div class="search-wrapper">
+                <div class="search-box search-box">
+                  <input type="text" class="search" placeholder=" " />
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <table class="track-collectors-table overview-tables">
+        <table class="distributors-table overview-tables">
           <thead>
             <tr>
-              <th>Distributor ID</th>
               <th>Name</th>
+              <th>Contact No.</th>
               <th>Allocated Amount</th>
               <th>Sold Amount</th>
             </tr>
           </thead>
 
-          <tbody>
-            <tr>
-              <td>D052</td>
-              <td>Ranjith</td>
-              <td>5000</td>
-              <td>2000</td>
-            </tr>
-
-            <tr>
-              <td>D053</td>
-              <td>Kapila</td>
-              <td>5000</td>
-              <td>2000</td>
-            </tr>
-
-            <tr>
-              <td>D054</td>
-              <td>Nimal</td>
-              <td>5000</td>
-              <td>560</td>
-            </tr>
-
-            <tr>
-              <td>D055</td>
-              <td>Nimal</td>
-              <td>5000</td>
-              <td>560</td>
-            </tr>
-
-            <tr>
-              <td>D056</td>
-              <td>Gamage</td>
-              <td>5000</td>
-              <td>600</td>
-            </tr>
-          </tbody>
+          <tbody class="tbody"></tbody>
         </table>
-
+      </div>
+      
+      <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
       </div>
     </section>
-    <script src="../../common/func.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="./view-all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./load-nav.js"></script>
-    <script src="./load-notifications.js"></script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
   </body>
 </html>

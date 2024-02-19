@@ -1,14 +1,6 @@
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
 (() => {
-  //   document.cookie = "name=Buddhika";
-  //   document.cookie = "page=supplier";
-  //   document.cookie = "sId=1";
-  //   let cookies = document.cookie;
-  //   console.log(cookies);
-
-  // console.log(getCookie('lang'));
-
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
@@ -26,14 +18,66 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     ongoingSupplyTable = body.querySelector(".ongoing-supply-table"),
     ongoingError = body.querySelector(".ongoing-error"),
     pastError = body.querySelector(".past-error"),
-    pastSupplyTable = body.querySelector(".past-supply-table");
+    pastSupplyTable = body.querySelector(".past-supply-table"),
+    searchBar1 = body.querySelector(".search1"),
+    searchBar2 = body.querySelector(".search2"),
+    filter1 = body.querySelector(".filter-1"),
+    filter2 = body.querySelector(".filter-2"),
+    aBar = body.querySelector(".action-bar"),
+    aId = body.querySelector(".action-id"),
+    aAmount = body.querySelector(".action-amount"),
+    aBtn = body.querySelector(".action-button");
+
+  var searchBox1 = document.querySelectorAll(
+    '.search-box1 input[type="text"] + span'
+  );
+  var searchBox2 = document.querySelectorAll(
+    '.search-box2 input[type="text"] + span'
+  );
+
+  searchBox1.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
+    });
+  });
+
+  searchBox2.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar2.value.toUpperCase(), pastSupplyTable);
+    });
+  });
+
+  searchBar1.addEventListener("keyup", () => {
+    search(searchBar1.value.toUpperCase(), ongoingSupplyTable);
+  });
+
+  searchBar2.addEventListener("keyup", () => {
+    search(searchBar2.value.toUpperCase(), pastSupplyTable);
+  });
+
+  filter1.addEventListener("input", () => {
+    search(filter1.value.toUpperCase(), ongoingSupplyTable);
+  });
+
+  filter2.addEventListener("input", () => {
+    search(filter2.value.toUpperCase(), pastSupplyTable);
+  });
+
+  const googleIcon = document.querySelectorAll("#filter-icon");
+
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
 
     w1.textContent = data["sin"]["w1"];
@@ -53,7 +97,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
 
     w1.textContent = data["en"]["w1"];
@@ -88,17 +131,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c3: "*Supply ID S092 has been rejected due to the supply coconut amount not meeting the minimum required. <br/>This will be automatically deleted in 7 days",
       c4: "Past Supplies",
       c5: "Overview of past supplies at your estates",
-      ongoingError: "**You have not any Ongoing Supplies",
-      pastError: "**You have not any Past Supplies",
+      ongoingError: "**You don't have any ongoing supplies",
+      pastError: "**You don't have any past supplies",
     },
   };
 
   let row1 = "",
     row2 = "",
-    count = 0,
-    value = 0;
+    count = 0;
 
-  fetch(backProxy + "/collections?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/collections", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -108,117 +150,111 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          let arr = data.list;
-          arr.forEach(data_to_table);
-
-          function data_to_table(item) {
-            // console.log(item);
+          data.ongoing.forEach((item) => {
             var stat = "",
               st = "";
-            // Ongoing table
-            if (0 < item.status && item.status < 4) {
-              if (item.status == 1) {
-                stat = "pending";
-                st = "Pending Approval";
-              } else if (item.status == 2) {
-                stat = "ready";
-                st = "Ready to pick-up";
-              } else if (item.status == 3) {
-                stat = "rejected";
-                st = "Rejected";
-              } else {
-                return;
-              }
 
-              var T = item.time.split(":"),
-                timeString = "";
-
-              if (T[0] > 12) {
-                T[0] -= 12;
-                if (T[0] >= 12) {
-                  timeString =
-                    String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
-                } else {
-                  timeString =
-                    String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
-                }
-              } else {
-                timeString = String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
-              }
-
-              row1 +=
-                "<tr data-href='./supply-view.html' id=" +
-                item.id +
-                ">" +
-                "<td>" +
-                item.id +
-                "</td>" +
-                "<td>" +
-                item.date +
-                "</td>" +
-                "<td>" +
-                timeString +
-                "</td>" +
-                "<td>" +
-                item.amount.toLocaleString("en-US") +
-                "</td>" +
-                "<td>" +
-                "<button class='" +
-                stat +
-                " status'>" +
-                st +
-                "</button>" +
-                "</td>" +
-                "</tr>";
-
+            if (item.status == 1) {
+              stat = "pending";
+              st = "Pending Approval";
+              if (window.innerWidth <= 718) st = "Pending";
               count++;
-            } else if (3 < item.status && item.status < 6) {
-              // Past table
-              if (item.status == 4) {
-                stat = "pending";
-                st = "Pending Paymant";
-              } else if (item.status == 5) {
-                stat = "paid";
-                st = "Paid";
-              } else {
-                return;
-              }
-
-              row2 +=
-                "<tr data-href='./supply-view.html' id=" +
-                item.id +
-                ">" +
-                "<td>" +
-                item.id +
-                "</td>" +
-                "<td>" +
-                item.date +
-                "</td>" +
-                "<td>" +
-                item.final_amount.toLocaleString("en-US") +
-                "</td>" +
-                "<td>" +
-                item.value.toLocaleString("en-US") +
-                "</td>" +
-                "<td>" +
-                "<button class='" +
-                stat +
-                " status'>" +
-                st +
-                "</button>" +
-                "</td>" +
-                "</tr>";
-
-              value += item.value;
+            } else if (item.status == 2) {
+              stat = "accept";
+              st = "Accepted";
+              count++;
+            } else if (item.status == 3) {
+              stat = "ready";
+              st = "Ready to Pickup";
+              if (window.innerWidth <= 718) st = "Ready";
+              count++;
+            } else if (item.status == 4) {
+              stat = "rejected";
+              st = "Rejected";
             } else {
               return;
             }
-          }
+
+            row1 +=
+              "<tr data-href='./supply-view.html' id=" +
+              item.id +
+              ">" +
+              "<td class='hide'>" +
+              item.id +
+              "</td>" +
+              "<td>" +
+              item.date +
+              "</td>" +
+              "<td>" +
+              timeString(item.name) +
+              "</td>" +
+              "<td class='hide'>" +
+              item.amount.toLocaleString("en-US") +
+              "</td>" +
+              "<td class='hide'>" +
+              capitalize(item.method) +
+              "</td>" +
+              "<td>" +
+              "<button class='" +
+              stat +
+              " status'>" +
+              st +
+              "</button>" +
+              "</td>" +
+              "</tr>";
+          });
+
+          // Past table
+          data.past.forEach((item) => {
+            var stat = "",
+              st = "";
+
+            if (item.status == 5) {
+              stat = "pending";
+              st = "Pending Paymant";
+              if (window.innerWidth <= 718) st = "Pending";
+            } else if (item.status == 6) {
+              stat = "paid";
+              st = "Paid";
+            } else {
+              return;
+            }
+
+            var date_string = new Date(item.date);
+
+            row2 +=
+              "<tr data-href='./supply-view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.id +
+              "</td>" +
+              "<td class='hide'>" +
+              date_string.toLocaleDateString() +
+              "</td>" +
+              "<td>" +
+              item.final_amount.toLocaleString("en-US") +
+              "</td>" +
+              "<td class='hide'>" +
+              capitalize(item.method) +
+              "</td>" +
+              "<td>" +
+              item.value.toLocaleString("en-US") +
+              " LKR</td>" +
+              "<td>" +
+              "<button class='" +
+              stat +
+              " status'>" +
+              st +
+              "</button>" +
+              "</td>" +
+              "</tr>";
+          });
 
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
           ongoing.textContent = count;
-          income.textContent = value.toLocaleString("en-US") + " LKR";
+          income.textContent = data.income.toLocaleString("en-US") + " LKR";
 
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
@@ -232,19 +268,114 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         response.json().then((data) => {
           console.log(data.size);
           ongoingSupplyTable.style.display = "none";
-          pastSupplyTable.style.display = "none";
           c3.style.display = "none";
           ongoingError.style.display = "Block";
-          pastError.style.display = "Block";
+
+          // Past table
+          data.past.forEach((item) => {
+            var stat = "",
+              st = "";
+
+            if (item.status == 5) {
+              stat = "pending";
+              st = "Pending Paymant";
+              if (window.innerWidth <= 718) st = "Pending";
+            } else if (item.status == 6) {
+              stat = "paid";
+              st = "Paid";
+            } else {
+              return;
+            }
+
+            var date_string = new Date(item.date);
+
+            row2 +=
+              "<tr data-href='./supply-view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.id +
+              "</td>" +
+              "<td class='hide'>" +
+              date_string.toLocaleDateString() +
+              "</td>" +
+              "<td>" +
+              item.final_amount.toLocaleString("en-US") +
+              "</td>" +
+              "<td>" +
+              capitalize(item.method) +
+              "</td>" +
+              "<td>" +
+              item.value.toLocaleString("en-US") +
+              " LKR</td>" +
+              "<td>" +
+              "<button class='" +
+              stat +
+              " status'>" +
+              st +
+              "</button>" +
+              "</td>" +
+              "</tr>";
+          });
+
+          tbody2.innerHTML = row2;
+          income.textContent = data.income.toLocaleString("en-US") + " LKR";
         });
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
 
   ongoing.textContent = count;
-  income.textContent = value.toLocaleString("en-US") + " LKR";
+  income.textContent = 0 + " LKR";
+
+  // web socket
+  const socket = new WebSocket(
+    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" +
+      getPayload(getCookie("jwt")).user
+  );
+
+  socket.onmessage = function (event) {
+    // Handle messages received from the server
+    const message = event.data;
+    if (message.length != 0) {
+      var arr = message.split(":");
+      sessionStorage.setItem("amount", arr[0]);
+      sessionStorage.setItem("id", arr[1]);
+
+      actionBar();
+    }
+  };
+
+  actionBar();
+  function actionBar() {
+    if (
+      sessionStorage.getItem("id") != null &&
+      sessionStorage.getItem("amount") != null
+    ) {
+      aId.textContent = sessionStorage.getItem("id");
+      aAmount.textContent = sessionStorage.getItem("amount");
+      aBar.style.display = "";
+    }
+  }
+
+  socket.onclose = function (event) {
+    console.log("WebSocket closed:", event);
+    Command: toastr["error"]("WebSocket closed");
+  };
+
+  socket.onerror = function (error) {
+    console.error("WebSocket error:", error);
+    Command: toastr["error"]("WebSocket error");
+  };
+
+  aBtn.addEventListener("click", () => {
+    document.cookie = "id=" + aId.textContent + "; path=/";
+    window.location.href = "./supply-view.html";
+  });
 })();

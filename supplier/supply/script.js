@@ -1,3 +1,5 @@
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -5,25 +7,31 @@
     sTitle = body.querySelector(".supply-title"),
     sText = body.querySelector(".supply-text"),
     amount = body.querySelector(".coco-amount"),
+    amountError = body.querySelector(".coco-error"),
     cMethod = body.querySelector(".c-method"),
+    collectionError = body.querySelector(".collection-error"),
     pickup = body.querySelector(".pickup"),
     pLabel = body.querySelector(".pickup-label"),
     delivered = body.querySelector(".delivered"),
     dLabel = body.querySelector(".delivered-label"),
     pMethod = body.querySelector(".p-method"),
+    paymentError = body.querySelector(".payment-error"),
     cash = body.querySelector(".cash"),
     cLabel = body.querySelector(".cash-label"),
     bTransfer = body.querySelector(".bank-transfer"),
     bLabel = body.querySelector(".bank-label"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".form-button"),
+    amountLabel = body.querySelector(".coco-amount-label");
+
+  var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     sText.innerHTML = data["sin"]["sText"];
@@ -35,6 +43,8 @@
     cLabel.textContent = data["sin"]["cLabel"];
     bLabel.textContent = data["sin"]["bLabel"];
     btn.textContent = data["sin"]["btn"];
+    amountLabel.textContent = data["sin"]["amountLabel"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -42,8 +52,8 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     sTitle.textContent = data["en"]["sTitle"];
     sText.innerHTML = data["en"]["sText"];
@@ -55,6 +65,9 @@
     cLabel.textContent = data["en"]["cLabel"];
     bLabel.textContent = data["en"]["bLabel"];
     btn.textContent = data["en"]["btn"];
+    amountLabel.textContent = data["en"]["amountLabel"];
+
+    setGreeting();
   });
 
   var data = {
@@ -75,13 +88,14 @@
       sTitle: "New Supply",
       sText:
         "Fill up the details correctly for your new supply request. <br /> Requests will be reviewed within 24 hours. You can check them inside your dashboard.",
-      amount: "Coconut Amount",
+      amount: "Enter Coconut Amount",
       cMethod: "Collection Method",
       pLabel: "Pickup at Estate",
       dLabel: "Delivered to Yard",
       pMethod: "Payment Method",
       cLabel: "Cash on Pickup",
       bLabel: "Bank Transfer",
+      amountLabel: "Coconut Amount",
       btn: "Next",
     },
   };
@@ -91,40 +105,71 @@
     collection = "",
     money = "";
 
+  amount.addEventListener("input", () => {
+    amount_status_func();
+  });
+
   btn.addEventListener("click", () => {
-    if (typeof amount.value === "string" && amount.value.trim().length === 0) {
-      console.log("Estate name cannot be empty");
+    if (!amount_status_func()) {
       amount.focus();
-    } else {
-      amountStatus = true;
     }
 
     if (pickup.checked) {
       collection = "pickup";
+      collectionError.textContent = "";
       if (cash.checked) {
         money = "cash";
         page = "./pickup-cash.html";
+        paymentError.textContent = "";
       } else if (bTransfer.checked) {
         money = "bank";
         page = "./pickup-bank.html";
+        paymentError.textContent = "";
       } else {
-        console.log("Payment method cannot be empty");
+        if (lang == "sin") {
+          paymentError.textContent = "ගෙවීමේ ක්‍රමය හිස් විය නොහැක";
+          Command: toastr["warning"]("ගෙවීමේ ක්‍රමය හිස් විය නොහැක");
+        } else {
+          paymentError.textContent = "Payment method cannot be empty";
+          Command: toastr["warning"]("Payment method cannot be empty");
+        }
       }
     } else if (delivered.checked) {
       collection = "yard";
+      collectionError.textContent = "";
       if (cash.checked) {
         money = "cash";
         page = "./yard-cash.html";
+        paymentError.textContent = "";
       } else if (bTransfer.checked) {
         money = "bank";
         page = "./yard-bank.html";
+        paymentError.textContent = "";
       } else {
-        console.log("Payment method cannot be empty");
+        if (lang == "sin") {
+          paymentError.textContent = "ගෙවීමේ ක්‍රමය හිස් විය නොහැක";
+          Command: toastr["warning"]("ගෙවීමේ ක්‍රමය හිස් විය නොහැක");
+        } else {
+          paymentError.textContent = "Payment method cannot be empty";
+          Command: toastr["warning"]("Payment method cannot be empty");
+        }
       }
     } else {
-      console.log("Collection method cannot be empty");
+      if (lang == "sin") {
+        collectionError.textContent = "එකතු කිරීමේ ක්‍රමය හිස් විය නොහැක";
+        Command: toastr["warning"]("එකතු කිරීමේ ක්‍රමය හිස් විය නොහැක");
+      } else {
+        collectionError.textContent = "Collection method cannot be empty";
+        Command: toastr["warning"]("Collection method cannot be empty");
+      }
       if (!(cash.checked || bTransfer.checked)) {
-        console.log("Payment method cannot be empty");
+        if (lang == "sin") {
+          paymentError.textContent = "ගෙවීමේ ක්‍රමය හිස් විය නොහැක";
+          Command: toastr["warning"]("ගෙවීමේ ක්‍රමය හිස් විය නොහැක");
+        } else {
+          paymentError.textContent = "Payment method cannot be empty";
+          Command: toastr["warning"]("Payment method cannot be empty");
+        }
       }
     }
 
@@ -133,11 +178,8 @@
       (pickup.checked || delivered.checked) &&
       (cash.checked || bTransfer.checked)
     ) {
-      // sessionStorage.setItem("amount", amount.value);
-      document.cookie = "amount="+amount.value;
+      document.cookie = "amount=" + amount.value;
       var formData = {
-        // supplier_id: sessionStorage.getItem("sId"),
-        supplier_id: getCookie('sId'),
         initial_amount: amount.value,
         payment_method: money,
         supply_method: collection,
@@ -156,24 +198,61 @@
             response.json().then((data) => {
               console.log(data.message);
               // sessionStorage.setItem("id",data.id);
-              document.cookie = "id="+data.id;
+              document.cookie = "id=" + data.id;
             });
             window.location.href = page;
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else if (response.status === 401) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });
+
+  function amount_status_func() {
+    if (typeof amount.value === "string" && amount.value.trim().length === 0) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය හිස් විය නොහැක";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය හිස් විය නොහැක");
+      } else {
+        amountError.textContent = "Coconut amount cannot be empty";
+        Command: toastr["warning"]("Coconut amount cannot be empty");
+      }
+      amountStatus = false;
+      return false;
+    } else if (!checkInt(amount.value)) {
+      if (lang == "sin") {
+        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+      } else {
+        amountError.textContent = "Coconut amount must be positive integer";
+        Command: toastr["warning"]("Coconut amount must be positive integer");
+      }
+      amountStatus = false;
+      return false;
+    } else {
+      amountError.textContent = "";
+      amountStatus = true;
+      return true;
+    }
+  }
 })();
+
+function checkInt(num) {
+  if (Number.isInteger(+num) && +num > 0) return true;
+  return false;
+}

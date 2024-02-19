@@ -7,9 +7,38 @@
 
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../signin.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../common/func.js"></script>
   </head>
 
   <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <div class="signup-basic signup-container">
       <div class="side"></div>
 
@@ -27,8 +56,9 @@
             <div class="main-error"></div>
             <div class="signup-form">
               <form autocomplete="on">
-                <div class="signup-name" style="margin: 0; padding: 0">
+                <div class="short-section">
                   <section>
+                    <label class="fname-label"></label>
                     <input
                       type="text"
                       class="short fname"
@@ -39,7 +69,9 @@
                     <br />
                     <span class="form-error fname-error"></span>
                   </section>
+
                   <section>
+                    <label class="lname-label"></label>
                     <input
                       type="text"
                       class="short lname"
@@ -52,6 +84,8 @@
                   </section>
                 </div>
                 <br />
+
+                <label class="email-label"></label>
                 <input
                   type="text"
                   class="long email"
@@ -60,15 +94,9 @@
                   autocomplete="email"
                 /><br />
                 <span class="form-error email-error"></span>
-                <br />
-                <input
-                  type="password"
-                  class="long password"
-                  name="password"
-                  placeholder=""
-                  autocomplete="new-password"
-                /><br /><span class="form-error password-error"></span>
-                <br />
+                <br /><br />
+
+                <label class="phone-label"></label>
                 <input
                   type="text"
                   name="phone"
@@ -76,18 +104,39 @@
                   placeholder=""
                   autocomplete="tel"
                 /><br /><span class="form-error phone-error"></span>
-                <br />
+                <br /><br />
+                <div class="short-section">
+                  <section>
+                    <label class="password-label"></label>
+                    <input
+                      type="password"
+                      class="short password"
+                      name="password"
+                      placeholder=""
+                      autocomplete="new-password"
+                    /><br /><span class="form-error password-error"></span>
+                  </section>
+
+                  <section>
+                    <label class="confirm-label"></label>
+                    <input type="text" class="short confirm-password" />
+                  </section>
+                </div>
+                <br /><br />
                 <p class="address"></p>
-                <br />
+
+                <label class="address1-label"></label>
                 <input
                   type="text"
                   class="long address1"
                   name="address1"
                   placeholder=""
                   autocomplete="address-line1"
-                /><br /><span class="form-error address1-error"></span><br />
-                <div class="signup-name">
+                /><br /><span class="form-error address1-error"></span>
+                <br /><br />
+                <div class="short-section">
                   <section>
+                    <label class="address2-label"></label>
                     <input
                       type="text"
                       name="address2"
@@ -96,7 +145,9 @@
                       autocomplete="address-line2"
                     /><br /><span class="form-error address2-error"></span>
                   </section>
+
                   <section>
+                    <label class="address3-label"></label>
                     <input
                       type="text"
                       name="address3"
@@ -106,18 +157,23 @@
                     /><br /><span class="form-error address3-error"></span>
                   </section>
                 </div>
+
                 <!-- <input type="submit" class="next form-button" value="submit"/> -->
               </form>
             </div>
           </div>
-          <br><br>
+          <br /><br />
           <a type="submit" class="next form-button"></a>
           <div class="menu-line7"></div>
+        </div>
+      
+        <div class="back-to-top">
+          <i class="fas fa-chevron-up"></i>
         </div>
       </section>
     </div>
     <script src="./sidebar/load-sidebar.js"></script>
-    <script src="../common/func.js"></script>
     <script src="./script.js"></script>
+    <script src="../common/loader.js"></script>
   </body>
 </html>

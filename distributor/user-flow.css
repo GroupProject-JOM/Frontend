@@ -1,63 +1,239 @@
-.container {
-    top: 50%;
-    transform: translate(0, 10%);
-    margin-left: 10rem;   
+
+
+.product-distribution-container{
+  width: 100%;
 }
+
 input {
-/* box-sizing: border-box; */
-border: none;
-border-bottom: 1px solid #a9a9a9;
-color: #484848;
-padding: 7px 0;
-margin: 20px 0 0 0;
-font-size: 15px;
-margin: 20px 0;
+  /* box-sizing: border-box; */
+  border: none;
+  border-bottom: 1px solid #a9a9a9;
+  color: #484848;
+  background-color: var(--body-color);
+  padding: 7px 0;
+  margin: 20px 0 0 0;
+  font-size: 15px;
+  margin: 20px 0;
 }
+
 input::placeholder {
-color: #a9a9a9;
+  color: #a9a9a9;
 }
 textarea:focus,
 input:focus {
-outline: none;
-border-bottom: 1px solid #484848;
-transition: var(--tran-05);
+  outline: none;
+  border-bottom: 1px solid #484848;
+  transition: var(--tran-05);
 }
 .short {
-width: 17rem;
+  width: 17rem;
 }
 .long {
-width: 40rem;
+  width: 40rem;
 }
 .add-outlet-form {
-padding: 0;
-margin: 0;
-display: grid;
-flex-direction: column;
-align-items: center;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
 }
-.add-outlet-form div {
-display: flex;
-width: 40vw;
-justify-content: space-between;
-}
+
 
 .outlet-table {
-    width: 25vw;
-    margin-top: 40px;
-  }
+  width: 25vw;
+  margin-top: 40px;
+}
 
-  .smallbt{
-    width: 10vw; 
-  }
+.smallbt {
+  width: 10vw;
+}
 
-  .buttons{
-    margin-top: 40px;
-  }
+.buttons {
+  margin-top: 50px;
+}
 
-  .outlet-edit-container .savebt{
-    margin-top: 30px;
-  }
+.outlet-edit-container .savebt {
+  margin-top: 60px;
+}
 
-  .edit-outlet-form input::placeholder {
-    color: var(--input-border-focus);
-    }
+.edit-outlet-form input{
+  color: var(--primary-color);
+}
+
+
+
+
+
+.edit-outlet-form input, .add-outlet-form input{
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.edit-outlet-form label, .add-outlet-form label{
+  /* margin-bottom: 0; */
+  margin-top: 20px;
+}
+
+.update-sales {
+  display: flex;
+  display: flex;
+  margin: 30px 0;
+  width: 13rem;
+  font-size: 13px;
+  border-radius: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* 
+.distributor-container input{
+  margin-top: 0;
+} */
+
+.distributor-container label{
+  padding: 20px 20px 0 0;
+  display: inline-block;
+}
+
+.distributor-container .add-label{
+  float: left;
+  width: 20%;
+  margin-top: 6px;
+  
+}
+
+.distributor-container .add-input{
+  float: left;
+  width: 80%;
+  margin-top: 20px;
+  padding-top: 0;
+}
+
+
+.distributor-container .row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.distributor-container .bank-form{
+  margin-top: 30px;
+}
+
+/* 
+.product-distribute-form {
+  display: flex;
+  justify-content: space-between;
+} */
+
+.product-distribution-container input[type=text]{
+  margin: 0 0 0 10px;
+  padding: 0;
+  width: 15vw;
+}
+
+
+
+.product-distribution-container .price{
+  font-weight: 600;
+}
+
+.product-table,
+.view-outlet-table{
+  width: 90%;
+}
+
+.distributor-container .next{
+  margin-top: 50px;
+}
+
+.outlet-heading{
+  margin-bottom: 1rem;
+}
+
+.search-filter input{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.view-outlet-window {
+  width: 35vw;
+  height: auto;
+  margin-top: 60px;
+  top: 20%;
+  right: 35%;
+}
+
+.view-product-container{
+  width: 30vw;
+  height: auto;
+  margin-top: 60px;
+  top: 30%;
+  right: 35%;
+}
+
+.view-outlet-content,
+.view-product-content
+{
+  margin: 20px;
+}
+
+.view-outlet-content .oName{
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* .product-layer{
+  display: grid;
+  width: 90%;
+  grid-template-columns: repeat(6, 1fr);
+  background-color: var(--background-grey);
+  border-radius: 10px;
+  padding: 15px;
+
+} */
+
+.sales-update-table{
+  width: 90%;
+
+}
+
+
+.product-distribution-container label{
+  padding: 0;
+}
+.product-distribution-container input[type="text"]{
+  width: 7vw;
+}
+
+.product-distribution-container input[type="checkbox"]{
+  margin: 10px 5px 10px 0;
+  padding: 0;
+}
+
+.product-distribution-container .overview-tables tbody tr.disable{
+  color: var(--input-border);
+}
+
+.product-distribution-container .view-outlet .form-button{
+  font-size: 0.9rem;
+  padding: 5px 30px;
+  border-radius: 20px;
+  margin: 0;
+}
+
+.sub-total{
+  width: 90%;
+  /* float: right; */
+}
+.sub-total p{
+  float: right;
+  font-size: 1.2rem;
+  margin: 40px 0;
+}
+.sub-total p span{
+  font-size: 1.8rem;
+  font-weight: 500;
+}

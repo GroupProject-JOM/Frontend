@@ -7,9 +7,42 @@
 
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../signin.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../common/func.js"></script>
   </head>
 
   <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <div class="verify-container signup-container">
       <div class="side"></div>
 
@@ -19,7 +52,7 @@
           <div class="en active">En</div>
         </div>
 
-        <div class="text" style="display: block;"></div>
+        <div class="text" style="display: block"></div>
 
         <div class="signup-content">
           <div class="signup">
@@ -30,46 +63,56 @@
               ></div>
               <div class="send-otp">
                 <div class="form-heading-text1 form-heading-text"></div>
-                <br>
-                <button
-                  class="send-button form-button send-email"
-                >
-                  Send
-                </button>
-                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-              <div id="counter"></div>
+                <br />
+                <button class="send-button form-button send-email"></button>
+                <div class="lds-ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div id="counter"></div>
               </div>
               <div class="check-email">
                 <div class="form-heading-text">
                   <span class="form-heading-text2"></span>
                 </div>
                 <div class="renter-email">
-                  <input
-                    type="text"
-                    class="correct-email"
-                    placeholder="Enter correct email address"
-                  /><button type="submit" class="send-button form-button">
-                    Update
-                  </button>
+                  <label class="correct-email-label"
+                    >Enter Correct Email Address</label
+                  >
+                  <input type="text" class="correct-email" placeholder="" />
+                  <button
+                    type="submit"
+                    class="send-button form-button update-email"
+                  ></button>
+                  <br />
+                  <span class="form-error email-error"></span>
                 </div>
               </div>
             </div>
             <div class="verify-form signup-form">
               <form>
-                <input
-                  type="text"
-                  class="email-otp"
-                  placeholder=""
-                />
+                <label class="otp-label">Enter OTP</label>
+                <input type="text" class="email-otp" placeholder="" />
                 <!-- <br> -->
-                <a
-                  class="verify-button form-button vb1"
-                ></a>
-                <p class="error" style="font-weight: 600;font-size: smaller;margin-top: -1.5rem;color: red;"></p>
+                <a class="verify-button form-button vb1"></a>
+                <p
+                  class="error"
+                  style="
+                    font-weight: 600;
+                    font-size: smaller;
+                    margin-top: 1rem;
+                    color: red;
+                  "
+                ></p>
               </form>
             </div>
 
-            <div class="signup-heading signup-heading-phone" style="display: none;">
+            <div
+              class="signup-heading signup-heading-phone"
+              style="display: none"
+            >
               <div
                 class="form-heading2 form-heading"
                 style="padding-bottom: 10px; padding-top: 25px"
@@ -107,7 +150,7 @@
               </div>
             </div>
 
-            <div class="verify-form signup-form vPhone" style="display: none;">
+            <div class="verify-form signup-form vPhone" style="display: none">
               <form>
                 <input
                   type="text"
@@ -115,19 +158,21 @@
                   name="phone-otp"
                   placeholder=""
                 />
-                <a
-                  type="submit"
-                  class="verify-button form-button vb2"
-                ></a>
+                <a type="submit" class="verify-button form-button vb2"></a>
               </form>
             </div>
           </div>
-          <a class="next form-button" style="display: none;"></a>
+          <a class="next form-button" style="display: none"></a>
+        </div>
+      
+        <div class="back-to-top">
+          <i class="fas fa-chevron-up"></i>
         </div>
       </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="./sidebar/load-sidebar.js"></script>
-    <script src="../common/func.js"></script>
     <script src="./signup2.js"></script>
+    <script src="../common/loader.js"></script>
   </body>
 </html>

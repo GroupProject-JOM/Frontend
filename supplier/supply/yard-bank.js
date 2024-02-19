@@ -5,14 +5,20 @@
     sTitle = body.querySelector(".supply-title"),
     tText = body.querySelector(".top-text"),
     date = body.querySelector(".date"),
+    dateError = body.querySelector(".date-error"),
     time = body.querySelector(".time"),
-    bank = body.querySelector(".bank");
+    timeError = body.querySelector(".time-error"),
+    bank = body.querySelector(".bank"),
+    bankError = body.querySelector(".bank-error"),
+    bText = body.querySelector(".bottom-text"),
+    btn = body.querySelector(".form-button");
 
-  var bop;
+  let bop,
+    lang = getCookie("lang"); // current language
   var bank_options =
     "<option value='' disabled selected hidden class='bop'></option>";
   // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
-  fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/accounts", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -34,18 +40,36 @@
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
-          console.log(data.size);
+          // data.size=0
+          if (lang == "sin") {
+            bank_options +=
+              "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+            Command: toastr["info"]("බැංකු ගිණුම් නැත");
+          } else {
+            bank_options +=
+              "<option value='' disabled >No Bank Accounts</option>";
+            Command: toastr["info"]("No Bank Accounts");
+          }
+          bank.innerHTML = bank_options;
+          bop = body.querySelector(".bop");
         });
       } else {
         console.error("Error:", response.status);
+        Command: toastr["error"](response.status, "Error");
+        if (lang == "sin")
+          bank_options +=
+            "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+        else
+          bank_options +=
+            "<option value='' disabled >No Bank Accounts</option>";
+        bank.innerHTML = bank_options;
+        bop = body.querySelector(".bop");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
+      Command: toastr["error"](error);
     });
-
-  const bText = body.querySelector(".bottom-text"),
-    btn = body.querySelector(".form-button");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -54,6 +78,7 @@
     document.documentElement.setAttribute("lang", "sin");
     //   sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     tText.innerHTML = data["sin"]["tText"];
@@ -62,6 +87,7 @@
     bop.textContent = data["sin"]["bop"];
     bText.innerHTML = data["sin"]["bText"];
     btn.textContent = data["sin"]["btn"];
+    setGreeting();
   });
 
   en.addEventListener("click", () => {
@@ -71,6 +97,7 @@
     document.documentElement.setAttribute("lang", "en");
     //   sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
+    lang = "en";
 
     sTitle.textContent = data["en"]["sTitle"];
     tText.innerHTML = data["en"]["tText"];
@@ -79,6 +106,7 @@
     bop.textContent = data["en"]["bop"];
     bText.innerHTML = data["en"]["bText"];
     btn.textContent = data["en"]["btn"];
+    setGreeting();
   });
 
   var data = {
@@ -110,34 +138,45 @@
     timeStatus = false,
     bankStatus = false;
 
+  date.addEventListener("input", () => {
+    date_status_func();
+  });
+  time.addEventListener("input", () => {
+    time_status_func();
+  });
+  bank.addEventListener("input", () => {
+    bank_status_func();
+  });
+
   btn.addEventListener("click", () => {
-    if (typeof bank.value === "string" && bank.value.trim().length === 0) {
-      console.log("Bank cannot be empty");
+    if (!bank_status_func()) {
       bank.focus();
-    } else {
-      bankStatus = true;
     }
-
-    if (typeof date.value === "string" && date.value.trim().length === 0) {
-      console.log("Date cannot be empty");
-      date.focus();
-    } else {
-      dateStatus = true;
-    }
-
-    if (typeof time.value === "string" && time.value.trim().length === 0) {
-      console.log("Time cannot be empty");
+    if (!time_status_func()) {
       time.focus();
-    } else {
-      timeStatus = true;
+    }
+    if (!date_status_func()) {
+      date.focus();
     }
 
-    if (bankStatus && dateStatus && timeStatus) {
+    var dateTime = false;
+    var selected_time = new Date(date.value + " " + time.value);
+    var now = new Date();
+
+    if (selected_time > now) dateTime = true;
+    else {
+      if (lang == "sin") {
+        timeError.textContent = "කාලය අනාගතයේ විය යුතුය";
+        Command: toastr["error"]("කාලය අනාගතයේ විය යුතුය");
+      } else {
+        time.textContent = "Time must be in future";
+        Command: toastr["error"]("Time must be in future");
+      }
+    }
+
+    if (bankStatus && dateStatus && timeStatus && dateTime) {
       var formData = {
-        // collection_id: sessionStorage.getItem("id"),
-        // supplier_id: sessionStorage.getItem("sId"),
         collection_id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         date: date.value,
         time: time.value,
         account_id: bank.value,
@@ -159,14 +198,125 @@
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
+              Command: toastr["error"](data.message);
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
           console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });
+
+  function date_status_func() {
+    if (typeof date.value === "string" && date.value.trim().length === 0) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය හිස් විය නොහැක";
+        Command: toastr["warning"]("දිනය හිස් විය නොහැක");
+      } else {
+        dateError.textContent = "Date cannot be empty";
+        Command: toastr["warning"]("Date cannot be empty");
+      }
+      dateStatus = false;
+      return false;
+    } else if (!checkDate(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය අනාගතයේ විය යුතුය";
+        Command: toastr["warning"]("දිනය අනාගතයේ විය යුතුය");
+      } else {
+        dateError.textContent = "Date must be in the future";
+        Command: toastr["warning"]("Date must be in the future");
+      }
+    } else if (checkTwoWeeks(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය ඉදිරි සති දෙක තුළ විය යුතුය";
+        Command: toastr["warning"]("දිනය ඉදිරි සති දෙක තුළ විය යුතුය");
+      } else {
+        dateError.textContent = "The date should be within the next two weeks";
+        Command: toastr["warning"](
+          "The date should be within the next two weeks"
+        );
+      }
+    } else {
+      dateError.textContent = "";
+      dateStatus = true;
+      return true;
+    }
+  }
+
+  function time_status_func() {
+    if (typeof time.value === "string" && time.value.trim().length === 0) {
+      if (lang == "sin") {
+        timeError.textContent = "කාලය හිස් විය නොහැක";
+        Command: toastr["warning"]("කාලය හිස් විය නොහැක");
+      } else {
+        timeError.textContent = "Time cannot be empty";
+        Command: toastr["warning"]("Time cannot be empty");
+      }
+      timeStatus = false;
+      return false;
+    } else if (!checkTime(time.value)) {
+      if (lang == "sin") {
+        timeError.textContent = "වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය";
+        Command: toastr["warning"]("වේලාව 08:00:AM සහ 05:00:PM අතර විය යුතුය");
+      } else {
+        timeError.textContent = "Time must be between 08:00:AM and 05:00:PM";
+        Command: toastr["warning"](
+          "Time must be between 08:00:AM and 05:00:PM"
+        );
+      }
+      timeStatus = false;
+      return false;
+    } else {
+      timeError.textContent = "";
+      timeStatus = true;
+      return true;
+    }
+  }
+
+  function bank_status_func() {
+    if (typeof bank.value === "string" && bank.value.trim().length === 0) {
+      if (lang == "sin") {
+        bankError.textContent = "බැංකුව හිස් විය නොහැක";
+        Command: toastr["warning"]("බැංකුව හිස් විය නොහැක");
+      } else {
+        bankError.textContent = "Bank cannot be empty";
+        Command: toastr["warning"]("Bank cannot be empty");
+      }
+      bankStatus = false;
+      return false;
+    } else {
+      bankError.textContent = "";
+      bankStatus = true;
+      return true;
+    }
+  }
 })();
+
+function checkDate(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTwoWeeks(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() + 14);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTime(time) {
+  var t = time.split(":");
+  var hour = +t[0],
+    min = +t[1];
+  if (8 <= hour && 17 > hour) return true;
+  else return false;
+}

@@ -12,12 +12,46 @@
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
-    <!-- <link rel="stylesheet" href="../signin.css" /> -->
     <link rel="stylesheet" href="../supply.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="../auth.js"></script>
   </head>
 
   <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
 
     <section class="home">
       <div class="notification">
@@ -36,73 +70,99 @@
 
       <div class="text"></div>
 
-      <div class="supply-container container">
+      <div class="supply1-container supply-container">
         <div class="supply-heading table-heading">
           <h2 class="supply-title"></h2>
           <p class="supply-text"></p>
         </div>
         <div class="supply-content">
           <form class="supply">
-            <input
-              type="text"
-              class="coco-amount"
-              placeholder=""
-            />
+            <label class="coco-amount-label"></label>
+            <input type="number" class="coco-amount" placeholder="" /><br />
+            <span class="form-error coco-error"></span>
           </form>
 
           <div class="collection method">
             <div class="method-text c-method"></div>
             <div class="collection-input">
               <input
-              type="checkbox"
-              class="pickup radio checkbox"
-              value="1"
-              name="fooby[1][]"
-            />
-            <label class="pickup-label supply-label"></label>
-            <input
-              type="checkbox"
-              class="delivered radio checkbox"
-              value="1"
-              name="fooby[1][]"
-            />
-            <label class="delivered-label supply-label"></label>
+                type="checkbox"
+                class="pickup radio checkbox"
+                value="1"
+                name="fooby[1][]"
+                id="pickup"
+                style="cursor: pointer"
+              />
+              <label
+                for="pickup"
+                class="pickup-label supply-label"
+                style="cursor: pointer"
+              ></label>
+              <input
+                type="checkbox"
+                class="delivered radio checkbox"
+                value="1"
+                name="fooby[1][]"
+                id="delivered"
+                style="cursor: pointer"
+              />
+              <label
+                for="delivered"
+                class="delivered-label supply-label"
+                style="cursor: pointer"
+              ></label>
             </div>
-            
           </div>
+          <br />
+          <span class="form-error collection-error"></span>
 
           <div class="payment method">
             <div class="method-text p-method"></div>
             <div class="collection-input">
+              <input
+                type="checkbox"
+                class="cash radio checkbox"
+                value="1"
+                name="fooby[2][]"
+                id="cash"
+                style="cursor: pointer"
+              />
+              <label
+                for="cash"
+                class="cash-label supply-label"
+                style="cursor: pointer"
+              ></label>
 
-            <input
-              type="checkbox"
-              class="cash radio checkbox"
-              value="1"
-              name="fooby[2][]"
-            />
-            <label class="cash-label supply-label"></label>
-
-            <input
-              type="checkbox"
-              class="bank-transfer radio checkbox"
-              value="1"
-              name="fooby[2][]"
-            />
-            <label class="bank-label supply-label"></label>
+              <input
+                type="checkbox"
+                class="bank-transfer radio checkbox"
+                value="1"
+                name="fooby[2][]"
+                id="bank-transfer"
+                style="cursor: pointer"
+              />
+              <label
+                for="bank-transfer"
+                class="bank-label supply-label"
+                style="cursor: pointer"
+              ></label>
+            </div>
           </div>
-
-          </div>
+          <br />
+          <span class="form-error payment-error"></span>
           <button class="next form-button"></button>
         </div>
       </div>
+      
+      <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+      </div>
     </section>
-    <script src="../../common/func.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./load-nav.js"></script>
-    <script src="./load-notifications.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
     <script>
       $("input:checkbox").on("click", function () {
         var $box = $(this);
@@ -115,5 +175,6 @@
         }
       });
     </script>
+    <script src="../../common/loader.js"></script>
   </body>
 </html>

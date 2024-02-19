@@ -1,12 +1,18 @@
-// if (
-//   sessionStorage.getItem("page") != null &&
-//   sessionStorage.getItem("page").length != 0
-// ) {
-//   window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-// }
+// remove previous data
+document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+document.cookie = "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+if (getCookie("jwt") != null && getCookie("jwt").length != 0)
+  window.location.href = frontProxy + "/" + getPayload(getCookie("jwt")).page;
 
 var username_status = false,
-  password_status = false;
+  password_status = false,
+  lang = getCookie("lang"); // current language
 
 (() => {
   const body = document.querySelector("body"),
@@ -28,8 +34,8 @@ var username_status = false,
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
     ll1.textContent = data["sin"]["ll1"];
     ll2.textContent = data["sin"]["ll2"];
@@ -40,15 +46,15 @@ var username_status = false,
     button.textContent = data["sin"]["button"];
     validate.innerHTML = data["sin"]["validate"];
   });
-  
+
   en.addEventListener("click", () => {
     en.classList.add("active");
     sin.classList.remove("active");
-    
+
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
-    
+    lang = "en";
+
     ll1.textContent = data["en"]["ll1"];
     ll2.textContent = data["en"]["ll2"];
     ll3.textContent = data["en"]["ll3"];
@@ -82,6 +88,11 @@ var username_status = false,
     },
   };
 
+  ll3.addEventListener("click", () => {
+    document.cookie = "email=" + username.value + "; path=/";
+    window.location.href = "./forgot-password";
+  });
+
   checkLng();
 
   username.addEventListener("input", () => {
@@ -104,6 +115,24 @@ var username_status = false,
         password: password.value,
       };
 
+      if (lang == "sin") {
+        var title = "සම්බන්ධ වෙමින්...",
+          text = "කරුණාකර රැඳී සිටින්න...";
+      } else {
+        var title = "Connecting...",
+          text = "Please wait...";
+      }
+
+      Swal.fire({
+        title: title,
+        html: text,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
       // send form data object via fetch api
       fetch(backProxy + "/signin", {
         method: "POST",
@@ -114,16 +143,19 @@ var username_status = false,
         credentials: "include",
       })
         .then((response) => {
+          Swal.close();
           if (response.status === 200) {
             response.json().then((data) => {
               console.log(data.message);
               if (data.message == "Login successfully") {
-                // sessionStorage.setItem("name", data.name);
-                // sessionStorage.setItem("page", data.page);
-                document.cookie = "name=" + data.name + "; path=/";
-                document.cookie = "page=" + data.page + "; path=/";
-                document.cookie = "sId=" + data.sId + "; path=/";
-                window.location.href = frontProxy + "/" + data.page;
+                if (lang == "sin")
+                  Command: toastr["success"]("සාර්ථකව පුරනය වන්න");
+                else Command: toastr["success"]("Login successfully");
+
+                var payload = getPayload(getCookie("jwt"));
+
+                document.cookie = "name=" + payload.name + "; path=/";
+                window.location.href = frontProxy + "/" + payload.page;
               }
             });
           } else if (response.status === 400) {
@@ -131,52 +163,87 @@ var username_status = false,
             response.json().then((data) => {
               console(data.message);
               if (data.message == "username") {
-                usernameError.textContent = "Username cannot be empty!";
+                if (lang == "sin")
+                  usernameError.textContent = "පරිශීලක නාමය හිස් විය නොහැක!";
+                else usernameError.textContent = "Username cannot be empty!";
                 username.focus();
               } else if (data.message == "password") {
-                passwordError.textContent = "Password cannot be empty!";
+                if (lang == "sin")
+                  passwordError.textContent = "මුරපදය හිස් විය නොහැක!";
+                else passwordError.textContent = "Password cannot be empty!";
                 password.focus();
               }
             });
           } else if (response.status === 202) {
             response.json().then((data) => {
               if (data.message == "password") {
-                passwordError.textContent = "Invalid Password!";
+                if (lang == "sin") {
+                  passwordError.textContent = "වලංගු නොවන මුරපදයක්!";
+                  Command: toastr["warning"]("වලංගු නොවන මුරපදයක්!");
+                  ll3.style.color = "red";
+                } else {
+                  passwordError.textContent = "Invalid Password!";
+                  Command: toastr["warning"]("Invalid Password!");
+                  ll3.style.color = "red";
+                }
                 password.focus();
+                ll3.classList.add("blink");
               }
             });
           } else if (response.status === 401) {
             response.json().then((data) => {
               if (data.message == "username") {
-                usernameError.textContent = "Invalid Username!";
+                if (lang == "sin") {
+                  usernameError.textContent = "වලංගු නොවන පරිශීලක නාමයක්!";
+                  Command: toastr["warning"]("වලංගු නොවන පරිශීලක නාමයක්!");
+                } else {
+                  usernameError.textContent = "Invalid Username!";
+                  Command: toastr["warning"]("Invalid Username!");
+                }
                 username.focus();
               } else if (data.message == "validate") {
-                usernameError.textContent = "User is not validated!";
+                if (lang == "sin") {
+                  usernameError.textContent = "පරිශීලක වලංගු නොවේ!";
+                  Command: toastr["warning"]("පරිශීලක වලංගු නොවේ!");
+                } else {
+                  usernameError.textContent = "User is not validated!";
+                  Command: toastr["warning"]("User is not validated!");
+                }
                 username.focus();
                 validate.style.display = "block";
+                validate.classList.add("blink");
               }
             });
           } else {
             console.error("Error:", response.status);
+            Command: toastr["error"](response.status, "Error");
           }
         })
         .catch((error) => {
-          console.error("An error occurred:", error);
+          Swal.close();
+          // console.error("An error occurred:", error);
+          Command: toastr["error"](error);
         });
     }
   });
 
   validate.addEventListener("click", () => {
-    document.cookie =  "email="+username.value+"; path=/signup";
-    window.location.href = './signup/signup2.html'
-  })
+    document.cookie = "email=" + username.value + "; path=/signup";
+    window.location.href = "./signup/signup2.html";
+  });
 
   function username_status_func() {
     if (
       typeof username.value === "string" &&
       username.value.trim().length === 0
     ) {
-      usernameError.textContent = "Username cannot be empty";
+      if (lang == "sin") {
+        usernameError.textContent = "පරිශීලක නාමය හිස් විය නොහැක";
+        Command: toastr["warning"]("පරිශීලක නාමය හිස් විය නොහැක");
+      } else {
+        usernameError.textContent = "Username cannot be empty";
+        Command: toastr["warning"]("Username cannot be empty");
+      }
       username_status = false;
       return false;
     } else {
@@ -190,7 +257,13 @@ var username_status = false,
       typeof password.value === "string" &&
       password.value.trim().length === 0
     ) {
-      passwordError.textContent = "Password cannot be empty";
+      if (lang == "sin") {
+        passwordError.textContent = "මුරපදය හිස් විය නොහැක";
+        Command: toastr["warning"]("මුරපදය හිස් විය නොහැක");
+      } else {
+        passwordError.textContent = "Password cannot be empty";
+        Command: toastr["warning"]("Password cannot be empty");
+      }
       password_status = false;
       return false;
     } else {
