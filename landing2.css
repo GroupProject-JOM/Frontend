@@ -197,6 +197,16 @@ nav ul {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    text-decoration: none;
+
+}
+
+.block8-part3 a{
+    width: 33.3vw;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    text-decoration: none;
 
 }
 
