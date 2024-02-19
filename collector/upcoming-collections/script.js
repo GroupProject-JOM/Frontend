@@ -1,12 +1,43 @@
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     cTitle = body.querySelector(".collection-title"),
     cSubTitle = body.querySelector(".collection-text"),
-    tbody1 = body.querySelector(".tbody1");
+    searchBar = body.querySelector(".search1"),
+    upcomingTable = body.querySelector(".upcoming-table"),
+    tbody1 = body.querySelector(".tbody1"),
+    datePicker = body.querySelector("#datePicker");
 
   var lang = getCookie("lang"); // current language
+
+  datePicker.addEventListener("input", () => {
+    search(datePicker.value, upcomingTable);
+  });
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), upcomingTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), upcomingTable);
+  });
+
+  const searchBox = document.getElementById("searchBox"),
+    googleIcon = document.getElementById("filter-icon");
+
+  googleIcon.onclick = function () {
+    searchBox.classList.toggle("active");
+  };
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -60,7 +91,7 @@
         response.json().then((data) => {
           data.list.forEach((item) => {
             row +=
-              `<tr id=${item.id}>` +
+              `<tr data-href="../collection/view.html" id=${item.id}>` +
               `<td>${item.area}</td>` +
               `<td>${item.date}</td>` +
               `<td>${timeString(item.time)}</td>` +
@@ -69,6 +100,14 @@
               `</tr>`;
           });
           tbody1.innerHTML = row;
+
+          const rows = document.querySelectorAll("tr[data-href]");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id + "; path=/";
+              window.location.href = r.dataset.href;
+            });
+          });
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
