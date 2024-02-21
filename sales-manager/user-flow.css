@@ -529,8 +529,12 @@ input:focus {
 
 .split2-window .table-top{
   width: 98%;
+  margin: 10px 0 10px 0;
 }
 
+.split2-window .save{
+  margin-right: 20px;
+}
 
 .pending-products-text,
 .products-container .salesmg-text{
