@@ -277,6 +277,36 @@ input[type="number"] {
 
 }
 
+.yard-data-subtitle h3{
+  margin: 10px 0;
+  font-weight: 560;
+  width: fit-content;
+}
+
+.yard-data-subtitle h3 span{
+  font-size: 1.6rem;
+  margin: 0 5px;
+
+}
+
+.yard-data-subtitle{
+  /* display: flex;
+  align-items: flex-end;
+justify-content: space-between; */
+  width: 110%;
+}
+
+.yard-data-subtitle .complete-button{
+  padding: 8px 30px;
+  display: inline-block;
+  /* border-radius: 20px; */
+  font-size: 0.9rem;
+
+}
+
+.yard-data-container{
+  margin-left: 90px;
+}
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {
