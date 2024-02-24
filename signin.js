@@ -7,8 +7,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
-if (getCookie("jwt") != null && getCookie("jwt").length != 0)
-  window.location.href = frontProxy + "/" + getPayload(getCookie("jwt")).page;
+if (getCookie("refresh") != null && getCookie("refresh").length != 0)
+  window.location.href = frontProxy + "/" + getPayload(getCookie("refresh")).page;
 
 var username_status = false,
   password_status = false,

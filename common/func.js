@@ -193,6 +193,8 @@ function signout() {
         document.cookie =
           "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie =
+          "refresh=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         pageLoading();
         window.location.href = frontProxy;
       });
