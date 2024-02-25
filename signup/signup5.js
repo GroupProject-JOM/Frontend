@@ -35,14 +35,14 @@
       sin: {
        
         fh: "ගිණුම සාදා ඇත",
-        fht: "ඔබගේ ගිණුම සාර්ථකව නිර්මාණය කර ඇත. <br /> ඔබට දැන් පරිශීලක නාමය සහ මුරපදය භාවිතා කර ගිණුමට ලොග් විය හැක",
-        next: "ඇතුල් වන්න",
+        fht: "ඔබගේ ගිණුම සාර්ථකව නිර්මාණය කර ඇත. <br /> ඔබට දැන් පරිශීලක නාමය සහ මුරපදය භාවිතා කර ගිණුමට පිවිසිය හැක",
+        next: "පිවිසෙන්න",
       },
       en: {
         
         fh: "Account Created",
         fht: "Your account has been successfully created. <br /> You can now log in to the account using the username and password",
-        next: "Log in",
+        next: "Sign In",
       },
     };
   

@@ -4,6 +4,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    text = body.querySelector(".text"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
@@ -95,6 +96,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c5.textContent = data["sin"]["c5"];
     c6.textContent = data["sin"]["c6"];
     c7.textContent = data["sin"]["c7"];
+    text.textContent = data["sin"]["text"];
     rateBtn.textContent = data["sin"]["rateBtn"];
     rate.placeholder = data["sin"]["rate"];
     rLabel.textContent = data["sin"]["rLabel"];
@@ -118,6 +120,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c5.textContent = data["en"]["c5"];
     c6.textContent = data["en"]["c6"];
     c7.textContent = data["en"]["c7"];
+    text.textContent = data["en"]["text"];
     rateBtn.textContent = data["en"]["rateBtn"];
     rate.placeholder = data["en"]["rate"];
     rLabel.textContent = data["en"]["rLabel"];
@@ -135,6 +138,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c5: "සැපයුම්කරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
       c6: "පොල් එකතු කිරීම්",
       c7: "සෑම දිනකම පොල් එකතු කිරීම් තෝරා බලන්න",
+      text: "උපකරණ පුවරුව",
       rateBtn: "අද පොල් මිල ඇතුලත් කරන්න",
       rate: "නව පොල් මිල ඇතුළත් කරන්න",
       rLabel: "නව අනුපාතය",
@@ -149,6 +153,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c5: "View and update Supplier requests",
       c6: "Coconut Collections",
       c7: "Filter and view coconut collections for each day",
+      text: "Dashboard",
       rateBtn: "Enter Today's Coconut Rate",
       rate: "Enter new coconut rate",
       rLabel: "New rate",

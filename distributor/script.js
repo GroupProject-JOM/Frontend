@@ -2,6 +2,7 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    text = body.querySelector(".text"),
     w1 = body.querySelector(".w1"),
     w1Value = body.querySelector(".w1-value"),
     w2 = body.querySelector(".w2"),
@@ -61,6 +62,7 @@
     w2.textContent = data["sin"]["w2"];
     c1.textContent = data["sin"]["c1"];
     c2.textContent = data["sin"]["c2"];
+    text.textContent = data["sin"]["text"];
     setGreeting();
   });
 
@@ -76,6 +78,7 @@
     w2.textContent = data["en"]["w2"];
     c1.textContent = data["en"]["c1"];
     c2.textContent = data["en"]["c2"];
+    text.textContent = data["en"]["text"];
     setGreeting();
   });
 
@@ -85,12 +88,14 @@
       w2: "අද සංචාරයන්",
       c1: "අලෙවිසැල්",
       c2: "අලෙවිසැල් තොරතුරු බලන්න සහ යාවත්කාලීන කරන්න",
+      text: "උපකරණ පුවරුව",
     },
     en: {
       w1: "Allocated Products",
       w2: "Today's Visits",
       c1: "Products Overview",
       c2: "Currently available company products",
+      text: "Dashboard",
     },
   };
 

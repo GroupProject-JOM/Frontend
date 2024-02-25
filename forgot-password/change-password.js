@@ -1,6 +1,3 @@
-if (getCookie("jwt") != null && getCookie("jwt").length != 0)
-  window.location.href = frontProxy + "/signin.html";
-
 if (getCookie("jwt-forgot") == null || getCookie("jwt-forgot").length == 0)
   window.location.href = frontProxy + "/signin.html";
 

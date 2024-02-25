@@ -376,6 +376,7 @@ textarea {
   font-weight: 600;
   display: none;
   text-align: center;
+  cursor: pointer;
   /* color: var(--reject-red); */
 }
 

@@ -18,7 +18,7 @@
     cLabel = body.querySelector(".current-label"),
     cPassword = body.querySelector(".current-password"),
     cPasswordError = body.querySelector(".current-password-error"),
-    // forgot = body.querySelector(".forgot"),
+    forgot = body.querySelector(".forgot"),
     n1Label = body.querySelector(".new1-label"),
     n1 = body.querySelector(".new1"),
     n1Error = body.querySelector(".new1-password-error"),
@@ -61,7 +61,7 @@
     edit.textContent = data["sin"]["edit"];
     cLabel.textContent = data["sin"]["cLabel"];
     cPassword.placeholder = data["sin"]["cPassword"];
-    // forgot.textContent = data["sin"]["forgot"];
+    forgot.textContent = data["sin"]["forgot"];
     n1Label.textContent = data["sin"]["n1Label"];
     n1.placeholder = data["sin"]["n1"];
     n2Label.textContent = data["sin"]["n2Label"];
@@ -86,7 +86,7 @@
     edit.textContent = data["en"]["edit"];
     cLabel.textContent = data["en"]["cLabel"];
     cPassword.placeholder = data["en"]["cPassword"];
-    // forgot.textContent = data["en"]["forgot"];
+    forgot.textContent = data["en"]["forgot"];
     n1Label.textContent = data["en"]["n1Label"];
     n1.placeholder = data["en"]["n1"];
     n2Label.textContent = data["en"]["n2Label"];
@@ -102,14 +102,14 @@
       tx1: "පුද්ගලික තොරතුරු",
       tx2: "ලිපිනය",
       change: "මුරපදය වෙනස් කරන්න",
-      edit: "තොරතුරු සංස්කරණය කරන්න",
+      edit: "ගිණුම් තොරතුරු වෙනස් කරන්න",
       cLabel: "වත්මන් මුර පදය",
       cPassword: "වත්මන් මුරපදය ඇතුළත් කරන්න",
-      // forgot: "මුරපදය අමතක වුණා ද?",
+      forgot: "මුරපදය අමතක වුණා ද?",
       n1Label: "නව මුරපදය",
-      n1: "අවම වශයෙන් අක්ෂර 8 ක්",
+      n1: "අවම වශයෙන් අක්ෂර 6 ක්",
       n2Label: "මුරපදය තහවුරු කරන්න",
-      n2: "අවම වශයෙන් අක්ෂර 8 ක්",
+      n2: "අවම වශයෙන් අක්ෂර 6 ක්",
       save: "සුරකින්න",
     },
     en: {
@@ -120,11 +120,11 @@
       edit: "Edit Profile",
       cLabel: "Current Password",
       cPassword: "Enter current password",
-      // forgot: "Forgot password?",
+      forgot: "Forgot password?",
       n1Label: "New Password",
-      n1: "At least 8 characters",
+      n1: "At least 6 characters",
       n2Label: "Confirm Password",
-      n2: "At least 8 characters",
+      n2: "At least 6 characters",
       save: "Save",
     },
   };
@@ -245,7 +245,7 @@
             response.json().then((data) => {
               log(data.message);
             });
-            if (lang == "sin") cPasswordError.textContent = "වැරදි මුරපදය";
+            if (lang == "sin") cPasswordError.textContent = "වැරදි මුරපදයක්";
             else cPasswordError.textContent = "Incorrect Password";
             currentStatus = false;
           } else {
@@ -266,7 +266,7 @@
       cPassword.value.trim().length === 0
     ) {
       if (lang == "sin")
-        cPasswordError.textContent = "වත්මන්මු මුරපදය හිස් විය නොහැක";
+        cPasswordError.textContent = "වත්මන් මුරපදය හිස් විය නොහැක";
       else cPasswordError.textContent = "Current password cannot be empty";
       currentStatus = false;
       return false;
@@ -302,4 +302,9 @@
       return true;
     }
   }
+
+  forgot.addEventListener("click", () => {
+    document.cookie = "email=" + getPayload(getCookie("jwt")).email + "; path=/";
+    window.location.href = "../../forgot-password/index.html";
+  });
 })();

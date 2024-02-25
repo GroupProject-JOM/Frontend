@@ -133,7 +133,7 @@ var fname_status = false,
       confirm: "අවම සංකේත 6 ක්",
       phone: "දුරකථන අංකය ඇතුලත් කරන්න",
       address: "පුද්ගලික ලිපිනය",
-      address1: "ලිපින පේළි 1 ඇතුලත් කරන්න",
+      address1: "ලිපිනයේ පළමු පේළිය ඇතුලත් කරන්න",
       address2: "වීදිය ඇතුලත් කරන්න",
       address3: "නගරය ඇතුලත් කරන්න",
       m7: "දැනටමත් ගිණුමක් ඇත? <a href='../signin.html'>මෙතනින් පුරන්න.</a>",
@@ -144,7 +144,7 @@ var fname_status = false,
       passwordLabel: "මුරපදය තනන්න",
       confirmLabel: "මුරපදය තහවුරු කරන්න",
       phoneLabel: "දුරකථන අංකය",
-      address1Label: "ලිපින පේළි 1",
+      address1Label: "ලිපිනයේ පළමු පේළිය",
       address2Label: "වීදිය",
       address3Label: "නගරය",
     },
@@ -322,10 +322,10 @@ var fname_status = false,
                   passwordError.textContent = "මුරපදය හිස් විය නොහැක!";
                   password.focus();
                 } else if (data.message == "phone") {
-                  phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
+                  phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක!";
                   phone.focus();
                 } else if (data.message == "adddress1") {
-                  address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
+                  address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
                   address1.focus();
                 } else if (data.message == "adddress2") {
                   address2Error.textContent = "වීදිය හිස් විය නොහැක!";
@@ -334,9 +334,9 @@ var fname_status = false,
                   address3Error.textContent = "නගරය හිස් විය නොහැක!";
                   address3.focus();
                 } else {
-                  mainError.textContent = "මොකක්හරි වැරැද්දක් වෙලා"; // main error content top of the page
+                  mainError.textContent = "යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න"; // main error content top of the page
                   mainError.style.display = "block";
-                  Command: toastr["error"]("මොකක්හරි වැරැද්දක් වෙලා");
+                  Command: toastr["error"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
                 }
               } else {
                 // check current language and visualize error
@@ -368,9 +368,9 @@ var fname_status = false,
                   address3Error.textContent = "City cannot be empty!";
                   address3.focus();
                 } else {
-                  mainError.textContent = "Something went wrong";
+                  mainError.textContent = "Something went wrong. Try again";
                   mainError.style.display = "block";
-                  Command: toastr["error"]("Something went wrong");
+                  Command: toastr["error"]("Something went wrong. Try again");
                 }
               }
             });
@@ -410,8 +410,8 @@ var fname_status = false,
       return false;
     } else if (!ValidateName(fname.value)) {
       if (lang == "sin")
-        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else fnameError.textContent = "Name must contain only letters and ' '";
+        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else fnameError.textContent = "Name must contain only letters";
       fname_status = false;
       return false;
     } else {
@@ -429,8 +429,8 @@ var fname_status = false,
       return false;
     } else if (!ValidateName(lname.value)) {
       if (lang == "sin")
-        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else lnameError.textContent = "Name must contain only letters and ' '";
+        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else lnameError.textContent = "Name must contain only letters";
       lname_status = false;
       return false;
     } else {
@@ -448,7 +448,7 @@ var fname_status = false,
       email_status = false;
       return false;
     } else if (!ValidateEmail(email.value)) {
-      if (lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
+      if (lang == "sin") emailError.textContent = "වලංගු නොවන විද්‍යුත් තැපැල් ලිපිනයක්!";
       else emailError.textContent = "Invalid email address!";
       email_status = false;
       return false;
@@ -473,7 +473,7 @@ var fname_status = false,
       password.value.trim().length < 6
     ) {
       if (lang == "sin")
-        passwordError.textContent = "මුරපද දිග 6ට වඩා වැඩි හෝ සමාන විය යුතුය";
+        passwordError.textContent = "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
       else
         passwordError.textContent =
           "Password length must be greater than or equal to 6";
@@ -490,7 +490,7 @@ var fname_status = false,
     } else if (!hasLetter(password.value)) {
       if (lang == "sin")
         passwordError.textContent =
-          "මුරපදය අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
+          "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
       else
         passwordError.textContent = "Password must contain at least one letter";
       password_status = false;
@@ -508,8 +508,8 @@ var fname_status = false,
       confirm.value.trim().length === 0
     ) {
       if (lang == "sin")
-        confirmError.textContent = "මුරපදය හිස් විය නොහැකි බව තහවුරු කරන්න";
-      else confirmError.textContent = "Confirm password cannot be empty";
+        confirmError.textContent = "මුරපදය හිස් විය නොහැක";
+      else confirmError.textContent = "Password cannot be empty";
       confirm_status = false;
       return false;
     } else if (
@@ -518,28 +518,28 @@ var fname_status = false,
     ) {
       if (lang == "sin")
         confirmError.textContent =
-          "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතු බව තහවුරු කරන්න";
+          "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
       else
         confirmError.textContent =
-          "Confirm password length must be greater than or equal to 6";
+          "Password length must be greater than or equal to 6";
       confirm_status = false;
       return false;
     } else if (!hasNumber(confirm.value)) {
       if (lang == "sin")
         confirmError.textContent =
-          "මුරපදය අවම වශයෙන් එක් ඉලක්කම් අඩංගු විය යුතු බව තහවුරු කරන්න";
+          "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
       else
         confirmError.textContent =
-          "Confirm password must contain at least one digit";
+          "Password must contain at least one digit";
       confirm_status = false;
       return false;
     } else if (!hasLetter(confirm.value)) {
       if (lang == "sin")
         confirmError.textContent =
-          "මුරපදය අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතු බව තහවුරු කරන්න";
+          "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
       else
         confirmError.textContent =
-          "Confirm password must contain at least one letter";
+          "Password must contain at least one letter";
       confirm_status = false;
       return false;
     } else {
@@ -556,7 +556,7 @@ var fname_status = false,
       phone_status = false;
       return false;
     } else if (!ValidatePhone(phone.value)) {
-      if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      if (lang == "sin") phoneError.textContent = "වලංගු නොවන දුරකථන අංකයක්!";
       else phoneError.textContent = "Invalid phone number!";
       phone_status = false;
       return false;
@@ -573,7 +573,7 @@ var fname_status = false,
       address1.value.trim().length === 0
     ) {
       if (lang == "sin")
-        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+        address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක";
       else address1Error.textContent = "Address Line 1 cannot be empty";
       address1_status = false;
       return false;

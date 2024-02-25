@@ -23,6 +23,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     closeBtn = body.querySelector(".close-btn-bank"),
     overlay = body.querySelector(".overlay"),
     searchBar = body.querySelector(".search"),
+    searchFilter = body.querySelector(".search-filter"),
     btn = body.querySelector(".next");
 
   var lang = getCookie("lang"); // current language
@@ -207,6 +208,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             bankTable.style.display = "none";
             if (lang == "sin") Command: toastr["info"]("බැංකු ගිණුම් නැත");
             else Command: toastr["info"]("No Bank accounts");
+
+            searchFilter.style.display = "none";
           });
         } else {
           console.error("Error:", response.status);

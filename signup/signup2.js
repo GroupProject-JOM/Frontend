@@ -11,6 +11,7 @@ var lang = getCookie("lang"); // current language
     fht3 = body.querySelector(".form-heading-text3"),
     fht4 = body.querySelector(".form-heading-text4"),
     eotp = body.querySelector(".email-otp"),
+    otpLabel = body.querySelector(".otp-label"),
     potp = body.querySelector(".phone-otp"),
     sendEmail = body.querySelector(".send-email"),
     updateEmail = body.querySelector(".update-email"),
@@ -90,6 +91,7 @@ var lang = getCookie("lang"); // current language
     fht3.textContent = data["sin"]["fht3"];
     fht4.textContent = data["sin"]["fht4"];
     eotp.placeholder = data["sin"]["eotp"];
+    otpLabel.textContent = data["sin"]["otpLabel"];
     potp.placeholder = data["sin"]["potp"];
     next.textContent = data["sin"]["next"];
     vbt1.textContent = data["sin"]["vbt1"];
@@ -115,6 +117,7 @@ var lang = getCookie("lang"); // current language
     fht3.textContent = data["en"]["fht3"];
     fht4.textContent = data["en"]["fht4"];
     eotp.placeholder = data["en"]["eotp"];
+    otpLabel.textContent = data["en"]["otpLabel"];
     potp.placeholder = data["en"]["potp"];
     next.textContent = data["en"]["next"];
     vbt1.textContent = data["en"]["vbt1"];
@@ -128,18 +131,19 @@ var lang = getCookie("lang"); // current language
     sin: {
       fh1: "ඔබගේ විද්‍යුත් තැපෑල තහවුරු කරන්න",
       fh2: "ඔබගේ දුරකථනය තහවුරු කරන්න",
-      fht1: email + " වෙත යැවූ OTP ඇතුලත් කරන්න",
+      fht1: email + " වෙත යැවූ කේතය ඇතුලත් කරන්න",
       fht2: "වැරදි විද්‍යුත් තැපැල් ලිපිනයක්ද?",
-      fht3: phone + " වෙත යැවූ OTP ඇතුලත් කරන්න",
+      fht3: phone + " වෙත යැවූ කේතය ඇතුලත් කරන්න",
       fht4: "වැරදි දුරකථන අංකයක්ද?",
       eotp: "කේතය ඇතුලත් කරන්න",
       potp: "කේතය ඇතුලත් කරන්න",
       next: "ඊළඟ",
       vbt1: "තහවුරු කරන්න",
       vbt2: "තහවුරු කරන්න",
-      CorEmail: "නිවැරදි ඊමේල් ලිපිනය ඇතුලත් කරන්න",
+      CorEmail: "නිවැරදි විද්‍යුත් තැපැල් ලිපිනය ඇතුලත් කරන්න",
       sendEmail: "යවන්න",
       updateEmail: "යාවත්කාලීන කරන්න",
+      otpLabel: "කේතය ඇතුලත් කරන්න",
     },
     en: {
       fh1: "Verify your email",
@@ -156,6 +160,7 @@ var lang = getCookie("lang"); // current language
       CorEmail: "Enter correct email address",
       sendEmail: "Send",
       updateEmail: "Update",
+      otpLabel: "Enter OTP"
     },
   };
 
@@ -200,8 +205,8 @@ var lang = getCookie("lang"); // current language
             console.log(data.message);
 
             if (lang == "sin") {
-              error.textContent = "OTP යවන ලදී";
-              Command: toastr["info"]("OTP යවන ලදී");
+              error.textContent = "කේතය යවන ලදී";
+              Command: toastr["info"]("කේතය යවන ලදී");
             } else {
               error.textContent = "OTP sent";
               Command: toastr["info"]("OTP sent");
@@ -226,9 +231,9 @@ var lang = getCookie("lang"); // current language
         } else if (response.status === 409) {
           if (lang == "sin") {
             error.textContent =
-              "OTP යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න";
+              "කේතය යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න";
             Command: toastr["error"](
-              "OTP යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න"
+              "කේතය යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න"
             );
           } else {
             error.textContent = "Failed to send OTP, please try again later";
@@ -263,8 +268,8 @@ var lang = getCookie("lang"); // current language
       emailOtp.value.trim().length === 0
     ) {
       if (lang == "sin") {
-        error.textContent = "OTP හිස් විය නොහැක";
-        Command: toastr["warning"]("OTP හිස් විය නොහැක");
+        error.textContent = "කේතය හිස් විය නොහැක";
+        Command: toastr["warning"]("කේතය හිස් විය නොහැක");
       } else {
         error.textContent = "OTP cannot be empty";
         Command: toastr["warning"]("OTP cannot be empty");
@@ -304,8 +309,8 @@ var lang = getCookie("lang"); // current language
           } else if (response.status === 401) {
             console.log("Invalid OTP");
             if (lang == "sin") {
-              error.textContent = "වලංගු නොවන OTP";
-              Command: toastr["warning"]("වලංගු නොවන OTP");
+              error.textContent = "වලංගු නොවන කේතයක්";
+              Command: toastr["warning"]("වලංගු නොවන කේතයක්");
             } else {
               error.textContent = "Invalid OTP";
               Command: toastr["warning"]("Invalid OTP");
@@ -399,11 +404,11 @@ var lang = getCookie("lang"); // current language
                 emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක!";
                 CorEmail.focus();
               } else if (data.message == "email2") {
-                emailError.textContent = "වලංගු විද්‍යුත් තැපෑලක් ඇතුළු කරන්න!";
+                emailError.textContent = "වලංගු විද්‍යුත් තැපැල් ලිපිනයක් ඇතුළු කරන්න!";
                 CorEmail.focus();
               } else {
-                emailError.textContent = "ඊමේල් යාවත්කාලීන කිරීමට අසමත් විය";
-                Command: toastr["error"]("ඊමේල් යාවත්කාලීන කිරීමට අසමත් විය");
+                emailError.textContent = "විද්‍යුත් තැපැල් ලිපිනය යාවත්කාලීන කිරීමට අසමත් විය";
+                Command: toastr["error"]("විද්‍යුත් තැපැල් ලිපිනය යාවත්කාලීන කිරීමට අසමත් විය");
               }
             } else {
               if (data.message == "email1") {
@@ -422,7 +427,7 @@ var lang = getCookie("lang"); // current language
               if (data.message == "email3") {
                 if (lang == "sin")
                   emailError.textContent =
-                    "මෙම විද්‍යුත් තැපෑල දැනටමත් භාවිතා කර ඇත";
+                    "මෙම විද්‍යුත් තැපැල් ලිපිනය දැනටමත් භාවිතා කර ඇත";
                 else emailError.textContent = "This email is already used";
                 CorEmail.focus();
               }
@@ -453,12 +458,12 @@ var lang = getCookie("lang"); // current language
       CorEmail.value.trim().length === 0
     ) {
       if (lang == "sin")
-        emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
+        emailError.textContent = "විද්‍යුත් තැපැල් ලිපිනය හිස් විය නොහැක";
       else emailError.textContent = "Email cannot be empty";
       email_status = false;
       return false;
     } else if (!ValidateEmail(CorEmail.value)) {
-      if (lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
+      if (lang == "sin") emailError.textContent = "වලංගු නොවන විද්‍යුත් තැපැල් ලිපිනයක්!";
       else emailError.textContent = "Invalid email address!";
       email_status = false;
       return false;

@@ -10,6 +10,11 @@
     accError = body.querySelector(".acc-error"),
     bank = body.querySelector(".bank"),
     bankError = body.querySelector(".bank-error"),
+    nickname = body.querySelector(".acc-nickname"),
+    nameLabel = body.querySelector(".name-label"),
+    nicknameLabel = body.querySelector(".nickname-label"),
+    accLabel = body.querySelector(".acc-label"),
+    bankLabel = body.querySelector(".bank-label"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
@@ -26,7 +31,12 @@
     sText.innerHTML = data["sin"]["sText"];
     hname.placeholder = data["sin"]["hname"];
     accNum.placeholder = data["sin"]["accNum"];
-    bank.textContent = data["sin"]["bank"];
+    bank.placeholder = data["sin"]["bank"];
+    nickname.placeholder = data["sin"]["nickname"];
+    nameLabel.textContent = data["sin"]["nameLabel"];
+    nicknameLabel.textContent = data["sin"]["nicknameLabel"];
+    accLabel.textContent = data["sin"]["accLabel"];
+    bankLabel.textContent = data["sin"]["bankLabel"];
     btn.textContent = data["sin"]["btn"];
     setGreeting();
   });
@@ -43,7 +53,12 @@
     sText.innerHTML = data["en"]["sText"];
     hname.placeholder = data["en"]["hname"];
     accNum.placeholder = data["en"]["accNum"];
-    bank.textContent = data["en"]["bank"];
+    bank.placeholder = data["en"]["bank"];
+    nickname.placeholder = data["en"]["nickname"];
+    nameLabel.textContent = data["en"]["nameLabel"];
+    nicknameLabel.textContent = data["en"]["nicknameLabel"];
+    accLabel.textContent = data["en"]["accLabel"];
+    bankLabel.textContent = data["en"]["bankLabel"];
     btn.textContent = data["en"]["btn"];
     setGreeting();
   });
@@ -53,16 +68,26 @@
       sTitle: "බැංකු විස්තර සංස්කරණය කරන්න",
       sText: "ඔබගේ බැංකු ගිණුම් තොරතුරු සංස්කරණය කරන්න",
       hname: "ගිණුම් හිමියාගේ නම",
-      accNum: "ගිණුම් අංකය.",
+      nickname: "ගිණුමේ අන්වර්ථ නාමය ඇතුළත් කරන්න",
+      accNum: "ගිණුම් අංකය",
       bank: "බැංකුව",
+      nameLabel: "ගිණුම් හිමියාගේ නම",
+      nicknameLabel: "ගිණුමේ අන්වර්ථ නාමය",
+      accLabel: "ගිණුම් අංකය",
+      bankLabel: "බැංකුව",
       btn: "සුරකින්න",
     },
     en: {
       sTitle: "Edit Bank Details",
       sText: "Edit your bank account information",
       hname: "Account Holder Name",
+      nickname: "Enter account nickname",
       accNum: "Account No.",
       bank: "Bank",
+      nameLabel: "Account Holder Name",
+      nicknameLabel: "Account Nickname",
+      accLabel: "Account No",
+      bankLabel: "Bank",
       btn: "Save",
     },
   };
@@ -73,7 +98,7 @@
 
   function hname_status() {
     if (typeof hname.value === "string" && hname.value.trim().length === 0) {
-      if (lang == "sin") holderError.textContent = "දරන්නාගේ නම හිස් විය නොහැක";
+      if (lang == "sin") holderError.textContent = "ගිණුම් හිමියාගේ නම හිස් විය නොහැක";
       else holderError.textContent = "Holder name cannot be empty";
       hnameStatus = false;
       return false;

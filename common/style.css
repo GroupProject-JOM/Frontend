@@ -977,10 +977,6 @@ button:where(.swal2-styled) {
   }
 }
 
-.forgot {
-  display: none;
-}
-
 .layer {
   flex-wrap: wrap;
 }

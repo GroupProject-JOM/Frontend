@@ -12,6 +12,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     accError = body.querySelector(".acc-error"),
     bank = body.querySelector(".bank"),
     bankError = body.querySelector(".bank-error"),
+    nickname = body.querySelector(".acc-nickname"),
+    nameLabel = body.querySelector(".name-label"),
+    nicknameLabel = body.querySelector(".nickname-label"),
+    accLabel = body.querySelector(".acc-label"),
+    bankLabel = body.querySelector(".bank-label"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
@@ -29,6 +34,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     hname.placeholder = data["sin"]["hname"];
     accNum.placeholder = data["sin"]["accNum"];
     bank.placeholder = data["sin"]["bank"];
+    nickname.placeholder = data["sin"]["nickname"];
+    nameLabel.textContent = data["sin"]["nameLabel"];
+    nicknameLabel.textContent = data["sin"]["nicknameLabel"];
+    accLabel.textContent = data["sin"]["accLabel"];
+    bankLabel.textContent = data["sin"]["bankLabel"];
     btn.textContent = data["sin"]["btn"];
     setGreeting();
   });
@@ -46,6 +56,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     hname.placeholder = data["en"]["hname"];
     accNum.placeholder = data["en"]["accNum"];
     bank.placeholder = data["en"]["bank"];
+    nickname.placeholder = data["en"]["nickname"];
+    nameLabel.textContent = data["en"]["nameLabel"];
+    nicknameLabel.textContent = data["en"]["nicknameLabel"];
+    accLabel.textContent = data["en"]["accLabel"];
+    bankLabel.textContent = data["en"]["bankLabel"];
     btn.textContent = data["en"]["btn"];
     setGreeting();
   });
@@ -58,6 +73,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       hname: "ගිණුම් හිමියාගේ නම",
       accNum: "ගිණුම් අංකය.",
       bank: "බැංකුව",
+      nickname: "ගිණුමේ අන්වර්ථ නාමය ඇතුළත් කරන්න",
+      nameLabel: "ගිණුම් හිමියාගේ නම",
+      nicknameLabel: "ගිණුමේ අන්වර්ථ නාමය",
+      accLabel: "ගිණුම් අංකය",
+      bankLabel: "බැංකුව",
       btn: "එකතු කරන්න",
     },
     en: {
@@ -67,6 +87,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       hname: "Account Holder Name",
       accNum: "Account No.",
       bank: "Bank",
+      nickname: "Enter account nickname",
+      nameLabel: "Account Holder Name",
+      nicknameLabel: "Account Nickname",
+      accLabel: "Account No",
+      bankLabel: "Bank",
       btn: "Add",
     },
   };
@@ -77,7 +102,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function hname_status() {
     if (typeof hname.value === "string" && hname.value.trim().length === 0) {
-      if (lang == "sin") holderError.textContent = "දරන්නාගේ නම හිස් විය නොහැක";
+      if (lang == "sin") holderError.textContent = "ගිණුම් හිමියාගේ නම හිස් විය නොහැක";
       else holderError.textContent = "Holder name cannot be empty";
       hnameStatus = false;
       return false;

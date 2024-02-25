@@ -93,11 +93,11 @@
       sText: "ඔබගේ සැපයුම් ඉල්ලීම් විස්තර සංස්කරණය කරන්න",
       amount: "පොල් ප්‍රමාණය ඇතුළත් කරන්න",
       op0: "සැපයුම් ක්‍රමය තෝරන්න",
-      op1: "වත්තෙන් පිකප්",
-      op2: "අංගනයට භාර දෙනු ලැබේ",
+      op1: "වත්තෙන් එකතු කිරීම",
+      op2: "අංගනයට භාර දීම",
       op3: "ගෙවීම් ක්‍රමය තෝරන්න",
-      op4: "පිකප් මත මුදල්",
-      op5: "බැංකුවට මාරු කරන්න",
+      op4: "අත්පිට මුදල්",
+      op5: "බැංකු හුවමාරුව",
       lop: "වතුයායේ ස්ථානය",
       bop: "බැංකු ගිණුම",
       btn: "සුරකින්න",
@@ -156,8 +156,8 @@
         response.json().then((data) => {
           // data.size=0
           if (lang == "sin") {
-            location_options += "<option value='' disabled>වතු නැත</option>";
-            Command: toastr["info"]("වතු නැත");
+            location_options += "<option value='' disabled>වතුයායන් නැත</option>";
+            Command: toastr["info"]("වතුයායන් නැත");
           } else {
             location_options += "<option value='' disabled>No Estates</option>";
             Command: toastr["info"]("No Estates");
@@ -169,7 +169,7 @@
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
         if (lang == "sin")
-          location_options += "<option value='' disabled>වතු නැත</option>";
+          location_options += "<option value='' disabled>වතුයායන් නැත</option>";
         else
           location_options += "<option value='' disabled>No Estates</option>";
         location.innerHTML = location_options;
@@ -401,7 +401,7 @@
           if (data.request.method == "pickup") {
             if (lang == "sin") {
               dText.textContent = "රැගෙන යන දිනය";
-              tText.textContent = "රැගෙන යන කාලය";
+              tText.textContent = "රැගෙන යන වේලාව";
             } else {
               dText.textContent = "Pickup Date";
               tText.textContent = "Pickup Time";
@@ -410,8 +410,8 @@
             location.style.display = "block";
           } else {
             if (lang == "sin") {
-              dText.textContent = "බෙදාහැරීමේ දිනය";
-              tText.textContent = "බෙදාහැරීමේ කාලය";
+              dText.textContent = "ලබා දෙන දිනය";
+              tText.textContent = "ලබා දෙන වේලාව";
             } else {
               dText.textContent = "Delivery Date";
               tText.textContent = "Delivery Time";
@@ -451,11 +451,11 @@
       return false;
     } else if (!checkInt(amount.value)) {
       if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+        amountError.textContent = "පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය");
       } else {
-        amountError.textContent = "Coconut amount must be positive integer";
-        Command: toastr["warning"]("Coconut amount must be positive integer");
+        amountError.textContent = "Coconut amount must be greater than 0";
+        Command: toastr["warning"]("Coconut amount must be greater than 0");
       }
       amountStatus = false;
       return false;
@@ -495,8 +495,8 @@
   function time_status_func() {
     if (typeof time.value === "string" && time.value.trim().length === 0) {
       if (lang == "sin") {
-        timeError.textContent = "කාලය හිස් විය නොහැක";
-        Command: toastr["warning"]("කාලය හිස් විය නොහැක");
+        timeError.textContent = "වේලාව හිස් විය නොහැක";
+        Command: toastr["warning"]("වේලාව හිස් විය නොහැක");
       } else {
         timeError.textContent = "Time cannot be empty";
         Command: toastr["warning"]("Time cannot be empty");

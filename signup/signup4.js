@@ -92,7 +92,7 @@ var accStatus = false,
 
   function hname_status() {
     if (typeof hname.value === "string" && hname.value.trim().length === 0) {
-      if (lang == "sin") holderError.textContent = "දරන්නාගේ නම හිස් විය නොහැක";
+      if (lang == "sin") holderError.textContent = "ගිණුම් හිමියාගේ නම හිස් විය නොහැක";
       else holderError.textContent = "Holder name cannot be empty";
       hnameStatus = false;
       return false;

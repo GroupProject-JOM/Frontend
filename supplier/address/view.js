@@ -47,9 +47,9 @@
   var data = {
     sin: {
       sTitle: "ඔබගේ ලිපිනයන්",
-      sText: "ඔබගේ කලින් සුරකින ලද ලිපින විස්තර පහත දැක්වේ",
+      sText: "ඔබගේ කලින් සුරකින ලද ලිපින වල විස්තර පහත දැක්වේ",
       edit: "සංස්කරණය කරන්න",
-      del: "මකන්න",
+      del: "ඉවත් කරන්න",
     },
     en: {
       sTitle: "Your Addresses",
@@ -97,7 +97,7 @@
 
   del.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
