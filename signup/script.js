@@ -11,6 +11,8 @@ var fname_status = false,
   lname_status = false,
   email_status = false,
   password_status = false,
+  confirm_status = false,
+  match_status = false,
   phone_status = false,
   address1_status = false,
   address2_status = false,
@@ -29,8 +31,9 @@ var fname_status = false,
     email = body.querySelector(".email"),
     emailError = document.querySelector(".email-error"),
     password = body.querySelector(".password"),
-    confirm = body.querySelector(".confirm-password"),
     passwordError = body.querySelector(".password-error"),
+    confirm = body.querySelector(".confirm-password"),
+    confirmError = body.querySelector(".confirm-error"),
     phone = body.querySelector(".phone"),
     phoneError = body.querySelector(".phone-error"),
     address = body.querySelector(".address"),
@@ -171,7 +174,7 @@ var fname_status = false,
     },
   };
 
-  // input chage validations
+  // input change validations
   fname.addEventListener("input", () => {
     fname_status_func();
   });
@@ -183,6 +186,9 @@ var fname_status = false,
   });
   password.addEventListener("input", () => {
     password_status_func();
+  });
+  confirm.addEventListener("input", () => {
+    confirm_status_func();
   });
   phone.addEventListener("input", () => {
     phone_status_func();
@@ -212,6 +218,9 @@ var fname_status = false,
     if (!phone_status_func()) {
       phone.focus();
     }
+    if (!confirm_status_func()) {
+      confirm.focus();
+    }
     if (!password_status_func()) {
       password.focus();
     }
@@ -225,12 +234,31 @@ var fname_status = false,
       fname.focus();
     }
 
+    if (password.value === confirm.value) {
+      match_status = true;
+    } else {
+      if (lang == "sin") {
+        passwordError.textContent = "මුරපදය සහ තහවුරු කිරීමේ මුරපද නොගැලපේ";
+        confirmError.textContent = "මුරපදය සහ තහවුරු කිරීමේ මුරපද නොගැලපේ";
+      } else {
+        passwordError.textContent =
+          "Password and confirm passwords are not matched";
+        confirmError.textContent =
+          "Password and confirm passwords are not matched";
+      }
+      password_status = false;
+      confirm_status = false;
+      match_status = false;
+    }
+
     if (
       // check input data are ready to submit
       fname_status &&
       lname_status &&
       email_status &&
       password_status &&
+      confirm_status &&
+      match_status &&
       phone_status &&
       address1_status &&
       address2_status &&
@@ -440,9 +468,83 @@ var fname_status = false,
       else passwordError.textContent = "Password cannot be empty";
       password_status = false;
       return false;
+    } else if (
+      typeof password.value === "string" &&
+      password.value.trim().length < 6
+    ) {
+      if (lang == "sin")
+        passwordError.textContent = "මුරපද දිග 6ට වඩා වැඩි හෝ සමාන විය යුතුය";
+      else
+        passwordError.textContent =
+          "Password length must be greater than or equal to 6";
+      password_status = false;
+      return false;
+    } else if (!hasNumber(password.value)) {
+      if (lang == "sin")
+        passwordError.textContent =
+          "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
+      else
+        passwordError.textContent = "Password must contain at least one digit";
+      password_status = false;
+      return false;
+    } else if (!hasLetter(password.value)) {
+      if (lang == "sin")
+        passwordError.textContent =
+          "මුරපදය අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
+      else
+        passwordError.textContent = "Password must contain at least one letter";
+      password_status = false;
+      return false;
     } else {
       password_status = true;
       passwordError.textContent = "";
+      return true;
+    }
+  }
+
+  function confirm_status_func() {
+    if (
+      typeof confirm.value === "string" &&
+      confirm.value.trim().length === 0
+    ) {
+      if (lang == "sin")
+        confirmError.textContent = "මුරපදය හිස් විය නොහැකි බව තහවුරු කරන්න";
+      else confirmError.textContent = "Confirm password cannot be empty";
+      confirm_status = false;
+      return false;
+    } else if (
+      typeof confirm.value === "string" &&
+      confirm.value.trim().length < 6
+    ) {
+      if (lang == "sin")
+        confirmError.textContent =
+          "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතු බව තහවුරු කරන්න";
+      else
+        confirmError.textContent =
+          "Confirm password length must be greater than or equal to 6";
+      confirm_status = false;
+      return false;
+    } else if (!hasNumber(confirm.value)) {
+      if (lang == "sin")
+        confirmError.textContent =
+          "මුරපදය අවම වශයෙන් එක් ඉලක්කම් අඩංගු විය යුතු බව තහවුරු කරන්න";
+      else
+        confirmError.textContent =
+          "Confirm password must contain at least one digit";
+      confirm_status = false;
+      return false;
+    } else if (!hasLetter(confirm.value)) {
+      if (lang == "sin")
+        confirmError.textContent =
+          "මුරපදය අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතු බව තහවුරු කරන්න";
+      else
+        confirmError.textContent =
+          "Confirm password must contain at least one letter";
+      confirm_status = false;
+      return false;
+    } else {
+      confirm_status = true;
+      confirmError.textContent = "";
       return true;
     }
   }
@@ -533,4 +635,10 @@ function ValidatePhone(number) {
   else return false;
 }
 
-// TODO address validations
+function hasNumber(str) {
+  return /\d/.test(str);
+}
+
+function hasLetter(str) {
+  return /[a-zA-Z]/.test(str);
+}
