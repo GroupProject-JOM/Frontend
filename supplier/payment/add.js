@@ -13,6 +13,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     bank = body.querySelector(".bank"),
     bankError = body.querySelector(".bank-error"),
     nickname = body.querySelector(".acc-nickname"),
+    nicknameError = body.querySelector(".nickname-error"),
     nameLabel = body.querySelector(".name-label"),
     nicknameLabel = body.querySelector(".nickname-label"),
     accLabel = body.querySelector(".acc-label"),
@@ -96,13 +97,29 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  var hnameStatus = false,
+  var nicknameStatus = false,
+    hnameStatus = false,
     accNumStatus = false,
     bankStatus = false;
 
+  function nickname_status() {
+    if (typeof nickname.value === "string" && nickname.value.trim().length === 0) {
+      if (lang == "sin")
+      nicknameError.textContent = "අන්වර්ථ නාමය හිස් විය නොහැක";
+      else nicknameError.textContent = "Nickname cannot be empty";
+      nicknameStatus = false;
+      return false;
+    } else {
+      nicknameError.textContent = "";
+      nicknameStatus = true;
+      return true;
+    }
+  }
+
   function hname_status() {
     if (typeof hname.value === "string" && hname.value.trim().length === 0) {
-      if (lang == "sin") holderError.textContent = "ගිණුම් හිමියාගේ නම හිස් විය නොහැක";
+      if (lang == "sin")
+        holderError.textContent = "ගිණුම් හිමියාගේ නම හිස් විය නොහැක";
       else holderError.textContent = "Holder name cannot be empty";
       hnameStatus = false;
       return false;
@@ -139,6 +156,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     }
   }
 
+  nickname.addEventListener("input", () => {
+    nickname_status();
+  });
   hname.addEventListener("input", () => {
     hname_status();
   });
@@ -156,12 +176,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     if (!acc_status()) {
       accNum.focus();
     }
+    if (!nickname_status()) {
+      nickname.focus();
+    }
     if (!hname_status()) {
       hname.focus();
     }
 
-    if (hnameStatus && accNumStatus && bankStatus) {
+    if (hnameStatus && accNumStatus && bankStatus && nicknameStatus) {
       var formData = {
+        nickName: nickname.value,
         name: hname.value,
         account_number: accNum.value,
         bank: bank.value,

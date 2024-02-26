@@ -11,6 +11,7 @@
     bank = body.querySelector(".bank"),
     bankError = body.querySelector(".bank-error"),
     nickname = body.querySelector(".acc-nickname"),
+    nicknameError = body.querySelector(".nickname-error"),
     nameLabel = body.querySelector(".name-label"),
     nicknameLabel = body.querySelector(".nickname-label"),
     accLabel = body.querySelector(".acc-label"),
@@ -92,9 +93,24 @@
     },
   };
 
-  var hnameStatus = false,
+  var nicknameStatus = false,
+    hnameStatus = false,
     accNumStatus = false,
     bankStatus = false;
+
+    function nickname_status() {
+      if (typeof nickname.value === "string" && nickname.value.trim().length === 0) {
+        if (lang == "sin")
+        nicknameError.textContent = "අන්වර්ථ නාමය හිස් විය නොහැක";
+        else nicknameError.textContent = "Nickname cannot be empty";
+        nicknameStatus = false;
+        return false;
+      } else {
+        nicknameError.textContent = "";
+        nicknameStatus = true;
+        return true;
+      }
+    }
 
   function hname_status() {
     if (typeof hname.value === "string" && hname.value.trim().length === 0) {
@@ -135,6 +151,9 @@
     }
   }
 
+  nickname.addEventListener("input", () => {
+    nickname_status();
+  });
   hname.addEventListener("input", () => {
     hname_status();
   });
@@ -152,13 +171,17 @@
     if (!acc_status()) {
       accNum.focus();
     }
+    if (!nickname_status()) {
+      nickname.focus();
+    }
     if (!hname_status()) {
       hname.focus();
     }
 
-    if (hnameStatus && accNumStatus && bankStatus) {
+    if (hnameStatus && accNumStatus && bankStatus && nicknameStatus) {
       var formData = {
         id: getCookie("id"),
+        nickName: nickname.value,
         name: hname.value,
         account_number: accNum.value,
         bank: bank.value,
@@ -208,6 +231,7 @@
         response.json().then((data) => {
           console.log(data.account);
           hname.value = data.account.name;
+          nickname.value = data.account.nickName;
           accNum.value = data.account.account_number;
           bank.value = data.account.bank;
         });
