@@ -51,12 +51,20 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op2 = body.querySelector(".op2"),
     op3 = body.querySelector(".op3"),
     rNote = body.querySelector(".reject-note"),
-    chnageCollecteor = body.querySelector(".change-collector"),
+    changeCollector = body.querySelector(".change-collector"),
     yardH = body.querySelector(".yard-h3"),
     tbody2 = body.querySelector(".tbody2"),
     addError = body.querySelector(".add-error"),
     totalError = body.querySelector(".total-error"),
     completeBtn = body.querySelector(".complete-button"),
+    yardDataContainer = body.querySelector(".yard-data-container"),
+    curTotal = body.querySelector(".current-total"),
+    yard1Container = body.querySelector(".yard1"),
+    yard2Container = body.querySelector(".yard2"),
+    yard3Container = body.querySelector(".yard3"),
+    yardTbody1 = body.querySelector(".yard-tbody1"),
+    yardTbody2 = body.querySelector(".yard-tbody2"),
+    yardTbody3 = body.querySelector(".yard-tbody3"),
     save = body.querySelector(".save");
 
   totalCount.textContent = 0;
@@ -127,7 +135,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     otherLabel.textContent = data["sin"]["otherLabel"];
     other.placeholder = data["sin"]["other"];
     submit.textContent = data["sin"]["submit"];
-    chnageCollecteor.textContent = data["sin"]["chnageCollecteor"];
+    changeCollector.textContent = data["sin"]["changeCollector"];
 
     setGreeting();
   });
@@ -153,7 +161,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     otherLabel.textContent = data["en"]["otherLabel"];
     other.placeholder = data["en"]["other"];
     submit.textContent = data["en"]["submit"];
-    chnageCollecteor.textContent = data["en"]["chnageCollecteor"];
+    changeCollector.textContent = data["en"]["changeCollector"];
 
     setGreeting();
   });
@@ -173,7 +181,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       otherLabel: "වෙනත් හේතුවක් නම්",
       other: "ඔබේ හේතුව මෙහි ටයිප් කරන්න",
       submit: "ඉදිරිපත් කරන්න",
-      chnageCollecteor: "එකතුකරන්නා වෙනස් කරන්න",
+      changeCollector: "එකතුකරන්නා වෙනස් කරන්න",
     },
     en: {
       sTitle: "View Request",
@@ -189,7 +197,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       otherLabel: "If other",
       other: "Type your reason here",
       submit: "Submit",
-      chnageCollecteor: "Change Collector",
+      changeCollector: "Change Collector",
     },
   };
 
@@ -297,7 +305,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               data.request.c_fName + " " + data.request.c_lName;
             cPhone.textContent = data.request.c_phone;
             collected.style.display = "none";
-            chnageCollecteor.style.display = "";
+            changeCollector.style.display = "";
             document.cookie = "date=" + date.textContent + "; path=/";
           } else if (data.request.status == 4) {
             if (lang == "sin") sText.textContent = "තත්ත්වය: ප්‍රතික්ෂේප කළා";
@@ -1072,7 +1080,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     if (count == blocks.length) countStatus = true;
     else countStatus = false;
 
-    log(countStatus)
+    log(countStatus);
 
     if (countStatus) {
       var formData = {

@@ -325,7 +325,8 @@ var fname_status = false,
                   phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක!";
                   phone.focus();
                 } else if (data.message == "adddress1") {
-                  address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
+                  address1Error.textContent =
+                    "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
                   address1.focus();
                 } else if (data.message == "adddress2") {
                   address2Error.textContent = "වීදිය හිස් විය නොහැක!";
@@ -448,7 +449,8 @@ var fname_status = false,
       email_status = false;
       return false;
     } else if (!ValidateEmail(email.value)) {
-      if (lang == "sin") emailError.textContent = "වලංගු නොවන විද්‍යුත් තැපැල් ලිපිනයක්!";
+      if (lang == "sin")
+        emailError.textContent = "වලංගු නොවන විද්‍යුත් තැපැල් ලිපිනයක්!";
       else emailError.textContent = "Invalid email address!";
       email_status = false;
       return false;
@@ -473,7 +475,8 @@ var fname_status = false,
       password.value.trim().length < 6
     ) {
       if (lang == "sin")
-        passwordError.textContent = "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
+        passwordError.textContent =
+          "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
       else
         passwordError.textContent =
           "Password length must be greater than or equal to 6";
@@ -507,8 +510,7 @@ var fname_status = false,
       typeof confirm.value === "string" &&
       confirm.value.trim().length === 0
     ) {
-      if (lang == "sin")
-        confirmError.textContent = "මුරපදය හිස් විය නොහැක";
+      if (lang == "sin") confirmError.textContent = "මුරපදය හිස් විය නොහැක";
       else confirmError.textContent = "Password cannot be empty";
       confirm_status = false;
       return false;
@@ -517,8 +519,7 @@ var fname_status = false,
       confirm.value.trim().length < 6
     ) {
       if (lang == "sin")
-        confirmError.textContent =
-          "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
+        confirmError.textContent = "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
       else
         confirmError.textContent =
           "Password length must be greater than or equal to 6";
@@ -529,8 +530,7 @@ var fname_status = false,
         confirmError.textContent =
           "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
       else
-        confirmError.textContent =
-          "Password must contain at least one digit";
+        confirmError.textContent = "Password must contain at least one digit";
       confirm_status = false;
       return false;
     } else if (!hasLetter(confirm.value)) {
@@ -538,8 +538,7 @@ var fname_status = false,
         confirmError.textContent =
           "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
       else
-        confirmError.textContent =
-          "Password must contain at least one letter";
+        confirmError.textContent = "Password must contain at least one letter";
       confirm_status = false;
       return false;
     } else {

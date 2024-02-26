@@ -230,7 +230,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<tr data-href='./supply-view.html' id=" +
                 item.id +
                 ">" +
-                "<td class='hide'>S/"+capitalize(item.method)[0]+"/" +
+                "<td class='hide'>S/" +
+                capitalize(item.method)[0] +
+                "/" +
                 item.id +
                 "</td>" +
                 "<td>" +
@@ -258,16 +260,18 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<tr data-href='./supply-view.html' id=" +
                 item.id +
                 ">" +
-                "<td class='hide'>" +
-                item.id +
+                "<td>S/" +
+                capitalize(item.method)[0] +
+                "/" +
+                +item.id +
                 "</td>" +
-                "<td>" +
+                "<td class='hide'>" +
                 item.date +
                 "</td>" +
-                "<td class='hide'>" +
+                "<td>" +
                 item.amount.toLocaleString("en-US") +
                 "</td>" +
-                "<td class='hide'>" +
+                "<td>" +
                 capitalize(item.method) +
                 "</td>" +
                 "<td>" +
@@ -301,7 +305,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./supply-view.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td>S/" +
+              capitalize(item.method)[0] +
+              "/" +
               item.id +
               "</td>" +
               "<td class='hide'>" +
@@ -347,7 +353,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           pagination("table2", 10);
           pagination("table3", 10);
 
-          if(row3.length === 0){
+          if (row3.length === 0) {
             layer3.style.display = "none";
           }
 
@@ -387,7 +393,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./supply-view.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td>S/" +
+              capitalize(item.method)[0] +
+              "/" +
               item.id +
               "</td>" +
               "<td class='hide'>" +
