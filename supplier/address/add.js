@@ -76,9 +76,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      sTitle: "නව වතු ස්ථානය එක් කරන්න",
+      sTitle: "නව වතුයායක් එක් කරන්න",
       sText:
-        "නව වත්තක් සඳහා තොරතුරු එක් කරන්න. <br />ඔබට ඕනෑම වේලාවක උපකරණ පුවරුව > ලිපිනයන් හිදී මෙම තොරතුරු සංස්කරණය කළ හැක",
+        "නව වතුයායක් සඳහා තොරතුරු එක් කරන්න. <br />ඔබට ඕනෑම වේලාවක උපකරණ පුවරුව > ලිපිනයන් හිදී මෙම තොරතුරු සංස්කරණය කළ හැක",
       ename: "වතුයායේ නම ඇතුලත් කරන්න",
       address: "ලිපිනය ඇතුලත් කරන්න",
       area: "ප්රදේශය ඇතුල් කරන්න",
@@ -117,7 +117,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function ename_status() {
     if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-      if (lang == "sin") enameError.textContent = "වතු නම හිස් විය නොහැක";
+      if (lang == "sin") enameError.textContent = "වතුයායේ නම හිස් විය නොහැක";
       else enameError.textContent = "Estate name cannot be empty";
       enameStatus = false;
       return false;

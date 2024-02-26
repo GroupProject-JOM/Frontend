@@ -78,22 +78,24 @@
         <div class="supply-content">
           <form class="bank-form supply">
             <div class="row">
-              <div class="add-label"><label>Account Holder Name</label></div>
+              <div class="add-label"><label class="name-label"></label></div>
               <div class="add-input">
                 <input type="text" class="acc-holders name" placeholder="" />
                 <br /><span class="form-error holder-error"></span>
               </div>
             </div>
             <div class="row">
-              <div class="add-label"><label>Account Nickname</label></div>
+              <div class="add-label">
+                <label class="nickname-label"></label>
+              </div>
               <div class="add-input">
                 <input type="text" class="acc-nickname" placeholder="" />
-                <br /><span class="form-error"></span>
+                <br /><span class="form-error nickname-error"></span>
               </div>
             </div>
 
             <div class="row">
-              <div class="add-label"><label>Account No</label></div>
+              <div class="add-label"><label class="acc-label"></label></div>
               <div class="add-input">
                 <input type="text" class="account-number" placeholder="" />
                 <br /><span class="form-error acc-error"></span>
@@ -101,7 +103,7 @@
             </div>
 
             <div class="row">
-              <div class="add-label"><label>Bank</label></div>
+              <div class="add-label"><label class="bank-label"></label></div>
               <div class="add-input">
                 <input type="text" class="bank" placeholder="" /><br /><span
                   class="form-error bank-error"
@@ -114,7 +116,7 @@
           <button class="add-button form-button"></button>
         </div>
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>

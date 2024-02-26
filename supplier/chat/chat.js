@@ -41,7 +41,7 @@
   var data = {
     sin: {
       cTitle: "ජයසිංහ ඔයිල් මිල්ස්",
-      message: "පණිවිඩයක් ටයිප් කරන්න",
+      message: "පණිවිඩයක් ඇතුලත් කරන්න",
     },
     en: {
       cTitle: "Jayasinghe Oil Mills",

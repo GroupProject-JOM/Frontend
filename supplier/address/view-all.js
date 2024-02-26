@@ -12,6 +12,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     th2 = body.querySelector(".th2"),
     tbody = body.querySelector(".tbody"),
     searchBar = body.querySelector(".search"),
+    searchFilter = body.querySelector(".search-filter"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
@@ -135,7 +136,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             deletes.forEach((del) => {
               del.addEventListener("click", () => {
                 if (lang == "sin") {
-                  var title = "ඔයාට විශ්වාස ද?",
+                  var title = "ඔබට විශ්වාස ද?",
                     text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
                     confirmButtonText = "ඔව්, එය මකන්න!",
                     cancelButtonText = "අවලංගු කරන්න";
@@ -216,6 +217,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             addressTable.style.display = "none";
             if (lang == "sin") Command: toastr["info"]("ලිපිනයන් නැත");
             else Command: toastr["info"]("No Addresses");
+            
+            searchFilter.style.display = "none";
           });
         } else {
           console.error("Error:", response.status);

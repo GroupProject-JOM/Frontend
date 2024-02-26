@@ -7,6 +7,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    text = body.querySelector(".text"),
     modeSwitch = body.querySelector(".toggle-switch"),
     fire = body.querySelector(".fire"),
     w1 = body.querySelector(".w1"),
@@ -47,6 +48,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c7.textContent = data["sin"]["c7"];
     greet1.textContent = data["sin"]["greet1"];
     greet2.textContent = data["sin"]["greet2"];
+    text.textContent = data["sin"]["text"];
     setGreeting();
   });
 
@@ -69,6 +71,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c7.textContent = data["en"]["c7"];
     greet1.textContent = data["en"]["greet1"];
     greet2.textContent = data["en"]["greet2"];
+    text.textContent = data["en"]["text"];
     setGreeting();
   });
 
@@ -84,6 +87,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c7: "ඔබගේ මග හැරුණු පොල් එකතුව බලන්න",
       greet1: "සුභ පැතුම්!",
       greet2: "ඔබ අද දින එකතු කිරීම් සියල්ල සම්පූර්ණ කර ඇත",
+      text: "උපකරණ පුවරුව",
     },
     en: {
       w1: "Coconut Rate",
@@ -95,7 +99,8 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c6: "Missed Collections",
       c7: "View your missed coconut collections",
       greet1: "Good Job!",
-      greet2: "You completed all of today's collections"
+      greet2: "You completed all of today's collections",
+      text: "Dashboard",
     },
   };
 

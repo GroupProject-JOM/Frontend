@@ -44,8 +44,8 @@
         response.json().then((data) => {
           // data.size=0
           if (lang == "sin") {
-            location_options += "<option value='' disabled>වතු නැත</option>";
-            Command: toastr["info"]("වතු නැත");
+            location_options += "<option value='' disabled>වතුයායන් නැත</option>";
+            Command: toastr["info"]("වතුයායන් නැත");
           } else {
             location_options += "<option value='' disabled>No Estates</option>";
             Command: toastr["info"]("No Estates");
@@ -57,7 +57,7 @@
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
         if (lang == "sin")
-          location_options += "<option value='' disabled>වතු නැත</option>";
+          location_options += "<option value='' disabled>වතුයායන් නැත</option>";
         else
           location_options += "<option value='' disabled>No Estates</option>";
         location.innerHTML = location_options;

@@ -295,6 +295,28 @@
       else n1Error.textContent = "New password cannot be empty";
       new1Status = false;
       return false;
+    } else if (typeof n1.value === "string" && n1.value.trim().length < 6) {
+      if (lang == "sin")
+        n1Error.textContent = "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
+      else
+        n1Error.textContent =
+          "Password length must be greater than or equal to 6";
+      new1Status = false;
+      return false;
+    } else if (!hasNumber(n1.value)) {
+      if (lang == "sin")
+        n1Error.textContent =
+          "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
+      else n1Error.textContent = "Password must contain at least one digit";
+      new1Status = false;
+      return false;
+    } else if (!hasLetter(n1.value)) {
+      if (lang == "sin")
+        n1Error.textContent =
+          "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
+      else n1Error.textContent = "Password must contain at least one letter";
+      new1Status = false;
+      return false;
     } else {
       new1Status = true;
       n1Error.textContent = "";
@@ -308,10 +330,46 @@
       else n2Error.textContent = "Confirm password cannot be empty";
       new2Status = false;
       return false;
+    } else if (typeof n2.value === "string" && n2.value.trim().length < 6) {
+      if (lang == "sin")
+        n2Error.textContent = "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
+      else
+        n2Error.textContent =
+          "Password length must be greater than or equal to 6";
+      new2Status = false;
+      return false;
+    } else if (!hasNumber(n2.value)) {
+      if (lang == "sin")
+        n2Error.textContent =
+          "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
+      else n2Error.textContent = "Password must contain at least one digit";
+      new2Status = false;
+      return false;
+    } else if (!hasLetter(n2.value)) {
+      if (lang == "sin")
+        n2Error.textContent =
+          "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
+      else n2Error.textContent = "Password must contain at least one letter";
+      new2Status = false;
+      return false;
     } else {
       new2Status = true;
       n2Error.textContent = "";
       return true;
     }
   }
+
+  forgot.addEventListener("click", () => {
+    document.cookie =
+      "email=" + getPayload(getCookie("jwt")).email + "; path=/";
+    window.location.href = "../../forgot-password/index.html";
+  });
 })();
+
+function hasNumber(str) {
+  return /\d/.test(str);
+}
+
+function hasLetter(str) {
+  return /[a-zA-Z]/.test(str);
+}

@@ -2,6 +2,7 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    text = body.querySelector(".text"),
     w1 = body.querySelector(".w1"),
     w1Value = body.querySelector(".w1-value"),
     w2 = body.querySelector(".w2"),
@@ -53,6 +54,7 @@
     t4.textContent = data["sin"]["t4"];
     t5.textContent = data["sin"]["t5"];
     t6.textContent = data["sin"]["t6"];
+    text.textContent = data["sin"]["text"];
     setGreeting();
   });
 
@@ -76,6 +78,7 @@
     t4.textContent = data["en"]["t4"];
     t5.textContent = data["en"]["t5"];
     t6.textContent = data["en"]["t6"];
+    text.textContent = data["en"]["text"];
     setGreeting();
   });
 
@@ -92,6 +95,7 @@
       t4: "සැපයුම් වාර්තා සංස්කරණය කරන්න",
       t5: "අලෙවිසැල කළමනාකරණය",
       t6: "අලෙවිසැල් විස්තර සංස්කරණය කරන්න",
+      text: "උපකරණ පුවරුව",
     },
     en: {
       w1: "Employees",
@@ -105,6 +109,7 @@
       t4: "Manually Edit Collection Records",
       t5: "Outlet Management",
       t6: "Edit Outlet Details",
+      text: "Dashboard",
     },
   };
 

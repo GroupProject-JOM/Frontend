@@ -51,20 +51,29 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     op2 = body.querySelector(".op2"),
     op3 = body.querySelector(".op3"),
     rNote = body.querySelector(".reject-note"),
-    chnageCollecteor = body.querySelector(".change-collector"),
+    changeCollector = body.querySelector(".change-collector"),
     yardH = body.querySelector(".yard-h3"),
     tbody2 = body.querySelector(".tbody2"),
     addError = body.querySelector(".add-error"),
     totalError = body.querySelector(".total-error"),
     completeBtn = body.querySelector(".complete-button"),
+    yardDataContainer = body.querySelector(".yard-data-container"),
+    curTotal = body.querySelector(".current-total"),
+    yard1Container = body.querySelector(".yard1"),
+    yard2Container = body.querySelector(".yard2"),
+    yard3Container = body.querySelector(".yard3"),
+    yardTbody1 = body.querySelector(".yard-tbody1"),
+    yardTbody2 = body.querySelector(".yard-tbody2"),
+    yardTbody3 = body.querySelector(".yard-tbody3"),
     save = body.querySelector(".save");
 
   totalCount.textContent = 0;
   remainingCount.textContent = 0;
 
   var totalAmount = 0,
-    remainigAmount = 0,
-    previous = 0;
+    remainingAmount = 0,
+    previous = 0,
+    collectionId = 0;
 
   var lang = getCookie("lang"); // current language
 
@@ -79,10 +88,6 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       document.querySelector(".split1-window").style.right = "35%";
       document.querySelector(".split1-window").style.display = "none";
       document.querySelector(".split2-window").style.display = "none";
-
-      // remainigAmount = +totalAmount;
-      // previous = remainigAmount;
-      // remainingCount.textContent = remainigAmount;
     }
   });
 
@@ -91,19 +96,11 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     document.querySelector(".split1-window").style.right = "35%";
     document.querySelector(".split1-window").style.display = "none";
     document.querySelector(".split2-window").style.display = "none";
-
-    // remainigAmount = +totalAmount;
-    // previous = remainigAmount;
-    // remainingCount.textContent = remainigAmount;
   });
 
   closeBtn3.addEventListener("click", () => {
     document.querySelector(".split1-window").style.right = "35%";
     document.querySelector(".split2-window").style.display = "none";
-
-    // remainigAmount = +totalAmount;
-    // previous = remainigAmount;
-    // remainingCount.textContent = remainigAmount;
   });
 
   sin.addEventListener("click", () => {
@@ -127,7 +124,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     otherLabel.textContent = data["sin"]["otherLabel"];
     other.placeholder = data["sin"]["other"];
     submit.textContent = data["sin"]["submit"];
-    chnageCollecteor.textContent = data["sin"]["chnageCollecteor"];
+    changeCollector.textContent = data["sin"]["changeCollector"];
 
     setGreeting();
   });
@@ -153,7 +150,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     otherLabel.textContent = data["en"]["otherLabel"];
     other.placeholder = data["en"]["other"];
     submit.textContent = data["en"]["submit"];
-    chnageCollecteor.textContent = data["en"]["chnageCollecteor"];
+    changeCollector.textContent = data["en"]["changeCollector"];
 
     setGreeting();
   });
@@ -173,7 +170,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       otherLabel: "වෙනත් හේතුවක් නම්",
       other: "ඔබේ හේතුව මෙහි ටයිප් කරන්න",
       submit: "ඉදිරිපත් කරන්න",
-      chnageCollecteor: "එකතුකරන්නා වෙනස් කරන්න",
+      changeCollector: "එකතුකරන්නා වෙනස් කරන්න",
     },
     en: {
       sTitle: "View Request",
@@ -189,7 +186,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       otherLabel: "If other",
       other: "Type your reason here",
       submit: "Submit",
-      chnageCollecteor: "Change Collector",
+      changeCollector: "Change Collector",
     },
   };
 
@@ -203,7 +200,9 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          rId.textContent = data.request.id;
+          rId.textContent = `S/${capitalize(data.request.method)[0]}/${
+            data.request.id
+          }`;
           sName.textContent = data.request.name + " " + data.request.last_name;
           sPhone.textContent = data.request.phone;
           sMethod.textContent = capitalize(data.request.method);
@@ -228,6 +227,10 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             cPhoneRow.style.display = "none";
             dText.textContent = "Delivery Date";
             tText.textContent = "Delivery Time";
+
+            previous = data.request.final_amount;
+            remainingCount.textContent = previous;
+            collectionId = data.request.id;
           }
           date.textContent = data.request.date;
           time.textContent = timeString(data.request.time);
@@ -297,7 +300,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               data.request.c_fName + " " + data.request.c_lName;
             cPhone.textContent = data.request.c_phone;
             collected.style.display = "none";
-            chnageCollecteor.style.display = "";
+            changeCollector.style.display = "";
             document.cookie = "date=" + date.textContent + "; path=/";
           } else if (data.request.status == 4) {
             if (lang == "sin") sText.textContent = "තත්ත්වය: ප්‍රතික්ෂේප කළා";
@@ -628,9 +631,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     elm.addEventListener("click", () => {
       document.querySelector(".split1-window").style.right = "46%";
 
-      remainigAmount = 0;
-      // previous = remainigAmount;
-      remainingCount.textContent = remainigAmount;
+      remainingAmount = previous;
+      remainingCount.textContent = remainingAmount;
 
       if (index === 0) {
         viewYard(yard1);
@@ -828,8 +830,8 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         value += +elm.value;
       }
     });
-    remainigAmount = value;
-    remainingCount.textContent = remainigAmount;
+    remainingAmount = value + previous;
+    remainingCount.textContent = remainingAmount;
   }
 
   function handleAdd(add) {
@@ -1072,7 +1074,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     if (count == blocks.length) countStatus = true;
     else countStatus = false;
 
-    log(countStatus)
+    log(countStatus);
 
     if (countStatus) {
       var formData = {
@@ -1082,6 +1084,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         amounts: amounts,
         collector: 0,
         final_amount: addTotal,
+        id: collectionId,
       };
 
       if (lang == "sin") {
@@ -1107,68 +1110,59 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       }).then((result) => {
         if (result.isConfirmed) {
           log(formData);
-          // fetch(backProxy + "/yard-data", {
-          //   method: "POST",
-          //   headers: {
-          //     "Content-Type": "application/json",
-          //   },
-          //   body: JSON.stringify(formData),
-          //   credentials: "include",
-          // })
-          //   .then((response) => {
-          //     if (response.status == 200) {
-          //       response.json().then((data) => {
-          //         console.log(data.message);
-          //       });
-          //       if (lang == "sin") var title = "සාර්ථකව අංගනයට එක් කරන ලදී";
-          //       else var title = "Successfully added to yard";
-          //       Swal.fire({
-          //         title: title,
-          //         // text: "You clicked the button!",
-          //         icon: "success",
-          //         confirmButtonColor: confirmButtonColor,
-          //       }).then((response) => {
-          //         document.cookie = "total=" + remainigAmount + "; path=/";
+          fetch(backProxy + "/yard-data", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+            credentials: "include",
+          })
+            .then((response) => {
+              if (response.status == 200) {
+                response.json().then((data) => {
+                  console.log(data.message);
+                });
+                if (lang == "sin") var title = "සාර්ථකව අංගනයට එක් කරන ලදී";
+                else var title = "Successfully added to yard";
+                Swal.fire({
+                  title: title,
+                  // text: "You clicked the button!",
+                  icon: "success",
+                  confirmButtonColor: confirmButtonColor,
+                }).then((response) => {
+                  previous += addTotal;
 
-          //         yValue.textContent = remainigAmount;
+                  document.querySelector(".split1-window").style.right = "35%";
+                  document.querySelector(".split2-window").style.display =
+                    "none";
 
-          //         totalCount.textContent = remainigAmount;
-          //         remainingCount.textContent = remainigAmount;
-
-          //         totalAmount = remainigAmount;
-          //         remainigAmount = remainigAmount;
-          //         previous = remainigAmount;
-
-          //         document.querySelector(".split1-window").style.right = "35%";
-          //         document.querySelector(".split2-window").style.display =
-          //           "none";
-
-          //         getYards();
-          //         yard.click();
-          //       });
-          //     } else if (response.status === 400) {
-          //       response.json().then((data) => {
-          //         console.log(data.message);
-          //       });
-          //       if (lang == "sin")
-          //         Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-          //       else Command: toastr["info"]("Something went wrong");
-          //     } else if (response.status === 401) {
-          //       response.json().then((data) => {
-          //         console.log(data.message);
-          //       });
-          //       if (lang == "sin")
-          //         Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-          //       else Command: toastr["error"]("Invalid User");
-          //     } else {
-          //       console.error("Error:", response.status);
-          //       Command: toastr["error"](response.status, "Error");
-          //     }
-          //   })
-          //   .catch((error) => {
-          //     console.error("An error occurred:", error);
-          //     Command: toastr["error"](error);
-          //   });
+                  getYards();
+                  yard.click();
+                });
+              } else if (response.status === 400) {
+                response.json().then((data) => {
+                  console.log(data.message);
+                });
+                if (lang == "sin")
+                  Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
+                else Command: toastr["info"]("Something went wrong");
+              } else if (response.status === 401) {
+                response.json().then((data) => {
+                  console.log(data.message);
+                });
+                if (lang == "sin")
+                  Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+                else Command: toastr["error"]("Invalid User");
+              } else {
+                console.error("Error:", response.status);
+                Command: toastr["error"](response.status, "Error");
+              }
+            })
+            .catch((error) => {
+              console.error("An error occurred:", error);
+              Command: toastr["error"](error);
+            });
         }
       });
     }
@@ -1217,6 +1211,69 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       return true;
     }
   }
+
+  completeBtn.addEventListener("click", () => {
+    if (lang == "sin") {
+      var title = "ඔයාට විශ්වාස ද?",
+        text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+        confirmButtonText = "ඔව්, සම්පූර්ණ එකතුව",
+        cancelButtonText = "අවලංගු කරන්න";
+    } else {
+      var title = "Are you sure?",
+        text = "You won't be able to revert this!",
+        confirmButtonText = "Yes, Complete collection!",
+        cancelButtonText = "Cancel";
+    }
+    Swal.fire({
+      title: title,
+      text: text,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: confirmButtonColor,
+      cancelButtonColor: cancelButtonColor,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(backProxy + "/yard-data?id=" + collectionId, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
+          .then((response) => {
+            if (response.status == 200) {
+              response.json().then((data) => {
+                log(data.message);
+              });
+              if (lang == "sin") var title = "එකතුව සාර්ථකව නිම කරන ලදී";
+              else var title = "Collection completed successfully";
+              Swal.fire({
+                title: title,
+                // text: "You clicked the button!",
+                icon: "success",
+                confirmButtonColor: confirmButtonColor,
+              }).then((response) => {
+                window.location.reload();
+              });
+            } else if (response.status === 400) {
+              response.json().then((data) => {
+                console.error("Error:", data.message);
+                Command: toastr["error"](data.message, "Error");
+              });
+            } else {
+              console.error("Error:", response.status);
+              Command: toastr["error"](response.status, "Error");
+            }
+          })
+          .catch((error) => {
+            console.error("An error occurred:", error);
+            Command: toastr["error"](error);
+          });
+      }
+    });
+  });
 })();
 
 function checkInt(num) {

@@ -77,14 +77,14 @@
     sin: {
       sTitle: "ලිපිනයන් සංස්කරණය කරන්න",
       sText: "ඔබගේ වතුයායන් වල විස්තර සංස්කරණය කරන්න",
-      ename: "වතු නම ඇතුලත් කරන්න",
+      ename: "වතුයායේ නම ඇතුලත් කරන්න",
       address: "ලිපිනය ඇතුලත් කරන්න",
       area: "ප්රදේශය ඇතුල් කරන්න",
-      t1: "වතු ලිපිනය",
+      t1: "වතුයායේ ලිපිනය",
       pText:
         "ඔබගේ සැපයුම pin මගින් සලකුණු කර ඇති ඉහත ස්ථානයෙන් ලබා ගනී. කරුණාකර එය වැරදි ස්ථානයේ තිබේ නම් පින් එක නැවත ස්ථානගත කරන්න.",
       confirm: "තහවුරු කරන්න",
-      eLabel: "වතු නම",
+      eLabel: "වතුයායේ නම",
       addLabel: "ලිපිනය",
       areaLabel: "ප්රදේශය",
       btn: "සුරකින්න",
@@ -114,7 +114,7 @@
 
   function ename_status() {
     if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-      if (lang == "sin") enameError.textContent = "වතු නම හිස් විය නොහැක";
+      if (lang == "sin") enameError.textContent = "වතුයායේ නම හිස් විය නොහැක";
       else enameError.textContent = "Estate name cannot be empty";
       enameStatus = false;
       return false;
