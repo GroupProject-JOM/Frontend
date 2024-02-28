@@ -146,7 +146,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     setGreeting();
   });
 
-  // trasnslation and page text contents
+  // translation and page text contents
   var data = {
     sin: {
       w1: "වත්මන් සැපයුම්",
@@ -178,13 +178,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  // initallize rows for data handling
+  // initialize rows for data handling
   let row1 = "",
     row2 = "",
     row3 = "",
     count = 0;
 
-  // retrive data from backend and assign to tbodies
+  // retrieve data from backend and assign to tbodies
   fetch(backProxy + "/collections", {
     method: "GET",
     headers: {
@@ -196,7 +196,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       if (response.status == 200) {
         response.json().then((data) => {
           data.ongoing.forEach((item) => {
-            // inialize default values for status
+            // initialize default values for status
             var stat = "",
               st = "",
               oTable = true;
@@ -224,7 +224,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               return;
             }
 
-            // appent to relevant row
+            // append to relevant row
             if (oTable) {
               row1 +=
                 "<tr data-href='./supply-view.html' id=" +
@@ -290,7 +290,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
             if (item.status == 5) {
               stat = "pending";
-              st = "Pending Paymant";
+              st = "Pending Payment";
               if (window.innerWidth <= 718) st = "Pending";
             } else if (item.status == 6) {
               stat = "paid";
