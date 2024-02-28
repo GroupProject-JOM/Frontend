@@ -77,7 +77,7 @@
       sTitle: "සැපයුම් ඉල්ලීම",
       sText: "ඔබගේ සැපයුම් ඉල්ලීම් විස්තර පහත ප්‍රදර්ශනය කෙරේ",
       edit: "සංස්කරණය කරන්න",
-      del: "මකන්න",
+      del: "ඉවත් කරන්න",
     },
     en: {
       sTitle: "Supply Request",
@@ -158,6 +158,11 @@
               cPhoneBlock.style.display = "none";
               rNote.style.display = "block";
               rNote.textContent = "Reason: " + data.request.reason;
+
+              edit.style.display = "none";
+              edit.disabled = true;
+              del.style.display = "none";
+              del.disabled = true;
             }
 
             ccount.textContent = data.request.amount.toLocaleString("en-US");
@@ -191,8 +196,11 @@
 
             if (selectedDate < week) {
               error.style.display = "none";
-              del.style.display = "block";
-              del.disabled = false;
+              
+              if (data.request.status != 4) {
+                del.style.display = "block";
+                del.disabled = false;
+              }
             }
           } else if (4 < data.request.status && data.request.status < 7) {
             if (data.request.status == 5)
@@ -227,7 +235,7 @@
 
   del.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -321,15 +329,14 @@
   function actionVerifyDecline() {
     if (getCookie("id") == sessionStorage.getItem("id")) {
       cMessage.textContent =
-        "Collecter entered amount is " +
-        sessionStorage.getItem("amount");
+        "Collecter entered amount is " + sessionStorage.getItem("amount");
       sMessage.style.display = "block";
     }
   }
 
   accept.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය පිළිගන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -385,7 +392,7 @@
 
   deny.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය ප්‍රතික්ෂේප කරන්න!",
         cancelButtonText = "අවලංගු කරන්න";

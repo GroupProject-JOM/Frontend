@@ -83,14 +83,14 @@
       lname: "අවසන් නම ඇතුලත් කරන්න",
       phone: "දුරකථන අංකය ඇතුලත් කරන්න",
       address: "පුද්ගලික ලිපිනය",
-      address1: "ලිපින පේළි 1 ඇතුලත් කරන්න",
+      address1: "ලිපිනයේ පළමු පේළිය ඇතුලත් කරන්න",
       address2: "වීදිය ඇතුලත් කරන්න",
       address3: "නගරය ඇතුලත් කරන්න",
       btn: "වෙනස්කම් සුරකින්න",
       fnameLabel: "මුල් නම",
       lnameLabel: "අවසන් නම",
       phoneLabel: "දුරකථන අංකය",
-      address1Label: "ලිපින පේළි 1",
+      address1Label: "ලිපිනයේ පළමු පේළිය",
       address2Label: "වීදිය",
       address3Label: "නගරය",
     },
@@ -269,10 +269,10 @@
                   lnameError.textContent = "අවසාන නම හිස් විය නොහැක!";
                   lname.focus();
                 } else if (data.message == "phone") {
-                  phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
+                  phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක!";
                   phone.focus();
                 } else if (data.message == "adddress1") {
-                  address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
+                  address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
                   address1.focus();
                 } else if (data.message == "adddress2") {
                   address2Error.textContent = "වීදිය හිස් විය නොහැක!";
@@ -328,8 +328,8 @@
       return false;
     } else if (!ValidateName(fname.value)) {
       if (lang == "sin")
-        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else fnameError.textContent = "Name must contain only letters and ' '";
+        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else fnameError.textContent = "Name must contain only letters";
       fname_status = false;
       return false;
     } else {
@@ -347,8 +347,8 @@
       return false;
     } else if (!ValidateName(lname.value)) {
       if (lang == "sin")
-        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else lnameError.textContent = "Name must contain only letters and ' '";
+        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else lnameError.textContent = "Name must contain only letters";
       lname_status = false;
       return false;
     } else {
@@ -382,7 +382,7 @@
       address1.value.trim().length === 0
     ) {
       if (lang == "sin")
-        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+        address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක";
       else address1Error.textContent = "Address Line 1 cannot be empty";
       address1_status = false;
       return false;

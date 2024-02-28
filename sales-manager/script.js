@@ -51,7 +51,7 @@
 
   var data = {
     sin: {
-      w1: "මුළු විකුණුම් පරිමාව",
+      w1: "මාසික ආදායම",
       w2: "පොරොත්තු ගෙවීම්",
       c1: "විකුණුම් දත්ත",
       c2: "මාසික විකුණුම් දත්ත සාරාංශය",
@@ -59,10 +59,10 @@
       c5: "එක් එක් බෙදාහරින්නා සඳහා විකුණුම් දත්ත සාරාංශය",
       aText:
         "නිෂ්පාදන දෙපාර්තමේන්තුව නව සමාගම් නිෂ්පාදන එකතු කර ඇත. ඒවායේ ඒකක මිල යාවත්කාලීන කරන්න.",
-      aBtn: "ඒකක මිල යාවත්කාලීන කරන්න",
+      aBtn: "මිල ඇතුල් කරන්න",
     },
     en: {
-      w1: "Total Sales Volume",
+      w1: "Monthly Revenue",
       w2: "Pending Payments",
       c1: "Sales Data",
       c2: "Monthly Sales Data Visualisation",
@@ -197,157 +197,4 @@
     document.getElementById("distributor-sales"),
     configBar
   );
-
-  //pdf generate code
-  //Generate pdf
-  var pdfObject; //outputType: jsPDFInvoiceTemplate.OutputType.Blob,
-
-  var props = {
-    outputType: jsPDFInvoiceTemplate.OutputType.Blob,
-    returnJsPDFDocObject: true,
-    fileName: "Invoice 2023",
-    orientationLandscape: false,
-    compress: true,
-    logo: {
-      src: "../common/JOM logo 1.png",
-      type: "PNG", //optional, when src= data:uri (nodejs case)
-      width: 53.33, //aspect ratio = width/height
-      height: 26.66,
-      margin: {
-        top: 0, //negative or positive num, from the current position
-        left: 0, //negative or positive num, from the current position
-      },
-    },
-    stamp: {
-      inAllPages: true, //by default = false, just in the last page
-      src: "../common/home.png",
-      type: "JPG", //optional, when src= data:uri (nodejs case)
-      width: 20, //aspect ratio = width/height
-      height: 20,
-      margin: {
-        top: 0, //negative or positive num, from the current position
-        left: 0, //negative or positive num, from the current position
-      },
-    },
-    business: {
-      name: "Jayasinghe Oil Mills",
-      address: "No 105, Ravita Road, Welpalla, Sri Lanka.",
-      phone: "(+94) 76 924 0963",
-      email: "jom@jom.com",
-      email_1: "jmyasiru@gmail.com",
-      website: "www.jom.com",
-    },
-    contact: {
-      label: "Invoice issued for:",
-      name: "Stock Manager",
-      address: "NO 858, Pannala, Kuliyapitiya",
-      phone: "(+94) 71 22 22 222",
-      email: "kamal@gmail.com",
-      // otherInfo: "www.jom.com",
-    },
-    invoice: {
-      // label: "Invoice #: ",
-      num: 19,
-      invDate: "Start Date: 25/10/2023 18:12",
-      invGenDate: "Invoice Date: 26/10/2023 10:17",
-      headerBorder: false,
-      tableBodyBorder: false,
-      header: [
-        {
-          title: "#",
-          style: {
-            width: 10,
-          },
-        },
-        {
-          title: "Date",
-          style: {
-            width: 30,
-          },
-        },
-        {
-          title: "Supply Method",
-          style: {
-            width: 40,
-          },
-        },
-        {
-          title: "Payment Method",
-          style: {
-            width: 50,
-          },
-        },
-        { title: "Quantity" },
-        // { title: "Quantity" },
-        { title: "Unit" },
-        { title: "Total" },
-      ],
-      table: Array.from(Array(15), (item, index) => [
-        index + 1,
-        "2023-12-13",
-        "Pickup from estate",
-        "Transfer to Bank\n",
-        200,
-        "50.00",
-        // "m2",
-        "10000.00",
-      ]),
-      additionalRows: [
-        {
-          col1: "Total:",
-          col2: "145,250.50",
-          col3: "LKR",
-          style: {
-            fontSize: 14, //optional, default 12
-          },
-        },
-        // {
-        //   col1: "VAT:",
-        //   col2: "20",
-        //   col3: "%",
-        //   style: {
-        //     fontSize: 10, //optional, default 12
-        //   },
-        // },
-        // {
-        //   col1: "SubTotal:",
-        //   col2: "116,199.90",
-        //   col3: "ALL",
-        //   style: {
-        //     fontSize: 10, //optional, default 12
-        //   },
-        // },
-      ],
-      invDescLabel: "Invoice Note",
-      invDesc:
-        "Thank you for your recent supply of materials to Jayasinghe Oil Mills Pvt. Ltd. Enclosed, please find the attached invoice providing a comprehensive overview of all supplied items during the specified time period. We sincerely appreciate your consistent reliability, which is paramount to our operations. For any further assistance or inquiries, please do not hesitate to contact us either via email or telephone. Your satisfaction is our priority, and we look forward to continuing our mutually beneficial partnership.",
-    },
-    footer: {
-      text: "The invoice is created on a computer and is valid without the signature and stamp.",
-    },
-    pageEnable: true,
-    pageLabel: "Page ",
-  };
-
-  /* generate pdf */
-  function generatePDF() {
-    pdfObject = jsPDFInvoiceTemplate.default(props);
-    console.log("Object generated: ", pdfObject);
-    viewPDF();
-  }
-
-  /* view pdf */
-  function viewPDF() {
-    if (!pdfObject) {
-      return console.log("No PDF Object");
-    }
-
-    var fileURL = URL.createObjectURL(pdfObject.blob);
-    window.open(fileURL, "_blank");
-  }
-
-  const rep1 = document.querySelector(".rep1");
-  rep1.addEventListener("click", () => {
-    generatePDF();
-  });
 })();

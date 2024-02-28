@@ -7,6 +7,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    text = body.querySelector(".text"),
     modeSwitch = body.querySelector(".toggle-switch"),
     fire = body.querySelector(".fire"),
     w1 = body.querySelector(".w1"),
@@ -17,9 +18,13 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c2 = body.querySelector(".c2"),
     c4 = body.querySelector(".c4"),
     c5 = body.querySelector(".c5"),
+    c6 = body.querySelector(".c6"),
+    c7 = body.querySelector(".c7"),
     tbody1 = body.querySelector(".tbody1"),
     todayTable = body.querySelector(".today-table"),
     greet = body.querySelector(".greet-text"),
+    greet1 = body.querySelector(".greet-line1"),
+    greet2 = body.querySelector(".greet-line2"),
     tbody2 = body.querySelector(".tbody2");
 
   var lang = getCookie("lang"); // current language
@@ -39,6 +44,11 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c2.textContent = data["sin"]["c2"];
     c4.textContent = data["sin"]["c4"];
     c5.textContent = data["sin"]["c5"];
+    c6.textContent = data["sin"]["c6"];
+    c7.textContent = data["sin"]["c7"];
+    greet1.textContent = data["sin"]["greet1"];
+    greet2.textContent = data["sin"]["greet2"];
+    text.textContent = data["sin"]["text"];
     setGreeting();
   });
 
@@ -57,6 +67,11 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c2.textContent = data["en"]["c2"];
     c4.textContent = data["en"]["c4"];
     c5.textContent = data["en"]["c5"];
+    c6.textContent = data["en"]["c6"];
+    c7.textContent = data["en"]["c7"];
+    greet1.textContent = data["en"]["greet1"];
+    greet2.textContent = data["en"]["greet2"];
+    text.textContent = data["en"]["text"];
     setGreeting();
   });
 
@@ -68,6 +83,11 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "සවිස්තරාත්මකව තොරතුරු බැලීමට එම සැපයුම තෝරන්න",
       c4: "ඉදිරියට එන එකතු කිරීම්",
       c5: "ඉදිරි දින 2 සඳහා ඉදිරි එකතු කිරීම් බලන්න",
+      c6: "මඟ හැරුණු එකතු කිරීම්",
+      c7: "ඔබගේ මග හැරුණු පොල් එකතුව බලන්න",
+      greet1: "සුභ පැතුම්!",
+      greet2: "ඔබ අද දින එකතු කිරීම් සියල්ල සම්පූර්ණ කර ඇත",
+      text: "උපකරණ පුවරුව",
     },
     en: {
       w1: "Coconut Rate",
@@ -76,6 +96,11 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "select a collection for a detailed view",
       c4: "Upcoming Collections",
       c5: "View upcoming collections for next 2 days",
+      c6: "Missed Collections",
+      c7: "View your missed coconut collections",
+      greet1: "Good Job!",
+      greet2: "You completed all of today's collections",
+      text: "Dashboard",
     },
   };
 
@@ -107,7 +132,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           if ((data.size = 0 && data.count > 0)) {
             fire.style.display = "block";
-            greet.style.display = "block";
+            greet.style.display = "flex";
             todayTable.style.display = "none";
           }
 
@@ -127,8 +152,10 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
             if (data.count > 0) {
               fire.style.display = "block";
-              greet.style.display = "block";
+              greet.style.display = "flex";
               todayTable.style.display = "none";
+              c1.style.display = "none";
+              c2.style.display = "none";
             }
             w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
@@ -149,7 +176,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
             if (data.count > 0) {
               fire.style.display = "block";
-              greet.style.display = "block";
+              greet.style.display = "flex";
               todayTable.style.display = "none";
             }
             w1Value.textContent = data.rate.price + " LKR";
@@ -166,7 +193,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
             if ((data.size = 0 && data.count > 0)) {
               fire.style.display = "block";
-              greet.style.display = "block";
+              greet.style.display = "flex";
               todayTable.style.display = "none";
             }
 

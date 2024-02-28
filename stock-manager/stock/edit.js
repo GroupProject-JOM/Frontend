@@ -88,7 +88,7 @@
               ` class="` +
               status +
               `">` +
-              `<td>` +
+              `<td> B/` +
               item.id +
               `</td>` +
               `<td>` +

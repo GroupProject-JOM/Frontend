@@ -33,7 +33,7 @@
 
           function setter(item) {
             bank_options +=
-              "<option value=" + item.id + ">" + item.name + "</option>";
+              "<option value=" + item.id + ">" + item.nickName + "</option>";
           }
           bank.innerHTML = bank_options;
           bop = body.querySelector(".bop");

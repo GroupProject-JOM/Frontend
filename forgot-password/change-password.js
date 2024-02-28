@@ -1,6 +1,3 @@
-if (getCookie("jwt") != null && getCookie("jwt").length != 0)
-  window.location.href = frontProxy + "/signin.html";
-
 if (getCookie("jwt-forgot") == null || getCookie("jwt-forgot").length == 0)
   window.location.href = frontProxy + "/signin.html";
 
@@ -19,7 +16,7 @@ if (getCookie("jwt-forgot") == null || getCookie("jwt-forgot").length == 0)
     passwordError = body.querySelector(".new-password-error"),
     confirm = body.querySelector(".confirm-password"),
     password = body.querySelector(".new-password");
-    
+
   var lang = getCookie("lang"); // current language
 
   sin.addEventListener("click", () => {
@@ -143,7 +140,8 @@ if (getCookie("jwt-forgot") == null || getCookie("jwt-forgot").length == 0)
               icon: "success",
               confirmButtonColor: confirmButtonColor,
             }).then((response) => {
-              document.cookie = "jwt-forgot=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+              document.cookie =
+                "jwt-forgot=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               window.location.href = "../signin.html";
             });
           } else if (response.status === 401) {
@@ -170,6 +168,34 @@ if (getCookie("jwt-forgot") == null || getCookie("jwt-forgot").length == 0)
       else passwordError.textContent = "New password cannot be empty";
       passwordStatus = false;
       return false;
+    } else if (
+      typeof password.value === "string" &&
+      password.value.trim().length < 6
+    ) {
+      if (lang == "sin")
+        passwordError.textContent =
+          "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
+      else
+        passwordError.textContent =
+          "Password length must be greater than or equal to 6";
+      passwordStatus = false;
+      return false;
+    } else if (!hasNumber(password.value)) {
+      if (lang == "sin")
+        passwordError.textContent =
+          "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
+      else
+        passwordError.textContent = "Password must contain at least one digit";
+      passwordStatus = false;
+      return false;
+    } else if (!hasLetter(password.value)) {
+      if (lang == "sin")
+        passwordError.textContent =
+          "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
+      else
+        passwordError.textContent = "Password must contain at least one letter";
+      passwordStatus = false;
+      return false;
     } else {
       passwordStatus = true;
       passwordError.textContent = "";
@@ -182,9 +208,35 @@ if (getCookie("jwt-forgot") == null || getCookie("jwt-forgot").length == 0)
       typeof confirm.value === "string" &&
       confirm.value.trim().length === 0
     ) {
+      if (lang == "sin") confirmError.textContent = "නව මුරපදය හිස් විය නොහැක";
+      else confirmError.textContent = "New password cannot be empty";
+      confirmStatus = false;
+      return false;
+    } else if (
+      typeof confirm.value === "string" &&
+      confirm.value.trim().length < 6
+    ) {
       if (lang == "sin")
-        confirmError.textContent = "තහවුරු මුරපදය හිස් විය නොහැක";
-      else confirmError.textContent = "Confirm password cannot be empty";
+        confirmError.textContent = "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
+      else
+        confirmError.textContent =
+          "Password length must be greater than or equal to 6";
+      confirmStatus = false;
+      return false;
+    } else if (!hasNumber(confirm.value)) {
+      if (lang == "sin")
+        confirmError.textContent =
+          "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
+      else
+        confirmError.textContent = "Password must contain at least one digit";
+      confirmStatus = false;
+      return false;
+    } else if (!hasLetter(confirm.value)) {
+      if (lang == "sin")
+        confirmError.textContent =
+          "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
+      else
+        confirmError.textContent = "Password must contain at least one letter";
       confirmStatus = false;
       return false;
     } else {
@@ -194,3 +246,11 @@ if (getCookie("jwt-forgot") == null || getCookie("jwt-forgot").length == 0)
     }
   }
 })();
+
+function hasNumber(str) {
+  return /\d/.test(str);
+}
+
+function hasLetter(str) {
+  return /[a-zA-Z]/.test(str);
+}

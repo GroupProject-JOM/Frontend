@@ -1,5 +1,5 @@
-// sessionStorage.setItem("id", 0);
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -13,6 +13,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     th3 = body.querySelector(".th3"),
     holderText = body.querySelector(".acc-holder-text"),
     holder = body.querySelector(".acc-holder"),
+    nicknameText = body.querySelector(".acc-nickname-text"),
+    nickname = body.querySelector(".acc-nickname"),
     numberText = body.querySelector(".acc-no-text"),
     number = body.querySelector(".acc-no"),
     bankText = body.querySelector(".acc-bank-text"),
@@ -23,6 +25,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     closeBtn = body.querySelector(".close-btn-bank"),
     overlay = body.querySelector(".overlay"),
     searchBar = body.querySelector(".search"),
+    searchFilter = body.querySelector(".search-filter"),
     btn = body.querySelector(".next");
 
   var lang = getCookie("lang"); // current language
@@ -70,6 +73,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     btn.textContent = data["sin"]["btn"];
     tError.textContent = data["sin"]["tError"];
     holderText.textContent = data["sin"]["holderText"];
+    nicknameText.textContent = data["sin"]["nicknameText"];
     numberText.textContent = data["sin"]["numberText"];
     bankText.textContent = data["sin"]["bankText"];
     editBtn.textContent = data["sin"]["editBtn"];
@@ -93,6 +97,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     btn.textContent = data["en"]["btn"];
     tError.textContent = data["en"]["tError"];
     holderText.textContent = data["en"]["holderText"];
+    nicknameText.textContent = data["en"]["nicknameText"];
     numberText.textContent = data["en"]["numberText"];
     bankText.textContent = data["en"]["bankText"];
     editBtn.textContent = data["en"]["editBtn"];
@@ -110,6 +115,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       btn: "අලුතින් එකතු කරන්න",
       tError: "**බැංකු ගිණුම් නැත",
       holderText: "ගිණුම් හිමියා",
+      nicknameText: "ගිණුමේ අන්වර්ථ නාමය",
       numberText: "ගිණුම් අංකය",
       bankText: "බැංකුව",
       editBtn: "සංස්කරණය කරන්න",
@@ -124,6 +130,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       btn: "Add New",
       tError: "**You don't have any bank accounts saved",
       holderText: "Account Holder",
+      nicknameText: "Account Nickname",
       numberText: "Account Number",
       bankText: "Bank",
       editBtn: "Edit",
@@ -157,6 +164,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 item.account_number +
                 "</td>" +
                 "<td class='view'>" +
+                item.nickName +
+                "</td>" +
+                "<td class='view'>" +
                 item.bank +
                 "</td>" +
                 "<td class='view'>" +
@@ -178,8 +188,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 document.querySelector(".view-bank-container").style.display =
                   "block";
                 number.textContent = col.parentNode.children[0].textContent;
-                bank.textContent = col.parentNode.children[1].textContent;
-                holder.textContent = col.parentNode.children[2].textContent;
+                nickname.textContent = col.parentNode.children[1].textContent;
+                bank.textContent = col.parentNode.children[2].textContent;
+                holder.textContent = col.parentNode.children[3].textContent;
                 document.cookie = "id=" + col.parentElement.id + "; path=/";
 
                 deleteBtn.addEventListener("click", () => {
@@ -207,6 +218,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             bankTable.style.display = "none";
             if (lang == "sin") Command: toastr["info"]("බැංකු ගිණුම් නැත");
             else Command: toastr["info"]("No Bank accounts");
+
+            searchFilter.style.display = "none";
           });
         } else {
           console.error("Error:", response.status);

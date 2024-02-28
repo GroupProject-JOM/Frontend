@@ -7,8 +7,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
-if (getCookie("jwt") != null && getCookie("jwt").length != 0)
-  window.location.href = frontProxy + "/" + getPayload(getCookie("jwt")).page;
+if (getCookie("refresh") != null && getCookie("refresh").length != 0)
+  window.location.href = frontProxy + "/" + getPayload(getCookie("refresh")).page;
 
 var username_status = false,
   password_status = false,
@@ -67,14 +67,14 @@ var username_status = false,
 
   var data = {
     sin: {
-      ll1: "ජයසිංහ ඔයිල් මිල්ස් වෙත",
+      ll1: "Jayasinghe Oil Mills වෙත",
       ll2: "සාදරයෙන් පිළිගනිමු",
       ll3: "මුරපදය අමතක වුණා ද?",
       ll4: "JOM වෙත අලුත්ද ? <a href='./signup'>නව ගිණුමක් තනන්න</a>",
       username: "පරිශීලක නාමය",
       password: "මුරපදය",
       button: "පිවිසෙන්න",
-      validate: "ඔබගේ විද්‍යුත් තැපෑල වලංගු කිරීමට <a>මෙහි ක්ලික් කරන්න </a>",
+      validate: "ඔබගේ විද්‍යුත් තැපෑල වලංගු කිරීමට <a>මෙය ක්ලික් කරන්න </a>",
     },
     en: {
       ll1: "Welcome to",

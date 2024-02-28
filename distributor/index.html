@@ -34,6 +34,32 @@
   </head>
 
   <body>
+    
+
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="../common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
+
     <!-- view product light box starts -->
     <div class="overlay" id="overlay">
       <div class="product-container light-box" style="display: none">
@@ -66,33 +92,9 @@
     </div>
     <!-- view product light box ends -->
 
-    <!-- Loading screen -->
-    <div class="loader-wrapper">
-      <div class="logo-container">
-        <img src="../common/JOM logo 1.png" alt="" />
-      </div>
-      <div class="lds-spinner">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-
-    <nav class="sidebar"></nav>
-    <i class="fa fa-bars" aria-hidden="true"></i>
-
     <section class="home">
       <div class="notification">
-        <span class="count">10</span>
+        <span class="count"></span>
         <span class="bell do-not"
           ><i class="fa-regular fa-bell do-not"></i
         ></span>
@@ -105,7 +107,7 @@
         <div class="en active">En</div>
       </div>
 
-      <div class="text">Dashboard</div>
+      <div class="text"></div>
 
       <div class="container">
         <div class="widgets">
@@ -199,6 +201,7 @@
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
     <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>

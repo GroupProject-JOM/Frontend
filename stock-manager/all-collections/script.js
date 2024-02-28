@@ -166,8 +166,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<tr id=` +
               item.id +
               ` data-href="../supply-requests/view-request.html">` +
-              `<td>` +
-              item.id +
+              `<td>S/${capitalize(item.method)[0]}/${item.id}` +
               `</td>` +
               `<td>` +
               item.name +
@@ -180,7 +179,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td>` +
               item.amount.toLocaleString("en-US") +
               `</td>` +
-              `<td><button class="status `+stat+`">` +
+              `<td><button class="status ` +
+              stat +
+              `">` +
               capitalize(item.method) +
               `</button></td>` +
               `<td>` +
@@ -193,17 +194,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           data.rejected.forEach((item) => {
             var stat = "pending";
-            
+
             var date_string = new Date(item.date);
 
             if (item.method == "pickup") stat = "accepted";
-            
+
             row2 +=
               `<tr id=` +
               item.id +
               ` data-href="../supply-requests/view-request.html">` +
-              `<td>` +
-              item.id +
+              `<td>S/${capitalize(item.method)[0]}/${item.id}` +
               `</td>` +
               `<td>` +
               item.name +
@@ -215,8 +215,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `</td>` +
               `<td>` +
               item.amount.toLocaleString("en-US") +
-              `</td>` +              
-              `<td><button class="status `+stat+`">` +
+              `</td>` +
+              `<td><button class="status ` +
+              stat +
+              `">` +
               capitalize(item.method) +
               `</button></td>` +
               `</tr>`;
@@ -239,8 +241,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<tr id=` +
               item.id +
               ` data-href="../supply-requests/view-request.html">` +
-              `<td>` +
-              item.id +
+              `<td>S/${capitalize(item.method)[0]}/${item.id}` +
               `</td>` +
               `<td>` +
               item.name +
@@ -253,7 +254,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td>` +
               item.amount.toLocaleString("en-US") +
               `</td>` +
-              `<td><button class="status `+stat+`">` +
+              `<td><button class="status ` +
+              stat +
+              `">` +
               capitalize(item.method) +
               `</button></td>` +
               `<td>` +
@@ -267,6 +270,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
           tbody3.innerHTML = row3;
+
+          // pagination for 3 tables
+          pagination("table1", 10);
+          pagination("table2", 10);
+          pagination("table3", 10);
 
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {

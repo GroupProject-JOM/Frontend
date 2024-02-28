@@ -10,6 +10,9 @@
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
       greeting = body.querySelector(".greeting"),
+      l0 = body.querySelector(".l0"),
+      l1 = body.querySelector(".l1"),
+      l2 = body.querySelector(".l2"),
       l6 = body.querySelector(".l6"),
       l7 = body.querySelector(".l7"),
       l8 = body.querySelector(".l8"),
@@ -19,6 +22,8 @@
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
       profile = body.querySelector(".profile"),
+      history = body.querySelector(".history"),
+      upcoming = body.querySelector(".upcoming"),
       bars = body.querySelector(".fa-bars"),
       navHide = body.querySelector(".nav-hide");
 
@@ -28,6 +33,8 @@
 
     dashboard.href = frontProxy + "/collector/";
     profile.href = frontProxy + "/collector/profile/view.html";
+    history.href = frontProxy + "/collector/collection-history/";
+    upcoming.href = frontProxy + "/collector/upcoming-collections/";
 
     if (getCookie("name") != null) Uname.textContent = getCookie("name");
     else {
@@ -64,6 +71,9 @@
     });
 
     sin.addEventListener("click", () => {
+      l0.textContent = data["sin"]["l0"];
+      l1.textContent = data["sin"]["l1"];
+      l2.textContent = data["sin"]["l2"];
       l6.textContent = data["sin"]["l6"];
       l7.textContent = data["sin"]["l7"];
       l8.textContent = data["sin"]["l8"];
@@ -72,6 +82,9 @@
     });
 
     en.addEventListener("click", () => {
+      l0.textContent = data["en"]["l0"];
+      l1.textContent = data["en"]["l1"];
+      l2.textContent = data["en"]["l2"];
       l6.textContent = data["en"]["l6"];
       l7.textContent = data["en"]["l7"];
       l8.textContent = data["en"]["l8"];
@@ -81,12 +94,18 @@
 
     var data = {
       sin: {
+        l0: "පරිශීලක ක්‍රියා",
+        l1: "ඉදිරියට එන එකතු කිරීම්",
+        l2: "එකතු කිරීමේ ඉතිහාසය",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
-        l7: "පැතිකඩ බලන්න",
+        l7: "ගිණුම බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
         l11: "උපකරණ පුවරුව",
       },
       en: {
+        l0: "USER ACTIONS",
+        l1: "Upcoming Collections",
+        l2: "Collection History",
         l6: "MAIN ACTIONS",
         l7: "View Profile",
         l8: "Log Out",
@@ -126,7 +145,12 @@ window.addEventListener("load", (e) => {
     }
 
     // pathname = pathname.replace(".html", "");
-    const navItems = ["profile", "index"];
+    const navItems = [
+      "profile",
+      "index",
+      "upcoming-collections",
+      "collection-history",
+    ];
     if (!loaded && pathname) {
       loaded = true;
       clearInterval(interval);

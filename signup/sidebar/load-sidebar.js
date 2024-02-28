@@ -1,5 +1,5 @@
-if (getCookie("jwt") != null && getCookie("jwt").length != 0)
-  window.location.href = frontProxy + "/" + getPayload(getCookie("jwt")).page;
+if (getCookie("refresh") != null && getCookie("refresh").length != 0)
+  window.location.href = frontProxy + "/" + getPayload(getCookie("refresh")).page;
 
 (() => {
   const sidebar = document.querySelector(".side");

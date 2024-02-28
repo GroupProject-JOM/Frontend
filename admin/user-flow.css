@@ -276,6 +276,10 @@ input:focus {
   margin-bottom: 0;
 }
 
+.view-employee-container .buttons{
+  margin-top: 2rem;
+}
+
 .edit-employee-container .form-button,
 .outlet-edit-container .form-button,
 .outlet-add-container .form-button {

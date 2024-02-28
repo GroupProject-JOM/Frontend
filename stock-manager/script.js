@@ -4,6 +4,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    text = body.querySelector(".text"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     c1 = body.querySelector(".c1"),
@@ -95,6 +96,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c5.textContent = data["sin"]["c5"];
     c6.textContent = data["sin"]["c6"];
     c7.textContent = data["sin"]["c7"];
+    text.textContent = data["sin"]["text"];
     rateBtn.textContent = data["sin"]["rateBtn"];
     rate.placeholder = data["sin"]["rate"];
     rLabel.textContent = data["sin"]["rLabel"];
@@ -118,6 +120,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c5.textContent = data["en"]["c5"];
     c6.textContent = data["en"]["c6"];
     c7.textContent = data["en"]["c7"];
+    text.textContent = data["en"]["text"];
     rateBtn.textContent = data["en"]["rateBtn"];
     rate.placeholder = data["en"]["rate"];
     rLabel.textContent = data["en"]["rLabel"];
@@ -133,8 +136,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "නිෂ්පාදන කළමනාකරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
       c4: "සැපයුම්කරු ඉල්ලීම්",
       c5: "සැපයුම්කරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
-      c6: "අද එකතු කිරීම්",
-      c7: "අද දිනට නියමිත පොල් එකතු කිරීම් බලන්න",
+      c6: "පොල් එකතු කිරීම්",
+      c7: "සෑම දිනකම පොල් එකතු කිරීම් තෝරා බලන්න",
+      text: "උපකරණ පුවරුව",
       rateBtn: "අද පොල් මිල ඇතුලත් කරන්න",
       rate: "නව පොල් මිල ඇතුළත් කරන්න",
       rLabel: "නව අනුපාතය",
@@ -147,8 +151,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       c2: "View and respond to production manager requests",
       c4: "Supplier Requests Overview",
       c5: "View and update Supplier requests",
-      c6: "Today's Collections",
-      c7: "View coconut collections scheduled for today",
+      c6: "Coconut Collections",
+      c7: "Filter and view coconut collections for each day",
+      text: "Dashboard",
       rateBtn: "Enter Today's Coconut Rate",
       rate: "Enter new coconut rate",
       rLabel: "New rate",
@@ -191,7 +196,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<tr data-href='./production-requests/view-request.html' id=" +
                 item.id +
                 ">" +
-                "<td>" +
+                "<td> P/R/" +
                 item.id +
                 "</td>" +
                 "<td>" +
@@ -229,7 +234,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 "<tr data-href='./supply-requests/view-request.html' id=" +
                 item.id +
                 ">" +
-                "<td>" +
+                "<td>S/" +
+                capitalize(item.method)[0] +
+                "/" +
                 item.id +
                 "</td>" +
                 "<td>" +
@@ -248,6 +255,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             });
 
             tbody2.innerHTML = row2;
+
+            // pagination for supply requests tables
+            pagination("table2", 4);
 
             const rows = document.querySelectorAll("tr[data-href]");
             rows.forEach((r) => {
@@ -358,8 +368,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<tr data-href='./supply-requests/view-request.html' id=` +
                 item.id +
                 `>` +
-                `<td>` +
-                item.id +
+                `<td>S/${capitalize(item.method)[0]}/${item.id}` +
                 `</td>` +
                 `<td>` +
                 item.name +
@@ -444,10 +453,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message);
-              Command: toastr["success"](data.message);
               closeBtn.click();
               getRate();
             });
+            if (lang == "sin")
+              Command: toastr["success"]("පොල් මිල සාර්ථකව යාවත්කාලීන කරන ලදී");
+            else
+              Command: toastr["success"]("Coconut rate updated successfully");
           } else if (response.status === 400) {
             response.json().then((data) => {
               console.log(data.message);
@@ -550,15 +562,7 @@ function rateChart(days, rate) {
 }
 
 function getLastSevenDays() {
-  const daysOfWeek = [
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun",
-  ];
+  const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   const currentDate = new Date();
   const lastSevenDays = [];

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
-    <link rel="stylesheet" href="./collection.css" />
+    <link rel="stylesheet" href="../collection.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -55,7 +55,7 @@
 
     <section class="home">
       <div class="notification">
-        <span class="count">10</span>
+        <span class="count"></span>
         <span class="bell do-not"
           ><i class="fa-regular fa-bell do-not"></i
         ></span>
@@ -94,16 +94,20 @@
                   <td class="address"></td>
                 </tr>
                 <tr>
-                  <td>Pickup Date</td>
+                  <td class="pDate">Pickup Date</td>
                   <td class="date"></td>
                 </tr>
                 <tr>
-                  <td>Pickup Time</td>
+                  <td class="pTime">Pickup Time</td>
                   <td class="time"></td>
                 </tr>
                 <tr>
                   <td>Coconut Count</td>
                   <td class="amount"></td>
+                </tr>
+                <tr class="collected" style="display: none;">
+                  <td>Collected Count</td>
+                  <td class="Camount"></td>
                 </tr>
                 <tr>
                   <td>Paymment Method</td>

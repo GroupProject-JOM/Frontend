@@ -154,7 +154,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<tr id=` +
                 item.id +
                 `>` +
-                `<td class="col">` +
+                `<td class="col"> P/I/` +
                 item.id +
                 `</td>` +
                 `<td class="col">` +

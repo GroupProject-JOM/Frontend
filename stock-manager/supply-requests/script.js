@@ -101,7 +101,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./view-request.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td>S/" +
+              capitalize(item.method)[0] +
+              "/" +
               item.id +
               "</td>" +
               "<td class='hide'>" +

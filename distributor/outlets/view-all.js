@@ -79,7 +79,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin: {
       dTitle: "අලෙවිසැල්",
       dText: "සමාගම සමඟ ලියාපදිංචි වී ඇති සියලුම අලෙවිසැල් පිළිබඳ විස්තර බලන්න",
-      btn: "නව අලෙවිසැල එක් කරන්න",
+      btn: "නව අලෙවිසැලක් එක් කරන්න",
     },
     en: {
       dTitle: "Outlets",
@@ -106,7 +106,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             log(item);
             row +=
               `<tr id=${item.id}>` +
-              `<td class="col">${item.id}</td>` +
+              `<td class="col">O/D/${item.id}</td>` +
               `<td class="col">${item.name}</td>` +
               `<td class="col">${item.city}</td>` +
               `<td class="col">${item.phone}</td>` +
@@ -137,15 +137,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           views.forEach((view, index) => {
             view.addEventListener("click", () => {
-              oId.textContent = arr[index].id;
+              oId.textContent = "O/D/"+arr[index].id;
               oName.textContent = arr[index].name;
               oEmail.textContent = arr[index].email;
               oPhone.textContent = arr[index].phone;
               oAddress.textContent =
                 arr[index].address1 +
-                " " +
+                ", " +
                 arr[index].street +
-                " " +
+                ", " +
                 arr[index].city;
 
               overlay.style.display = "block";

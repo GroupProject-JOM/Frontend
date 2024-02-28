@@ -68,20 +68,13 @@
               <span class="collection-count"></span> collections
             </p>
             <div class="split-chart">
-              <div class="progress-container">
-                <div class="circular-progress">
-                  <span class="progress-value"></span>
-                </div>
-              </div>
-              <div>
-                <p class="coco-amount">
-                  <span class="total-count"></span><br />Coconuts
-                </p>
-                <p class="remaining">
-                  Remaining Amount: <br /><span class="remaining-count"></span>
-                </p>
-                <span class="form-error remaining-error"></span>
-              </div>
+              <p class="coco-amount">
+                <span class="total-count"></span><br />Coconuts
+              </p>
+              <p class="remaining">
+                Delivered Amount: <br /><span class="remaining-count"></span>
+              </p>
+              <span class="form-error remaining-error"></span>
             </div>
 
             <p class="to-yards">Add to yards</p>
@@ -89,6 +82,7 @@
               <p class="yard1 to-yard-text">yard 01</p>
               <p class="yard2 to-yard-text">yard 02</p>
               <p class="yard3 to-yard-text">yard 03</p>
+              <a class="form-button complete-button">Complete Collection</a>
             </div>
           </div>
         </div>
@@ -131,8 +125,6 @@
 
     <!-- to yard light box ends -->
 
-
-
     <!-- decline reason light box starts -->
     <div class="overlay1 overlay" id="overlay1">
       <div class="decline-container">
@@ -141,10 +133,7 @@
           <p class="reason-text bold"></p>
           <select class="dropdown">
             <option value="" default hidden class="op0"></option>
-            <option
-              value="Not enough coconut amount"
-              class="op1"
-            ></option>
+            <option value="Not enough coconut amount" class="op1"></option>
             <option value="Too far to pickup" class="op2"></option>
             <option value="Other" class="op3"></option></select
           ><br />
@@ -165,7 +154,7 @@
 
     <section class="home">
       <div class="notification">
-        <span class="count">10</span>
+        <span class="count"></span>
         <span class="bell do-not"
           ><i class="fa-regular fa-bell do-not"></i
         ></span>
@@ -184,87 +173,90 @@
         <div class="map"></div>
 
         <div class="stockmg-content">
-          <div class="stockmg-heading table-heading">
-            <h2 class="stockmg-title"></h2>
-            <p class="stockmg-subtitle"></p>
-          </div>
+          <div class="yard-supply-tables">
+            <div>
+              <div class="stockmg-heading table-heading">
+                <h2 class="stockmg-title"></h2>
+                <p class="stockmg-subtitle"></p>
+              </div>
 
-          <div>
-            <table class="collection-data-table overview-tables">
-              <tbody>
-                <tr>
-                  <td>Request ID</td>
-                  <td class="rId"></td>
-                </tr>
-                <tr>
-                  <td>Supplier Name</td>
-                  <td class="sName"></td>
-                </tr>
-                <tr>
-                  <td>Supplier Phone</td>
-                  <td class="sPhone"></td>
-                </tr>
-                <tr>
-                  <td>Supply Method</td>
-                  <td class="sMethod"></td>
-                </tr>
-                <tr class="estate">
-                  <td>Estate Address</td>
-                  <td class="address"></td>
-                </tr>
-                <tr class="cName-row">
-                  <td>Collector Name</td>
-                  <td class="cName"></td>
-                </tr>
-                <tr class="cPhone-row">
-                  <td>Collector Phone</td>
-                  <td class="cPhone"></td>
-                </tr>
-                <tr>
-                  <td class="date-text"></td>
-                  <td class="date"></td>
-                </tr>
-                <tr>
-                  <td class="time-text"></td>
-                  <td class="time"></td>
-                </tr>
-                <tr>
-                  <td>Coconut Count</td>
-                  <td class="amount"></td>
-                </tr>
-                <tr class="collected">
-                  <td>Collected Count</td>
-                  <td class="cAmount"></td>
-                </tr>
-                <tr>
-                  <td>Paymment Method</td>
-                  <td class="pMethod"></td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="reject-note" style="display: none"></p>
-          </div>
+              <div>
+                <table class="collection-data-table overview-tables">
+                  <tbody>
+                    <tr>
+                      <td>Request ID</td>
+                      <td class="rId"></td>
+                    </tr>
+                    <tr>
+                      <td>Supplier Name</td>
+                      <td class="sName"></td>
+                    </tr>
+                    <tr>
+                      <td>Supplier Phone</td>
+                      <td class="sPhone"></td>
+                    </tr>
+                    <tr>
+                      <td>Supply Method</td>
+                      <td class="sMethod"></td>
+                    </tr>
+                    <tr class="estate">
+                      <td>Estate Address</td>
+                      <td class="address"></td>
+                    </tr>
+                    <tr class="cName-row">
+                      <td>Collector Name</td>
+                      <td class="cName"></td>
+                    </tr>
+                    <tr class="cPhone-row">
+                      <td>Collector Phone</td>
+                      <td class="cPhone"></td>
+                    </tr>
+                    <tr>
+                      <td class="date-text"></td>
+                      <td class="date"></td>
+                    </tr>
+                    <tr>
+                      <td class="time-text"></td>
+                      <td class="time"></td>
+                    </tr>
+                    <tr>
+                      <td>Initial Coconut Count</td>
+                      <td class="amount"></td>
+                    </tr>
+                    <tr class="collected">
+                      <td>Collected Count</td>
+                      <td class="cAmount"></td>
+                    </tr>
+                    <tr>
+                      <td>Paymment Method</td>
+                      <td class="pMethod"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="reject-note" style="display: none"></p>
+              </div>
 
-          
+              <div class="accept-decline">
+                <a class="stockmg-button form-button accept"></a>
+                <a class="stockmg-button form-button decline"></a>
 
-          <div class="accept-decline">
-            <a class="stockmg-button form-button accept"></a>
-            <a class="stockmg-button form-button decline"></a>
+                <a
+                  class="stockmg-button form-button assign"
+                  style="display: none"
+                  href="./assign-collector.html"
+                ></a>
+                <a
+                  class="to-yard-button stockmg-button stockmg-button form-button"
+                  style="display: none"
+                ></a>
 
-            <a
-              class="stockmg-button form-button assign"
-              style="display: none"
-              href="./assign-collector.html"
-            ></a>
-            <a
-              class="to-yard-button stockmg-button stockmg-button form-button"
-              style="display: none;"
-            ></a>
-            <a
-              class="change-collector stockmg-button form-button"
-              style="display: none"
-              href="./assign-collector.html"
-            ></a>
+                <a
+                  class="change-collector stockmg-button form-button"
+                  style="display: none"
+                  href="./assign-collector.html"
+                ></a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

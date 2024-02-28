@@ -69,7 +69,7 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          oId.textContent = data.outlet.id;
+          oId.textContent = "O/D/" + data.outlet.id;
           oName.textContent = data.outlet.name;
           oEmail.textContent = data.outlet.email;
           oPhone.textContent = data.outlet.phone;

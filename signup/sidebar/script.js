@@ -5,7 +5,6 @@
     const body = document.querySelector("body"),
       sin = body.querySelector(".sin"),
       en = body.querySelector(".en"),
-      ml1 = body.querySelector(".menu-line1"),
       ml2 = body.querySelector(".menu-line2"),
       ml3 = body.querySelector(".menu-line3"),
       ml4 = body.querySelector(".menu-line4"),
@@ -18,7 +17,6 @@
     }
 
     sin.addEventListener("click", () => {
-      ml1.textContent = data["sin"]["ml1"];
       ml2.textContent = data["sin"]["ml2"];
       ml3.textContent = data["sin"]["ml3"];
       ml4.textContent = data["sin"]["ml4"];
@@ -27,7 +25,6 @@
     });
 
     en.addEventListener("click", () => {
-      ml1.textContent = data["en"]["ml1"];
       ml2.textContent = data["en"]["ml2"];
       ml3.textContent = data["en"]["ml3"];
       ml4.textContent = data["en"]["ml4"];
@@ -37,15 +34,13 @@
 
     var data = {
       sin: {
-        ml1: "ජයසිංහ ඔයිල් මිල්ස්",
         ml2: "පොල්තෙල් නිෂ්පාදකයින්",
         ml3: "මූලික තොරතුරු",
         ml4: "ලිපිනයන්",
         ml5: "ගෙවීම් තොරතුරු",
-        ml6: "දැනටමත් ගිණුමක් තිබේද? <a href='../signin.html'>මෙතනින් පුරන්න.</a>",
+        ml6: "දැනටමත් ගිණුමක් තිබේද? <a href='../signin.html'>මෙතනින් පිවිසෙන්න.</a>",
       },
       en: {
-        ml1: "Jayasinghe Oil Mills",
         ml2: "Coconut Oil Manufacturers",
         ml3: "Basic Information",
         ml4: "Estate Locations",
