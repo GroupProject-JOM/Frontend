@@ -187,7 +187,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin: {
       sText1: "එක් එක් දිනයේ පොල් එකතු කිරීමේ විස්තර බලන්න",
       yText: "දැනට එකතුකරන්නා විසින් එකතු කරන ලද පොල් ප්‍රමාණය:",
-      btn: "යාරවලට පවරන්න",
+      btn: "අංගන වලට පවරන්න",
       mapBtn: "සිතියමෙන් බලන්න",
     },
     en: {
@@ -325,8 +325,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           response.json().then((data) => {
             console.log(data.message);
           });
-          if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-          else Command: toastr["info"]("Something went wrong");
+          if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+          else Command: toastr["info"]("Something went wrong. Try again");
         } else if (response.status === 401) {
           response.json().then((data) => {
             console.log(data.message);
@@ -444,9 +444,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           } else if (!checkInt(elm.value)) {
             totalError.style.display = "";
             if (lang == "sin")
-              totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+              totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
             else
-              totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be positive integer`;
+              totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be greater than 0`;
             elm.nextSibling.style.display = "";
 
             //handle remaining error
@@ -464,7 +464,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           } else if (elm.value > 10000) {
             totalError.style.display = "";
             if (lang == "sin")
-              totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන බ්ලොක් එකේ උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
+              totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන ගබඩාවේ කොටසක උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
             else
               totalError.innerHTML = `<i class="bx bx-error"></i> Coconuts amount cannot exceed the maximum capacity of the block`;
             elm.nextSibling.style.display = "";
@@ -542,9 +542,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           } else if (!checkInt(elm.value)) {
             addError.style.display = "";
             if (lang == "sin")
-              addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+              addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
             else
-              addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be positive integer`;
+              addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be greater than 0`;
             elm.nextSibling.style.display = "";
 
             //handle remaining error
@@ -603,9 +603,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           } else if (!checkInt(elm.value)) {
             daysError.style.display = "";
             if (lang == "sin")
-              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන ධන නිඛිල විය යුතුය`;
+              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන 0 ට වඩා වැඩි විය යුතුය`;
             else
-              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count must be positive integer`;
+              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count must be greater than 0`;
             elm.nextSibling.style.display = "";
           } else {
             daysError.style.display = "none";
@@ -643,9 +643,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be positive integer`;
+        addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be greater than 0`;
       add.nextSibling.style.display = "";
       addStatus = false;
     } else {
@@ -667,15 +667,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(total.value)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be positive integer`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be greater than 0`;
       total.nextSibling.style.display = "";
       totalStatus = false;
     } else if (total.value > 10000) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන බ්ලොක් එකේ උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන ගබඩාවේ කොටසක උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
       else
         totalError.innerHTML = `<i class="bx bx-error"></i> Coconuts amount cannot exceed the maximum capacity of the block`;
       total.nextSibling.style.display = "";
@@ -806,9 +806,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(day.value)) {
       daysError.style.display = "";
       if (lang == "sin")
-        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන ධන නිඛිල විය යුතුය`;
+        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන 0 ට වඩා වැඩි විය යුතුය`;
       else
-        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count must be positive integer`;
+        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count must be greater than 0`;
       day.nextSibling.style.display = "";
       return false;
     } else {
@@ -832,9 +832,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be positive integer`;
+        addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be greater than 0`;
       add.nextSibling.style.display = "";
       return false;
     } else {
@@ -864,16 +864,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(total.value)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be positive integer`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be greater than 0`;
       total.nextSibling.style.display = "";
 
       return false;
     } else if (total.value > 10000) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන බ්ලොක් එකේ උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන ගබඩාවේ කොටසක උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
       else
         totalError.innerHTML = `<i class="bx bx-error"></i> Coconuts amount cannot exceed the maximum capacity of the block`;
       total.nextSibling.style.display = "";
@@ -930,19 +930,19 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     // handle remaing
     if (remainigAmount > totalAmount) {
       if (lang == "sin")
-        remainingError.textContent = `ඉතිරි මුදල පවතින මුදල ඉක්මවිය නොහැක`;
+        remainingError.textContent = `ඉතිරි පොල් ප්රමාණය පවතින පොල් ප්රමාණය ඉක්මවිය නොහැක`;
       else
         remainingError.textContent = `Remaining amount cannot exceed the available amount`;
       remainigStatus = false;
     } else if (remainigAmount < 0) {
       if (lang == "sin")
-        remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
+        remainingError.textContent = `ඉතිරි පොල් ප්රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
       else
         remainingError.textContent = `Remaining amount cannot be less than zero`;
       remainigStatus = false;
     } else if (totalAmount - remainigAmount != addTotal) {
-      if (lang == "sin") remainingError.textContent = `මොකක්හරි වැරැද්දක් වෙලා`;
-      else remainingError.textContent = `Something went wrong`;
+      if (lang == "sin") remainingError.textContent = `යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න`;
+      else remainingError.textContent = `Something went wrong. Try again`;
       remainigStatus = false;
     } else {
       remainingError.textContent = "";
@@ -963,7 +963,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       };
 
       if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
+        var title = "ඔබට විශ්වාස ද?",
           text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
           confirmButtonText = "ඔව්, අංගනයට එක් කරන්න!",
           cancelButtonText = "අවලංගු කරන්න";
@@ -1028,8 +1028,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   console.log(data.message);
                 });
                 if (lang == "sin")
-                  Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-                else Command: toastr["info"]("Something went wrong");
+                  Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+                else Command: toastr["info"]("Something went wrong. Try again");
               } else if (response.status === 401) {
                 response.json().then((data) => {
                   console.log(data.message);

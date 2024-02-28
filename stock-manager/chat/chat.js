@@ -11,9 +11,13 @@
     message = body.querySelector(".message"),
     bottom = body.querySelector(".msg-bottom"),
     searchBar = body.querySelector(".search"),
+    title = body.querySelector(".chat-title"),
     sentIcon = body.querySelector(".sent-icon");
 
   var lang = getCookie("lang"); // current language
+
+
+
 
   var searchBa = document.querySelectorAll(
     '.search-box input[type="text"] + span'
@@ -39,6 +43,8 @@
     lang = "sin";
 
     message.placeholder = data["sin"]["message"];
+    title.textContent = data["sin"]["title"];
+
     setGreeting();
   });
 
@@ -51,15 +57,18 @@
     lang = "en";
 
     message.placeholder = data["en"]["message"];
+    title.textContent = data["en"]["title"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      message: "පණිවිඩයක් ටයිප් කරන්න",
+      message: "පණිවිඩයක් ඇතුල් කරන්න",
+      title: "සැපයුම්කරුවන්ගේ පණිවිඩ",
     },
     en: {
       message: "Type a message",
+      title: "Supplier Messages"
     },
   };
 
@@ -335,7 +344,7 @@
         } else if (response.status === 202) {
           response.json().then((data) => {
             if (lang == "sin")
-              Command: toastr["info"]("කතාබස් ලැයිස්තුවක් නැත");
+              Command: toastr["info"]("පණිවිඩ ලැයිස්තුවක් නැත");
             else Command: toastr["info"]("No chat list");
           });
         } else if (response.status === 401) {
