@@ -58,8 +58,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      sTitle: "සමාගමේ එකතුකරන්නන්",
-      sText1: "සමාගම් එකතුකරන්නන්ගේ තොරතුරු සහ ඔවුන්ගේ එකතු කිරීම් බලන්න",
+      sTitle: "එකතුකරන්නන්",
+      sText1: "එකතුකරන්නන්ගේ තොරතුරු සහ ඔවුන්ගේ එකතු කිරීම් බලන්න",
     },
     en: {
       sTitle: "Collectors",

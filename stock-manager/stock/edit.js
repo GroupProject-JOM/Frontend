@@ -110,8 +110,8 @@
         response.json().then((data) => {
           console.log(data.message);
         });
-        if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-        else Command: toastr["info"]("Something went wrong");
+        if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+        else Command: toastr["info"]("Something went wrong. Try again");
       } else if (response.status === 401) {
         response.json().then((data) => {
           console.log(data.message);
@@ -150,7 +150,7 @@
             console.log(data.message);
           });
           if (lang == "sin")
-            var title = "අංගන කුට්ටිය සාර්ථකව යාවත්කාලීන කරන ලදී";
+            var title = "ගබඩා කොටස සාර්ථකව යාවත්කාලීන කරන ලදී";
           else var title = "Yard block updated successfully";
 
           Swal.fire({
@@ -165,8 +165,8 @@
           response.json().then((data) => {
             console.log(data.message);
           });
-          if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-          else Command: toastr["info"]("Something went wrong");
+          if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+          else Command: toastr["info"]("Something went wrong. Try again");
         } else if (response.status === 401) {
           response.json().then((data) => {
             console.log(data.message);

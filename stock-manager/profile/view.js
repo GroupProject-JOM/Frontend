@@ -113,9 +113,9 @@
       cPassword: "වත්මන් මුරපදය ඇතුළත් කරන්න",
       forgot: "මුරපදය අමතක වුණා ද?",
       n1Label: "නව මුරපදය",
-      n1: "අවම වශයෙන් අක්ෂර 8 ක්",
+      n1: "අවම වශයෙන් අක්ෂර 6 ක්",
       n2Label: "මුරපදය තහවුරු කරන්න",
-      n2: "අවම වශයෙන් අක්ෂර 8 ක්",
+      n2: "අවම වශයෙන් අක්ෂර 6 ක්",
       save: "සුරකින්න",
     },
     en: {
@@ -277,7 +277,7 @@
       cPassword.value.trim().length === 0
     ) {
       if (lang == "sin")
-        cPasswordError.textContent = "වත්මන්මු මුරපදය හිස් විය නොහැක";
+        cPasswordError.textContent = "වත්මන් මුරපදය හිස් විය නොහැක";
       else cPasswordError.textContent = "Current password cannot be empty";
       currentStatus = false;
       return false;
