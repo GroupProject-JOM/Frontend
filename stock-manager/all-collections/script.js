@@ -21,7 +21,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     searchBar2 = body.querySelector(".search2"),
     filter2 = body.querySelector(".filter-2"),
     searchBar3 = body.querySelector(".search3"),
-    filter3 = body.querySelector(".filter-3");
+    filter3 = body.querySelector(".filter-3"),
+    accepted = body.querySelector(".accepted-tab"),
+    declined = body.querySelector(".declined-tab"),
+    completed = body.querySelector(".completed-tab");
 
   $(document).scroll(function () {
     var cutoff = $(window).scrollTop();
@@ -113,6 +116,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tx2.textContent = data["sin"]["tx2"];
     t3.textContent = data["sin"]["t3"];
     tx3.textContent = data["sin"]["tx3"];
+    accepted.textContent = data["sin"]["accepted"];
+    declined.textContent = data["sin"]["declined"];
+    completed.textContent = data["sin"]["completed"];
     setGreeting();
   });
 
@@ -130,6 +136,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tx2.textContent = data["en"]["tx2"];
     t3.textContent = data["en"]["t3"];
     tx3.textContent = data["en"]["tx3"];
+    accepted.textContent = data["en"]["accepted"];
+    declined.textContent = data["en"]["declined"];
+    completed.textContent = data["en"]["completed"];
     setGreeting();
   });
 
@@ -141,6 +150,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       tx2: "ප්‍රතික්ෂේප කරන ලද සියලුම සැපයුම් ඉල්ලීම්",
       t3: "සම්පුර්ණ කරන ලද එකතු කිරීම්",
       tx3: "සම්පුර්ණ කරන ලද සියලුම පොල් එකතු කිරීම්",
+      accepted: "පිළිගත්",
+      declined: "ප්‍රතික්ෂේප කළ",
+      completed: "සම්පූර්ණ කළ",
     },
     en: {
       t1: "Accepted Collections",
@@ -149,6 +161,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       tx2: "All declined supply requests",
       t3: "Completed Collections",
       tx3: "All completed coconut collections",
+      accepted: "Accepted",
+      declined: "Declined",
+      completed: "Completed",
     },
   };
 
