@@ -61,7 +61,7 @@
 
   var data = {
     sin: {
-      btn: "ඉදිරිපත් කරන්න",
+      btn: "සුරකින්න",
       viewData: "අලෙවිසැලේ විස්තර බලන්න",
     },
     en: {
@@ -216,9 +216,9 @@
                 } else if (!checkInt(+elm.value)) {
                   addError.style.display = "";
                   if (lang == "sin")
-                    addError.textContent = `නිෂ්පාදන ගණන ධන නිඛිල විය යුතුය`;
+                    addError.textContent = `නිෂ්පාදන ගණන 0 ට වඩා වැඩි විය යුතුය`;
                   else
-                    addError.textContent = `Product count must be positive integer`;
+                    addError.textContent = `Product count must be greater than 0`;
 
                   if (+amount.textContent < 0)
                     if (lang == "sin")
@@ -332,7 +332,7 @@
       log(JSON.stringify(formData));
 
       if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
+        var title = "ඔබට විශ්වාස ද?",
           text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
           confirmButtonText = "ඔව්, අලෙවිසැලට බෙදාහරින්න!",
           cancelButtonText = "අවලංගු කරන්න";
@@ -381,8 +381,8 @@
                   console.log(data.message);
                 });
                 if (lang == "sin")
-                  Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-                else Command: toastr["info"]("Something went wrong");
+                  Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+                else Command: toastr["info"]("Something went wrong. Try again");
               } else if (response.status === 401) {
                 response.json().then((data) => {
                   console.log(data.message);
@@ -415,8 +415,8 @@
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.textContent = `පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
-      else addError.textContent = `Coconut amount must be positive integer`;
+        addError.textContent = `පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
+      else addError.textContent = `Coconut amount must be greater than 0`;
 
       return false;
     } else {
@@ -447,8 +447,8 @@
     } else if (!checkInt(totalValue)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.textContent = `පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
-      else totalError.textContent = `Coconut amount must be positive integer`;
+        totalError.textContent = `පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
+      else totalError.textContent = `Coconut amount must be greater than 0`;
 
       return false;
     } else {

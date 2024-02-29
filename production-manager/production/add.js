@@ -196,7 +196,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         if (lang == "sin") {
           Command: toastr["info"]("පිළිගත් ඉල්ලීම් නැත");
           pRError.textContent =
-            "පිළිගත් ඉල්ලීම් නැත. ඔබේ නිෂ්පාදන ඉල්ලීම් සමාලෝචනය කිරීමට කරුණාකර කොටස් කළමනාකරුට දන්වන්න.";
+            "පිළිගත් ඉල්ලීම් නැත. ඔබේ නිෂ්පාදන ඉල්ලීම් සමාලෝචනය කිරීමට කරුණාකර ගබඩා කළමනාකරුට දන්වන්න.";
         } else {
           Command: toastr["info"]("No accepted requests");
           pRError.textContent =
@@ -316,7 +316,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       };
 
       if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
+        var title = "ඔබට විශ්වාස ද?",
           text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
           confirmButtonText = "ඔව්, එය නිර්මාණය කරන්න!",
           cancelButtonText = "අවලංගු කරන්න";
@@ -353,7 +353,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 });
                 if (lang == "sin") {
                   var title = "සාර්ථකයි!",
-                    text = "නිෂ්පාදන කණ්ඩායම සාර්ථකව නිර්මාණය කරන ලදී.";
+                    text = "නිෂ්පාදන කාණ්ඩය සාර්ථකව නිර්මාණය කරන ලදී.";
                 } else {
                   var title = "Successful!",
                     text = "Production batch created successfully.";
@@ -372,7 +372,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   console.log(data.message);
                 });
                 if (lang == "sin")
-                  Command: toastr["error"]("නිෂ්පාදන කණ්ඩායම නිර්මාණය කර නැත");
+                  Command: toastr["error"]("නිෂ්පාදන කාණ්ඩය නිර්මාණය කර නැත");
                 else
                   Command: toastr["error"]("Production batch is not created");
               } else if (response.status === 401) {

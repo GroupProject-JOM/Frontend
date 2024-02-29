@@ -59,11 +59,11 @@ document.cookie = "visits=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      sTitle: "බෙදාහරින්නන් බලන්න",
+      sTitle: "බෙදාහරින්නන්",
       sText: "බෙදාහරින්නාගේ විස්තර බලන්න",
     },
     en: {
-      sTitle: "View Distributors",
+      sTitle: "Distributors",
       sText: "View Distributor Details",
     },
   };

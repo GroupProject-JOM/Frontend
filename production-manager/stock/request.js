@@ -53,8 +53,8 @@
 
   var data = {
     sin: {
-      pTitle: "කොටස් තොරතුරු",
-      pText: "වර්ණ-කේතගත කොටස් තොරතුරු බලන්න",
+      pTitle: "ගබඩා තොරතුරු",
+      pText: "වර්ණ-කේතගත ගබඩා තොරතුරු බලන්න",
       yardH: "අංගනය " + getCookie("id").charAt(0),
       rAmount: "ඉල්ලන පොල් ප්‍රමාණය ඇතුලත් කරන්න",
       raLabel: "පොල් ප්‍රමාණය",
@@ -124,8 +124,8 @@
         response.json().then((data) => {
           console.log(data.message);
         });
-        if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-        else Command: toastr["info"]("Something went wrong");
+        if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+        else Command: toastr["info"]("Something went wrong. Try again");
       } else if (response.status === 401) {
         response.json().then((data) => {
           console.log(data.message);
@@ -227,11 +227,11 @@
       return false;
     } else if (!checkInt(rAmount.value)) {
       if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+        amountError.textContent = "පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය");
       } else {
-        amountError.textContent = "Coconut amount must be positive integer";
-        Command: toastr["warning"]("Coconut amount must be positive integer");
+        amountError.textContent = "Coconut amount must be greater than 0";
+        Command: toastr["warning"]("Coconut amount must be greater than 0");
       }
       amountStatus = false;
       return false;
