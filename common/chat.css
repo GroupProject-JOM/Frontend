@@ -169,7 +169,7 @@ p {
 }
 
 .single-chat {
-  /* border: 1px solid red; */
+  cursor: pointer;
   height: 10vh;
   display: grid;
   grid-template-columns: 70px auto;
@@ -221,8 +221,7 @@ p {
 }
 
 .supplier-chats {
-  height: 89.5vh;
-  border-bottom: 20px solid white;
+  height: 89vh;
 }
 
 .stockmg-chat-container input {

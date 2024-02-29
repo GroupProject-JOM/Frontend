@@ -15,7 +15,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     searchBar2 = body.querySelector(".search2"),
     filter2 = body.querySelector(".filter-2");
 
-    var lang = getCookie("lang"); // current language
+  var lang = getCookie("lang"); // current language
 
   var searchBox1 = document.querySelectorAll(
     '.search-box1 input[type="text"] + span'
@@ -118,9 +118,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<tr data-href='./payment.html' id=` +
                 item.id +
                 `>` +
-                `<td>` +
-                item.id +
-                `</td>` +
+                `<td>S/${capitalize(item.method)[0]}/${item.id}</td>` +
                 `<td>` +
                 item.name +
                 ` ` +
@@ -142,9 +140,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<tr data-href='./payment.html' id=` +
                 item.id +
                 `>` +
-                `<td>` +
-                item.id +
-                `</td>` +
+                `<td>S/${capitalize(item.method)[0]}/${item.id}</td>` +
                 `<td>` +
                 item.name +
                 ` ` +

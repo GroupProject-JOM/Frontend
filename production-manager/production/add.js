@@ -193,8 +193,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           });
           dropdown.innerHTML = row2;
         });
-        if (lang == "sin") Command: toastr["info"]("පිළිගත් ඉල්ලීම් නැත");
-        else Command: toastr["info"]("No accepted requests");
+        if (lang == "sin") {
+          Command: toastr["info"]("පිළිගත් ඉල්ලීම් නැත");
+          pRError.textContent =
+            "පිළිගත් ඉල්ලීම් නැත. ඔබේ නිෂ්පාදන ඉල්ලීම් සමාලෝචනය කිරීමට කරුණාකර කොටස් කළමනාකරුට දන්වන්න.";
+        } else {
+          Command: toastr["info"]("No accepted requests");
+          pRError.textContent =
+            "No accepted requests. Please inform Stock Manager to review your production requests.";
+        }
       } else if (response.status === 401) {
         response.json().then((data) => {
           console.log(data.message);

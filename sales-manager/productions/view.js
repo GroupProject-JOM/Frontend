@@ -265,7 +265,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               r.addEventListener("click", () => {
                 document.cookie = "product=" + r.id + "; path=/";
                 type.textContent = r.children[1].textContent;
-                batch.textContent = "B" + data.batch.id;
+                batch.textContent = "P/B/" + data.batch.id;
 
                 totalAmount = p_count_arr[index];
                 ActualAmount = p_count_arr[index] - d_count_arr[index];

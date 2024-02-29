@@ -204,7 +204,7 @@
             tbody2.innerHTML = row2;
 
             const cols = document.querySelectorAll(".col"),
-             col1s = document.querySelectorAll(".col1"),
+              col1s = document.querySelectorAll(".col1"),
               edits = document.querySelectorAll(".fa-pen-to-square"),
               deletes = document.querySelectorAll(".fa-trash-can");
 
@@ -283,25 +283,16 @@
                 document.querySelector(
                   ".edit-product-container"
                 ).style.display = "block";
-                editType.value =
-                  col1.parentNode.parentNode.children[1].textContent;
-                editCategory.value =
-                  col1.parentNode.parentNode.children[2].textContent;
+                editCategory.value = col1.parentNode.children[1].textContent;
+                editType.value = col1.parentNode.children[2].textContent;
 
-                if (
-                  col1.parentNode.parentNode.children[3].textContent ==
-                  "0.0 LKR"
-                )
+                if (col1.parentNode.children[3].textContent == "0.0 LKR")
                   editPrice.value = null;
                 else
                   editPrice.value =
-                    col1.parentNode.parentNode.children[3].textContent.slice(
-                      0,
-                      -4
-                    );
+                    col1.parentNode.children[3].textContent.slice(0, -4);
 
-                document.cookie =
-                  "id=" + edit.parentElement.parentNode.id + "; path=/";
+                document.cookie = "id=" + col1.parentNode.id + "; path=/";
               });
             });
           });
