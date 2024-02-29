@@ -107,7 +107,7 @@ select.dropdown {
 
 .stocks h3,
 .block-container h3,
-.split2-window h3{
+.split2-window h3 {
   padding-bottom: 0.8rem;
   margin-top: 1rem;
   font-weight: 600;
@@ -188,7 +188,7 @@ input[type="number"] {
   width: 25vw;
 }
 
-.edit-stock-form .block{
+.edit-stock-form .block {
   font-size: 1.2rem;
   color: var(--button-color);
 }
@@ -230,26 +230,26 @@ input[type="number"] {
   margin-top: 40px;
 }
 
-.to-yard-button{
+.to-yard-button {
   padding-left: 60px;
   padding-right: 60px;
 }
 
-.collection-view-container .yard-supply-tables{
-  width: 110%; 
+.collection-view-container .yard-supply-tables {
+  width: 110%;
   display: flex;
   justify-content: space-between;
 }
 
-.collection-view-container .yard-supply-tables .yard-data-table{
+.collection-view-container .yard-supply-tables .yard-data-table {
   width: 30vw;
 }
 
-.collection-view-container .yard-h3{
+.collection-view-container .yard-h3 {
   color: var(--sub-title-color);
 }
 
-.tabs{
+.tabs {
   display: flex;
   gap: 20px;
   width: 90%;
@@ -257,7 +257,7 @@ input[type="number"] {
   margin-top: 1.5rem;
 }
 
-.tab{
+.tab {
   background-color: var(--body-color);
   border: none;
   padding: 8px 20px;
@@ -267,21 +267,20 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.tab:hover{
+.tab:hover,
+.active-tab {
   box-shadow: none;
   background-color: var(--button-color);
   color: var(--body-color);
 }
 
-
-.split1-window .complete-button{
+.split1-window .complete-button {
   padding: 8px 30px;
   margin-top: 10px;
   font-size: 0.9rem;
-
 }
 
-.yard-data-container{
+.yard-data-container {
   margin-left: 90px;
 }
 
