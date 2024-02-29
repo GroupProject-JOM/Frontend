@@ -23,6 +23,23 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     searchBar3 = body.querySelector(".search3"),
     filter3 = body.querySelector(".filter-3");
 
+  $(document).scroll(function () {
+    var cutoff = $(window).scrollTop();
+    var cutoffRange = cutoff + 200;
+
+    $(
+      ".stockmg-collections-container.stockmg-container .collection-layer"
+    ).each(function () {
+      if ($(this).offset().top > cutoff && $(this).offset().top < cutoffRange) {
+        let id = $(this).attr("id");
+        var href = $('.tabs-container .tabs a[href="#' + id + '"] button');
+
+        $(".tabs-container .tabs button").removeClass("active-tab");
+        href.addClass("active-tab");
+      }
+    });
+  });
+
   var lang = getCookie("lang"); // current language
 
   var searchBox1 = document.querySelectorAll(
