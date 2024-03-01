@@ -188,7 +188,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = data.size + `<span>/` + data.count + `</span>`;
             if (lang == "sin")
-              Command: toastr["info"]("ඉදිරියට එන එකතු කිරීම් නැත");
+              Command: toastr["info"]("ඉදිරි එකතු කිරීම් නැත");
             else Command: toastr["info"]("No upcoming collections");
 
             if ((data.size = 0 && data.count > 0)) {

@@ -85,17 +85,17 @@
     sin: {
       oTitle: "අලෙවිසැල් විස්තර සංස්කරණය කරන්න",
       oname: "අලෙවිසැලේ නම",
-      email: "Outlet විද්‍යුත් තැපෑල",
+      email: "විද්‍යුත් තැපැල් ලිපිනය",
       phone: "අලෙවිසැල දුරකථන අංකය",
       address: "පුද්ගලික ලිපිනය",
-      address1: "ලිපින පේළි 1",
+      address1: "ලිපිනයේ පළමු පේළිය",
       address2: "වීදිය",
       address3: "නගරය",
       btn: "වෙනස්කම් සුරකින්න",
       nameLabel: "නම",
-      emailLabel: "ඊතැපැල් ලිපිනය",
+      emailLabel: "විද්‍යුත් තැපැල් ලිපිනය",
       phoneLabel: "දුරකථන අංකය",
-      address1Label: "ලිපින පේළි 1",
+      address1Label: "ලිපිනයේ පළමු පේළිය",
       address2Label: "වීදිය",
       address3Label: "නගරය",
     },
@@ -279,10 +279,10 @@
       return false;
     } else if (!ValidateName(oname.value)) {
       if (lang == "sin")
-        onameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
+        onameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
       else
         onameError.textContent =
-          "Name must contain only numbers, letters and ' '";
+          "Name must contain only numbers, letters";
       oname_status = false;
       return false;
     } else {
@@ -295,12 +295,12 @@
   function email_status_func() {
     if (typeof email.value === "string" && email.value.trim().length === 0) {
       if (lang == "sin")
-        emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
+        emailError.textContent = "විද්‍යුත් තැපැල් ලිපිනය හිස් විය නොහැක";
       else emailError.textContent = "Email cannot be empty";
       email_status = false;
       return false;
     } else if (!ValidateEmail(email.value)) {
-      if (lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
+      if (lang == "sin") emailError.textContent = "වලංගු නොවන විද්‍යුත් තැපැල් ලිපිනයක්!";
       else emailError.textContent = "Invalid email address!";
       email_status = false;
       return false;
@@ -318,7 +318,7 @@
       phone_status = false;
       return false;
     } else if (!ValidatePhone(phone.value)) {
-      if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      if (lang == "sin") phoneError.textContent = "වලංගු නොවන දුරකථන අංකය!";
       else phoneError.textContent = "Invalid phone number!";
       phone_status = false;
       return false;
@@ -335,7 +335,7 @@
       address1.value.trim().length === 0
     ) {
       if (lang == "sin")
-        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+        address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක";
       else address1Error.textContent = "Address Line 1 cannot be empty";
       address1_status = false;
       return false;

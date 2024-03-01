@@ -129,10 +129,10 @@ let gendr, bDay;
       fh: "සේවක විස්තර සංස්කරණය කරන්න",
       fname: "මුල් නම",
       lname: "අවසන් නම",
-      email: "ඊතැපැල් ලිපිනය",
+      email: "විද්‍යුත් තැපැල් ලිපිනය",
       phone: "දුරකථන අංකය",
       address: "පුද්ගලික ලිපිනය",
-      address1: "ලිපින පේළි 1",
+      address1: "ලිපිනයේ පළමු පේළිය",
       address2: "වීදිය",
       address3: "නගරය",
       nic: "ජාතික හැඳුනුම්පත් අංකය",
@@ -145,11 +145,11 @@ let gendr, bDay;
       btn: "වෙනස්කම් සුරකින්න",
       fnameLabel: "මුල් නම",
       lnameLabel: "අවසන් නම",
-      emailLabel: "ඊතැපැල් ලිපිනය",
+      emailLabel: "විද්‍යුත් තැපැල් ලිපිනය",
       phoneLabel: "දුරකථන අංකය",
       nicLabel: "ජාතික හැඳුනුම්පත් අංකය",
       roleLabel: "තනතුරු",
-      address1Label: "ලිපින පේළි 1",
+      address1Label: "ලිපිනයේ පළමු පේළිය",
       address2Label: "වීදිය",
       address3Label: "නගරය",
     },
@@ -289,10 +289,10 @@ let gendr, bDay;
                   lnameError.textContent = "අවසාන නම හිස් විය නොහැක!";
                   lname.focus();
                 } else if (data.message == "phone") {
-                  phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
+                  phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක!";
                   phone.focus();
                 } else if (data.message == "adddress1") {
-                  address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
+                  address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
                   address1.focus();
                 } else if (data.message == "adddress2") {
                   address2Error.textContent = "වීදිය හිස් විය නොහැක!";
@@ -304,7 +304,7 @@ let gendr, bDay;
                   nicError.textContent = "ජාතික හැඳුනුම්පත හිස් විය නොහැක!";
                   nic.focus();
                 } else if (data.message == "NIC") {
-                  nicError.textContent = "NIC දැනටමත් පවතී!";
+                  nicError.textContent = "ජාතික හැඳුනුම්පත දැනටමත් පවතී!";
                   nic.focus();
                 } else if (data.message == "role") {
                   dropdownError.textContent = "තනතුර හිස් විය නොහැක!";
@@ -420,8 +420,8 @@ let gendr, bDay;
       return false;
     } else if (!ValidateName(fname.value)) {
       if (lang == "sin")
-        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else fnameError.textContent = "Name must contain only letters and ' '";
+        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else fnameError.textContent = "Name must contain only letters";
       fnameStatus = false;
       return false;
     } else {
@@ -439,8 +439,8 @@ let gendr, bDay;
       return false;
     } else if (!ValidateName(lname.value)) {
       if (lang == "sin")
-        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else lnameError.textContent = "Name must contain only letters and ' '";
+        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else lnameError.textContent = "Name must contain only letters";
       lnameStatus = false;
       return false;
     } else {
@@ -457,7 +457,7 @@ let gendr, bDay;
       phoneStatus = false;
       return false;
     } else if (!ValidatePhone(phone.value)) {
-      if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      if (lang == "sin") phoneError.textContent = "වලංගු නොවන දුරකථන අංකය!";
       else phoneError.textContent = "Invalid phone number!";
       phoneStatus = false;
       return false;
@@ -474,7 +474,7 @@ let gendr, bDay;
       address1.value.trim().length === 0
     ) {
       if (lang == "sin")
-        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+        address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක";
       else address1Error.textContent = "Address Line 1 cannot be empty";
       address1Status = false;
       return false;

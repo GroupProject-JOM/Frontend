@@ -54,7 +54,7 @@
       cTitle: "එකතු කිරීමේ හැඳුනුම්පත " + getCookie("id"),
       t1: "ආරම්භක පොල් ප්‍රමාණය",
       t2: "අවසාන පොල් ප්‍රමාණය",
-      t3: "ඉදිරිපත් කිරීමෙන් පසු, සැපයුම්කරු ඔහුගේ අයදුම්පත භාවිතා කර පොල් ප්‍රමාණය සත්‍යාපනය කරයි.",
+      t3: "ඉදිරිපත් කිරීමෙන් පසු, සැපයුම්කරු ඔහුගේ ගිණුම භාවිතා කර පොල් ප්‍රමාණය තහවුරු කරයි.",
       btn: "සම්පූර්ණ එකතුව",
     },
     en: {
@@ -79,7 +79,7 @@
 
     if (amountStatus) {
       if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
+        var title = "ඔබට විශ්වාස ද?",
           text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
           confirmButtonText = "ඔව්, එය සම්පූර්ණ කරන්න!",
           cancelButtonText = "අවලංගු කරන්න";
@@ -103,7 +103,7 @@
           if (lang == "sin") {
             var title = "සම්පූර්ණයි!",
               text =
-                "එකතුව සම්පූර්ණ ලෙස සලකුණු කර මුදල සත්‍යාපනය කිරීමට සැපයුම්කරුට දන්වන්න.",
+                "එකතුව සම්පූර්ණ ලෙස සලකුණු කර මුදල තහවුරු කිරීමට සැපයුම්කරුට දන්වන්න.",
               confirmButtonText = "හරි";
           } else {
             var title = "Completed!",
@@ -140,11 +140,11 @@
       return false;
     } else if (!checkInt(amount.value)) {
       if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+        amountError.textContent = "පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය");
       } else {
-        amountError.textContent = "Coconut amount must be positive integer";
-        Command: toastr["warning"]("Coconut amount must be positive integer");
+        amountError.textContent = "Coconut amount must be greater than 0";
+        Command: toastr["warning"]("Coconut amount must be greater than 0");
       }
       amountStatus = false;
       return false;

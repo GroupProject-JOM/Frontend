@@ -269,7 +269,7 @@
                   lnameError.textContent = "අවසාන නම හිස් විය නොහැක!";
                   lname.focus();
                 } else if (data.message == "phone") {
-                  phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
+                  phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක!";
                   phone.focus();
                 } else if (data.message == "adddress1") {
                   address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
