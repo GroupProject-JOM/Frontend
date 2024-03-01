@@ -238,7 +238,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<tr data-href="../supply-requests/view-request.html" id=` +
                 item.id +
                 `>` +
-                `<td>` +
+                `<td>S/P/` +
                 item.id +
                 `</td>` +
                 `<td>` +
@@ -763,7 +763,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         ` disable">` +
         `<td>` +
         `<input class="radio" type="checkbox" />` +
-        ` <label>` +
+        ` <label>B/` +
         elm.id +
         `</label>` +
         `</td>` +

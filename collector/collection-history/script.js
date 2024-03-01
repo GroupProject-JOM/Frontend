@@ -67,7 +67,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      cTitle: "අතීත එකතු කිරීම්",
+      cTitle: "පැරණි එකතු කිරීම්",
       cSubTitle: "ඔබගේ සම්පුර්ණ කරන ලද පොල් එකතුව සවිස්තරාත්මකව",
     },
     en: {

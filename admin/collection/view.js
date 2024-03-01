@@ -77,7 +77,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          rId.textContent = data.request.id;
+          rId.textContent = "S/P/"+data.request.id;
           sName.textContent = data.request.name + " " + data.request.last_name;
           sPhone.textContent = data.request.phone;
           address.textContent = data.request.address;
