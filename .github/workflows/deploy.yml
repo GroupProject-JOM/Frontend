@@ -28,7 +28,7 @@ jobs:
       - name: Copy build to server
         uses: nogsantos/scp-deploy@master
         with:
-          src: ./build.tar.gz
+          src: ./Frontend-web--deployment/build.tar.gz
           host: ${{ env.REMOTE_HOST }}
           remote: ${{ env.REMOTE_APP_FOLDER }}
           port: ${{ secrets.SSH_PORT }}
