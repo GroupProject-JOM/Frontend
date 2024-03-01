@@ -202,8 +202,8 @@ function signout() {
   });
 }
 
-const frontProxy = "http://127.0.0.1:5502";
-const backProxy = "http://127.0.0.1:8090/JOM_war_exploded";
+const frontProxy = "https://jom-dev.duckdns.org";
+const backProxy = "https://jom-dev.duckdns.org/api";
 
 // toast
 toastr.options = {
