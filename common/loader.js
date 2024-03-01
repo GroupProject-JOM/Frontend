@@ -19,8 +19,13 @@ backToTop.addEventListener("click", () => {
 });
 
 window.addEventListener("load", () => {
-  // const loader = document.querySelector(".loader-wrapper");
-  // loader.style.display = "none";
-  // loader.toggle();
   $(".loader-wrapper").toggle();
 });
+
+// load manifest and append meta tags
+const meta = document.querySelector("head");
+fetch("https://jom-dev.duckdns.org/common/meta.html")
+  .then((res) => res.text())
+  .then((data) => {
+    meta.innerHTML += data;
+  });
