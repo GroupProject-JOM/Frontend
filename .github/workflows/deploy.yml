@@ -41,7 +41,6 @@ jobs:
           script: |
             cd ${{ env.REMOTE_APP_FOLDER }}
             tar xvzf ./build.tar.gz --directory ./
-            rm ./build.tar.gz
             
       - name: SSH Start/Restart Application
         uses: appleboy/ssh-action@master
