@@ -19,7 +19,8 @@ jobs:
       - name: Compress Files
         run: |
           touch build.tar.gz
-          tar --exclude=build.tar.gz -zcvf build.tar.gz ./
+          ls -al
+          tar -zcvf build.tar.gz ./
           
       - name: Copy build to server
         uses: nogsantos/scp-deploy@master
