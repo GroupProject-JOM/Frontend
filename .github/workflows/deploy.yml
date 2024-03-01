@@ -22,7 +22,6 @@ jobs:
           unzip deployment.zip
           cd Frontend-web--deployment/
           touch build.tar.gz
-          ls -al
           tar --exclude='./github' --exclude='./build.tar.gz' -zcvf build.tar.gz ./
           
       - name: Copy build to server
@@ -45,6 +44,7 @@ jobs:
           script: |
             cd ${{ env.REMOTE_APP_FOLDER }}
             tar xvzf ./build.tar.gz --directory ./
+            rm -rf ./build.tar.gz
             
       - name: SSH Start/Restart Application
         uses: appleboy/ssh-action@master
