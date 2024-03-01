@@ -8,7 +8,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     text = body.querySelector(".text"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     fire = body.querySelector(".fire"),
     w1 = body.querySelector(".w1"),
     w1Value = body.querySelector(".w1-value"),
@@ -25,7 +24,9 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     greet = body.querySelector(".greet-text"),
     greet1 = body.querySelector(".greet-line1"),
     greet2 = body.querySelector(".greet-line2"),
-    tbody2 = body.querySelector(".tbody2");
+    tbody2 = body.querySelector(".tbody2"),
+    tbody3 = body.querySelector(".tbody3"),
+    missed = body.querySelector(".missed");
 
   var lang = getCookie("lang"); // current language
 
@@ -34,7 +35,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -57,7 +57,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -108,7 +107,8 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   w2Value.innerHTML = `0<span>/0</span>`;
 
   let row1 = "",
-    row2 = "";
+    row2 = "",
+    row3 = "";
 
   fetch(backProxy + "/collector", {
     method: "GET",
@@ -121,12 +121,15 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       if (response.status == 200) {
         response.json().then((data) => {
           let arr1 = data.today,
-            arr2 = data.upcoming;
+            arr2 = data.upcoming,
+            arr3 = data.missed;
           arr1.forEach(data_to_table1);
           arr2.forEach(data_to_table2);
+          arr3.forEach(data_to_table3);
 
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
+          tbody3.innerHTML = row3;
           w1Value.textContent = data.rate.price + " LKR";
           w2Value.innerHTML = data.size + `<span>/` + data.count + `</span>`;
 
@@ -143,9 +146,25 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               window.location.href = r.dataset.href;
             });
           });
+
+          if (arr3.length == 0) missed.style.display = "none";
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
+          let arr3 = data.missed;
+          arr3.forEach(data_to_table3);
+          tbody3.innerHTML = row3;
+
+          if (arr3.length == 0) missed.style.display = "none";
+
+          const rows = document.querySelectorAll("tr[data-href]");
+          rows.forEach((r) => {
+            r.addEventListener("click", () => {
+              document.cookie = "id=" + r.id + "; path=/";
+              window.location.href = r.dataset.href;
+            });
+          });
+
           if (data.size == -2) {
             if (lang == "sin") Command: toastr["info"]("එකතු කිරීම් නැත");
             else Command: toastr["info"]("No collections");
@@ -165,14 +184,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             tbody2.innerHTML = row2;
             if (lang == "sin") Command: toastr["info"]("අද එකතු කිරීම් නැත");
             else Command: toastr["info"]("No collections today");
-
-            const rows = document.querySelectorAll("tr[data-href]");
-            rows.forEach((r) => {
-              r.addEventListener("click", () => {
-                document.cookie = "id=" + r.id + "; path=/";
-                window.location.href = r.dataset.href;
-              });
-            });
 
             if (data.count > 0) {
               fire.style.display = "block";
@@ -196,14 +207,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               greet.style.display = "flex";
               todayTable.style.display = "none";
             }
-
-            const rows = document.querySelectorAll("tr[data-href]");
-            rows.forEach((r) => {
-              r.addEventListener("click", () => {
-                document.cookie = "id=" + r.id + "; path=/";
-                window.location.href = r.dataset.href;
-              });
-            });
           }
         });
       } else if (response.status === 401) {
@@ -260,6 +263,28 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       item.amount.toLocaleString("en-US") +
       `</td>
       <td>
+        <button class="direction status">Get Directions</button>
+      </td>
+    </tr>`;
+  }
+  function data_to_table3(item) {
+    row3 +=
+      `<tr data-href="./collection/view.html" id=` +
+      item.id +
+      `>
+      <td>` +
+      item.area +
+      `</td>
+      <td>` +
+      item.date +
+      `</td>
+      <td>` +
+      timeString(item.time) +
+      `</td>
+      <td>` +
+      item.amount.toLocaleString("en-US") +
+      `</td>
+      <td class='hide'>
         <button class="direction status">Get Directions</button>
       </td>
     </tr>`;
