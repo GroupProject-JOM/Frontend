@@ -196,7 +196,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   `</div>` +
                   `</div>` +
                   `</td>` +
-                  `<td><button class="reject status">Terminated</button></td>` +
+                  `<td><button class="rejected status">Terminated</button></td>` +
                   `</tr>`;
               });
             } else {
@@ -846,8 +846,8 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 response.json().then((data) => {
                   console.log(data.message);
                 });
-                if (lang == "sin") var title = "සාර්ථකව අංගනයට එක් කරන ලදී";
-                else var title = "Successfully added to yard";
+                if (lang == "sin") var title = "සාර්ථකව පවරා ඇත";
+                else var title = "Successfully allocated";
                 Swal.fire({
                   title: title,
                   // text: "You clicked the button!",
