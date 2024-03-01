@@ -56,6 +56,10 @@
   --tran-05: all 0.5s ease;
 }
 
+html {  
+  scroll-behavior: smooth;  
+}
+
 body {
   height: 100vh;
   background-color: var(--body-color);
@@ -953,7 +957,7 @@ input[type="checkbox"] {
   padding: 5px 30px;
   font-size: 0.9rem;
   border-radius: 20px;
-  margin: 0;
+  /* margin: 0; */
 }
 
 .table-top #searchBox {

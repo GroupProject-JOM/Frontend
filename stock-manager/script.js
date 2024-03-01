@@ -130,18 +130,18 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      w1: "සැපයුම්කරු ඉල්ලීම්",
+      w1: "සැපයුම් ඉල්ලීම්",
       w2: "අද ඉතිරිය",
       c1: "නිෂ්පාදන ඉල්ලීම්",
       c2: "නිෂ්පාදන කළමනාකරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
-      c4: "සැපයුම්කරු ඉල්ලීම්",
+      c4: "සැපයුම් ඉල්ලීම්",
       c5: "සැපයුම්කරුගේ ඉල්ලීම් බලන්න සහ ප්රතිචාර දක්වන්න",
       c6: "පොල් එකතු කිරීම්",
-      c7: "සෑම දිනකම පොල් එකතු කිරීම් තෝරා බලන්න",
+      c7: "එක් එක් දින සඳහා පොල් එකතු කිරීම් බලන්න",
       text: "උපකරණ පුවරුව",
       rateBtn: "අද පොල් මිල ඇතුලත් කරන්න",
       rate: "නව පොල් මිල ඇතුළත් කරන්න",
-      rLabel: "නව අනුපාතය",
+      rLabel: "නව මිල",
       rConfirm: "තහවුරු කරන්න",
     },
     en: {
@@ -495,11 +495,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       return false;
     } else if (!checkPositive(rate.value)) {
       if (lang == "sin") {
-        rateError.textContent = "පොල් මිල ධනාත්මක විය යුතුය";
-        Command: toastr["warning"]("පොල් මිල ධනාත්මක විය යුතුය");
+        rateError.textContent = "පොල් මිල 0 ට වඩා වැඩි විය යුතුය";
+        Command: toastr["warning"]("පොල් මිල 0 ට වඩා වැඩි විය යුතුය");
       } else {
-        rateError.textContent = "Coconut rate must be positive";
-        Command: toastr["warning"]("Coconut rate must be positive");
+        rateError.textContent = "Coconut rate must be greater than 0";
+        Command: toastr["warning"]("Coconut rate must be greater than 0");
       }
       rateStatus = false;
       return false;

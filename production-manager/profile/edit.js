@@ -83,14 +83,14 @@
       lname: "අවසන් නම ඇතුලත් කරන්න",
       phone: "දුරකථන අංකය ඇතුලත් කරන්න",
       address: "පුද්ගලික ලිපිනය",
-      address1: "ලිපින පේළි 1 ඇතුලත් කරන්න",
+      address1: "ලිපිනයේ පළමු පේළිය ඇතුලත් කරන්න",
       address2: "වීදිය ඇතුලත් කරන්න",
       address3: "නගරය ඇතුලත් කරන්න",
       btn: "වෙනස්කම් සුරකින්න",
       fnameLabel: "මුල් නම",
       lnameLabel: "අවසන් නම",
       phoneLabel: "දුරකථන අංකය",
-      address1Label: "ලිපින පේළි 1",
+      address1Label: "ලිපිනයේ පළමු පේළිය",
       address2Label: "වීදිය",
       address3Label: "නගරය",
     },
@@ -230,7 +230,7 @@
             });
             if (lang == "sin") {
               var title = "යාවත්කාලීන කරන ලදී!",
-                text = "ඔබගේ පැතිකඩ සාර්ථකව යාවත්කාලීන කර ඇත.";
+                text = "ඔබගේ ගිණුම සාර්ථකව යාවත්කාලීන කර ඇත.";
             } else {
               var title = "Updated!",
                 text = "Your profile has been successfully updated.";
@@ -249,7 +249,7 @@
               console.log(data.message);
             });
             if (lang == "sin")
-              Command: toastr["error"]("පැතිකඩ යාවත්කාලීන කළ නොහැක");
+              Command: toastr["error"]("ගිණුම යාවත්කාලීන කළ නොහැක");
             else Command: toastr["error"]("Cannot update profile");
           } else if (response.status === 401) {
             response.json().then((data) => {
@@ -272,7 +272,7 @@
                   phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
                   phone.focus();
                 } else if (data.message == "adddress1") {
-                  address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
+                  address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
                   address1.focus();
                 } else if (data.message == "adddress2") {
                   address2Error.textContent = "වීදිය හිස් විය නොහැක!";
@@ -281,7 +281,7 @@
                   address3Error.textContent = "නගරය හිස් විය නොහැක!";
                   address3.focus();
                 } else {
-                  Command: toastr["error"]("මොකක්හරි වැරැද්දක් වෙලා");
+                  Command: toastr["error"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
                 }
               } else {
                 // check current language and visualize error
@@ -304,7 +304,7 @@
                   address3Error.textContent = "City cannot be empty!";
                   address3.focus();
                 } else {
-                  Command: toastr["error"]("Something went wrong");
+                  Command: toastr["error"]("Something went wrong. Try again");
                 }
               }
             });
@@ -328,8 +328,8 @@
       return false;
     } else if (!ValidateName(fname.value)) {
       if (lang == "sin")
-        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else fnameError.textContent = "Name must contain only letters and ' '";
+        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else fnameError.textContent = "Name must contain only letters";
       fname_status = false;
       return false;
     } else {
@@ -347,8 +347,8 @@
       return false;
     } else if (!ValidateName(lname.value)) {
       if (lang == "sin")
-        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else lnameError.textContent = "Name must contain only letters and ' '";
+        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else lnameError.textContent = "Name must contain only letters";
       lname_status = false;
       return false;
     } else {
@@ -365,7 +365,7 @@
       phone_status = false;
       return false;
     } else if (!ValidatePhone(phone.value)) {
-      if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      if (lang == "sin") phoneError.textContent = "වලංගු නොවන දුරකථන අංකයක්!";
       else phoneError.textContent = "Invalid phone number!";
       phone_status = false;
       return false;
@@ -382,7 +382,7 @@
       address1.value.trim().length === 0
     ) {
       if (lang == "sin")
-        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+        address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක";
       else address1Error.textContent = "Address Line 1 cannot be empty";
       address1_status = false;
       return false;

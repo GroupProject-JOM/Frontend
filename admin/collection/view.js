@@ -56,7 +56,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin: {
       sTitle: "ඉල්ලීම බලන්න",
       sText: "තත්ත්වය: ලබා ගැනීමට සූදානම්",
-      btn: "සම්පූර්ණ එකතුව",
+      btn: "සම්පූර්ණ කරන්න",
     },
     en: {
       sTitle: "View Request",

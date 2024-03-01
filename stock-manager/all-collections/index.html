@@ -23,7 +23,11 @@
       rel="stylesheet"
     />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
     <script src="../auth.js"></script>
@@ -72,24 +76,21 @@
       <div class="text"></div>
 
       <div class="stockmg-collections-container stockmg-container">
-
-        <div class="tabs-container layer">
+        <div class="tabs-container">
           <div class="tabs">
-
-            <div class="tab accepted-tab">
-              Accepted
-            </div>
-            <div class="tab declined-tab">
-              Declined
-            </div>
-            <div class="tab completed-tab">
-              Completed
-            </div>
+            <a href="#accepted-content">
+              <button class="tab accepted-tab active-tab"></button>
+            </a>
+            <a href="#declined-content">
+              <button class="tab declined-tab"></button>
+            </a>
+            <a href="#completed-content">
+              <button class="tab completed-tab"></button>
+            </a>
           </div>
         </div>
-          
-          
-          <div class="accepted-layer collection-layer">
+
+        <div class="accepted-layer collection-layer" id="accepted-content">
           <div class="stockmg-heading table-heading">
             <h2 class="stockmg-t1 stockmg-title"></h2>
             <div>
@@ -137,7 +138,7 @@
           </div>
         </div>
 
-        <div class="decline-layer collection-layer">
+        <div class="decline-layer collection-layer" id="declined-content">
           <div class="stockmg-heading table-heading">
             <h2 class="stockmg-t2 stockmg-title"></h2>
             <div>
@@ -183,7 +184,7 @@
           </div>
         </div>
 
-        <div class="completed-layer collection-layer">
+        <div class="completed-layer collection-layer" id="completed-content">
           <div class="stockmg-heading table-heading">
             <h2 class="stockmg-t3 stockmg-title"></h2>
             <div>

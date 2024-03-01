@@ -105,7 +105,7 @@
   //delete outlet
   del.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -140,7 +140,7 @@
               });
               if (lang == "sin") {
                 var title = "මකා දමන ලදී!",
-                  text = "අලෙවිසැල මකා ඇත.";
+                  text = "අලෙවිසැල ඉවත් කර ඇත.";
               } else {
                 var title = "Deleted!",
                   text = "Outlet has been deleted.";
@@ -159,7 +159,7 @@
                 console.log(data.message);
               });
               if (lang == "sin")
-                Command: toastr["error"]("Outlet මකා දැමිය නොහැක");
+                Command: toastr["error"]("අලෙවිසැල මකා දැමිය නොහැක");
               else Command: toastr["error"]("Unable to Delete Outlet");
             } else if (response.status === 401) {
               response.json().then((data) => {

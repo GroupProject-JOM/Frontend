@@ -49,8 +49,8 @@
     sin: {
       pTitle: "නිෂ්පාදන විස්තර",
       pDataH: "නිෂ්පාදන නිකුත් කිරීම",
-      btn: "සම්පූර්ණ නිෂ්පාදනය",
-      complete: "සම්පූර්ණ",
+      btn: "නිෂ්පාදනය සම්පූර්ණ කරන්න",
+      complete: "සම්පූර්ණ කරන්න",
     },
     en: {
       pTitle: "Production Details",
@@ -200,7 +200,7 @@
         response.json().then((data) => {
           console.log(data.message);
         });
-        if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන කණ්ඩායම නොමැත");
+        if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන කාණ්ඩ නොමැත");
         else Command: toastr["info"]("No production batch");
       } else if (response.status === 401) {
         response.json().then((data) => {
@@ -237,16 +237,16 @@
     pAmount.forEach((pA) => {
       if (typeof pA.value === "string" && pA.value.trim().length === 0) {
         if (lang == "sin")
-          pA.nextSibling.nextSibling.textContent = "මුදල හිස් විය නොහැක!";
+          pA.nextSibling.nextSibling.textContent = "ප්‍රමාණය හිස් විය නොහැක!";
         else pA.nextSibling.nextSibling.textContent = "Amount cannot be empty";
         amountStatus = false;
         pA.focus();
       } else if (pA.value < 1) {
         if (lang == "sin")
-          pA.nextSibling.nextSibling.textContent = "මුදල ධන නිඛිල විය යුතුය!";
+          pA.nextSibling.nextSibling.textContent = "මුදල 0 ට වඩා වැඩි විය යුතුය!";
         else
           pA.nextSibling.nextSibling.textContent =
-            "Amount must be positive integer";
+            "Amount must be greater than 0";
         amountStatus = false;
         pA.focus();
       } else {
@@ -264,7 +264,7 @@
       };
 
       if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
+        var title = "ඔබට විශ්වාස ද?",
           text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
           confirmButtonText = "ඔව්, එය සම්පූර්ණ කරන්න!",
           cancelButtonText = "අවලංගු කරන්න";
@@ -302,7 +302,7 @@
                 });
                 if (lang == "sin") {
                   var title = "සාර්ථකයි!",
-                    text = "නිෂ්පාදන කණ්ඩායම සාර්ථකව නිම කරන ලදී.";
+                    text = "නිෂ්පාදන කාණ්ඩය සාර්ථකව නිම කරන ලදී.";
                 } else {
                   var title = "Successful!",
                     text = "Production batch completed successfully.";
@@ -321,7 +321,7 @@
                   console.log(data.message);
                 });
                 if (lang == "sin")
-                  Command: toastr["error"]("නිෂ්පාදන කණ්ඩායම නිම කර නැත");
+                  Command: toastr["error"]("නිෂ්පාදන කාණ්ඩය නිම කර නැත");
                 else
                   Command: toastr["error"]("Production batch is not completed");
               } else if (response.status === 401) {

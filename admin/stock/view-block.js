@@ -87,7 +87,7 @@
               ` class="` +
               status +
               `">` +
-              `<td>` +
+              `<td>B/` +
               item.id +
               `</td>` +
               `<td>` +
@@ -102,8 +102,8 @@
           tbody.innerHTML = row;
 
           sYard.textContent = "Yard " + getCookie("id").charAt(0);
-          yBlock.textContent = data.block.id;
-          yAmount.textContent = data.block.count.toLocaleString('en-US');
+          yBlock.textContent = "B/" + data.block.id;
+          yAmount.textContent = data.block.count.toLocaleString("en-US");
           yDays.textContent = data.block.days + " days";
 
           var added_date = new Date(data.block.date);
@@ -113,8 +113,8 @@
         response.json().then((data) => {
           console.log(data.message);
         });
-        if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-        else Command: toastr["info"]("Something went wrong");
+        if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+        else Command: toastr["info"]("Something went wrong. Try again");
       } else if (response.status === 401) {
         response.json().then((data) => {
           console.log(data.message);

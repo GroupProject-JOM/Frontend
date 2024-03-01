@@ -154,7 +154,7 @@
         response.json().then((data) => {
           console.log(data.message);
         });
-        if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන කණ්ඩායම් නොමැත");
+        if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන කාණ්ඩ නොමැත");
         else Command: toastr["info"]("No production batches");
       } else if (response.status === 401) {
         response.json().then((data) => {

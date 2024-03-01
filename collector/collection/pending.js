@@ -88,18 +88,18 @@
       cTitle: "එකතු කිරීමේ හැඳුනුම්පත " + getCookie("id"),
       t1: "ආරම්භක පොල් ප්‍රමාණය",
       t2: "අවසාන පොල් ප්‍රමාණය",
-      pHead: "සැපයුම්කරුගෙන් පොරොත්තු සත්‍යාපනය",
+      pHead: "සැපයුම්කරුගෙන් පොරොත්තු තහවුරු කිරීම",
       pText: "සැපයුම්කරු මුදල සත්‍යාපනය කළ පසු එකතුව සම්පූර්ණ ලෙස සලකුණු කෙරේ",
       vHead: "පොල් ප්‍රමාණය තහවුරු කරන්න",
-      vText: "සැපයුම්කරුගේ විද්‍යුත් තැපෑලට යැවූ OTP ඇතුලත් කරන්න",
+      vText: "සැපයුම්කරුගේ විද්‍යුත් තැපෑලට යැවූ කේතය ඇතුලත් කරන්න",
       vBtn1: "තහවුරු කරන්න",
       vBtn2: "සම්පූර්ණ එකතුව",
       oHead: "විකල්ප සත්‍යාපන ක්‍රම",
       oText:
         "සැපයුම්කරුට පද්ධතිය වෙත ළඟා විය නොහැකි නම් විකල්ප සත්‍යාපන ක්‍රමයක් සපයන්න",
       oBtn: "විකල්ප සත්‍යාපනය",
-      sendEmail: "OTP යවන්න",
-      emailOTP: "OTP ඇතුලත් කරන්න",
+      sendEmail: "කේතය යවන්න",
+      emailOTP: "කේතය ඇතුලත් කරන්න",
     },
     en: {
       cTitle: "Collection ID " + getCookie("id"),
@@ -243,8 +243,8 @@
             console.log(data.message);
 
             if (lang == "sin") {
-              error.textContent = "OTP යවන ලදී";
-              Command: toastr["info"]("OTP යවන ලදී");
+              error.textContent = "කේතය යවන ලදී";
+              Command: toastr["info"]("කේතය යවන ලදී");
             } else {
               error.textContent = "OTP sent";
               Command: toastr["info"]("OTP sent");
@@ -269,9 +269,9 @@
         } else if (response.status === 409) {
           if (lang == "sin") {
             error.textContent =
-              "OTP යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න";
+              "කේතය යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න";
             Command: toastr["error"](
-              "OTP යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න"
+              "කේතය යැවීමට අසමත් විය, කරුණාකර පසුව නැවත උත්සාහ කරන්න"
             );
           } else {
             error.textContent = "Failed to send OTP, please try again later";
@@ -304,8 +304,8 @@
       emailOTP.value.trim().length === 0
     ) {
       if (lang == "sin") {
-        error.textContent = "OTP හිස් විය නොහැක";
-        Command: toastr["warning"]("OTP හිස් විය නොහැක");
+        error.textContent = "කේතය හිස් විය නොහැක";
+        Command: toastr["warning"]("කේතය හිස් විය නොහැක");
       } else {
         error.textContent = "OTP cannot be empty";
         Command: toastr["warning"]("OTP cannot be empty");
@@ -358,8 +358,8 @@
           } else if (response.status === 401) {
             console.log("Invalid OTP");
             if (lang == "sin") {
-              error.textContent = "වලංගු නොවන OTP";
-              Command: toastr["warning"]("වලංගු නොවන OTP");
+              error.textContent = "වලංගු නොවන කේතය";
+              Command: toastr["warning"]("වලංගු නොවන කේතය");
             } else {
               error.textContent = "Invalid OTP";
               Command: toastr["warning"]("Invalid OTP");

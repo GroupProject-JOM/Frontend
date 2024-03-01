@@ -204,7 +204,7 @@
             tbody2.innerHTML = row2;
 
             const cols = document.querySelectorAll(".col"),
-             col1s = document.querySelectorAll(".col1"),
+              col1s = document.querySelectorAll(".col1"),
               edits = document.querySelectorAll(".fa-pen-to-square"),
               deletes = document.querySelectorAll(".fa-trash-can");
 
@@ -283,25 +283,16 @@
                 document.querySelector(
                   ".edit-product-container"
                 ).style.display = "block";
-                editType.value =
-                  col1.parentNode.parentNode.children[1].textContent;
-                editCategory.value =
-                  col1.parentNode.parentNode.children[2].textContent;
+                editCategory.value = col1.parentNode.children[1].textContent;
+                editType.value = col1.parentNode.children[2].textContent;
 
-                if (
-                  col1.parentNode.parentNode.children[3].textContent ==
-                  "0.0 LKR"
-                )
+                if (col1.parentNode.children[3].textContent == "0.0 LKR")
                   editPrice.value = null;
                 else
                   editPrice.value =
-                    col1.parentNode.parentNode.children[3].textContent.slice(
-                      0,
-                      -4
-                    );
+                    col1.parentNode.children[3].textContent.slice(0, -4);
 
-                document.cookie =
-                  "id=" + edit.parentElement.parentNode.id + "; path=/";
+                document.cookie = "id=" + col1.parentNode.id + "; path=/";
               });
             });
           });
@@ -324,7 +315,7 @@
 
   function delete_product() {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -567,8 +558,8 @@
       pPriceStatus = false;
       return false;
     } else if (!checkInt(pPrice.value)) {
-      if (lang == "sin") pPriceError.textContent = "ඒකක මිල ධනාත්මක විය යුතුය";
-      else pPriceError.textContent = "Unit price must be positive";
+      if (lang == "sin") pPriceError.textContent = "ඒකක මිල 0 ට වඩා වැඩි විය යුතුය";
+      else pPriceError.textContent = "Unit price must be greater than 0";
       pPriceStatus = false;
       return false;
     } else {
@@ -619,8 +610,8 @@
       return false;
     } else if (!checkInt(editPrice.value)) {
       if (lang == "sin")
-        editPriceError.textContent = "ඒකක මිල ධනාත්මක විය යුතුය";
-      else editPriceError.textContent = "Unit price must be positive";
+        editPriceError.textContent = "ඒකක මිල 0 ට වඩා වැඩි විය යුතුය";
+      else editPriceError.textContent = "Unit price must be greater than 0";
       editPriceStatus = false;
       return false;
     } else {

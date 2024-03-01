@@ -68,7 +68,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   var data = {
     sin: {
       cTitle: "අතීත එකතු කිරීම්",
-      cSubTitle: "ඔබගේ සම්පුර්ණ කරන ලද පොල් එකතුවේ සවිස්තරාත්මක දසුන",
+      cSubTitle: "ඔබගේ සම්පුර්ණ කරන ලද පොල් එකතුව සවිස්තරාත්මකව",
     },
     en: {
       cTitle: "Past Collections",
@@ -110,7 +110,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       } else if (response.status === 202) {
         response.json().then((data) => {
           console.log(data.message);
-          if (lang == "sin") Command: toastr["info"]("ඉදිරියට එන එකතුවක් නැත");
+          if (lang == "sin") Command: toastr["info"]("ඉදිරි එකතුවක් නැත");
           else Command: toastr["info"]("No upcoming collection");
         });
       } else if (response.status === 401) {

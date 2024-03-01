@@ -115,9 +115,9 @@
       cPassword: "වත්මන් මුරපදය ඇතුළත් කරන්න",
       forgot: "මුරපදය අමතක වුණා ද?",
       n1Label: "නව මුරපදය",
-      n1: "අවම වශයෙන් අක්ෂර 8 ක්",
+      n1: "අවම වශයෙන් අක්ෂර 6 ක්",
       n2Label: "මුරපදය තහවුරු කරන්න",
-      n2: "අවම වශයෙන් අක්ෂර 8 ක්",
+      n2: "අවම වශයෙන් අක්ෂර 6 ක්",
       save: "සුරකින්න",
     },
     en: {
@@ -131,9 +131,9 @@
       cPassword: "Enter current password",
       forgot: "Forgot password?",
       n1Label: "New Password",
-      n1: "At least 8 characters",
+      n1: "At least 6 characters",
       n2Label: "Confirm Password",
-      n2: "At least 8 characters",
+      n2: "At least 6 characters",
       save: "Save",
     },
   };
