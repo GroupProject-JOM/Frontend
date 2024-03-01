@@ -315,7 +315,7 @@
 
   function delete_product() {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -558,8 +558,8 @@
       pPriceStatus = false;
       return false;
     } else if (!checkInt(pPrice.value)) {
-      if (lang == "sin") pPriceError.textContent = "ඒකක මිල ධනාත්මක විය යුතුය";
-      else pPriceError.textContent = "Unit price must be positive";
+      if (lang == "sin") pPriceError.textContent = "ඒකක මිල 0 ට වඩා වැඩි විය යුතුය";
+      else pPriceError.textContent = "Unit price must be greater than 0";
       pPriceStatus = false;
       return false;
     } else {
@@ -610,8 +610,8 @@
       return false;
     } else if (!checkInt(editPrice.value)) {
       if (lang == "sin")
-        editPriceError.textContent = "ඒකක මිල ධනාත්මක විය යුතුය";
-      else editPriceError.textContent = "Unit price must be positive";
+        editPriceError.textContent = "ඒකක මිල 0 ට වඩා වැඩි විය යුතුය";
+      else editPriceError.textContent = "Unit price must be greater than 0";
       editPriceStatus = false;
       return false;
     } else {

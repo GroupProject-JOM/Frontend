@@ -49,8 +49,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      pTitle: "කොටස් තොරතුරු",
-      pText: "වර්ණ-කේතගත කොටස් තොරතුරු බලන්න",
+      pTitle: "ගබඩා තොරතුරු",
+      pText: "වර්ණ-කේතගත ගබඩා තොරතුරු බලන්න",
       yard1H: "අංගනය 1",
       yard2H: "අංගනය 2",
       yard3H: "අංගනය 3",
@@ -169,8 +169,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         response.json().then((data) => {
           console.log(data.message);
         });
-        if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-        else Command: toastr["info"]("Something went wrong");
+        if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+        else Command: toastr["info"]("Something went wrong. Try again");
       } else if (response.status === 401) {
         response.json().then((data) => {
           console.log(data.message);

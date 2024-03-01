@@ -156,7 +156,7 @@
 
     if (cStatus) {
       if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
+        var title = "ඔබට විශ්වාස ද?",
           text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
           confirmButtonText = "ඔව්, එකතු කරන්න!",
           cancelButtonText = "අවලංගු කරන්න";
@@ -199,7 +199,7 @@
                 });
                 if (lang == "sin") {
                   var title = "එකතු කළා!",
-                    text = "මුදල් සාර්ථකව එකතු කර ඇත.";
+                    text = "මුදල් සාර්ථකව ලබා ගෙන ඇත.";
                 } else {
                   var title = "Collected!",
                     text = "Money Collected Successfully.";
@@ -226,7 +226,7 @@
                   console.log(data.message);
                 });
                 if (lang == "sin")
-                  Command: toastr["error"]("මුදල් එකතු කිරීම සාර්ථක නොවේ");
+                  Command: toastr["error"]("මුදල් ලබා ගැනීම කිරීම සාර්ථක නොවේ");
                 else
                   Command: toastr["error"]("Money Collection is not Succeed");
               } else if (response.status === 401) {
@@ -260,8 +260,8 @@
       cStatus = false;
       return false;
     } else if (!checkInt(cAmount.value)) {
-      if (lang == "sin") cError.textContent = "එකතු කරන මුදල ධනාත්මක විය යුතුය";
-      else cError.textContent = "Collecting amount must be positive";
+      if (lang == "sin") cError.textContent = "එකතු කරන මුදල 0 ට වඩා වැඩි විය යුතුය";
+      else cError.textContent = "Collecting amount must be greater than 0";
       cStatus = false;
       return false;
     } else if (cAmount.value > +getCookie("price")) {
