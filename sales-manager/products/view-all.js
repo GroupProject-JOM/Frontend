@@ -5,6 +5,7 @@
     pTitle = body.querySelector(".salesmg-title"),
     pText = body.querySelector(".salesmg-text"),
     productsTable = body.querySelector(".products-table"),
+    pendingProducts = body.querySelector(".pending-products"),
     tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
     searchBar = body.querySelector(".search"),
@@ -202,6 +203,8 @@
             }
             tbody1.innerHTML = row1;
             tbody2.innerHTML = row2;
+
+            if (row1.length == 0) pendingProducts.style.display = "none";
 
             const cols = document.querySelectorAll(".col"),
               col1s = document.querySelectorAll(".col1"),
@@ -558,7 +561,8 @@
       pPriceStatus = false;
       return false;
     } else if (!checkInt(pPrice.value)) {
-      if (lang == "sin") pPriceError.textContent = "ඒකක මිල 0 ට වඩා වැඩි විය යුතුය";
+      if (lang == "sin")
+        pPriceError.textContent = "ඒකක මිල 0 ට වඩා වැඩි විය යුතුය";
       else pPriceError.textContent = "Unit price must be greater than 0";
       pPriceStatus = false;
       return false;
