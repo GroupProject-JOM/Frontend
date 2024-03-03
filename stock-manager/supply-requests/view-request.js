@@ -797,14 +797,14 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             if (lang == "sin")
               daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන හිස් විය නොහැක`;
             else
-              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count cannot be empty`;
+              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Number of days cannot be empty`;
             elm.nextSibling.style.display = "";
           } else if (!checkInt(elm.value)) {
             daysError.style.display = "";
             if (lang == "sin")
               daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන 0 ට වඩා වැඩි විය යුතුය`;
             else
-              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count must be greater than 0`;
+              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Number of days must be greater than 0`;
             elm.nextSibling.style.display = "";
           } else {
             daysError.style.display = "none";
@@ -941,7 +941,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       if (lang == "sin")
         daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන හිස් විය නොහැක`;
       else
-        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count cannot be empty`;
+        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Number of days cannot be empty`;
       day.nextSibling.style.display = "";
       return false;
     } else if (!checkInt(day.value)) {
@@ -949,7 +949,7 @@ document.cookie = "date=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       if (lang == "sin")
         daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන 0 ට වඩා වැඩි විය යුතුය`;
       else
-        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count must be greater than 0`;
+        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Number of days must be greater than 0`;
       day.nextSibling.style.display = "";
       return false;
     } else {

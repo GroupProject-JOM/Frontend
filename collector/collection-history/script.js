@@ -14,7 +14,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   var lang = getCookie("lang"); // current language
 
   datePicker.addEventListener("input", () => {
-    search(datePicker.value, pastTable);
+    if (!checkDate(datePicker.value)) {
+      if (lang == "sin") {
+        Command: toastr["error"]("දිනය අතීතයේ විය යුතුය");
+      } else {
+        Command: toastr["error"]("Date must be in the past");
+      }
+    } else search(datePicker.value, pastTable);
   });
 
   var searchBa = document.querySelectorAll(
@@ -129,3 +135,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       Command: toastr["error"](error);
     });
 })();
+
+function checkDate(date) {
+  if (date.trim().length === 0) return true;
+
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() - 1);
+  if (selectedDate < now) return true;
+  else return false;
+}
