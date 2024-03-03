@@ -235,11 +235,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       return false;
     } else if (!checkInt(amount.value)) {
       if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+        amountError.textContent = "පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය");
       } else {
-        amountError.textContent = "Coconut amount must be positive integer";
-        Command: toastr["warning"]("Coconut amount must be positive integer");
+        amountError.textContent = "Coconut amount must be greater than 0";
+        Command: toastr["warning"]("Coconut amount must be greater than 0");
       }
       amountStatus = false;
       return false;

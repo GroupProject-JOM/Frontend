@@ -102,11 +102,8 @@
             } else if (item.status == 3) {
               stat = "rejected";
               st = "Terminated";
-            } else if (item.status == 4) {
-              stat = "pending";
-              st = "Ongoing";
-            } else if (item.status == 5) {
-              stat = "complete";
+            } else {
+              stat = "completed";
               st = "Completed";
             }
 

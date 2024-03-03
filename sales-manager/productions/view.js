@@ -149,7 +149,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {
-            batchNo.textContent ="P/B/" + data.batch.id;
+            batchNo.textContent = "P/B/" + data.batch.id;
 
             if (data.batch.status == 1) {
               status.textContent = "Processing";
@@ -200,7 +200,10 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   `</tr>`;
               });
             } else {
-              status.textContent = "Completed";
+              if (data.batch.status == 2)
+                status.textContent = "Ready to Distribute";
+              else status.textContent = "Completed";
+
               var p_count_arr = data.batch.products_count.split(",");
               var d_count_arr = data.batch.distribution.split(",");
 
@@ -792,7 +795,8 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         remainingError.textContent = `Remaining amount cannot be less than zero`;
       remainigStatus = false;
     } else if (ActualAmount - remainigAmount != addTotal) {
-      if (lang == "sin") remainingError.textContent = `යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න`;
+      if (lang == "sin")
+        remainingError.textContent = `යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න`;
       else remainingError.textContent = `Something went wrong. Try again`;
       remainigStatus = false;
     } else {
