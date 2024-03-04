@@ -15,7 +15,7 @@
   top: 0;
   z-index: 999;
   background: transparent;
-  box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 14px rgba(0, 0, 0, 0.3); */
   width: 100%;
 }
 
