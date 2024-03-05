@@ -149,7 +149,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {
-            batchNo.textContent ="P/B/" + data.batch.id;
+            batchNo.textContent = "P/B/" + data.batch.id;
 
             if (data.batch.status == 1) {
               status.textContent = "Processing";
@@ -196,11 +196,14 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   `</div>` +
                   `</div>` +
                   `</td>` +
-                  `<td><button class="reject status">Terminated</button></td>` +
+                  `<td><button class="rejected status">Terminated</button></td>` +
                   `</tr>`;
               });
             } else {
-              status.textContent = "Completed";
+              if (data.batch.status == 2)
+                status.textContent = "Ready to Distribute";
+              else status.textContent = "Completed";
+
               var p_count_arr = data.batch.products_count.split(",");
               var d_count_arr = data.batch.distribution.split(",");
 
@@ -792,7 +795,8 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         remainingError.textContent = `Remaining amount cannot be less than zero`;
       remainigStatus = false;
     } else if (ActualAmount - remainigAmount != addTotal) {
-      if (lang == "sin") remainingError.textContent = `යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න`;
+      if (lang == "sin")
+        remainingError.textContent = `යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න`;
       else remainingError.textContent = `Something went wrong. Try again`;
       remainigStatus = false;
     } else {
@@ -846,8 +850,8 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 response.json().then((data) => {
                   console.log(data.message);
                 });
-                if (lang == "sin") var title = "සාර්ථකව අංගනයට එක් කරන ලදී";
-                else var title = "Successfully added to yard";
+                if (lang == "sin") var title = "සාර්ථකව පවරා ඇත";
+                else var title = "Successfully allocated";
                 Swal.fire({
                   title: title,
                   // text: "You clicked the button!",
