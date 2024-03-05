@@ -23,9 +23,9 @@ window.addEventListener("load", () => {
 });
 
 // load manifest and append meta tags
-const meta = document.querySelector("head");
-fetch("https://jom-dev.duckdns.org/common/meta.html")
-  .then((res) => res.text())
-  .then((data) => {
-    meta.innerHTML += data;
-  });
+// const meta = document.querySelector("head");
+// fetch("https://jom-dev.duckdns.org/common/meta.html")
+//   .then((res) => res.text())
+//   .then((data) => {
+//     meta.innerHTML += data;
+//   });
