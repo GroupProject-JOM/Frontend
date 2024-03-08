@@ -7,8 +7,10 @@
     viewData = body.querySelector(".view-data"),
     tbody = body.querySelector(".tbody"),
     subTotal = body.querySelector(".sub-total-value"),
-    closeBtn = body.querySelector(".close-btn"),
-    overlay = body.querySelector(".overlay"),
+    closeBtn1 = body.querySelector(".close-btn1"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    overlay1 = body.querySelector(".overlay1"),
+    overlay2 = body.querySelector(".overlay2"),
     oId = body.querySelector(".oId"),
     oName = body.querySelector(".oName"),
     oEmail = body.querySelector(".oEmail"),
@@ -43,20 +45,39 @@
   });
 
   viewData.addEventListener("click", () => {
-    overlay.style.display = "flex";
+    overlay1.style.display = "flex";
     document.querySelector(".view-outlet-container").style.display = "block";
   });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target.id === "overlay") {
-      overlay.style.display = "none";
+  overlay1.addEventListener("click", (e) => {
+    if (e.target.id === "overlay1") {
+      overlay1.style.display = "none";
       document.querySelector(".view-outlet-container").style.display = "none";
     }
   });
 
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
+  closeBtn1.addEventListener("click", () => {
+    overlay1.style.display = "none";
     document.querySelector(".view-outlet-container").style.display = "none";
+  });
+
+
+  btn.addEventListener("click", () => {
+    overlay2.style.display = "flex";
+    document.querySelector(".bill-container").style.display = "block";
+  });
+
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay2") {
+      overlay2.style.display = "none";
+      document.querySelector(".bill-container").style.display = "none";
+    }
+  });
+
+  closeBtn2.addEventListener("click", () => {
+    overlay2.style.display = "none";
+    document.querySelector(".bill-container").style.display = "none";
   });
 
   var data = {

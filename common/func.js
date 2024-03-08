@@ -204,6 +204,7 @@ function signout() {
 
 const frontProxy = "https://jom-dev.duckdns.org";
 const backProxy = "https://jom-dev.duckdns.org/api";
+const socketProxy = "wss://jom-dev.duckdns.org/api";
 
 // toast
 toastr.options = {
@@ -231,9 +232,6 @@ var confirmButtonColor = "#d4ac77",
   denyButtonColor = "#dd6b55";
 
 function pageLoading() {
-  // const loader = document.querySelector(".loader-wrapper");
-  // loader.style.display = "block";
-  // loader.toggle()
   $(".loader-wrapper").toggle();
 }
 

@@ -449,8 +449,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   // web socket
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/verify-amount/" +
-      getPayload(getCookie("jwt")).user
+    socketProxy + "/verify-amount/" + getPayload(getCookie("jwt")).user
   );
 
   socket.onmessage = function (event) {
