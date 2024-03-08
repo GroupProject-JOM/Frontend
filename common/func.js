@@ -204,7 +204,7 @@ function signout() {
 
 const frontProxy = "https://jom-dev.duckdns.org";
 const backProxy = "https://jom-dev.duckdns.org/api";
-const socketProxy = "wss://jom-dev.duckdns.org/api";
+const socketProxy = "ws://jom-dev.duckdns.org/api";
 
 // toast
 toastr.options = {
