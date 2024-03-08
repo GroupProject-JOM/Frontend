@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./product.css" />
+    <link rel="stylesheet" href="../common/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="menu">
+        <li><a href="">Home</a></li>
+        <li><a href="./process.html">Process</a></li>
+        <li><a href="" class="active">Products</a></li>
+      </ul>
+
+      <a class="button" href="../signin.html">Login</a>
+
+      <!-- responsive button -->
+      <div class="menu-btn"><i class="fa fa-bars"></i></div>
+    </nav>
+
+    <section class="content">
+      <h1 class="main-text">Explore our <br />Products</h1>
+      <p class="sub-text">
+        Immerse Yourself in the Richness of <br />
+        Jayasinghe Oil Mills' Diverse Range of <br />
+        Exceptional Coconut Oil Products. <br /><br />
+        Our products are crafted with <br />
+        Precision and Passion for <br />
+        Unmatched Purity and Quality.
+      </p>
+      <div class="scroll-btn">
+        <a href="#container"
+          >Scroll down
+          <span><i class="fa-solid fa-arrow-down"></i></span>
+        </a>
+      </div>
+    </section>
+
+    <div id="container">
+      <h1 class="pheading">Our Latest Produts</h1>
+
+      <section class="sec">
+        <div class="products">
+          <!-- card start -->
+          <div class="card">
+            <div class="img">
+              <img
+                src="https://export-lanka.com/wp-content/uploads/2021/02/Coco-House-OEVCO-500ml-2.jpg"
+                alt=""
+              />
+            </div>
+            <div class="desc">Food</div>
+            <div class="title">Virgin Coconut Oil</div>
+            <div class="box">
+              <div class="price">100 LKR</div>
+              <button class="btn">Buy Now</button>
+            </div>
+          </div>
+          <!-- card end -->
+
+          <!-- card start -->
+          <div class="card">
+            <div class="img">
+              <img
+                src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
+                alt=""
+              />
+            </div>
+            <div class="desc">Food</div>
+            <div class="title">Virgin Coconut Oil</div>
+            <div class="box">
+              <div class="price">100 LKR</div>
+              <button class="btn">Buy Now</button>
+            </div>
+          </div>
+          <!-- card end -->
+
+          <!-- card start -->
+          <div class="card">
+            <div class="img">
+              <img
+                src="https://www.organiclife.lk/wp-content/uploads/2020/01/Organic-Life-Virgin-Coconut-Oil-200-ml.jpg"
+                alt=""
+              />
+            </div>
+            <div class="desc">Food</div>
+            <div class="title">Virgin Coconut Oil</div>
+            <div class="box">
+              <div class="price">100 LKR</div>
+              <button class="btn">Buy Now</button>
+            </div>
+          </div>
+          <!-- card end -->
+
+          <!-- card start -->
+          <div class="card">
+            <div class="img">
+              <img
+                src="https://www.ceylonnaturals.com/wp-content/uploads/2019/10/EVCO.jpg"
+                alt=""
+              />
+            </div>
+            <div class="desc">Food</div>
+            <div class="title">Virgin Coconut Oil</div>
+            <div class="box">
+              <div class="price">100 LKR</div>
+              <button class="btn">Buy Now</button>
+            </div>
+          </div>
+          <!-- card end -->
+
+          <!-- card start -->
+          <div class="card">
+            <div class="img">
+              <img
+                src="https://media-cdn.oriflame.com/productImage?externalMediaId=product-management-media%2F32626%2F32626.png%3Fversion%3D1594228747&w=1440&bc=%23f5f5f5&ib=%23f5f5f5&h=1440&q=30"
+                alt=""
+              />
+            </div>
+            <div class="desc">Food</div>
+            <div class="title">Virgin Coconut Oil</div>
+            <div class="box">
+              <div class="price">100 LKR</div>
+              <button class="btn">Buy Now</button>
+            </div>
+          </div>
+          <!-- card end -->
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>Copyrights at &copy; Buddhika Senanayake</p>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+      $(".menu-btn").click(function () {
+        $(".navbar .menu").toggleClass("active");
+        $(".navbar .button").toggleClass("active");
+        $(".menu-btn i").toggleClass("active");
+      });
+
+      const scrollRevealOption = {
+        distance: "50px",
+        origin: "bottom",
+        duration: 2000,
+        reset: true,
+      };
+
+      ScrollReveal().reveal(".main-text", {
+        ...scrollRevealOption,
+      });
+      ScrollReveal().reveal(".sub-text", {
+        ...scrollRevealOption,
+        delay: 500,
+      });
+      ScrollReveal().reveal(".scroll-btn", {
+        ...scrollRevealOption,
+        delay: 1500,
+      });
+    </script>
+  </body>
+</html>

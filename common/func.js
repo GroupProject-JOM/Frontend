@@ -202,9 +202,9 @@ function signout() {
   });
 }
 
-const frontProxy = "http://127.0.0.1:5501";
-const backProxy = "http://127.0.0.1:8090/JOM_war_exploded";
-const socketProxy = "ws://127.0.0.1:8090/JOM_war_exploded";
+const frontProxy = "https://jom-dev.duckdns.org";
+const backProxy = "https://jom-dev.duckdns.org/api";
+const socketProxy = "wss://jom-dev.duckdns.org/api";
 
 // toast
 toastr.options = {
@@ -232,9 +232,6 @@ var confirmButtonColor = "#d4ac77",
   denyButtonColor = "#dd6b55";
 
 function pageLoading() {
-  // const loader = document.querySelector(".loader-wrapper");
-  // loader.style.display = "block";
-  // loader.toggle()
   $(".loader-wrapper").toggle();
 }
 
