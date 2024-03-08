@@ -5,6 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>View Products</title>
 
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Jayasinghe Oil Mills" />
+    <meta
+      name="description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      name="keywords"
+      content="JOM, Jayasinghe Oil Mills, Coconut Oil, Sri Lanaka"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="og:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="og:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta property="og:image" content="../../common/img/logo-manifest.jpg" />
+
+    <!-- Twitter -->
+    <meta
+      property="twitter:card"
+      content="../../common/img/logo-manifest.jpg"
+    />
+    <meta property="twitter:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="twitter:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="twitter:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      property="twitter:image"
+      content="../../common/img/logo-manifest.jpg"
+    />
+
+    <!-- icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../common/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../common/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../common/img/favicon-16x16.png"
+    />
+
+    <!-- manifest -->
+    <link rel="manifest" href="../../site.webmanifest" />
+
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
@@ -76,20 +135,19 @@
           <h2 class="productionmg-title"></h2>
           <p class="productionmg-text"></p>
         </div>
-          
-          <div class="table-top">
-            <a class="add form-button"></a>
 
-            <div class="search-filter">
+        <div class="table-top">
+          <a class="add form-button"></a>
 
-              <div class="search-wrapper">
-                <div class="search-box search-box">
-                  <input type="text" class="search" placeholder=" " />
-                  <span></span>
-                </div>
+          <div class="search-filter">
+            <div class="search-wrapper">
+              <div class="search-box search-box">
+                <input type="text" class="search" placeholder=" " />
+                <span></span>
               </div>
             </div>
           </div>
+        </div>
 
         <table class="products-table overview-tables">
           <thead>
@@ -109,9 +167,10 @@
         <!-- view product light box starts -->
         <div class="overlay1 overlay" id="overlay1" style="display: none">
           <div class="view-product-container light-box" style="display: none">
-            <p class="close-btn close-btn1 close-btn-bank"><i class="fas fa-xmark"></i></p>
+            <p class="close-btn close-btn1 close-btn-bank">
+              <i class="fas fa-xmark"></i>
+            </p>
             <div class="view-product-content">
-          
               <table class="product-view-table overview-tables">
                 <tbody>
                   <tr>
@@ -141,7 +200,9 @@
         <!-- new product light box starts -->
         <div class="overlay2 overlay" id="overlay2">
           <div class="add-product-container light-box">
-            <p class="close-btn close-btn2 do-not"><i class="fas fa-xmark"></i></p>
+            <p class="close-btn close-btn2 do-not">
+              <i class="fas fa-xmark"></i>
+            </p>
 
             <div class="add-product-content">
               <h2>Add New Product</h2>
@@ -149,11 +210,19 @@
               <div class="add-product-form">
                 <form>
                   <label>Category</label>
-                  <input type="text"class="product-category" placeholder="Enter product category" />
+                  <input
+                    type="text"
+                    class="product-category"
+                    placeholder="Enter product category"
+                  />
                   <br /><span class="form-error category-error"></span>
 
                   <label>Type</label>
-                  <input type="text" class="product-type" placeholder="Enter product type" />
+                  <input
+                    type="text"
+                    class="product-type"
+                    placeholder="Enter product type"
+                  />
                   <br /><span class="form-error type-error"></span>
                 </form>
               </div>
@@ -166,7 +235,9 @@
         <!-- Edit product light box starts -->
         <div class="overlay3 overlay" id="overlay3">
           <div class="edit-product-container light-box">
-            <p class="close-btn close-btn3 do-not"><i class="fas fa-xmark"></i></p>
+            <p class="close-btn close-btn3 do-not">
+              <i class="fas fa-xmark"></i>
+            </p>
 
             <div class="edit-product-content">
               <h2>Edit Product</h2>
@@ -174,15 +245,23 @@
               <div class="edit-product-form">
                 <form>
                   <label>Category</label>
-                  <input type="text"class="edit-product-category" placeholder="Enter product category" />
+                  <input
+                    type="text"
+                    class="edit-product-category"
+                    placeholder="Enter product category"
+                  />
                   <br /><span class="form-error edit-category-error"></span>
 
                   <label>Type</label>
-                  <input type="text" class="edit-product-type" placeholder="Enter product type" />
+                  <input
+                    type="text"
+                    class="edit-product-type"
+                    placeholder="Enter product type"
+                  />
                   <br /><span class="form-error edit-type-error"></span>
 
                   <label>Price</label>
-                  <input type="text" class="edit-product-price" disabled/>
+                  <input type="text" class="edit-product-price" disabled />
                 </form>
               </div>
               <button class="edit-submit form-button">Submit</button>
@@ -190,9 +269,8 @@
           </div>
         </div>
         <!-- Edit product light box ends -->
-
       </div>
-      
+
       <div class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </div>
