@@ -97,8 +97,7 @@
 
   // web socket
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/chat/" +
-      getPayload(getCookie("jwt")).user
+    socketProxy + "/chat/" + getPayload(getCookie("jwt")).user
   );
 
   socket.onmessage = function (event) {
