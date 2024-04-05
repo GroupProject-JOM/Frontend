@@ -217,7 +217,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             tError.style.display = "block";
             bankTable.style.display = "none";
             if (lang == "sin") Command: toastr["info"]("බැංකු ගිණුම් නැත");
-            else Command: toastr["info"]("No Bank accounts");
+            else Command: toastr["info"]("No Bank Accounts");
 
             searchFilter.style.display = "none";
           });
