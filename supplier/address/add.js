@@ -218,10 +218,19 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   pick.addEventListener("click", () => {
     document.querySelector(".location-pick").style.display = "block";
+    document.querySelector(".overlay").style.display = "block";
   });
 
   closeBtn.addEventListener("click", () => {
     document.querySelector(".location-pick").style.display = "none";
+    document.querySelector(".overlay").style.display = "none";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".location-pick").style.display = "none";
+    }
   });
 
   //Map
@@ -233,26 +242,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   let loc = "",
     ar = "";
 
-  let lat = 6.9270786;
-  let long = 79.861243;
+  let lat;
+  let long;
   let location = "";
 
-  /* function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  }
-
-  function showPosition(position) {
-    lat = position.coords.latitude;
-    long = position.coords.longitude;
-  }
-
-  getLocation(); */
-
   function initMap() {
-    // console.log("lat " + lat);
-    // console.log("lng " + long);
     navigator.geolocation.getCurrentPosition((position) => {
       lat = position.coords.latitude;
       long = position.coords.longitude;
@@ -279,8 +273,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     deleteMarkers();
 
     markers.push(marker);
-    // console.log(marker.position.lat(), marker.position.lng());
-    // console.log(marker.position.results)
 
     const options = { method: "GET", headers: { accept: "application/json" } };
 
@@ -289,16 +281,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         marker.position.lat() +
         "%2C" +
         marker.position.lng() +
-        "&key=AIzaSyCZFEe9IjYVTBsTO7o4Ais2KM2qgBpep4Q",
+        "&key=AIzaSyArpgjSzY9vOf8b_s-yMmwUxPo0gBzkfx8",
       options
     )
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response.results[0].formatted_address);
         document.querySelector(".loc-add").value =
           response.results[0].formatted_address;
         loc = response.results[0].formatted_address;
-        // ar = response.results[0].address_components[0].short_name;
         let arr = loc.split(",");
         if (arr.length > 2) ar = arr[arr.length - 2].slice(1);
         else ar = arr[arr.length - 2];
@@ -323,17 +313,17 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     }
   }
 
-  // // Removes the markers from the map, but keeps them in the array.
+  // Removes the markers from the map, but keeps them in the array.
   function hideMarkers() {
     setMapOnAll(null);
   }
 
-  // // Shows any markers currently in the array.
+  // Shows any markers currently in the array.
   function showMarkers() {
     setMapOnAll(map);
   }
 
-  // // Deletes all markers in the array by removing references to them.
+  // Deletes all markers in the array by removing references to them.
   function deleteMarkers() {
     hideMarkers();
     markers = [];
