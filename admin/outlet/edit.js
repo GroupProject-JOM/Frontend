@@ -9,13 +9,20 @@
     emailError = document.querySelector(".email-error"),
     phone = body.querySelector(".phone"),
     phoneError = body.querySelector(".phone-error"),
+    address = body.querySelector(".address"),
     address1 = body.querySelector(".address1"),
     address1Error = body.querySelector(".address1-error"),
     address2 = body.querySelector(".address2"),
     address2Error = body.querySelector(".address2-error"),
     address3 = body.querySelector(".address3"),
     address3Error = body.querySelector(".address3-error"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".form-button"),
+    nameLabel = body.querySelector(".name-label"),
+    emailLabel = body.querySelector(".email-label"),
+    phoneLabel = body.querySelector(".phone-label"),
+    address1Label = body.querySelector(".address1-label"),
+    address2Label = body.querySelector(".address2-label"),
+    address3Label = body.querySelector(".address3-label");
 
   var lang = getCookie("lang"); // current language
 
@@ -32,10 +39,18 @@
     oname.placeholder = data["sin"]["oname"];
     email.placeholder = data["sin"]["email"];
     phone.placeholder = data["sin"]["phone"];
+    address.textContent = data["sin"]["address"];
     address1.placeholder = data["sin"]["address1"];
     address2.placeholder = data["sin"]["address2"];
     address3.placeholder = data["sin"]["address3"];
     btn.textContent = data["sin"]["btn"];
+    nameLabel.textContent = data["sin"]["nameLabel"];
+    emailLabel.textContent = data["sin"]["emailLabel"];
+    phoneLabel.textContent = data["sin"]["phoneLabel"];
+    address1Label.textContent = data["sin"]["address1Label"];
+    address2Label.textContent = data["sin"]["address2Label"];
+    address3Label.textContent = data["sin"]["address3Label"];
+
     setGreeting();
   });
 
@@ -52,10 +67,17 @@
     oname.placeholder = data["en"]["oname"];
     email.placeholder = data["en"]["email"];
     phone.placeholder = data["en"]["phone"];
+    address.textContent = data["en"]["address"];
     address1.placeholder = data["en"]["address1"];
     address2.placeholder = data["en"]["address2"];
     address3.placeholder = data["en"]["address3"];
     btn.textContent = data["en"]["btn"];
+    nameLabel.textContent = data["en"]["nameLabel"];
+    emailLabel.textContent = data["en"]["emailLabel"];
+    phoneLabel.textContent = data["en"]["phoneLabel"];
+    address1Label.textContent = data["en"]["address1Label"];
+    address2Label.textContent = data["en"]["address2Label"];
+    address3Label.textContent = data["en"]["address3Label"];
     setGreeting();
   });
 
@@ -63,22 +85,36 @@
     sin: {
       oTitle: "අලෙවිසැල් විස්තර සංස්කරණය කරන්න",
       oname: "අලෙවිසැලේ නම",
-      email: "Outlet විද්‍යුත් තැපෑල",
+      email: "විද්‍යුත් තැපැල් ලිපිනය",
       phone: "අලෙවිසැල දුරකථන අංකය",
-      address1: "ලිපින පේළි 1",
+      address: "පුද්ගලික ලිපිනය",
+      address1: "ලිපිනයේ පළමු පේළිය",
       address2: "වීදිය",
       address3: "නගරය",
       btn: "වෙනස්කම් සුරකින්න",
+      nameLabel: "නම",
+      emailLabel: "විද්‍යුත් තැපැල් ලිපිනය",
+      phoneLabel: "දුරකථන අංකය",
+      address1Label: "ලිපිනයේ පළමු පේළිය",
+      address2Label: "වීදිය",
+      address3Label: "නගරය",
     },
     en: {
       oTitle: "Edit Outlet Details",
       oname: "Outlet Name",
       email: "Outlet Email",
       phone: "Outlet Phone Number",
+      address: "Personal Address",
       address1: "Address Line 1",
       address2: "Street",
       address3: "City",
       btn: "Save Changes",
+      nameLabel: "Last Name",
+      emailLabel: "Email Address",
+      phoneLabel: "Phone Number",
+      address1Label: "Address Line 1",
+      address2Label: "Street",
+      address3Label: "City",
     },
   };
 
@@ -137,7 +173,6 @@
       address3_status
     ) {
       var formData = {
-        emp_id: getCookie("sId"),
         id: getCookie("id"),
         name: oname.value,
         email: email.value,
@@ -167,7 +202,7 @@
               title: title,
               // text: "You clicked the button!",
               icon: "success",
-              confirmButtonColor : confirmButtonColor,
+              confirmButtonColor: confirmButtonColor,
             }).then((response) => {
               window.location.href = "./view.html";
             });
@@ -197,16 +232,13 @@
   });
 
   //Get data
-  fetch(
-    backProxy + "/outlet?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/outlet?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -247,10 +279,10 @@
       return false;
     } else if (!ValidateName(oname.value)) {
       if (lang == "sin")
-        onameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
+        onameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
       else
         onameError.textContent =
-          "Name must contain only numbers, letters and ' '";
+          "Name must contain only numbers, letters";
       oname_status = false;
       return false;
     } else {
@@ -263,12 +295,12 @@
   function email_status_func() {
     if (typeof email.value === "string" && email.value.trim().length === 0) {
       if (lang == "sin")
-        emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
+        emailError.textContent = "විද්‍යුත් තැපැල් ලිපිනය හිස් විය නොහැක";
       else emailError.textContent = "Email cannot be empty";
       email_status = false;
       return false;
     } else if (!ValidateEmail(email.value)) {
-      if (lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
+      if (lang == "sin") emailError.textContent = "වලංගු නොවන විද්‍යුත් තැපැල් ලිපිනයක්!";
       else emailError.textContent = "Invalid email address!";
       email_status = false;
       return false;
@@ -286,7 +318,7 @@
       phone_status = false;
       return false;
     } else if (!ValidatePhone(phone.value)) {
-      if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      if (lang == "sin") phoneError.textContent = "වලංගු නොවන දුරකථන අංකය!";
       else phoneError.textContent = "Invalid phone number!";
       phone_status = false;
       return false;
@@ -303,7 +335,7 @@
       address1.value.trim().length === 0
     ) {
       if (lang == "sin")
-        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+        address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක";
       else address1Error.textContent = "Address Line 1 cannot be empty";
       address1_status = false;
       return false;

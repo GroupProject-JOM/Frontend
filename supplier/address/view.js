@@ -47,9 +47,9 @@
   var data = {
     sin: {
       sTitle: "ඔබගේ ලිපිනයන්",
-      sText: "ඔබගේ කලින් සුරකින ලද ලිපින විස්තර පහත දැක්වේ",
+      sText: "ඔබගේ කලින් සුරකින ලද ලිපින වල විස්තර පහත දැක්වේ",
       edit: "සංස්කරණය කරන්න",
-      del: "මකන්න",
+      del: "ඉවත් කරන්න",
     },
     en: {
       sTitle: "Your Addresses",
@@ -59,16 +59,13 @@
     },
   };
 
-  fetch(
-    backProxy + "/estate?sId=" + getCookie("sId") + "&id=" + getCookie("id"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/estate?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -81,7 +78,7 @@
             arr[0] +
             `,` +
             arr[1] +
-            `&hl=es;z=14&output=embed' frameborder='0' style='width: 100%;height: 100%;'></iframe>`;
+            `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -100,7 +97,7 @@
 
   del.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -121,20 +118,13 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/estate?sId=" +
-            getCookie("sId") +
-            "&id=" +
-            getCookie("id"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/estate?id=" + getCookie("id"), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {

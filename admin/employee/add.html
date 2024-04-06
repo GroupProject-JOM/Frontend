@@ -6,6 +6,65 @@
 
     <title>Add Employee</title>
 
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Jayasinghe Oil Mills" />
+    <meta
+      name="description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      name="keywords"
+      content="JOM, Jayasinghe Oil Mills, Coconut Oil, Sri Lanaka"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="og:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="og:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta property="og:image" content="../../common/img/logo-manifest.jpg" />
+
+    <!-- Twitter -->
+    <meta
+      property="twitter:card"
+      content="../../common/img/logo-manifest.jpg"
+    />
+    <meta property="twitter:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="twitter:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="twitter:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      property="twitter:image"
+      content="../../common/img/logo-manifest.jpg"
+    />
+
+    <!-- icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../common/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../common/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../common/img/favicon-16x16.png"
+    />
+
+    <!-- manifest -->
+    <link rel="manifest" href="../../site.webmanifest" />
+
     <link rel="stylesheet" href="../../common/style.css" />
     <link rel="stylesheet" href="../../common/nav.css" />
     <link rel="stylesheet" href="../../common/notify.css" />
@@ -23,6 +82,11 @@
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="../auth.js"></script>
   </head>
 
   <body>
@@ -48,10 +112,11 @@
     </div>
 
     <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
 
     <section class="home">
       <div class="notification">
-        <span class="count">10</span>
+        <span class="count"></span>
         <span class="bell do-not"
           ><i class="fa-regular fa-bell do-not"></i
         ></span>
@@ -73,6 +138,7 @@
             <form autocomplete="on">
               <div class="register-name" style="margin: 0; padding: 0">
                 <section>
+                  <label class="fname-label"></label>
                   <input
                     type="text"
                     class="short fname"
@@ -83,7 +149,9 @@
                   <br />
                   <span class="form-error fname-error"></span>
                 </section>
+
                 <section>
+                  <label class="lname-label"></label>
                   <input
                     type="text"
                     class="short lname"
@@ -95,7 +163,9 @@
                   <span class="form-error lname-error"></span>
                 </section>
               </div>
+              <br /><br />
 
+              <label class="email-label"></label>
               <input
                 type="text"
                 class="long email"
@@ -106,6 +176,9 @@
               <br />
               <span class="form-error email-error"></span>
               <br />
+              <br />
+
+              <label class="phone-label"></label>
               <input
                 type="text"
                 name="phone"
@@ -113,15 +186,17 @@
                 placeholder=""
                 autocomplete="tel"
               />
-              <br /><span class="form-error phone-error"></span>
-              <br />
+              <br /><span class="form-error phone-error"></span> <br /><br />
+
+              <label class="nic-label"></label>
               <input
                 type="text"
                 class="long nic"
                 name="nic"
                 placeholder=""
-              /><br /><span class="form-error nic-error"></span>
-              <br />
+              /><br /><span class="form-error nic-error"></span> <br /><br />
+
+              <label class="role-label"></label>
               <select class="dropdown role">
                 <option value="" default hidden class="op0"></option>
                 <option value="collector" class="op1"></option>
@@ -130,7 +205,12 @@
                 <option value="production-manager" class="op4"></option>
                 <option value="sales-manager" class="op5"></option>
               </select>
-              <br /><span class="form-error dropdown-error"></span><br />
+              <br /><span class="form-error dropdown-error"></span>
+
+              <p class="address"></p>
+              <br />
+
+              <label class="address1-label"></label>
               <input
                 type="text"
                 class="long address1"
@@ -139,8 +219,11 @@
                 autocomplete="address-line1"
               />
               <br /><span class="form-error address1-error"></span><br />
+              <br />
+
               <div class="register-name">
                 <section>
+                  <label class="address2-label"></label>
                   <input
                     type="text"
                     name="address2"
@@ -150,7 +233,9 @@
                   />
                   <br /><span class="form-error address2-error"></span>
                 </section>
+
                 <section>
+                  <label class="address3-label"></label>
                   <input
                     type="text"
                     name="address3"
@@ -167,15 +252,16 @@
           <a class="form-button"></a>
         </div>
       </div>
+
+      <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+      </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="../../common/func.js"></script>
     <script src="./add.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./load-nav.js"></script>
-    <script src="./load-notifications.js"></script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
     <script src="../../common/loader.js"></script>
   </body>
 </html>

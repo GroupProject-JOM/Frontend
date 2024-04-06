@@ -5,16 +5,45 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en = body.querySelector(".en"),
     sTitle = body.querySelector(".stockmg-title"),
     sText = body.querySelector(".stockmg-text"),
+    addressTable = body.querySelector(".addresses-table"),
+    searchBar1 = body.querySelector(".search1"),
+    filter1 = body.querySelector(".filter-1"),
     tbody = body.querySelector(".tbody");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBox1 = document.querySelectorAll(
+    '.search-box1 input[type="text"] + span'
+  );
+
+  searchBox1.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar1.value.toUpperCase(), addressTable);
+    });
+  });
+
+  searchBar1.addEventListener("keyup", () => {
+    search(searchBar1.value.toUpperCase(), addressTable);
+  });
+
+  filter1.addEventListener("input", () => {
+    search(filter1.value.toUpperCase(), addressTable);
+  });
+
+  const googleIcon = document.querySelectorAll("#filter-icon");
+
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -28,7 +57,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -50,7 +78,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   let row = "";
 
-  fetch(backProxy + "/supply-requests?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/supply-requests", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -73,10 +101,12 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./view-request.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td>S/" +
+              capitalize(item.method)[0] +
+              "/" +
               item.id +
               "</td>" +
-              "<td>" +
+              "<td class='hide'>" +
               item.name +
               "</td>" +
               "<td>" +
@@ -88,7 +118,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<td>" +
               capitalize(item.method) +
               "</td>" +
-              "<td>" +
+              "<td class='hide'>" +
               status +
               "</td>" +
               "</tr>";

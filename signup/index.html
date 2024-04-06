@@ -5,12 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Information</title>
 
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Jayasinghe Oil Mills" />
+    <meta
+      name="description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      name="keywords"
+      content="JOM, Jayasinghe Oil Mills, Coconut Oil, Sri Lanaka"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="og:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="og:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta property="og:image" content="../common/img/logo-manifest.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="../common/img/logo-manifest.jpg" />
+    <meta property="twitter:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="twitter:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="twitter:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta property="twitter:image" content="../common/img/logo-manifest.jpg" />
+
+    <!-- icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../common/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../common/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../common/img/favicon-16x16.png"
+    />
+
+    <!-- manifest -->
+    <link rel="manifest" href="../site.webmanifest" />
+
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../signin.css" />
+    <script
+      src="https://kit.fontawesome.com/3d9946f29b.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
     />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../common/func.js"></script>
   </head>
 
   <body>
@@ -52,8 +113,9 @@
             <div class="main-error"></div>
             <div class="signup-form">
               <form autocomplete="on">
-                <div class="signup-name" style="margin: 0; padding: 0">
+                <div class="short-section">
                   <section>
+                    <label class="fname-label"></label>
                     <input
                       type="text"
                       class="short fname"
@@ -64,7 +126,9 @@
                     <br />
                     <span class="form-error fname-error"></span>
                   </section>
+
                   <section>
+                    <label class="lname-label"></label>
                     <input
                       type="text"
                       class="short lname"
@@ -77,6 +141,8 @@
                   </section>
                 </div>
                 <br />
+
+                <label class="email-label"></label>
                 <input
                   type="text"
                   class="long email"
@@ -85,15 +151,9 @@
                   autocomplete="email"
                 /><br />
                 <span class="form-error email-error"></span>
-                <br />
-                <input
-                  type="password"
-                  class="long password"
-                  name="password"
-                  placeholder=""
-                  autocomplete="new-password"
-                /><br /><span class="form-error password-error"></span>
-                <br />
+                <br /><br />
+
+                <label class="phone-label"></label>
                 <input
                   type="text"
                   name="phone"
@@ -101,18 +161,45 @@
                   placeholder=""
                   autocomplete="tel"
                 /><br /><span class="form-error phone-error"></span>
-                <br />
+                <br /><br />
+                <div class="short-section">
+                  <section>
+                    <label class="password-label"></label>
+                    <input
+                      type="password"
+                      class="short password"
+                      name="password"
+                      placeholder=""
+                      autocomplete="new-password"
+                    /><br /><span class="form-error password-error"></span>
+                  </section>
+
+                  <section>
+                    <label class="confirm-label"></label>
+                    <input
+                      type="password"
+                      class="short confirm-password"
+                      name="password"
+                      placeholder=""
+                      autocomplete="new-password"
+                    /><br /><span class="form-error confirm-error"></span>
+                  </section>
+                </div>
+                <br /><br />
                 <p class="address"></p>
-                <br />
+
+                <label class="address1-label"></label>
                 <input
                   type="text"
                   class="long address1"
                   name="address1"
                   placeholder=""
                   autocomplete="address-line1"
-                /><br /><span class="form-error address1-error"></span><br />
-                <div class="signup-name">
+                /><br /><span class="form-error address1-error"></span>
+                <br /><br />
+                <div class="short-section">
                   <section>
+                    <label class="address2-label"></label>
                     <input
                       type="text"
                       name="address2"
@@ -121,7 +208,9 @@
                       autocomplete="address-line2"
                     /><br /><span class="form-error address2-error"></span>
                   </section>
+
                   <section>
+                    <label class="address3-label"></label>
                     <input
                       type="text"
                       name="address3"
@@ -131,6 +220,7 @@
                     /><br /><span class="form-error address3-error"></span>
                   </section>
                 </div>
+
                 <!-- <input type="submit" class="next form-button" value="submit"/> -->
               </form>
             </div>
@@ -139,11 +229,12 @@
           <a type="submit" class="next form-button"></a>
           <div class="menu-line7"></div>
         </div>
+
+        <div class="back-to-top">
+          <i class="fas fa-chevron-up"></i>
+        </div>
       </section>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="../common/func.js"></script>
     <script src="./sidebar/load-sidebar.js"></script>
     <script src="./script.js"></script>
     <script src="../common/loader.js"></script>

@@ -1,137 +1,145 @@
 var accStatus = false,
-bankStatus = false,
-hnameStatus = false,
-lang = getCookie("lang"); // current language
+  bankStatus = false,
+  hnameStatus = false,
+  lang = getCookie("lang"); // current language
 
 (() => {
-    const body = document.querySelector("body"),
-      sin = body.querySelector(".sin"),
-      en = body.querySelector(".en"),
-      fh = body.querySelector(".form-heading"),
-      fht = body.querySelector(".form-heading-text"),
-      hname = body.querySelector(".acc-holder-name"),
-      holderError = body.querySelector(".holder-error"),
-      acc = body.querySelector(".acc-no"),
-      accError = body.querySelector(".acc-error"),
-      bank = body.querySelector(".bank"),
-      bankError = body.querySelector(".bank-error"),
-      next = body.querySelector(".next"),
-      skip = body.querySelector(".skip");
-  
-    sin.addEventListener("click", () => {
-      sin.classList.add("active");
-      en.classList.remove("active");
-  
-      document.documentElement.setAttribute("lang", "sin");
-      // sessionStorage.setItem("lang", "sin");
-      document.cookie="lang=sin; path=/";
-      lang = "sin";  
-      
-      fh.textContent = data["sin"]["fh"];
-      fht.innerHTML = data["sin"]["fht"];
-      hname.placeholder = data["sin"]["hname"];
-      acc.placeholder = data["sin"]["acc"];
-      bank.placeholder = data["sin"]["bank"];
-      next.textContent = data["sin"]["next"];
-      skip.textContent = data["sin"]["skip"];
+  const body = document.querySelector("body"),
+    sin = body.querySelector(".sin"),
+    en = body.querySelector(".en"),
+    fh = body.querySelector(".form-heading"),
+    fht = body.querySelector(".form-heading-text"),
+    hname = body.querySelector(".acc-holder-name"),
+    holderError = body.querySelector(".holder-error"),
+    acc = body.querySelector(".acc-no"),
+    accError = body.querySelector(".acc-error"),
+    bank = body.querySelector(".bank"),
+    bankError = body.querySelector(".bank-error"),
+    next = body.querySelector(".next"),
+    skip = body.querySelector(".skip"),
+    accNameLabel = body.querySelector(".accname-label"),
+    accNoLabel = body.querySelector(".accno-label"),
+    bankLabel = body.querySelector(".bank-label");
 
-    });
-  
-    en.addEventListener("click", () => {
-      en.classList.add("active");
-      sin.classList.remove("active");
-  
-      document.documentElement.setAttribute("lang", "en");
-      // sessionStorage.setItem("lang", "en");
-      document.cookie="lang=en; path=/";
-      lang = "en";
-      
-      fh.textContent = data["en"]["fh"];
-      fht.innerHTML = data["en"]["fht"];
-      hname.placeholder = data["en"]["hname"];
-      acc.placeholder = data["en"]["acc"];
-      bank.placeholder = data["en"]["bank"];
-      next.textContent = data["en"]["next"];
-      skip.textContent = data["en"]["skip"];
+  sin.addEventListener("click", () => {
+    sin.classList.add("active");
+    en.classList.remove("active");
 
-    });
-  
-    var data = {
-      sin: {
-       
-        fh: "ගෙවීම් තොරතුරු",
-        fht: "ඔබගේ බැංකු ගිණුම් විස්තර එක් කරන්න. <br />ඔබට උපකරණ පුවරුව තුළ ගෙවීම් ක්‍රම සංස්කරණය කිරීමට හැකි වනු ඇත",
-        hname: "ගිණුම් හිමියාගේ නම",
-        acc: "ගිණුම් අංකය.",
-        bank: "බැංකුව",
-        next: "සුරකින්න",
-        skip: "මඟ හරින්න",
-      },
-      en: {
-        
-        fh: "Payment Details",
-        fht: "Add your bank account details. <br />You will be able to edit payment methods inside the dashboard",
-        hname: "Account Holder Name",
-        acc: "Account No.",
-        bank: "Bank",
-        next: "Save",
-        skip: "Skip",
-      },
-    };
+    document.documentElement.setAttribute("lang", "sin");
+    // sessionStorage.setItem("lang", "sin");
+    document.cookie = "lang=sin; path=/";
+    lang = "sin";
 
-    function hname_status() {
-      if (typeof hname.value === "string" && hname.value.trim().length === 0) {
-        if (lang == "sin") holderError.textContent = "දරන්නාගේ නම හිස් විය නොහැක";
-        else holderError.textContent = "Holder name cannot be empty";
-        hnameStatus = false;
-        return false;
-      } else {
-        holderError.textContent = "";
-        hnameStatus = true;
-        return true;
-      }
+    fh.textContent = data["sin"]["fh"];
+    fht.innerHTML = data["sin"]["fht"];
+    hname.placeholder = data["sin"]["hname"];
+    acc.placeholder = data["sin"]["acc"];
+    bank.placeholder = data["sin"]["bank"];
+    next.textContent = data["sin"]["next"];
+    skip.textContent = data["sin"]["skip"];
+    accNameLabel.textContent = data["sin"]["accNameLabel"];
+    accNoLabel.textContent = data["sin"]["accNoLabel"];
+    bankLabel.textContent = data["sin"]["bankLabel"];
+  });
+
+  en.addEventListener("click", () => {
+    en.classList.add("active");
+    sin.classList.remove("active");
+
+    document.documentElement.setAttribute("lang", "en");
+    // sessionStorage.setItem("lang", "en");
+    document.cookie = "lang=en; path=/";
+    lang = "en";
+
+    fh.textContent = data["en"]["fh"];
+    fht.innerHTML = data["en"]["fht"];
+    hname.placeholder = data["en"]["hname"];
+    acc.placeholder = data["en"]["acc"];
+    bank.placeholder = data["en"]["bank"];
+    next.textContent = data["en"]["next"];
+    skip.textContent = data["en"]["skip"];
+    accNameLabel.textContent = data["en"]["accNameLabel"];
+    accNoLabel.textContent = data["en"]["accNoLabel"];
+    bankLabel.textContent = data["en"]["bankLabel"];
+  });
+
+  var data = {
+    sin: {
+      fh: "ගෙවීම් තොරතුරු",
+      fht: "ඔබගේ බැංකු ගිණුම් විස්තර එක් කරන්න. <br />ඔබට උපකරණ පුවරුව තුළ ගෙවීම් ක්‍රම සංස්කරණය කිරීමට හැකි වනු ඇත",
+      hname: "ගිණුම් හිමියාගේ නම ඇතුලත් කරන්න",
+      acc: "ගිණුම් අංකය ඇතුලත් කරන්න",
+      bank: "බැංකුව ඇතුලත් කරන්න",
+      next: "සුරකින්න",
+      skip: "මඟ හරින්න",
+      accNameLabel: "ගිණුම් හිමියාගේ නම",
+      accNoLabel: "ගිණුම් අංකය",
+      bankLabel: "බැංකුව",
+    },
+    en: {
+      fh: "Payment Details",
+      fht: "Add your bank account details. <br />You will be able to edit payment methods inside the dashboard",
+      hname: "Enter Account Holder Name",
+      acc: "Enter Account No.",
+      bank: "Enter Bank",
+      next: "Save",
+      skip: "Skip",
+      accNameLabel: "Account Holder Name",
+      accNoLabel: "Account No.",
+      bankLabel: "Bank",
+    },
+  };
+
+  function hname_status() {
+    if (typeof hname.value === "string" && hname.value.trim().length === 0) {
+      if (lang == "sin") holderError.textContent = "ගිණුම් හිමියාගේ නම හිස් විය නොහැක";
+      else holderError.textContent = "Holder name cannot be empty";
+      hnameStatus = false;
+      return false;
+    } else {
+      holderError.textContent = "";
+      hnameStatus = true;
+      return true;
     }
-  
-    function acc_status() {
-      if (
-        typeof acc.value === "string" &&
-        acc.value.trim().length === 0
-      ) {
-        if (lang == "sin") accError.textContent = "ගිණුම් අංකය හිස් විය නොහැක";
-        else accError.textContent = "Account number cannot be empty";
-        accStatus = false;
-        return false;
-      } else {
-        accError.textContent = "";
-        accStatus = true;
-        return true;
-      }
-    }
-  
-    function bank_status() {
-      if (typeof bank.value === "string" && bank.value.trim().length === 0) {
-        if (lang == "sin") bankError.textContent = "බැංකුව හිස් විය නොහැක";
-        else bankError.textContent = "Bank cannot be empty";
-        bankStatus = false;
-        return false;
-      } else {
-        bankError.textContent = "";
-        bankStatus = true;
-        return true;
-      }
-    }
+  }
 
-    hname.addEventListener("input", () => {
-      hname_status();
-    });
-    acc.addEventListener("input", () => {
-      acc_status();
-    });
-    bank.addEventListener("input", () => {
-      bank_status();
-    });
+  function acc_status() {
+    if (typeof acc.value === "string" && acc.value.trim().length === 0) {
+      if (lang == "sin") accError.textContent = "ගිණුම් අංකය හිස් විය නොහැක";
+      else accError.textContent = "Account number cannot be empty";
+      accStatus = false;
+      return false;
+    } else {
+      accError.textContent = "";
+      accStatus = true;
+      return true;
+    }
+  }
 
-  next.addEventListener("click", () => {    
+  function bank_status() {
+    if (typeof bank.value === "string" && bank.value.trim().length === 0) {
+      if (lang == "sin") bankError.textContent = "බැංකුව හිස් විය නොහැක";
+      else bankError.textContent = "Bank cannot be empty";
+      bankStatus = false;
+      return false;
+    } else {
+      bankError.textContent = "";
+      bankStatus = true;
+      return true;
+    }
+  }
+
+  hname.addEventListener("input", () => {
+    hname_status();
+  });
+  acc.addEventListener("input", () => {
+    acc_status();
+  });
+  bank.addEventListener("input", () => {
+    bank_status();
+  });
+
+  next.addEventListener("click", () => {
     if (!bank_status()) {
       bank.focus();
     }
@@ -164,7 +172,8 @@ lang = getCookie("lang"); // current language
               console.log(data.message);
             });
             // sessionStorage.removeItem("sId");
-            document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
+            document.cookie =
+              "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/signup";
             window.location.href = frontProxy + "/signup/signup5.html";
           } else if (response.status === 400) {
             response.json().then((data) => {
@@ -182,5 +191,4 @@ lang = getCookie("lang"); // current language
         });
     }
   });
-  })();
-  
+})();

@@ -2,6 +2,7 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    text = body.querySelector(".text"),
     w1 = body.querySelector(".w1"),
     w1Value = body.querySelector(".w1-value"),
     w2 = body.querySelector(".w2"),
@@ -26,8 +27,12 @@
   employee.addEventListener("click", () => {
     window.location.href = "./employee/view-all.html";
   });
-  collection.addEventListener("click", () => {});
-  outlet.addEventListener("click", () => {});
+  collection.addEventListener("click", () => {
+    window.location.href = "./collection/view-all.html";
+  });
+  outlet.addEventListener("click", () => {
+    window.location.href = "./outlet";
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -49,6 +54,7 @@
     t4.textContent = data["sin"]["t4"];
     t5.textContent = data["sin"]["t5"];
     t6.textContent = data["sin"]["t6"];
+    text.textContent = data["sin"]["text"];
     setGreeting();
   });
 
@@ -72,6 +78,7 @@
     t4.textContent = data["en"]["t4"];
     t5.textContent = data["en"]["t5"];
     t6.textContent = data["en"]["t6"];
+    text.textContent = data["en"]["text"];
     setGreeting();
   });
 
@@ -86,8 +93,9 @@
       t2: "සේවකයින් එක් කරන්න / සංස්කරණය කරන්න / ඉවත් කරන්න",
       t3: "සැපයුම් කළමනාකරණය",
       t4: "සැපයුම් වාර්තා සංස්කරණය කරන්න",
-      t5: "අලෙවිසැල කළමනාකරණය",
+      t5: "අලෙවිසැල් කළමනාකරණය",
       t6: "අලෙවිසැල් විස්තර සංස්කරණය කරන්න",
+      text: "උපකරණ පුවරුව",
     },
     en: {
       w1: "Employees",
@@ -101,10 +109,11 @@
       t4: "Manually Edit Collection Records",
       t5: "Outlet Management",
       t6: "Edit Outlet Details",
+      text: "Dashboard",
     },
   };
 
-  fetch(backProxy + "/admin?emp=" + getCookie("sId"), {
+  fetch(backProxy + "/admin", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

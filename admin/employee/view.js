@@ -51,25 +51,22 @@
     sin: {
       aTitle: "සේවක විස්තර",
       edit: "සංස්කරණය කරන්න",
-      del: "මකන්න",
+      del: "ඉවත් කරන්න",
     },
     en: {
       aTitle: "Employee Details",
       edit: "Edit",
-      del: "Delete",
+      del: "Remove",
     },
   };
 
-  fetch(
-    backProxy + "/employee?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/employee?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -85,8 +82,17 @@
             data.employee.add_line_3;
           eDob.textContent = data.employee.dob;
           eNic.textContent = data.employee.nic;
-          eRole.textContent = data.employee.role.charAt(0).toUpperCase() +data.employee.role.slice(1);
+          eRole.textContent =
+            data.employee.role.charAt(0).toUpperCase() +
+            data.employee.role.slice(1);
           eGender.textContent = data.employee.gender;
+
+          if (data.employee.delete == 1) {
+            edit.disabled = true;
+            edit.style.display = "none";
+            del.disabled = true;
+            del.style.display = "none";
+          }
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -112,7 +118,7 @@
   //delete outlet
   del.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -133,20 +139,13 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/employee?id=" +
-            getCookie("id") +
-            "&emp=" +
-            getCookie("sId"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/employee?id=" + getCookie("id"), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {
@@ -171,7 +170,7 @@
             } else if (response.status === 202) {
               response.json().then((data) => {
                 if (lang == "sin")
-                  Command: toastr["error"]("සේවකයා මකා දැමිය නොහැක");
+                  Command: toastr["error"]("සේවකයා ඉවත් කර නොහැක");
                 else Command: toastr["error"]("Unable to Delete employee");
               });
             } else if (response.status === 401) {

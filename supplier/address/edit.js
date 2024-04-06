@@ -21,7 +21,7 @@
     pick = body.querySelector(".location-pick-bt");
 
   var lang = getCookie("lang"); // current language
-  let locate = "6.9270786 79.861243";
+  let locate = "";
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -77,14 +77,14 @@
     sin: {
       sTitle: "ලිපිනයන් සංස්කරණය කරන්න",
       sText: "ඔබගේ වතුයායන් වල විස්තර සංස්කරණය කරන්න",
-      ename: "වතු නම ඇතුලත් කරන්න",
+      ename: "වතුයායේ නම ඇතුලත් කරන්න",
       address: "ලිපිනය ඇතුලත් කරන්න",
       area: "ප්රදේශය ඇතුල් කරන්න",
-      t1: "වතු ලිපිනය",
+      t1: "වතුයායේ ලිපිනය",
       pText:
         "ඔබගේ සැපයුම pin මගින් සලකුණු කර ඇති ඉහත ස්ථානයෙන් ලබා ගනී. කරුණාකර එය වැරදි ස්ථානයේ තිබේ නම් පින් එක නැවත ස්ථානගත කරන්න.",
       confirm: "තහවුරු කරන්න",
-      eLabel: "වතු නම",
+      eLabel: "වතුයායේ නම",
       addLabel: "ලිපිනය",
       areaLabel: "ප්රදේශය",
       btn: "සුරකින්න",
@@ -114,7 +114,7 @@
 
   function ename_status() {
     if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-      if (lang == "sin") enameError.textContent = "වතු නම හිස් විය නොහැක";
+      if (lang == "sin") enameError.textContent = "වතුයායේ නම හිස් විය නොහැක";
       else enameError.textContent = "Estate name cannot be empty";
       enameStatus = false;
       return false;
@@ -178,7 +178,6 @@
     if (enameStatus && addressStatus && areaStatus) {
       var formData = {
         id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         estate_name: ename.value,
         estate_location: locate,
         estate_address: address.value,
@@ -225,136 +224,148 @@
   });
 
   //Get data
-  fetch(
-    backProxy + "/estate?sId=" + getCookie("sId") + "&id=" + getCookie("id"),
-    {
+  var backData = "";
+  function getData() {
+    fetch(backProxy + "/estate?id=" + getCookie("id"), {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
-    }
-  )
-    .then((response) => {
-      if (response.status == 200) {
-        response.json().then((data) => {
-          ename.value = data.estate.estate_name;
-          locate = data.estate.estate_location;
-          address.value = data.estate.estate_address;
-          area.value = data.estate.area;
-        });
-      } else if (response.status === 202) {
-        response.json().then((data) => {
-          console.log(data.estate);
-          Command: toastr["error"](data.estate);
-        });
-      } else {
-        console.error("Error:", response.status);
-        Command: toastr["error"](response.status, "Error");
-      }
     })
-    .catch((error) => {
-      console.error("An error occurred:", error);
-      Command: toastr["error"](error);
-    });
-
-  //Map
-
-  let map;
-  let markers = [];
-  let marker;
-
-  let loc = "",
-    ar = "";
-
-  var arr = locate.split(" ");
-  let lat = arr[0];
-  let long = arr[1];
-
-  function initMap() {
-    // console.log("lat " + lat);
-    // console.log("lng " + long);
-    const live_loc = { lat: +lat, lng: +long };
-
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 15,
-      center: live_loc,
-    });
-    // This event listener will call addMarker() when the map is clicked.
-    map.addListener("click", (event) => {
-      addMarker(event.latLng);
-    });
-    addMarker(live_loc);
-  }
-
-  // Adds a marker to the map and push to the array.
-  function addMarker(position) {
-    marker = new google.maps.Marker({
-      position,
-      map,
-    });
-    deleteMarkers();
-
-    markers.push(marker);
-    // console.log(marker.position.lat(), marker.position.lng());
-    // console.log(marker.position.results)
-
-    const options = { method: "GET", headers: { accept: "application/json" } };
-
-    fetch(
-      "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
-        marker.position.lat() +
-        "%2C" +
-        marker.position.lng() +
-        "&key=AIzaSyCZFEe9IjYVTBsTO7o4Ais2KM2qgBpep4Q",
-      options
-    )
-      .then((response) => response.json())
       .then((response) => {
-        // console.log(response.results[0].formatted_address);
-        document.querySelector(".loc-add").value =
-          response.results[0].formatted_address;
-        loc = response.results[0].formatted_address;
-        // ar = response.results[0].address_components[0].short_name;
-        let arr = loc.split(",");
-        if (arr.length > 2) ar = arr[arr.length - 2].slice(1);
-        else ar = arr[arr.length - 2];
-        lat = response.results[0].geometry.location.lat;
-        long = response.results[0].geometry.location.lng;
-        locate = lat + " " + long;
+        if (response.status == 200) {
+          response.json().then((data) => {
+            ename.value = data.estate.estate_name;
+            locate = data.estate.estate_location;
+            address.value = data.estate.estate_address;
+            area.value = data.estate.area;
+          });
+        } else if (response.status === 202) {
+          response.json().then((data) => {
+            console.log(data.estate);
+            Command: toastr["error"](data.estate);
+          });
+        } else {
+          console.error("Error:", response.status);
+          Command: toastr["error"](response.status, "Error");
+        }
       })
-      .catch((err) => console.error(err));
+      .catch((error) => {
+        console.error("An error occurred:", error);
+        Command: toastr["error"](error);
+      });
   }
+  getData();
 
-  confirm.addEventListener("click", (e) => {
-    e.preventDefault();
-    closeBtn.click();
-    address.value = loc;
-    area.value = ar;
-  });
+  let loaded = false;
+  const interval = setInterval(() => {
+    if (locate != null && !loaded) {
+      loaded = true;
+      clearInterval(interval);
 
-  // Sets the map on all markers in the array.
-  function setMapOnAll(map) {
-    for (let i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
+      //Map
+
+      let map;
+      let markers = [];
+      let marker;
+
+      let loc = "",
+        ar = "";
+
+      var arr = locate.split(" ");
+      let lat = arr[0];
+      let long = arr[1];
+
+      function initMap() {
+        // console.log("lat " + lat);
+        // console.log("lng " + long);
+        const live_loc = { lat: +lat, lng: +long };
+
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: live_loc,
+        });
+        // This event listener will call addMarker() when the map is clicked.
+        map.addListener("click", (event) => {
+          addMarker(event.latLng);
+        });
+        addMarker(live_loc);
+      }
+
+      // Adds a marker to the map and push to the array.
+      function addMarker(position) {
+        marker = new google.maps.Marker({
+          position,
+          map,
+        });
+        deleteMarkers();
+
+        markers.push(marker);
+        // console.log(marker.position.lat(), marker.position.lng());
+        // console.log(marker.position.results)
+
+        const options = {
+          method: "GET",
+          headers: { accept: "application/json" },
+        };
+
+        fetch(
+          "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+            marker.position.lat() +
+            "%2C" +
+            marker.position.lng() +
+            "&key=AIzaSyCZFEe9IjYVTBsTO7o4Ais2KM2qgBpep4Q",
+          options
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            // console.log(response.results[0].formatted_address);
+            document.querySelector(".loc-add").value =
+              response.results[0].formatted_address;
+            loc = response.results[0].formatted_address;
+            // ar = response.results[0].address_components[0].short_name;
+            let arr = loc.split(",");
+            if (arr.length > 2) ar = arr[arr.length - 2].slice(1);
+            else ar = arr[arr.length - 2];
+            lat = response.results[0].geometry.location.lat;
+            long = response.results[0].geometry.location.lng;
+            locate = lat + " " + long;
+          })
+          .catch((err) => console.error(err));
+      }
+
+      confirm.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeBtn.click();
+        address.value = loc;
+        area.value = ar;
+      });
+
+      // Sets the map on all markers in the array.
+      function setMapOnAll(map) {
+        for (let i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // // Removes the markers from the map, but keeps them in the array.
+      function hideMarkers() {
+        setMapOnAll(null);
+      }
+
+      // // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
+      }
+
+      // // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        hideMarkers();
+        markers = [];
+      }
+
+      window.initMap = initMap;
     }
-  }
-
-  // // Removes the markers from the map, but keeps them in the array.
-  function hideMarkers() {
-    setMapOnAll(null);
-  }
-
-  // // Shows any markers currently in the array.
-  function showMarkers() {
-    setMapOnAll(map);
-  }
-
-  // // Deletes all markers in the array by removing references to them.
-  function deleteMarkers() {
-    hideMarkers();
-    markers = [];
-  }
-
-  window.initMap = initMap;
+  }, 1000);
 })();

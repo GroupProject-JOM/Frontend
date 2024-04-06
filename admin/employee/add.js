@@ -30,6 +30,16 @@ let gendr, bDay;
     op4 = body.querySelector(".op4"),
     op5 = body.querySelector(".op5"),
     btn = body.querySelector(".form-button");
+  (fnameLabel = body.querySelector(".fname-label")),
+    (lnameLabel = body.querySelector(".lname-label")),
+    (emailLabel = body.querySelector(".email-label")),
+    (nicLabel = body.querySelector(".nic-label")),
+    (roleLabel = body.querySelector(".role-label")),
+    (phoneLabel = body.querySelector(".phone-label")),
+    (address = body.querySelector(".address")),
+    (address1Label = body.querySelector(".address1-label")),
+    (address2Label = body.querySelector(".address2-label")),
+    (address3Label = body.querySelector(".address3-label"));
 
   var fnameStatus = false,
     lnameStatus = false,
@@ -66,6 +76,16 @@ let gendr, bDay;
     op4.textContent = data["sin"]["op4"];
     op5.textContent = data["sin"]["op5"];
     btn.textContent = data["sin"]["btn"];
+    fnameLabel.textContent = data["sin"]["fnameLabel"];
+    lnameLabel.textContent = data["sin"]["lnameLabel"];
+    emailLabel.textContent = data["sin"]["emailLabel"];
+    nicLabel.textContent = data["sin"]["nicLabel"];
+    roleLabel.textContent = data["sin"]["roleLabel"];
+    phoneLabel.textContent = data["sin"]["phoneLabel"];
+    address.textContent = data["sin"]["address"];
+    address1Label.textContent = data["sin"]["address1Label"];
+    address2Label.textContent = data["sin"]["address2Label"];
+    address3Label.textContent = data["sin"]["address3Label"];
     setGreeting();
   });
 
@@ -93,6 +113,16 @@ let gendr, bDay;
     op4.textContent = data["en"]["op4"];
     op5.textContent = data["en"]["op5"];
     btn.textContent = data["en"]["btn"];
+    fnameLabel.textContent = data["en"]["fnameLabel"];
+    lnameLabel.textContent = data["en"]["lnameLabel"];
+    emailLabel.textContent = data["en"]["emailLabel"];
+    nicLabel.textContent = data["en"]["nicLabel"];
+    roleLabel.textContent = data["en"]["roleLabel"];
+    phoneLabel.textContent = data["en"]["phoneLabel"];
+    address.textContent = data["en"]["address"];
+    address1Label.textContent = data["en"]["address1Label"];
+    address2Label.textContent = data["en"]["address2Label"];
+    address3Label.textContent = data["en"]["address3Label"];
     setGreeting();
   });
 
@@ -101,9 +131,9 @@ let gendr, bDay;
       fh: "සේවකයා ලියාපදිංචි කරන්න",
       fname: "මුල් නම",
       lname: "අවසන් නම",
-      email: "ඊතැපැල් ලිපිනය",
+      email: "විද්යුත් තැපැල් ලිපිනය",
       phone: "දුරකථන අංකය",
-      address1: "ලිපින පේළි 1",
+      address1: "ලිපිනයේ පළමු පේළිය",
       address2: "වීදිය",
       address3: "නගරය",
       nic: "ජාතික හැඳුනුම්පත් අංකය",
@@ -114,24 +144,43 @@ let gendr, bDay;
       op4: "නිෂ්පාදන කළමනාකරු",
       op5: "අලෙවි කළමනාකරු",
       btn: "සේවකයා එකතු කරන්න",
+      fnameLabel: "මුල් නම",
+      lnameLabel: "අවසන් නම",
+      emailLabel: "විද්යුත් තැපැල් ලිපිනය",
+      nicLabel: "ජාතික හැඳුනුම්පත් අංකය",
+      roleLabel: "තනතුරු",
+      phoneLabel: "දුරකථන අංකය",
+      address1Label: "ලිපිනයේ පළමු පේළිය",
+      address2Label: "වීදිය",
+      address3Label: "නගරය",
     },
     en: {
       fh: "Register Employee",
-      fname: "First Name",
-      lname: "Last Name",
-      email: "Email Address",
-      phone: "Phone Number",
-      address1: "Address Line-1",
-      address2: "Street",
-      address3: "City",
+      fname: "Enter First Name",
+      lname: "Enter Last Name",
+      email: "Enter Email Address",
+      phone: "Enter Phone Number",
+      address1: "Enter Address Line-1",
+      address2: "Enter Street",
+      address3: "Enter City",
       nic: "NIC Number",
-      op0: "Designation",
+      op0: "Select Designation",
       op1: "Collector",
       op2: "Distributor",
       op3: "Stock Manager",
       op4: "Production Manager",
       op5: "Sales Manager",
       btn: "Add Employee",
+      fnameLabel: "First Name",
+      lnameLabel: "Last Name",
+      emailLabel: "Email Address",
+      nicLabel: "NIC Number",
+      roleLabel: "Designation",
+      phoneLabel: "Phone Number",
+      address: "Personal Address",
+      address1Label: "Address Line 1",
+      address2Label: "Street",
+      address3Label: "City",
     },
   };
 
@@ -206,7 +255,6 @@ let gendr, bDay;
       dropdownStatus
     ) {
       var formData = {
-        emp: getCookie("sId"),
         first_name: fname.value,
         last_name: lname.value,
         email: email.value,
@@ -270,17 +318,17 @@ let gendr, bDay;
                   lnameError.textContent = "අවසාන නම හිස් විය නොහැක!";
                   lname.focus();
                 } else if (data.message == "email1") {
-                  emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක!";
+                  emailError.textContent = "විද්‍යුත් තැපැල් ලිපිනය හිස් විය නොහැක!";
                   email.focus();
                 } else if (data.message == "email2") {
                   emailError.textContent =
-                    "වලංගු විද්‍යුත් තැපෑලක් ඇතුළු කරන්න!";
+                    "වලංගු විද්‍යුත් තැපැල් ලිපිනයක් ඇතුළු කරන්න!";
                   email.focus();
                 } else if (data.message == "phone") {
-                  phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
+                  phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක!";
                   phone.focus();
                 } else if (data.message == "adddress1") {
-                  address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
+                  address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
                   address1.focus();
                 } else if (data.message == "adddress2") {
                   address2Error.textContent = "වීදිය හිස් විය නොහැක!";
@@ -292,7 +340,7 @@ let gendr, bDay;
                   nicError.textContent = "ජාතික හැඳුනුම්පත හිස් විය නොහැක!";
                   nic.focus();
                 } else if (data.message == "NIC") {
-                  nicError.textContent = "NIC දැනටමත් පවතී!";
+                  nicError.textContent = "ජාතික හැඳුනුම්පත දැනටමත් පවතී!";
                   nic.focus();
                 } else if (data.message == "role") {
                   dropdownError.textContent = "තනතුර හිස් විය නොහැක!";
@@ -353,10 +401,10 @@ let gendr, bDay;
               if (data.message == "email3") {
                 if (lang == "sin") {
                   emailError.textContent =
-                    "මෙම විද්‍යුත් තැපෑල දැනටමත් භාවිතා කර ඇත";
+                    "මෙම විද්‍යුත් තැපැල් ලිපිනය දැනටමත් භාවිතා කර ඇත";
 
                   Command: toastr["error"](
-                    "මෙම විද්‍යුත් තැපෑල දැනටමත් භාවිතා කර ඇත"
+                    "මෙම විද්‍යුත් තැපැල් ලිපිනය දැනටමත් භාවිතා කර ඇත"
                   );
                 } else {
                   emailError.textContent = "This email is already used";
@@ -393,8 +441,8 @@ let gendr, bDay;
       return false;
     } else if (!ValidateName(fname.value)) {
       if (lang == "sin")
-        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else fnameError.textContent = "Name must contain only letters and ' '";
+        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else fnameError.textContent = "Name must contain only letters";
       fnameStatus = false;
       return false;
     } else {
@@ -412,8 +460,8 @@ let gendr, bDay;
       return false;
     } else if (!ValidateName(lname.value)) {
       if (lang == "sin")
-        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else lnameError.textContent = "Name must contain only letters and ' '";
+        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else lnameError.textContent = "Name must contain only letters";
       lnameStatus = false;
       return false;
     } else {
@@ -426,12 +474,12 @@ let gendr, bDay;
   function email_status_func() {
     if (typeof email.value === "string" && email.value.trim().length === 0) {
       if (lang == "sin")
-        emailError.textContent = "විද්‍යුත් තැපෑල හිස් විය නොහැක";
+        emailError.textContent = "විද්‍යුත් තැපැල් ලිපිනය හිස් විය නොහැක";
       else emailError.textContent = "Email cannot be empty";
       emailStatus = false;
       return false;
     } else if (!ValidateEmail(email.value)) {
-      if (lang == "sin") emailError.textContent = "වලංගු නොවන ඊමේල් ලිපිනයක්!";
+      if (lang == "sin") emailError.textContent = "වලංගු නොවන විද්‍යුත් තැපැල් ලිපිනයක්!";
       else emailError.textContent = "Invalid email address!";
       emailStatus = false;
       return false;
@@ -449,7 +497,7 @@ let gendr, bDay;
       phoneStatus = false;
       return false;
     } else if (!ValidatePhone(phone.value)) {
-      if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      if (lang == "sin") phoneError.textContent = "වලංගු නොවන දුරකථන අංකය!";
       else phoneError.textContent = "Invalid phone number!";
       phoneStatus = false;
       return false;
@@ -466,7 +514,7 @@ let gendr, bDay;
       address1.value.trim().length === 0
     ) {
       if (lang == "sin")
-        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+        address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක";
       else address1Error.textContent = "Address Line 1 cannot be empty";
       address1Status = false;
       return false;

@@ -1,3 +1,5 @@
+document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -18,7 +20,8 @@
     cLabel = body.querySelector(".cash-label"),
     bTransfer = body.querySelector(".bank-transfer"),
     bLabel = body.querySelector(".bank-label"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".form-button"),
+    amountLabel = body.querySelector(".coco-amount-label");
 
   var lang = getCookie("lang"); // current language
 
@@ -27,7 +30,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -41,6 +43,7 @@
     cLabel.textContent = data["sin"]["cLabel"];
     bLabel.textContent = data["sin"]["bLabel"];
     btn.textContent = data["sin"]["btn"];
+    amountLabel.textContent = data["sin"]["amountLabel"];
     setGreeting();
   });
 
@@ -49,7 +52,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -63,6 +65,8 @@
     cLabel.textContent = data["en"]["cLabel"];
     bLabel.textContent = data["en"]["bLabel"];
     btn.textContent = data["en"]["btn"];
+    amountLabel.textContent = data["en"]["amountLabel"];
+
     setGreeting();
   });
 
@@ -76,7 +80,7 @@
       pLabel: "වත්තෙන් එකතු කිරීම",
       dLabel: "අංගනයට භාර දීම",
       pMethod: "ගෙවීම් ක්රමය",
-      cLabel: "එකතු කිරීම් සඳහා මුදල්",
+      cLabel: "අත්පිට මුදල්",
       bLabel: "බැංකු හුවමාරුව",
       btn: "ඊළඟ",
     },
@@ -84,13 +88,14 @@
       sTitle: "New Supply",
       sText:
         "Fill up the details correctly for your new supply request. <br /> Requests will be reviewed within 24 hours. You can check them inside your dashboard.",
-      amount: "Coconut Amount",
+      amount: "Enter Coconut Amount",
       cMethod: "Collection Method",
       pLabel: "Pickup at Estate",
       dLabel: "Delivered to Yard",
       pMethod: "Payment Method",
       cLabel: "Cash on Pickup",
       bLabel: "Bank Transfer",
+      amountLabel: "Coconut Amount",
       btn: "Next",
     },
   };
@@ -173,11 +178,8 @@
       (pickup.checked || delivered.checked) &&
       (cash.checked || bTransfer.checked)
     ) {
-      // sessionStorage.setItem("amount", amount.value);
       document.cookie = "amount=" + amount.value;
       var formData = {
-        // supplier_id: sessionStorage.getItem("sId"),
-        supplier_id: getCookie("sId"),
         initial_amount: amount.value,
         payment_method: money,
         supply_method: collection,
@@ -195,8 +197,7 @@
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message);
-              // sessionStorage.setItem("id",data.id);
-              document.cookie = "id=" + data.id;
+              document.cookie = "id=" + data.id + "; path=/";
             });
             window.location.href = page;
           } else if (response.status === 400) {
@@ -234,11 +235,11 @@
       return false;
     } else if (!checkInt(amount.value)) {
       if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+        amountError.textContent = "පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය");
       } else {
-        amountError.textContent = "Coconut amount must be positive integer";
-        Command: toastr["warning"]("Coconut amount must be positive integer");
+        amountError.textContent = "Coconut amount must be greater than 0";
+        Command: toastr["warning"]("Coconut amount must be greater than 0");
       }
       amountStatus = false;
       return false;
@@ -251,6 +252,6 @@
 })();
 
 function checkInt(num) {
-  if (Number.isInteger(+num) && (+num) > 0) return true;
+  if (Number.isInteger(+num) && +num > 0) return true;
   return false;
 }

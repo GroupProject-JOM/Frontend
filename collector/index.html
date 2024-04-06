@@ -4,6 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Jayasinghe Oil Mills" />
+    <meta
+      name="description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      name="keywords"
+      content="JOM, Jayasinghe Oil Mills, Coconut Oil, Sri Lanaka"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="og:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="og:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta property="og:image" content="../common/img/logo-manifest.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="../common/img/logo-manifest.jpg" />
+    <meta property="twitter:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="twitter:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="twitter:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta property="twitter:image" content="../common/img/logo-manifest.jpg" />
+
+    <!-- icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../common/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../common/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../common/img/favicon-16x16.png"
+    />
+
+    <!-- manifest -->
+    <link rel="manifest" href="../site.webmanifest" />
+
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
@@ -16,10 +70,19 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../common/func.js"></script>
+    <script src="./auth.js"></script>
   </head>
 
   <body>
-    <div class="fire" style="display: none;">
+    <div class="fire" style="display: none">
       <div class="firework"></div>
       <div class="firework"></div>
       <div class="firework"></div>
@@ -47,10 +110,11 @@
     </div>
 
     <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
 
     <section class="home">
       <div class="notification">
-        <span class="count">10</span>
+        <span class="count"></span>
         <span class="bell do-not"
           ><i class="fa-regular fa-bell do-not"></i
         ></span>
@@ -69,7 +133,7 @@
         <div class="widgets">
           <div class="widget-left widget">
             <div class="w-icon">
-              <span><i class="fa-solid fa-calendar"></i></span>
+              <span><i class="fa-solid fa-money-bill-trend-up"></i></span>
             </div>
             <div class="w-text">
               <p class="w-title w1"></p>
@@ -78,13 +142,33 @@
           </div>
           <div class="widget-right widget">
             <div class="w-icon">
-              <span><i class="fa-solid fa-calendar-check"></i></span>
+              <span><i class="fa-solid fa-clock-rotate-left"></i></span>
             </div>
             <div class="w-text">
               <p class="w-title w2"></p>
               <p class="w-value w2-value"></p>
             </div>
           </div>
+        </div>
+
+        <div class="layer missed">
+          <div class="table-heading">
+            <h2 class="c6"></h2>
+            <p class="c7"></p>
+          </div>
+          <table class="overview-tables missed-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th class="hide">Location</th>
+              </tr>
+            </thead>
+
+            <tbody class="tbody3"></tbody>
+          </table>
         </div>
 
         <div class="layer">
@@ -98,13 +182,18 @@
                 <th>Area</th>
                 <th>Time</th>
                 <th>Amount</th>
-                <th>Location</th>
+                <th class="hide">Location</th>
               </tr>
             </thead>
 
             <tbody class="tbody1"></tbody>
           </table>
-          <div class="greet-text" style="display: none;"><h2>Good Job</h2>You completed today's all collections</div>
+          <div class="greet-text" style="display: none">
+            <div>
+              <h2 class="greet-line1"></h2>
+              <p class="greet-line2"></p>
+            </div>
+          </div>
         </div>
 
         <div class="layer">
@@ -112,14 +201,14 @@
             <h2 class="c4"></h2>
             <p class="c5"></p>
           </div>
-          <table class="overview-tables">
+          <table class="overview-tables upcoming-table">
             <thead class="thead">
               <tr>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Area</th>
                 <th>Amount</th>
-                <th>Location</th>
+                <th class="hide">Location</th>
               </tr>
             </thead>
 
@@ -127,10 +216,12 @@
           </table>
         </div>
       </div>
+
+      <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+      </div>
     </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="../common/func.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="./nav/load-nav.js"></script>

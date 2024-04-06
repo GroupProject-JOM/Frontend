@@ -1,5 +1,6 @@
 document.cookie = "amount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -13,7 +14,12 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     time = body.querySelector(".time"),
     amount = body.querySelector(".amount"),
     pMethod = body.querySelector(".pMethod"),
-    btn = body.querySelector(".form-button");
+    pDate = body.querySelector(".pDate"),
+    pTime = body.querySelector(".pTime"),
+    collected = body.querySelector(".collected"),
+    Camount = body.querySelector(".Camount"),
+    btn = body.querySelector(".form-button"),
+    map = body.querySelector(".map");
 
   var lang = getCookie("lang"); // current language
 
@@ -22,7 +28,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -37,7 +42,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -51,7 +55,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin: {
       cTitle: "එකතුව බලන්න",
       cText:
-        "ඔබට ඔබේ එකතුවට අදාළ සියලුම තොරතුරු මෙතැනින් නැරඹිය හැක. <br /><br /> එකතුවක් සම්පූර්ණ කළ ලෙස සලකුණු කිරීමට, පහත බොත්තම ක්ලික් කරන්න",
+        "ඔබට ඔබේ එකතුවට අදාළ සියලුම තොරතුරු මෙතැනින් නැරඹිය හැක. <br /><br /> එකතුවක් සම්පූර්ණ කළ ලෙස සලකුණු කිරීමට, පහත බොත්තම ඔබන්න",
       btn: "සම්පූර්ණ එකතුව",
     },
     en: {
@@ -62,35 +66,50 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  let area="";
-  fetch(
-    backProxy +
-      "/pickup-collection?id=" +
-      getCookie("id") +
-      "&sId=" +
-      getCookie("sId"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  let area = "";
+
+  fetch(backProxy + "/pickup-collection?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
           sName.textContent =
             data.collection.name + " " + data.collection.last_name;
           sPhone.textContent = data.collection.phone;
-          address.textContent =
-            data.collection.location + "," + data.collection.area;
+          address.textContent = data.collection.address;
           date.textContent = data.collection.date;
           time.textContent = timeString(data.collection.time);
           amount.textContent = data.collection.amount.toLocaleString("en-US");
           pMethod.textContent = capitalize(data.collection.payment_method);
 
+          var arr = data.collection.location.split(" ");
+          map.innerHTML =
+            `<iframe src='https://www.google.com/maps?q=` +
+            arr[0] +
+            `,` +
+            arr[1] +
+            `&hl=es;z=14&output=embed' frameborder='0'></iframe>`;
+
           area = data.collection.area;
+
+          if (data.collection.status != 3) {
+            pDate.textContent = "Collected Date";
+            pTime.textContent = "Collected Time";
+            date.textContent = data.collection.collected_date;
+            time.textContent = timeString(data.collection.collected_time);
+            Camount.textContent =
+              data.collection.final_amount.toLocaleString("en-US");
+
+            btn.disabled = true;
+            btn.style.display = "none";
+            cText.style.display = "none";
+            collected.style.display = "";
+          }
         });
       } else if (response.status === 202) {
         response.json().then((data) => {

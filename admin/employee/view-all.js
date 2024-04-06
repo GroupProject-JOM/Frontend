@@ -6,7 +6,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en = body.querySelector(".en"),
     oTitle = body.querySelector(".outlet-title"),
     oText = body.querySelector(".outlet-text"),
-    tbody = body.querySelector(".tbody"),
+    tbody1 = body.querySelector(".tbody1"),
+    tbody2 = body.querySelector(".tbody2"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
@@ -45,7 +46,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin: {
       oTitle: "සේවකයින් බලන්න",
       oText: "සීමාසහිත ජයසිංහ ඔයිල් මිල්ස් (PVT) හි සියලුම සේවකයින් බලන්න",
-      btn: "සේවකයා එකතු කරන්න",
+      btn: "සේවකයින් එකතු කරන්න",
     },
     en: {
       oTitle: "View Employees",
@@ -54,9 +55,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  var row = "";
-  // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
-  fetch(backProxy + "/employees?emp=" + getCookie("sId"), {
+  var row1 = "",
+    row2 = "";
+
+  fetch(backProxy + "/employees", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -70,12 +72,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
-            row +=
+            row1 +=
               "<tr data-href='./view.html' id=" +
               item.id +
               ">" +
               "<td>" +
               item.first_name +
+              " " +
+              item.last_name +
               "</td>" +
               "<td>" +
               item.role.charAt(0).toUpperCase() +
@@ -89,7 +93,34 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "</td>" +
               "</tr>";
           }
-          tbody.innerHTML = row;
+          tbody1.innerHTML = row1;
+
+          // pagination for table 1
+          pagination("table1", 10);
+
+          data.previous.forEach((item) => {
+            row2 +=
+              "<tr data-href='./view.html' id=" +
+              item.id +
+              ">" +
+              "<td>" +
+              item.first_name +
+              " " +
+              item.last_name +
+              "</td>" +
+              "<td>" +
+              item.role.charAt(0).toUpperCase() +
+              item.role.slice(1) +
+              "</td>" +
+              "<td>" +
+              item.phone +
+              "</td>" +
+              "<td>" +
+              item.add_line_3 +
+              "</td>" +
+              "</tr>";
+          });
+          tbody2.innerHTML = row2;
 
           const rows = document.querySelectorAll("tr[data-href]");
 

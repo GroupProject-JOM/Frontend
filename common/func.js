@@ -2,9 +2,7 @@ function checkLng() {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en");
-
   //reload language detecter
-  // const curLng = sessionStorage.getItem("lang");
   const curLng = getCookie("lang");
   if (curLng == "sin") {
     sin.click();
@@ -16,9 +14,7 @@ function checkLng() {
 function checkMode() {
   const body = document.querySelector("body"),
     modeSwitch = body.querySelector(".toggle-switch");
-
   //reload mode detecter
-  // const curMode = sessionStorage.getItem("mode");
   const curMode = getCookie("mode");
   if (curMode == "dark") {
     modeSwitch.click();
@@ -27,14 +23,15 @@ function checkMode() {
 
 function getGreetingTime(m) {
   var g = null; //return g
-
   if (!m || !m.isValid()) {
     return;
-  } //if we can't find a valid or filled moment, we return.
+  }
+  //if we can't find a valid or filled moment, we return.
 
   var split_afternoon = 12; //24hr time to split the afternoon
-  var split_evening = 17; //24hr time to split the evening
+  var split_evening = 16; //24hr time to split the evening
   var currentHour = parseFloat(m.format("HH"));
+
   // const curLng = sessionStorage.getItem("lang");
   const curLng = getCookie("lang");
 
@@ -57,24 +54,19 @@ function getGreetingTime(m) {
       g = "Good Morning";
     }
   }
-
   return g;
 }
 
 function setGreeting() {
   const body = document.querySelector("body"),
     greeting = body.querySelector(".greeting");
-
   greeting.innerHTML = getGreetingTime(moment());
 }
 
 function modeTranslate() {
   var text = null;
-  // const curMode = sessionStorage.getItem("mode");
-  // const curLng = sessionStorage.getItem("lang");
   const curMode = getCookie("mode");
   const curLng = getCookie("lang");
-
   if (curMode == "dark") {
     if (curLng == "sin") {
       text = "ආලෝක මාදිලිය";
@@ -93,29 +85,42 @@ function modeTranslate() {
 
 window.addEventListener("resize", (e) => {
   const body = document.querySelector("body"),
-    sidebar = body.querySelector(".sidebar");
-
+    sidebar = body.querySelector(".sidebar"),
+    bars = body.querySelector(".fa-bars");
   if (!sidebar) return;
-
-  if (window.innerWidth <= 1010) {
+  if (window.innerWidth <= 1010 && window.innerWidth >= 718) {
     sidebar.classList.add("close");
+    sidebar.classList.remove("sidebar-active");
+    bars.style.display = "none";
+    sidebar.style.display = "block";
   } else {
     sidebar.classList.remove("close");
+    sidebar.style.display = "block";
+    if (window.innerWidth <= 718) {
+      sidebar.style.display = "none";
+      bars.style.display = "block";
+    }
   }
 });
 
 window.addEventListener("load", (e) => {
   const body = document.querySelector("body"),
-    sidebar = body.querySelector(".sidebar");
-
+    sidebar = body.querySelector(".sidebar"),
+    bars = body.querySelector(".fa-bars");
   if (!sidebar) return;
-
-  if (window.innerWidth <= 1010) {
+  if (window.innerWidth <= 1010 && window.innerWidth >= 718) {
     sidebar.classList.add("close");
+    sidebar.classList.remove("sidebar-active");
+    bars.style.display = "none";
+    sidebar.style.display = "block";
   } else {
     sidebar.classList.remove("close");
+    sidebar.style.display = "block";
+    if (window.innerWidth <= 718) {
+      sidebar.style.display = "none";
+      bars.style.display = "block";
+    }
   }
-  console.log(window.innerWidth);
 });
 
 function checkCookie(cName) {
@@ -131,31 +136,77 @@ function checkCookie(cName) {
 
 function getCookie(name) {
   var myCookie = checkCookie(name);
-
   if (myCookie == null) {
     console.log(name + " - null");
   }
   // else {
   //   console.log("not null " + myCookie);
   // }
-
   return myCookie;
 }
 
 function signout() {
-  // remove previous data
-  document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-  document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-  document.cookie = "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-  pageLoading();
-  window.location.href = frontProxy;
+  var lang = getCookie("lang");
+  if (lang == "sin") {
+    var title = "ඔයාට විශ්වාස ද?",
+      text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+      confirmButtonText = "ඔව්, වරනය වන්න!",
+      cancelButtonText = "අවලංගු කරන්න";
+  } else {
+    var title = "Are you sure?",
+      text = "You won't be able to revert this!",
+      confirmButtonText = "Yes, Sign out!",
+      cancelButtonText = "Cancel";
+  }
+  Swal.fire({
+    title: title,
+    text: text,
+    confirmButtonText: confirmButtonText,
+    cancelButtonText: cancelButtonText,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: confirmButtonColor,
+    cancelButtonColor: cancelButtonColor,
+    // buttonsStyling: false,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      if (lang == "sin") {
+        var title = "වරනය විය!",
+          text = "ඔබ ඔබේ පැතිකඩ සාර්ථකව වරනය විය.",
+          confirmButtonText = "හරි";
+      } else {
+        var title = "Signed out!",
+          text = "You signed out your profile successfully.",
+          confirmButtonText = "Ok";
+      }
+      // sweet alert
+      Swal.fire({
+        title: title,
+        text: text,
+        icon: "success",
+        confirmButtonText: confirmButtonText,
+        confirmButtonColor: confirmButtonColor,
+      }).then((response) => {
+        // remove previous data
+        document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "sId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie =
+          "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie =
+          "refresh=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        pageLoading();
+        window.location.href = frontProxy;
+      });
+    }
+  });
 }
 
 const frontProxy = "http://127.0.0.1:5501";
 const backProxy = "http://127.0.0.1:8090/JOM_war_exploded";
+const socketProxy = "ws://127.0.0.1:8090/JOM_war_exploded";
 
 // toast
-
 toastr.options = {
   closeButton: true,
   debug: false,
@@ -175,30 +226,20 @@ toastr.options = {
 };
 
 // Sweet alerts colors
-var confirmButtonColor = "#3085d6",
+var confirmButtonColor = "#d4ac77",
   cancelButtonColor = "#d33",
-  confirmButtonColor = "#3085d6",
+  confirmButtonColor = "#d4ac77",
   denyButtonColor = "#dd6b55";
 
 function pageLoading() {
   // const loader = document.querySelector(".loader-wrapper");
   // loader.style.display = "block";
   // loader.toggle()
-
   $(".loader-wrapper").toggle();
 }
 
-function pageLoadingStop() {
-  const loader = document.querySelector(".loader-wrapper");
-  loader.style.display = "none";
-  // loader.toggle()
-
-  // $(".loader-wrapper").toggle();
-}
-
 function timeString(time) {
-  var T = time.split(":")
-
+  var T = time.split(":");
   if (T[0] > 12) {
     T[0] -= 12;
     if (T[0] >= 12) {
@@ -206,6 +247,8 @@ function timeString(time) {
     } else {
       return String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
     }
+  } else if (T[0] == 12) {
+    return String(T[0]).padStart(2, "0") + ":" + T[1] + " PM";
   } else {
     return String(T[0]).padStart(2, "0") + ":" + T[1] + " AM";
   }
@@ -215,4 +258,119 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-var log = console.log
+//table search
+function search(filter, table) {
+  var tr = table.getElementsByTagName("tr");
+  for (var i = 1; i < tr.length; i++) {
+    var displayRow = false,
+      td = tr[i].getElementsByTagName("td");
+    for (var j = 0; j < td.length; j++) {
+      var txtValue = td[j].textContent || td[j].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        displayRow = true;
+        break;
+      }
+    }
+    if (displayRow) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }
+}
+
+function formatTimeDifference(timestampString) {
+  const now = new Date();
+  const timestamp = new Date(timestampString);
+  const diffInSeconds = Math.floor((now - timestamp) / 1000);
+
+  minInSeconds = 60;
+  hourInSeconds = 3600;
+  dayInSeconds = 86400;
+  weekInSeconds = 604800;
+  monthInSeconds = 2419200;
+  yearInSeconds = 29030400;
+
+  if (diffInSeconds < minInSeconds) {
+    return diffInSeconds + " secs ago";
+  } else if (diffInSeconds < hourInSeconds) {
+    const diffInMinutes = Math.floor(diffInSeconds / minInSeconds);
+    return diffInMinutes === 1 ? "one min ago" : diffInMinutes + " mins ago";
+  } else if (diffInSeconds < dayInSeconds) {
+    const diffInHours = Math.floor(diffInSeconds / hourInSeconds);
+    return diffInHours === 1 ? "one hour ago" : diffInHours + " hours ago";
+  } else if (diffInSeconds < weekInSeconds) {
+    const diffInDays = Math.floor(diffInSeconds / dayInSeconds);
+    return diffInDays === 1 ? "one day ago" : diffInDays + " days ago";
+  } else if (diffInSeconds < yearInSeconds) {
+    const diffInWeeks = Math.floor(diffInSeconds / weekInSeconds);
+    return diffInWeeks === 1 ? "one week ago" : diffInWeeks + " weeks ago";
+  } else if (diffInSeconds < yearInSeconds) {
+    const diffInMonths = Math.floor(diffInSeconds / yearInSeconds);
+    return diffInMonths === 1 ? "one month ago" : diffInMonths + " months ago";
+  } else {
+    const diffInYears = Math.floor(diffInSeconds / yearInSeconds);
+    return diffInYears === 1 ? "one year ago" : diffInYears + " years ago";
+  }
+}
+
+// pagination
+function showPage(page, itemsPerPage, items, currentPage, content) {
+  const startIndex = page * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  items.forEach((item, index) => {
+    item.classList.toggle("hidden", index < startIndex || index >= endIndex);
+  });
+  updateActiveButtonStates(currentPage, content);
+}
+
+function createPageButtons(content, currentPage, itemsPerPage, items) {
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const paginationContainer = document.createElement("div");
+  const paginationDiv = content.appendChild(paginationContainer);
+  paginationContainer.classList.add("pagination");
+
+  // Add page buttons
+  for (let i = 0; i < totalPages; i++) {
+    const pageButton = document.createElement("button");
+    pageButton.textContent = i + 1;
+    pageButton.addEventListener("click", () => {
+      currentPage = i;
+      showPage(currentPage, itemsPerPage, items, currentPage, content);
+      updateActiveButtonStates(currentPage, content);
+    });
+
+    content.appendChild(paginationContainer);
+    paginationDiv.appendChild(pageButton);
+  }
+  return currentPage;
+}
+
+function updateActiveButtonStates(currentPage, content) {
+  const pageButtons = content.querySelectorAll(".pagination button");
+  pageButtons.forEach((button, index) => {
+    if (index === currentPage) {
+      button.classList.add("active");
+    } else {
+      button.classList.remove("active");
+    }
+  });
+}
+
+function pagination(container, ipp) {
+  const content = document.querySelector("." + container);
+  const itemsPerPage = ipp;
+  let currentPage = 0;
+  const items = Array.from(content.getElementsByTagName("tr")).slice(1);
+
+  currentPage = createPageButtons(content, currentPage, itemsPerPage, items);
+  showPage(currentPage, itemsPerPage, items, currentPage, content);
+}
+
+//jwt
+function getPayload(token) {
+  return JSON.parse(atob(token.split(".")[1]));
+}
+
+// framework
+var log = console.log;

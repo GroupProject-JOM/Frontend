@@ -1,6 +1,4 @@
 (async () => {
-  // let loaded = false;
-  // const interval = setInterval(() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
@@ -19,19 +17,14 @@
 
   let lop, bop, locWait, bankWait;
 
-  // if (!loaded && lop && bop) {
-  //   loaded = true;
-  //   clearInterval(interval);
-  // }
-
   var location_options =
-      "<option value='' disabled selected hidden class='lop'></option>",
+      "<option value='' disabled selected hidden class='lop'>Estate Location</option>",
     bank_options =
-      "<option value='' disabled selected hidden class='bop'></option>",
+      "<option value='' disabled selected hidden class='bop'>Bank Account</option>",
     lang = getCookie("lang"); // current language
 
   // Get estates
-  fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
+  fetch(backProxy + "/estates", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -49,99 +42,94 @@
               "<option value=" + item.id + ">" + item.estate_name + "</option>";
           }
           location.innerHTML = location_options;
-          lop = body.querySelector(".lop");
+          // lop = body.querySelector(".lop");
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
           // data.size=0
           if (lang == "sin") {
-            location_options += "<option value='' disabled>වතු නැත</option>";
-            Command: toastr["info"]("වතු නැත");
+            location_options += "<option value='' disabled>වතුයායන් නැත</option>";
+            Command: toastr["info"]("වතුයායන් නැත");
           } else {
             location_options += "<option value='' disabled>No Estates</option>";
             Command: toastr["info"]("No Estates");
           }
           location.innerHTML = location_options;
-          lop = body.querySelector(".lop");
+          // lop = body.querySelector(".lop");
         });
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
         if (lang == "sin")
-          location_options += "<option value='' disabled>වතු නැත</option>";
+          location_options += "<option value='' disabled>වතුයායන් නැත</option>";
         else
           location_options += "<option value='' disabled>No Estates</option>";
         location.innerHTML = location_options;
-        lop = body.querySelector(".lop");
+        // lop = body.querySelector(".lop");
       }
     })
     .catch((error) => {
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
-
 
   //Get bank accounts
-  bankWait = await fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
-    .then((response) => {
-      if (response.status == 200) {
-        response.json().then((data) => {
-          let arr = data.list;
-          arr.forEach(setter);
-
-          function setter(item) {
-            bank_options +=
-              "<option value=" + item.id + ">" + item.name + "</option>";
-          }
-          bank.innerHTML = bank_options;
-          bop = body.querySelector(".bop");
-        });
-      } else if (response.status === 202) {
-        response.json().then((data) => {
-          // data.size=0
-          if (lang == "sin") {
-            bank_options +=
-              "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
-            Command: toastr["info"]("බැංකු ගිණුම් නැත");
-          } else {
-            bank_options +=
-              "<option value='' disabled >No Bank Accounts</option>";
-            Command: toastr["info"]("No Bank Accounts");
-          }
-          bank.innerHTML = bank_options;
-          bop = body.querySelector(".bop");
-        });
-      } else {
-        console.error("Error:", response.status);
-        Command: toastr["error"](response.status, "Error");
-        if (lang == "sin")
-          bank_options +=
-            "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
-        else
-          bank_options +=
-            "<option value='' disabled >No Bank Accounts</option>";
-        bank.innerHTML = bank_options;
-        bop = body.querySelector(".bop");
-      }
-    })
-    .catch((error) => {
-      console.error("An error occurred:", error);
-      Command: toastr["error"](error);
+  try {
+    bankWait = await fetch(backProxy + "/accounts", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
     });
 
+    if (bankWait.status == 200) {
+      bankWait.json().then((data) => {
+        let arr = data.list;
+        arr.forEach(setter);
+
+        function setter(item) {
+          bank_options +=
+            "<option value=" + item.id + ">" + item.nickName + "</option>";
+        }
+        bank.innerHTML = bank_options;
+        // bop = body.querySelector(".bop");
+      });
+    } else if (bankWait.status === 202) {
+      bankWait.json().then((data) => {
+        // data.size=0
+        if (lang == "sin") {
+          bank_options +=
+            "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+          Command: toastr["info"]("බැංකු ගිණුම් නැත");
+        } else {
+          bank_options +=
+            "<option value='' disabled >No Bank Accounts</option>";
+          Command: toastr["info"]("No Bank Accounts");
+        }
+        bank.innerHTML = bank_options;
+        // bop = body.querySelector(".bop");
+      });
+    } else {
+      console.error("Error:", bankWait.status);
+      Command: toastr["error"](bankWait.status, "Error");
+      if (lang == "sin")
+        bank_options += "<option value='' disabled >බැංකු ගිණුම් නැත</option>";
+      else
+        bank_options += "<option value='' disabled >No Bank Accounts</option>";
+      bank.innerHTML = bank_options;
+      // bop = body.querySelector(".bop");
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+    Command: toastr["error"](error);
+  }
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -151,8 +139,8 @@
     time.placeholder = data["sin"]["time"];
     bText.innerHTML = data["sin"]["bText"];
     btn.textContent = data["sin"]["btn"];
-    lop.textContent = data["sin"]["lop"];
-    bop.textContent = data["sin"]["bop"];
+    // lop.textContent = data["sin"]["lop"];
+    // bop.textContent = data["sin"]["bop"];
     setGreeting();
   });
 
@@ -161,7 +149,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -171,8 +158,8 @@
     time.placeholder = data["en"]["time"];
     bText.innerHTML = data["en"]["bText"];
     btn.textContent = data["en"]["btn"];
-    lop.textContent = data["en"]["lop"];
-    bop.textContent = data["en"]["bop"];
+    // lop.textContent = data["en"]["lop"];
+    // bop.textContent = data["en"]["bop"];
     setGreeting();
   });
 
@@ -235,10 +222,24 @@
       location.focus();
     }
 
-    if (locationStatus && dateStatus && timeStatus && bankStatus) {
+    var dateTime = false;
+    var selected_time = new Date(date.value + " " + time.value);
+    var now = new Date();
+
+    if (selected_time > now) dateTime = true;
+    else {
+      if (lang == "sin") {
+        timeError.textContent = "කාලය අනාගතයේ විය යුතුය";
+        Command: toastr["error"]("කාලය අනාගතයේ විය යුතුය");
+      } else {
+        time.textContent = "Time must be in future";
+        Command: toastr["error"]("Time must be in future");
+      }
+    }
+
+    if (locationStatus && dateStatus && timeStatus && bankStatus && dateTime) {
       var formData = {
         collection_id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         estate_id: location.value,
         date: date.value,
         time: time.value,
@@ -316,6 +317,16 @@
         dateError.textContent = "Date must be in the future";
         Command: toastr["warning"]("Date must be in the future");
       }
+    } else if (checkTwoWeeks(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය ඉදිරි සති දෙක තුළ විය යුතුය";
+        Command: toastr["warning"]("දිනය ඉදිරි සති දෙක තුළ විය යුතුය");
+      } else {
+        dateError.textContent = "The date should be within the next two weeks";
+        Command: toastr["warning"](
+          "The date should be within the next two weeks"
+        );
+      }
     } else {
       dateError.textContent = "";
       dateStatus = true;
@@ -376,6 +387,14 @@ function checkDate(date) {
   var selectedDate = new Date(date);
   var now = new Date();
   now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTwoWeeks(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() + 14);
   if (selectedDate > now) return true;
   else return false;
 }

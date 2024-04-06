@@ -96,12 +96,24 @@
       date.focus();
     }
 
-    if (dateStatus && timeStatus) {
+    var dateTime = false;
+    var selected_time = new Date(date.value + " " + time.value);
+    var now = new Date();
+
+    if (selected_time > now) dateTime = true;
+    else {
+      if (lang == "sin") {
+        timeError.textContent = "කාලය අනාගතයේ විය යුතුය";
+        Command: toastr["error"]("කාලය අනාගතයේ විය යුතුය");
+      } else {
+        time.textContent = "Time must be in future";
+        Command: toastr["error"]("Time must be in future");
+      }
+    }
+
+    if (dateStatus && timeStatus && dateTime) {
       var formData = {
-        // collection_id: sessionStorage.getItem("id"),
-        // supplier_id: sessionStorage.getItem("sId"),
         collection_id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         date: date.value,
         time: time.value,
       };
@@ -135,7 +147,7 @@
         });
     }
   });
-  
+
   function date_status_func() {
     if (typeof date.value === "string" && date.value.trim().length === 0) {
       if (lang == "sin") {
@@ -154,6 +166,16 @@
       } else {
         dateError.textContent = "Date must be in the future";
         Command: toastr["warning"]("Date must be in the future");
+      }
+    } else if (checkTwoWeeks(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය ඉදිරි සති දෙක තුළ විය යුතුය";
+        Command: toastr["warning"]("දිනය ඉදිරි සති දෙක තුළ විය යුතුය");
+      } else {
+        dateError.textContent = "The date should be within the next two weeks";
+        Command: toastr["warning"](
+          "The date should be within the next two weeks"
+        );
       }
     } else {
       dateError.textContent = "";
@@ -197,6 +219,14 @@ function checkDate(date) {
   var selectedDate = new Date(date);
   var now = new Date();
   now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTwoWeeks(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() + 14);
   if (selectedDate > now) return true;
   else return false;
 }

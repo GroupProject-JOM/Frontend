@@ -5,11 +5,28 @@
     sTitle = body.querySelector(".stockmg-title"),
     sText = body.querySelector(".stockmg-text"),
     date = body.querySelector(".date"),
+    searchBar = body.querySelector(".search"),
+    addressTable = body.querySelector(".addresses-table"),
     tbody = body.querySelector(".tbody");
 
   date.textContent = getCookie("date");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), addressTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), addressTable);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -39,33 +56,26 @@
 
   var data = {
     sin: {
-      sTitle: "එකතුකරන්නන් පවරන්න",
+      sTitle: "එකතුකරන්නන්ට පවරන්න",
       sText:
-        "සක්‍රිය එකතු කිරීම් පිළිබඳ තත්‍ය කාලීන තොරතුරු බලන්න සහ නව එකතුවට එකක් පවරන්න",
+        "අදාළ දිනය සඳහා එක් එක් එකතුකරන්නන්ගේ එකතු කිරීමේ තොරතුරු බලන්න සහ නව එකතුවක් පවරන්න",
     },
     en: {
       sTitle: "Assign Collectors",
       sText:
-        "View real-time information on active collections and assign one to the new collection",
+        "View collection information of each collector for the relevent day and assign a new one",
     },
   };
 
   let row = "";
 
-  fetch(
-    backProxy +
-      "/assign-collector?sId=" +
-      getCookie("sId") +
-      "&date=" +
-      getCookie("date"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/assign-collector?date=" + getCookie("date"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -79,6 +89,8 @@
               ">" +
               "<td>" +
               item.name +
+              " " +
+              item.last_name +
               "</td>" +
               "<td>" +
               item.row_count +
@@ -97,7 +109,6 @@
             assign.addEventListener("click", () => {
               var formData = {
                 id: getCookie("id"),
-                sId: getCookie("sId"),
                 emp: assign.parentElement.parentElement.id,
               };
               fetch(backProxy + "/assign-collector", {
@@ -128,8 +139,7 @@
                     response.json().then((data) => {
                       console.log(data.message);
                     });
-                    if (lang == "sin")
-                      Command: toastr["error"]("");
+                    if (lang == "sin") Command: toastr["error"]("");
                     else Command: toastr["error"]("No Collector assigned");
                   } else if (response.status === 401) {
                     response.json().then((data) => {

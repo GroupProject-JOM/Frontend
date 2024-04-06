@@ -2,21 +2,22 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    modeSwitch = body.querySelector(".toggle-switch"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     w2Value = body.querySelector(".w2-value"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
     c4 = body.querySelector(".c4"),
-    c5 = body.querySelector(".c5");
+    c5 = body.querySelector(".c5"),
+    aBar = body.querySelector(".action-bar"),
+    aText = body.querySelector(".action-text"),
+    aBtn = body.querySelector(".action-button");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
 
     w1.textContent = data["sin"]["w1"];
@@ -25,6 +26,8 @@
     c2.textContent = data["sin"]["c2"];
     c4.textContent = data["sin"]["c4"];
     c5.textContent = data["sin"]["c5"];
+    aText.textContent = data["sin"]["aText"];
+    aBtn.textContent = data["sin"]["aBtn"];
     setGreeting();
   });
 
@@ -33,7 +36,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
 
     w1.textContent = data["en"]["w1"];
@@ -42,29 +44,37 @@
     c2.textContent = data["en"]["c2"];
     c4.textContent = data["en"]["c4"];
     c5.textContent = data["en"]["c5"];
+    aText.textContent = data["en"]["aText"];
+    aBtn.textContent = data["en"]["aBtn"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      w1: "මුළු විකුණුම් පරිමාව",
+      w1: "මාසික ආදායම",
       w2: "පොරොත්තු ගෙවීම්",
       c1: "විකුණුම් දත්ත",
       c2: "මාසික විකුණුම් දත්ත සාරාංශය",
       c4: "බෙදාහරින්නාගේ විකුණුම්",
       c5: "එක් එක් බෙදාහරින්නා සඳහා විකුණුම් දත්ත සාරාංශය",
+      aText:
+        "නිෂ්පාදන දෙපාර්තමේන්තුව නව සමාගම් නිෂ්පාදන එකතු කර ඇත. ඒවායේ ඒකක මිල යාවත්කාලීන කරන්න.",
+      aBtn: "මිල ඇතුල් කරන්න",
     },
     en: {
-      w1: "Total Sales Volume",
+      w1: "Monthly Revenue",
       w2: "Pending Payments",
       c1: "Sales Data",
       c2: "Monthly Sales Data Visualisation",
       c4: "Disributor Sales",
       c5: "Sales Data Visualisation for each distributor",
+      aText:
+        "Production department has added new company products. Update the unit price of them.",
+      aBtn: "Update Unit Price",
     },
   };
 
-  fetch(backProxy + "/sales-manager?emp=" + getCookie("sId"), {
+  fetch(backProxy + "/sales-manager", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -74,7 +84,9 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          w2Value.textContent = data.payments;
+          w2Value.textContent = data.payouts;
+
+          if (data.unverified == true) aBar.style.display = "";
         });
       } else if (response.status === 401) {
         response.json().then((data) => {
@@ -126,7 +138,7 @@
       },
     ],
   };
-  const dataLine2 = {
+  const dataBar = {
     labels: labels2,
     datasets: [
       {
@@ -160,9 +172,9 @@
       },
     },
   };
-  const configLine2 = {
+  const configBar = {
     type: "bar",
-    data: dataLine2,
+    data: dataBar,
     options: {
       responsive: true,
       plugins: {
@@ -183,152 +195,6 @@
   );
   const chartLine2 = new Chart(
     document.getElementById("distributor-sales"),
-    configLine2
+    configBar
   );
-
-  //pdf generate code
-  //Generate pdf
-  var pdfObject; //outputType: jsPDFInvoiceTemplate.OutputType.Blob,
-
-  var props = {
-    outputType: jsPDFInvoiceTemplate.OutputType.Blob,
-    returnJsPDFDocObject: true,
-    fileName: "Invoice 2023",
-    orientationLandscape: false,
-    compress: true,
-    logo: {
-      src: "../common/JOM logo 1.png",
-      type: "PNG", //optional, when src= data:uri (nodejs case)
-      width: 53.33, //aspect ratio = width/height
-      height: 26.66,
-      margin: {
-        top: 0, //negative or positive num, from the current position
-        left: 0, //negative or positive num, from the current position
-      },
-    },
-    stamp: {
-      inAllPages: true, //by default = false, just in the last page
-      src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-      type: "JPG", //optional, when src= data:uri (nodejs case)
-      width: 20, //aspect ratio = width/height
-      height: 20,
-      margin: {
-        top: 0, //negative or positive num, from the current position
-        left: 0, //negative or positive num, from the current position
-      },
-    },
-    business: {
-      name: "Jayasinghe Oil Mills",
-      address: "No 105, Ravita Road, Welpalla, Sri Lanka.",
-      phone: "(+94) 76 924 0963",
-      email: "jom@jom.com",
-      email_1: "jmyasiru@gmail.com",
-      website: "www.jom.com",
-    },
-    contact: {
-      label: "Invoice issued for:",
-      name: "Stock Manager",
-      address: "NO 858, Pannala, Kuliyapitiya",
-      phone: "(+94) 71 22 22 222",
-      email: "kamal@gmail.com",
-      otherInfo: "www.jom.com",
-    },
-    invoice: {
-      label: "Invoice #: ",
-      num: 19,
-      invDate: "Payment Date: 25/10/2023 18:12",
-      invGenDate: "Invoice Date: 26/10/2023 10:17",
-      headerBorder: false,
-      tableBodyBorder: false,
-      header: [
-        {
-          title: "#",
-          style: {
-            width: 10,
-          },
-        },
-        {
-          title: "Title",
-          style: {
-            width: 30,
-          },
-        },
-        {
-          title: "Description",
-          style: {
-            width: 80,
-          },
-        },
-        { title: "Price" },
-        { title: "Quantity" },
-        { title: "Unit" },
-        { title: "Total" },
-      ],
-      table: Array.from(Array(10), (item, index) => [
-        index + 1,
-        "There are many variations ",
-        "Lorem Ipsum is simply dummy text dummy text ",
-        200.5,
-        4.5,
-        "m2",
-        400.5,
-      ]),
-      additionalRows: [
-        {
-          col1: "Total:",
-          col2: "145,250.50",
-          col3: "ALL",
-          style: {
-            fontSize: 14, //optional, default 12
-          },
-        },
-        {
-          col1: "VAT:",
-          col2: "20",
-          col3: "%",
-          style: {
-            fontSize: 10, //optional, default 12
-          },
-        },
-        {
-          col1: "SubTotal:",
-          col2: "116,199.90",
-          col3: "ALL",
-          style: {
-            fontSize: 10, //optional, default 12
-          },
-        },
-      ],
-      invDescLabel: "Invoice Note",
-      invDesc:
-        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
-    },
-    footer: {
-      text: "The invoice is created on a computer and is valid without the signature and stamp.",
-    },
-    pageEnable: true,
-    pageLabel: "Page ",
-  };
-
-  /* generate pdf */
-  function generatePDF() {
-    pdfObject = jsPDFInvoiceTemplate.default(props);
-    console.log("Object generated: ", pdfObject);
-    viewPDF();
-  }
-
-  /* view pdf */
-  function viewPDF() {
-    if (!pdfObject) {
-      return console.log("No PDF Object");
-    }
-
-    var fileURL = URL.createObjectURL(pdfObject.blob);
-    window.open(fileURL, "_blank");
-  }
-
-  const rep1 = document.querySelector(".rep1");
-  rep1.addEventListener("click", () => {
-    generatePDF();
-  });
 })();

@@ -16,9 +16,8 @@
   let bop,
     lang = getCookie("lang"); // current language
   var bank_options =
-    "<option value='' disabled selected hidden class='bop'></option>";
-  // fetch(backProxy + "/accounts?sId=" + sessionStorage.getItem("sId"), {
-  fetch(backProxy + "/accounts?sId=" + getCookie("sId"), {
+    "<option value='' disabled selected hidden class='bop'>Bank Account</option>";
+  fetch(backProxy + "/accounts", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -33,10 +32,10 @@
 
           function setter(item) {
             bank_options +=
-              "<option value=" + item.id + ">" + item.name + "</option>";
+              "<option value=" + item.id + ">" + item.nickName + "</option>";
           }
           bank.innerHTML = bank_options;
-          bop = body.querySelector(".bop");
+          // bop = body.querySelector(".bop");
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -51,7 +50,7 @@
             Command: toastr["info"]("No Bank Accounts");
           }
           bank.innerHTML = bank_options;
-          bop = body.querySelector(".bop");
+          // bop = body.querySelector(".bop");
         });
       } else {
         console.error("Error:", response.status);
@@ -63,7 +62,7 @@
           bank_options +=
             "<option value='' disabled >No Bank Accounts</option>";
         bank.innerHTML = bank_options;
-        bop = body.querySelector(".bop");
+        // bop = body.querySelector(".bop");
       }
     })
     .catch((error) => {
@@ -76,7 +75,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    //   sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -84,7 +82,7 @@
     tText.innerHTML = data["sin"]["tText"];
     date.placeholder = data["sin"]["date"];
     time.placeholder = data["sin"]["time"];
-    bop.textContent = data["sin"]["bop"];
+    // bop.textContent = data["sin"]["bop"];
     bText.innerHTML = data["sin"]["bText"];
     btn.textContent = data["sin"]["btn"];
     setGreeting();
@@ -95,7 +93,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    //   sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -103,7 +100,7 @@
     tText.innerHTML = data["en"]["tText"];
     date.placeholder = data["en"]["date"];
     time.placeholder = data["en"]["time"];
-    bop.textContent = data["en"]["bop"];
+    // bop.textContent = data["en"]["bop"];
     bText.innerHTML = data["en"]["bText"];
     btn.textContent = data["en"]["btn"];
     setGreeting();
@@ -159,12 +156,24 @@
       date.focus();
     }
 
-    if (bankStatus && dateStatus && timeStatus) {
+    var dateTime = false;
+    var selected_time = new Date(date.value + " " + time.value);
+    var now = new Date();
+
+    if (selected_time > now) dateTime = true;
+    else {
+      if (lang == "sin") {
+        timeError.textContent = "කාලය අනාගතයේ විය යුතුය";
+        Command: toastr["error"]("කාලය අනාගතයේ විය යුතුය");
+      } else {
+        time.textContent = "Time must be in future";
+        Command: toastr["error"]("Time must be in future");
+      }
+    }
+
+    if (bankStatus && dateStatus && timeStatus && dateTime) {
       var formData = {
-        // collection_id: sessionStorage.getItem("id"),
-        // supplier_id: sessionStorage.getItem("sId"),
         collection_id: getCookie("id"),
-        supplier_id: getCookie("sId"),
         date: date.value,
         time: time.value,
         account_id: bank.value,
@@ -218,6 +227,16 @@
       } else {
         dateError.textContent = "Date must be in the future";
         Command: toastr["warning"]("Date must be in the future");
+      }
+    } else if (checkTwoWeeks(date.value)) {
+      if (lang == "sin") {
+        dateError.textContent = "දිනය ඉදිරි සති දෙක තුළ විය යුතුය";
+        Command: toastr["warning"]("දිනය ඉදිරි සති දෙක තුළ විය යුතුය");
+      } else {
+        dateError.textContent = "The date should be within the next two weeks";
+        Command: toastr["warning"](
+          "The date should be within the next two weeks"
+        );
       }
     } else {
       dateError.textContent = "";
@@ -279,6 +298,14 @@ function checkDate(date) {
   var selectedDate = new Date(date);
   var now = new Date();
   now.setDate(now.getDate() - 1);
+  if (selectedDate > now) return true;
+  else return false;
+}
+
+function checkTwoWeeks(date) {
+  var selectedDate = new Date(date);
+  var now = new Date();
+  now.setDate(now.getDate() + 14);
   if (selectedDate > now) return true;
   else return false;
 }

@@ -5,6 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
 
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Jayasinghe Oil Mills" />
+    <meta
+      name="description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      name="keywords"
+      content="JOM, Jayasinghe Oil Mills, Coconut Oil, Sri Lanaka"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="og:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="og:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta property="og:image" content="../common/img/logo-manifest.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="../common/img/logo-manifest.jpg" />
+    <meta property="twitter:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="twitter:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="twitter:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta property="twitter:image" content="../common/img/logo-manifest.jpg" />
+
+    <!-- icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../common/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../common/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../common/img/favicon-16x16.png"
+    />
+
+    <!-- manifest -->
+    <link rel="manifest" href="../site.webmanifest" />
+
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
@@ -16,6 +69,15 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../../common/func.js"></script>
+    <script src="./auth.js"></script>
   </head>
 
   <body>
@@ -41,10 +103,11 @@
     </div>
 
     <nav class="sidebar"></nav>
+    <i class="fa fa-bars" aria-hidden="true"></i>
 
     <section class="home">
       <div class="notification">
-        <span class="count">5</span>
+        <span class="count"></span>
         <span class="bell do-not">
           <i class="far fa-bell do-not"></i>
         </span>
@@ -57,13 +120,15 @@
         <div class="en active">En</div>
       </div>
 
-      <div class="text">Dashboard</div>
+      <div class="text"></div>
 
-      <div class="container">
+      <div class="supplier-container container">
         <div class="widgets">
           <div class="widget-left widget">
             <div class="w-icon">
-              <span><i class="fa-solid fa-building-columns"></i></span>
+              <span
+                ><i class="fa-solid fa-arrow-right-arrow-left fa-rotate-90"></i
+              ></span>
             </div>
             <div class="w-text">
               <p class="w-title w1"></p>
@@ -72,7 +137,7 @@
           </div>
           <div class="widget-right widget">
             <div class="w-icon">
-              <span><i class="fa-solid fa-building-columns"></i></span>
+              <span><i class="fa-solid fa-coins"></i></span>
             </div>
             <div class="w-text">
               <p class="w-title w2"></p>
@@ -81,59 +146,175 @@
           </div>
         </div>
 
+        <div class="action-bar" style="display: none">
+          <div class="action-content">
+            <p class="action-text">
+              Collected coconut amount for supply
+              <span class="action-id"></span> is
+              <span class="bold action-amount"></span>. Collector is waiting for
+              your response.
+            </p>
+            <p class="action-value bold"></p>
+          </div>
+          <button class="action-button form-button">
+            Respond to Collector
+          </button>
+        </div>
+
         <div class="layer">
           <div class="table-heading">
             <h2 class="c1"></h2>
-            <p class="c2"></p>
-          </div>
-          <table class="overview-tables ongoing-supply-table">
-            <thead class="thead">
-              <tr>
-                <th>Supply ID</th>
-                <th>Collection Date</th>
-                <th>Time</th>
-                <th>Amount</th>
-                <th>Supply Status</th>
-              </tr>
-            </thead>
 
-            <tbody class="tbody1"></tbody>
-          </table>
-          <p class="reject-note c3"></p>
+            <div>
+              <p class="c2"></p>
+
+              <div class="search-filter search-filter-1">
+                <div class="search-wrapper">
+                  <div class="search-box search-box1">
+                    <input type="text" class="search1" placeholder=" " />
+                    <span></span>
+                  </div>
+                </div>
+
+                <div class="filter filter-dropdown">
+                  <div id="searchBox">
+                    <i class="fas fa-filter" id="filter-icon"></i>
+                    <select class="dropdown filter-1">
+                      <option default hidden class="op0">Select Option</option>
+                      <option value="">All</option>
+                      <option value="ready">Ready to pick</option>
+                      <option value="accept">Accepted</option>
+                      <option value="reject">Rejected</option>
+                      <option value="pending">Pending</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table1">
+            <table class="overview-tables ongoing-supply-table">
+              <thead class="thead">
+                <tr>
+                  <th class="hide">Supply ID</th>
+                  <th>Collection Date</th>
+                  <th>Collection Time</th>
+                  <th class="hide">Amount</th>
+                  <th class="hide">Method</th>
+                  <th>Supply Status</th>
+                </tr>
+              </thead>
+
+              <tbody class="tbody1"></tbody>
+            </table>
+          </div>
+          <p class="reject-note c3" style="display: none"></p>
           <p class="ongoing-error" style="display: none"></p>
         </div>
 
         <div class="layer">
-          <div class="heading-button">
-            <div class="table-heading">
-              <h2 class="c4"></h2>
+          <div class="table-heading">
+            <h2 class="c4"></h2>
+            <div>
               <p class="c5"></p>
+
+              <div class="search-filter search-filter-2">
+                <div class="search-wrapper">
+                  <div class="search-box search-box2">
+                    <input type="text" class="search2" placeholder=" " />
+                    <span></span>
+                  </div>
+                </div>
+
+                <div class="filter filter-dropdown">
+                  <div id="searchBox">
+                    <i class="fas fa-filter" id="filter-icon"></i>
+                    <select class="dropdown filter-2">
+                      <option default hidden class="op0">Select Option</option>
+                      <option value="">All</option>
+                      <option value="paid">Paid</option>
+                      <option value="pending">Pending</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <table class="overview-tables past-supply-table">
-            <thead class="thead">
-              <tr>
-                <th>Supply ID</th>
-                <th>Collection Date</th>
-                <th>Amount</th>
-                <th>Value</th>
-                <th>Payment Status</th>
-              </tr>
-            </thead>
+          <div class="table2">
+            <table class="overview-tables past-supply-table">
+              <thead class="thead">
+                <tr>
+                  <th>Supply ID</th>
+                  <th class="hide">Collected Date</th>
+                  <th>Amount</th>
+                  <th class="hide">Method</th>
+                  <th>Value</th>
+                  <th>Payment <status class="hide">Status</status></th>
+                </tr>
+              </thead>
 
-            <tbody class="tbody2"></tbody>
-          </table>
+              <tbody class="tbody2"></tbody>
+            </table>
+          </div>
           <p class="past-error" style="display: none"></p>
         </div>
+
+        <div class="layer layer-3">
+          <div class="table-heading">
+            <h2 class="c6"></h2>
+            <div>
+              <p class="c7"></p>
+
+              <div class="search-filter search-filter-3">
+                <div class="search-wrapper">
+                  <div class="search-box search-box3">
+                    <input type="text" class="search3" placeholder=" " />
+                    <span></span>
+                  </div>
+                </div>
+
+                <div class="filter filter-dropdown">
+                  <div id="searchBox">
+                    <i class="fas fa-filter" id="filter-icon"></i>
+                    <select class="dropdown filter-3">
+                      <option default hidden class="op0">Select Option</option>
+                      <option value="">All</option>
+                      <option value="pickup">Pickup</option>
+                      <option value="yard">Yard</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table3">
+            <table class="overview-tables reject-supply-table">
+              <thead class="thead">
+                <tr>
+                  <th>Supply ID</th>
+                  <th class="hide">Reqested Date</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Supply <status class="hide">Status</status></th>
+                </tr>
+              </thead>
+
+              <tbody class="tbody3"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
       </div>
     </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="../../common/func.js"></script>
     <script src="./nav/load-nav.js"></script>
     <script src="./notifications/load-notifications.js"></script>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
     <script src="../common/loader.js"></script>
   </body>
 </html>

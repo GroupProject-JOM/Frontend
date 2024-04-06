@@ -2,8 +2,8 @@
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
-    dTitle = body.querySelector(".distibutor-title"),
-    dText = body.querySelector(".distibutor-text"),
+    dTitle = body.querySelector(".salesmg-title"),
+    dText = body.querySelector(".salesmg-text"),
     oId = body.querySelector(".oId"),
     oName = body.querySelector(".oName"),
     oEmail = body.querySelector(".oEmail"),
@@ -19,7 +19,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -35,7 +34,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -61,20 +59,17 @@
     },
   };
 
-  fetch(
-    backProxy + "/outlet?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/outlet?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          oId.textContent = data.outlet.id;
+          oId.textContent = "O/D/" + data.outlet.id;
           oName.textContent = data.outlet.name;
           oEmail.textContent = data.outlet.email;
           oPhone.textContent = data.outlet.phone;
@@ -110,7 +105,7 @@
   //delete outlet
   del.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -131,20 +126,13 @@
       cancelButtonColor: cancelButtonColor,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          backProxy +
-            "/outlet?id=" +
-            getCookie("id") +
-            "&emp=" +
-            getCookie("sId"),
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        fetch(backProxy + "/outlet?id=" + getCookie("id"), {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
           .then((response) => {
             if (response.status == 200) {
               response.json().then((data) => {
@@ -152,7 +140,7 @@
               });
               if (lang == "sin") {
                 var title = "මකා දමන ලදී!",
-                  text = "අලෙවිසැල මකා ඇත.";
+                  text = "අලෙවිසැල ඉවත් කර ඇත.";
               } else {
                 var title = "Deleted!",
                   text = "Outlet has been deleted.";
@@ -162,7 +150,7 @@
                 title: title,
                 text: text,
                 icon: "success",
-                confirmButtonColor : confirmButtonColor,
+                confirmButtonColor: confirmButtonColor,
               }).then((response) => {
                 window.location.href = "./";
               });
@@ -171,7 +159,7 @@
                 console.log(data.message);
               });
               if (lang == "sin")
-                Command: toastr["error"]("Outlet මකා දැමිය නොහැක");
+                Command: toastr["error"]("අලෙවිසැල මකා දැමිය නොහැක");
               else Command: toastr["error"]("Unable to Delete Outlet");
             } else if (response.status === 401) {
               response.json().then((data) => {

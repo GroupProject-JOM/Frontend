@@ -46,7 +46,8 @@ input {
 }
 
 input::placeholder {
-  color: #a9a9a9;
+  color: var(--input-border);
+  font-size: 0.8rem;
 }
 
 textarea:focus,
@@ -55,6 +56,10 @@ input:focus {
   border-bottom: 1px solid #484848;
   transition: var(--tran-05);
 }
+
+
+
+
 
 .login-form input {
   width: 25rem;
@@ -76,6 +81,8 @@ input:focus {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 7px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .sidebar-signin {
@@ -86,6 +93,10 @@ input:focus {
   color: var(--text-color);
 }
 
+.signup-home {
+  grid-column-start: 2;
+}
+
 .signup-name section {
   margin: 0;
   padding: 0;
@@ -93,7 +104,7 @@ input:focus {
 
 .signup-form input,
 .check-email input {
-  font-size: 15px;
+  font-size: 0.9rem;
   padding: 0;
 }
 
@@ -108,20 +119,26 @@ input:focus {
 .address {
   color: var(--input-border-focus);
   font-weight: 600;
-  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+textarea {
+  /* padding: 5px 5px; */
+  padding-top: 10px;
+  border: none;
+  resize: none;
+  height: 30px;
+  border-bottom: 1px solid var(--input-border);
+  color: var(--input-border-focus);
+  font-size: 0.8rem;
+  font-weight: 400 !important;
+  width: 25vw;
+
+  /* color: red; */
 }
 
 .address1 {
   margin-top: 5px;
-}
-
-.signup-form div {
-  display: flex;
-  width: 40vw;
-  gap: 20px;
-  /* flex-wrap: wrap; */
-  /* width: fit-content; */
-  justify-content: space-between;
 }
 
 .buttons {
@@ -131,11 +148,15 @@ input:focus {
   flex-wrap: wrap;
 }
 
-
 .buttons .next,
 .buttons .skip {
   margin-top: 50px;
 }
+.signup-basic .next{
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
 
 .short {
   width: 17vw;
@@ -149,7 +170,7 @@ input:focus {
   color: var(--input-border-focus);
   font-size: 25px;
   font-weight: 600;
-  padding-bottom: 20px;
+  margin-bottom: 40px;
 }
 .signup-home .text {
   font-size: 30px;
@@ -159,7 +180,9 @@ input:focus {
 }
 .signup-container {
   display: grid;
-  grid-template-areas: "auto auto";
+  /* grid-template-areas: "auto auto"; */
+  grid-template-columns: 30vw 60vw;
+  gap: 9vw;
 }
 
 .side {
@@ -168,6 +191,7 @@ input:focus {
   height: 100vh;
   text-align: center;
   color: var(--text-color);
+  position: fixed;
 }
 
 .section-home {
@@ -247,7 +271,7 @@ input:focus {
   padding-bottom: 20px;
 }
 
-.location-form input,
+/* .location-form input, */
 .verify-form input {
   width: 40vw;
   margin: 35px 0 0 0;
@@ -280,10 +304,11 @@ input:focus {
   margin: 0;
   position: relative;
   top: 10%;
+  /* z-index: -1; */
 }
 
 .signup5-content {
-  top: 30%;
+  top: 30vh;
 }
 
 .menu-line6 {
@@ -342,23 +367,165 @@ input:focus {
   position: relative;
   top: -8px;
   color: #484848;
+  float: right;
 }
 
 .validate {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   display: none;
+  text-align: center;
+  cursor: pointer;
+  /* color: var(--reject-red); */
+}
+
+.blink{
+  animation-name:blink;
+  width:280px;
+  animation-duration:2s;
+  animation-timing-function:ease-in;
+  animation-iteration-count:Infinite;
+}
+
+@keyframes blink{
+  0%{color:var(--input-border);}
+  50%{color:var(--reject-red);}
+  100%{color:var(--input-border);}
 }
 
 .text {
   display: none;
 }
 
-.signup3-container .buttons,
+
 .signup4-container .buttons {
   margin-top: 60px;
 }
+
+.signup3-container .buttons{
+  margin-top: 2rem;
+}
+
+.signup3-container input,
+.signup4-container input {
+  margin-top: 0;
+  width: 25vw;
+}
+
+.signup3-container label,
+.signup4-container label {
+  padding: 20px 20px 20px 0;
+  display: inline-block;
+}
+
+.signup3-container .add-label,
+.signup4-container .add-label {
+  float: left;
+  width: 30%;
+  margin-top: 6px;
+}
+
+.signup3-container .add-input,
+.signup4-container .add-input {
+  float: left;
+  width: 70%;
+  margin-top: 20px;
+  padding-top: 0;
+}
+
+.signup3-container .row::after,
+.signup4-container .row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.signup-basic .short-section {
+  display: flex;
+  gap: 5vw;
+}
+
+.signup-basic label{
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.signup-basic input {
+  margin-top: 10px;
+  color: var(--input-border);
+  font-weight: 500;
+}
+
+.signup-basic input:focus {
+  color: var(--input-border);
+  font-weight: 500;
+  background-color: white;
+}
+
+.verify-container .form-heading-text{
+  font-size: 1rem;
+}
+
+.verify-container .form-heading-text1{
+  color: var(--primary-color);
+}
+
+
+.verify-container .form-heading-text2{
+  font-size: 0.8rem;
+}
+
+.verify-container label {
+display: block;
+font-weight: 500;
+margin-top: 10px;
+}
+
+.verify-container input{
+  margin-top: 10px;
+}
+
+.signup4-container .form-heading-text, .signup3-container .form-heading-text{
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+
+.signup4-container .form-heading, .signup3-container .form-heading{
+  margin-bottom: 0;
+}
+
+.signup-basic .email-label{
+  margin-top: 10px;
+}
+
+/* textarea .address{
+  font-weight: 500;
+} */
+
+
+.location-pick-bt {
+  display: flex;
+  justify-content: center;
+  width: 17rem;
+  font-size: 13px;
+  border-radius: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.signup5-content .form-heading-text{
+  font-size: 15px;
+}
+
+.signup5-content .buttons .next{
+  margin-top: 20px;
+}
+
+
+
+
 
 @media only screen and (max-device-width: 900px) {
   .sidebar-photo {
@@ -392,12 +559,12 @@ input:focus {
     /* display: flex;
     position: absolute; */
   }
-  
+
   .signup-home {
     /* margin-top: 0px; */
     margin-right: 6vw;
   }
-  
+
   .signup-home .buttons {
     margin-top: 0px;
   }
@@ -405,7 +572,7 @@ input:focus {
   .signup4-container .signup-form {
     margin-bottom: 20px;
   }
-  
+
   .signup3-container .buttons,
   .signup4-container .buttons,
   .signup4-container .buttons {
@@ -413,45 +580,45 @@ input:focus {
     margin-left: -3vw;
     margin-top: 0px;
   }
-  
+
   .signup-basic .next {
     margin-top: 40px;
   }
-  
+
   .signup-basic .signup {
     align-items: center;
   }
-  
+
   .signup-content {
     top: 0;
   }
-  
+
   .signup5-content {
     top: 50%;
     margin-right: 7px;
   }
-  
+
   .side {
     display: none;
   }
-  
+
   .signup-container {
     margin-left: 10%;
   }
-  
+
   .signup {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .menu-line7 {
     display: block;
     font-size: 13px;
     margin-top: 1rem;
     margin-bottom: 2rem;
   }
-  
+
   .menu-line7 a {
     font-weight: 500;
   }
@@ -459,29 +626,29 @@ input:focus {
   .text {
     display: block;
   }
-  
+
   .signup .next {
     margin-top: 0px;
   }
-  
+
   .verify-container .next {
     margin-top: 50px;
     /* position: absolute; */
     align-self: center;
   }
-  
+
   .location-form input,
   .verify-form input {
     width: 80vw;
     margin: 35px 0 0 0;
   }
-  
+
   .correct-email,
   .correct-phone {
     width: 80vw;
     margin: 35px 0;
   }
-  
+
   .buttons .next,
   .buttons .skip,
   .signup5-container .next {

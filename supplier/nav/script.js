@@ -1,14 +1,3 @@
-// if (sessionStorage.getItem("page") != "supplier") {
-//   if (
-//     sessionStorage.getItem("page") == null ||
-//     sessionStorage.getItem("page").length === 0
-//   ) {
-//     window.location.href = frontProxy + "/signin.html";
-//   } else {
-//     window.location.href = frontProxy + "/" + sessionStorage.getItem("page");
-//   }
-// }
-
 (() => {
   let loaded = false;
 
@@ -34,11 +23,14 @@
       newSupply = body.querySelector(".newSupply"),
       address = body.querySelector(".address"),
       payment = body.querySelector(".payment"),
-      report = body.querySelector(".report"),
+      reports = body.querySelector(".reports"),
       chat = body.querySelector(".chat"),
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
-      logout = body.querySelector(".logout");
+      logout = body.querySelector(".logout"),
+      profile = body.querySelector(".profile"),
+      bars = body.querySelector(".fa-bars"),
+      navHide = body.querySelector(".nav-hide");
 
     newSupply.addEventListener("click", () => {
       pageLoading();
@@ -49,7 +41,7 @@
     payment.addEventListener("click", () => {
       pageLoading();
     });
-    report.addEventListener("click", () => {
+    reports.addEventListener("click", () => {
       pageLoading();
     });
     chat.addEventListener("click", () => {
@@ -58,17 +50,26 @@
     dashboard.addEventListener("click", () => {
       pageLoading();
     });
+    profile.addEventListener("click", () => {
+      pageLoading();
+    });
     logout.addEventListener("click", () => {
       signout();
     });
 
-    // Uname.textContent = sessionStorage.getItem("name");
-    Uname.textContent = getCookie("name");
+    if (getCookie("name") != null) Uname.textContent = getCookie("name");
+    else {
+      document.cookie =
+        "name=" + getPayload(getCookie("jwt")).name + "; path=/";
+      Uname.textContent = getCookie("name");
+    }
 
     newSupply.href = frontProxy + "/supplier/supply";
     address.href = frontProxy + "/supplier/address/view-all.html";
     payment.href = frontProxy + "/supplier/payment/view-all.html";
     chat.href = frontProxy + "/supplier/chat/chat.html";
+    reports.href = frontProxy + "/supplier/reports/report.html";
+    profile.href = frontProxy + "/supplier/profile/view.html";
     dashboard.href = frontProxy + "/supplier/";
 
     if (!loaded && toggle && modeSwitch) {
@@ -78,6 +79,11 @@
 
     toggle.addEventListener("click", () => {
       sidebar.classList.toggle("close");
+    });
+
+    navHide.addEventListener("click", () => {
+      sidebar.classList.remove("sidebar-active");
+      bars.style.display = "block";
     });
 
     modeSwitch.addEventListener("click", () => {
@@ -126,11 +132,11 @@
         l0: "පරිශීලක ක්‍රියා",
         l1: "නව සැපයුම්",
         l2: "ලිපින",
-        l3: "ගෙවීම්",
+        l3: "බැංකු ගිණුම්",
         l4: "වාර්තා",
         l5: "කෙටි පණිවිඩ",
         l6: "ප්‍රධාන ක්‍ර්‍රියාවන්",
-        l7: "පැතිකඩ බලන්න",
+        l7: "ගිණුම බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
         l11: "උපකරණ පුවරුව",
       },
@@ -138,7 +144,7 @@
         l0: "USER ACTIONS",
         l1: "New Supplies",
         l2: "Addresses",
-        l3: "Payments",
+        l3: "Bank Accounts",
         l4: "Reports",
         l5: "Chat",
         l6: "MAIN ACTIONS",
@@ -147,6 +153,20 @@
         l11: "Dashboard",
       },
     };
+
+    bars.addEventListener("click", () => {
+      sidebar.classList.add("sidebar-active");
+      sidebar.style.display = "block";
+      bars.style.display = "none";
+      if (window.innerWidth <= 718) {
+        document.body.addEventListener("click", (e) => {
+          if (!sidebar.contains(e.target) && !bars.contains(e.target)) {
+            sidebar.classList.remove("sidebar-active");
+            bars.style.display = "block";
+          }
+        });
+      }
+    });
 
     setGreeting();
     checkLng();
@@ -170,9 +190,10 @@ window.addEventListener("load", (e) => {
       "supply",
       "address",
       "payment",
-      "report",
+      "reports",
       "chat",
       "index",
+      "profile",
     ];
     if (!loaded && pathname) {
       loaded = true;

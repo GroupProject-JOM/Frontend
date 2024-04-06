@@ -11,9 +11,26 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     th1 = body.querySelector(".th1"),
     th2 = body.querySelector(".th2"),
     tbody = body.querySelector(".tbody"),
+    searchBar = body.querySelector(".search"),
+    searchFilter = body.querySelector(".search-filter"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
+
+  var searchBa = document.querySelectorAll(
+    '.search-box input[type="text"] + span'
+  );
+
+  searchBa.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar.value.toUpperCase(), addressTable);
+    });
+  });
+
+  searchBar.addEventListener("keyup", () => {
+    search(searchBar.value.toUpperCase(), addressTable);
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -58,7 +75,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       th1: "වතුයායේ නම නම",
       th2: "ප්රදේශය/කලාපය",
       btn: "අලුතින් එකතු කරන්න",
-      tError: "ලිපිනයන් නැත",
+      tError: "**ලිපිනයන් නැත",
     },
     en: {
       sTitle: "Your Addresses",
@@ -66,7 +83,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       th1: "Estate Name",
       th2: "Area/Region",
       btn: "Add New",
-      tError: "No Addresses",
+      tError: "**You don't have any locations saved",
     },
   };
 
@@ -75,7 +92,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   function getData() {
     var row = "";
     // fetch(backProxy + "/estates?sId=" + sessionStorage.getItem("sId"), {
-    fetch(backProxy + "/estates?sId=" + getCookie("sId"), {
+    fetch(backProxy + "/estates", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +104,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           response.json().then((data) => {
             let arr = data.list;
             arr.forEach(data_to_table);
-
+                        
             function data_to_table(item) {
               row +=
                 "<tr id=" +
@@ -119,7 +136,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             deletes.forEach((del) => {
               del.addEventListener("click", () => {
                 if (lang == "sin") {
-                  var title = "ඔයාට විශ්වාස ද?",
+                  var title = "ඔබට විශ්වාස ද?",
                     text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
                     confirmButtonText = "ඔව්, එය මකන්න!",
                     cancelButtonText = "අවලංගු කරන්න";
@@ -140,20 +157,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   cancelButtonColor: cancelButtonColor,
                 }).then((result) => {
                   if (result.isConfirmed) {
-                    fetch(
-                      backProxy +
-                        "/estate?sId=" +
-                        getCookie("sId") +
-                        "&id=" +
-                        del.parentElement.id,
-                      {
-                        method: "DELETE",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        credentials: "include",
-                      }
-                    )
+                    fetch(backProxy + "/estate?id=" + del.parentElement.id, {
+                      method: "DELETE",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      credentials: "include",
+                    })
                       .then((response) => {
                         if (response.status == 200) {
                           response.json().then((data) => {
@@ -170,7 +180,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                               title: title,
                               text: text,
                               icon: "success",
-                              confirmButtonColor : confirmButtonColor,
+                              confirmButtonColor: confirmButtonColor,
                             }).then((response) => {
                               getData();
                             });
@@ -207,6 +217,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             addressTable.style.display = "none";
             if (lang == "sin") Command: toastr["info"]("ලිපිනයන් නැත");
             else Command: toastr["info"]("No Addresses");
+            
+            searchFilter.style.display = "none";
           });
         } else {
           console.error("Error:", response.status);

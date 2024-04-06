@@ -76,16 +76,17 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      sTitle: "නව වතු ස්ථානය එක් කරන්න",
+      sTitle: "නව වතුයායක් එක් කරන්න",
       sText:
-        "නව වත්තක් සඳහා තොරතුරු එක් කරන්න. <br />ඔබට ඕනෑම වේලාවක උපකරණ පුවරුව > ලිපිනයන් හිදී මෙම තොරතුරු සංස්කරණය කළ හැක",
-      ename: "වතු නම ඇතුලත් කරන්න",
+        "නව වතුයායක් සඳහා තොරතුරු එක් කරන්න. <br />ඔබට ඕනෑම වේලාවක උපකරණ පුවරුව > ලිපිනයන් හිදී මෙම තොරතුරු සංස්කරණය කළ හැක",
+      ename: "වතුයායේ නම ඇතුලත් කරන්න",
       address: "ලිපිනය ඇතුලත් කරන්න",
       area: "ප්රදේශය ඇතුල් කරන්න",
-      t1: "වතු ලිපිනය",
-      pText: "ඔබගේ සැපයුම pin මගින් සලකුණු කර ඇති ඉහත ස්ථානයෙන් ලබා ගනී. කරුණාකර එය වැරදි ස්ථානයේ තිබේ නම් පින් එක නැවත ස්ථානගත කරන්න.",
+      t1: "වතුයායේ ලිපිනය",
+      pText:
+        "ඔබගේ සැපයුම pin මගින් සලකුණු කර ඇති ඉහත ස්ථානයෙන් ලබා ගනී. කරුණාකර එය වැරදි ස්ථානයේ තිබේ නම් පින් එක නැවත ස්ථානගත කරන්න.",
       confirm: "තහවුරු කරන්න",
-      eLabel: "වතු නම",
+      eLabel: "වතුයායේ නම",
       addLabel: "ලිපිනය",
       areaLabel: "ප්රදේශය",
       addbtn: "එකතු කරන්න",
@@ -99,7 +100,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       address: "Enter address",
       area: "Enter area",
       t1: "Estate Address",
-      pText: "Your supply will be picked-up from the above location marked by the pin. please relocate the pin is it's at the incorrect location.",
+      pText:
+        "Your supply will be picked-up from the above location marked by the pin. please relocate the pin is it's at the incorrect location.",
       confirm: "Confirm",
       eLabel: "Estate Name",
       addLabel: "Address",
@@ -115,7 +117,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   function ename_status() {
     if (typeof ename.value === "string" && ename.value.trim().length === 0) {
-      if (lang == "sin") enameError.textContent = "වතු නම හිස් විය නොහැක";
+      if (lang == "sin") enameError.textContent = "වතුයායේ නම හිස් විය නොහැක";
       else enameError.textContent = "Estate name cannot be empty";
       enameStatus = false;
       return false;
@@ -178,8 +180,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     if (enameStatus && addressStatus && areaStatus) {
       var formData = {
-        // supplier_id: sessionStorage.getItem("sId"),
-        supplier_id: getCookie("sId"),
         estate_name: ename.value,
         estate_location: location,
         estate_address: address.value,
@@ -233,37 +233,41 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   let loc = "",
     ar = "";
 
-  function getLocation() {
+  let lat = 6.9270786;
+  let long = 79.861243;
+  let location = "";
+
+  /* function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
-
-  let lat = 6.9270786;
-  let long = 79.861243;
-  let location= "";
 
   function showPosition(position) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
   }
 
-  getLocation();
+  getLocation(); */
 
   function initMap() {
     // console.log("lat " + lat);
     // console.log("lng " + long);
-    const live_loc = { lat: lat, lng: long };
+    navigator.geolocation.getCurrentPosition((position) => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      const live_loc = { lat: lat, lng: long };
 
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 15,
-      center: live_loc,
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: live_loc,
+      });
+      // This event listener will call addMarker() when the map is clicked.
+      map.addListener("click", (event) => {
+        addMarker(event.latLng);
+      });
+      addMarker(live_loc);
     });
-    // This event listener will call addMarker() when the map is clicked.
-    map.addListener("click", (event) => {
-      addMarker(event.latLng);
-    });
-    addMarker(live_loc);
   }
 
   // Adds a marker to the map and push to the array.
@@ -296,12 +300,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         loc = response.results[0].formatted_address;
         // ar = response.results[0].address_components[0].short_name;
         let arr = loc.split(",");
-        if(arr.length>2) ar = arr[arr.length - 2].slice(1);
+        if (arr.length > 2) ar = arr[arr.length - 2].slice(1);
         else ar = arr[arr.length - 2];
-        lat =response.results[0].geometry.location.lat ;
-        long =response.results[0].geometry.location.lng ;
-        location = lat+" "+long
-        
+        lat = response.results[0].geometry.location.lat;
+        long = response.results[0].geometry.location.lng;
+        location = lat + " " + long;
       })
       .catch((err) => console.error(err));
   }

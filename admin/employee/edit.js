@@ -11,6 +11,7 @@ let gendr, bDay;
     email = body.querySelector(".email"),
     phone = body.querySelector(".phone"),
     phoneError = body.querySelector(".phone-error"),
+    address = body.querySelector(".address"),
     address1 = body.querySelector(".address1"),
     address1Error = body.querySelector(".address1-error"),
     address2 = body.querySelector(".address2"),
@@ -27,7 +28,16 @@ let gendr, bDay;
     op3 = body.querySelector(".op3"),
     op4 = body.querySelector(".op4"),
     op5 = body.querySelector(".op5"),
-    btn = body.querySelector(".form-button");
+    btn = body.querySelector(".form-button"),
+    fnameLabel = body.querySelector(".fname-label"),
+    lnameLabel = body.querySelector(".lname-label"),
+    emailLabel = body.querySelector(".email-label"),
+    phoneLabel = body.querySelector(".phone-label"),
+    nicLabel = body.querySelector(".nic-label"),
+    roleLabel = body.querySelector(".role-label"),
+    address1Label = body.querySelector(".address1-label"),
+    address2Label = body.querySelector(".address2-label"),
+    address3Label = body.querySelector(".address3-label");
 
   var fnameStatus = false,
     lnameStatus = false,
@@ -52,6 +62,7 @@ let gendr, bDay;
     lname.placeholder = data["sin"]["lname"];
     email.placeholder = data["sin"]["email"];
     phone.placeholder = data["sin"]["phone"];
+    address.textContent = data["sin"]["address"];
     address1.placeholder = data["sin"]["address1"];
     address2.placeholder = data["sin"]["address2"];
     address3.placeholder = data["sin"]["address3"];
@@ -63,6 +74,16 @@ let gendr, bDay;
     op4.textContent = data["sin"]["op4"];
     op5.textContent = data["sin"]["op5"];
     btn.textContent = data["sin"]["btn"];
+    fnameLabel.textContent = data["sin"]["fnameLabel"];
+    lnameLabel.textContent = data["sin"]["lnameLabel"];
+    emailLabel.textContent = data["sin"]["emailLabel"];
+    phoneLabel.textContent = data["sin"]["phoneLabel"];
+    nicLabel.textContent = data["sin"]["nicLabel"];
+    roleLabel.textContent = data["sin"]["roleLabel"];
+    address1Label.textContent = data["sin"]["address1Label"];
+    address2Label.textContent = data["sin"]["address2Label"];
+    address3Label.textContent = data["sin"]["address3Label"];
+
     setGreeting();
   });
 
@@ -79,6 +100,7 @@ let gendr, bDay;
     lname.placeholder = data["en"]["lname"];
     email.placeholder = data["en"]["email"];
     phone.placeholder = data["en"]["phone"];
+    address.textContent = data["en"]["address"];
     address1.placeholder = data["en"]["address1"];
     address2.placeholder = data["en"]["address2"];
     address3.placeholder = data["en"]["address3"];
@@ -90,6 +112,15 @@ let gendr, bDay;
     op4.textContent = data["en"]["op4"];
     op5.textContent = data["en"]["op5"];
     btn.textContent = data["en"]["btn"];
+    fnameLabel.textContent = data["en"]["fnameLabel"];
+    lnameLabel.textContent = data["en"]["lnameLabel"];
+    emailLabel.textContent = data["en"]["emailLabel"];
+    phoneLabel.textContent = data["en"]["phoneLabel"];
+    nicLabel.textContent = data["en"]["nicLabel"];
+    roleLabel.textContent = data["en"]["roleLabel"];
+    address1Label.textContent = data["en"]["address1Label"];
+    address2Label.textContent = data["en"]["address2Label"];
+    address3Label.textContent = data["en"]["address3Label"];
     setGreeting();
   });
 
@@ -98,9 +129,10 @@ let gendr, bDay;
       fh: "සේවක විස්තර සංස්කරණය කරන්න",
       fname: "මුල් නම",
       lname: "අවසන් නම",
-      email: "ඊතැපැල් ලිපිනය",
+      email: "විද්‍යුත් තැපැල් ලිපිනය",
       phone: "දුරකථන අංකය",
-      address1: "ලිපින පේළි 1",
+      address: "පුද්ගලික ලිපිනය",
+      address1: "ලිපිනයේ පළමු පේළිය",
       address2: "වීදිය",
       address3: "නගරය",
       nic: "ජාතික හැඳුනුම්පත් අංකය",
@@ -111,6 +143,15 @@ let gendr, bDay;
       op4: "නිෂ්පාදන කළමනාකරු",
       op5: "අලෙවි කළමනාකරු",
       btn: "වෙනස්කම් සුරකින්න",
+      fnameLabel: "මුල් නම",
+      lnameLabel: "අවසන් නම",
+      emailLabel: "විද්‍යුත් තැපැල් ලිපිනය",
+      phoneLabel: "දුරකථන අංකය",
+      nicLabel: "ජාතික හැඳුනුම්පත් අංකය",
+      roleLabel: "තනතුරු",
+      address1Label: "ලිපිනයේ පළමු පේළිය",
+      address2Label: "වීදිය",
+      address3Label: "නගරය",
     },
     en: {
       fh: "Edit Employee Details",
@@ -118,6 +159,7 @@ let gendr, bDay;
       lname: "Last Name",
       email: "Email Address",
       phone: "Phone Number",
+      address: "Personal Address",
       address1: "Address Line-1",
       address2: "Street",
       address3: "City",
@@ -129,6 +171,15 @@ let gendr, bDay;
       op4: "Production Manager",
       op5: "Sales Manager",
       btn: "Save Changes",
+      fnameLabel: "First Name",
+      lnameLabel: "Last Name",
+      emailLabel: "Email Address",
+      phoneLabel: "Phone Number",
+      nicLabel: "NIC Number",
+      roleLabel: "Designation",
+      address1Label: "Address Line 1",
+      address2Label: "Street",
+      address3Label: "City",
     },
   };
 
@@ -197,7 +248,6 @@ let gendr, bDay;
     ) {
       var formData = {
         eId: getCookie("id"),
-        emp: getCookie("sId"),
         first_name: fname.value,
         last_name: lname.value,
         phone: phone.value,
@@ -239,10 +289,10 @@ let gendr, bDay;
                   lnameError.textContent = "අවසාන නම හිස් විය නොහැක!";
                   lname.focus();
                 } else if (data.message == "phone") {
-                  phoneError.textContent = "සම්බන්ධතා අංකය හිස් විය නොහැක!";
+                  phoneError.textContent = "දුරකථන අංකය හිස් විය නොහැක!";
                   phone.focus();
                 } else if (data.message == "adddress1") {
-                  address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක!";
+                  address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක!";
                   address1.focus();
                 } else if (data.message == "adddress2") {
                   address2Error.textContent = "වීදිය හිස් විය නොහැක!";
@@ -254,7 +304,7 @@ let gendr, bDay;
                   nicError.textContent = "ජාතික හැඳුනුම්පත හිස් විය නොහැක!";
                   nic.focus();
                 } else if (data.message == "NIC") {
-                  nicError.textContent = "NIC දැනටමත් පවතී!";
+                  nicError.textContent = "ජාතික හැඳුනුම්පත දැනටමත් පවතී!";
                   nic.focus();
                 } else if (data.message == "role") {
                   dropdownError.textContent = "තනතුර හිස් විය නොහැක!";
@@ -321,16 +371,13 @@ let gendr, bDay;
     }
   });
 
-  fetch(
-    backProxy + "/employee?id=" + getCookie("id") + "&emp=" + getCookie("sId"),
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    }
-  )
+  fetch(backProxy + "/employee?id=" + getCookie("id"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
@@ -373,8 +420,8 @@ let gendr, bDay;
       return false;
     } else if (!ValidateName(fname.value)) {
       if (lang == "sin")
-        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else fnameError.textContent = "Name must contain only letters and ' '";
+        fnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else fnameError.textContent = "Name must contain only letters";
       fnameStatus = false;
       return false;
     } else {
@@ -392,8 +439,8 @@ let gendr, bDay;
       return false;
     } else if (!ValidateName(lname.value)) {
       if (lang == "sin")
-        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු සහ ' '";
-      else lnameError.textContent = "Name must contain only letters and ' '";
+        lnameError.textContent = "නමේ අඩංගු විය යුත්තේ අකුරු පමණයි";
+      else lnameError.textContent = "Name must contain only letters";
       lnameStatus = false;
       return false;
     } else {
@@ -410,7 +457,7 @@ let gendr, bDay;
       phoneStatus = false;
       return false;
     } else if (!ValidatePhone(phone.value)) {
-      if (lang == "sin") phoneError.textContent = "අවලංගු දුරකථන අංකය!";
+      if (lang == "sin") phoneError.textContent = "වලංගු නොවන දුරකථන අංකය!";
       else phoneError.textContent = "Invalid phone number!";
       phoneStatus = false;
       return false;
@@ -427,7 +474,7 @@ let gendr, bDay;
       address1.value.trim().length === 0
     ) {
       if (lang == "sin")
-        address1Error.textContent = "ලිපින පේළිය 1 හිස් විය නොහැක";
+        address1Error.textContent = "ලිපිනයේ පළමු පේළිය හිස් විය නොහැක";
       else address1Error.textContent = "Address Line 1 cannot be empty";
       address1Status = false;
       return false;
