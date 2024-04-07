@@ -64,7 +64,7 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/map.css">
+    <link rel="stylesheet" href="../common/map.css" />
     <link rel="stylesheet" href="../common/notify.css" />
     <link rel="stylesheet" href="../common/firework.css" />
     <link
@@ -80,6 +80,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../common/func.js"></script>
     <script src="./auth.js"></script>
+
+    <style>
+      #map {
+        height: 500px;
+        width: 900px;
+      }
+    </style>
   </head>
 
   <body>
@@ -132,7 +139,6 @@
       </div>
     </div>
     <!-- Map window end -->
-
 
     <section class="home">
       <div class="notification">
@@ -243,6 +249,10 @@
         <i class="fas fa-chevron-up"></i>
       </div>
     </section>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArpgjSzY9vOf8b_s-yMmwUxPo0gBzkfx8&callback=initMap&v=weekly"
+      defer
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>

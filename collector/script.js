@@ -26,7 +26,9 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     greet2 = body.querySelector(".greet-line2"),
     tbody2 = body.querySelector(".tbody2"),
     tbody3 = body.querySelector(".tbody3"),
-    missed = body.querySelector(".missed");
+    missed = body.querySelector(".missed"),
+    closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay");
 
   var lang = getCookie("lang"); // current language
 
@@ -103,12 +105,20 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
+  closeBtn.addEventListener("click", () => {
+    document.querySelector(".get-direction").style.display = "none";
+    document.querySelector(".overlay").style.display = "none";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".get-direction").style.display = "none";
+    }
+  });
+
   w1Value.textContent = 0 + " LKR";
   w2Value.innerHTML = `0<span>/0</span>`;
-
-  let row1 = "",
-    row2 = "",
-    row3 = "";
 
   fetch(backProxy + "/collector", {
     method: "GET",
@@ -119,17 +129,63 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   })
     .then((response) => {
       if (response.status == 200) {
+        let row1 = "",
+          row2 = "",
+          row3 = "";
+
         response.json().then((data) => {
           let arr1 = data.today,
             arr2 = data.upcoming,
             arr3 = data.missed;
-          arr1.forEach(data_to_table1);
-          arr2.forEach(data_to_table2);
-          arr3.forEach(data_to_table3);
+
+          arr1.forEach((item) => {
+            row1 +=
+              `<tr id=${item.id}>` +
+              `<td data-href="./collection/view.html">${item.area}</td>` +
+              `<td data-href="./collection/view.html">${timeString(
+                item.time
+              )}</td>` +
+              `<td data-href="./collection/view.html">${item.amount.toLocaleString(
+                "en-US"
+              )}</td>` +
+              `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+              `</tr>`;
+          });
+
+          arr2.forEach((item) => {
+            row2 +=
+              `<tr id=${item.id}>` +
+              `<td data-href="./collection/view.html">${item.date}</td>` +
+              `<td data-href="./collection/view.html">${timeString(
+                item.time
+              )}</td>` +
+              `<td data-href="./collection/view.html">${item.area}</td>` +
+              `<td data-href="./collection/view.html">${item.amount.toLocaleString(
+                "en-US"
+              )}</td>` +
+              `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+              `</tr>`;
+          });
+
+          arr3.forEach((item) => {
+            row3 +=
+              `<tr id=${item.id}>` +
+              `<td data-href="./collection/view.html">${item.area}</td>` +
+              `<td data-href="./collection/view.html">${item.date}</td>` +
+              `<td data-href="./collection/view.html">${timeString(
+                item.time
+              )}</td>` +
+              `<td data-href="./collection/view.html">${item.amount.toLocaleString(
+                "en-US"
+              )}</td>` +
+              `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+              `</tr>`;
+          });
 
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
           tbody3.innerHTML = row3;
+
           w1Value.textContent = data.rate.price + " LKR";
           w2Value.innerHTML = data.size + `<span>/` + data.count + `</span>`;
 
@@ -139,11 +195,20 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             todayTable.style.display = "none";
           }
 
-          const rows = document.querySelectorAll("tr[data-href]");
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
+          const cols = document.querySelectorAll("td[data-href]");
+          cols.forEach((c) => {
+            c.addEventListener("click", () => {
+              document.cookie = "id=" + c.parentElement.id + "; path=/";
+              window.location.href = c.dataset.href;
+            });
+          });
+
+          const directions = document.querySelectorAll(".direction");
+          directions.forEach((d) => {
+            d.addEventListener("click", () => {
+              document.querySelector(".get-direction").style.display = "block";
+              document.querySelector(".overlay").style.display = "block";
+              getDirection(d.getAttribute("location"));
             });
           });
 
@@ -152,16 +217,41 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       } else if (response.status === 202) {
         response.json().then((data) => {
           let arr3 = data.missed;
-          arr3.forEach(data_to_table3);
+          let row3 = "";
+
+          arr3.forEach((item) => {
+            row3 +=
+              `<tr id=${item.id}>` +
+              `<td data-href="./collection/view.html">${item.area}</td>` +
+              `<td data-href="./collection/view.html">${item.date}</td>` +
+              `<td data-href="./collection/view.html">${timeString(
+                item.time
+              )}</td>` +
+              `<td data-href="./collection/view.html">${item.amount.toLocaleString(
+                "en-US"
+              )}</td>` +
+              `<td class='hide'><button class="direction status" location="${item.location}">Get Directions</button></td>` +
+              `</tr>`;
+          });
+
           tbody3.innerHTML = row3;
 
           if (arr3.length == 0) missed.style.display = "none";
 
-          const rows = document.querySelectorAll("tr[data-href]");
-          rows.forEach((r) => {
-            r.addEventListener("click", () => {
-              document.cookie = "id=" + r.id + "; path=/";
-              window.location.href = r.dataset.href;
+          const cols = document.querySelectorAll("td[data-href]");
+          cols.forEach((c) => {
+            c.addEventListener("click", () => {
+              document.cookie = "id=" + c.parentElement.id + "; path=/";
+              window.location.href = c.dataset.href;
+            });
+          });
+
+          const directions = document.querySelectorAll(".direction");
+          directions.forEach((d) => {
+            d.addEventListener("click", () => {
+              document.querySelector(".get-direction").style.display = "block";
+              document.querySelector(".overlay").style.display = "block";
+              getDirection(d.getAttribute("location"));
             });
           });
 
@@ -176,12 +266,48 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               c1.style.display = "none";
               c2.style.display = "none";
             }
+
             w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
           } else if (data.size == -1) {
             let arr2 = data.upcoming;
-            arr2.forEach(data_to_table2);
+            let row2 = "";
+
+            arr2.forEach((item) => {
+              row2 +=
+                `<tr id=${item.id}>` +
+                `<td data-href="./collection/view.html">${item.date}</td>` +
+                `<td data-href="./collection/view.html">${timeString(
+                  item.time
+                )}</td>` +
+                `<td data-href="./collection/view.html">${item.area}</td>` +
+                `<td data-href="./collection/view.html">${item.amount.toLocaleString(
+                  "en-US"
+                )}</td>` +
+                `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+                `</tr>`;
+            });
+
             tbody2.innerHTML = row2;
+
+            const cols = document.querySelectorAll("td[data-href]");
+            cols.forEach((c) => {
+              c.addEventListener("click", () => {
+                document.cookie = "id=" + c.parentElement.id + "; path=/";
+                window.location.href = c.dataset.href;
+              });
+            });
+
+            const directions = document.querySelectorAll(".direction");
+            directions.forEach((d) => {
+              d.addEventListener("click", () => {
+                document.querySelector(".get-direction").style.display =
+                  "block";
+                document.querySelector(".overlay").style.display = "block";
+                getDirection(d.getAttribute("location"));
+              });
+            });
+
             if (lang == "sin") Command: toastr["info"]("අද එකතු කිරීම් නැත");
             else Command: toastr["info"]("No collections today");
 
@@ -190,16 +316,51 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               greet.style.display = "flex";
               todayTable.style.display = "none";
             }
+
             w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
           } else {
             let arr1 = data.today;
-            arr1.forEach(data_to_table1);
+            let row1 = "";
+
+            arr1.forEach((item) => {
+              row1 +=
+                `<tr id=${item.id}>` +
+                `<td data-href="./collection/view.html">${item.area}</td>` +
+                `<td data-href="./collection/view.html">${timeString(
+                  item.time
+                )}</td>` +
+                `<td data-href="./collection/view.html">${item.amount.toLocaleString(
+                  "en-US"
+                )}</td>` +
+                `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+                `</tr>`;
+            });
+
             tbody1.innerHTML = row1;
+
+            const cols = document.querySelectorAll("td[data-href]");
+            cols.forEach((c) => {
+              c.addEventListener("click", () => {
+                document.cookie = "id=" + c.parentElement.id + "; path=/";
+                window.location.href = c.dataset.href;
+              });
+            });
+
+            const directions = document.querySelectorAll(".direction");
+            directions.forEach((d) => {
+              d.addEventListener("click", () => {
+                document.querySelector(".get-direction").style.display =
+                  "block";
+                document.querySelector(".overlay").style.display = "block";
+                getDirection(d.getAttribute("location"));
+              });
+            });
+
             w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = data.size + `<span>/` + data.count + `</span>`;
-            if (lang == "sin")
-              Command: toastr["info"]("ඉදිරි එකතු කිරීම් නැත");
+
+            if (lang == "sin") Command: toastr["info"]("ඉදිරි එකතු කිරීම් නැත");
             else Command: toastr["info"]("No upcoming collections");
 
             if ((data.size = 0 && data.count > 0)) {
@@ -224,69 +385,101 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       console.error("An error occurred:", error);
       Command: toastr["error"](error);
     });
-
-  function data_to_table1(item) {
-    row1 +=
-      `<tr data-href="./collection/view.html" id=` +
-      item.id +
-      `>
-      <td>` +
-      item.area +
-      `</td>
-      <td>` +
-      timeString(item.time) +
-      `</td>
-      <td>` +
-      item.amount.toLocaleString("en-US") +
-      `</td>
-      <td class='hide'>
-        <button class="direction status">Get Directions</button>
-      </td>
-    </tr>`;
-  }
-
-  function data_to_table2(item) {
-    row2 +=
-      `<tr data-href="./collection/view.html" id=` +
-      item.id +
-      `>
-      <td>` +
-      item.date +
-      `</td>
-      <td>` +
-      timeString(item.time) +
-      `</td>
-      <td>` +
-      item.area +
-      `</td>
-      <td>` +
-      item.amount.toLocaleString("en-US") +
-      `</td>
-      <td>
-        <button class="direction status">Get Directions</button>
-      </td>
-    </tr>`;
-  }
-  function data_to_table3(item) {
-    row3 +=
-      `<tr data-href="./collection/view.html" id=` +
-      item.id +
-      `>
-      <td>` +
-      item.area +
-      `</td>
-      <td>` +
-      item.date +
-      `</td>
-      <td>` +
-      timeString(item.time) +
-      `</td>
-      <td>` +
-      item.amount.toLocaleString("en-US") +
-      `</td>
-      <td class='hide'>
-        <button class="direction status">Get Directions</button>
-      </td>
-    </tr>`;
-  }
 })();
+
+let directionsService, directionsRenderer, start;
+
+function initMap() {
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer();
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+  });
+
+  directionsRenderer.setMap(map);
+
+  // Get user's current location
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        map.setCenter(pos);
+
+        const marker = new google.maps.Marker({
+          position: pos,
+          map,
+        });
+
+        // Set start position to user's current location
+        start = pos.lat + "," + pos.lng;
+      },
+      () => {
+        handleLocationError(true, map.getCenter());
+      }
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, map.getCenter());
+  }
+}
+
+function getDirection(end) {
+  calculateAndDisplayRoute(directionsService, directionsRenderer, start, end);
+}
+
+function calculateAndDisplayRoute(
+  directionsService,
+  directionsRenderer,
+  start,
+  end
+) {
+  // Retrieve the start and end locations and create a DirectionsRequest using
+  // DRIVING directions.
+  directionsService
+    .route({
+      origin: {
+        lat: +start.split(",")[0],
+        lng: +start.split(",")[1],
+      },
+      destination: {
+        lat: +end.split(" ")[0],
+        lng: +end.split(" ")[1],
+      },
+      travelMode: google.maps.TravelMode.DRIVING,
+    })
+    .then((result) => {
+      // Route the directions and display on the map.
+      directionsRenderer.setDirections(result);
+
+      // Clear existing markers
+      directionsRenderer.setOptions({ suppressMarkers: true });
+
+      // Add markers for start and end locations
+      const startMarker = new google.maps.Marker({
+        map: directionsRenderer.getMap(),
+        position: result.routes[0].legs[0].start_location,
+        label: "S", // Marker label for start
+      });
+      const endMarker = new google.maps.Marker({
+        map: directionsRenderer.getMap(),
+        position: result.routes[0].legs[0].end_location,
+        label: "E", // Marker label for end
+      });
+    })
+    .catch((e) => {
+      window.alert("Directions request failed due to " + e);
+    });
+}
+
+function handleLocationError(browserHasGeolocation, pos) {
+  console.log(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+}
+
+window.initMap = initMap;
