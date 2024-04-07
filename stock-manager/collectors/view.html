@@ -90,7 +90,6 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <style></style>
   </head>
 
   <body>
@@ -117,24 +116,14 @@
 
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
+
     <!-- map starts -->
-    <div class="overlay1 overlay" id="overlay">
+    <div class="overlay1 overlay" id="overlay1">
       <div class="collections-map light-box">
         <p class="close-btn1 close-btn do-not">
           <i class="fas fa-xmark"></i>
         </p>
-        <div class="map"></div>
-      </div>
-    </div>
-    <!-- map ends -->
-
-    <!-- map starts -->
-    <div class="overlay1 overlay" id="overlay1">
-      <div class="collections-map close-btn">
-        <p class="close-btn1 close-btn do-not">
-          <i class="fas fa-xmark"></i>
-        </p>
-        <div class="map"></div>
+        <div id="map" style="width: 90%; height: 90%"></div>
       </div>
     </div>
     <!-- map ends -->
@@ -298,6 +287,11 @@
         <i class="fas fa-chevron-up"></i>
       </div>
     </section>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArpgjSzY9vOf8b_s-yMmwUxPo0gBzkfx8&libraries=marker&callback=initMap"
+      async
+      defer
+    ></script>
     <script src="https://code.jscharting.com/latest/jscharting.js"></script>
     <script
       type="text/javascript"
