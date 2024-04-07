@@ -219,6 +219,41 @@ input:focus {
   padding: 0;
 }
 
+.get-directions {
+  display: none;
+  width: 50vw;
+  height: 44vh;
+  margin: 0 auto;
+  background-color: var(--body-color);
+  padding: 10px 10px;
+  border-radius: 10px;
+  margin-top: 60px;
+  position: fixed;
+  top: 20%;
+  right: 20%;
+  box-shadow: 0 0 20px 0 var(--shadow-color);
+  z-index: 999;
+  transition: var(--tran-04);
+}
+
+.get-directions .close-btn 
+{
+  display: grid;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 24px;
+  color: gray;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.get-directions .close-btn:hover
+{
+  color: var(--primary-color);
+  scale: 1.1;
+  cursor: pointer;
+}
 @media only screen and (max-device-width: 900px) {
   .map iframe {
     width: 50vw;

@@ -1,4 +1,6 @@
-.location-pick {
+.location-pick,
+.get-direction
+ {
   display: none;
   width: 75vw;
   height: 80vh;
@@ -15,7 +17,8 @@
   transition: var(--tran-04);
 }
 
-.location-container {
+.location-container,
+.get-direction .direction-container {
   display: flex;
   align-items: center;
   /* justify-content: space-between; */

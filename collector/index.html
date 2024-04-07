@@ -64,6 +64,7 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/map.css">
     <link rel="stylesheet" href="../common/notify.css" />
     <link rel="stylesheet" href="../common/firework.css" />
     <link
@@ -111,6 +112,27 @@
 
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
+
+    <!-- Map window start -->
+    <div class="overlay" id="overlay">
+      <div class="get-direction">
+        <div class="direction-container">
+          <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+          <div class="pick-map">
+            <div id="map"></div>
+          </div>
+
+          <div class="pick-address">
+            <h2 class="table-heading t1">Supplier's name</h2>
+            <div>
+              <p>22/96, bla bla, piliyandala</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Map window end -->
+
 
     <section class="home">
       <div class="notification">
