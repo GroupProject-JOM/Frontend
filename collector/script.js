@@ -28,7 +28,10 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tbody3 = body.querySelector(".tbody3"),
     missed = body.querySelector(".missed"),
     closeBtn = body.querySelector(".close-btn"),
-    overlay = body.querySelector(".overlay");
+    overlay = body.querySelector(".overlay"),
+    overlay2 = body.querySelector(".overlay2"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    viewAll = body.querySelector(".view-all");
 
   var lang = getCookie("lang"); // current language
 
@@ -115,6 +118,23 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       overlay.style.display = "none";
       document.querySelector(".get-direction").style.display = "none";
     }
+  });
+
+  viewAll.addEventListener("click", () => {
+    overlay2.style.display = "flex";
+    document.querySelector(".view-all-container").style.display = "block";
+  });
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay2.style.display = "none";
+      document.querySelector(".view-all-container").style.display = "none";
+    }
+  });
+
+  closeBtn2.addEventListener("click", () => {
+    overlay2.style.display = "none";
+    document.querySelector(".view-all-container").style.display = "none";
   });
 
   w1Value.textContent = 0 + " LKR";

@@ -1133,6 +1133,20 @@ button:where(.swal2-styled) {
 }
 /* pagination css end */
 
+.collector-container .table-top{
+  margin: 0;
+  width: 100%;
+}
+
+.collector-container .view-all{
+  margin: 0;
+  background-color: var(--body-color);
+  border: 2px solid var(--sidebar-color);
+  color: var(--sidebar-color);
+  font-weight: 600;
+}
+
+
 @media only screen and (max-device-width: 718px) {
   .home {
     left: 0;

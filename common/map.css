@@ -83,3 +83,14 @@
 textarea{
   height: auto;
 }
+
+.view-all-container{
+  width: 60vw;
+  height: 80vh;
+  top: 10%;
+  left: 20%;
+}
+
+.view-all-container .view-all-content{
+  display: flex;
+}
