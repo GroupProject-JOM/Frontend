@@ -19,6 +19,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     areaError = body.querySelector(".area-error"),
     addbtn = body.querySelector(".add-button"),
     closeBtn = body.querySelector(".close-btn"),
+    overlay = body.querySelector(".overlay"),
     confirm = body.querySelector(".confirm"),
     pick = body.querySelector(".location-pick-bt");
 
