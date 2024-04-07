@@ -27,8 +27,8 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tbody2 = body.querySelector(".tbody2"),
     tbody3 = body.querySelector(".tbody3"),
     missed = body.querySelector(".missed"),
-    closeBtn = body.querySelector(".close-btn"),
-    overlay = body.querySelector(".overlay"),
+    closeBtn1 = body.querySelector(".close-btn1"),
+    overlay1 = body.querySelector(".overlay1"),
     overlay2 = body.querySelector(".overlay2"),
     closeBtn2 = body.querySelector(".close-btn2"),
     viewAll = body.querySelector(".view-all");
@@ -108,14 +108,14 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
-  closeBtn.addEventListener("click", () => {
+  closeBtn1.addEventListener("click", () => {
     document.querySelector(".get-direction").style.display = "none";
-    document.querySelector(".overlay").style.display = "none";
+    document.querySelector(".overlay1").style.display = "none";
   });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target.id === "overlay") {
-      overlay.style.display = "none";
+  overlay1.addEventListener("click", (e) => {
+    if (e.target.id === "overlay1") {
+      overlay1.style.display = "none";
       document.querySelector(".get-direction").style.display = "none";
     }
   });
@@ -126,7 +126,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   });
 
   overlay2.addEventListener("click", (e) => {
-    if (e.target.id === "overlay") {
+    if (e.target.id === "overlay2") {
       overlay2.style.display = "none";
       document.querySelector(".view-all-container").style.display = "none";
     }
@@ -227,7 +227,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           directions.forEach((d) => {
             d.addEventListener("click", () => {
               document.querySelector(".get-direction").style.display = "block";
-              document.querySelector(".overlay").style.display = "block";
+              document.querySelector(".overlay1").style.display = "block";
               getDirection(d.getAttribute("location"));
             });
           });
@@ -270,7 +270,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           directions.forEach((d) => {
             d.addEventListener("click", () => {
               document.querySelector(".get-direction").style.display = "block";
-              document.querySelector(".overlay").style.display = "block";
+              document.querySelector(".overlay1").style.display = "block";
               getDirection(d.getAttribute("location"));
             });
           });
@@ -323,7 +323,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               d.addEventListener("click", () => {
                 document.querySelector(".get-direction").style.display =
                   "block";
-                document.querySelector(".overlay").style.display = "block";
+                document.querySelector(".overlay1").style.display = "block";
                 getDirection(d.getAttribute("location"));
               });
             });
@@ -372,7 +372,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               d.addEventListener("click", () => {
                 document.querySelector(".get-direction").style.display =
                   "block";
-                document.querySelector(".overlay").style.display = "block";
+                document.querySelector(".overlay1").style.display = "block";
                 getDirection(d.getAttribute("location"));
               });
             });
