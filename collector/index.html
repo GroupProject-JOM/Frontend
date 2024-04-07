@@ -64,7 +64,7 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/map.css">
+    <link rel="stylesheet" href="../common/map.css" />
     <link rel="stylesheet" href="../common/notify.css" />
     <link rel="stylesheet" href="../common/firework.css" />
     <link
@@ -114,10 +114,10 @@
     <i class="fa fa-bars" aria-hidden="true"></i>
 
     <!-- Map window start -->
-    <div class="overlay" id="overlay">
-      <div class="get-direction">
+    <div class="overlay1 overlay" id="overlay1">
+      <div class="get-direction light-box">
         <div class="direction-container">
-          <p class="close-btn do-not"><i class="fas fa-xmark"></i></p>
+          <p class="close-btn1 close-btn do-not"><i class="fas fa-xmark"></i></p>
           <div class="pick-map">
             <div id="map"></div>
           </div>
@@ -133,6 +133,18 @@
     </div>
     <!-- Map window end -->
 
+    <!-- view all on map window starts -->
+<div class="overlay2 overlay">
+  <div class="view-all-container light-box">
+    <p class="close-btn2 close-btn do-not"><i class="fas fa-xmark"></i></p>
+      <div class="view-all-content">
+        <div class="map"></div>
+        <div class="view-data"></div>
+      </div>
+  </div>
+
+</div>
+    <!-- view all on map window ends -->
 
     <section class="home">
       <div class="notification">
@@ -151,7 +163,7 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container">
+      <div class="collector-container container">
         <div class="widgets">
           <div class="widget-left widget">
             <div class="w-icon">
@@ -196,7 +208,11 @@
         <div class="layer">
           <div class="table-heading">
             <h2 class="c1"></h2>
-            <p class="c2"></p>
+            <div class="table-top">
+              <p class="c2"></p>
+
+              <button class="view-all form-button">View on map</button>
+            </div>
           </div>
           <table class="overview-tables today-table">
             <thead>
