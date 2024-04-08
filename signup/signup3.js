@@ -1,8 +1,3 @@
-var enameStatus = false,
-  addressStatus = false,
-  areaStatus = false,
-  lang = getCookie("lang"); // current language
-
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -153,6 +148,11 @@ var enameStatus = false,
     }
   }
 
+  var enameStatus = false,
+    addressStatus = false,
+    areaStatus = false,
+    lang = getCookie("lang"); // current language
+
   ename.addEventListener("input", () => {
     ename_status();
   });
@@ -215,10 +215,19 @@ var enameStatus = false,
 
   pick.addEventListener("click", () => {
     document.querySelector(".location-pick").style.display = "block";
+    document.querySelector(".overlay").style.display = "block";
   });
 
   closeBtn.addEventListener("click", () => {
     document.querySelector(".location-pick").style.display = "none";
+    document.querySelector(".overlay").style.display = "none";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.id === "overlay") {
+      overlay.style.display = "none";
+      document.querySelector(".location-pick").style.display = "none";
+    }
   });
 
   //Map
@@ -230,37 +239,26 @@ var enameStatus = false,
   let loc = "",
     ar = "";
 
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  }
-
-  let lat = 6.9270786;
-  let long = 79.861243;
+  let lat;
+  let long;
   let location = "";
 
-  function showPosition(position) {
-    lat = position.coords.latitude;
-    long = position.coords.longitude;
-  }
-
-  getLocation();
-
   function initMap() {
-    // console.log("lat " + lat);
-    // console.log("lng " + long);
-    const live_loc = { lat: lat, lng: long };
+    navigator.geolocation.getCurrentPosition((position) => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      const live_loc = { lat: lat, lng: long };
 
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 15,
-      center: live_loc,
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: live_loc,
+      });
+      // This event listener will call addMarker() when the map is clicked.
+      map.addListener("click", (event) => {
+        addMarker(event.latLng);
+      });
+      addMarker(live_loc);
     });
-    // This event listener will call addMarker() when the map is clicked.
-    map.addListener("click", (event) => {
-      addMarker(event.latLng);
-    });
-    addMarker(live_loc);
   }
 
   // Adds a marker to the map and push to the array.
@@ -272,8 +270,6 @@ var enameStatus = false,
     deleteMarkers();
 
     markers.push(marker);
-    // console.log(marker.position.lat(), marker.position.lng());
-    // console.log(marker.position.results)
 
     const options = { method: "GET", headers: { accept: "application/json" } };
 
@@ -282,16 +278,14 @@ var enameStatus = false,
         marker.position.lat() +
         "%2C" +
         marker.position.lng() +
-        "&key=AIzaSyCZFEe9IjYVTBsTO7o4Ais2KM2qgBpep4Q",
+        "&key=AIzaSyArpgjSzY9vOf8b_s-yMmwUxPo0gBzkfx8",
       options
     )
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response.results[0].formatted_address);
         document.querySelector(".loc-add").value =
           response.results[0].formatted_address;
         loc = response.results[0].formatted_address;
-        // ar = response.results[0].address_components[0].short_name;
         let arr = loc.split(",");
         if (arr.length > 2) ar = arr[arr.length - 2].slice(1);
         else ar = arr[arr.length - 2];
@@ -316,17 +310,17 @@ var enameStatus = false,
     }
   }
 
-  // // Removes the markers from the map, but keeps them in the array.
+  // Removes the markers from the map, but keeps them in the array.
   function hideMarkers() {
     setMapOnAll(null);
   }
 
-  // // Shows any markers currently in the array.
+  // Shows any markers currently in the array.
   function showMarkers() {
     setMapOnAll(map);
   }
 
-  // // Deletes all markers in the array by removing references to them.
+  // Deletes all markers in the array by removing references to them.
   function deleteMarkers() {
     hideMarkers();
     markers = [];

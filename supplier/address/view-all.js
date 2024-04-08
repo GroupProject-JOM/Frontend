@@ -104,7 +104,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           response.json().then((data) => {
             let arr = data.list;
             arr.forEach(data_to_table);
-
+                        
             function data_to_table(item) {
               row +=
                 "<tr id=" +

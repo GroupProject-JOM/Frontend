@@ -64,6 +64,7 @@
     ></script>
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="../common/nav.css" />
+    <link rel="stylesheet" href="../common/map.css" />
     <link rel="stylesheet" href="../common/notify.css" />
     <link rel="stylesheet" href="../common/firework.css" />
     <link
@@ -79,6 +80,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../common/func.js"></script>
     <script src="./auth.js"></script>
+
+    <style>
+      #map {
+        height: 500px;
+        width: 900px;
+      }
+    </style>
   </head>
 
   <body>
@@ -112,6 +120,39 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <!-- Map window start -->
+    <div class="overlay1 overlay" id="overlay1">
+      <div class="get-direction light-box">
+        <div class="direction-container">
+          <p class="close-btn1 close-btn do-not"><i class="fas fa-xmark"></i></p>
+          <div class="pick-map">
+            <div id="map"></div>
+          </div>
+
+          <div class="pick-address">
+            <h2 class="table-heading t1">Supplier's name</h2>
+            <div>
+              <p>22/96, bla bla, piliyandala</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Map window end -->
+
+    <!-- view all on map window starts -->
+<div class="overlay2 overlay" id="overlay2">
+  <div class="view-all-container light-box">
+    <p class="close-btn2 close-btn do-not"><i class="fas fa-xmark"></i></p>
+      <div class="view-all-content">
+        <div class="map"></div>
+        <div class="view-data"></div>
+      </div>
+  </div>
+
+</div>
+    <!-- view all on map window ends -->
+
     <section class="home">
       <div class="notification">
         <span class="count"></span>
@@ -129,7 +170,7 @@
 
       <div class="text">Dashboard</div>
 
-      <div class="container">
+      <div class="collector-container container">
         <div class="widgets">
           <div class="widget-left widget">
             <div class="w-icon">
@@ -174,7 +215,11 @@
         <div class="layer">
           <div class="table-heading">
             <h2 class="c1"></h2>
-            <p class="c2"></p>
+            <div class="table-top">
+              <p class="c2"></p>
+
+              <button class="view-all form-button">View on map</button>
+            </div>
           </div>
           <table class="overview-tables today-table">
             <thead>
@@ -221,6 +266,10 @@
         <i class="fas fa-chevron-up"></i>
       </div>
     </section>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArpgjSzY9vOf8b_s-yMmwUxPo0gBzkfx8&callback=initMap&v=weekly"
+      defer
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
