@@ -55,6 +55,7 @@ body {
 
 .layer1 {
   display: flex;
+  /* flex-wrap: wrap; */
   height: 70vh;
   margin-bottom: 20vh;
 }
@@ -123,6 +124,7 @@ body {
 .layer2 .layer-right .bars {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 80%;
 }
 
@@ -243,6 +245,7 @@ body {
 
 .layer3 .products {
   display: flex;
+  flex-wrap: wrap;
   gap: 3rem;
 }
 
@@ -439,6 +442,8 @@ body {
   display: flex;
   margin: 60px 60px 0 30px;
   justify-content: space-between;
+  overflow: hidden;
+  /* scroll-behavior: ; */
 }
 
 .layer5 .card {
@@ -592,6 +597,14 @@ body {
   scale: 1.1;
 }
 
+.layer8{
+  margin-left: -32px;
+  margin-bottom: 0;
+}
+
+.layer8 iframe{
+  height: 100%;
+}
 
 
 footer{
@@ -610,13 +623,13 @@ footer .social{
 }
 
 footer .social div{
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   background-color: #dfc9ad;
   color: #a06e2e;
 }
@@ -640,4 +653,56 @@ footer p{
   padding: 15px 0;
   font-size: 0.8rem;
   color: #a06e2e;
+}
+
+
+
+
+
+@media only screen and (max-device-width: 718px){
+
+
+  .layer1 .layer-left{
+    width: 100%;
+  }
+
+  .layer1 h1{
+    font-size: 1.6rem;
+  }
+
+.layer1 p{
+  font-size: 0.8rem;
+}
+
+.layer7 .contact{
+  margin: 20px 0 0 0;
+  display: block;
+  padding: 10px 0 0 20px;
+}
+
+
+.layer7 .contact h2{
+  font-size: 1.3rem;
+}
+.layer7 .contact p{
+  font-size: 0.8rem;
+}
+
+.layer7 button{
+  padding: 5px 20px;
+  font-size: 0.7rem;
+}
+
+.layer2{
+  height: fit-content;
+}
+
+.layer2 .layer-right{
+  width: 100%;
+}
+
+.layer2 .layer-right .bars .value{
+  font-size: 1.7rem;
+}
+
 }
