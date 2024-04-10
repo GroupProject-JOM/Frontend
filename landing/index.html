@@ -99,9 +99,11 @@
       <div class="layer3">
         <h2>Our Products</h2>
 
-        <div class="products">
-          <!-- card start -->
-          <div class="card">
+        <div class="slide-container1 slide-container swiper1 swiper">
+          <div class="slide-content slide-content1">
+            <div class="products-wrapper swiper-wrapper">
+              <!-- card start -->
+          <div class="card swiper-slide">
             <div class="img">
               <img
                 src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
@@ -116,8 +118,8 @@
             </p>
           </div>
           <!-- card end -->
-          <!-- card start -->
-          <div class="card">
+              <!-- card start -->
+          <div class="card swiper-slide">
             <div class="img">
               <img
                 src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
@@ -132,8 +134,8 @@
             </p>
           </div>
           <!-- card end -->
-          <!-- card start -->
-          <div class="card">
+              <!-- card start -->
+          <div class="card swiper-slide">
             <div class="img">
               <img
                 src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
@@ -148,7 +150,55 @@
             </p>
           </div>
           <!-- card end -->
+              <!-- card start -->
+          <div class="card swiper-slide">
+            <div class="img">
+              <img
+                src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
+                alt=""
+              />
+            </div>
+            <!-- <div class="desc">Food</div> -->
+            <div class="title">Virgin Coconut Oil</div>
+            <p class="content">
+              Random gibberish text to use in web pages, site templates and in
+              typography demos. Get rid of Lorem Ipsum forever.
+            </p>
+          </div>
+          <!-- card end -->
+              <!-- card start -->
+          <div class="card swiper-slide">
+            <div class="img">
+              <img
+                src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
+                alt=""
+              />
+            </div>
+            <!-- <div class="desc">Food</div> -->
+            <div class="title">Virgin Coconut Oil</div>
+            <p class="content">
+              Random gibberish text to use in web pages, site templates and in
+              typography demos. Get rid of Lorem Ipsum forever.
+            </p>
+          </div>
+          <!-- card end -->
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+          <div class="swiper-button-next swiper-button-next1 swiper-navBtn"></div>
+          <div class="swiper-button-prev swiper-button-prev1 swiper-navBtn"></div>
+          <div class="swiper-pagination swiper-pagination1"></div>
         </div>
+
+       
       </div>
 
       <div class="layer4">
@@ -206,8 +256,8 @@
         <div class="shape3 hide"></div>
         <h2>Customer Feedback</h2>
 
-        <div class="slide-container swiper">
-          <div class="slide-content">
+        <div class="slide-container swiper slide-container2 swiper2">
+          <div class="slide-content slide-content2">
             <div class="card-wrapper swiper-wrapper">
               <div class="card swiper-slide">
                 <div>
@@ -328,9 +378,9 @@
               </div>
             </div>
           </div>
-          <div class="swiper-button-next swiper-navBtn"></div>
-          <div class="swiper-button-prev swiper-navBtn"></div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next swiper-navBtn swiper-button-next2"></div>
+          <div class="swiper-button-prev swiper-navBtn swiper-button-prev2"></div>
+          <div class="swiper-pagination swiper-pagination2"></div>
         </div>
       </div>
 
@@ -404,7 +454,7 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      var swiper = new Swiper(".slide-content", {
+      var swiper2 = new Swiper(".slide-content2", {
         slidesPerView: 3,
         spaceBetween: 25,
         loop: true,
@@ -412,13 +462,13 @@
         fade: "true",
         grabCursor: "true",
         pagination: {
-          el: ".swiper-pagination",
+          el: ".swiper-pagination2",
           clickable: true,
           dynamicBullets: true,
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: ".swiper-button-next2",
+          prevEl: ".swiper-button-prev2",
         },
 
         breakpoints: {
@@ -433,6 +483,36 @@
           },
         },
       });
-    </script>
+    
+  var swiper1 = new Swiper(".slide-content1", {
+    slidesPerView: 4,
+    spaceBetween: 40,
+    loop: true,
+    centerSlide: "true",
+    fade: "true",
+    grabCursor: "true",
+    pagination: {
+      el: ".swiper-pagination1",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next1",
+      prevEl: ".swiper-button-prev1",
+    },
+
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      520: {
+        slidesPerView: 3,
+      },
+      950: {
+        slidesPerView: 4,
+      },
+    },
+  });
+</script>
   </body>
 </html>
