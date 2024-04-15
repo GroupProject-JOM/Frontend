@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="../common/style.css" />
     <link rel="stylesheet" href="./landing.css" />
+    <!-- <link rel="stylesheet" href="./process.css" /> -->
+    <!-- <link rel="stylesheet" href="./product.css" /> -->
 
     <link
       rel="stylesheet"
@@ -20,42 +22,52 @@
     />
   </head>
   <body>
-    <nav class="navbar">
-      <div class="options">
-        <img src="../common/JOM logo 1.png" alt="" />
-        <ul class="menu">
-          <li><a href="">Home</a></li>
-          <li><a href="">About Us</a></li>
-          <li><a href="./process.html">Process</a></li>
-          <li><a href="" class="active">Products</a></li>
-        </ul>
-      </div>
 
-      <div class="login-options">
-        <a class="button" href="../signin.html">LOGIN</a>
-        <a class="form-button" href="../signup/index.html">REGISTER</a>
-      </div>
+    <nav class="navbar">
+      <ul class="menu">
+        <li><a href="" class="active">Home</a></li>
+        <li><i class="fas fa-circle dot"></i></li>
+        <li><a href="./process.html">Process</a></li>
+        <li><i class="fas fa-circle dot"></i></li>
+        <li><a href="./products.html">Products</a></li>
+      </ul>
+
+      <a class="button" href="../signin.html">Login</a>
+
+      <!-- responsive button -->
+      <div class="menu-btn"><i class="fa fa-bars"></i></div>
     </nav>
     <div class="landing-container">
-      <div class="shape1 shape hide"></div>
-      <div class="layer1">
-        <div class="layer-left">
-          <h1 class="name">
-            Jayasinghe Oil Mills <br />Coconut Oil manufacturers
-          </h1>
-          <p>
-            Jayasinghe Oil Mills is one of the leading coconut oil manufacturers
-            in Sri Lanka for the last 20 years.
-            <br /><br /><br />
-          </p>
-          <a class="form-button">Get Sarted</a>
+      <section class="layer1">
+        <h1 class="main-text">
+          Jayasinghe Oil Mills <br />Coconut Oil manufacturers
+        </h1>
+        <p class="sub-text">
+          Jayasinghe Oil Mills is one of the leading coconut oil manufacturers
+          in Sri Lanka. <br />
+          We have been producing Coconut oil for the last 20 years
+        </p>
+        <div class="buttons">
+          <a href="../signup/index.html" class="register form-button"
+            >Register</a
+          >
+          <a href="./process.html" class="process form-button">How It Works</a>
         </div>
-        <div class="layer-right hide">
-          <img src="../common/img/landing-layer1.png" alt="" />
-        </div>
-      </div>
 
-      <div class="layer2">
+        <a href="#layer2">
+          <svg class="arrows">
+            <path class="a1" d="M0 0 L30 32 L60 0"></path>
+            <path class="a2" d="M0 20 L30 52 L60 20"></path>
+            <path class="a3" d="M0 40 L30 72 L60 40"></path>
+          </svg>
+        </a>
+
+      </section>
+
+
+      <!-- <div class="shape1 shape hide"></div> -->
+  
+      <div class="layer2" id="layer2">
         <div class="layer-left hide">
           <div class="shape2-4">
             <img src="../common/img/landing-shape2-4.jpg" alt="" />
@@ -103,102 +115,95 @@
           <div class="slide-content slide-content1">
             <div class="products-wrapper swiper-wrapper">
               <!-- card start -->
-          <div class="card swiper-slide">
-            <div class="img">
-              <img
-                src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
-                alt=""
-              />
-            </div>
-            <!-- <div class="desc">Food</div> -->
-            <div class="title">Virgin Coconut Oil</div>
-            <p class="content">
-              Random gibberish text to use in web pages, site templates and in
-              typography demos. Get rid of Lorem Ipsum forever.
-            </p>
-          </div>
-          <!-- card end -->
+              <div class="card swiper-slide">
+                <div class="img">
+                  <img
+                    src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
+                    alt=""
+                  />
+                </div>
+                <!-- <div class="desc">Food</div> -->
+                <div class="title">Virgin Coconut Oil</div>
+                <p class="content">
+                  Random gibberish text to use in web pages, site templates and
+                  in typography demos. Get rid of Lorem Ipsum forever.
+                </p>
+              </div>
+              <!-- card end -->
               <!-- card start -->
-          <div class="card swiper-slide">
-            <div class="img">
-              <img
-                src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
-                alt=""
-              />
-            </div>
-            <!-- <div class="desc">Food</div> -->
-            <div class="title">Virgin Coconut Oil</div>
-            <p class="content">
-              Random gibberish text to use in web pages, site templates and in
-              typography demos. Get rid of Lorem Ipsum forever.
-            </p>
-          </div>
-          <!-- card end -->
+              <div class="card swiper-slide">
+                <div class="img">
+                  <img
+                    src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
+                    alt=""
+                  />
+                </div>
+                <!-- <div class="desc">Food</div> -->
+                <div class="title">Virgin Coconut Oil</div>
+                <p class="content">
+                  Random gibberish text to use in web pages, site templates and
+                  in typography demos. Get rid of Lorem Ipsum forever.
+                </p>
+              </div>
+              <!-- card end -->
               <!-- card start -->
-          <div class="card swiper-slide">
-            <div class="img">
-              <img
-                src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
-                alt=""
-              />
-            </div>
-            <!-- <div class="desc">Food</div> -->
-            <div class="title">Virgin Coconut Oil</div>
-            <p class="content">
-              Random gibberish text to use in web pages, site templates and in
-              typography demos. Get rid of Lorem Ipsum forever.
-            </p>
-          </div>
-          <!-- card end -->
+              <div class="card swiper-slide">
+                <div class="img">
+                  <img
+                    src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
+                    alt=""
+                  />
+                </div>
+                <!-- <div class="desc">Food</div> -->
+                <div class="title">Virgin Coconut Oil</div>
+                <p class="content">
+                  Random gibberish text to use in web pages, site templates and
+                  in typography demos. Get rid of Lorem Ipsum forever.
+                </p>
+              </div>
+              <!-- card end -->
               <!-- card start -->
-          <div class="card swiper-slide">
-            <div class="img">
-              <img
-                src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
-                alt=""
-              />
-            </div>
-            <!-- <div class="desc">Food</div> -->
-            <div class="title">Virgin Coconut Oil</div>
-            <p class="content">
-              Random gibberish text to use in web pages, site templates and in
-              typography demos. Get rid of Lorem Ipsum forever.
-            </p>
-          </div>
-          <!-- card end -->
+              <div class="card swiper-slide">
+                <div class="img">
+                  <img
+                    src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
+                    alt=""
+                  />
+                </div>
+                <!-- <div class="desc">Food</div> -->
+                <div class="title">Virgin Coconut Oil</div>
+                <p class="content">
+                  Random gibberish text to use in web pages, site templates and
+                  in typography demos. Get rid of Lorem Ipsum forever.
+                </p>
+              </div>
+              <!-- card end -->
               <!-- card start -->
-          <div class="card swiper-slide">
-            <div class="img">
-              <img
-                src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
-                alt=""
-              />
-            </div>
-            <!-- <div class="desc">Food</div> -->
-            <div class="title">Virgin Coconut Oil</div>
-            <p class="content">
-              Random gibberish text to use in web pages, site templates and in
-              typography demos. Get rid of Lorem Ipsum forever.
-            </p>
-          </div>
-          <!-- card end -->
-
-
-
-
-
-
-
-
-
+              <div class="card swiper-slide">
+                <div class="img">
+                  <img
+                    src="https://livelife.lk/wp-content/uploads/2020/05/T-00004-TopwiL-Cold-pressed-virgin-Organic-Coconut-OIl-300g_Flat.jpg"
+                    alt=""
+                  />
+                </div>
+                <!-- <div class="desc">Food</div> -->
+                <div class="title">Virgin Coconut Oil</div>
+                <p class="content">
+                  Random gibberish text to use in web pages, site templates and
+                  in typography demos. Get rid of Lorem Ipsum forever.
+                </p>
+              </div>
+              <!-- card end -->
             </div>
           </div>
-          <div class="swiper-button-next swiper-button-next1 swiper-navBtn"></div>
-          <div class="swiper-button-prev swiper-button-prev1 swiper-navBtn"></div>
+          <div
+            class="swiper-button-next swiper-button-next1 swiper-navBtn"
+          ></div>
+          <div
+            class="swiper-button-prev swiper-button-prev1 swiper-navBtn"
+          ></div>
           <div class="swiper-pagination swiper-pagination1"></div>
         </div>
-
-       
       </div>
 
       <div class="layer4">
@@ -378,8 +383,12 @@
               </div>
             </div>
           </div>
-          <div class="swiper-button-next swiper-navBtn swiper-button-next2"></div>
-          <div class="swiper-button-prev swiper-navBtn swiper-button-prev2"></div>
+          <div
+            class="swiper-button-next swiper-navBtn swiper-button-next2"
+          ></div>
+          <div
+            class="swiper-button-prev swiper-navBtn swiper-button-prev2"
+          ></div>
           <div class="swiper-pagination swiper-pagination2"></div>
         </div>
       </div>
@@ -451,6 +460,8 @@
       <p>Copyrights at &copy; kORzix</p>
     </footer>
 
+    <script src="https://unpkg.com/scrollreveal"></script>
+
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -483,36 +494,55 @@
           },
         },
       });
-    
-  var swiper1 = new Swiper(".slide-content1", {
-    slidesPerView: 4,
-    spaceBetween: 40,
-    loop: true,
-    centerSlide: "true",
-    fade: "true",
-    grabCursor: "true",
-    pagination: {
-      el: ".swiper-pagination1",
-      clickable: true,
-      dynamicBullets: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next1",
-      prevEl: ".swiper-button-prev1",
-    },
 
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
-      },
-      520: {
-        slidesPerView: 3,
-      },
-      950: {
+      var swiper1 = new Swiper(".slide-content1", {
         slidesPerView: 4,
-      },
-    },
-  });
-</script>
+        spaceBetween: 40,
+        loop: true,
+        centerSlide: "true",
+        fade: "true",
+        grabCursor: "true",
+        pagination: {
+          el: ".swiper-pagination1",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next1",
+          prevEl: ".swiper-button-prev1",
+        },
+
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          520: {
+            slidesPerView: 3,
+          },
+          950: {
+            slidesPerView: 4,
+          },
+        },
+      });
+
+      const scrollRevealOption = {
+        distance: "50px",
+        origin: "bottom",
+        duration: 2000,
+        reset: true,
+      };
+
+      ScrollReveal().reveal(".main-text", {
+        ...scrollRevealOption,
+      });
+      ScrollReveal().reveal(".sub-text", {
+        ...scrollRevealOption,
+        delay: 500,
+      });
+      ScrollReveal().reveal(".buttons", {
+        ...scrollRevealOption,
+        delay: 1000,
+      });
+    </script>
   </body>
 </html>
