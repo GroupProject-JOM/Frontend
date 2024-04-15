@@ -29,8 +29,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     missed = body.querySelector(".missed"),
     closeBtn1 = body.querySelector(".close-btn1"),
     overlay1 = body.querySelector(".overlay1"),
-    overlay2 = body.querySelector(".overlay2"),
-    closeBtn2 = body.querySelector(".close-btn2"),
     viewAll = body.querySelector(".view-all");
 
   var lang = getCookie("lang"); // current language
@@ -120,23 +118,6 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     }
   });
 
-  viewAll.addEventListener("click", () => {
-    overlay2.style.display = "flex";
-    document.querySelector(".view-all-container").style.display = "block";
-  });
-
-  overlay2.addEventListener("click", (e) => {
-    if (e.target.id === "overlay2") {
-      overlay2.style.display = "none";
-      document.querySelector(".view-all-container").style.display = "none";
-    }
-  });
-
-  closeBtn2.addEventListener("click", () => {
-    overlay2.style.display = "none";
-    document.querySelector(".view-all-container").style.display = "none";
-  });
-
   w1Value.textContent = 0 + " LKR";
   w2Value.innerHTML = `0<span>/0</span>`;
 
@@ -168,7 +149,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td data-href="./collection/view.html">${item.amount.toLocaleString(
                 "en-US"
               )}</td>` +
-              `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+              `<td class='hide'><button class="direction status" location="${item.location}">Get Directions</button></td>` +
               `</tr>`;
           });
 
@@ -183,7 +164,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td data-href="./collection/view.html">${item.amount.toLocaleString(
                 "en-US"
               )}</td>` +
-              `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+              `<td class='hide'><button class="direction status" location="${item.location}">Get Directions</button></td>` +
               `</tr>`;
           });
 
@@ -198,7 +179,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td data-href="./collection/view.html">${item.amount.toLocaleString(
                 "en-US"
               )}</td>` +
-              `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+              `<td class='hide'><button class="direction status" location="${item.location}">Get Directions</button></td>` +
               `</tr>`;
           });
 
@@ -213,6 +194,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             fire.style.display = "block";
             greet.style.display = "flex";
             todayTable.style.display = "none";
+            viewAll.style.display = "none";
           }
 
           const cols = document.querySelectorAll("td[data-href]");
@@ -230,6 +212,36 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               document.querySelector(".overlay1").style.display = "block";
               getDirection(d.getAttribute("location"));
             });
+          });
+
+          viewAll.addEventListener("click", () => {
+            if (arr1.length > 0) {
+              overlay1.style.display = "flex";
+              document.querySelector(".get-direction").style.display = "block";
+
+              let locations = [];
+              let end;
+
+              arr1.forEach((item, index) => {
+                if (index == arr1.length - 1) {
+                  end = `${item.location.split(" ")[0]},${
+                    item.location.split(" ")[1]
+                  }`;
+                } else {
+                  locations.push(
+                    `${item.location.split(" ")[0]},${
+                      item.location.split(" ")[1]
+                    }`
+                  );
+                }
+              });
+
+              getDirectionWithWayPoints(locations, end);
+            } else {
+              if (lang == "sin")
+                Command: toastr["warning"]("අද එකතු කිරීම් නැත");
+              else Command: toastr["warning"]("No collections today");
+            }
           });
 
           if (arr3.length == 0) missed.style.display = "none";
@@ -283,12 +295,19 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               fire.style.display = "block";
               greet.style.display = "flex";
               todayTable.style.display = "none";
+              viewAll.style.display = "none";
               c1.style.display = "none";
               c2.style.display = "none";
             }
 
             w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
+
+            viewAll.addEventListener("click", () => {
+              if (lang == "sin")
+                Command: toastr["warning"]("අද එකතු කිරීම් නැත");
+              else Command: toastr["warning"]("No collections today");
+            });
           } else if (data.size == -1) {
             let arr2 = data.upcoming;
             let row2 = "";
@@ -304,7 +323,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<td data-href="./collection/view.html">${item.amount.toLocaleString(
                   "en-US"
                 )}</td>` +
-                `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+                `<td class='hide'><button class="direction status" location="${item.location}">Get Directions</button></td>` +
                 `</tr>`;
             });
 
@@ -335,10 +354,17 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               fire.style.display = "block";
               greet.style.display = "flex";
               todayTable.style.display = "none";
+              viewAll.style.display = "none";
             }
 
             w1Value.textContent = data.rate.price + " LKR";
             w2Value.innerHTML = `0<span>/` + data.count + `</span>`;
+
+            viewAll.addEventListener("click", () => {
+              if (lang == "sin")
+                Command: toastr["warning"]("අද එකතු කිරීම් නැත");
+              else Command: toastr["warning"]("No collections today");
+            });
           } else {
             let arr1 = data.today;
             let row1 = "";
@@ -353,7 +379,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<td data-href="./collection/view.html">${item.amount.toLocaleString(
                   "en-US"
                 )}</td>` +
-                `<td class='hide'><button class="direction status">Get Directions</button></td>` +
+                `<td class='hide'><button class="direction status" location="${item.location}">Get Directions</button></td>` +
                 `</tr>`;
             });
 
@@ -387,7 +413,39 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               fire.style.display = "block";
               greet.style.display = "flex";
               todayTable.style.display = "none";
+              viewAll.style.display = "none";
             }
+
+            viewAll.addEventListener("click", () => {
+              if (arr1.length > 0) {
+                overlay1.style.display = "flex";
+                document.querySelector(".get-direction").style.display =
+                  "block";
+
+                let locations = [];
+                let end;
+
+                arr1.forEach((item, index) => {
+                  if (index == arr1.length - 1) {
+                    end = `${item.location.split(" ")[0]},${
+                      item.location.split(" ")[1]
+                    }`;
+                  } else {
+                    locations.push(
+                      `${item.location.split(" ")[0]},${
+                        item.location.split(" ")[1]
+                      }`
+                    );
+                  }
+                });
+
+                getDirectionWithWayPoints(locations, end);
+              } else {
+                if (lang == "sin")
+                  Command: toastr["warning"]("අද එකතු කිරීම් නැත");
+                else Command: toastr["warning"]("No collections today");
+              }
+            });
           }
         });
       } else if (response.status === 401) {
@@ -408,6 +466,8 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 })();
 
 let directionsService, directionsRenderer, start;
+let startMarker = null,
+  endMarker = null;
 
 function initMap() {
   directionsService = new google.maps.DirectionsService();
@@ -475,19 +535,105 @@ function calculateAndDisplayRoute(
       directionsRenderer.setDirections(result);
 
       // Clear existing markers
-      directionsRenderer.setOptions({ suppressMarkers: true });
+      // directionsRenderer.setOptions({ suppressMarkers: true });
+      // log(directionsRenderer);
+
+      // Clear existing markers if they exist
+      // if (startMarker) {
+      //   startMarker.setMap(null);
+      // }
+      // if (endMarker) {
+      //   endMarker.setMap(null);
+      // }
 
       // Add markers for start and end locations
-      const startMarker = new google.maps.Marker({
-        map: directionsRenderer.getMap(),
-        position: result.routes[0].legs[0].start_location,
-        label: "S", // Marker label for start
-      });
-      const endMarker = new google.maps.Marker({
-        map: directionsRenderer.getMap(),
-        position: result.routes[0].legs[0].end_location,
-        label: "E", // Marker label for end
-      });
+      // startMarker = new google.maps.Marker({
+      //   map: directionsRenderer.getMap(),
+      //   position: result.routes[0].legs[0].start_location,
+      //   label: "S", // Marker label for start
+      // });
+      // endMarker = new google.maps.Marker({
+      //   map: directionsRenderer.getMap(),
+      //   position: result.routes[0].legs[0].end_location,
+      //   label: "E", // Marker label for end
+      // });
+
+      const summaryPanel = document.querySelector(".pick-address");
+
+      summaryPanel.innerHTML = "";
+    })
+    .catch((e) => {
+      window.alert("Directions request failed due to " + e);
+    });
+}
+
+function getDirectionWithWayPoints(locations, end) {
+  calculateAndDisplayRouteWithWayPoints(
+    directionsService,
+    directionsRenderer,
+    start,
+    end,
+    locations
+  );
+}
+
+function calculateAndDisplayRouteWithWayPoints(
+  directionsService,
+  directionsRenderer,
+  start,
+  end,
+  locations
+) {
+  const waypts = [];
+
+  for (let i = 0; i < locations.length; i++) {
+    waypts.push({
+      location: locations[i],
+      stopover: true,
+    });
+  }
+  // Retrieve the start and end locations and create a DirectionsRequest using
+  // DRIVING directions.
+  directionsService
+    .route({
+      origin: {
+        lat: +start.split(",")[0],
+        lng: +start.split(",")[1],
+      },
+      destination: end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING,
+    })
+    .then((response) => {
+      // Route the directions and display on the map.
+      directionsRenderer.setDirections(response);
+
+      const route = response.routes[0];
+      const summaryPanel = document.querySelector(".pick-address");
+
+      summaryPanel.innerHTML = "";
+
+      // For each route, display summary information.
+      for (let i = 0; i < route.legs.length; i++) {
+        const routeSegment = i + 1;
+
+        summaryPanel.innerHTML +=
+          "<b>Route Segment: " + routeSegment + "</b><br>";
+        summaryPanel.innerHTML += route.legs[i].start_address + " <b>to</b> ";
+        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+        summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
+        summaryPanel.innerHTML += route.legs[i].duration.text + "<br><br>";
+
+        // console.log(route.legs[i].steps)
+
+        // for (let j = 0; j < route.legs[i].steps.length; j++) {
+        //   summaryPanel.innerHTML += route.legs[i].steps[j].duration.text + "<br>";
+        //   summaryPanel.innerHTML += route.legs[i].steps[j].distance.text + "<br>";
+        //   summaryPanel.innerHTML +=
+        //     route.legs[i].steps[j].instructions + "<br><br>";
+        // }
+      }
     })
     .catch((e) => {
       window.alert("Directions request failed due to " + e);
