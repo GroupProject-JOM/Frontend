@@ -194,6 +194,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             fire.style.display = "block";
             greet.style.display = "flex";
             todayTable.style.display = "none";
+            viewAll.style.display = "none";
           }
 
           const cols = document.querySelectorAll("td[data-href]");
@@ -294,6 +295,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               fire.style.display = "block";
               greet.style.display = "flex";
               todayTable.style.display = "none";
+              viewAll.style.display = "none";
               c1.style.display = "none";
               c2.style.display = "none";
             }
@@ -352,6 +354,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               fire.style.display = "block";
               greet.style.display = "flex";
               todayTable.style.display = "none";
+              viewAll.style.display = "none";
             }
 
             w1Value.textContent = data.rate.price + " LKR";
@@ -410,6 +413,7 @@ document.cookie = "final=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               fire.style.display = "block";
               greet.style.display = "flex";
               todayTable.style.display = "none";
+              viewAll.style.display = "none";
             }
 
             viewAll.addEventListener("click", () => {
