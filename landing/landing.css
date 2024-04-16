@@ -689,6 +689,7 @@ body {
   font-size: 1.3rem;
   font-weight: 500;
   padding: 10px;
+  cursor: pointer;
 }
 
 .layer6 .options .selected {

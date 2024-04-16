@@ -22,7 +22,6 @@
     />
   </head>
   <body>
-
     <nav class="navbar">
       <ul class="menu">
         <li><a href="" class="active">Home</a></li>
@@ -61,12 +60,10 @@
             <path class="a3" d="M0 40 L30 72 L60 40"></path>
           </svg>
         </a>
-
       </section>
 
-
       <!-- <div class="shape1 shape hide"></div> -->
-  
+
       <div class="layer2" id="layer2">
         <div class="layer-left hide">
           <div class="shape2-4">
@@ -398,26 +395,26 @@
           <div class="item1">
             <h2>Our Gallery</h2>
             <div class="options">
-              <div class="worplace option">Workplace</div>
+              <div class="workplace option">Workplace</div>
               <div class="customers option">Customers</div>
               <div class="products option selected">Products</div>
               <div class="events option">Events</div>
             </div>
           </div>
           <div class="item2">
-            <img src="../common/img/l-block3.png" alt="" />
+            <img src="../common/img/l-block3.png" alt="item-2 image" />
           </div>
           <div class="item3">
-            <img src="../common/img/l-block3.png" alt="" />
+            <img src="../common/img/l-block3.png" alt="item-3 image" />
           </div>
           <div class="item4">
-            <img src="../common/img/l-block3.png" alt="" />
+            <img src="../common/img/l-block3.png" alt="item-4 image" />
           </div>
           <div class="item5">
-            <img src="../common/img/l-block3.png" alt="" />
+            <img src="../common/img/l-block3.png" alt="item-5 image" />
           </div>
           <div class="item6">
-            <img src="../common/img/l-block3.png" alt="" />
+            <img src="../common/img/l-block3.png" alt="item-6 image" />
           </div>
         </div>
       </div>
@@ -542,6 +539,122 @@
       ScrollReveal().reveal(".buttons", {
         ...scrollRevealOption,
         delay: 1000,
+      });
+
+      const values = document.querySelectorAll(".value");
+
+      let startValue1 = 0,
+        startValue2 = 0,
+        startValue3 = 0,
+        endValue1 = 80,
+        endValue2 = 10,
+        endValue3 = 40,
+        speed1 = 100,
+        speed2 = 100,
+        speed3 = 100;
+
+      // Function to handle the animation
+      function animateValues() {
+        let progress1 = setInterval(() => {
+          values[0].textContent = `${startValue1}+`;
+          if (startValue1 >= endValue1) clearInterval(progress1);
+          startValue1++;
+        }, speed1);
+
+        let progress2 = setInterval(() => {
+          values[1].textContent = `${startValue2}+`;
+          if (startValue2 >= endValue2) clearInterval(progress2);
+          startValue2++;
+        }, speed2);
+
+        let progress3 = setInterval(() => {
+          values[2].textContent = `${startValue3}+`;
+          if (startValue3 >= endValue3) clearInterval(progress3);
+          startValue3++;
+        }, speed3);
+      }
+
+      // Intersection Observer setup
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Start the animation when the target element is in view
+            animateValues();
+            // Stop observing once animation starts
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+
+      // Observing the .values class
+      values.forEach((value) => {
+        observer.observe(value);
+      });
+
+      // console.log(item2.src)
+      // item2.src = "../common/img/step-5.png"
+
+      const workplace = document.querySelector(".options .workplace");
+      const customers = document.querySelector(".options .customers");
+      const products = document.querySelector(".options .products");
+      const events = document.querySelector(".options .events");
+
+      const item2 = document.querySelector(".container .item2 img");
+      const item3 = document.querySelector(".container .item3 img");
+      const item4 = document.querySelector(".container .item4 img");
+      const item5 = document.querySelector(".container .item5 img");
+      const item6 = document.querySelector(".container .item6 img");
+
+      workplace.addEventListener("click", () => {
+        workplace.classList.add("selected");
+        customers.classList.remove("selected");
+        products.classList.remove("selected");
+        events.classList.remove("selected");
+
+        item2.src = "";
+        item3.src = "";
+        item4.src = "";
+        item5.src = "";
+        item6.src = "";
+      });
+
+      customers.addEventListener("click", () => {
+        workplace.classList.remove("selected");
+        customers.classList.add("selected");
+        products.classList.remove("selected");
+        events.classList.remove("selected");
+
+        item2.src = "";
+        item3.src = "";
+        item4.src = "";
+        item5.src = "";
+        item6.src = "";
+      });
+
+      products.addEventListener("click", () => {
+        workplace.classList.remove("selected");
+        customers.classList.remove("selected");
+        products.classList.add("selected");
+        events.classList.remove("selected");
+
+        item2.src = "../common/img/l-block3.png";
+        item3.src = "../common/img/l-block3.png";
+        item4.src = "../common/img/l-block3.png";
+        item5.src = "../common/img/l-block3.png";
+        item6.src = "../common/img/l-block3.png";
+      });
+
+      events.addEventListener("click", () => {
+        workplace.classList.remove("selected");
+        customers.classList.remove("selected");
+        products.classList.remove("selected");
+        events.classList.add("selected");
+
+        item2.src = "";
+        item3.src = "";
+        item4.src = "";
+        item5.src = "";
+        item6.src = "";
       });
     </script>
   </body>
