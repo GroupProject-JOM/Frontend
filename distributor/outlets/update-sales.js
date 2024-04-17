@@ -6,15 +6,20 @@
     oArea = body.querySelector(".outlet-area"),
     viewData = body.querySelector(".view-data"),
     tbody = body.querySelector(".tbody"),
+    tbody2 = body.querySelector(".tbody2"),
     subTotal = body.querySelector(".sub-total-value"),
-    closeBtn = body.querySelector(".close-btn"),
-    overlay = body.querySelector(".overlay"),
+    closeBtn1 = body.querySelector(".close-btn1"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    overlay1 = body.querySelector(".overlay1"),
+    overlay2 = body.querySelector(".overlay2"),
     oId = body.querySelector(".oId"),
     oName = body.querySelector(".oName"),
     oEmail = body.querySelector(".oEmail"),
     oPhone = body.querySelector(".oPhone"),
     oAddress = body.querySelector(".oAddress"),
-    btn = body.querySelector(".next");
+    btn = body.querySelector(".next"),
+    confirm = body.querySelector(".confirm"),
+    billTotal = body.querySelector(".bill-total-value");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -43,20 +48,32 @@
   });
 
   viewData.addEventListener("click", () => {
-    overlay.style.display = "flex";
+    overlay1.style.display = "flex";
     document.querySelector(".view-outlet-container").style.display = "block";
   });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target.id === "overlay") {
-      overlay.style.display = "none";
+  overlay1.addEventListener("click", (e) => {
+    if (e.target.id === "overlay1") {
+      overlay1.style.display = "none";
       document.querySelector(".view-outlet-container").style.display = "none";
     }
   });
 
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
+  closeBtn1.addEventListener("click", () => {
+    overlay1.style.display = "none";
     document.querySelector(".view-outlet-container").style.display = "none";
+  });
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay2") {
+      overlay2.style.display = "none";
+      document.querySelector(".bill-container").style.display = "none";
+    }
+  });
+
+  closeBtn2.addEventListener("click", () => {
+    overlay2.style.display = "none";
+    document.querySelector(".bill-container").style.display = "none";
   });
 
   var data = {
@@ -121,6 +138,8 @@
   getRemainig();
   var row = "",
     onHand = [],
+    pNames = [],
+    pTypes = [],
     prices = [];
 
   function getRemainig() {
@@ -138,6 +157,8 @@
             data.list.forEach((item) => {
               onHand.push(item.remaining);
               prices.push(item.price);
+              pNames.push(item.category);
+              pTypes.push(item.type);
               row +=
                 `<tr class="disable" id=${item.product}>` +
                 `<td>` +
@@ -273,7 +294,7 @@
 
     radio.forEach((r, index) => {
       if (r.checked) {
-        sub_total = prices[index] * +add[index].value;
+        sub_total += prices[index] * add[index].value;
       }
     });
 
@@ -291,6 +312,8 @@
     var amounts = [],
       products = [],
       productPrices = [],
+      pList = [],
+      typeList = [],
       countStatus = false,
       count = 0;
 
@@ -312,6 +335,8 @@
           products.push(r.parentElement.parentElement.parentElement.id);
           amounts.push(add[index].value);
           productPrices.push(prices[index]);
+          pList.push(pNames[index]);
+          typeList.push(pTypes[index]);
         }
 
         count++;
@@ -320,6 +345,8 @@
 
     if (count == products.length && count != 0) countStatus = true;
     else false;
+
+    log(countStatus);
 
     if (countStatus) {
       var formData = {
@@ -331,76 +358,111 @@
 
       log(JSON.stringify(formData));
 
-      if (lang == "sin") {
-        var title = "ඔබට විශ්වාස ද?",
-          text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
-          confirmButtonText = "ඔව්, අලෙවිසැලට බෙදාහරින්න!",
-          cancelButtonText = "අවලංගු කරන්න";
-      } else {
-        var title = "Are you sure?",
-          text = "You won't be able to revert this!",
-          confirmButtonText = "Yes, Distribute to outlet!",
-          cancelButtonText = "Cancel";
-      }
-      Swal.fire({
-        title: title,
-        text: text,
-        confirmButtonText: confirmButtonText,
-        cancelButtonText: cancelButtonText,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: confirmButtonColor,
-        cancelButtonColor: cancelButtonColor,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          fetch(backProxy + "/product-list", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-            credentials: "include",
-          })
-            .then((response) => {
-              if (response.status == 200) {
-                response.json().then((data) => {
-                  console.log(data.message);
-                });
-                if (lang == "sin") var title = "අලෙවිසැලට සාර්ථකව බෙදා හැර ඇත";
-                else var title = "Successfully distributed to outlet";
-                Swal.fire({
-                  title: title,
-                  // text: "You clicked the button!",
-                  icon: "success",
-                  confirmButtonColor: confirmButtonColor,
-                }).then((response) => {
-                  getRemainig();
-                });
-              } else if (response.status === 400) {
-                response.json().then((data) => {
-                  console.log(data.message);
-                });
-                if (lang == "sin")
-                  Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
-                else Command: toastr["info"]("Something went wrong. Try again");
-              } else if (response.status === 401) {
-                response.json().then((data) => {
-                  console.log(data.message);
-                });
-                if (lang == "sin")
-                  Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-                else Command: toastr["error"]("Invalid User");
-              } else {
-                console.error("Error:", response.status);
-                Command: toastr["error"](response.status, "Error");
-              }
-            })
-            .catch((error) => {
-              console.error("An error occurred:", error);
-              Command: toastr["error"](error);
-            });
-        }
+      overlay2.style.display = "flex";
+      document.querySelector(".bill-container").style.display = "block";
+
+      var row3 = "";
+      products.forEach((item, index) => {
+        row3 +=
+          `<tr>` +
+          `<td class="tc1">${index + 1}</td>` +
+          `<td>${pList[index]}</td>` +
+          `<td>${typeList[index]}</td>` +
+          `<td>${amounts[index].toLocaleString("en-US")}</td>` +
+          `<td>${(+productPrices[index]).toLocaleString("en-US")} LKR</td>` +
+          `<td>${(productPrices[index] * amounts[index]).toLocaleString(
+            "en-US"
+          )} LKR</td>` +
+          `</tr>`;
       });
+      tbody2.innerHTML = row3;
+
+      billTotal.textContent = subTotal.textContent;
+
+      confirm.addEventListener("click", () => {
+        if (lang == "sin") {
+          var title = "ඔබට විශ්වාස ද?",
+            text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+            confirmButtonText = "ඔව්, අලෙවිසැලට බෙදාහරින්න!",
+            cancelButtonText = "අවලංගු කරන්න";
+        } else {
+          var title = "Are you sure?",
+            text = "You won't be able to revert this!",
+            confirmButtonText = "Yes, Distribute to outlet!",
+            cancelButtonText = "Cancel";
+        }
+        Swal.fire({
+          title: title,
+          text: text,
+          confirmButtonText: confirmButtonText,
+          cancelButtonText: cancelButtonText,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: confirmButtonColor,
+          cancelButtonColor: cancelButtonColor,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(backProxy + "/product-list", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+              credentials: "include",
+            })
+              .then((response) => {
+                if (response.status == 200) {
+                  response.json().then((data) => {
+                    console.log(data.message);
+                  });
+                  if (lang == "sin")
+                    var title = "අලෙවිසැලට සාර්ථකව බෙදා හැර ඇත";
+                  else var title = "Successfully distributed to outlet";
+                  Swal.fire({
+                    title: title,
+                    // text: "You clicked the button!",
+                    icon: "success",
+                    confirmButtonColor: confirmButtonColor,
+                  }).then((response) => {
+                    getRemainig();
+                    subTotal.textContent = "0 LKR";
+                    overlay2.click();
+                  });
+                } else if (response.status === 400) {
+                  response.json().then((data) => {
+                    console.log(data.message);
+                  });
+                  if (lang == "sin")
+                    Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+                  else
+                    Command: toastr["info"]("Something went wrong. Try again");
+                } else if (response.status === 401) {
+                  response.json().then((data) => {
+                    console.log(data.message);
+                  });
+                  if (lang == "sin")
+                    Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+                  else Command: toastr["error"]("Invalid User");
+                } else {
+                  console.error("Error:", response.status);
+                  Command: toastr["error"](response.status, "Error");
+                }
+              })
+              .catch((error) => {
+                console.error("An error occurred:", error);
+                Command: toastr["error"](error);
+              });
+          }
+        });
+      });
+    } else {
+      if (lang == "sin") {
+        Command: toastr["error"](
+          "පරීක්ෂා කළ පේළි ආදාන ක්ෂේත්‍රය හිස් විය නොහැක!"
+        );
+      } else {
+        Command: toastr["error"]("Checked rows input field cannot be empty!");
+      }
     }
   });
 
