@@ -607,6 +607,7 @@ body {
 .layer5 .card-content p {
   font-size: 0.9rem;
   line-height: 20px;
+  text-align: justify;
 }
 
 .layer5 .card-wrapper .name {
@@ -1118,6 +1119,10 @@ body {
 }
 .swiper-pagination-bullet-active {
   background: none !important;
+}
+
+.back-to-top{
+  background-color: #ffffff00;
 }
 @media screen and (max-width: 768px) {
   .slide-content {

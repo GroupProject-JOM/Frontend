@@ -136,6 +136,10 @@
   margin-top: 30px;
 }
 
+.register .form-button:hover{
+  color: var(--body-color);
+}
+
 @media (width > 768px) {
   .about__container {
     grid-template-columns: repeat(2, 1fr);
