@@ -11,12 +11,33 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="./landing.css">
+    <link rel="stylesheet" href="./landing.css" />
     <link rel="stylesheet" href="./product.css" />
     <link rel="stylesheet" href="./process.css" />
-    <link rel="stylesheet" href="../common/style.css" />
+    <link rel="stylesheet" href="./common/style.css" />
   </head>
   <body>
+    <!-- Loading screen -->
+    <div class="loader-wrapper">
+      <div class="logo-container">
+        <img src="./common/JOM logo 1.png" alt="" />
+      </div>
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
     <nav class="navbar">
       <ul class="menu">
         <li><a href="">Home</a></li>
@@ -26,7 +47,7 @@
         <li><a href="./products.html">Products</a></li>
       </ul>
 
-      <a class="button" href="../signin.html">Login</a>
+      <a class="button" href="./signin.html">Login</a>
 
       <!-- responsive button -->
       <div class="menu-btn"><i class="fa fa-bars"></i></div>
@@ -53,7 +74,7 @@
     <section class="steps" id="container">
       <div class="step-container container">
         <div class="step-image step-image-1" id="">
-          <img src="../common/img/step-1.png" alt="step-image-1" />
+          <img src="./common/img/step-1.png" alt="step-image-1" />
         </div>
         <div class="step-content step-content-1">
           <h3 class="step-sub-header">GET STARTED</h3>
@@ -66,7 +87,7 @@
         </div>
 
         <div class="step-image step-image-2" id="">
-          <img src="../common/img/step-2.png" alt="step-image-2" />
+          <img src="./common/img/step-2.png" alt="step-image-2" />
         </div>
         <div class="step-content step-content-2">
           <h3 class="step-sub-header">COLLECTIONS</h3>
@@ -79,7 +100,7 @@
         </div>
 
         <div class="step-image step-image-3" id="">
-          <img src="../common/img/step-3.png" alt="step-image-3" />
+          <img src="./common/img/step-3.png" alt="step-image-3" />
         </div>
         <div class="step-content step-content-3">
           <h3 class="step-sub-header">TO COLLECTOR</h3>
@@ -91,7 +112,7 @@
         </div>
 
         <div class="step-image step-image-4" id="">
-          <img src="../common/img/step-4.png" alt="step-image-4" />
+          <img src="./common/img/step-4.png" alt="step-image-4" />
         </div>
         <div class="step-content step-content-4">
           <h3 class="step-sub-header">VERIFY</h3>
@@ -103,7 +124,7 @@
         </div>
 
         <div class="step-image step-image-5" id="">
-          <img src="../common/img/step-5.png" alt="step-image-5" />
+          <img src="./common/img/step-5.png" alt="step-image-5" />
         </div>
         <div class="step-content step-content-5">
           <h3 class="step-sub-header">PAYMENT</h3>
@@ -116,18 +137,18 @@
       </div>
     </section>
 
-
     <div class="register">
       <h2>Register As a Suplier Today</h2>
-      <p>Register with us and start supplying your coconut yeild to Jayasinghe Oil Mills for the best price in the market</p>
+      <p>
+        Register with us and start supplying your coconut yeild to Jayasinghe
+        Oil Mills for the best price in the market
+      </p>
       <button class="form-button">Register Now</button>
     </div>
 
-
-    
     <footer class="footer-distributed" id="footer">
       <div class="footer-left">
-        <img src="../common/JOM logo 1.png" alt="" />
+        <img src="./common/JOM logo 1.png" alt="" />
 
         <p class="footer-links">
           <a href="#layer1" class="link-1">Home</a>
@@ -145,12 +166,20 @@
       <div class="footer-center">
         <div>
           <i class="fa fa-map-marker"></i>
-          <p><span>No 105, Ravita Road,</span> Welpalla, Sri Lanka.</p>
+          <p>
+            <a href="https://maps.app.goo.gl/QHZtcCDZUr2HPJFS6" target="_blank"
+              ><span>No 105, Ravita Road,</span> Welpalla, Sri Lanka.</a
+            >
+          </p>
         </div>
 
         <div>
           <i class="fa fa-phone"></i>
-          <p>+94 71 829 9610</p>
+          <p>
+            <a href="https://wa.me/94718299610" target="_blank"
+              >+94 71 829 9610</a
+            >
+          </p>
         </div>
 
         <div>
@@ -168,13 +197,19 @@
         </p>
 
         <div class="footer-icons">
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-linkedin"></i></a>
-          <a href="#"><i class="fa fa-instagram"></i></a>
+          <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/"
+            ><i class="fa fa-instagram"></i
+          ></a>
         </div>
       </div>
     </footer>
+
+    <div class="back-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </div>
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
@@ -248,5 +283,6 @@
         $(".menu-btn i").toggleClass("active");
       });
     </script>
+    <script src="./common/loader.js"></script>
   </body>
 </html>
