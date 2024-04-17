@@ -233,7 +233,7 @@ body {
 }
 
 .layer2 .layer-right h4 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 600;
 }
 .layer2 .layer-right .text {
@@ -367,7 +367,7 @@ body {
 
 .layer3 .products-wrapper .content {
   font-size: 0.8rem;
-  padding: 0 10px 10px 10px;
+  padding: 0 10px 5px 10px;
 }
 
 .layer3 h2 {
@@ -406,6 +406,14 @@ body {
 
 .layer3 .swiper-navBtn {
   top: 200px !important;
+}
+
+.layer3 .view-more{
+  font-size: 0.8rem;
+  color: var(--sidebar-color);
+  float: right;
+  padding:0 10px 10px 0;
+  text-decoration: none;
 }
 
 .layer4 {
@@ -508,8 +516,8 @@ body {
 .layer4 .yt {
   width: 92px;
   height: 92px;
-  top: 2100px;
-  left: 320px;
+  top: 2140px;
+  left: 300px;
 }
 .layer4 .camera {
   width: 105px;
@@ -520,8 +528,8 @@ body {
 .layer4 .mail {
   width: 32px;
   height: 32px;
-  top: 2250px;
-  left: 505px;
+  top: 2280px;
+  left: 455px;
   font-size: 80%;
 }
 .layer4 .pin {
@@ -533,22 +541,22 @@ body {
 .layer4 .star {
   width: 45px;
   height: 45px;
-  top: 2320px;
-  left: 570px;
+  top: 2350px;
+  left: 530px;
   font-size: 130%;
 }
 .layer4 .setting {
   width: 45px;
   height: 45px;
-  top: 2560px;
-  left: 100px;
+  top: 2630px;
+  left: 80px;
   font-size: 130%;
 }
 .layer4 .radio {
   width: 62px;
   height: 62px;
-  top: 2460px;
-  left: 190px;
+  top: 2500px;
+  left: 170px;
   font-size: 150%;
 }
 
@@ -616,8 +624,8 @@ body {
   height: 490px;
   border-radius: 60px;
   position: absolute;
-  top: 2820px;
-  right: -235px;
+  top: 2865px;
+  right: -265px;
   transform: rotate(45deg);
   box-shadow: 0 0 0 3.7rem var(--sidebar-color);
   /* z-index: 2; */
