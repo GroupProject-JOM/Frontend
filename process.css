@@ -1,0 +1,161 @@
+/* Content */
+.content {
+  background-image: url("../common/img/Coconut Land 1 (1).png");
+}
+
+.step-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+.step-sub-header {
+  position: relative;
+  isolation: isolate;
+  margin-bottom: 1rem;
+  padding-left: 5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #e9c675;
+}
+
+.step-sub-header::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 2px;
+  width: 4rem;
+  background-color: #e9c675;
+}
+
+.step-sub-header::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-60%, -50%);
+  font-size: 8rem;
+  font-weight: 600;
+  color: #000000;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.step-header {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #000000;
+}
+
+.step-container img {
+  display: flex;
+  width: 100%;
+}
+
+/* .steps {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    #0a1e27 8rem
+  );
+  overflow: hidden;
+} */
+
+.container {
+  padding-top: 0;
+  display: grid;
+  gap: 5rem 2rem;
+  overflow: hidden;
+}
+
+.step-image img {
+  max-width: 400px;
+  margin-inline: auto;
+  border-radius: 5px;
+  /* box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.4); */
+}
+
+.step-content,
+.step-image {
+  margin: 2rem 0;
+}
+
+.step-content-1,
+.step-image-1 {
+  margin-top: 7rem;
+}
+
+.step-content-1 .step-sub-header::after {
+  content: "01";
+}
+
+.step-content-2 .step-sub-header::after {
+  content: "02";
+}
+
+.step-content-3 .step-sub-header::after {
+  content: "03";
+}
+
+.step-content-4 .step-sub-header::after {
+  content: "04";
+}
+
+.step-content-5 .step-sub-header::after {
+  content: "05";
+}
+
+.step-content p {
+  margin: 1.5rem;
+}
+
+.register{
+  background-color: var(--sidebar-color);
+  color: var(--body-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 0 50px 0;
+}
+
+.register p{
+  font-size: 0.9rem;
+}
+.register h2{
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.register .form-button{
+  background-color: var(--body-color);
+  color: var(--sidebar-color);
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+@media (width > 768px) {
+  .about__container {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 10rem 2rem;
+  }
+
+  .step-image-1 {
+    grid-area: 1/2/2/3;
+  }
+
+  .step-image-3 {
+    grid-area: 3/2/4/3;
+  }
+
+  .step-image-5 {
+    grid-area: 5/2/6/3;
+  }
+
+  .step-content {
+    margin-left: 6rem;
+  }
+}
