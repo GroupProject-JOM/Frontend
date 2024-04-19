@@ -57,7 +57,7 @@
       c1: "විකුණුම් දත්ත",
       c2: "මාසික විකුණුම් දත්ත සාරාංශය",
       c4: "බෙදාහරින්නාගේ විකුණුම්",
-      c5: "එක් එක් බෙදාහරින්නා සඳහා විකුණුම් දත්ත සාරාංශය",
+      c5: "එක් එක් නිෂ්පාදනය සඳහා විකුණුම් දත්ත සාරාංශය",
       aText:
         "නිෂ්පාදන දෙපාර්තමේන්තුව නව සමාගම් නිෂ්පාදන එකතු කර ඇත. ඒවායේ ඒකක මිල යාවත්කාලීන කරන්න.",
       aBtn: "මිල ඇතුල් කරන්න",
@@ -66,9 +66,9 @@
       w1: "Monthly Revenue",
       w2: "Pending Payments",
       c1: "Sales Data",
-      c2: "Monthly Sales Data Visualisation",
-      c4: "Disributor Sales",
-      c5: "Sales Data Visualisation for each distributor",
+      c2: "Monthly Sales Data Visualization",
+      c4: "Distributor Sales",
+      c5: "Sales Data Visualization for each product",
       aText:
         "Production department has added new company products. Update the unit price of them.",
       aBtn: "Update Unit Price",

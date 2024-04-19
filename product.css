@@ -23,6 +23,7 @@
   color: white;
   width: 30%;
   font-weight: 300;
+  min-width: 300px;
 }
 
 /* .content .scroll-btn,
@@ -46,7 +47,7 @@
   color: #424144;
 }
 
-#container{
+#container {
   padding-top: 50px;
 }
 /* Products */
