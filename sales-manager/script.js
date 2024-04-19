@@ -4,6 +4,7 @@
     en = body.querySelector(".en"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
+    w1Value = body.querySelector(".w1-value"),
     w2Value = body.querySelector(".w2-value"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
@@ -74,6 +75,9 @@
     },
   };
 
+  let this_year_sales = [],
+    last_year_sales = [];
+
   fetch(backProxy + "/sales-manager", {
     method: "GET",
     headers: {
@@ -84,7 +88,15 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
+          w1Value.textContent = data.revenue.toLocaleString("en-US") + " LKR";
           w2Value.textContent = data.payouts;
+
+          data.monthly.forEach((item) => {
+            this_year_sales.push(parseFloat(item.thisYear));
+            last_year_sales.push(parseFloat(item.lastYear));
+          });
+
+          salesChart(this_year_sales, last_year_sales);
 
           if (data.unverified == true) aBar.style.display = "";
         });
@@ -104,40 +116,10 @@
       Command: toastr["error"](error);
     });
 
-  let labels1 = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
   let labels2 = ["Saman", "Kamal", "Amal", "Chamal", "Piyal", "Sunil", "Kasun"];
 
-  let itemData1 = [
-    7000, 5000, 5000, 3000, 7000, 1100, 1500, 1000, 2100, 3000, 4500, 1200,
-  ];
   let itemData2 = [7000, 5000, 5000, 3000, 7000, 1100, 1500];
 
-  const dataLine1 = {
-    labels: labels1,
-    datasets: [
-      {
-        data: itemData1,
-        fill: true,
-        borderColor: "#909090",
-        // hoverBorderColor: '#000000',
-        // backgroundColor:'#ffe0b6'
-        tension: 0.1,
-      },
-    ],
-  };
   const dataBar = {
     labels: labels2,
     datasets: [
@@ -156,22 +138,6 @@
     ],
   };
 
-  const configLine1 = {
-    type: "line",
-    data: dataLine1,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        title: {
-          // display: true,
-          // text: 'Monthly Sales'
-        },
-      },
-    },
-  };
   const configBar = {
     type: "bar",
     data: dataBar,
@@ -189,12 +155,85 @@
     },
   };
 
-  const chartLine1 = new Chart(
-    document.getElementById("sales-data"),
-    configLine1
-  );
   const chartLine2 = new Chart(
     document.getElementById("distributor-sales"),
     configBar
   );
+
+  let labels = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  function salesChart(this_year, last_year) {
+    //sales chart design
+    const dataLine1 = {
+      labels: labels,
+      datasets: [
+        {
+          label: "This year",
+          data: this_year,
+          // fill: true,
+          borderColor: "#BB9056",
+          borderWidth: 2,
+          // hoverBorderColor: '#000000',
+          // backgroundColor:'#ffe0b6'
+          tension: 0.1,
+          pointRadius: 0,
+          hoverPointRadius: 0,
+        },
+        {
+          label: "Last year",
+          data: last_year,
+          // fill: true,
+          borderColor: "#949494",
+          borderWidth: 2,
+          // hoverBorderColor: '#000000',
+          // backgroundColor:'#ffe0b6'
+          tension: 0.1,
+          pointRadius: 0,
+          hoverPointRadius: 0,
+        },
+      ],
+    };
+
+    //sales chart configuration
+    const configLine1 = {
+      type: "line",
+      data: dataLine1,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: "top",
+            labels: {
+              boxWidth: 30,
+              boxHeight: 2,
+            },
+          },
+          title: {
+            display: true,
+            text: "Monthly Sales",
+          },
+        },
+      },
+    };
+
+    // sales chart visualizing
+    const chartLine1 = new Chart(
+      document.getElementById("sales-data"),
+      configLine1
+    );
+  }
 })();
