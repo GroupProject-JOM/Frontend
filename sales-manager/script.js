@@ -76,7 +76,9 @@
   };
 
   let this_year_sales = [],
-    last_year_sales = [];
+    last_year_sales = [],
+    productNames = [],
+    quantities = [];
 
   fetch(backProxy + "/sales-manager", {
     method: "GET",
@@ -92,11 +94,17 @@
           w2Value.textContent = data.payouts;
 
           data.monthly.forEach((item) => {
-            this_year_sales.push(parseFloat(item.thisYear));
-            last_year_sales.push(parseFloat(item.lastYear));
+            this_year_sales.push(item.thisYear);
+            last_year_sales.push(item.lastYear);
+          });
+
+          data.products.forEach((item) => {
+            productNames.push(item.category);
+            quantities.push(item.quantity);
           });
 
           salesChart(this_year_sales, last_year_sales);
+          productsChart(productNames, quantities);
 
           if (data.unverified == true) aBar.style.display = "";
         });
@@ -116,49 +124,47 @@
       Command: toastr["error"](error);
     });
 
-  let labels2 = ["Saman", "Kamal", "Amal", "Chamal", "Piyal", "Sunil", "Kasun"];
-
-  let itemData2 = [7000, 5000, 5000, 3000, 7000, 1100, 1500];
-
-  const dataBar = {
-    labels: labels2,
-    datasets: [
-      {
-        data: itemData2,
-        // backgroundColor: [
-        //   "rgb(24, 0, 201)",
-        //   "rgb(0, 201, 64)",
-        //   "rgb(201, 178, 0)",
-        //   "rgb(201, 77, 0)",
-        //   "rgb(201, 0, 147)",
-        //   "rgb(9, 8, 10)",
-        //   "rgb(48, 230, 121)",
-        // ],
-      },
-    ],
-  };
-
-  const configBar = {
-    type: "bar",
-    data: dataBar,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false,
+  function productsChart(names, quantity) {
+    const dataBar = {
+      labels: names,
+      datasets: [
+        {
+          data: quantity,
+          // backgroundColor: [
+          //   "rgb(24, 0, 201)",
+          //   "rgb(0, 201, 64)",
+          //   "rgb(201, 178, 0)",
+          //   "rgb(201, 77, 0)",
+          //   "rgb(201, 0, 147)",
+          //   "rgb(9, 8, 10)",
+          //   "rgb(48, 230, 121)",
+          // ],
         },
-        title: {
-          // display: true,
-          // text: 'Monthly Sales'
+      ],
+    };
+
+    const configBar = {
+      type: "bar",
+      data: dataBar,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          // title: {
+          //   display: true,
+          //   text: "Products Sales",
+          // },
         },
       },
-    },
-  };
+    };
 
-  const chartLine2 = new Chart(
-    document.getElementById("distributor-sales"),
-    configBar
-  );
+    const chartLine2 = new Chart(
+      document.getElementById("distributor-sales"),
+      configBar
+    );
+  }
 
   let labels = [
     "Jan",
