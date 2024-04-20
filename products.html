@@ -71,6 +71,11 @@
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
     ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="./common/style.css" />
@@ -393,6 +398,7 @@
       <i class="fas fa-chevron-up"></i>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
       $(".menu-btn").click(function () {
@@ -418,6 +424,12 @@
       ScrollReveal().reveal(".scroll-btn", {
         ...scrollRevealOption,
         delay: 1500,
+      });
+
+      Swal.fire({
+        title: "Online Marketplace",
+        text: "Since the online marketplace is not yet implemented this page is developed for demonstration purposes only.",
+        icon: "info",
       });
     </script>
     <script src="./common/loader.js"></script>
