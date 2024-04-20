@@ -91,13 +91,16 @@ document.cookie = "visits=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<p class="activity-heading">` +
               `<span class="quantity">${item.quantity}</span>` +
               ` <span class="name">${item.category}</span>` +
-              ` <span class="type">${item.type}</span>s to` +
-              ` <span class="outlet">${item.outletName} ${item.area}</span>` +
+              ` <span class="type">${item.type}</span>s to ` +
+              ` <span class="outlet">${item.outletName} ${item.area}</span> each for Rs.` +
+              `<span class="unit">${item.price}</span>`+
               `</p>` +
               `<p class="activity-text">` +
               `By` +
               ` <span class="distributor">${item.first_name} ${item.last_name}</span> on` +
-              ` <span class="date">${item.date} at ${item.time}</span>` +
+              ` <span class="date">${item.date} at ${item.time}</span>.` +
+              ` Recieved Rs.`+
+              `<span class="total">${item.price * item.quantity}</span>`+
               `</p>` +
               `</div>` +
               `</td>` +
