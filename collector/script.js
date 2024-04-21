@@ -564,9 +564,64 @@ function calculateAndDisplayRoute(
       //   label: "E", // Marker label for end
       // });
 
+      // directionsRenderer.setPanel(document.querySelector(".pick-address"));
+
       const summaryPanel = document.querySelector(".pick-address");
 
       summaryPanel.innerHTML = "";
+
+      const route = result.routes[0];
+
+      // For each route, display summary information.
+
+      summaryPanel.innerHTML += "<b>Directions:</b><br>";
+      summaryPanel.innerHTML +=
+        "<p class='start-address'>" +
+        route.legs[0].start_address +
+        "</p> <b>to</b> ";
+      summaryPanel.innerHTML +=
+        "<p class='end-address'>" + route.legs[0].end_address + "</p> <br>";
+      summaryPanel.innerHTML +=
+        "<p class='distance'><b>Distance: </b>" +
+        route.legs[0].distance.text +
+        "</p>";
+      summaryPanel.innerHTML +=
+        "<p class='duration'><b>Duration: </b>" +
+        route.legs[0].duration.text +
+        "</p> <br><br>";
+      summaryPanel.innerHTML +=
+        "<p class='view-text'>View More <i class='fas fa-chevron-down'></i> </p>";
+
+      const viewMoreSection = document.createElement("div");
+      viewMoreSection.setAttribute("class", "view-more-section");
+      viewMoreSection.setAttribute("style", "display:none;");
+
+      // console.log(route.legs[i].steps)
+
+      for (let j = 0; j < route.legs[0].steps.length; j++) {
+        viewMoreSection.innerHTML +=
+          route.legs[0].steps[j].duration.text + "<br>";
+        viewMoreSection.innerHTML +=
+          route.legs[0].steps[j].distance.text + "<br>";
+        viewMoreSection.innerHTML +=
+          route.legs[0].steps[j].instructions + "<br><br>";
+      }
+
+      summaryPanel.appendChild(viewMoreSection);
+
+      document.querySelector(".view-text").addEventListener("click", () => {
+        $(".view-more-section").toggle();
+        if (
+          summaryPanel.querySelector(".view-more-section").style.display ==
+          "none"
+        ) {
+          document.querySelector(".view-text").innerHTML =
+            "View More <i class='fas fa-chevron-down'></i>";
+        } else {
+          document.querySelector(".view-text").innerHTML =
+            "View Less <i class='fas fa-chevron-up'></i>";
+        }
+      });
     })
     .catch((e) => {
       window.alert("Directions request failed due to " + e);
@@ -625,11 +680,21 @@ function calculateAndDisplayRouteWithWayPoints(
         const routeSegment = i + 1;
 
         summaryPanel.innerHTML +=
-          "<b>Route Segment: " + routeSegment + "</b><br>";
-        summaryPanel.innerHTML += route.legs[i].start_address + " <b>to</b> ";
-        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-        summaryPanel.innerHTML += route.legs[i].distance.text + "<br>";
-        summaryPanel.innerHTML += route.legs[i].duration.text + "<br><br>";
+          "<b class='title'>Route: " + routeSegment + "</b><br>";
+        summaryPanel.innerHTML +=
+          "<p class='start-address'>" +
+          route.legs[i].start_address +
+          "</p> <b>to</b> ";
+        summaryPanel.innerHTML +=
+          "<p class='end-address'>" + route.legs[i].end_address + "</p> <br>";
+        summaryPanel.innerHTML +=
+          "<p class='distance'><b>Distance: </b>" +
+          route.legs[i].distance.text +
+          "</p>";
+        summaryPanel.innerHTML +=
+          "<p class='duration'><b>Duration: </b>" +
+          route.legs[i].duration.text +
+          "</p> <br><br>";
 
         // console.log(route.legs[i].steps)
 

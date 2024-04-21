@@ -114,8 +114,10 @@ select.dropdown {
   font-size: 19px;
 }
 
-.stockmg-collections-container .collection-layer {
-  padding-bottom: 60px;
+.stockmg-collections-container .decline-layer,
+.stockmg-collections-container .completed-layer
+ {
+  padding-top: 60px;
 }
 
 .to-yard {

@@ -173,6 +173,7 @@
             arr.forEach(data_to_table);
 
             function data_to_table(item) {
+              log(item)
               if (item.sender == getPayload(getCookie("jwt")).user) {
                 chat.innerHTML +=
                   `<div class="sent">
@@ -240,7 +241,7 @@
                   item.sender +
                   `>` +
                   `<div class="profile-photo">` +
-                  `<span class="profile-icon"> <i class="fa-solid fa-user"></i>` +
+                  `<span class="profile-icon hide"> <i class="fa-solid fa-user"></i>` +
                   `</span>` +
                   `</div>` +
                   `<div class="single-chat-content">` +
@@ -253,7 +254,7 @@
                   item.content +
                   `</p>` +
                   `</div>` +
-                  `</div>`;
+                  `</div><hr>`;
                 return;
               }
               if (item.receiver == 3) {
@@ -277,7 +278,7 @@
                     item.content +
                     `</p>` +
                     `</div>` +
-                    `</div>`;
+                    `</div><hr>`;
                 } else {
                   allChat.innerHTML +=
                     `<div class="single-chat" id=` +
@@ -297,7 +298,7 @@
                     item.content +
                     `</p>` +
                     `</div>` +
-                    `</div>`;
+                    `</div><hr>`;
                 }
               } else {
                 allChat.innerHTML +=
@@ -318,7 +319,7 @@
                   item.content +
                   `</p>` +
                   `</div>` +
-                  `</div>`;
+                  `</div><hr>`;
               }
             }
 
