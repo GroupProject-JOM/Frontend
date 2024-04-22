@@ -80,7 +80,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       pLabel: "වත්තෙන් එකතු කිරීම",
       dLabel: "අංගනයට භාර දීම",
       pMethod: "ගෙවීම් ක්රමය",
-      cLabel: "එකතු කිරීම් සඳහා මුදල්",
+      cLabel: "අත්පිට මුදල්",
       bLabel: "බැංකු හුවමාරුව",
       btn: "ඊළඟ",
     },
@@ -197,8 +197,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           if (response.status == 200) {
             response.json().then((data) => {
               console.log(data.message);
-              // sessionStorage.setItem("id",data.id);
-              document.cookie = "id=" + data.id;
+              document.cookie = "id=" + data.id + "; path=/";
             });
             window.location.href = page;
           } else if (response.status === 400) {
@@ -236,11 +235,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       return false;
     } else if (!checkInt(amount.value)) {
       if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+        amountError.textContent = "පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය");
       } else {
-        amountError.textContent = "Coconut amount must be positive integer";
-        Command: toastr["warning"]("Coconut amount must be positive integer");
+        amountError.textContent = "Coconut amount must be greater than 0";
+        Command: toastr["warning"]("Coconut amount must be greater than 0");
       }
       amountStatus = false;
       return false;

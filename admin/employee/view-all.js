@@ -46,7 +46,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin: {
       oTitle: "සේවකයින් බලන්න",
       oText: "සීමාසහිත ජයසිංහ ඔයිල් මිල්ස් (PVT) හි සියලුම සේවකයින් බලන්න",
-      btn: "සේවකයා එකතු කරන්න",
+      btn: "සේවකයින් එකතු කරන්න",
     },
     en: {
       oTitle: "View Employees",
@@ -78,6 +78,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               ">" +
               "<td>" +
               item.first_name +
+              " " +
+              item.last_name +
               "</td>" +
               "<td>" +
               item.role.charAt(0).toUpperCase() +
@@ -93,6 +95,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           }
           tbody1.innerHTML = row1;
 
+          // pagination for table 1
+          pagination("table1", 10);
+
           data.previous.forEach((item) => {
             row2 +=
               "<tr data-href='./view.html' id=" +
@@ -100,6 +105,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               ">" +
               "<td>" +
               item.first_name +
+              " " +
+              item.last_name +
               "</td>" +
               "<td>" +
               item.role.charAt(0).toUpperCase() +

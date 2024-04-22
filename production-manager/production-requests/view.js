@@ -50,7 +50,7 @@
   var data = {
     sin: {
       pTitle: "ඉල්ලීම බලන්න",
-      pText: "නිෂ්පාදනය සඳහා කොටස් ඉල්ලීම් විස්තර බලන්න",
+      pText: "නිෂ්පාදනය සඳහා අමුදව්ය ඉල්ලීම් විස්තර බලන්න",
       edit: "සංස්කරණය කරන්න",
       del: "මකන්න",
     },
@@ -105,7 +105,7 @@
           }
 
           sYard.textContent = "Yard " + data.request.yard;
-          yBlock.textContent = "Block " + data.request.block;
+          yBlock.textContent = "B/" + data.request.block;
           yAmount.textContent = data.request.amount.toLocaleString("en-US");
           ystatus.textContent = stat;
 
@@ -164,7 +164,7 @@
                 ` class="` +
                 status +
                 `">` +
-                `<td>` +
+                `<td> B/` +
                 item.id +
                 `</td>` +
                 `<td>` +
@@ -184,8 +184,8 @@
           response.json().then((data) => {
             console.log(data.message);
           });
-          if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-          else Command: toastr["info"]("Something went wrong");
+          if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+          else Command: toastr["info"]("Something went wrong. Try again");
         } else if (response.status === 401) {
           response.json().then((data) => {
             console.log(data.message);
@@ -205,7 +205,7 @@
 
   del.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";

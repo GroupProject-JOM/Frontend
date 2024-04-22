@@ -102,14 +102,14 @@
       tx1: "පුද්ගලික තොරතුරු",
       tx2: "ලිපිනය",
       change: "මුරපදය වෙනස් කරන්න",
-      edit: "තොරතුරු සංස්කරණය කරන්න",
+      edit: "ගිණුම් තොරතුරු වෙනස් කරන්න",
       cLabel: "වත්මන් මුර පදය",
       cPassword: "වත්මන් මුරපදය ඇතුළත් කරන්න",
       forgot: "මුරපදය අමතක වුණා ද?",
       n1Label: "නව මුරපදය",
-      n1: "අවම වශයෙන් අක්ෂර 8 ක්",
+      n1: "අවම වශයෙන් අක්ෂර 6 ක්",
       n2Label: "මුරපදය තහවුරු කරන්න",
-      n2: "අවම වශයෙන් අක්ෂර 8 ක්",
+      n2: "අවම වශයෙන් අක්ෂර 6 ක්",
       save: "සුරකින්න",
     },
     en: {
@@ -122,9 +122,9 @@
       cPassword: "Enter current password",
       forgot: "Forgot password?",
       n1Label: "New Password",
-      n1: "At least 8 characters",
+      n1: "At least 6 characters",
       n2Label: "Confirm Password",
-      n2: "At least 8 characters",
+      n2: "At least 6 characters",
       save: "Save",
     },
   };
@@ -245,7 +245,7 @@
             response.json().then((data) => {
               log(data.message);
             });
-            if (lang == "sin") cPasswordError.textContent = "වැරදි මුරපදය";
+            if (lang == "sin") cPasswordError.textContent = "වැරදි මුරපදයක්";
             else cPasswordError.textContent = "Incorrect Password";
             currentStatus = false;
           } else {
@@ -266,7 +266,7 @@
       cPassword.value.trim().length === 0
     ) {
       if (lang == "sin")
-        cPasswordError.textContent = "වත්මන්මු මුරපදය හිස් විය නොහැක";
+        cPasswordError.textContent = "වත්මන් මුරපදය හිස් විය නොහැක";
       else cPasswordError.textContent = "Current password cannot be empty";
       currentStatus = false;
       return false;
@@ -283,6 +283,28 @@
       else n1Error.textContent = "New password cannot be empty";
       new1Status = false;
       return false;
+    } else if (typeof n1.value === "string" && n1.value.trim().length < 6) {
+      if (lang == "sin")
+        n1Error.textContent = "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
+      else
+        n1Error.textContent =
+          "Password length must be greater than or equal to 6";
+      new1Status = false;
+      return false;
+    } else if (!hasNumber(n1.value)) {
+      if (lang == "sin")
+        n1Error.textContent =
+          "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
+      else n1Error.textContent = "Password must contain at least one digit";
+      new1Status = false;
+      return false;
+    } else if (!hasLetter(n1.value)) {
+      if (lang == "sin")
+        n1Error.textContent =
+          "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
+      else n1Error.textContent = "Password must contain at least one letter";
+      new1Status = false;
+      return false;
     } else {
       new1Status = true;
       n1Error.textContent = "";
@@ -296,10 +318,46 @@
       else n2Error.textContent = "Confirm password cannot be empty";
       new2Status = false;
       return false;
+    } else if (typeof n2.value === "string" && n2.value.trim().length < 6) {
+      if (lang == "sin")
+        n2Error.textContent = "මුරපදයේ දිග 6 ට වඩා වැඩි හෝ සමාන විය යුතුය";
+      else
+        n2Error.textContent =
+          "Password length must be greater than or equal to 6";
+      new2Status = false;
+      return false;
+    } else if (!hasNumber(n2.value)) {
+      if (lang == "sin")
+        n2Error.textContent =
+          "මුරපදයේ අවම වශයෙන් ඉලක්කම් එකක්වත් අඩංගු විය යුතුය";
+      else n2Error.textContent = "Password must contain at least one digit";
+      new2Status = false;
+      return false;
+    } else if (!hasLetter(n2.value)) {
+      if (lang == "sin")
+        n2Error.textContent =
+          "මුරපදයේ අවම වශයෙන් එක් අකුරක්වත් අඩංගු විය යුතුය";
+      else n2Error.textContent = "Password must contain at least one letter";
+      new2Status = false;
+      return false;
     } else {
       new2Status = true;
       n2Error.textContent = "";
       return true;
     }
   }
+
+  forgot.addEventListener("click", () => {
+    document.cookie =
+      "email=" + getPayload(getCookie("jwt")).email + "; path=/";
+    window.location.href = "../../forgot-password/index.html";
+  });
 })();
+
+function hasNumber(str) {
+  return /\d/.test(str);
+}
+
+function hasLetter(str) {
+  return /[a-zA-Z]/.test(str);
+}

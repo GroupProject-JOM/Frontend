@@ -102,12 +102,12 @@
   var data = {
     sin: {
       sTitle: "ඉල්ලීම බලන්න",
-      sText: "නිෂ්පාදනය සඳහා කොටස් ඉල්ලීම් විස්තර බලන්න",
+      sText: "නිෂ්පාදනය සඳහා අමුදව්ය ඉල්ලීම් වල විස්තර බලන්න",
       accept: "පිළිගන්න",
       decline: "ප්රතික්ෂේප කරන්න",
       rtext: "ඉල්ලීම ප්‍රතික්ෂේප කිරීමට හේතුව තෝරන්න",
-      otherLabel: "වෙනත් නම්",
-      other: "ඔබේ හේතුව මෙහි ටයිප් කරන්න",
+      otherLabel: "වෙනත්",
+      other: "ඔබේ හේතුව මෙහි ඇතුල් කරන්න",
       submit: "ඉදිරිපත් කරන්න",
       op0: "ප්රතික්ෂේප කිරීමට හේතුව තෝරන්න",
       op1: "පොල් ලබා ගත නොහැක",
@@ -120,7 +120,6 @@
       accept: "Accept",
       decline: "Decline",
       rtext: "Select the reason for declining the request",
-      otherLabel: "If other",
       otherLabel: "If other",
       submit: "Submit",
       op0: "Select reason for declining",
@@ -179,9 +178,9 @@
             yDays.textContent = data.request.days + " days";
           }
 
-          rId.textContent = data.request.id;
+          rId.textContent = "P/R/" + data.request.id;
           sYard.textContent = "Yard " + data.request.yard;
-          yBlock.textContent = "Block " + data.request.block;
+          yBlock.textContent = "B/" + data.request.block;
           yAmount.textContent = data.request.amount.toLocaleString("en-US");
           ystatus.textContent = stat;
 
@@ -240,7 +239,7 @@
                 ` class="` +
                 status +
                 `">` +
-                `<td>` +
+                `<td> B/` +
                 item.id +
                 `</td>` +
                 `<td>` +
@@ -263,8 +262,8 @@
           response.json().then((data) => {
             console.log(data.message);
           });
-          if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-          else Command: toastr["info"]("Something went wrong");
+          if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+          else Command: toastr["info"]("Something went wrong. Try again");
         } else if (response.status === 401) {
           response.json().then((data) => {
             console.log(data.message);
@@ -284,7 +283,7 @@
 
   accept.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, පිළිගන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -390,7 +389,7 @@
 
       function submit_decline() {
         if (lang == "sin") {
-          var title = "ඔයාට විශ්වාස ද?",
+          var title = "ඔබට විශ්වාස ද?",
             text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
             confirmButtonText = "ඔව්, එය ප්රතික්ෂේප කරන්න!",
             cancelButtonText = "අවලංගු කරන්න";

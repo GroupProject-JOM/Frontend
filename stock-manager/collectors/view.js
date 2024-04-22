@@ -1,6 +1,6 @@
-document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-
 (() => {
+  document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
@@ -42,7 +42,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var totalAmount = +getCookie("total"),
     remainigAmount = +getCookie("total"),
-    previous = remainigAmount;
+    previous = remainigAmount,
+    collectionStatus = false;
 
   datePicker.value = new Date().toJSON().slice(0, 10);
 
@@ -137,8 +138,13 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   };
 
   mapBtn.addEventListener("click", () => {
-    overlay1.style.display = "flex";
-    document.querySelector(".collections-map").style.display = "block";
+    if (collectionStatus) {
+      overlay1.style.display = "flex";
+      document.querySelector(".collections-map").style.display = "block";
+    } else {
+      if (lang == "sin") Command: toastr["warning"]("එකතු කිරීම් නැත");
+      else Command: toastr["warning"]("No collections");
+    }
   });
 
   overlay1.addEventListener("click", (e) => {
@@ -187,7 +193,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin: {
       sText1: "එක් එක් දිනයේ පොල් එකතු කිරීමේ විස්තර බලන්න",
       yText: "දැනට එකතුකරන්නා විසින් එකතු කරන ලද පොල් ප්‍රමාණය:",
-      btn: "යාරවලට පවරන්න",
+      btn: "අංගන වලට පවරන්න",
       mapBtn: "සිතියමෙන් බලන්න",
     },
     en: {
@@ -198,10 +204,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     },
   };
 
+  var locations = [],
+    modes = [];
+
   fetchData(new Date().toJSON().slice(0, 10));
   function fetchData(date) {
     let row = "";
     tbody.innerHTML = "";
+    collectionStatus = false;
+    locations = [];
+    modes = [];
 
     fetch(
       backProxy +
@@ -228,17 +240,27 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               var status = "",
                 amount = "";
 
-              if (item.status < 4) status = "pending";
-              else {
+              if (item.status < 4) {
+                status = "pending";
+                modes.push(0);
+              } else {
                 status = "completed";
                 amount = item.amount.toLocaleString("en-US");
+                modes.push(1);
               }
+
+              const loc = {
+                lat: +item.location.split(" ")[0],
+                lng: +item.location.split(" ")[1],
+              };
+              locations.push(loc);
+              collectionStatus = true;
 
               row +=
                 `<tr data-href="../supply-requests/view-request.html" id=` +
                 item.id +
                 `>` +
-                `<td>` +
+                `<td>S/P/` +
                 item.id +
                 `</td>` +
                 `<td>` +
@@ -264,6 +286,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             }
 
             tbody.innerHTML = row;
+            setMarkers(locations, modes);
 
             const rows = document.querySelectorAll("tr[data-href]");
             rows.forEach((r) => {
@@ -325,8 +348,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           response.json().then((data) => {
             console.log(data.message);
           });
-          if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-          else Command: toastr["info"]("Something went wrong");
+          if (lang == "sin")
+            Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+          else Command: toastr["info"]("Something went wrong. Try again");
         } else if (response.status === 401) {
           response.json().then((data) => {
             console.log(data.message);
@@ -444,9 +468,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           } else if (!checkInt(elm.value)) {
             totalError.style.display = "";
             if (lang == "sin")
-              totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+              totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
             else
-              totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be positive integer`;
+              totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be greater than 0`;
             elm.nextSibling.style.display = "";
 
             //handle remaining error
@@ -464,7 +488,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           } else if (elm.value > 10000) {
             totalError.style.display = "";
             if (lang == "sin")
-              totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන බ්ලොක් එකේ උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
+              totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන ගබඩාවේ කොටසක උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
             else
               totalError.innerHTML = `<i class="bx bx-error"></i> Coconuts amount cannot exceed the maximum capacity of the block`;
             elm.nextSibling.style.display = "";
@@ -542,9 +566,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           } else if (!checkInt(elm.value)) {
             addError.style.display = "";
             if (lang == "sin")
-              addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+              addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
             else
-              addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be positive integer`;
+              addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be greater than 0`;
             elm.nextSibling.style.display = "";
 
             //handle remaining error
@@ -598,14 +622,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
             if (lang == "sin")
               daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන හිස් විය නොහැක`;
             else
-              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count cannot be empty`;
+              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Number of days cannot be empty`;
             elm.nextSibling.style.display = "";
           } else if (!checkInt(elm.value)) {
             daysError.style.display = "";
             if (lang == "sin")
-              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන ධන නිඛිල විය යුතුය`;
+              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන 0 ට වඩා වැඩි විය යුතුය`;
             else
-              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count must be positive integer`;
+              daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Number of days must be greater than 0`;
             elm.nextSibling.style.display = "";
           } else {
             daysError.style.display = "none";
@@ -643,9 +667,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be positive integer`;
+        addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be greater than 0`;
       add.nextSibling.style.display = "";
       addStatus = false;
     } else {
@@ -667,15 +691,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(total.value)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be positive integer`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be greater than 0`;
       total.nextSibling.style.display = "";
       totalStatus = false;
     } else if (total.value > 10000) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන බ්ලොක් එකේ උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන ගබඩාවේ කොටසක උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
       else
         totalError.innerHTML = `<i class="bx bx-error"></i> Coconuts amount cannot exceed the maximum capacity of the block`;
       total.nextSibling.style.display = "";
@@ -763,7 +787,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
         ` disable">` +
         `<td>` +
         `<input class="radio" type="checkbox" />` +
-        ` <label>` +
+        ` <label>B/` +
         elm.id +
         `</label>` +
         `</td>` +
@@ -800,15 +824,15 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       if (lang == "sin")
         daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන හිස් විය නොහැක`;
       else
-        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count cannot be empty`;
+        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Number of days cannot be empty`;
       day.nextSibling.style.display = "";
       return false;
     } else if (!checkInt(day.value)) {
       daysError.style.display = "";
       if (lang == "sin")
-        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන ධන නිඛිල විය යුතුය`;
+        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> දින ගණන 0 ට වඩා වැඩි විය යුතුය`;
       else
-        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Days count must be positive integer`;
+        daysError.innerHTML = `<i class="bx bx-message-rounded-error"></i> Number of days must be greater than 0`;
       day.nextSibling.style.display = "";
       return false;
     } else {
@@ -832,9 +856,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        addError.innerHTML = `<i class="bx bx-error-circle"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be positive integer`;
+        addError.innerHTML = `<i class="bx bx-error-circle"></i> Coconut amount must be greater than 0`;
       add.nextSibling.style.display = "";
       return false;
     } else {
@@ -864,16 +888,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(total.value)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be positive integer`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> Coconut amount must be greater than 0`;
       total.nextSibling.style.display = "";
 
       return false;
     } else if (total.value > 10000) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන බ්ලොක් එකේ උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
+        totalError.innerHTML = `<i class="bx bx-error"></i> පොල් ගෙඩි ගණන ගබඩාවේ කොටසක උපරිම ධාරිතාව ඉක්මවිය නොහැක`;
       else
         totalError.innerHTML = `<i class="bx bx-error"></i> Coconuts amount cannot exceed the maximum capacity of the block`;
       total.nextSibling.style.display = "";
@@ -930,19 +954,20 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     // handle remaing
     if (remainigAmount > totalAmount) {
       if (lang == "sin")
-        remainingError.textContent = `ඉතිරි මුදල පවතින මුදල ඉක්මවිය නොහැක`;
+        remainingError.textContent = `ඉතිරි පොල් ප්රමාණය පවතින පොල් ප්රමාණය ඉක්මවිය නොහැක`;
       else
         remainingError.textContent = `Remaining amount cannot exceed the available amount`;
       remainigStatus = false;
     } else if (remainigAmount < 0) {
       if (lang == "sin")
-        remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
+        remainingError.textContent = `ඉතිරි පොල් ප්රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
       else
         remainingError.textContent = `Remaining amount cannot be less than zero`;
       remainigStatus = false;
     } else if (totalAmount - remainigAmount != addTotal) {
-      if (lang == "sin") remainingError.textContent = `මොකක්හරි වැරැද්දක් වෙලා`;
-      else remainingError.textContent = `Something went wrong`;
+      if (lang == "sin")
+        remainingError.textContent = `යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න`;
+      else remainingError.textContent = `Something went wrong. Try again`;
       remainigStatus = false;
     } else {
       remainingError.textContent = "";
@@ -963,7 +988,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       };
 
       if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
+        var title = "ඔබට විශ්වාස ද?",
           text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
           confirmButtonText = "ඔව්, අංගනයට එක් කරන්න!",
           cancelButtonText = "අවලංගු කරන්න";
@@ -1028,8 +1053,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   console.log(data.message);
                 });
                 if (lang == "sin")
-                  Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-                else Command: toastr["info"]("Something went wrong");
+                  Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+                else Command: toastr["info"]("Something went wrong. Try again");
               } else if (response.status === 401) {
                 response.json().then((data) => {
                   console.log(data.message);
@@ -1050,99 +1075,174 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       });
     }
   });
+
+  var chart,
+    chartConfig = {
+      debug: true,
+      //Without data, a view must be specified.
+      type: "calendar month solid",
+      title_label_text: "This month collections",
+      yAxis_visible: false,
+      legend: {
+        //Add custom entries
+        template: "%icon %name",
+        position: "bottom",
+        customEntries: [
+          {
+            name: "Available",
+            icon_color: "#d6a360",
+          },
+          {
+            name: "Free",
+            // icon: {
+            //   hatch: {
+            //     // style: "light-upward-diagonal",
+            //     // color: "#a2a2a2",
+            //   },
+            // },
+          },
+        ],
+      },
+      calendar: {
+        // range: ["12/1/2023", "12/31/2023"],
+        defaultEdgePoint: {
+          mouseTracking: false,
+          label_visible: true,
+        },
+      },
+      defaultSeries: {
+        opacity: 0.6,
+        legendEntry_visible: true,
+        defaultPoint: {
+          outline_width: 0,
+          label_text: "<b>%name</b>",
+        },
+      },
+      toolbar_visible: true,
+    };
+
+  function makeChart(data) {
+    // console.log(data);
+    chartConfig.series = [
+      {
+        points: data.map(function (row) {
+          var isAvailable = row.count != 0;
+          return isAvailable
+            ? {
+                date: row.date,
+                color: "#d6a360",
+                // tooltip: "{%date:date d}<hr><b>"+row.count+" Available</b>",
+                tooltip: false,
+              }
+            : {
+                date: row.date,
+                // tooltip: "{%date:date d}<hr><b>Free</b>",
+                tooltip: false,
+                // hatch: {
+                //   style: "light-upward-diagonal",
+                //   color: "#a2a2a2",
+                // },
+              };
+        }),
+      },
+    ];
+    chart = JSC.chart("chartDiv", chartConfig);
+  }
+
+  function checkInt(num) {
+    if (Number.isInteger(+num) && +num > 0) return true;
+    return false;
+  }
+
+  let map;
+  let markers = [];
+  let marker;
+
+  // Initialize the map
+  function initMap() {
+    let lat;
+    let long;
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      const live_loc = { lat: lat, lng: long };
+
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: live_loc,
+        mapId: "Collection locations", // Map ID is required for advanced markers.
+      });
+
+      addMarker(live_loc);
+    });
+  }
+
+  function addMarker(position) {
+    marker = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: position,
+    });
+    deleteMarkers();
+
+    markers.push(marker);
+  }
+
+  // Sets the map on all markers in the array.
+  function setMapOnAll(map) {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+
+    // Set the center of the map to the position of the first marker
+    if (markers.length > 0 && map && markers[0].position) {
+      map.setCenter(markers[0].position);
+    }
+  }
+
+  // Removes the markers from the map, but keeps them in the array.
+  function hideMarkers() {
+    setMapOnAll(null);
+  }
+
+  // Shows any markers currently in the array.
+  function showMarkers() {
+    setMapOnAll(map);
+  }
+
+  // Deletes all markers in the array by removing references to them.
+  function deleteMarkers() {
+    hideMarkers();
+    markers = [];
+  }
+
+  async function setMarkers(locations, modes) {
+    let mark;
+    deleteMarkers();
+
+    // Loop through the locations array and add a marker for each location
+    for (var i = 0; i < locations.length; i++) {
+      if (modes[i] == 0) {
+        mark = await new google.maps.marker.AdvancedMarkerElement({
+          position: locations[i], // Set the position of the marker
+          map,
+        });
+      } else {
+        mark = await new google.maps.marker.AdvancedMarkerElement({
+          position: locations[i], // Set the position of the marker
+          map,
+          content: new google.maps.marker.PinElement({
+            glyphColor: "#a86602",
+            borderColor: "#a86602",
+            background: "#f2ea02",
+          }).element,
+        });
+      }
+
+      markers.push(mark);
+    }
+    showMarkers();
+  }
+
+  window.initMap = initMap;
 })();
-
-var chart,
-  chartConfig = {
-    debug: true,
-    //Without data, a view must be specified.
-    type: "calendar month solid",
-    title_label_text: "This month collections",
-    yAxis_visible: false,
-    legend: {
-      //Add custom entries
-      template: "%icon %name",
-      position: "bottom",
-      customEntries: [
-        {
-          name: "Available",
-          icon_color: "#d6a360",
-        },
-        {
-          name: "Free",
-          // icon: {
-          //   hatch: {
-          //     // style: "light-upward-diagonal",
-          //     // color: "#a2a2a2",
-          //   },
-          // },
-        },
-      ],
-    },
-    calendar: {
-      // range: ["12/1/2023", "12/31/2023"],
-      defaultEdgePoint: {
-        mouseTracking: false,
-        label_visible: true,
-      },
-    },
-    defaultSeries: {
-      opacity: 0.6,
-      legendEntry_visible: true,
-      defaultPoint: {
-        outline_width: 0,
-        label_text: "<b>%name</b>",
-      },
-    },
-    toolbar_visible: true,
-  };
-
-// loadData(makeChart);
-
-// function loadData(cb) {
-//   JSC.fetch("./bookingData.csv")
-//     .then(function (response) {
-//       return response.text();
-//     })
-//     .then(function (csv) {
-//       cb(JSC.parseCsv(csv).data);
-//     })
-//     .catch(function (ex) {
-//       console.error(ex);
-//     });
-// }
-
-// makeChart(arrr)
-
-function makeChart(data) {
-  // console.log(data);
-  chartConfig.series = [
-    {
-      points: data.map(function (row) {
-        var isAvailable = row.count != 0;
-        return isAvailable
-          ? {
-              date: row.date,
-              color: "#d6a360",
-              // tooltip: "{%date:date d}<hr><b>"+row.count+" Available</b>",
-              tooltip: false,
-            }
-          : {
-              date: row.date,
-              // tooltip: "{%date:date d}<hr><b>Free</b>",
-              tooltip: false,
-              // hatch: {
-              //   style: "light-upward-diagonal",
-              //   color: "#a2a2a2",
-              // },
-            };
-      }),
-    },
-  ];
-  chart = JSC.chart("chartDiv", chartConfig);
-}
-
-function checkInt(num) {
-  if (Number.isInteger(+num) && +num > 0) return true;
-  return false;
-}

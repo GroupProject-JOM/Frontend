@@ -49,7 +49,7 @@
   var data = {
     sin: {
       sTitle: "ගෙවීම් තොරතුරු",
-      btn: "ගෙවීම අවසන්",
+      btn: "ගෙවීම අවසන් කර ඇත",
     },
     en: {
       sTitle: "Payment Details",
@@ -116,7 +116,7 @@
 
   btn.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය සම්පූර්ණ කරන්න!",
         cancelButtonText = "අවලංගු කරන්න";

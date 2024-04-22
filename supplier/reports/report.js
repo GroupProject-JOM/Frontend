@@ -636,7 +636,7 @@ function generateInvoice(user_data, collections, start, total) {
       phone: "(+94) 76 924 0963",
       email: "jom@jom.com",
       email_1: "jmyasiru@gmail.com",
-      website: "www.jom.com",
+      website: "https://jom-dev.duckdns.org",
     },
     contact: {
       label: "Invoice issued for:",
@@ -692,13 +692,13 @@ function generateInvoice(user_data, collections, start, total) {
         item.supply_method,
         item.payment_method + "\n",
         item.final_amount.toLocaleString("en-US"),
-        (item.value / item.final_amount).toString()+".00",
-        item.value.toLocaleString("en-US")+".00",
+        (item.value / item.final_amount).toString() + ".00",
+        item.value.toLocaleString("en-US") + ".00",
       ]),
       additionalRows: [
         {
           col1: "Total:",
-          col2: total.toLocaleString("en-US")+".00",
+          col2: total.toLocaleString("en-US") + ".00",
           col3: "LKR",
           style: {
             fontSize: 14, //optional, default 12

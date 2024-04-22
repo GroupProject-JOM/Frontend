@@ -21,7 +21,27 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     searchBar2 = body.querySelector(".search2"),
     filter2 = body.querySelector(".filter-2"),
     searchBar3 = body.querySelector(".search3"),
-    filter3 = body.querySelector(".filter-3");
+    filter3 = body.querySelector(".filter-3"),
+    accepted = body.querySelector(".accepted-tab"),
+    declined = body.querySelector(".declined-tab"),
+    completed = body.querySelector(".completed-tab");
+
+  $(document).scroll(function () {
+    var cutoff = $(window).scrollTop();
+    var cutoffRange = cutoff + 200;
+
+    $(
+      ".stockmg-collections-container.stockmg-container .collection-layer"
+    ).each(function () {
+      if ($(this).offset().top > cutoff && $(this).offset().top < cutoffRange) {
+        let id = $(this).attr("id");
+        var href = $('.tabs-container .tabs a[href="#' + id + '"] button');
+
+        $(".tabs-container .tabs button").removeClass("active-tab");
+        href.addClass("active-tab");
+      }
+    });
+  });
 
   var lang = getCookie("lang"); // current language
 
@@ -96,6 +116,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tx2.textContent = data["sin"]["tx2"];
     t3.textContent = data["sin"]["t3"];
     tx3.textContent = data["sin"]["tx3"];
+    accepted.textContent = data["sin"]["accepted"];
+    declined.textContent = data["sin"]["declined"];
+    completed.textContent = data["sin"]["completed"];
     setGreeting();
   });
 
@@ -113,6 +136,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     tx2.textContent = data["en"]["tx2"];
     t3.textContent = data["en"]["t3"];
     tx3.textContent = data["en"]["tx3"];
+    accepted.textContent = data["en"]["accepted"];
+    declined.textContent = data["en"]["declined"];
+    completed.textContent = data["en"]["completed"];
     setGreeting();
   });
 
@@ -122,8 +148,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       tx1: "එකතු කළ යුතු සියලුම පිළිගත් සැපයුම් ඉල්ලීම්",
       t2: "ප්‍රතික්ෂේප කළ එකතු කිරීම්",
       tx2: "ප්‍රතික්ෂේප කරන ලද සියලුම සැපයුම් ඉල්ලීම්",
-      t3: "සම්පුර්ණ කෙරූ එකතු කිරීම්",
+      t3: "සම්පුර්ණ කරන ලද එකතු කිරීම්",
       tx3: "සම්පුර්ණ කරන ලද සියලුම පොල් එකතු කිරීම්",
+      accepted: "පිළිගත්",
+      declined: "ප්‍රතික්ෂේප කළ",
+      completed: "සම්පූර්ණ කළ",
     },
     en: {
       t1: "Accepted Collections",
@@ -132,6 +161,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       tx2: "All declined supply requests",
       t3: "Completed Collections",
       tx3: "All completed coconut collections",
+      accepted: "Accepted",
+      declined: "Declined",
+      completed: "Completed",
     },
   };
 
@@ -166,8 +198,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<tr id=` +
               item.id +
               ` data-href="../supply-requests/view-request.html">` +
-              `<td>` +
-              item.id +
+              `<td>S/${capitalize(item.method)[0]}/${item.id}` +
               `</td>` +
               `<td>` +
               item.name +
@@ -180,7 +211,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td>` +
               item.amount.toLocaleString("en-US") +
               `</td>` +
-              `<td><button class="status `+stat+`">` +
+              `<td><button class="status ` +
+              stat +
+              `">` +
               capitalize(item.method) +
               `</button></td>` +
               `<td>` +
@@ -193,17 +226,16 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
           data.rejected.forEach((item) => {
             var stat = "pending";
-            
+
             var date_string = new Date(item.date);
 
             if (item.method == "pickup") stat = "accepted";
-            
+
             row2 +=
               `<tr id=` +
               item.id +
               ` data-href="../supply-requests/view-request.html">` +
-              `<td>` +
-              item.id +
+              `<td>S/${capitalize(item.method)[0]}/${item.id}` +
               `</td>` +
               `<td>` +
               item.name +
@@ -215,8 +247,10 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `</td>` +
               `<td>` +
               item.amount.toLocaleString("en-US") +
-              `</td>` +              
-              `<td><button class="status `+stat+`">` +
+              `</td>` +
+              `<td><button class="status ` +
+              stat +
+              `">` +
               capitalize(item.method) +
               `</button></td>` +
               `</tr>`;
@@ -239,8 +273,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<tr id=` +
               item.id +
               ` data-href="../supply-requests/view-request.html">` +
-              `<td>` +
-              item.id +
+              `<td>S/${capitalize(item.method)[0]}/${item.id}` +
               `</td>` +
               `<td>` +
               item.name +
@@ -253,7 +286,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td>` +
               item.amount.toLocaleString("en-US") +
               `</td>` +
-              `<td><button class="status `+stat+`">` +
+              `<td><button class="status ` +
+              stat +
+              `">` +
               capitalize(item.method) +
               `</button></td>` +
               `<td>` +
@@ -267,6 +302,11 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           tbody1.innerHTML = row1;
           tbody2.innerHTML = row2;
           tbody3.innerHTML = row3;
+
+          // pagination for 3 tables
+          pagination("table1", 10);
+          pagination("table2", 10);
+          pagination("table3", 10);
 
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {

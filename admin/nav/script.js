@@ -20,11 +20,13 @@
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
       l11 = body.querySelector(".l11"),
+      l12 = body.querySelector(".l12"),
       employee = body.querySelector(".employee"),
       collection = body.querySelector(".collection"),
       outlet = body.querySelector(".outlet"),
       stock = body.querySelector(".stock"),
       products = body.querySelector(".products"),
+      activity = body.querySelector(".activity"),
       dashboard = body.querySelector(".dashboard"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
@@ -50,6 +52,7 @@
     stock.href = frontProxy + "/admin/stock/view-all.html";
     products.href = frontProxy + "/admin/products/view-all.html";
     dashboard.href = frontProxy + "/admin";
+    activity.href = frontProxy + "/admin/activity/";
 
     if (!loaded && toggle && modeSwitch) {
       loaded = true;
@@ -90,6 +93,7 @@
       l8.textContent = data["sin"]["l8"];
       l9.textContent = modeTranslate();
       l11.textContent = data["sin"]["l11"];
+      l12.textContent = data["sin"]["l12"];
     });
 
     en.addEventListener("click", () => {
@@ -104,20 +108,22 @@
       l8.textContent = data["en"]["l8"];
       l9.textContent = modeTranslate();
       l11.textContent = data["en"]["l11"];
+      l12.textContent = data["en"]["l12"];
     });
 
     var data = {
       sin: {
         l0: "පරිශීලක ක්‍රියා",
-        l1: "සේවක කළමනාකරණය",
-        l2: "එකතු කිරීමේ කළමනාකරණය",
-        l3: "අලෙවිසැල කළමනාකරණය",
+        l1: "සේවකයින්",
+        l2: "සැපයුම්",
+        l3: "අලෙවිසැල්",
         l4: "ගබඩා සමාලෝචනය",
         l5: "නිෂ්පාදන",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
-        l7: "පැතිකඩ බලන්න",
+        l7: "ගිණුම බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
         l11: "උපකරණ පුවරුව",
+        l12: "ලඝු-සටහන්",
       },
       en: {
         l0: "USER ACTIONS",
@@ -130,6 +136,7 @@
         l7: "View Profile",
         l8: "Log Out",
         l11: "Dashboard",
+        l12: "Activity",
       },
     };
 
@@ -174,6 +181,7 @@ window.addEventListener("load", (e) => {
       "products",
       "profile",
       "collection",
+      "activity",
     ];
     if (!loaded && pathname) {
       loaded = true;

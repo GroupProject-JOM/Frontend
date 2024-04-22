@@ -6,8 +6,20 @@
     oArea = body.querySelector(".outlet-area"),
     viewData = body.querySelector(".view-data"),
     tbody = body.querySelector(".tbody"),
+    tbody2 = body.querySelector(".tbody2"),
     subTotal = body.querySelector(".sub-total-value"),
-    btn = body.querySelector(".next");
+    closeBtn1 = body.querySelector(".close-btn1"),
+    closeBtn2 = body.querySelector(".close-btn2"),
+    overlay1 = body.querySelector(".overlay1"),
+    overlay2 = body.querySelector(".overlay2"),
+    oId = body.querySelector(".oId"),
+    oName = body.querySelector(".oName"),
+    oEmail = body.querySelector(".oEmail"),
+    oPhone = body.querySelector(".oPhone"),
+    oAddress = body.querySelector(".oAddress"),
+    btn = body.querySelector(".next"),
+    confirm = body.querySelector(".confirm"),
+    billTotal = body.querySelector(".bill-total-value");
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
@@ -35,9 +47,38 @@
     setGreeting();
   });
 
+  viewData.addEventListener("click", () => {
+    overlay1.style.display = "flex";
+    document.querySelector(".view-outlet-container").style.display = "block";
+  });
+
+  overlay1.addEventListener("click", (e) => {
+    if (e.target.id === "overlay1") {
+      overlay1.style.display = "none";
+      document.querySelector(".view-outlet-container").style.display = "none";
+    }
+  });
+
+  closeBtn1.addEventListener("click", () => {
+    overlay1.style.display = "none";
+    document.querySelector(".view-outlet-container").style.display = "none";
+  });
+
+  overlay2.addEventListener("click", (e) => {
+    if (e.target.id === "overlay2") {
+      overlay2.style.display = "none";
+      document.querySelector(".bill-container").style.display = "none";
+    }
+  });
+
+  closeBtn2.addEventListener("click", () => {
+    overlay2.style.display = "none";
+    document.querySelector(".bill-container").style.display = "none";
+  });
+
   var data = {
     sin: {
-      btn: "ඉදිරිපත් කරන්න",
+      btn: "සුරකින්න",
       viewData: "අලෙවිසැලේ විස්තර බලන්න",
     },
     en: {
@@ -60,10 +101,16 @@
           dTitle.textContent = data.outlet.name;
           oArea.textContent = data.outlet.city;
 
-          // email.value = data.outlet.email;
-          // phone.value = data.outlet.phone;
-          // address1.value = data.outlet.address1;
-          // address2.value = data.outlet.street;
+          oId.textContent = data.outlet.id;
+          oName.textContent = data.outlet.name;
+          oEmail.textContent = data.outlet.email;
+          oPhone.textContent = data.outlet.phone;
+          oAddress.textContent =
+            data.outlet.address1 +
+            ", " +
+            data.outlet.street +
+            ", " +
+            data.outlet.city;
         });
       } else if (response.status === 400) {
         response.json().then((data) => {
@@ -91,6 +138,8 @@
   getRemainig();
   var row = "",
     onHand = [],
+    pNames = [],
+    pTypes = [],
     prices = [];
 
   function getRemainig() {
@@ -108,6 +157,8 @@
             data.list.forEach((item) => {
               onHand.push(item.remaining);
               prices.push(item.price);
+              pNames.push(item.category);
+              pTypes.push(item.type);
               row +=
                 `<tr class="disable" id=${item.product}>` +
                 `<td>` +
@@ -186,9 +237,9 @@
                 } else if (!checkInt(+elm.value)) {
                   addError.style.display = "";
                   if (lang == "sin")
-                    addError.textContent = `නිෂ්පාදන ගණන ධන නිඛිල විය යුතුය`;
+                    addError.textContent = `නිෂ්පාදන ගණන 0 ට වඩා වැඩි විය යුතුය`;
                   else
-                    addError.textContent = `Product count must be positive integer`;
+                    addError.textContent = `Product count must be greater than 0`;
 
                   if (+amount.textContent < 0)
                     if (lang == "sin")
@@ -243,7 +294,7 @@
 
     radio.forEach((r, index) => {
       if (r.checked) {
-        sub_total = prices[index] * +add[index].value;
+        sub_total += prices[index] * add[index].value;
       }
     });
 
@@ -261,6 +312,8 @@
     var amounts = [],
       products = [],
       productPrices = [],
+      pList = [],
+      typeList = [],
       countStatus = false,
       count = 0;
 
@@ -282,6 +335,8 @@
           products.push(r.parentElement.parentElement.parentElement.id);
           amounts.push(add[index].value);
           productPrices.push(prices[index]);
+          pList.push(pNames[index]);
+          typeList.push(pTypes[index]);
         }
 
         count++;
@@ -299,78 +354,111 @@
         id: getCookie("id"),
       };
 
-      log(JSON.stringify(formData));
+      overlay2.style.display = "flex";
+      document.querySelector(".bill-container").style.display = "block";
 
-      if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
-          text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
-          confirmButtonText = "ඔව්, අලෙවිසැලට බෙදාහරින්න!",
-          cancelButtonText = "අවලංගු කරන්න";
-      } else {
-        var title = "Are you sure?",
-          text = "You won't be able to revert this!",
-          confirmButtonText = "Yes, Distribute to outlet!",
-          cancelButtonText = "Cancel";
-      }
-      Swal.fire({
-        title: title,
-        text: text,
-        confirmButtonText: confirmButtonText,
-        cancelButtonText: cancelButtonText,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: confirmButtonColor,
-        cancelButtonColor: cancelButtonColor,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          fetch(backProxy + "/product-list", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-            credentials: "include",
-          })
-            .then((response) => {
-              if (response.status == 200) {
-                response.json().then((data) => {
-                  console.log(data.message);
-                });
-                if (lang == "sin") var title = "අලෙවිසැලට සාර්ථකව බෙදා හැර ඇත";
-                else var title = "Successfully distributed to outlet";
-                Swal.fire({
-                  title: title,
-                  // text: "You clicked the button!",
-                  icon: "success",
-                  confirmButtonColor: confirmButtonColor,
-                }).then((response) => {
-                  getRemainig();
-                });
-              } else if (response.status === 400) {
-                response.json().then((data) => {
-                  console.log(data.message);
-                });
-                if (lang == "sin")
-                  Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-                else Command: toastr["info"]("Something went wrong");
-              } else if (response.status === 401) {
-                response.json().then((data) => {
-                  console.log(data.message);
-                });
-                if (lang == "sin")
-                  Command: toastr["error"]("වලංගු නොවන පරිශීලක");
-                else Command: toastr["error"]("Invalid User");
-              } else {
-                console.error("Error:", response.status);
-                Command: toastr["error"](response.status, "Error");
-              }
-            })
-            .catch((error) => {
-              console.error("An error occurred:", error);
-              Command: toastr["error"](error);
-            });
-        }
+      var row3 = "";
+      products.forEach((item, index) => {
+        row3 +=
+          `<tr>` +
+          `<td class="tc1">${index + 1}</td>` +
+          `<td>${pList[index]}</td>` +
+          `<td>${typeList[index]}</td>` +
+          `<td>${amounts[index].toLocaleString("en-US")}</td>` +
+          `<td>${(+productPrices[index]).toLocaleString("en-US")} LKR</td>` +
+          `<td>${(productPrices[index] * amounts[index]).toLocaleString(
+            "en-US"
+          )} LKR</td>` +
+          `</tr>`;
       });
+      tbody2.innerHTML = row3;
+
+      billTotal.textContent = subTotal.textContent;
+
+      confirm.addEventListener("click", () => {
+        if (lang == "sin") {
+          var title = "ඔබට විශ්වාස ද?",
+            text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
+            confirmButtonText = "ඔව්, අලෙවිසැලට බෙදාහරින්න!",
+            cancelButtonText = "අවලංගු කරන්න";
+        } else {
+          var title = "Are you sure?",
+            text = "You won't be able to revert this!",
+            confirmButtonText = "Yes, Distribute to outlet!",
+            cancelButtonText = "Cancel";
+        }
+        Swal.fire({
+          title: title,
+          text: text,
+          confirmButtonText: confirmButtonText,
+          cancelButtonText: cancelButtonText,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: confirmButtonColor,
+          cancelButtonColor: cancelButtonColor,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(backProxy + "/product-list", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+              credentials: "include",
+            })
+              .then((response) => {
+                if (response.status == 200) {
+                  response.json().then((data) => {
+                    console.log(data.message);
+                  });
+                  if (lang == "sin")
+                    var title = "අලෙවිසැලට සාර්ථකව බෙදා හැර ඇත";
+                  else var title = "Successfully distributed to outlet";
+                  Swal.fire({
+                    title: title,
+                    // text: "You clicked the button!",
+                    icon: "success",
+                    confirmButtonColor: confirmButtonColor,
+                  }).then((response) => {
+                    getRemainig();
+                    subTotal.textContent = "0 LKR";
+                    overlay2.click();
+                  });
+                } else if (response.status === 400) {
+                  response.json().then((data) => {
+                    console.log(data.message);
+                  });
+                  if (lang == "sin")
+                    Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+                  else
+                    Command: toastr["info"]("Something went wrong. Try again");
+                } else if (response.status === 401) {
+                  response.json().then((data) => {
+                    console.log(data.message);
+                  });
+                  if (lang == "sin")
+                    Command: toastr["error"]("වලංගු නොවන පරිශීලක");
+                  else Command: toastr["error"]("Invalid User");
+                } else {
+                  console.error("Error:", response.status);
+                  Command: toastr["error"](response.status, "Error");
+                }
+              })
+              .catch((error) => {
+                console.error("An error occurred:", error);
+                Command: toastr["error"](error);
+              });
+          }
+        });
+      });
+    } else {
+      if (lang == "sin") {
+        Command: toastr["error"](
+          "පරීක්ෂා කළ පේළි ආදාන ක්ෂේත්‍රය හිස් විය නොහැක!"
+        );
+      } else {
+        Command: toastr["error"]("Checked rows input field cannot be empty!");
+      }
     }
   });
 
@@ -378,15 +466,15 @@
     var addError = add.nextSibling.nextSibling;
     if (add.value == 0 || add.value == null) {
       addError.style.display = "";
-      if (lang == "sin") addError.textContent = `පොල් ප්‍රමාණය හිස් විය නොහැක`;
-      else addError.textContent = `Coconut amount cannot be empty`;
+      if (lang == "sin") addError.textContent = `නිෂ්පාදන ගණන හිස් විය නොහැක`;
+      else addError.textContent = `Product count cannot be empty`;
 
       return false;
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.textContent = `පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
-      else addError.textContent = `Coconut amount must be positive integer`;
+        addError.textContent = `නිෂ්පාදන ගණන 0 ට වඩා වැඩි විය යුතුය`;
+      else addError.textContent = `Product count must be greater than 0`;
 
       return false;
     } else {
@@ -409,16 +497,15 @@
     if (+totalValue == 0 || +totalValue == null) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.textContent = `පොල් ප්‍රමාණය පවතින ප්‍රමාණයට වඩා අඩු විය නොහැක`;
-      else
-        totalError.textContent = `Coconut amount cannot subceed the available amount`;
+        totalError.textContent = `පරීක්ෂා කළ පේළි ආදාන ක්ෂේත්‍රය හිස් විය නොහැක!`;
+      else totalError.textContent = `Checked rows input field cannot be empty!`;
 
       return false;
     } else if (!checkInt(totalValue)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.textContent = `පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
-      else totalError.textContent = `Coconut amount must be positive integer`;
+        totalError.textContent = `නිෂ්පාදන ගණන 0 ට වඩා වැඩි විය යුතුය`;
+      else totalError.textContent = `Product count must be greater than 0`;
 
       return false;
     } else {

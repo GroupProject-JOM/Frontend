@@ -1,6 +1,3 @@
-if (getCookie("jwt") != null && getCookie("jwt").length != 0)
-  window.location.href = frontProxy + "/signin.html";
-
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),

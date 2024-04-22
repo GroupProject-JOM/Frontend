@@ -107,15 +107,17 @@ select.dropdown {
 
 .stocks h3,
 .block-container h3,
-.split2-window h3{
+.split2-window h3 {
   padding-bottom: 0.8rem;
   margin-top: 1rem;
   font-weight: 600;
   font-size: 19px;
 }
 
-.stockmg-collections-container .collection-layer {
-  padding-bottom: 60px;
+.stockmg-collections-container .decline-layer,
+.stockmg-collections-container .completed-layer
+ {
+  padding-top: 60px;
 }
 
 .to-yard {
@@ -188,7 +190,7 @@ input[type="number"] {
   width: 25vw;
 }
 
-.edit-stock-form .block{
+.edit-stock-form .block {
   font-size: 1.2rem;
   color: var(--button-color);
 }
@@ -230,11 +232,59 @@ input[type="number"] {
   margin-top: 40px;
 }
 
-.to-yard-button{
+.to-yard-button {
   padding-left: 60px;
   padding-right: 60px;
 }
 
+.collection-view-container .yard-supply-tables {
+  width: 110%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.collection-view-container .yard-supply-tables .yard-data-table {
+  width: 30vw;
+}
+
+.collection-view-container .yard-h3 {
+  color: var(--sub-title-color);
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+  width: 90%;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.tab {
+  background-color: var(--body-color);
+  border: none;
+  padding: 8px 20px;
+  box-shadow: 0px 1px 10px 3px var(--box-shadow);
+  border-radius: 7px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.tab:hover,
+.active-tab {
+  box-shadow: none;
+  background-color: var(--button-color);
+  color: var(--body-color);
+}
+
+.split1-window .complete-button {
+  padding: 8px 30px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.yard-data-container {
+  margin-left: 90px;
+}
 
 @media only screen and (max-device-width: 1260px) {
   .yard2 {

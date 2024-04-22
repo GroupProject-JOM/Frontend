@@ -11,6 +11,7 @@
     message = body.querySelector(".message"),
     bottom = body.querySelector(".msg-bottom"),
     searchBar = body.querySelector(".search"),
+    title = body.querySelector(".chat-title"),
     sentIcon = body.querySelector(".sent-icon");
 
   var lang = getCookie("lang"); // current language
@@ -39,6 +40,8 @@
     lang = "sin";
 
     message.placeholder = data["sin"]["message"];
+    title.textContent = data["sin"]["title"];
+
     setGreeting();
   });
 
@@ -51,15 +54,18 @@
     lang = "en";
 
     message.placeholder = data["en"]["message"];
+    title.textContent = data["en"]["title"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      message: "පණිවිඩයක් ටයිප් කරන්න",
+      message: "පණිවිඩයක් ඇතුල් කරන්න",
+      title: "සැපයුම්කරුවන්ගේ පණිවිඩ",
     },
     en: {
       message: "Type a message",
+      title: "Supplier Messages",
     },
   };
 
@@ -127,8 +133,7 @@
 
   // web socket
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/chat/" +
-      getPayload(getCookie("jwt")).user
+    socketProxy + "/chat/" + getPayload(getCookie("jwt")).user
   );
 
   socket.onmessage = function (event) {
@@ -235,7 +240,7 @@
                   item.sender +
                   `>` +
                   `<div class="profile-photo">` +
-                  `<span class="profile-icon"> <i class="fa-solid fa-user"></i>` +
+                  `<span class="profile-icon hide"> <i class="fa-solid fa-user"></i>` +
                   `</span>` +
                   `</div>` +
                   `<div class="single-chat-content">` +
@@ -248,7 +253,7 @@
                   item.content +
                   `</p>` +
                   `</div>` +
-                  `</div>`;
+                  `</div><hr>`;
                 return;
               }
               if (item.receiver == 3) {
@@ -272,7 +277,7 @@
                     item.content +
                     `</p>` +
                     `</div>` +
-                    `</div>`;
+                    `</div><hr>`;
                 } else {
                   allChat.innerHTML +=
                     `<div class="single-chat" id=` +
@@ -292,7 +297,7 @@
                     item.content +
                     `</p>` +
                     `</div>` +
-                    `</div>`;
+                    `</div><hr>`;
                 }
               } else {
                 allChat.innerHTML +=
@@ -313,7 +318,7 @@
                   item.content +
                   `</p>` +
                   `</div>` +
-                  `</div>`;
+                  `</div><hr>`;
               }
             }
 
@@ -335,7 +340,7 @@
         } else if (response.status === 202) {
           response.json().then((data) => {
             if (lang == "sin")
-              Command: toastr["info"]("කතාබස් ලැයිස්තුවක් නැත");
+              Command: toastr["info"]("පණිවිඩ ලැයිස්තුවක් නැත");
             else Command: toastr["info"]("No chat list");
           });
         } else if (response.status === 401) {

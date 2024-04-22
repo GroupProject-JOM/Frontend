@@ -1,4 +1,6 @@
-.location-pick {
+.location-pick,
+.get-direction
+ {
   display: none;
   width: 75vw;
   height: 80vh;
@@ -8,19 +10,34 @@
   border-radius: 10px;
   margin-top: 60px;
   position: absolute;
-  top: -100px;
-  right: 30px;
+  /* top: -100px; */
+  right: 10vw;
   box-shadow: 0 0 20px 0 var(--shadow-color);
   z-index: 999;
   transition: var(--tran-04);
 }
 
-.location-container {
+.get-direction{
+  padding: 4px 5px;
+}
+
+.get-direction #map {
+  height: 79vh;
+  width: 55vw;
+}
+
+.location-container,
+.get-direction .direction-container {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   gap: 30px;
 }
+
+
+.get-direction .direction-container .pick-map #map{
+  border-radius: 10px;
+}
+
 
 .location-container iframe {
   width: 50vw;
@@ -61,12 +78,17 @@
   margin-bottom: 20px;
 }
 
-.pick-address div {
-  margin: 30px 0;
-}
 
 .pick-address {
   margin-right: 20px;
+  width: 30vw;
+  color: black;
+  height: 72vh;
+  margin-top: 20px;
+  overflow-y: scroll;
+  background-color: var(--background-grey);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .confirm {
@@ -75,4 +97,46 @@
 
 .houseNo {
   margin-right: 15px;
+}
+
+textarea{
+  height: auto;
+}
+
+.view-all-container{
+  width: 60vw;
+  height: 80vh;
+  top: 10%;
+  left: 20%;
+}
+
+.view-all-container .view-all-content{
+  display: flex;
+}
+
+.get-direction .pick-address{
+  font-size: 0.9rem;
+}
+
+.get-direction .start-address,
+.get-direction .end-address
+{
+  margin: 5px 0;
+}
+
+.get-direction .title{
+  font-size: 1rem;
+}
+
+.get-direction .view-text{
+  font-weight: 500;
+  background-color: var(--toggle-color);
+  padding: 5px 15px 5px 10px;
+  border-radius: 5px;
+  width: 90%;
+  margin-bottom: 20px;
+}
+
+.get-direction .view-text i{
+  float: right;
 }

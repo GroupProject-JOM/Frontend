@@ -4,6 +4,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
+    text = body.querySelector(".text"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
     w2Value = body.querySelector(".w2-value"),
@@ -82,6 +83,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c4.textContent = data["sin"]["c4"];
     c5.textContent = data["sin"]["c5"];
     c3.innerHTML = data["sin"]["c3"];
+    text.textContent = data["sin"]["text"];
     setGreeting();
   });
 
@@ -99,27 +101,30 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     c4.textContent = data["en"]["c4"];
     c5.textContent = data["en"]["c5"];
     c3.innerHTML = data["en"]["c3"];
+    text.textContent = data["en"]["text"];
     setGreeting();
   });
 
   var data = {
     sin: {
-      w1: "මාසික පරිමාව",
+      w1: "සමාගම් නිෂ්පාදන",
       w2: "දැනට පවතින නිෂ්පාදන",
       c1: "දැනට පවතින නිෂ්පාදන",
       c2: "දැනට පවතින නිෂ්පාදන වල තත්ත්වය බලන්න",
       c4: "නිෂ්පාදන වල තත්ත්වය",
       c5: "ඔබගේ ඉල්ලීම් වල තත්ත්වය බලන්න",
       c3: "*සැපයුම් පොල් ප්‍රමාණය අවශ්‍ය අවම මට්ටමට නොපැමිණීම හේතුවෙන් සැපයුම් හැඳුනුම්පත P092 ප්‍රතික්ෂේප කර ඇත. <br/>මෙය දින 7කින් ස්වයංක්‍රීයව මැකෙනු ඇත",
+      text: "උපකරණ පුවරුව",
     },
     en: {
-      w1: "Monthly Volume",
+      w1: "Company Products",
       w2: "Ongoing Production",
       c1: "Ongoing Productions",
       c2: "View ongoing production status",
       c4: "Production Requests",
       c5: "View your Request status",
       c3: "*Production ID P094 has been rejected due to the supply amount not meeting the minimum required. <br />This will be automatically deleted in 7 days",
+      text: "Dashboard",
     },
   };
 
@@ -163,7 +168,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./production-requests/view.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td> P/R/" +
               item.id +
               "</td>" +
               "<td>" +
@@ -175,7 +180,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<td>Yard " +
               item.yard +
               "</td>" +
-              "<td>Block " +
+              "<td>B/" +
               item.block +
               "</td>" +
               "<td>" +
@@ -197,6 +202,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               window.location.href = r.dataset.href;
             });
           });
+          pagination("table2", 15);
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -240,7 +246,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./production/view.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td> P/B/" +
               item.id +
               "</td>" +
               "<td>" +
@@ -267,6 +273,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               window.location.href = r.dataset.href;
             });
           });
+
+
         });
       } else if (response.status === 202) {
         response.json().then((data) => {

@@ -1,6 +1,8 @@
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "dName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 document.cookie = "dContact=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "price=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+document.cookie = "visits=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
 (() => {
   const body = document.querySelector("body"),
@@ -57,16 +59,18 @@ document.cookie = "dContact=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      sTitle: "බෙදාහරින්නන් බලන්න",
+      sTitle: "බෙදාහරින්නන්",
       sText: "බෙදාහරින්නාගේ විස්තර බලන්න",
     },
     en: {
-      sTitle: "View Distributors",
+      sTitle: "Distributors",
       sText: "View Distributor Details",
     },
   };
 
-  var row = "";
+  var row = "",
+    cashOnHand = [];
+
   fetch(backProxy + "/distributors", {
     method: "GET",
     headers: {
@@ -81,6 +85,7 @@ document.cookie = "dContact=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           arr.forEach(data_to_table);
 
           function data_to_table(item) {
+            cashOnHand.push(item.price);
             row +=
               `<tr data-href='./view.html' id=` +
               item.id +
@@ -93,19 +98,25 @@ document.cookie = "dContact=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               `<td>` +
               item.phone +
               `</td>` +
-              `<td>5000</td>` +
-              `<td>2000</td>` +
+              `<td>${item.product}</td>` +
+              `<td>${(+item.price).toLocaleString("en-US")} LKR</td>` +
+              `<td>${item.visits}</td>` +
               `</tr>`;
           }
           tbody.innerHTML = row;
 
           const rows = document.querySelectorAll("tr[data-href]");
 
-          rows.forEach((r) => {
+          rows.forEach((r, index) => {
             r.addEventListener("click", () => {
               document.cookie = "id=" + r.id + "; path=/";
-              document.cookie = "dName=" + r.children[0].textContent + "; path=/";
-              document.cookie = "dContact=" + r.children[1].textContent + "; path=/";
+              document.cookie =
+                "dName=" + r.children[0].textContent + "; path=/";
+              document.cookie =
+                "dContact=" + r.children[1].textContent + "; path=/";
+              document.cookie = "price=" + cashOnHand[index] + "; path=/";
+              document.cookie =
+                "visits=" + r.children[4].textContent + "; path=/";
               window.location.href = r.dataset.href;
             });
           });

@@ -89,7 +89,7 @@
   color: var(--stock-table-text);
   font-size: 14px;
   margin-left: 1rem;
-  padding: 1.5rem 1rem 1rem 1rem;
+  padding: 1rem;
   width: 100%;
   /* box-shadow: 0px 4px 40px 0px var(--box-shadow); */
 }
@@ -100,6 +100,7 @@ p {
 
 .sent {
   overflow: hidden;
+  position: relative;
   margin: 9px 20px 9px 20px;
 }
 .sent-msg p {
@@ -107,7 +108,7 @@ p {
   border-radius: 10px;
   font-size: 14px;
   color: var(--text-color);
-  padding: 1.5rem 1rem 1rem 1rem;
+  padding: 1rem;
   width: 100%;
   /* box-shadow: 0px 4px 40px 0px var(--box-shadow); */
 }
@@ -169,7 +170,7 @@ p {
 }
 
 .single-chat {
-  /* border: 1px solid red; */
+  cursor: pointer;
   height: 10vh;
   display: grid;
   grid-template-columns: 70px auto;
@@ -198,7 +199,6 @@ p {
 }
 
 .single-chat-content {
-  /* margin: 20px 0 20px 10px; */
   margin-left: 10px;
   display: flex;
   flex-direction: column;
@@ -221,8 +221,7 @@ p {
 }
 
 .supplier-chats {
-  height: 89.5vh;
-  border-bottom: 20px solid white;
+  height: 89vh;
 }
 
 .stockmg-chat-container input {
@@ -253,15 +252,15 @@ p {
   margin-right: 10px;
 }
 .sent span {
-  float: right;
   font-size: 0.6rem;
-  position: relative;
-  top: 5px;
-  right: -140px;
+  position: absolute;
+  margin-top: 5px;
+  right: 1%;
   color: var(--text-color);
+  /* color: black; */
 }
 
-.received span{
+.received span {
   font-size: 0.6rem;
   position: relative;
   left: -37px;
@@ -269,33 +268,37 @@ p {
   /* bottom: 0px; */
   color: var(--input-border);
 }
-.chat-search{
+.chat-search {
   margin: 0 20px;
   border-bottom: 1px solid var(--input-border);
   margin-bottom: 20px;
 }
-.chat-search i{
+.chat-search i {
   float: right;
 }
 
-.chat-search input{
+.chat-search input {
   border: none;
   margin-top: 0;
   margin-bottom: 5px;
   width: 90%;
 }
 
-.chat-search input:focus{
+.chat-search input:focus {
   border: none;
 }
 
-.chat-search:has(input:focus){
+.chat-search:has(input:focus) {
   border-bottom: 2px solid var(--input-border-focus);
-
 }
 
+.all-chats hr{
+  margin: 0;
+  width: 80%;
+  margin: auto;
+}
 
-@media only screen and (max-device-width: 900px) {
+@media only screen and (max-width: 900px) {
   .supplier-chat-container {
     width: 95%;
   }
@@ -304,9 +307,53 @@ p {
   .received-msg p {
     font-size: 12px;
   }
+
+  .stockmg-chat{
+    width: 85%;
+  }
+
+  .stockmg-chat .msg-bottom{
+    width: 60%;
+  }
+
+  .supplier-chats{
+    width: 27vw;
+  }
+
+  .stockmg-chat-container{
+    gap: 30px;
+  }
+
 }
 
-@media only screen and (max-device-width: 718px) {
+@media only screen and (max-width: 1200px){
+  .profile-photo{
+    display: none;
+  }
+  
+  .single-chat-content{
+    width: 100%;
+  }
+
+  .single-chat{
+    display: flex;
+  }
+
+  .supplier-name{
+    font-size: 0.9rem;
+  }
+
+  .chat-search input{
+    width: 80%;
+  }
+
+  .received-msg,
+  .sent-msg{
+    max-width: 70%;
+  }
+}
+
+@media only screen and (max-width: 718px) {
   .supplier-chat-container {
     padding-left: 1rem;
     height: 87vh;

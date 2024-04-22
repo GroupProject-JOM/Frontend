@@ -102,11 +102,8 @@
             } else if (item.status == 3) {
               stat = "rejected";
               st = "Terminated";
-            } else if (item.status == 4) {
-              stat = "pending";
-              st = "Ongoing";
-            } else if (item.status == 5) {
-              stat = "complete";
+            } else {
+              stat = "completed";
               st = "Completed";
             }
 
@@ -118,7 +115,7 @@
               "<tr data-href='./view.html' id=" +
               item.id +
               ">" +
-              "<td>" +
+              "<td> P/B/" +
               item.id +
               "</td>" +
               "<td>" +
@@ -154,7 +151,7 @@
         response.json().then((data) => {
           console.log(data.message);
         });
-        if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන කණ්ඩායම් නොමැත");
+        if (lang == "sin") Command: toastr["info"]("නිෂ්පාදන කාණ්ඩ නොමැත");
         else Command: toastr["info"]("No production batches");
       } else if (response.status === 401) {
         response.json().then((data) => {

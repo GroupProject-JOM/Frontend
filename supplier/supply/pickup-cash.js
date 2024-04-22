@@ -16,7 +16,7 @@
   let lop;
 
   var location_options =
-      "<option value='' disabled selected hidden class='lop'></option>",
+      "<option value='' disabled selected hidden class='lop'>Estate Location</option>",
     lang = getCookie("lang"); // current language
 
   // Get estates
@@ -38,26 +38,26 @@
               "<option value=" + item.id + ">" + item.estate_name + "</option>";
           }
           location.innerHTML = location_options;
-          lop = body.querySelector(".lop");
+          // lop = body.querySelector(".lop");
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
           // data.size=0
           if (lang == "sin") {
-            location_options += "<option value='' disabled>වතු නැත</option>";
-            Command: toastr["info"]("වතු නැත");
+            location_options += "<option value='' disabled>වතුයායන් නැත</option>";
+            Command: toastr["info"]("වතුයායන් නැත");
           } else {
             location_options += "<option value='' disabled>No Estates</option>";
             Command: toastr["info"]("No Estates");
           }
           location.innerHTML = location_options;
-          lop = body.querySelector(".lop");
+          // lop = body.querySelector(".lop");
         });
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
         if (lang == "sin")
-          location_options += "<option value='' disabled>වතු නැත</option>";
+          location_options += "<option value='' disabled>වතුයායන් නැත</option>";
         else
           location_options += "<option value='' disabled>No Estates</option>";
         location.innerHTML = location_options;
@@ -73,13 +73,12 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    //   sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
     sTitle.textContent = data["sin"]["sTitle"];
     tText.innerHTML = data["sin"]["tText"];
-    lop.textContent = data["sin"]["lop"];
+    // lop.textContent = data["sin"]["lop"];
     date.placeholder = data["sin"]["date"];
     time.placeholder = data["sin"]["time"];
     bText.innerHTML = data["sin"]["bText"];
@@ -92,13 +91,12 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    //   sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
     sTitle.textContent = data["en"]["sTitle"];
     tText.innerHTML = data["en"]["tText"];
-    lop.textContent = data["en"]["lop"];
+    // lop.textContent = data["en"]["lop"];
     date.placeholder = data["en"]["date"];
     time.placeholder = data["en"]["time"];
     bText.innerHTML = data["en"]["bText"];

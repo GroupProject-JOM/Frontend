@@ -143,7 +143,6 @@ input:focus {
 .request-amount {
   margin-top: 0;
   padding-bottom: 2px;
-  margin-bottom: 40px;
 }
 
 .buttons {
@@ -248,7 +247,7 @@ select.dropdown {
   height: 47vh;
   margin-top: 60px;
   top: 20%;
-  right: 35%;
+  right: 25%;
 }
 
 .add-product-container .add-product-content {
@@ -315,8 +314,8 @@ select.dropdown {
   width: 40vw;
   height: 60vh;
   margin-top: 60px;
-  top: 20%;
-  right: 35%;
+  top: 15%;
+  right: 25%;
 }
 
 .edit-product-container .edit-product-content {

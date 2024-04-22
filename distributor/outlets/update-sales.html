@@ -5,6 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Update Sales</title>
 
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Jayasinghe Oil Mills" />
+    <meta
+      name="description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      name="keywords"
+      content="JOM, Jayasinghe Oil Mills, Coconut Oil, Sri Lanaka"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="og:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="og:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      property="og:image"
+      content="https://jom-dev.duckdns.org/common/img/logo-manifest.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta
+      property="twitter:card"
+      content="https://jom-dev.duckdns.org/common/img/logo-manifest.jpg"
+    />
+    <meta property="twitter:url" content="https://jom-dev.duckdns.org/" />
+    <meta property="twitter:title" content="Jayasinghe Oil Mills" />
+    <meta
+      property="twitter:description"
+      content="Jayasinghe Oil Mills Business and Manufacturing Process Management System."
+    />
+    <meta
+      property="twitter:image"
+      content="https://jom-dev.duckdns.org/common/img/logo-manifest.jpg"
+    />
+
+    <!-- icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://jom-dev.duckdns.org/common/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://jom-dev.duckdns.org/common/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://jom-dev.duckdns.org/common/img/favicon-16x16.png"
+    />
+
+    <!-- manifest -->
+    <link rel="manifest" href="../../site.webmanifest" />
+
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
@@ -53,9 +115,76 @@
     <nav class="sidebar"></nav>
     <i class="fa fa-bars" aria-hidden="true"></i>
 
+    <!-- view outlet light box starts -->
+    <div class="overlay overlay1" id="overlay1">
+      <div class="view-outlet-container light-box" style="display: none">
+        <p class="close-btn close-btn1">
+          <i class="fas fa-xmark"></i>
+        </p>
+        <div class="view-outlet-content">
+          <p class="oName"></p>
+          <table class="outlet-table overview-tables">
+            <tbody>
+              <tr>
+                <td class="bold">Outlet ID</td>
+                <td class="oId"></td>
+              </tr>
+              <!-- <tr>
+                <td class="bold">Name</td>
+                <td class="oName"></td>
+              </tr> -->
+              <tr>
+                <td class="bold">Email</td>
+                <td class="oEmail"></td>
+              </tr>
+              <tr>
+                <td class="bold">Phone No</td>
+                <td class="oPhone"></td>
+              </tr>
+              <tr>
+                <td class="bold">Adress</td>
+                <td class="oAddress"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- view outlet light box ends -->
+
+    <!-- bill light box starts -->
+    <div class="overlay overlay2" id="overlay2">
+      <div class="bill-container light-box" style="display: none">
+        <p class="close-btn close-btn2">
+          <i class="fas fa-xmark"></i>
+        </p>
+        <div class="bill-content">
+          <table class="bill-table" border="true">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Item</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody class="tbody2"></tbody>
+          </table>
+          <div class="bill-total">
+            <p>Sub Total: <span class="bill-total-value">0 LKR</span></p>
+            <button class="confirm form-button">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- bill light box ends -->
+
     <section class="home">
       <div class="notification">
-        <span class="count">7</span>
+        <span class="count"></span>
         <span class="bell do-not"
           ><i class="fa-regular fa-bell do-not"></i
         ></span>

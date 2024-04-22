@@ -18,9 +18,9 @@
   let lop, bop, locWait, bankWait;
 
   var location_options =
-      "<option value='' disabled selected hidden class='lop'></option>",
+      "<option value='' disabled selected hidden class='lop'>Estate Location</option>",
     bank_options =
-      "<option value='' disabled selected hidden class='bop'></option>",
+      "<option value='' disabled selected hidden class='bop'>Bank Account</option>",
     lang = getCookie("lang"); // current language
 
   // Get estates
@@ -42,30 +42,30 @@
               "<option value=" + item.id + ">" + item.estate_name + "</option>";
           }
           location.innerHTML = location_options;
-          lop = body.querySelector(".lop");
+          // lop = body.querySelector(".lop");
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
           // data.size=0
           if (lang == "sin") {
-            location_options += "<option value='' disabled>වතු නැත</option>";
-            Command: toastr["info"]("වතු නැත");
+            location_options += "<option value='' disabled>වතුයායන් නැත</option>";
+            Command: toastr["info"]("වතුයායන් නැත");
           } else {
             location_options += "<option value='' disabled>No Estates</option>";
             Command: toastr["info"]("No Estates");
           }
           location.innerHTML = location_options;
-          lop = body.querySelector(".lop");
+          // lop = body.querySelector(".lop");
         });
       } else {
         console.error("Error:", response.status);
         Command: toastr["error"](response.status, "Error");
         if (lang == "sin")
-          location_options += "<option value='' disabled>වතු නැත</option>";
+          location_options += "<option value='' disabled>වතුයායන් නැත</option>";
         else
           location_options += "<option value='' disabled>No Estates</option>";
         location.innerHTML = location_options;
-        lop = body.querySelector(".lop");
+        // lop = body.querySelector(".lop");
       }
     })
     .catch((error) => {
@@ -90,10 +90,10 @@
 
         function setter(item) {
           bank_options +=
-            "<option value=" + item.id + ">" + item.name + "</option>";
+            "<option value=" + item.id + ">" + item.nickName + "</option>";
         }
         bank.innerHTML = bank_options;
-        bop = body.querySelector(".bop");
+        // bop = body.querySelector(".bop");
       });
     } else if (bankWait.status === 202) {
       bankWait.json().then((data) => {
@@ -108,7 +108,7 @@
           Command: toastr["info"]("No Bank Accounts");
         }
         bank.innerHTML = bank_options;
-        bop = body.querySelector(".bop");
+        // bop = body.querySelector(".bop");
       });
     } else {
       console.error("Error:", bankWait.status);
@@ -118,7 +118,7 @@
       else
         bank_options += "<option value='' disabled >No Bank Accounts</option>";
       bank.innerHTML = bank_options;
-      bop = body.querySelector(".bop");
+      // bop = body.querySelector(".bop");
     }
   } catch (error) {
     console.error("An error occurred:", error);
@@ -130,7 +130,6 @@
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -140,8 +139,8 @@
     time.placeholder = data["sin"]["time"];
     bText.innerHTML = data["sin"]["bText"];
     btn.textContent = data["sin"]["btn"];
-    lop.textContent = data["sin"]["lop"];
-    bop.textContent = data["sin"]["bop"];
+    // lop.textContent = data["sin"]["lop"];
+    // bop.textContent = data["sin"]["bop"];
     setGreeting();
   });
 
@@ -150,7 +149,6 @@
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
@@ -160,8 +158,8 @@
     time.placeholder = data["en"]["time"];
     bText.innerHTML = data["en"]["bText"];
     btn.textContent = data["en"]["btn"];
-    lop.textContent = data["en"]["lop"];
-    bop.textContent = data["en"]["bop"];
+    // lop.textContent = data["en"]["lop"];
+    // bop.textContent = data["en"]["bop"];
     setGreeting();
   });
 

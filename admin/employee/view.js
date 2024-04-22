@@ -118,7 +118,7 @@
   //delete outlet
   del.addEventListener("click", () => {
     if (lang == "sin") {
-      var title = "ඔයාට විශ්වාස ද?",
+      var title = "ඔබට විශ්වාස ද?",
         text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
         confirmButtonText = "ඔව්, එය මකන්න!",
         cancelButtonText = "අවලංගු කරන්න";
@@ -170,7 +170,7 @@
             } else if (response.status === 202) {
               response.json().then((data) => {
                 if (lang == "sin")
-                  Command: toastr["error"]("සේවකයා මකා දැමිය නොහැක");
+                  Command: toastr["error"]("සේවකයා ඉවත් කර නොහැක");
                 else Command: toastr["error"]("Unable to Delete employee");
               });
             } else if (response.status === 401) {

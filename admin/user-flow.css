@@ -276,6 +276,10 @@ input:focus {
   margin-bottom: 0;
 }
 
+.view-employee-container .buttons{
+  margin-top: 2rem;
+}
+
 .edit-employee-container .form-button,
 .outlet-edit-container .form-button,
 .outlet-add-container .form-button {
@@ -413,6 +417,103 @@ input:focus {
   font-size: 0.9rem;
   border-radius: 20px;
 }
+
+.view-product-container {
+  width: 33vw;
+  height: 38vh;
+  margin-top: 60px;
+  top: 20%;
+  right: 30%;
+}
+
+.view-product-container .buttons {
+  display: flex;
+  gap: 1vw;
+  justify-content: center;
+  margin-top: 0;
+}
+.view-product-container .buttons a {
+  padding: 5px 20px;
+  width: 8rem;
+  margin-top: 40px;
+}
+
+.view-product-container .overview-tables {
+  width: 90%;
+  margin-left: 1.5rem;
+}
+
+
+.add-product-container,
+.edit-product-container {
+  width: 40vw;
+  height: 57vh;
+  top: 20%;
+  right: 25%;
+}
+.add-product-container .add-product-content,
+.edit-product-container .edit-product-content {
+  margin: 20px;
+}
+
+.add-product-container h2,
+.edit-product-container h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.add-product-container label,
+.edit-product-container label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.edit-product-container label {
+  color: var(--input-border);
+}
+.add-product-container input {
+  font-size: 0.8rem;
+  margin-top: 0;
+  width: 33vw;
+}
+
+.add-product-container .add-product-form,
+.edit-product-container .edit-product-form {
+  margin-top: 40px;
+}
+
+.add-product-container .submit,
+.edit-product-container .edit-submit {
+  font-size: 0.9rem;
+  padding: 5px 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+/* add and edit */
+
+.edit-product-container input {
+  font-size: 0.9rem;
+  margin-top: 0;
+  width: 33vw;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.edit-product-container input::placeholder {
+  font-size: 0.9rem;
+  margin-top: 0;
+  width: 33vw;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+
+
+
+
+
 
 @media only screen and (max-device-width: 718px) {
   .yard {

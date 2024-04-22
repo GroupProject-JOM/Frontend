@@ -6,6 +6,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     en = body.querySelector(".en"),
     t1 = body.querySelector(".t1"),
     t2 = body.querySelector(".t2"),
+    tx1 = body.querySelector(".tx1"),
+    tx2 = body.querySelector(".tx2"),
     tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
     pendingTable = body.querySelector(".pending-table"),
@@ -15,7 +17,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     searchBar2 = body.querySelector(".search2"),
     filter2 = body.querySelector(".filter-2");
 
-    var lang = getCookie("lang"); // current language
+  var lang = getCookie("lang"); // current language
 
   var searchBox1 = document.querySelectorAll(
     '.search-box1 input[type="text"] + span'
@@ -69,6 +71,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     t1.textContent = data["sin"]["t1"];
     t2.textContent = data["sin"]["t2"];
+    tx1.textContent = data["sin"]["tx1"];
+    tx2.textContent = data["sin"]["tx2"];
     setGreeting();
   });
 
@@ -82,6 +86,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
     t1.textContent = data["en"]["t1"];
     t2.textContent = data["en"]["t2"];
+    tx1.textContent = data["en"]["tx1"];
+    tx2.textContent = data["en"]["tx2"];
     setGreeting();
   });
 
@@ -89,10 +95,14 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin: {
       t1: "පොරොත්තු ගෙවීම්",
       t2: "සම්පූර්ණ කරන ලද ගෙවීම්",
+      tx1: "සමාගම් සැපයුම්කරුවන් සඳහා අපේක්ෂිත ගෙවීම් පිළිබඳ විස්තර බලන්න",
+      tx2: "සමාගම් සැපයුම්කරුවන් සඳහා දැනටමත් ගෙවා ඇති ගෙවීම් පිළිබඳ විස්තර බලන්න",
     },
     en: {
       t1: "Pending Payments",
       t2: "Completed Payments",
+      tx1: "View details of the pendings payments for company suppliers",
+      tx2: "View details of the payments that are already made for company suppliers",
     },
   };
 
@@ -118,9 +128,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<tr data-href='./payment.html' id=` +
                 item.id +
                 `>` +
-                `<td>` +
-                item.id +
-                `</td>` +
+                `<td>S/${capitalize(item.method)[0]}/${item.id}</td>` +
                 `<td>` +
                 item.name +
                 ` ` +
@@ -142,9 +150,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<tr data-href='./payment.html' id=` +
                 item.id +
                 `>` +
-                `<td>` +
-                item.id +
-                `</td>` +
+                `<td>S/${capitalize(item.method)[0]}/${item.id}</td>` +
                 `<td>` +
                 item.name +
                 ` ` +

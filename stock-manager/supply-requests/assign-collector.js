@@ -56,14 +56,14 @@
 
   var data = {
     sin: {
-      sTitle: "එකතුකරන්නන් පවරන්න",
+      sTitle: "එකතුකරන්නන්ට පවරන්න",
       sText:
-        "සක්‍රිය එකතු කිරීම් පිළිබඳ තත්‍ය කාලීන තොරතුරු බලන්න සහ නව එකතුවට එකක් පවරන්න",
+        "අදාළ දිනය සඳහා එක් එක් එකතුකරන්නන්ගේ එකතු කිරීමේ තොරතුරු බලන්න සහ නව එකතුවක් පවරන්න",
     },
     en: {
       sTitle: "Assign Collectors",
       sText:
-        "View real-time information on active collections and assign one to the new collection",
+        "View collection information of each collector for the relevent day and assign a new one",
     },
   };
 

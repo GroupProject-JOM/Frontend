@@ -21,12 +21,14 @@
       l8 = body.querySelector(".l8"),
       l9 = body.querySelector(".l9"),
       l11 = body.querySelector(".l11"),
+      l12 = body.querySelector(".l12"),
       dashboard = body.querySelector(".dashboard"),
       distributor = body.querySelector(".distributor"),
       outlet = body.querySelector(".outlet"),
       productions = body.querySelector(".productions"),
       payouts = body.querySelector(".payouts"),
       products = body.querySelector(".products"),
+      activity = body.querySelector(".activity"),
       Uname = body.querySelector(".name"),
       logout = document.querySelector(".logout"),
       profile = body.querySelector(".profile"),
@@ -44,6 +46,7 @@
     payouts.href = frontProxy + "/sales-manager/payouts/view-all.html";
     products.href = frontProxy + "/sales-manager/products/view-all.html";
     profile.href = frontProxy + "/sales-manager/profile/view.html";
+    activity.href = frontProxy + "/sales-manager/activity/";
 
     if (getCookie("name") != null) Uname.textContent = getCookie("name");
     else {
@@ -89,6 +92,7 @@
       l8.textContent = data["sin"]["l8"];
       l9.textContent = modeTranslate();
       l11.textContent = data["sin"]["l11"];
+      l12.textContent = data["sin"]["l12"];
     });
 
     en.addEventListener("click", () => {
@@ -103,6 +107,7 @@
       l8.textContent = data["en"]["l8"];
       l9.textContent = modeTranslate();
       l11.textContent = data["en"]["l11"];
+      l12.textContent = data["en"]["l12"];
     });
 
     var data = {
@@ -114,9 +119,10 @@
         l4: "ගෙවීම්",
         l5: "නිෂ්පාදන",
         l6: "ප්‍රධාන ක්‍ර්‍රියා",
-        l7: "පැතිකඩ බලන්න",
+        l7: "ගිණුම බලන්න",
         l8: "ගිණුමෙන් ඉවත් වන්න",
         l11: "උපකරණ පුවරුව",
+        l12: "ලඝු-සටහන්",
       },
       en: {
         l0: "USER ACTIONS",
@@ -129,6 +135,7 @@
         l7: "View Profile",
         l8: "Log Out",
         l11: "Dashboard",
+        l12: "Activity",
       },
     };
 
@@ -171,6 +178,7 @@ window.addEventListener("load", (e) => {
       "products",
       "index",
       "profile",
+      "activity",
     ];
     if (!loaded && pathname) {
       loaded = true;

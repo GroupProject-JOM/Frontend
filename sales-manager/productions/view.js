@@ -111,9 +111,9 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   var data = {
     sin: {
       sTitle: "කාණ්ඩ " + getCookie("id"),
-      sText: "නිෂ්පාදන කණ්ඩායම් විස්තර බලන්න",
+      sText: "නිෂ්පාදන කාණ්ඩ වල විස්තර බලන්න",
       pTitle1: "බෙදාහරින ලදී",
-      pDataH: "නිෂ්පාදනයක් තෝරන්න",
+      pDataH: "නිෂ්පාදන කාණ්ඩයක් තෝරන්න",
     },
     en: {
       sTitle: "Batch " + getCookie("id"),
@@ -149,7 +149,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       .then((response) => {
         if (response.status == 200) {
           response.json().then((data) => {
-            batchNo.textContent = data.batch.id;
+            batchNo.textContent = "P/B/" + data.batch.id;
 
             if (data.batch.status == 1) {
               status.textContent = "Processing";
@@ -196,11 +196,14 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   `</div>` +
                   `</div>` +
                   `</td>` +
-                  `<td><button class="reject status">Terminated</button></td>` +
+                  `<td><button class="rejected status">Terminated</button></td>` +
                   `</tr>`;
               });
             } else {
-              status.textContent = "Completed";
+              if (data.batch.status == 2)
+                status.textContent = "Ready to Distribute";
+              else status.textContent = "Completed";
+
               var p_count_arr = data.batch.products_count.split(",");
               var d_count_arr = data.batch.distribution.split(",");
 
@@ -265,7 +268,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               r.addEventListener("click", () => {
                 document.cookie = "product=" + r.id + "; path=/";
                 type.textContent = r.children[1].textContent;
-                batch.textContent = "B" + data.batch.id;
+                batch.textContent = "P/B/" + data.batch.id;
 
                 totalAmount = p_count_arr[index];
                 ActualAmount = p_count_arr[index] - d_count_arr[index];
@@ -363,7 +366,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                     // handle remaing error
                     if (remainigAmount > ActualAmount)
                       if (lang == "sin")
-                        remainingError.textContent = `ඉතිරි මුදල පවතින මුදල ඉක්මවිය නොහැක`;
+                        remainingError.textContent = `ඉතිරි ප්‍රමාණය පවතින ප්රමාණය ඉක්මවිය නොහැක`;
                       else
                         remainingError.textContent = `Remaining amount cannot exceed the available amount`;
                     else remainingError.textContent = null;
@@ -387,16 +390,16 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                     } else if (!checkInt(elm.value)) {
                       totalError.style.display = "";
                       if (lang == "sin")
-                        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+                        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
                       else
-                        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Coconut amount must be positive integer`;
+                        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Coconut amount must be greater than 0`;
                       elm.nextSibling.style.display = "";
                       totalStatus = false;
 
                       //handle remaining error
                       if (remainigAmount < 0)
                         if (lang == "sin")
-                          remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
+                          remainingError.textContent = `ඉතිරි ප්‍රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
                         else
                           remainingError.textContent = `Remaining amount cannot be less than zero`;
                       else remainingError.textContent = "";
@@ -409,8 +412,8 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                         totalError.style.display = "";
 
                         if (lang == "sin") {
-                          remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-                          totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
+                          remainingError.textContent = `ඉතිරි ප්‍රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
+                          totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ඉතිරි ප්‍රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
                         } else {
                           remainingError.textContent = `Remaining amount cannot be less than zero`;
                           totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Remaining amount cannot be less than zero`;
@@ -455,7 +458,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                     // handle remaing error
                     if (remainigAmount > totalAmount)
                       if (lang == "sin")
-                        remainingError.textContent = `ඉතිරි මුදල පවතින මුදල ඉක්මවිය නොහැක`;
+                        remainingError.textContent = `ඉතිරි ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක`;
                       else
                         remainingError.textContent = `Remaining amount cannot exceed the available amount`;
                     else remainingError.textContent = null;
@@ -471,16 +474,16 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                     } else if (!checkInt(elm.value)) {
                       addError.style.display = "";
                       if (lang == "sin")
-                        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+                        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
                       else
-                        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Coconut amount must be positive integer`;
+                        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Coconut amount must be greater than 0`;
                       elm.nextSibling.style.display = "";
                       addStatus = false;
 
                       //handle remaining error
                       if (remainigAmount < 0)
                         if (lang == "sin")
-                          remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
+                          remainingError.textContent = `ඉතිරි ප්‍රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
                         else
                           remainingError.textContent = `Remaining amount cannot be less than zero`;
                       else remainingError.textContent = "";
@@ -493,8 +496,8 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                         addError.style.display = "";
 
                         if (lang == "sin") {
-                          remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
-                          addError.innerHTML = `<i class="fa-solid fa-circle-exclamation""></i> ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
+                          remainingError.textContent = `ඉතිරි ප්‍රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
+                          addError.innerHTML = `<i class="fa-solid fa-circle-exclamation""></i> ඉතිරි ප්‍රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
                         } else {
                           remainingError.textContent = `Remaining amount cannot be less than zero`;
                           addError.innerHTML = `<i class="fa-solid fa-circle-exclamation""></i> Remaining amount cannot be less than zero`;
@@ -592,9 +595,9 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Coconut amount must be positive integer`;
+        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Coconut amount must be greater than 0`;
       add.nextSibling.style.display = "";
       addStatus = false;
     } else {
@@ -616,9 +619,9 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(total.value)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Coconut amount must be positive integer`;
+        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Coconut amount must be greater than 0`;
       total.nextSibling.style.display = "";
       totalStatus = false;
     } else {
@@ -699,9 +702,9 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Coconut amount must be positive integer`;
+        addError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Coconut amount must be greater than 0`;
       add.nextSibling.style.display = "";
       return false;
     } else {
@@ -730,9 +733,9 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     } else if (!checkInt(total.value)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය`;
+        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
       else
-        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Coconut amount must be positive integer`;
+        totalError.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Coconut amount must be greater than 0`;
       total.nextSibling.style.display = "";
 
       return false;
@@ -781,19 +784,20 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     // handle remaing
     if (remainigAmount > ActualAmount) {
       if (lang == "sin")
-        remainingError.textContent = `ඉතිරි මුදල පවතින මුදල ඉක්මවිය නොහැක`;
+        remainingError.textContent = `ඉතිරි ප්‍රමාණය පවතින ප්‍රමාණය ඉක්මවිය නොහැක`;
       else
         remainingError.textContent = `Remaining amount cannot exceed the available amount`;
       remainigStatus = false;
     } else if (remainigAmount < 0) {
       if (lang == "sin")
-        remainingError.textContent = `ඉතිරි මුදල බිංදුවට වඩා අඩු විය නොහැක`;
+        remainingError.textContent = `ඉතිරි ප්‍රමාණය බිංදුවට වඩා අඩු විය නොහැක`;
       else
         remainingError.textContent = `Remaining amount cannot be less than zero`;
       remainigStatus = false;
     } else if (ActualAmount - remainigAmount != addTotal) {
-      if (lang == "sin") remainingError.textContent = `මොකක්හරි වැරැද්දක් වෙලා`;
-      else remainingError.textContent = `Something went wrong`;
+      if (lang == "sin")
+        remainingError.textContent = `යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න`;
+      else remainingError.textContent = `Something went wrong. Try again`;
       remainigStatus = false;
     } else {
       remainingError.textContent = "";
@@ -812,9 +816,9 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
       };
 
       if (lang == "sin") {
-        var title = "ඔයාට විශ්වාස ද?",
+        var title = "ඔබට විශ්වාස ද?",
           text = "ඔබට මෙය ප්‍රතිවර්තනය කිරීමට නොහැකි වනු ඇත!",
-          confirmButtonText = "ඔව්, බෙදාහරින්නන්ට වෙන් කරන්න!",
+          confirmButtonText = "ඔව්, බෙදාහරින්නන්ට ලබා දෙන්න!",
           cancelButtonText = "අවලංගු කරන්න";
       } else {
         var title = "Are you sure?",
@@ -846,8 +850,8 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 response.json().then((data) => {
                   console.log(data.message);
                 });
-                if (lang == "sin") var title = "සාර්ථකව අංගනයට එක් කරන ලදී";
-                else var title = "Successfully added to yard";
+                if (lang == "sin") var title = "සාර්ථකව පවරා ඇත";
+                else var title = "Successfully allocated";
                 Swal.fire({
                   title: title,
                   // text: "You clicked the button!",
@@ -866,7 +870,7 @@ document.cookie = "product=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                   console.log(data.message);
                 });
                 if (lang == "sin")
-                  Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
+                  Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
                 else Command: toastr["info"]("Something went wrong");
               } else if (response.status === 401) {
                 response.json().then((data) => {

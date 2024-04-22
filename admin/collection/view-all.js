@@ -69,8 +69,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
 
   var data = {
     sin: {
-      oTitle: "අද පිකප්",
-      oText: "අද දිනට නියමිත පොල් පිකප් බලන්න",
+      oTitle: "අද එකතු කිරීම්",
+      oText: "අද දිනට නියමිත පොල් එකතු කිරීම් බලන්න",
     },
     en: {
       oTitle: "Today's Pickups",
@@ -106,7 +106,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
                 `<tr data-href='./view.html' id=` +
                 item.id +
                 `>` +
-                `<td>` +
+                `<td> C/P/` +
                 item.id +
                 `</td>` +
                 `<td>` +

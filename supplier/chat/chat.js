@@ -41,7 +41,7 @@
   var data = {
     sin: {
       cTitle: "ජයසිංහ ඔයිල් මිල්ස්",
-      message: "පණිවිඩයක් ටයිප් කරන්න",
+      message: "පණිවිඩයක් ඇතුලත් කරන්න",
     },
     en: {
       cTitle: "Jayasinghe Oil Mills",
@@ -90,15 +90,13 @@
       msg +
       ` </p>
       </div>
-      <span>12.44 PM</span>
     </div>`;
     chat.scrollTop = chat.scrollHeight;
   }
 
   // web socket
   const socket = new WebSocket(
-    "ws://127.0.0.1:8090/JOM_war_exploded/chat/" +
-      getPayload(getCookie("jwt")).user
+    socketProxy + "/chat/" + getPayload(getCookie("jwt")).user
   );
 
   socket.onmessage = function (event) {
@@ -138,7 +136,6 @@
                 item.content +
                 `</p>
                     </div>
-                    <span>12.44 PM</span>
                   </div>`;
             } else {
               receive(item.content);

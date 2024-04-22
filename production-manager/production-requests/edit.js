@@ -60,9 +60,9 @@
   var data = {
     sin: {
       pTitle: "ඉල්ලීම සංස්කරණය කරන්න",
-      pText: "කොටස් ඉල්ලීම් විස්තර සංස්කරණය කරන්න",
+      pText: "නිෂ්පාදන ඉල්ලීම් විස්තර සංස්කරණය කරන්න",
       yLabel: "අංගනය",
-      bLabel: "කුට්ටි",
+      bLabel: "ගබඩාව",
       raLabel: "පොල් ගාණක් ඉල්ලුවා",
       rAmount: "පොල් ප්‍රමාණය ඇතුළත් කරන්න",
       btn: "සුරකින්න",
@@ -171,8 +171,8 @@
           response.json().then((data) => {
             console.log(data.message);
           });
-          if (lang == "sin") Command: toastr["info"]("මොකක්හරි වැරැද්දක් වෙලා");
-          else Command: toastr["info"]("Something went wrong");
+          if (lang == "sin") Command: toastr["info"]("යමක් වැරදී ඇත. නැවත උත්සාහ කරන්න");
+          else Command: toastr["info"]("Something went wrong. Try again");
         } else if (response.status === 401) {
           response.json().then((data) => {
             console.log(data.message);
@@ -295,7 +295,7 @@
 
   function block_status_func() {
     if (typeof yBlock.value === "string" && yBlock.value.trim().length === 0) {
-      if (lang == "sin") blockError.textContent = "කුට්ටි හිස් විය නොහැක!";
+      if (lang == "sin") blockError.textContent = "ගබඩාව හිස් විය නොහැක!";
       else blockError.textContent = "Block cannot be empty";
       blockStatus = false;
       return false;
@@ -322,11 +322,11 @@
       return false;
     } else if (!checkInt(rAmount.value)) {
       if (lang == "sin") {
-        amountError.textContent = "පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය";
-        Command: toastr["warning"]("පොල් ප්‍රමාණය ධන නිඛිල විය යුතුය");
+        amountError.textContent = "පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය";
+        Command: toastr["warning"]("පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය");
       } else {
-        amountError.textContent = "Coconut amount must be positive integer";
-        Command: toastr["warning"]("Coconut amount must be positive integer");
+        amountError.textContent = "Coconut amount must be greater than 0";
+        Command: toastr["warning"]("Coconut amount must be greater than 0");
       }
       amountStatus = false;
       return false;
