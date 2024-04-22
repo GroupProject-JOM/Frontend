@@ -346,8 +346,6 @@
     if (count == products.length && count != 0) countStatus = true;
     else false;
 
-    log(countStatus);
-
     if (countStatus) {
       var formData = {
         amounts: amounts,
@@ -355,8 +353,6 @@
         prices: productPrices,
         id: getCookie("id"),
       };
-
-      log(JSON.stringify(formData));
 
       overlay2.style.display = "flex";
       document.querySelector(".bill-container").style.display = "block";
@@ -470,15 +466,15 @@
     var addError = add.nextSibling.nextSibling;
     if (add.value == 0 || add.value == null) {
       addError.style.display = "";
-      if (lang == "sin") addError.textContent = `පොල් ප්‍රමාණය හිස් විය නොහැක`;
-      else addError.textContent = `Coconut amount cannot be empty`;
+      if (lang == "sin") addError.textContent = `නිෂ්පාදන ගණන හිස් විය නොහැක`;
+      else addError.textContent = `Product count cannot be empty`;
 
       return false;
     } else if (!checkInt(add.value)) {
       addError.style.display = "";
       if (lang == "sin")
-        addError.textContent = `පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
-      else addError.textContent = `Coconut amount must be greater than 0`;
+        addError.textContent = `නිෂ්පාදන ගණන 0 ට වඩා වැඩි විය යුතුය`;
+      else addError.textContent = `Product count must be greater than 0`;
 
       return false;
     } else {
@@ -501,16 +497,15 @@
     if (+totalValue == 0 || +totalValue == null) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.textContent = `පොල් ප්‍රමාණය පවතින ප්‍රමාණයට වඩා අඩු විය නොහැක`;
-      else
-        totalError.textContent = `Coconut amount cannot subceed the available amount`;
+        totalError.textContent = `පරීක්ෂා කළ පේළි ආදාන ක්ෂේත්‍රය හිස් විය නොහැක!`;
+      else totalError.textContent = `Checked rows input field cannot be empty!`;
 
       return false;
     } else if (!checkInt(totalValue)) {
       totalError.style.display = "";
       if (lang == "sin")
-        totalError.textContent = `පොල් ප්‍රමාණය 0 ට වඩා වැඩි විය යුතුය`;
-      else totalError.textContent = `Coconut amount must be greater than 0`;
+        totalError.textContent = `නිෂ්පාදන ගණන 0 ට වඩා වැඩි විය යුතුය`;
+      else totalError.textContent = `Product count must be greater than 0`;
 
       return false;
     } else {

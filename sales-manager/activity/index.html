@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Distributors</title>
 
     <!-- Primary Meta Tags -->
     <meta name="title" content="Jayasinghe Oil Mills" />
@@ -65,15 +65,16 @@
     />
 
     <!-- manifest -->
-    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="manifest" href="../../site.webmanifest" />
 
     <script
       src="https://kit.fontawesome.com/3d9946f29b.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../common/nav.css" />
-    <link rel="stylesheet" href="../common/notify.css" />
+    <link rel="stylesheet" href="../../common/style.css" />
+    <link rel="stylesheet" href="../../common/nav.css" />
+    <link rel="stylesheet" href="../../common/notify.css" />
+    <link rel="stylesheet" href="../user-flow.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
       rel="stylesheet"
@@ -86,14 +87,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../../common/func.js"></script>
-    <script src="./auth.js"></script>
+    <script src="../auth.js"></script>
   </head>
 
   <body>
     <!-- Loading screen -->
     <div class="loader-wrapper">
       <div class="logo-container">
-        <img src="../common/JOM logo 1.png" alt="" />
+        <img src="../../common/JOM logo 1.png" alt="" />
       </div>
       <div class="lds-spinner">
         <div></div>
@@ -129,76 +130,41 @@
         <div class="en active">En</div>
       </div>
 
-      <div class="text">Dashboard</div>
+      <div class="text"></div>
 
-      <div class="container">
-        <div class="widgets">
-          <div class="widget-left widget">
-            <div class="w-icon">
-              <span><i class="fa-solid fa-money-bill-trend-up"></i></span>
-            </div>
-            <div class="w-text">
-              <p class="w-title w1"></p>
-              <p class="w-value w1-value">0 LKR</p>
-            </div>
-          </div>
-          <div class="widget-right widget">
-            <div class="w-icon">
-              <span><i class="fa-solid fa-file-invoice-dollar"></i></span>
-            </div>
-            <div class="w-text">
-              <p class="w-title w2"></p>
-              <p class="w-value w2-value"></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="action-bar" style="display: none">
-          <div class="action-content">
-            <p class="action-text"></p>
-            <p class="action-value bold"></p>
-          </div>
-          <a
-            class="action-button form-button"
-            href="products/view-all.html"
-          ></a>
-        </div>
-
-        <div class="layer">
-          <div class="heading-button">
-            <div class="table-heading">
-              <h2 class="c1"></h2>
-              <p class="c2"></p>
-            </div>
-
-            <!-- <div class="report">
-              <div class="report-button rep1">
-                Generate report
-                <span><i class="fa-solid fa-file-arrow-down icon"></i></span>
+      <div class="salesmg-container activity-container">
+        <div class="salesmg-heading table-heading">
+          <h2 class="salesmg-title"></h2>
+          <div>
+            <p class="salesmg-text"></p>
+            <!-- Search Bar -->
+            <div class="search-filter">
+              <div class="search-wrapper">
+                <div class="search-box search-box">
+                  <input type="text" class="search" placeholder=" " />
+                  <span></span>
+                </div>
               </div>
-            </div> -->
-          </div>
-          <div class="sales-data layer" style="width: 90%">
-            <canvas id="sales-data"></canvas>
+              <!-- Search Bar -->
+
+              <div class="filter">
+                <div id="searchBox">
+                  <i class="fas fa-filter" id="filter-icon"></i>
+                  <input
+                    type="date"
+                    placeholder="Select date to filter"
+                    id="datePicker"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="layer">
-          <div class="heading-button">
-            <div class="table-heading">
-              <h2 class="c4"></h2>
-              <p class="c5"></p>
-            </div>
-            <!-- <div class="report">
-              <div class="report-button">
-                Generate report
-                <span><i class="fa-solid fa-file-arrow-down"></i></span>
-              </div>
-            </div> -->
-          </div>
-          <div class="distributor-sales layer" style="width: 90%">
-            <canvas id="distributor-sales"></canvas>
-          </div>
+        <div class="activity-content">
+          <table class="activity-table">
+            <tbody class="tbody"></tbody>
+          </table>
         </div>
       </div>
 
@@ -207,15 +173,10 @@
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
-    <script
-      src="https://unpkg.com/jspdf-invoice-template@latest/dist/index.js"
-      type="text/javascript"
-    ></script>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./nav/load-nav.js"></script>
-    <script src="./notifications/load-notifications.js"></script>
-    <script src="../common/loader.js"></script>
+    <script src="../nav/load-nav.js"></script>
+    <script src="../notifications/load-notifications.js"></script>
+    <script src="../../common/loader.js"></script>
   </body>
 </html>

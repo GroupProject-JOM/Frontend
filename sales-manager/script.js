@@ -4,6 +4,7 @@
     en = body.querySelector(".en"),
     w1 = body.querySelector(".w1"),
     w2 = body.querySelector(".w2"),
+    w1Value = body.querySelector(".w1-value"),
     w2Value = body.querySelector(".w2-value"),
     c1 = body.querySelector(".c1"),
     c2 = body.querySelector(".c2"),
@@ -56,7 +57,7 @@
       c1: "විකුණුම් දත්ත",
       c2: "මාසික විකුණුම් දත්ත සාරාංශය",
       c4: "බෙදාහරින්නාගේ විකුණුම්",
-      c5: "එක් එක් බෙදාහරින්නා සඳහා විකුණුම් දත්ත සාරාංශය",
+      c5: "එක් එක් නිෂ්පාදනය සඳහා විකුණුම් දත්ත සාරාංශය",
       aText:
         "නිෂ්පාදන දෙපාර්තමේන්තුව නව සමාගම් නිෂ්පාදන එකතු කර ඇත. ඒවායේ ඒකක මිල යාවත්කාලීන කරන්න.",
       aBtn: "මිල ඇතුල් කරන්න",
@@ -65,14 +66,19 @@
       w1: "Monthly Revenue",
       w2: "Pending Payments",
       c1: "Sales Data",
-      c2: "Monthly Sales Data Visualisation",
-      c4: "Disributor Sales",
-      c5: "Sales Data Visualisation for each distributor",
+      c2: "Monthly Sales Data Visualization",
+      c4: "Distributor Sales",
+      c5: "Sales Data Visualization for each product",
       aText:
         "Production department has added new company products. Update the unit price of them.",
       aBtn: "Update Unit Price",
     },
   };
+
+  let this_year_sales = [],
+    last_year_sales = [],
+    productNames = [],
+    quantities = [];
 
   fetch(backProxy + "/sales-manager", {
     method: "GET",
@@ -84,7 +90,21 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
+          w1Value.textContent = data.revenue.toLocaleString("en-US") + " LKR";
           w2Value.textContent = data.payouts;
+
+          data.monthly.forEach((item) => {
+            this_year_sales.push(item.thisYear);
+            last_year_sales.push(item.lastYear);
+          });
+
+          data.products.forEach((item) => {
+            productNames.push(item.category);
+            quantities.push(item.quantity);
+          });
+
+          salesChart(this_year_sales, last_year_sales);
+          productsChart(productNames, quantities);
 
           if (data.unverified == true) aBar.style.display = "";
         });
@@ -104,7 +124,50 @@
       Command: toastr["error"](error);
     });
 
-  let labels1 = [
+  function productsChart(names, quantity) {
+    const dataBar = {
+      labels: names,
+      datasets: [
+        {
+          data: quantity,
+          backgroundColor: [
+            "rgb(245, 233, 219)",
+            // "rgb(0, 201, 64)",
+            // "rgb(201, 178, 0)",
+            // "rgb(201, 77, 0)",
+            // "rgb(201, 0, 147)",
+            // "rgb(9, 8, 10)",
+            // "rgb(48, 230, 121)",
+          ],
+          hoverColor: 'rgb(201, 178, 0)',
+        },
+      ],
+    };
+
+    const configBar = {
+      type: "bar",
+      data: dataBar,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          // title: {
+          //   display: true,
+          //   text: "Products Sales",
+          // },
+        },
+      },
+    };
+
+    const chartLine2 = new Chart(
+      document.getElementById("distributor-sales"),
+      configBar
+    );
+  }
+
+  let labels = [
     "Jan",
     "Feb",
     "Mar",
@@ -118,83 +181,66 @@
     "Nov",
     "Dec",
   ];
-  let labels2 = ["Saman", "Kamal", "Amal", "Chamal", "Piyal", "Sunil", "Kasun"];
 
-  let itemData1 = [
-    7000, 5000, 5000, 3000, 7000, 1100, 1500, 1000, 2100, 3000, 4500, 1200,
-  ];
-  let itemData2 = [7000, 5000, 5000, 3000, 7000, 1100, 1500];
+  function salesChart(this_year, last_year) {
+    //sales chart design
+    const dataLine1 = {
+      labels: labels,
+      datasets: [
+        {
+          label: "This year",
+          data: this_year,
+          // fill: true,
+          borderColor: "#BB9056",
+          borderWidth: 2,
+          // hoverBorderColor: '#000000',
+          // backgroundColor:'#ffe0b6'
+          tension: 0.1,
+          pointRadius: 0,
+          hoverPointRadius: 0,
+        },
+        {
+          label: "Last year",
+          data: last_year,
+          // fill: true,
+          borderColor: "#949494",
+          borderWidth: 2,
+          // hoverBorderColor: '#000000',
+          // backgroundColor:'#ffe0b6'
+          tension: 0.1,
+          pointRadius: 0,
+          hoverPointRadius: 0,
+        },
+      ],
+    };
 
-  const dataLine1 = {
-    labels: labels1,
-    datasets: [
-      {
-        data: itemData1,
-        fill: true,
-        borderColor: "#909090",
-        // hoverBorderColor: '#000000',
-        // backgroundColor:'#ffe0b6'
-        tension: 0.1,
-      },
-    ],
-  };
-  const dataBar = {
-    labels: labels2,
-    datasets: [
-      {
-        data: itemData2,
-        // backgroundColor: [
-        //   "rgb(24, 0, 201)",
-        //   "rgb(0, 201, 64)",
-        //   "rgb(201, 178, 0)",
-        //   "rgb(201, 77, 0)",
-        //   "rgb(201, 0, 147)",
-        //   "rgb(9, 8, 10)",
-        //   "rgb(48, 230, 121)",
-        // ],
-      },
-    ],
-  };
-
-  const configLine1 = {
-    type: "line",
-    data: dataLine1,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        title: {
-          // display: true,
-          // text: 'Monthly Sales'
-        },
-      },
-    },
-  };
-  const configBar = {
-    type: "bar",
-    data: dataBar,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        title: {
-          // display: true,
-          // text: 'Monthly Sales'
+    //sales chart configuration
+    const configLine1 = {
+      type: "line",
+      data: dataLine1,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: "top",
+            labels: {
+              boxWidth: 30,
+              boxHeight: 2,
+            },
+          },
+          title: {
+            display: true,
+            text: "Monthly Sales",
+          },
         },
       },
-    },
-  };
+    };
 
-  const chartLine1 = new Chart(
-    document.getElementById("sales-data"),
-    configLine1
-  );
-  const chartLine2 = new Chart(
-    document.getElementById("distributor-sales"),
-    configBar
-  );
+    // sales chart visualizing
+    const chartLine1 = new Chart(
+      document.getElementById("sales-data"),
+      configLine1
+    );
+  }
 })();
