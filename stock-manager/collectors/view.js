@@ -1232,9 +1232,9 @@
           position: locations[i], // Set the position of the marker
           map,
           content: new google.maps.marker.PinElement({
-            glyphColor: "#70bb56",
-            borderColor: "#137333",
-            background: "#FBBC04",
+            glyphColor: "#a86602",
+            borderColor: "#a86602",
+            background: "#f2ea02",
           }).element,
         });
       }

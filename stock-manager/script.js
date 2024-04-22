@@ -561,6 +561,8 @@ function rateChart(days, rate) {
   );
 }
 
+
+
 function getLastSevenDays() {
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 

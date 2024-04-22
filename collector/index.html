@@ -89,13 +89,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="../common/func.js"></script>
     <script src="./auth.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <style>
-      #map {
-        height: 500px;
-        width: 900px;
-      }
-    </style>
   </head>
 
   <body>
@@ -132,19 +127,16 @@
     <!-- Map window start -->
     <div class="overlay1 overlay" id="overlay1">
       <div class="get-direction light-box">
+        <p class="close-btn1 close-btn do-not">
+          <i class="fas fa-xmark"></i>
+        </p>
         <div class="direction-container">
-          <p class="close-btn1 close-btn do-not">
-            <i class="fas fa-xmark"></i>
-          </p>
           <div class="pick-map">
             <div id="map"></div>
           </div>
 
           <div class="pick-address">
-            <h2 class="table-heading t1">Supplier's name</h2>
-            <div>
-              <p>22/96, bla bla, piliyandala</p>
-            </div>
+            
           </div>
         </div>
       </div>

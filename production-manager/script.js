@@ -202,6 +202,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               window.location.href = r.dataset.href;
             });
           });
+          pagination("table2", 15);
         });
       } else if (response.status === 202) {
         response.json().then((data) => {
@@ -272,6 +273,8 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               window.location.href = r.dataset.href;
             });
           });
+
+
         });
       } else if (response.status === 202) {
         response.json().then((data) => {

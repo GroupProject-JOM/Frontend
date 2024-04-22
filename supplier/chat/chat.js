@@ -90,7 +90,6 @@
       msg +
       ` </p>
       </div>
-      <span>12.44 PM</span>
     </div>`;
     chat.scrollTop = chat.scrollHeight;
   }
@@ -137,7 +136,6 @@
                 item.content +
                 `</p>
                     </div>
-                    <span>12.44 PM</span>
                   </div>`;
             } else {
               receive(item.content);

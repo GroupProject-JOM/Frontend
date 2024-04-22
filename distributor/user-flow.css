@@ -246,25 +246,31 @@ input:disabled{
 } */
 
 .bill-container {
-  width: 40vw;
-  height: auto;
-  margin-top: 60px;
-  top: 15%;
+  width: 50vw;
+  max-height: 80vh;
+  /* margin-top: 60px; */
+  top: 10%;
   right: 25%;
+  overflow-y: scroll;
+  
 }
 
 .bill-table{
   width: 100%;
   text-align: left;
+  border-spacing: 0;
+  border-color: var(--input-border);
+  border-radius: 5px;
+  margin-top: 30px;
 }
 
 .bill-table th{
-  padding: 10px 0;
+  padding: 10px 0px 10px 10px;
 
 }
 
 .bill-table td{
-  padding: 10px 0;
+  padding: 10px 0px 10px 10px;
 }
 
 .bill-table .tc1{
