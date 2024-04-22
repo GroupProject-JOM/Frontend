@@ -173,7 +173,6 @@
             arr.forEach(data_to_table);
 
             function data_to_table(item) {
-              log(item)
               if (item.sender == getPayload(getCookie("jwt")).user) {
                 chat.innerHTML +=
                   `<div class="sent">
