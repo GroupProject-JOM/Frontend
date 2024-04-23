@@ -380,7 +380,7 @@ body {
   width: 300px;
   background-color: #f5f5f5;
   box-shadow: 0px 4px 40px 0px var(--box-shadow);
-  height: 80%;
+  height: 83%;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 20px;
@@ -991,6 +991,8 @@ body {
     width: 101%;
   }
 
+
+
   .layer4 {
     padding: 50px 30px;
     margin: 0;
@@ -1070,6 +1072,10 @@ body {
   footer .content a {
     font-size: 0.8rem;
   } */
+
+  .layer3 .products-wrapper .card{
+    height: 87%;
+  }
 }
 
 .slide-container {
