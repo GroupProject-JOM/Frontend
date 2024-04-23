@@ -297,7 +297,8 @@
       });
   });
 
-  vBtn1.addEventListener("click", () => {
+  vBtn1.addEventListener("click", (e) => {
+    e.preventDefault();
     if (
       typeof emailOTP.value === "string" &&
       emailOTP.value.trim().length === 0
