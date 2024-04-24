@@ -546,7 +546,14 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>
+      $(".menu-btn").click(function () {
+        $(".navbar .menu").toggleClass("active");
+        $(".navbar .button").toggleClass("active");
+        $(".menu-btn i").toggleClass("active");
+      });
+
       var swiper2 = new Swiper(".slide-content2", {
         slidesPerView: 4,
         spaceBetween: 40,
