@@ -757,7 +757,49 @@ body {
   vertical-align: top;
 }
 
+
+
+
+
 /* Footer left */
+
+.footer-distributed .footer-left .mobile-app{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-distributed .footer-left .text{
+  font-size: 0.9rem;
+  color: #494848;
+}
+
+.footer-distributed .footer-left .google-icon{
+  text-decoration: none;
+  /* border: 3px solid var(--sidebar-color);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px; */
+}
+
+.footer-distributed .footer-left i{
+  color: var(--sidebar-color);
+  color: #7c7c7c;
+
+  /* width: 35px;
+  height: 35px; */
+  cursor: pointer;
+  border: 2px solid #7c7c7c;
+  /* background-color:  #bb9056; */
+  /* border-radius: 50%; */
+display: flex;
+justify-content: center;
+align-items: center;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 
 .footer-distributed .footer-left {
   width: 40%;
