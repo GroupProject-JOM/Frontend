@@ -692,7 +692,7 @@ function generateInvoice(user_data, collections, start, total) {
         item.supply_method,
         item.payment_method + "\n",
         item.final_amount.toLocaleString("en-US"),
-        (item.value / item.final_amount).toString() + ".00",
+        Math.floor(item.value / item.final_amount).toString() + ".00",
         item.value.toLocaleString("en-US") + ".00",
       ]),
       additionalRows: [

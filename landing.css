@@ -516,46 +516,46 @@ body {
 .layer4 .yt {
   width: 92px;
   height: 92px;
-  top: 2140px;
+  top: 2056px;
   left: 300px;
 }
 .layer4 .camera {
   width: 105px;
   height: 105px;
-  top: 2220px;
+  top: 2140px;
   left: 100px;
 }
 .layer4 .mail {
   width: 32px;
   height: 32px;
-  top: 2280px;
+  top: 2200px;
   left: 455px;
   font-size: 80%;
 }
 .layer4 .pin {
   width: 105px;
   height: 105px;
-  top: 2510px;
+  top: 2450px;
   left: 470px;
 }
 .layer4 .star {
   width: 45px;
   height: 45px;
-  top: 2350px;
+  top: 2280px;
   left: 530px;
   font-size: 130%;
 }
 .layer4 .setting {
   width: 45px;
   height: 45px;
-  top: 2630px;
+  top: 2580px;
   left: 80px;
   font-size: 130%;
 }
 .layer4 .radio {
   width: 62px;
   height: 62px;
-  top: 2500px;
+  top: 2420px;
   left: 170px;
   font-size: 150%;
 }
@@ -623,7 +623,7 @@ body {
   height: 490px;
   border-radius: 60px;
   position: absolute;
-  top: 2865px;
+  top: 2790px;
   right: -265px;
   transform: rotate(45deg);
   box-shadow: 0 0 0 3.7rem var(--sidebar-color);
@@ -989,6 +989,7 @@ body {
     padding: 30px;
     margin: 0;
     width: 101%;
+    height: auto;
   }
 
 
@@ -1046,32 +1047,6 @@ body {
     margin: 0;
   }
 
-  /* footer {
-    height: 18vh;
-    padding-top: 30px;
-    width: 101%;
-  }
-
-  footer .content {
-    margin: 0 0 20px 0;
-  }
-
-  footer p {
-    margin-top: 0px;
-    font-size: 0.6rem;
-    padding: 8px 0;
-  }
-
-  footer .social div {
-    width: 22px;
-    height: 22px;
-    font-size: 0.8rem;
-   
-  }
-
-  footer .content a {
-    font-size: 0.8rem;
-  } */
 
   .layer3 .products-wrapper .card{
     height: 87%;
@@ -1140,8 +1115,8 @@ body {
     content: "\f00d";
   }
 
-  .navbar .menu,
-  .navbar .button {
+  .navbar .menu
+  {
     position: fixed;
     height: 100vh;
     width: 100%;
@@ -1152,6 +1127,21 @@ body {
     padding-top: 80px;
     transition: all 0.3s ease;
   }
+
+  .navbar{
+    gap: 0;
+    flex-direction: row-reverse;
+  }
+
+  .fa-bars{
+    position: relative;
+  }
+
+  .navbar .button{
+    padding: 8px 25px;
+    font-size: 0.9rem;
+  }
+
 
   .navbar .menu.active {
     left: 0;
@@ -1174,19 +1164,6 @@ body {
 
   .menu-btn i.active::before {
     content: "\f00d";
-  }
-
-  .navbar .menu,
-  .navbar .button {
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    left: -100%;
-    top: 0;
-    background-color: #111111;
-    text-align: center;
-    padding-top: 80px;
-    transition: all 0.3s ease;
   }
 
   .navbar .menu.active {
