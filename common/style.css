@@ -416,7 +416,7 @@ body.dark {
   }
 }
 
-@media only screen and (max-device-width: 900px) {
+@media only screen and (max-width: 900px) {
   .widget {
     width: 50vw;
   }
@@ -430,6 +430,10 @@ body.dark {
   }
   .hide {
     display: none;
+  }
+  .action-bar button{
+    font-size: 0.8rem;
+    width: 290px;
   }
 }
 
@@ -1147,7 +1151,7 @@ button:where(.swal2-styled) {
 }
 
 
-@media only screen and (max-device-width: 718px) {
+@media only screen and (max-width: 718px) {
   .home {
     left: 0;
     width: calc(100%);
