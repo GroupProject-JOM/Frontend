@@ -51,14 +51,14 @@
 
   var data = {
     sin: {
-      cTitle: "එකතු කිරීමේ හැඳුනුම්පත " + getCookie("id"),
+      cTitle: "එකතු කිරීමේ හැඳුනුම්පත S/P/" + getCookie("id"),
       t1: "ආරම්භක පොල් ප්‍රමාණය",
       t2: "අවසාන පොල් ප්‍රමාණය",
       t3: "එකතුව සම්පූර්ණ ලෙස ලකුණු කර ඇත",
       btn: "උපකරණ පුවරුව වෙත ආපසු යන්න",
     },
     en: {
-      cTitle: "Collection ID " + getCookie("id"),
+      cTitle: "Collection ID S/P/" + getCookie("id"),
       t1: "Initial Coconut Amount",
       t2: "Final Coconut Amount",
       t3: "Collection Marked as Complete",
