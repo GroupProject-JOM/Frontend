@@ -128,6 +128,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./view.html' id=" +
               item.id +
               ">" +
+              "<td>E/" +item.role.charAt(0).toUpperCase()+"/"+
+              item.id +
+              "</td>" +
               "<td>" +
               item.first_name +
               " " +
@@ -155,6 +158,9 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
               "<tr data-href='./view.html' id=" +
               item.id +
               ">" +
+              "<td>E/" +item.role.charAt(0).toUpperCase()+"/"+
+              item.id +
+              "</td>" +
               "<td>" +
               item.first_name +
               " " +
