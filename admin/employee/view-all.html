@@ -132,7 +132,7 @@
 
       <div class="text"></div>
 
-      <div class="admin-container container">
+      <div class="admin-container employee-container">
         <div class="admin-heading table-heading">
           <h2 class="outlet-title"></h2>
           <p class="outlet-text"></p>
@@ -140,14 +140,30 @@
         <div class="add-employee">
           <a class="add-button form-button" href="./add.html"></a>
 
-          <div class="search-filter">
+          <div class="search-filter search-filter-1">
             <div class="search-wrapper">
-              <div class="search-box search-box">
-                <input type="text" class="search" placeholder=" " />
+              <div class="search-box search-box1">
+                <input type="text" class="search1" placeholder=" " />
                 <span></span>
               </div>
             </div>
+
+            <div class="filter filter-dropdown">
+              <div id="searchBox">
+                <i class="fas fa-filter" id="filter-icon"></i>
+                <select class="dropdown filter-1">
+                  <option default hidden class="op0">Select Option</option>
+                  <option value="">All</option>
+                  <option value="collector">Collector</option>
+                  <option value="stock manager">Stock Manager</option>
+                  <option value="production manager">Production Manager</option>
+                  <option value="sales manager">Sales Manager</option>
+                  <option value="distributor">Distributor</option>
+                </select>
+              </div>
+            </div>
           </div>
+
         </div>
         <div class="table1">
           <table class="employees-table overview-tables">
@@ -169,18 +185,33 @@
           <div>
             <p class="outlet-text">View past employee details of the company</p>
 
-            <div class="search-filter">
+            <div class="search-filter search-filter-2">
               <div class="search-wrapper">
-                <div class="search-box search-box">
-                  <input type="text" class="search" placeholder=" " />
+                <div class="search-box search-box2">
+                  <input type="text" class="search2" placeholder=" " />
                   <span></span>
+                </div>
+              </div>
+  
+              <div class="filter filter-dropdown">
+                <div id="searchBox">
+                  <i class="fas fa-filter" id="filter-icon"></i>
+                  <select class="dropdown filter-2">
+                    <option default hidden class="op0">Select Option</option>
+                    <option value="">All</option>
+                    <option value="collector">Collector</option>
+                    <option value="stock manager">Stock Manager</option>
+                    <option value="production manager">Production Manager</option>
+                    <option value="sales manager">Sales Manager</option>
+                    <option value="distributor">Distributor</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <table class="employees-table overview-tables">
+        <table class="past-employees-table overview-tables">
           <thead>
             <tr>
               <th>Employee Name</th>

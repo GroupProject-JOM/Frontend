@@ -1,5 +1,5 @@
-// sessionStorage.setItem("id", 0);
 document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
 (() => {
   const body = document.querySelector("body"),
     sin = body.querySelector(".sin"),
@@ -8,16 +8,69 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     oText = body.querySelector(".outlet-text"),
     tbody1 = body.querySelector(".tbody1"),
     tbody2 = body.querySelector(".tbody2"),
+    employeesTable = body.querySelector(".employees-table"),
+    pastEmployeesTable = body.querySelector(".past-employees-table"),
+    searchBar1 = body.querySelector(".search1"),
+    searchBar2 = body.querySelector(".search2"),
+    filter1 = body.querySelector(".filter-1"),
+    filter2 = body.querySelector(".filter-2"),
+    searchFilter1 = body.querySelector(".search-filter-1"),
+    searchFilter2 = body.querySelector(".search-filter-2"),
     btn = body.querySelector(".form-button");
 
   var lang = getCookie("lang"); // current language
+
+  // initalize serach boxes
+  var searchBox1 = document.querySelectorAll(
+    '.search-box1 input[type="text"] + span'
+  );
+  var searchBox2 = document.querySelectorAll(
+    '.search-box2 input[type="text"] + span'
+  );
+
+  // search box search function on click
+  searchBox1.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar1.value.toUpperCase(), employeesTable);
+    });
+  });
+  searchBox2.forEach((elm) => {
+    elm.addEventListener("click", () => {
+      elm.previousElementSibling.value = "";
+      search(searchBar2.value.toUpperCase(), pastEmployeesTable);
+    });
+  });
+
+  // search box search function on input
+  searchBar1.addEventListener("keyup", () => {
+    search(searchBar1.value.toUpperCase(), employeesTable);
+  });
+  searchBar2.addEventListener("keyup", () => {
+    search(searchBar2.value.toUpperCase(), pastEmployeesTable);
+  });
+
+  // filters filter functions
+  filter1.addEventListener("input", () => {
+    search(filter1.value.toUpperCase(), employeesTable);
+  });
+  filter2.addEventListener("input", () => {
+    search(filter2.value.toUpperCase(), pastEmployeesTable);
+  });
+
+  // toggle view hide filter on click
+  const googleIcon = document.querySelectorAll("#filter-icon");
+  googleIcon.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      icon.parentElement.classList.toggle("active");
+    });
+  });
 
   sin.addEventListener("click", () => {
     sin.classList.add("active");
     en.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "sin");
-    // sessionStorage.setItem("lang", "sin");
     document.cookie = "lang=sin; path=/";
     lang = "sin";
 
@@ -32,7 +85,6 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     sin.classList.remove("active");
 
     document.documentElement.setAttribute("lang", "en");
-    // sessionStorage.setItem("lang", "en");
     document.cookie = "lang=en; path=/";
     lang = "en";
 
