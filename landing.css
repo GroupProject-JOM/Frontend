@@ -380,7 +380,7 @@ body {
   width: 300px;
   background-color: #f5f5f5;
   box-shadow: 0px 4px 40px 0px var(--box-shadow);
-  height: 80%;
+  height: 83%;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 20px;
@@ -516,46 +516,46 @@ body {
 .layer4 .yt {
   width: 92px;
   height: 92px;
-  top: 2140px;
+  top: 2056px;
   left: 300px;
 }
 .layer4 .camera {
   width: 105px;
   height: 105px;
-  top: 2220px;
+  top: 2140px;
   left: 100px;
 }
 .layer4 .mail {
   width: 32px;
   height: 32px;
-  top: 2280px;
+  top: 2200px;
   left: 455px;
   font-size: 80%;
 }
 .layer4 .pin {
   width: 105px;
   height: 105px;
-  top: 2510px;
+  top: 2450px;
   left: 470px;
 }
 .layer4 .star {
   width: 45px;
   height: 45px;
-  top: 2350px;
+  top: 2280px;
   left: 530px;
   font-size: 130%;
 }
 .layer4 .setting {
   width: 45px;
   height: 45px;
-  top: 2630px;
+  top: 2580px;
   left: 80px;
   font-size: 130%;
 }
 .layer4 .radio {
   width: 62px;
   height: 62px;
-  top: 2500px;
+  top: 2420px;
   left: 170px;
   font-size: 150%;
 }
@@ -623,7 +623,7 @@ body {
   height: 490px;
   border-radius: 60px;
   position: absolute;
-  top: 2865px;
+  top: 2790px;
   right: -265px;
   transform: rotate(45deg);
   box-shadow: 0 0 0 3.7rem var(--sidebar-color);
@@ -757,7 +757,49 @@ body {
   vertical-align: top;
 }
 
+
+
+
+
 /* Footer left */
+
+.footer-distributed .footer-left .mobile-app{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-distributed .footer-left .text{
+  font-size: 0.9rem;
+  color: #494848;
+}
+
+.footer-distributed .footer-left .google-icon{
+  text-decoration: none;
+  /* border: 3px solid var(--sidebar-color);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px; */
+}
+
+.footer-distributed .footer-left i{
+  color: var(--sidebar-color);
+  color: #7c7c7c;
+
+  /* width: 35px;
+  height: 35px; */
+  cursor: pointer;
+  border: 2px solid #7c7c7c;
+  /* background-color:  #bb9056; */
+  /* border-radius: 50%; */
+display: flex;
+justify-content: center;
+align-items: center;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 
 .footer-distributed .footer-left {
   width: 40%;
@@ -903,7 +945,7 @@ body {
   font-weight: 600;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 820px) {
   .footer-distributed {
     font: bold 14px sans-serif;
   }
@@ -937,17 +979,6 @@ body {
     padding: 0;
   }
 
-  .layer1 {
-    padding: 0 30px;
-    margin-bottom: 0;
-    display: block;
-    height: 50vh;
-    margin-top: 10vh;
-  }
-  .layer1 .layer-left {
-    width: 100%;
-  }
-
   .layer1 h1 {
     font-size: 1.6rem;
     margin-left: 0;
@@ -959,14 +990,11 @@ body {
     margin-left: 0;
     margin-right: 0;
   }
-  .layer1 .form-button {
-    margin-left: 0;
-    margin-right: 0;
-  }
 
   .layer2 {
     height: fit-content;
-    padding: 0 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     margin-bottom: 60px;
   }
 
@@ -1000,11 +1028,13 @@ body {
   }
 
   .layer3 {
-    width: 100%;
     padding: 30px;
     margin: 0;
     width: 101%;
+    height: auto;
   }
+
+
 
   .layer4 {
     padding: 50px 30px;
@@ -1059,36 +1089,9 @@ body {
     margin: 0;
   }
 
-  footer {
-    height: 18vh;
-    padding-top: 30px;
-    width: 101%;
-  }
 
-  footer .content {
-    margin: 0 0 20px 0;
-  }
-
-  footer p {
-    margin-top: 0px;
-    font-size: 0.6rem;
-    padding: 8px 0;
-  }
-
-  footer .social div {
-    width: 22px;
-    height: 22px;
-    font-size: 0.8rem;
-    /* display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #dfc9ad;
-  color: #a06e2e; */
-  }
-
-  footer .content a {
-    font-size: 0.8rem;
+  .layer3 .products-wrapper .card{
+    height: 87%;
   }
 }
 
@@ -1154,8 +1157,8 @@ body {
     content: "\f00d";
   }
 
-  .navbar .menu,
-  .navbar .button {
+  .navbar .menu
+  {
     position: fixed;
     height: 100vh;
     width: 100%;
@@ -1165,6 +1168,44 @@ body {
     text-align: center;
     padding-top: 80px;
     transition: all 0.3s ease;
+  }
+
+  .navbar{
+    gap: 0;
+    flex-direction: row-reverse;
+  }
+
+  .fa-bars{
+    position: relative;
+  }
+
+  .navbar .button{
+    padding: 8px 25px;
+    font-size: 0.9rem;
+  }
+
+
+  .navbar .menu.active {
+    left: 0;
+  }
+
+  .navbar .menu li {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar .menu li a {
+    margin: 10px 0;
+    font-size: 25px;
+  }
+
+  .menu-btn {
+    display: block;
+    z-index: 999;
+  }
+
+  .menu-btn i.active::before {
+    content: "\f00d";
   }
 
   .navbar .menu.active {

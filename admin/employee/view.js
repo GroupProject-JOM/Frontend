@@ -3,6 +3,7 @@
     sin = body.querySelector(".sin"),
     en = body.querySelector(".en"),
     aTitle = body.querySelector(".admin-title"),
+    eId = body.querySelector(".eId"),
     efname = body.querySelector(".efname"),
     elname = body.querySelector(".elname"),
     eEmail = body.querySelector(".eEmail"),
@@ -70,6 +71,11 @@
     .then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
+          eId.textContent =
+            "E/" +
+            data.employee.role.charAt(0).toUpperCase() +
+            "/" +
+            getCookie("id");
           efname.textContent = data.employee.first_name;
           elname.textContent = data.employee.last_name;
           eEmail.textContent = data.employee.email;

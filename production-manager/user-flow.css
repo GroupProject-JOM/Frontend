@@ -463,7 +463,7 @@ select.dropdown {
   width: 40%;
 }
 
-@media only screen and (max-device-width: 1260px) {
+@media only screen and (max-width: 1260px) {
   .production-req {
     display: flex;
     flex-wrap: wrap;
