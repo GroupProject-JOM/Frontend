@@ -167,7 +167,7 @@
     sin: {
       sTitle: "නව සැපයුම",
       tText:
-        "ඔබගේ නව සැපයුම් ඉල්ලීම සඳහා විස්තර නිවැරදිව පුරවන්න. <br />ඉල්ලීම් පැය 24ක් ඇතුළත සමාලෝචනය කෙරේ. ඔබට ඒවා ඔබේ උපකරණ පුවරුව තුළ පරීක්ෂා කළ හැකිය.",
+        "ඔබගේ නව සැපයුම් ඉල්ලීම සඳහා විස්තර නිවැරදිව පුරවන්න. <br />ඉල්ලීම් පැය 24ක් ඇතුළත සමාලෝචනය කෙරේ. ඔබට ඒවා ඔබේ උපකරණ පුවරුව තුළ පරීක්ෂා කළ හැකිය. <br/>කරුණාකර තෝරාගත් වේලාවෙන් පැයක කාල පරාසයක් තුළ එකතු කරන්නා බලාපොරොත්තු වන්න.",
       lop: "වතුයායේ ස්ථානය",
       date: "දිනය",
       time: "වෙලාව",
@@ -179,7 +179,7 @@
     en: {
       sTitle: "New Supply",
       tText:
-        "Fill up the details correctly for your new supply request. <br />Requests will be reviewed within 24 hours. You can check them inside  your dashboard.",
+        "Fill up the details correctly for your new supply request. <br />Requests will be reviewed within 24 hours. You can check them inside  your dashboard. <br />Please expect the collector within one hour time range from the selected time.",
       lop: "Estate Location",
       date: "feasible date",
       time: "feasible time",
