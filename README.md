@@ -4,6 +4,8 @@
 
 Presenting a web application to manage and automate the business and manufacturing processes of Jayasinghe Oil Mills Pvt. Ltd., a local virgin coconut oil manufacturer. This solution is designed to make their operations smoother and boost efficiency.
 
+<a href="https://jom-dev.duckdns.org" target="_blank"> <img src="./common/img/web_qr.png" height="200px"></a>
+
 ## Project Structure
 
 ### Root Directory

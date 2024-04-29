@@ -204,7 +204,7 @@
             }
           } else if (4 < data.request.status && data.request.status < 7) {
             if (data.request.status == 5)
-              sstatus.textContent = "Pending Paymant";
+              sstatus.textContent = "Pending Payment";
             else if (data.request.status == 6) sstatus.textContent = "Paid";
 
             ccount.textContent =
@@ -328,7 +328,7 @@
   function actionVerifyDecline() {
     if (getCookie("id") == sessionStorage.getItem("id")) {
       cMessage.textContent =
-        "Collecter entered amount is " + sessionStorage.getItem("amount");
+        "Collector entered amount is " + sessionStorage.getItem("amount");
       sMessage.style.display = "block";
     }
   }

@@ -48,7 +48,7 @@
   border-radius: 10px;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 400px) {
+@media only screen and (min-width: 320px) and (max-width: 400px) {
   .notification-window {
     width: 90%;
   }
@@ -90,7 +90,7 @@
   transition: var(--tran-03);
 }
 
-@media only screen and (max-device-width: 718px) {
+@media only screen and (max-width: 718px) {
   .notification-window {
     width: 80vw;
     padding: 5px 20px;

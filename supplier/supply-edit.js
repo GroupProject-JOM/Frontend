@@ -28,6 +28,8 @@
     amountLabel = body.querySelector(".amount-label"),
     methodLabel = body.querySelector(".method-label"),
     paymentLabel = body.querySelector(".payment-label"),
+    estateLabel = body.querySelector(".estate-label"),
+    bankLabel = body.querySelector(".bank-label"),
     dText = body.querySelector(".date-label"),
     tText = body.querySelector(".time-label");
 
@@ -256,18 +258,22 @@
     log(method.value);
     if (method.value == "pickup") {
       location.style.display = "block";
+      estateLabel.style.display = "block";
       location_status_func();
     } else {
       location.style.display = "none";
+      estateLabel.style.display = "none";
     }
   });
   payment.addEventListener("input", () => {
     log(payment.value);
     if (payment.value == "bank") {
       bank.style.display = "block";
+      bankLabel.style.display = "block";
       bank_status_func();
     } else {
       bank.style.display = "none";
+      bankLabel.style.display = "none";
     }
   });
 
@@ -408,6 +414,7 @@
             }
             location.value = data.request.estate_id;
             location.style.display = "block";
+            estateLabel.style.display = "block";
           } else {
             if (lang == "sin") {
               dText.textContent = "ලබා දෙන දිනය";
@@ -421,6 +428,7 @@
           if (data.request.payment_method == "bank") {
             bank.value = data.request.account_id;
             bank.style.display = "block";
+            bankLabel.style.display = "block";
           }
         });
       } else if (response.status === 202) {
