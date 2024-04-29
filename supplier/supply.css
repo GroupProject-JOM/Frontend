@@ -615,6 +615,10 @@ input [type=""] .supply7-container input {
   margin: 20px 0 40px 0;
 }
 
+.supply-edit-content .dropdown{
+  width: 40vw;
+}
+
 
 
 
