@@ -132,7 +132,9 @@
               "</tr>";
           });
 
+          
           tbody.innerHTML = row;
+          pagination("table1", 10);
 
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
