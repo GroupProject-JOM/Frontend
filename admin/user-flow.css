@@ -151,7 +151,7 @@ select.dropdown {
   width: 95%;
 }
 
-@media only screen and (max-device-width: 900px) {
+@media only screen and (max-width: 900px) {
   .admin-container {
     margin-left: 0;
   }
@@ -519,7 +519,7 @@ input:focus {
 
 
 
-@media only screen and (max-device-width: 718px) {
+@media only screen and (max-width: 718px) {
   .yard {
     width: 70%;
   }
