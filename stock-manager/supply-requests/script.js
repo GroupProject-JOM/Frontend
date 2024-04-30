@@ -125,6 +125,7 @@ document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           }
 
           tbody.innerHTML = row;
+          pagination("table1", 15);
 
           const rows = document.querySelectorAll("tr[data-href]");
           rows.forEach((r) => {
